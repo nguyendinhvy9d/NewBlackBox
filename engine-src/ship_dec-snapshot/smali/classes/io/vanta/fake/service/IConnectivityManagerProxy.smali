@@ -37,6 +37,7 @@
         Lio/vanta/fake/service/IConnectivityManagerProxy$RegisterDefaultNetworkCallback;,
         Lio/vanta/fake/service/IConnectivityManagerProxy$RegisterNetworkCallback;,
         Lio/vanta/fake/service/IConnectivityManagerProxy$RequestNetwork;,
+        Lio/vanta/fake/service/IConnectivityManagerProxy$ListenForNetwork;,
         Lio/vanta/fake/service/IConnectivityManagerProxy$IsNetworkValidated;,
         Lio/vanta/fake/service/IConnectivityManagerProxy$GetDnsServers;,
         Lio/vanta/fake/service/IConnectivityManagerProxy$IsPrivateDnsActive;,
