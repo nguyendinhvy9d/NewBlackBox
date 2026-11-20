@@ -1,0 +1,272 @@
+.class public Lio/vanta/utils/compat/PackageParserCompat;
+.super Ljava/lang/Object;
+.source "PackageParserCompat.java"
+
+
+# static fields
+.field private static final API_LEVEL:I
+
+.field public static final GIDS:[I
+
+.field private static final myUserId:I
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 1
+
+    const/4 v0, 0x0
+
+    .line 24
+    new-array v0, v0, [I
+
+    sput-object v0, Lio/vanta/utils/compat/PackageParserCompat;->GIDS:[I
+
+    .line 25
+    sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    sput v0, Lio/vanta/utils/compat/PackageParserCompat;->API_LEVEL:I
+
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .locals 0
+
+    .line 22
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+.method public static collectCertificates(Landroid/content/pm/PackageParser;Landroid/content/pm/PackageParser$Package;I)V
+    .locals 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/Throwable;
+        }
+    .end annotation
+
+    .line 54
+    invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isPie()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 55
+    invoke-static {}, Lvanta/android/content/pm/BRPackageParserPie;->getWithException()Lvanta/android/content/pm/PackageParserPieStatic;
+
+    move-result-object p0
+
+    const/4 p2, 0x1
+
+    invoke-interface {p0, p1, p2}, Lvanta/android/content/pm/PackageParserPieStatic;->collectCertificates(Landroid/content/pm/PackageParser$Package;Z)Ljava/lang/Void;
+
+    return-void
+
+    .line 56
+    :cond_0
+    sget v0, Lio/vanta/utils/compat/PackageParserCompat;->API_LEVEL:I
+
+    const/16 v1, 0x18
+
+    if-lt v0, v1, :cond_1
+
+    .line 57
+    invoke-static {}, Lvanta/android/content/pm/BRPackageParserNougat;->getWithException()Lvanta/android/content/pm/PackageParserNougatStatic;
+
+    move-result-object p0
+
+    invoke-interface {p0, p1, p2}, Lvanta/android/content/pm/PackageParserNougatStatic;->collectCertificates(Landroid/content/pm/PackageParser$Package;I)Ljava/lang/Void;
+
+    return-void
+
+    :cond_1
+    const/16 v1, 0x17
+
+    if-lt v0, v1, :cond_2
+
+    .line 59
+    invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserMarshmallow;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserMarshmallowContext;
+
+    move-result-object p0
+
+    invoke-interface {p0, p1, p2}, Lvanta/android/content/pm/PackageParserMarshmallowContext;->collectCertificates(Landroid/content/pm/PackageParser$Package;I)Ljava/lang/Void;
+
+    return-void
+
+    :cond_2
+    const/16 v1, 0x16
+
+    if-lt v0, v1, :cond_3
+
+    .line 61
+    invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserLollipop22;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserLollipop22Context;
+
+    move-result-object p0
+
+    invoke-interface {p0, p1, p2}, Lvanta/android/content/pm/PackageParserLollipop22Context;->collectCertificates(Landroid/content/pm/PackageParser$Package;I)Ljava/lang/Void;
+
+    return-void
+
+    :cond_3
+    const/16 v1, 0x15
+
+    if-lt v0, v1, :cond_4
+
+    .line 63
+    invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserLollipop;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserLollipopContext;
+
+    move-result-object p0
+
+    invoke-interface {p0, p1, p2}, Lvanta/android/content/pm/PackageParserLollipopContext;->collectCertificates(Landroid/content/pm/PackageParser$Package;I)Ljava/lang/Void;
+
+    return-void
+
+    .line 65
+    :cond_4
+    invoke-static {p0}, Lvanta/android/content/pm/BRPackageParser;->get(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserContext;
+
+    move-result-object p0
+
+    invoke-interface {p0, p1, p2}, Lvanta/android/content/pm/PackageParserContext;->collectCertificates(Landroid/content/pm/PackageParser$Package;I)Ljava/lang/Void;
+
+    return-void
+.end method
+
+.method public static createParser(Ljava/io/File;)Landroid/content/pm/PackageParser;
+    .locals 1
+
+    .line 30
+    sget p0, Lio/vanta/utils/compat/PackageParserCompat;->API_LEVEL:I
+
+    const/16 v0, 0x17
+
+    if-lt p0, v0, :cond_0
+
+    .line 31
+    invoke-static {}, Lvanta/android/content/pm/BRPackageParserMarshmallow;->get()Lvanta/android/content/pm/PackageParserMarshmallowStatic;
+
+    move-result-object p0
+
+    invoke-interface {p0}, Lvanta/android/content/pm/PackageParserMarshmallowStatic;->_new()Landroid/content/pm/PackageParser;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_0
+    const/16 v0, 0x16
+
+    if-lt p0, v0, :cond_1
+
+    .line 33
+    invoke-static {}, Lvanta/android/content/pm/BRPackageParserLollipop22;->get()Lvanta/android/content/pm/PackageParserLollipop22Static;
+
+    move-result-object p0
+
+    invoke-interface {p0}, Lvanta/android/content/pm/PackageParserLollipop22Static;->_new()Landroid/content/pm/PackageParser;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_1
+    const/16 v0, 0x15
+
+    if-lt p0, v0, :cond_2
+
+    .line 35
+    invoke-static {}, Lvanta/android/content/pm/BRPackageParserLollipop;->get()Lvanta/android/content/pm/PackageParserLollipopStatic;
+
+    move-result-object p0
+
+    invoke-interface {p0}, Lvanta/android/content/pm/PackageParserLollipopStatic;->_new()Landroid/content/pm/PackageParser;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_2
+    const/4 p0, 0x0
+
+    return-object p0
+.end method
+
+.method public static parsePackage(Landroid/content/pm/PackageParser;Ljava/io/File;I)Landroid/content/pm/PackageParser$Package;
+    .locals 2
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/Throwable;
+        }
+    .end annotation
+
+    .line 41
+    sget v0, Lio/vanta/utils/compat/PackageParserCompat;->API_LEVEL:I
+
+    const/16 v1, 0x17
+
+    if-lt v0, v1, :cond_0
+
+    .line 42
+    invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserMarshmallow;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserMarshmallowContext;
+
+    move-result-object p0
+
+    invoke-interface {p0, p1, p2}, Lvanta/android/content/pm/PackageParserMarshmallowContext;->parsePackage(Ljava/io/File;I)Landroid/content/pm/PackageParser$Package;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_0
+    const/16 v1, 0x16
+
+    if-lt v0, v1, :cond_1
+
+    .line 44
+    invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserLollipop22;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserLollipop22Context;
+
+    move-result-object p0
+
+    invoke-interface {p0, p1, p2}, Lvanta/android/content/pm/PackageParserLollipop22Context;->parsePackage(Ljava/io/File;I)Landroid/content/pm/PackageParser$Package;
+
+    move-result-object p0
+
+    return-object p0
+
+    :cond_1
+    const/16 v1, 0x15
+
+    if-lt v0, v1, :cond_2
+
+    .line 46
+    invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserLollipop;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserLollipopContext;
+
+    move-result-object p0
+
+    invoke-interface {p0, p1, p2}, Lvanta/android/content/pm/PackageParserLollipopContext;->parsePackage(Ljava/io/File;I)Landroid/content/pm/PackageParser$Package;
+
+    move-result-object p0
+
+    return-object p0
+
+    .line 48
+    :cond_2
+    invoke-static {p0}, Lvanta/android/content/pm/BRPackageParser;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserContext;
+
+    move-result-object p0
+
+    new-instance v0, Landroid/util/DisplayMetrics;
+
+    invoke-direct {v0}, Landroid/util/DisplayMetrics;-><init>()V
+
+    const/4 v1, 0x0
+
+    invoke-interface {p0, p1, v1, v0, p2}, Lvanta/android/content/pm/PackageParserContext;->parsePackage(Ljava/io/File;Ljava/lang/String;Landroid/util/DisplayMetrics;I)Landroid/content/pm/PackageParser$Package;
+
+    move-result-object p0
+
+    return-object p0
+.end method

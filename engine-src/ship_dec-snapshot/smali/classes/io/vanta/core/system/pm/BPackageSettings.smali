@@ -1,0 +1,616 @@
+.class public Lio/vanta/core/system/pm/BPackageSettings;
+.super Ljava/lang/Object;
+.source "BPackageSettings.java"
+
+# interfaces
+.implements Landroid/os/Parcelable;
+
+
+# static fields
+.field public static final CREATOR:Landroid/os/Parcelable$Creator;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Landroid/os/Parcelable$Creator<",
+            "Lio/vanta/core/system/pm/BPackageSettings;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field static final DEFAULT_USER_STATE:Lio/vanta/core/system/pm/BPackageUserState;
+
+
+# instance fields
+.field public appId:I
+
+.field public installOption:Lio/vanta/entity/pm/InstallOption;
+
+.field public pkg:Lio/vanta/core/system/pm/BPackage;
+
+.field public userState:Ljava/util/Map;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/Map<",
+            "Ljava/lang/Integer;",
+            "Lio/vanta/core/system/pm/BPackageUserState;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 1
+
+    .line 25
+    new-instance v0, Lio/vanta/core/system/pm/BPackageUserState;
+
+    invoke-direct {v0}, Lio/vanta/core/system/pm/BPackageUserState;-><init>()V
+
+    sput-object v0, Lio/vanta/core/system/pm/BPackageSettings;->DEFAULT_USER_STATE:Lio/vanta/core/system/pm/BPackageUserState;
+
+    .line 142
+    new-instance v0, Lio/vanta/core/system/pm/BPackageSettings$1;
+
+    invoke-direct {v0}, Lio/vanta/core/system/pm/BPackageSettings$1;-><init>()V
+
+    sput-object v0, Lio/vanta/core/system/pm/BPackageSettings;->CREATOR:Landroid/os/Parcelable$Creator;
+
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .locals 1
+
+    .line 27
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 24
+    new-instance v0, Ljava/util/HashMap;
+
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+
+    iput-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    return-void
+.end method
+
+.method protected constructor <init>(Landroid/os/Parcel;)V
+    .locals 5
+
+    .line 129
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 24
+    new-instance v0, Ljava/util/HashMap;
+
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+
+    iput-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    .line 130
+    const-class v0, Lio/vanta/core/system/pm/BPackage;
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v0
+
+    invoke-virtual {p1, v0}, Landroid/os/Parcel;->readParcelable(Ljava/lang/ClassLoader;)Landroid/os/Parcelable;
+
+    move-result-object v0
+
+    check-cast v0, Lio/vanta/core/system/pm/BPackage;
+
+    iput-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
+
+    .line 131
+    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
+
+    move-result v0
+
+    iput v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->appId:I
+
+    .line 132
+    const-class v0, Lio/vanta/entity/pm/InstallOption;
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v0
+
+    invoke-virtual {p1, v0}, Landroid/os/Parcel;->readParcelable(Ljava/lang/ClassLoader;)Landroid/os/Parcelable;
+
+    move-result-object v0
+
+    check-cast v0, Lio/vanta/entity/pm/InstallOption;
+
+    iput-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->installOption:Lio/vanta/entity/pm/InstallOption;
+
+    .line 133
+    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
+
+    move-result v0
+
+    .line 134
+    new-instance v1, Ljava/util/HashMap;
+
+    invoke-direct {v1, v0}, Ljava/util/HashMap;-><init>(I)V
+
+    iput-object v1, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    const/4 v1, 0x0
+
+    :goto_0
+    if-ge v1, v0, :cond_0
+
+    .line 136
+    const-class v2, Ljava/lang/Integer;
+
+    invoke-virtual {v2}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v2
+
+    invoke-virtual {p1, v2}, Landroid/os/Parcel;->readValue(Ljava/lang/ClassLoader;)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Ljava/lang/Integer;
+
+    .line 137
+    const-class v3, Lio/vanta/core/system/pm/BPackageUserState;
+
+    invoke-virtual {v3}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v3
+
+    invoke-virtual {p1, v3}, Landroid/os/Parcel;->readParcelable(Ljava/lang/ClassLoader;)Landroid/os/Parcelable;
+
+    move-result-object v3
+
+    check-cast v3, Lio/vanta/core/system/pm/BPackageUserState;
+
+    .line 138
+    iget-object v4, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    invoke-interface {v4, v2, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    add-int/lit8 v1, v1, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    return-void
+.end method
+
+.method private modifyUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
+    .locals 2
+
+    .line 81
+    iget-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v1
+
+    invoke-interface {v0, v1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lio/vanta/core/system/pm/BPackageUserState;
+
+    if-nez v0, :cond_0
+
+    .line 83
+    new-instance v0, Lio/vanta/core/system/pm/BPackageUserState;
+
+    invoke-direct {v0}, Lio/vanta/core/system/pm/BPackageUserState;-><init>()V
+
+    .line 84
+    iget-object v1, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p1
+
+    invoke-interface {v1, p1, v0}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    :cond_0
+    return-object v0
+.end method
+
+
+# virtual methods
+.method public describeContents()I
+    .locals 1
+
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public getHidden(I)Z
+    .locals 0
+
+    .line 55
+    invoke-virtual {p0, p1}, Lio/vanta/core/system/pm/BPackageSettings;->readUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
+
+    move-result-object p1
+
+    iget-boolean p1, p1, Lio/vanta/core/system/pm/BPackageUserState;->hidden:Z
+
+    return p1
+.end method
+
+.method public getInstalled(I)Z
+    .locals 0
+
+    .line 43
+    invoke-virtual {p0, p1}, Lio/vanta/core/system/pm/BPackageSettings;->readUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
+
+    move-result-object p1
+
+    iget-boolean p1, p1, Lio/vanta/core/system/pm/BPackageUserState;->installed:Z
+
+    return p1
+.end method
+
+.method public getStopped(I)Z
+    .locals 0
+
+    .line 47
+    invoke-virtual {p0, p1}, Lio/vanta/core/system/pm/BPackageSettings;->readUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
+
+    move-result-object p1
+
+    iget-boolean p1, p1, Lio/vanta/core/system/pm/BPackageUserState;->stopped:Z
+
+    return p1
+.end method
+
+.method public getUserIds()Ljava/util/List;
+    .locals 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/List<",
+            "Ljava/lang/Integer;",
+            ">;"
+        }
+    .end annotation
+
+    .line 35
+    new-instance v0, Ljava/util/ArrayList;
+
+    iget-object v1, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    invoke-interface {v1}, Ljava/util/Map;->keySet()Ljava/util/Set;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
+
+    return-object v0
+.end method
+
+.method public getUserState()Ljava/util/List;
+    .locals 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/List<",
+            "Lio/vanta/core/system/pm/BPackageUserState;",
+            ">;"
+        }
+    .end annotation
+
+    .line 31
+    new-instance v0, Ljava/util/ArrayList;
+
+    iget-object v1, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    invoke-interface {v1}, Ljava/util/Map;->values()Ljava/util/Collection;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
+
+    return-object v0
+.end method
+
+.method public readUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
+    .locals 2
+
+    .line 67
+    iget-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v1
+
+    invoke-interface {v0, v1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lio/vanta/core/system/pm/BPackageUserState;
+
+    if-nez v0, :cond_0
+
+    .line 69
+    new-instance v0, Lio/vanta/core/system/pm/BPackageUserState;
+
+    invoke-direct {v0}, Lio/vanta/core/system/pm/BPackageUserState;-><init>()V
+
+    .line 71
+    :cond_0
+    new-instance v1, Lio/vanta/core/system/pm/BPackageUserState;
+
+    invoke-direct {v1, v0}, Lio/vanta/core/system/pm/BPackageUserState;-><init>(Lio/vanta/core/system/pm/BPackageUserState;)V
+
+    const/4 v0, -0x1
+
+    if-ne p1, v0, :cond_1
+
+    const/4 p1, 0x1
+
+    .line 75
+    iput-boolean p1, v1, Lio/vanta/core/system/pm/BPackageUserState;->installed:Z
+
+    :cond_1
+    return-object v1
+.end method
+
+.method public removeUser(I)V
+    .locals 1
+
+    .line 63
+    iget-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p1
+
+    invoke-interface {v0, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+
+    return-void
+.end method
+
+.method public save()Z
+    .locals 6
+
+    .line 90
+    monitor-enter p0
+
+    .line 91
+    :try_start_0
+    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+
+    move-result-object v0
+
+    .line 92
+    new-instance v1, Landroid/util/AtomicFile;
+
+    iget-object v2, p0, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
+
+    iget-object v2, v2, Lio/vanta/core/system/pm/BPackage;->packageName:Ljava/lang/String;
+
+    invoke-static {v2}, Lio/vanta/core/env/BEnvironment;->getPackageConf(Ljava/lang/String;)Ljava/io/File;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2}, Landroid/util/AtomicFile;-><init>(Ljava/io/File;)V
+
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_2
+
+    const/4 v2, 0x1
+
+    const/4 v3, 0x0
+
+    const/4 v4, 0x0
+
+    .line 95
+    :try_start_1
+    invoke-virtual {p0, v0, v3}, Lio/vanta/core/system/pm/BPackageSettings;->writeToParcel(Landroid/os/Parcel;I)V
+
+    .line 96
+    invoke-virtual {v0, v3}, Landroid/os/Parcel;->setDataPosition(I)V
+
+    .line 97
+    invoke-virtual {v1}, Landroid/util/AtomicFile;->startWrite()Ljava/io/FileOutputStream;
+
+    move-result-object v4
+
+    .line 98
+    invoke-static {v0, v4}, Lio/vanta/utils/FileUtils;->writeParcelToOutput(Landroid/os/Parcel;Ljava/io/FileOutputStream;)V
+
+    .line 99
+    invoke-virtual {v1, v4}, Landroid/util/AtomicFile;->finishWrite(Ljava/io/FileOutputStream;)V
+
+    .line 106
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    :try_start_2
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    .line 107
+    new-array v0, v2, [Ljava/io/Closeable;
+
+    aput-object v4, v0, v3
+
+    invoke-static {v0}, Lio/vanta/utils/CloseUtils;->close([Ljava/io/Closeable;)V
+
+    monitor-exit p0
+
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_2
+
+    return v2
+
+    :catchall_0
+    move-exception v5
+
+    .line 102
+    :try_start_3
+    invoke-virtual {v5}, Ljava/lang/Throwable;->printStackTrace()V
+
+    .line 103
+    invoke-virtual {v1, v4}, Landroid/util/AtomicFile;->failWrite(Ljava/io/FileOutputStream;)V
+
+    .line 106
+    :try_end_3
+    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+
+    :try_start_4
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    .line 107
+    new-array v0, v2, [Ljava/io/Closeable;
+
+    aput-object v4, v0, v3
+
+    invoke-static {v0}, Lio/vanta/utils/CloseUtils;->close([Ljava/io/Closeable;)V
+
+    monitor-exit p0
+
+    return v3
+
+    :catchall_1
+    move-exception v1
+
+    .line 106
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    .line 107
+    new-array v0, v2, [Ljava/io/Closeable;
+
+    aput-object v4, v0, v3
+
+    invoke-static {v0}, Lio/vanta/utils/CloseUtils;->close([Ljava/io/Closeable;)V
+
+    .line 108
+    throw v1
+
+    :catchall_2
+    move-exception v0
+
+    .line 109
+    monitor-exit p0
+
+    :try_end_4
+    .catchall {:try_start_4 .. :try_end_4} :catchall_2
+
+    throw v0
+.end method
+
+.method public setHidden(ZI)V
+    .locals 0
+
+    .line 59
+    invoke-direct {p0, p2}, Lio/vanta/core/system/pm/BPackageSettings;->modifyUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
+
+    move-result-object p2
+
+    iput-boolean p1, p2, Lio/vanta/core/system/pm/BPackageUserState;->hidden:Z
+
+    return-void
+.end method
+
+.method public setInstalled(ZI)V
+    .locals 0
+
+    .line 39
+    invoke-direct {p0, p2}, Lio/vanta/core/system/pm/BPackageSettings;->modifyUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
+
+    move-result-object p2
+
+    iput-boolean p1, p2, Lio/vanta/core/system/pm/BPackageUserState;->installed:Z
+
+    return-void
+.end method
+
+.method public setStopped(ZI)V
+    .locals 0
+
+    .line 51
+    invoke-direct {p0, p2}, Lio/vanta/core/system/pm/BPackageSettings;->modifyUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
+
+    move-result-object p2
+
+    iput-boolean p1, p2, Lio/vanta/core/system/pm/BPackageUserState;->stopped:Z
+
+    return-void
+.end method
+
+.method public writeToParcel(Landroid/os/Parcel;I)V
+    .locals 3
+
+    .line 119
+    iget-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
+
+    invoke-virtual {p1, v0, p2}, Landroid/os/Parcel;->writeParcelable(Landroid/os/Parcelable;I)V
+
+    .line 120
+    iget v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->appId:I
+
+    invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
+
+    .line 121
+    iget-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->installOption:Lio/vanta/entity/pm/InstallOption;
+
+    invoke-virtual {p1, v0, p2}, Landroid/os/Parcel;->writeParcelable(Landroid/os/Parcelable;I)V
+
+    .line 122
+    iget-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->size()I
+
+    move-result v0
+
+    invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
+
+    .line 123
+    iget-object v0, p0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->entrySet()Ljava/util/Set;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v0
+
+    :goto_0
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Ljava/util/Map$Entry;
+
+    .line 124
+    invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+
+    move-result-object v2
+
+    invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeValue(Ljava/lang/Object;)V
+
+    .line 125
+    invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Landroid/os/Parcelable;
+
+    invoke-virtual {p1, v1, p2}, Landroid/os/Parcel;->writeParcelable(Landroid/os/Parcelable;I)V
+
+    goto :goto_0
+
+    :cond_0
+    return-void
+.end method

@@ -1,0 +1,25 @@
+.class public interface abstract Lvanta/android/content/pm/PackageParser$Permission;
+.super Ljava/lang/Object;
+.source "PackageParser.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lvanta/android/content/pm/PackageParser;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x609
+    name = "Permission"
+.end annotation
+
+.annotation runtime Lvanta/nomadengine/annotation/BClassName;
+    value = "android.content.pm.PackageParser$Permission"
+.end annotation
+
+
+# virtual methods
+.method public abstract info()Landroid/content/pm/PermissionInfo;
+    .annotation runtime Lvanta/nomadengine/annotation/BField;
+    .end annotation
+.end method
