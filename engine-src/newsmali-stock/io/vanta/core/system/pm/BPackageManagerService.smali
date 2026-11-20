@@ -1282,20 +1282,44 @@
 .end method
 
 .method private parserApk(Ljava/lang/String;)Landroid/content/pm/PackageParser$Package;
-    .locals 1
+    .registers 4
 
+    .line 747
     :try_start_0
-    invoke-static {p1}, Lio/vanta/fake/XjSplitParse;->parse(Ljava/lang/String;)Landroid/content/pm/PackageParser$Package;
+    new-instance v0, Ljava/io/File;
+
+    invoke-direct {v0, p1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-static {v0}, Lio/vanta/utils/compat/PackageParserCompat;->createParser(Ljava/io/File;)Landroid/content/pm/PackageParser;
+
     move-result-object v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    return-object v0
+    .line 748
+    new-instance v1, Ljava/io/File;
 
-    :catchall_0
-    move-exception p1
-    invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
+    invoke-direct {v1, p1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
     const/4 p1, 0x0
+
+    invoke-static {v0, v1, p1}, Lio/vanta/utils/compat/PackageParserCompat;->parsePackage(Landroid/content/pm/PackageParser;Ljava/io/File;I)Landroid/content/pm/PackageParser$Package;
+
+    move-result-object v1
+
+    .line 749
+    invoke-static {v0, v1, p1}, Lio/vanta/utils/compat/PackageParserCompat;->collectCertificates(Landroid/content/pm/PackageParser;Landroid/content/pm/PackageParser$Package;I)V
+    :try_end_16
+    .catchall {:try_start_0 .. :try_end_16} :catchall_17
+
+    return-object v1
+
+    :catchall_17
+    move-exception p1
+
+    .line 752
+    invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
+
+    const/4 p1, 0x0
+
     return-object p1
 .end method
 

@@ -56,15 +56,6 @@
 
     if-ne v1, v2, :cond_20
 
-    invoke-static {}, Lio/vanta/fake/service/GmsCallerFix;->uidPkgs()[Ljava/lang/String;
-
-    move-result-object v3
-
-    if-eqz v3, :xj_skip_0
-
-    return-object v3
-
-    :xj_skip_0
     .line 448
     invoke-static {}, Lio/vanta/app/BActivityThread;->getBUid()I
 

@@ -55,22 +55,28 @@ ADD_FILES=(
 [ -f "$ED" ]       || { echo "ERR: APKEditor.jar missing: $ED"; exit 1; }
 [ -f "$SO" ]       || { echo "ERR: libxjhook.so missing: $SO"; exit 1; }
 
-echo "[1] overlay engine patch files from bbdec2 -> fresh newsmali"
+# Overlay vào BẢN COPY tạm, GIỮ NGUYÊN newsmali-stock (nguồn tracked không bị bẩn).
+rm -rf "$WORK"; mkdir -p "$WORK"
+SMALI="$WORK/smali"
+echo "[0] copy newsmali-stock -> work (giữ stock nguyên vẹn)"
+cp -r "$NEWSMALI" "$SMALI"
+
+echo "[1] overlay engine patch files from bbdec2 -> work copy"
 for f in "${PATCH_FILES[@]}"; do
   [ -f "$BB/$f" ] || { echo "  MISSING patch src: $BB/$f"; exit 2; }
-  [ -f "$NEWSMALI/$f" ] || { echo "  WARN: target absent (stock lacks it): $f"; }
-  cp "$BB/$f" "$NEWSMALI/$f"
+  [ -f "$SMALI/$f" ] || { echo "  WARN: target absent (stock lacks it): $f"; }
+  cp "$BB/$f" "$SMALI/$f"
   echo "  patched: $f"
 done
 for f in "${ADD_FILES[@]}"; do
   [ -f "$BB/$f" ] || { echo "  MISSING add src: $BB/$f"; exit 2; }
-  cp "$BB/$f" "$NEWSMALI/$f"
+  mkdir -p "$SMALI/$(dirname "$f")"
+  cp "$BB/$f" "$SMALI/$f"
   echo "  added:   $f"
 done
 
-echo "[2] assemble patched newsmali -> classes.dex"
-rm -rf "$WORK"; mkdir -p "$WORK"
-"$JAVA" -cp "$(W "$ED")" org.jf.smali.Main assemble "$(W "$NEWSMALI")" -o "$(W "$WORK/classes.dex")" --api 31
+echo "[2] assemble patched work copy -> classes.dex"
+"$JAVA" -cp "$(W "$ED")" org.jf.smali.Main assemble "$(W "$SMALI")" -o "$(W "$WORK/classes.dex")" --api 31
 echo "  dex $(stat -c%s "$WORK/classes.dex") bytes"
 python - "$(W "$WORK/classes.dex")" <<'PY'
 import sys

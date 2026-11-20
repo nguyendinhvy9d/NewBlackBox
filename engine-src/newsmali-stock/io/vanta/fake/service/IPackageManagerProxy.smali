@@ -23,7 +23,6 @@
         Lio/vanta/fake/service/IPackageManagerProxy$GetSharedLibraries;,
         Lio/vanta/fake/service/IPackageManagerProxy$GetInstallerPackageName;,
         Lio/vanta/fake/service/IPackageManagerProxy$GetPackagesForUid;,
-        Lio/vanta/fake/service/IPackageManagerProxy$GetNameForUid;,
         Lio/vanta/fake/service/IPackageManagerProxy$CanRequestPackageInstalls;,
         Lio/vanta/fake/service/IPackageManagerProxy$ResolveContentProvider;,
         Lio/vanta/fake/service/IPackageManagerProxy$QueryBroadcastReceivers;,

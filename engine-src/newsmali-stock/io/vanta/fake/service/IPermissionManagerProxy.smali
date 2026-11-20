@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 28
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -39,31 +39,23 @@
 .end method
 
 .method public static isForceGranted(Ljava/lang/String;)Z
-    .locals 2
+    .registers 3
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return v0
 
     .line 87
-    :cond_0
-    const-string v1, ".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-
-    invoke-virtual {p0, v1}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
-
-    move-result v1
-
-    if-nez v1, :cond_2
-
+    :cond_4
     const-string v1, "android.permission.INTERNET"
 
     invoke-virtual {v1, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.READ_PHONE_STATE"
 
@@ -72,7 +64,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.READ_PRIVILEGED_PHONE_STATE"
 
@@ -81,7 +73,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.ACCOUNT_MANAGER"
 
@@ -90,7 +82,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.AUTHENTICATE_ACCOUNTS"
 
@@ -99,7 +91,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.MANAGE_ACCOUNTS"
 
@@ -108,7 +100,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.GET_ACCOUNTS"
 
@@ -117,7 +109,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.GET_ACCOUNTS_PRIVILEGED"
 
@@ -126,7 +118,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.USE_CREDENTIALS"
 
@@ -135,7 +127,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.READ_GSERVICES"
 
@@ -144,7 +136,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "com.google.android.providers.gsf.permission.READ_GSERVICES"
 
@@ -153,7 +145,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "com.google.android.providers.gsf.permission.WRITE_GSERVICES"
 
@@ -162,7 +154,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.QUERY_ADVANCED_PROTECTION_MODE"
 
@@ -171,7 +163,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.PACKAGE_VERIFICATION_AGENT"
 
@@ -180,7 +172,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.MANAGE_HARMFUL_APP_WARNINGS"
 
@@ -189,7 +181,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.BACKUP"
 
@@ -198,7 +190,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.CONFIRM_FULL_BACKUP"
 
@@ -207,7 +199,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.BACKUP_DATA"
 
@@ -216,7 +208,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.PACKAGE_USAGE_STATS"
 
@@ -225,7 +217,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.BATTERY_STATS"
 
@@ -234,7 +226,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME"
 
@@ -243,7 +235,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.ACCESS_NETWORK_STATE"
 
@@ -252,7 +244,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.CHANGE_NETWORK_STATE"
 
@@ -261,7 +253,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.WRITE_SECURE_SETTINGS"
 
@@ -270,7 +262,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.WRITE_SETTINGS"
 
@@ -279,7 +271,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.ACCESS_WIFI_STATE"
 
@@ -288,7 +280,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.CHANGE_WIFI_STATE"
 
@@ -297,7 +289,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.INTERACT_ACROSS_USERS"
 
@@ -306,7 +298,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.INTERACT_ACROSS_USERS_FULL"
 
@@ -315,7 +307,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.MANAGE_USERS"
 
@@ -324,7 +316,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.START_ACTIVITIES_FROM_BACKGROUND"
 
@@ -333,7 +325,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.STATUS_BAR_SERVICE"
 
@@ -342,7 +334,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.FOREGROUND_SERVICE"
 
@@ -351,7 +343,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.READ_SAFETY_CENTER_STATUS"
 
@@ -360,7 +352,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.SEND_SAFETY_CENTER_UPDATE"
 
@@ -369,7 +361,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.READ_SYSTEM_UPDATE_INFO"
 
@@ -378,7 +370,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.RECOVERY"
 
@@ -387,7 +379,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.READ_EXTERNAL_STORAGE"
 
@@ -396,7 +388,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.WRITE_EXTERNAL_STORAGE"
 
@@ -405,7 +397,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.MANAGE_EXTERNAL_STORAGE"
 
@@ -414,7 +406,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.ACCESS_MEDIA_LOCATION"
 
@@ -423,7 +415,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.READ_MEDIA_IMAGES"
 
@@ -432,7 +424,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.READ_MEDIA_VIDEO"
 
@@ -441,7 +433,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_166
 
     const-string v1, "android.permission.READ_MEDIA_AUDIO"
 
@@ -450,15 +442,15 @@
 
     move-result p0
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_165
 
-    goto :goto_0
+    goto :goto_166
 
-    :cond_1
+    :cond_165
     return v0
 
-    :cond_2
-    :goto_0
+    :cond_166
+    :goto_166
     const/4 p0, 0x1
 
     return p0
@@ -467,7 +459,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 33
     invoke-static {}, Lvanta/android/permission/BRIPermissionManagerStub;->get()Lvanta/android/permission/IPermissionManagerStubStatic;
@@ -492,7 +484,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 38
     const-string p1, "permissionmgr"
@@ -510,7 +502,7 @@
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -529,7 +521,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_14
 
     const-string v1, "checkUidPermission"
 
@@ -537,15 +529,15 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_41
 
-    :cond_0
-    if-eqz p3, :cond_1
+    :cond_14
+    if-eqz p3, :cond_41
 
     .line 69
     array-length v0, p3
 
-    if-lez v0, :cond_1
+    if-lez v0, :cond_41
 
     const/4 v0, 0x0
 
@@ -553,7 +545,7 @@
 
     instance-of v2, v1, Ljava/lang/String;
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_41
 
     .line 70
     check-cast v1, Ljava/lang/String;
@@ -563,7 +555,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_41
 
     .line 72
     new-instance p1, Ljava/lang/StringBuilder;
@@ -592,7 +584,7 @@
     return-object p1
 
     .line 77
-    :cond_1
+    :cond_41
     invoke-super {p0, p1, p2, p3}, Lio/vanta/fake/hook/BinderInvocationStub;->invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
@@ -601,7 +593,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -609,7 +601,7 @@
 .end method
 
 .method protected onBindMethod()V
-    .locals 5
+    .registers 6
 
     .line 45
     invoke-super {p0}, Lio/vanta/fake/hook/BinderInvocationStub;->onBindMethod()V
@@ -718,7 +710,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_99
 
     .line 56
     new-instance v0, Lio/vanta/fake/service/base/ValueMethodProxy;
@@ -757,7 +749,7 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/service/IPermissionManagerProxy;->addMethodHook(Lio/vanta/fake/hook/MethodHook;)V
 
     .line 61
-    :cond_0
+    :cond_99
     new-instance v0, Lio/vanta/fake/service/IPermissionManagerProxy$CheckPermissionHook;
 
     invoke-direct {v0}, Lio/vanta/fake/service/IPermissionManagerProxy$CheckPermissionHook;-><init>()V

@@ -136,6 +136,43 @@ public class BlackBoxCore {
         VantaCore.get().clearPackage(packageName, userId);
     }
 
+    // Làm mới ô: xoá SẠCH tài khoản (Google/GMS/LINE) của ĐÚNG ô + nuke cây data.
+    // accounts.conf là toàn-engine nên clearPackage KHÔNG đụng tới -> phải xoá riêng ở đây.
+    // Gọi service với userId TƯỜNG MINH: facade BAccountManager tự chèn
+    // BActivityThread.getUserId() = user của tiến trình host (sai ô), nên gọi thẳng service.
+    public void clearUserData(int userId) {
+        // 1) Xoá mọi tài khoản của ô đích.
+        try {
+            android.os.IInterface svc = io.vanta.fake.frameworks.BAccountManager.get().getService();
+            if (svc instanceof io.vanta.core.system.accounts.IBAccountManagerService) {
+                io.vanta.core.system.accounts.IBAccountManagerService as =
+                        (io.vanta.core.system.accounts.IBAccountManagerService) svc;
+                android.accounts.Account[] accts = as.getAccountsAsUser(null, userId);
+                if (accts != null) {
+                    for (android.accounts.Account a : accts) {
+                        try { as.removeAccountExplicitly(a, userId); } catch (Exception e) {}
+                    }
+                }
+            }
+        } catch (Exception e) {
+            android.util.Log.w("BlackBoxCore", "clearUserData accounts: " + e.getMessage());
+        }
+        // 2) NUKE cây data của ô (login/cookie/cache mọi app) — userId tường minh nên đúng ô.
+        try {
+            io.vanta.utils.FileUtils.deleteDir(io.vanta.core.env.BEnvironment.getUserDir(userId));
+        } catch (Exception e) {}
+        try {
+            io.vanta.utils.FileUtils.deleteDir(new File(
+                    io.vanta.core.env.BEnvironment.getVirtualRoot(), "data/user_de/" + userId));
+        } catch (Exception e) {}
+        // userId==0 trả CẢ external root -> KHÔNG nuke (để clearPackage lo từng app).
+        if (userId != 0) {
+            try {
+                io.vanta.utils.FileUtils.deleteDir(io.vanta.core.env.BEnvironment.getExternalUserDir(userId));
+            } catch (Exception e) {}
+        }
+    }
+
     public void stopPackage(String packageName, int userId) {
         VantaCore.get().stopPackage(packageName, userId);
     }
