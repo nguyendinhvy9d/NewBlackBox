@@ -1,0 +1,442 @@
+.class public Lio/vanta/app/dispatcher/AppJobServiceDispatcher;
+.super Ljava/lang/Object;
+.source "AppJobServiceDispatcher.java"
+
+
+# static fields
+.field private static final sServiceDispatcher:Lio/vanta/app/dispatcher/AppJobServiceDispatcher;
+
+
+# instance fields
+.field private final mJobRecords:Ljava/util/Map;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/Map<",
+            "Ljava/lang/Integer;",
+            "Lio/vanta/entity/JobRecord;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .registers 1
+
+    .line 16
+    new-instance v0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;
+
+    invoke-direct {v0}, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;-><init>()V
+
+    sput-object v0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->sServiceDispatcher:Lio/vanta/app/dispatcher/AppJobServiceDispatcher;
+
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .registers 2
+
+    .line 15
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 17
+    new-instance v0, Ljava/util/HashMap;
+
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+
+    iput-object v0, p0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->mJobRecords:Ljava/util/Map;
+
+    return-void
+.end method
+
+.method public static get()Lio/vanta/app/dispatcher/AppJobServiceDispatcher;
+    .registers 1
+
+    .line 20
+    sget-object v0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->sServiceDispatcher:Lio/vanta/app/dispatcher/AppJobServiceDispatcher;
+
+    return-object v0
+.end method
+
+
+# virtual methods
+.method getJobService(I)Landroid/app/job/JobService;
+    .registers 7
+
+    .line 80
+    iget-object v0, p0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->mJobRecords:Ljava/util/Map;
+
+    monitor-enter v0
+
+    .line 81
+    :try_start_3
+    iget-object v1, p0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->mJobRecords:Ljava/util/Map;
+
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v2
+
+    invoke-interface {v1, v2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lio/vanta/entity/JobRecord;
+
+    if-eqz v1, :cond_19
+
+    .line 82
+    iget-object v2, v1, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+
+    if-eqz v2, :cond_19
+
+    .line 83
+    iget-object p1, v1, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+
+    monitor-exit v0
+    :try_end_18
+    .catchall {:try_start_3 .. :try_end_18} :catchall_54
+
+    return-object p1
+
+    :cond_19
+    const/4 v1, 0x0
+
+    .line 86
+    :try_start_1a
+    invoke-static {}, Lio/vanta/VantaCore;->getBJobManager()Lio/vanta/fake/frameworks/BJobManager;
+
+    move-result-object v2
+
+    invoke-static {}, Lio/vanta/VantaCore;->getAppProcessName()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {v2, v3, p1}, Lio/vanta/fake/frameworks/BJobManager;->queryJobRecord(Ljava/lang/String;I)Lio/vanta/entity/JobRecord;
+
+    move-result-object v2
+
+    if-eqz v2, :cond_4c
+
+    .line 87
+    iget-object v3, v2, Lio/vanta/entity/JobRecord;->mServiceInfo:Landroid/content/pm/ServiceInfo;
+
+    if-nez v3, :cond_2d
+
+    goto :goto_4c
+
+    .line 90
+    :cond_2d
+    invoke-static {}, Lio/vanta/VantaCore;->currentActivityThread()Lio/vanta/app/BActivityThread;
+
+    move-result-object v3
+
+    iget-object v4, v2, Lio/vanta/entity/JobRecord;->mServiceInfo:Landroid/content/pm/ServiceInfo;
+
+    invoke-virtual {v3, v4}, Lio/vanta/app/BActivityThread;->createJobService(Landroid/content/pm/ServiceInfo;)Landroid/app/job/JobService;
+
+    move-result-object v3
+
+    iput-object v3, v2, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+
+    .line 91
+    iget-object v3, v2, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+    :try_end_3b
+    .catchall {:try_start_1a .. :try_end_3b} :catchall_4e
+
+    if-nez v3, :cond_3f
+
+    .line 92
+    :try_start_3d
+    monitor-exit v0
+    :try_end_3e
+    .catchall {:try_start_3d .. :try_end_3e} :catchall_54
+
+    return-object v1
+
+    .line 93
+    :cond_3f
+    :try_start_3f
+    iget-object v3, p0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->mJobRecords:Ljava/util/Map;
+
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p1
+
+    invoke-interface {v3, p1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 94
+    iget-object p1, v2, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+    :try_end_4a
+    .catchall {:try_start_3f .. :try_end_4a} :catchall_4e
+
+    :try_start_4a
+    monitor-exit v0
+
+    return-object p1
+
+    .line 88
+    :cond_4c
+    :goto_4c
+    monitor-exit v0
+
+    return-object v1
+
+    :catchall_4e
+    move-exception p1
+
+    .line 96
+    invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
+
+    .line 98
+    monitor-exit v0
+
+    return-object v1
+
+    :catchall_54
+    move-exception p1
+
+    .line 99
+    monitor-exit v0
+    :try_end_56
+    .catchall {:try_start_4a .. :try_end_56} :catchall_54
+
+    throw p1
+.end method
+
+.method public onConfigurationChanged(Landroid/content/res/Configuration;)V
+    .registers 5
+
+    .line 48
+    iget-object v0, p0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->mJobRecords:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->values()Ljava/util/Collection;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+
+    move-result-object v0
+
+    :cond_a
+    :goto_a
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_20
+
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lio/vanta/entity/JobRecord;
+
+    .line 49
+    iget-object v2, v1, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+
+    if-eqz v2, :cond_a
+
+    .line 50
+    iget-object v1, v1, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+
+    invoke-virtual {v1, p1}, Landroid/app/job/JobService;->onConfigurationChanged(Landroid/content/res/Configuration;)V
+
+    goto :goto_a
+
+    :cond_20
+    return-void
+.end method
+
+.method public onDestroy()V
+    .registers 1
+
+    return-void
+.end method
+
+.method public onLowMemory()V
+    .registers 4
+
+    .line 64
+    iget-object v0, p0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->mJobRecords:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->values()Ljava/util/Collection;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+
+    move-result-object v0
+
+    :cond_a
+    :goto_a
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_20
+
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lio/vanta/entity/JobRecord;
+
+    .line 65
+    iget-object v2, v1, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+
+    if-eqz v2, :cond_a
+
+    .line 66
+    iget-object v1, v1, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+
+    invoke-virtual {v1}, Landroid/app/job/JobService;->onLowMemory()V
+
+    goto :goto_a
+
+    :cond_20
+    return-void
+.end method
+
+.method public onStartJob(Landroid/app/job/JobParameters;)Z
+    .registers 4
+
+    const/4 v0, 0x0
+
+    .line 25
+    :try_start_1
+    invoke-virtual {p1}, Landroid/app/job/JobParameters;->getJobId()I
+
+    move-result v1
+
+    invoke-virtual {p0, v1}, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->getJobService(I)Landroid/app/job/JobService;
+
+    move-result-object v1
+
+    if-nez v1, :cond_c
+
+    return v0
+
+    .line 28
+    :cond_c
+    invoke-virtual {v1, p1}, Landroid/app/job/JobService;->onStartJob(Landroid/app/job/JobParameters;)Z
+
+    move-result p1
+    :try_end_10
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_10} :catch_11
+
+    return p1
+
+    :catch_11
+    move-exception p1
+
+    .line 30
+    invoke-virtual {p1}, Ljava/lang/Exception;->printStackTrace()V
+
+    return v0
+.end method
+
+.method public onStopJob(Landroid/app/job/JobParameters;)Z
+    .registers 5
+
+    .line 36
+    invoke-virtual {p1}, Landroid/app/job/JobParameters;->getJobId()I
+
+    move-result v0
+
+    invoke-virtual {p0, v0}, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->getJobService(I)Landroid/app/job/JobService;
+
+    move-result-object v0
+
+    if-nez v0, :cond_c
+
+    const/4 p1, 0x0
+
+    return p1
+
+    .line 39
+    :cond_c
+    invoke-virtual {v0, p1}, Landroid/app/job/JobService;->onStopJob(Landroid/app/job/JobParameters;)Z
+
+    move-result v1
+
+    .line 40
+    invoke-virtual {v0}, Landroid/app/job/JobService;->onDestroy()V
+
+    .line 41
+    iget-object v0, p0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->mJobRecords:Ljava/util/Map;
+
+    monitor-enter v0
+
+    .line 42
+    :try_start_16
+    iget-object v2, p0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->mJobRecords:Ljava/util/Map;
+
+    invoke-virtual {p1}, Landroid/app/job/JobParameters;->getJobId()I
+
+    move-result p1
+
+    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p1
+
+    invoke-interface {v2, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 43
+    monitor-exit v0
+
+    return v1
+
+    :catchall_25
+    move-exception p1
+
+    monitor-exit v0
+    :try_end_27
+    .catchall {:try_start_16 .. :try_end_27} :catchall_25
+
+    throw p1
+.end method
+
+.method public onTrimMemory(I)V
+    .registers 5
+
+    .line 72
+    iget-object v0, p0, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->mJobRecords:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->values()Ljava/util/Collection;
+
+    move-result-object v0
+
+    invoke-interface {v0}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+
+    move-result-object v0
+
+    :cond_a
+    :goto_a
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_20
+
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Lio/vanta/entity/JobRecord;
+
+    .line 73
+    iget-object v2, v1, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+
+    if-eqz v2, :cond_a
+
+    .line 74
+    iget-object v1, v1, Lio/vanta/entity/JobRecord;->mJobService:Landroid/app/job/JobService;
+
+    invoke-virtual {v1, p1}, Landroid/app/job/JobService;->onTrimMemory(I)V
+
+    goto :goto_a
+
+    :cond_20
+    return-void
+.end method

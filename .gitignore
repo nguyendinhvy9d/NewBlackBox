@@ -12,3 +12,9 @@ local.properties
 .transforms/
 bin/
 __pycache__/
+
+# engine-src = nguồn build engine cứu khỏi scratchpad (PHẢI track để tái lập build).
+# Ghi đè các luật *.apk / build/ ở trên cho riêng cây này; chỉ chặn _build/ tạm.
+!engine-src/
+!engine-src/**
+engine-src/_build/

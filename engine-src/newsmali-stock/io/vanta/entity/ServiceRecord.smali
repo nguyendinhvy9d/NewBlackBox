@@ -1,0 +1,293 @@
+.class public Lio/vanta/entity/ServiceRecord;
+.super Ljava/lang/Object;
+.source "ServiceRecord.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lio/vanta/entity/ServiceRecord$BoundInfo;
+    }
+.end annotation
+
+
+# instance fields
+.field private mBounds:Ljava/util/Map;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/Map<",
+            "Landroid/content/Intent$FilterComparison;",
+            "Lio/vanta/entity/ServiceRecord$BoundInfo;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private mService:Landroid/app/Service;
+
+.field private mStartId:I
+
+.field private rebind:Z
+
+
+# direct methods
+.method static bridge synthetic -$$Nest$fgetmBounds(Lio/vanta/entity/ServiceRecord;)Ljava/util/Map;
+    .registers 1
+
+    iget-object p0, p0, Lio/vanta/entity/ServiceRecord;->mBounds:Ljava/util/Map;
+
+    return-object p0
+.end method
+
+.method public constructor <init>()V
+    .registers 2
+
+    .line 13
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 15
+    new-instance v0, Ljava/util/HashMap;
+
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+
+    iput-object v0, p0, Lio/vanta/entity/ServiceRecord;->mBounds:Ljava/util/Map;
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public addBinder(Landroid/content/Intent;Landroid/os/IBinder;)V
+    .registers 5
+
+    .line 67
+    new-instance v0, Landroid/content/Intent$FilterComparison;
+
+    invoke-direct {v0, p1}, Landroid/content/Intent$FilterComparison;-><init>(Landroid/content/Intent;)V
+
+    .line 68
+    invoke-virtual {p0, p1}, Lio/vanta/entity/ServiceRecord;->getOrCreateBoundInfo(Landroid/content/Intent;)Lio/vanta/entity/ServiceRecord$BoundInfo;
+
+    move-result-object p1
+
+    if-nez p1, :cond_15
+
+    .line 70
+    new-instance p1, Lio/vanta/entity/ServiceRecord$BoundInfo;
+
+    invoke-direct {p1, p0}, Lio/vanta/entity/ServiceRecord$BoundInfo;-><init>(Lio/vanta/entity/ServiceRecord;)V
+
+    .line 71
+    iget-object v1, p0, Lio/vanta/entity/ServiceRecord;->mBounds:Ljava/util/Map;
+
+    invoke-interface {v1, v0, p1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 73
+    :cond_15
+    invoke-virtual {p1, p2}, Lio/vanta/entity/ServiceRecord$BoundInfo;->setIBinder(Landroid/os/IBinder;)V
+
+    .line 75
+    :try_start_18
+    new-instance p1, Lio/vanta/entity/ServiceRecord$1;
+
+    invoke-direct {p1, p0, p2, v0}, Lio/vanta/entity/ServiceRecord$1;-><init>(Lio/vanta/entity/ServiceRecord;Landroid/os/IBinder;Landroid/content/Intent$FilterComparison;)V
+
+    const/4 v0, 0x0
+
+    invoke-interface {p2, p1, v0}, Landroid/os/IBinder;->linkToDeath(Landroid/os/IBinder$DeathRecipient;I)V
+    :try_end_21
+    .catch Landroid/os/RemoteException; {:try_start_18 .. :try_end_21} :catch_22
+
+    return-void
+
+    :catch_22
+    move-exception p1
+
+    .line 83
+    invoke-virtual {p1}, Landroid/os/RemoteException;->printStackTrace()V
+
+    return-void
+.end method
+
+.method public decreaseConnectionCount(Landroid/content/Intent;)Z
+    .registers 3
+
+    .line 93
+    new-instance v0, Landroid/content/Intent$FilterComparison;
+
+    invoke-direct {v0, p1}, Landroid/content/Intent$FilterComparison;-><init>(Landroid/content/Intent;)V
+
+    .line 94
+    iget-object p1, p0, Lio/vanta/entity/ServiceRecord;->mBounds:Ljava/util/Map;
+
+    invoke-interface {p1, v0}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Lio/vanta/entity/ServiceRecord$BoundInfo;
+
+    const/4 v0, 0x1
+
+    if-nez p1, :cond_11
+
+    return v0
+
+    .line 97
+    :cond_11
+    invoke-virtual {p1}, Lio/vanta/entity/ServiceRecord$BoundInfo;->decrementAndGetBindCount()I
+
+    move-result p1
+
+    if-gtz p1, :cond_18
+
+    return v0
+
+    :cond_18
+    const/4 p1, 0x0
+
+    return p1
+.end method
+
+.method public getBinder(Landroid/content/Intent;)Landroid/os/IBinder;
+    .registers 2
+
+    .line 57
+    invoke-virtual {p0, p1}, Lio/vanta/entity/ServiceRecord;->getOrCreateBoundInfo(Landroid/content/Intent;)Lio/vanta/entity/ServiceRecord$BoundInfo;
+
+    move-result-object p1
+
+    .line 58
+    invoke-virtual {p1}, Lio/vanta/entity/ServiceRecord$BoundInfo;->getIBinder()Landroid/os/IBinder;
+
+    move-result-object p1
+
+    return-object p1
+.end method
+
+.method public getOrCreateBoundInfo(Landroid/content/Intent;)Lio/vanta/entity/ServiceRecord$BoundInfo;
+    .registers 4
+
+    .line 106
+    new-instance v0, Landroid/content/Intent$FilterComparison;
+
+    invoke-direct {v0, p1}, Landroid/content/Intent$FilterComparison;-><init>(Landroid/content/Intent;)V
+
+    .line 107
+    iget-object p1, p0, Lio/vanta/entity/ServiceRecord;->mBounds:Ljava/util/Map;
+
+    invoke-interface {p1, v0}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Lio/vanta/entity/ServiceRecord$BoundInfo;
+
+    if-nez p1, :cond_19
+
+    .line 109
+    new-instance p1, Lio/vanta/entity/ServiceRecord$BoundInfo;
+
+    invoke-direct {p1, p0}, Lio/vanta/entity/ServiceRecord$BoundInfo;-><init>(Lio/vanta/entity/ServiceRecord;)V
+
+    .line 110
+    iget-object v1, p0, Lio/vanta/entity/ServiceRecord;->mBounds:Ljava/util/Map;
+
+    invoke-interface {v1, v0, p1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    :cond_19
+    return-object p1
+.end method
+
+.method public getService()Landroid/app/Service;
+    .registers 2
+
+    .line 49
+    iget-object v0, p0, Lio/vanta/entity/ServiceRecord;->mService:Landroid/app/Service;
+
+    return-object v0
+.end method
+
+.method public getStartId()I
+    .registers 2
+
+    .line 41
+    iget v0, p0, Lio/vanta/entity/ServiceRecord;->mStartId:I
+
+    return v0
+.end method
+
+.method public hasBinder(Landroid/content/Intent;)Z
+    .registers 2
+
+    .line 62
+    invoke-virtual {p0, p1}, Lio/vanta/entity/ServiceRecord;->getOrCreateBoundInfo(Landroid/content/Intent;)Lio/vanta/entity/ServiceRecord$BoundInfo;
+
+    move-result-object p1
+
+    .line 63
+    invoke-virtual {p1}, Lio/vanta/entity/ServiceRecord$BoundInfo;->getIBinder()Landroid/os/IBinder;
+
+    move-result-object p1
+
+    if-eqz p1, :cond_c
+
+    const/4 p1, 0x1
+
+    return p1
+
+    :cond_c
+    const/4 p1, 0x0
+
+    return p1
+.end method
+
+.method public incrementAndGetBindCount(Landroid/content/Intent;)I
+    .registers 2
+
+    .line 88
+    invoke-virtual {p0, p1}, Lio/vanta/entity/ServiceRecord;->getOrCreateBoundInfo(Landroid/content/Intent;)Lio/vanta/entity/ServiceRecord$BoundInfo;
+
+    move-result-object p1
+
+    .line 89
+    invoke-virtual {p1}, Lio/vanta/entity/ServiceRecord$BoundInfo;->incrementAndGetBindCount()I
+
+    move-result p1
+
+    return p1
+.end method
+
+.method public isRebind()Z
+    .registers 2
+
+    .line 116
+    iget-boolean v0, p0, Lio/vanta/entity/ServiceRecord;->rebind:Z
+
+    return v0
+.end method
+
+.method public setRebind(Z)V
+    .registers 2
+
+    .line 120
+    iput-boolean p1, p0, Lio/vanta/entity/ServiceRecord;->rebind:Z
+
+    return-void
+.end method
+
+.method public setService(Landroid/app/Service;)V
+    .registers 2
+
+    .line 53
+    iput-object p1, p0, Lio/vanta/entity/ServiceRecord;->mService:Landroid/app/Service;
+
+    return-void
+.end method
+
+.method public setStartId(I)V
+    .registers 2
+
+    .line 45
+    iput p1, p0, Lio/vanta/entity/ServiceRecord;->mStartId:I
+
+    return-void
+.end method

@@ -1,0 +1,134 @@
+.class public Lio/vanta/fake/service/ISettingsSystemProxy$GetStringForUser;
+.super Lio/vanta/fake/hook/MethodHook;
+.source "ISettingsSystemProxy.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lio/vanta/fake/service/ISettingsSystemProxy;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x9
+    name = "GetStringForUser"
+.end annotation
+
+.annotation runtime Lio/vanta/fake/hook/ProxyMethod;
+    value = "getStringForUser"
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 1
+
+    .line 38
+    invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
+    .registers 6
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/Throwable;
+        }
+    .end annotation
+
+    .line 43
+    const-string v0, ""
+
+    const-string v1, "ISettingsSystemProxy"
+
+    :try_start_4
+    invoke-static {p3}, Lio/vanta/utils/AttributionSourceUtils;->fixAttributionSourceInArgs([Ljava/lang/Object;)V
+
+    .line 46
+    invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object p1
+    :try_end_b
+    .catch Ljava/lang/SecurityException; {:try_start_4 .. :try_end_b} :catch_24
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_b} :catch_c
+
+    return-object p1
+
+    :catch_c
+    move-exception p1
+
+    .line 56
+    new-instance p2, Ljava/lang/StringBuilder;
+
+    const-string p3, "Error in getStringForUser hook: "
+
+    invoke-direct {p2, p3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {p1}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-virtual {p2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-static {v1, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-object v0
+
+    :catch_24
+    move-exception p1
+
+    .line 49
+    invoke-virtual {p1}, Ljava/lang/SecurityException;->getMessage()Ljava/lang/String;
+
+    move-result-object p2
+
+    if-eqz p2, :cond_4e
+
+    .line 50
+    const-string p3, "Calling uid"
+
+    invoke-virtual {p2, p3}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result p3
+
+    if-eqz p3, :cond_4e
+
+    const-string p3, "doesn\'t match source uid"
+
+    invoke-virtual {p2, p3}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result p3
+
+    if-eqz p3, :cond_4e
+
+    .line 51
+    new-instance p1, Ljava/lang/StringBuilder;
+
+    const-string p3, "UID mismatch in getStringForUser, returning safe default: "
+
+    invoke-direct {p1, p3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {p1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-static {v1, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-object v0
+
+    .line 54
+    :cond_4e
+    throw p1
+.end method

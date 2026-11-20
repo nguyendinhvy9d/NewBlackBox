@@ -1,0 +1,98 @@
+.class public Lio/vanta/fake/service/ResourcesManagerProxy;
+.super Lio/vanta/fake/hook/ClassInvocationStub;
+.source "ResourcesManagerProxy.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/MemberClasses;
+    value = {
+        Lio/vanta/fake/service/ResourcesManagerProxy$LoadOverlayFromPath;,
+        Lio/vanta/fake/service/ResourcesManagerProxy$LoadApkAssets;
+    }
+.end annotation
+
+
+# static fields
+.field private static final RESOURCES_MANAGER_CLASS:Ljava/lang/String; = "android.app.ResourcesManager"
+
+.field public static final TAG:Ljava/lang/String; = "ResourcesManagerProxy"
+
+
+# direct methods
+.method public constructor <init>()V
+    .registers 4
+
+    .line 17
+    invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
+
+    .line 19
+    :try_start_3
+    const-string v0, "android.app.ResourcesManager"
+
+    invoke-static {v0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+    :try_end_8
+    .catch Ljava/lang/ClassNotFoundException; {:try_start_3 .. :try_end_8} :catch_9
+
+    return-void
+
+    :catch_9
+    move-exception v0
+
+    .line 21
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    const-string v2, "ResourcesManager class not found: "
+
+    invoke-direct {v1, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0}, Ljava/lang/ClassNotFoundException;->getMessage()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "ResourcesManagerProxy"
+
+    invoke-static {v1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+
+# virtual methods
+.method protected getWho()Ljava/lang/Object;
+    .registers 2
+
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
+    .registers 3
+
+    return-void
+.end method
+
+.method public isBadEnv()Z
+    .registers 2
+
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method protected onBindMethod()V
+    .registers 1
+
+    .line 42
+    invoke-super {p0}, Lio/vanta/fake/hook/ClassInvocationStub;->onBindMethod()V
+
+    return-void
+.end method
