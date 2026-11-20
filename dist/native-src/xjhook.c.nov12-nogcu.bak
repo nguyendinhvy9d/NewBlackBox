@@ -1,0 +1,157 @@
+#include <jni.h>
+#include <android/log.h>
+#include <string.h>
+#include <stdlib.h>
+#include <dlfcn.h>
+#include <sys/mman.h>
+#include <unistd.h>
+#include <stdint.h>
+
+#define LOG(...) __android_log_print(ANDROID_LOG_ERROR, "XJHOOK", __VA_ARGS__)
+
+// ---- bang spoof tu Java ----
+#define MAXK 48
+static char g_keys[MAXK][64];
+static char g_vals[MAXK][160];
+static int  g_n = 0;
+
+static const char* spoof_lookup(const char* name) {
+    if (!name) return 0;
+    for (int i = 0; i < g_n; i++)
+        if (strcmp(g_keys[i], name) == 0) return g_vals[i];
+    return 0;
+}
+
+typedef const void prop_info;
+typedef void (*pcb_t)(void*, const char*, const char*, uint32_t);
+
+// fallback cho __system_property_get: dung find + public read_callback
+static const prop_info* (*g_find)(const char*) = 0;
+static void (*g_pub_rcb)(const prop_info*, pcb_t, void*) = 0;
+
+// fallback cho read_callback: goi THANG SystemProperties::ReadCallback(this, pi, cb, cookie)
+typedef void (*sysrcb_t)(void*, const prop_info*, pcb_t, void*);
+static sysrcb_t g_sysReadCb = 0;
+static void*    g_sysObj = 0;
+
+// ---- my __system_property_get ----
+struct cbd { char* out; int len; };
+static void read_cb(void* c, const char* n, const char* v, uint32_t s) {
+    struct cbd* d = (struct cbd*) c; strcpy(d->out, v); d->len = (int) strlen(v);
+}
+static int my_spg(const char* name, char* value) {
+    const char* sp = spoof_lookup(name);
+    if (sp) { strcpy(value, sp); return (int) strlen(sp); }
+    if (g_find && g_pub_rcb) {
+        const prop_info* pi = g_find(name);
+        if (!pi) { value[0] = 0; return 0; }
+        struct cbd d = { value, 0 };
+        g_pub_rcb(pi, read_cb, &d);
+        return d.len;
+    }
+    value[0] = 0; return 0;
+}
+
+// ---- my __system_property_read_callback ----
+struct wrap { pcb_t cb; void* cookie; };
+static void wrap_cb(void* c, const char* name, const char* value, uint32_t serial) {
+    struct wrap* w = (struct wrap*) c;
+    const char* sp = spoof_lookup(name);
+    w->cb(w->cookie, name, sp ? sp : value, serial);
+}
+static void my_rcb(const prop_info* pi, pcb_t cb, void* cookie) {
+    if (g_sysReadCb && g_sysObj) {
+        struct wrap w = { cb, cookie };
+        g_sysReadCb(g_sysObj, pi, wrap_cb, &w);
+    }
+}
+
+// ---- decode arm64 ----
+static uint64_t dec_adrp_add(uintptr_t pc_adrp, uint32_t adrp, uint32_t add) {
+    int64_t immlo = (adrp >> 29) & 0x3;
+    int64_t immhi = (adrp >> 5) & 0x7FFFF;
+    int64_t imm = (immhi << 2) | immlo;
+    if (imm & (1LL << 20)) imm |= ~((1LL << 21) - 1);
+    uint64_t base = (pc_adrp & ~0xFFFULL) + (uint64_t)(imm << 12);
+    uint64_t addimm = (add >> 10) & 0xFFF;
+    return base + addimm;
+}
+static uintptr_t dec_b(uintptr_t pc_b, uint32_t b) {
+    int64_t imm = b & 0x3FFFFFF;
+    if (imm & (1LL << 25)) imm |= ~((1LL << 26) - 1);
+    return pc_b + (uintptr_t)(imm << 2);
+}
+
+static int inline_patch(void* fn, void* hook) {
+    uint32_t* p = (uint32_t*) fn;
+    int w = (p[0] == 0xd503245f) ? 1 : 0;
+    uint32_t* patch = p + w;
+    uint32_t code[4];
+    code[0] = 0x58000050; // ldr x16,#8
+    code[1] = 0xd61f0200; // br x16
+    uint64_t a = (uint64_t) hook;
+    memcpy(&code[2], &a, 8);
+    long ps = sysconf(_SC_PAGESIZE);
+    uintptr_t s = (uintptr_t) patch & ~((uintptr_t) ps - 1);
+    uintptr_t e = ((uintptr_t) patch + 16 + ps - 1) & ~((uintptr_t) ps - 1);
+    if (mprotect((void*) s, e - s, PROT_READ | PROT_WRITE | PROT_EXEC) != 0) return -1;
+    memcpy(patch, code, 16);
+    __builtin___clear_cache((char*) patch, (char*) patch + 16);
+    mprotect((void*) s, e - s, PROT_READ | PROT_EXEC);
+    return 0;
+}
+
+static void install() {
+    void* spg = dlsym(RTLD_DEFAULT, "__system_property_get");
+    void* src = dlsym(RTLD_DEFAULT, "__system_property_read_callback");
+    g_find    = (const prop_info* (*)(const char*)) dlsym(RTLD_DEFAULT, "__system_property_find");
+    g_pub_rcb = (void (*)(const prop_info*, pcb_t, void*)) src;
+
+    if (src) {
+        // decode obj + ReadCallback tu prologue (truoc khi patch)
+        uint32_t* p = (uint32_t*) src;
+        int w = (p[0] == 0xd503245f) ? 1 : 0;
+        // adrp @ p[w], add @ p[w+1], b @ ... tim lenh b (0x14 << 26 == 0x05000000)
+        g_sysObj = (void*) dec_adrp_add((uintptr_t)(p + w), p[w], p[w + 1]);
+        for (int i = w + 2; i < w + 10; i++) {
+            if ((p[i] & 0xFC000000) == 0x14000000) { // unconditional B
+                g_sysReadCb = (sysrcb_t) dec_b((uintptr_t)(p + i), p[i]);
+                break;
+            }
+        }
+        LOG("rcb obj=%p ReadCallback=%p", g_sysObj, (void*) g_sysReadCb);
+        if (g_sysObj && g_sysReadCb) {
+            if (inline_patch(src, (void*) my_rcb) == 0) LOG("patched read_callback");
+            else LOG("patch read_callback FAIL");
+        }
+    }
+    if (spg) {
+        if (inline_patch(spg, (void*) my_spg) == 0) LOG("patched spg keys=%d", g_n);
+        else LOG("patch spg FAIL");
+    }
+}
+
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* r) { return JNI_VERSION_1_6; }
+
+JNIEXPORT void JNICALL Java_io_vanta_fake_XJProfile_nativeInit(
+        JNIEnv* env, jclass c, jint uid, jstring host,
+        jobjectArray keys, jobjectArray vals) {
+    jsize n = (*env)->GetArrayLength(env, keys);
+    if (n > MAXK) n = MAXK;
+    g_n = 0;
+    for (jsize i = 0; i < n; i++) {
+        jstring jk = (jstring)(*env)->GetObjectArrayElement(env, keys, i);
+        jstring jv = (jstring)(*env)->GetObjectArrayElement(env, vals, i);
+        const char* k = (*env)->GetStringUTFChars(env, jk, 0);
+        const char* v = (*env)->GetStringUTFChars(env, jv, 0);
+        strncpy(g_keys[g_n], k, 63);
+        strncpy(g_vals[g_n], v, 159);
+        g_n++;
+        (*env)->ReleaseStringUTFChars(env, jk, k);
+        (*env)->ReleaseStringUTFChars(env, jv, v);
+        (*env)->DeleteLocalRef(env, jk);
+        (*env)->DeleteLocalRef(env, jv);
+    }
+    LOG("nativeInit uid=%d keys=%d", uid, g_n);
+    install();
+}

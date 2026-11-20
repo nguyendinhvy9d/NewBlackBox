@@ -5,12 +5,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import top.niunaijun.blackbox.BlackBoxCore
+import top.niunaijun.blackboxa.license.ActivationActivity
+import top.niunaijun.blackboxa.license.LicenseClient
 
 
 class ShortcutActivity:AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Cổng bản quyền cho cả lối vào shortcut: chưa kích hoạt thì không mở clone.
+        if (!LicenseClient.cachedOk(this)) {
+            ActivationActivity.start(this)
+            finish()
+            return
+        }
 
         val pkg = intent.getStringExtra("pkg")
         val userID = intent.getIntExtra("userId",0)

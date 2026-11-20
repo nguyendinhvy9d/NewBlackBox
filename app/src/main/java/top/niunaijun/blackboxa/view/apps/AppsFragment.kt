@@ -359,6 +359,11 @@ class AppsFragment : Fragment() {
                                     R.id.app_shortcut -> {
                                         ShortcutUtil.createShortcut(requireContext(), userID, data)
                                     }
+
+                                    R.id.app_device_info -> {
+                                        top.niunaijun.blackboxa.view.deviceinfo.DeviceInfoActivity
+                                            .start(requireContext(), userID, "User $userID")
+                                    }
                                 }
                                 return@setOnMenuItemClickListener true
                             } catch (e: Exception) {

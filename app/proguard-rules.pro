@@ -26,6 +26,28 @@
 -keep class android.** {*; }
 -keep class com.android.** {*; }
 
+# ==== XjangJu Pha 2 (R8): chỉ xáo LAUNCHER, giữ nguyên MỌI thứ khác ====
+# Engine ảo hóa KHÔNG chỉ ở io.vanta — framework reflection (@BlackClass/@BlackStrClass),
+# mirror, lớp proxy sinh ra... nằm rải rác. R8 xáo bất kỳ cái nào -> vỡ clone + pipeline
+# swap (overlay file engine tên-gốc lên engine-đã-xáo không khớp). Nên GIỮ tất cả trừ
+# launcher của mình -> chỉ top.niunaijun.blackboxa.** bị xáo (gồm cổng license).
+-keep class !top.niunaijun.blackboxa.**,** {*; }
+# ViewModel được tạo qua factory/reflection -> giữ lớp + hàm dựng.
+-keep class * extends androidx.lifecycle.ViewModel { <init>(...); }
+# Custom view dựng từ layout XML theo tên.
+-keep class top.niunaijun.blackboxa.widget.** {*; }
+# Giữ attribute cần cho Kotlin/annotation (an toàn cho phản xạ engine).
+-keepattributes *Annotation*, Signature, InnerClasses, EnclosingMethod
+# (KHÔNG keep top.niunaijun.blackboxa.license.** -> cổng bản quyền ĐƯỢC xáo.)
+# HiddenApiBypass tham chiếu API ẩn -> bỏ cảnh báo thiếu lớp (có sẵn lúc chạy).
+-dontwarn dalvik.system.VMRuntime
+# Dep biên dịch/optional không có lúc chạy (giữ-mọi-thứ làm lộ ref) -> bỏ cảnh báo.
+-dontwarn com.google.gson.**
+-dontwarn com.google.errorprone.**
+-dontwarn com.moandjiezana.toml.**
+-dontwarn javax.lang.model.**
+-dontwarn java.lang.invoke.**
+
 -keep class top.niunaijun.blackreflection.** {*; }
 -keep @top.niunaijun.blackreflection.annotation.BClass class * {*;}
 -keep @top.niunaijun.blackreflection.annotation.BClassName class * {*;}

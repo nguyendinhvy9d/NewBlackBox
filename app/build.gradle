@@ -7,7 +7,7 @@ android {
 
     namespace 'top.niunaijun.blackboxa'
     compileSdk rootProject.ext.compileSdkVersion
-    ndkVersion = "29.0.13846066"
+    ndkVersion = "26.1.10909125"
     defaultConfig {
         applicationId "com.rekoo.pubgm"
         minSdk rootProject.ext.minSdk
@@ -31,19 +31,19 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.debug
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_21
-        targetCompatibility JavaVersion.VERSION_21
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding true
     }
     kotlinOptions {
-        jvmTarget = '21'
+        jvmTarget = '17'
     }
     packaging {
         jniLibs {
@@ -85,8 +85,8 @@ dependencies {
     
     implementation 'com.github.Othershe:CornerLabelView:1.0.0'
     
-//    implementation 'com.github.nukc.stateview:kotlin:2.2.0'
-    
+    // XJang: 3 lib jcenter da chet -> dung stub noi bo (giu nguyen package goc)
+
     implementation 'com.github.Ferfalk:SimpleSearchView:0.2.0'
     implementation 'com.tbuonomo:dotsindicator:4.2'
     

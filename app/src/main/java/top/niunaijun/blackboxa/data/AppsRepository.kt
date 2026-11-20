@@ -89,8 +89,14 @@ class AppsRepository {
                     try {
                         val file = File(installedApplication.sourceDir)
 
-                        if ((installedApplication.flags and ApplicationInfo.FLAG_SYSTEM) != 0)
-                                continue
+                        // Chỉ loại app hệ thống KHÔNG mở được (framework/service không có icon).
+                        // App hệ thống CÓ icon mở (Chrome, app cài sẵn...) VẪN cho nhân bản.
+                        val isSystem = (installedApplication.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+                        val hasLauncher = try {
+                            BlackBoxCore.getPackageManager()
+                                    .getLaunchIntentForPackage(installedApplication.packageName) != null
+                        } catch (e: Exception) { false }
+                        if (isSystem && !hasLauncher) continue
 
                         if (!AbiUtils.isSupport(file)) continue
 

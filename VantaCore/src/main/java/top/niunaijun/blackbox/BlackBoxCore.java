@@ -112,6 +112,18 @@ public class BlackBoxCore {
         return VantaCore.get().installPackageAsUser(apk, userId);
     }
 
+    /**
+     * Cài app dạng App Bundle (nhiều file): base.apk + các split APK.
+     * Dùng cho app Play Store hiện đại (Chrome, WhatsApp...) vốn tách code/native/resource ra split.
+     */
+    public InstallResult installPackageWithSplits(String baseApk, String[] splitApks, int userId) {
+        io.vanta.entity.pm.InstallOption opt = io.vanta.entity.pm.InstallOption.installBySystem();
+        if (splitApks != null && splitApks.length > 0) {
+            opt = opt.withSplitCodePaths(splitApks);
+        }
+        return io.vanta.fake.frameworks.BPackageManager.get().installPackageAsUser(baseApk, opt, userId);
+    }
+
     public void uninstallPackageAsUser(String packageName, int userId) {
         VantaCore.get().uninstallPackageAsUser(packageName, userId);
     }

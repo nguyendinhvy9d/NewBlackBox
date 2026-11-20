@@ -1156,6 +1156,47 @@ public class BlackBoxCore extends ClientConfiguration {
         BUserManager.get().deleteUser(userId);
     }
 
+    // XJ: xoá SẠCH data + tài khoản của 1 ô (Làm mới ô) nhưng GIỮ app (không đụng install records).
+    // Bắt luôn app mà clearPackage bỏ sót (LINE…) vì nuke cả thư mục data/user/<id>,
+    // và xoá tài khoản Google/GMS (accounts.conf toàn-engine, clearPackage KHÔNG đụng tới).
+    public void clearUserData(int userId) {
+        // 1) Xoá mọi tài khoản của ô.
+        try {
+            top.niunaijun.blackbox.fake.frameworks.BAccountManager am =
+                    top.niunaijun.blackbox.fake.frameworks.BAccountManager.get();
+            android.accounts.Account[] accts = am.getAccountsAsUser(null, userId);
+            if (accts != null) {
+                for (android.accounts.Account a : accts) {
+                    try { am.removeAccountExplicitly(a, userId); } catch (Exception e) {}
+                }
+            }
+        } catch (Exception e) {
+            Slog.w(TAG, "clearUserData accounts: " + e.getMessage());
+        }
+        // 2) NUKE cây data.
+        try {
+            top.niunaijun.blackbox.utils.FileUtils.deleteDir(
+                    top.niunaijun.blackbox.core.env.BEnvironment.getUserDir(userId));
+        } catch (Exception e) {
+            Slog.w(TAG, "clearUserDataDirs user: " + e.getMessage());
+        }
+        try {
+            top.niunaijun.blackbox.utils.FileUtils.deleteDir(new java.io.File(
+                    top.niunaijun.blackbox.core.env.BEnvironment.getVirtualRoot(), "data/user_de/" + userId));
+        } catch (Exception e) {
+            Slog.w(TAG, "clearUserDataDirs user_de: " + e.getMessage());
+        }
+        // userId==0 trả về CẢ external root -> KHÔNG nuke (để clearPackage lo từng app).
+        if (userId != 0) {
+            try {
+                top.niunaijun.blackbox.utils.FileUtils.deleteDir(
+                        top.niunaijun.blackbox.core.env.BEnvironment.getExternalUserDir(userId));
+            } catch (Exception e) {
+                Slog.w(TAG, "clearUserDataDirs external: " + e.getMessage());
+            }
+        }
+    }
+
     public List<AppLifecycleCallback> getAppLifecycleCallbacks() {
         return mAppLifecycleCallbacks;
     }

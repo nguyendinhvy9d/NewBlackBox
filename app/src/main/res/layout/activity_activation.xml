@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F4F6"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="56dp"
+        android:paddingBottom="32dp">
+
+        <!-- Badge -->
+        <TextView
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:gravity="center"
+            android:text="XJ"
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/hub_badge_bg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="XjangJu"
+            android:textColor="#111827"
+            android:textStyle="bold"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Kích hoạt bản quyền"
+            android:textColor="#6B7280"
+            android:textSize="14sp" />
+
+        <!-- Thẻ nhập key -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="28dp"
+            android:padding="20dp"
+            android:background="@drawable/card_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhập key bản quyền"
+                android:textColor="#374151"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/actKeyInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="14dp"
+                android:hint="XJG-XXXX-XXXX-XXXX"
+                android:textColorHint="#9CA3AF"
+                android:textColor="#111827"
+                android:textSize="16sp"
+                android:fontFamily="monospace"
+                android:inputType="textCapCharacters|textNoSuggestions"
+                android:maxLines="1"
+                android:background="@drawable/search_bg" />
+
+            <Button
+                android:id="@+id/actButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="14dp"
+                android:text="Kích hoạt"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:backgroundTint="#2563EB" />
+
+            <ProgressBar
+                android:id="@+id/actProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/actStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Ghi chú -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="• Mỗi key khóa theo 1 máy. Đổi máy = mất quyền, liên hệ hỗ trợ để chuyển.\n• Hết hạn thì gia hạn hoặc mua key mới.\n• Lần đầu kích hoạt cần có mạng."
+            android:textColor="#6B7280"
+            android:textSize="12.5sp"
+            android:lineSpacingExtra="3dp" />
+
+        <TextView
+            android:id="@+id/actDeviceId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Mã máy: —"
+            android:textColor="#9CA3AF"
+            android:textSize="12sp"
+            android:fontFamily="monospace" />
+
+    </LinearLayout>
+</ScrollView>

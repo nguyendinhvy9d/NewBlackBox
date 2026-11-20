@@ -35,6 +35,7 @@ public class ActivityManagerCommonProxy {
             MethodParameterUtils.replaceFirstAppPkg(args);
             Intent intent = getIntent(args);
             Slog.d(TAG, "Hook in : " + intent);
+            XjLineDiag.xjLineLog("startActivity", intent, null);
             assert intent != null;
             
             

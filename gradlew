@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# XJang: hardcode toolchain so launcher finds Java/SDK without env prefix
+export JAVA_HOME="/c/Program Files/Microsoft/jdk-17.0.21.21-hotspot"
+export ANDROID_HOME="/d/Android/Sdk"
+export PATH="$JAVA_HOME/bin:$PATH"
+
 #
 # Copyright © 2015-2021 the original authors.
 #

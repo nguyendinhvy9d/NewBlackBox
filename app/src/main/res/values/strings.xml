@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">bcore</string>
+    <string name="app_name">XjangJu</string>
     <string name="choose">Choose</string>
     <string name="choose_app">Choose App</string>
     <string name="installed_app">Installed App</string>
@@ -69,4 +69,28 @@
     <string name="no_gms">Currently, there is no Google service environment on mobile phones.</string>
     <string name="vbox_service_name">:black</string>
     <string name="black_box_service_name">:black</string>
+
+    <!-- XjangJu: quan ly o -->
+    <string name="xj_device_info">Thông tin thiết bị (ô)</string>
+    <string name="xj_delete_user">Xóa ô này</string>
+    <string name="xj_delete_user_hint">Xóa toàn bộ ô \"%s\"? Mọi app clone và dữ liệu trong ô sẽ bị xóa vĩnh viễn.</string>
+    <string name="xj_delete_user_ok">Đã xóa ô</string>
+    <string name="xj_copied">Đã sao chép: %s</string>
+    <string name="xj_copy_all">Sao chép tất cả</string>
+
+    <!-- Hub lưới gộp + tạo N ô -->
+    <string name="xj_add_o">Thêm ô</string>
+    <string name="xj_pick_app">Chọn app để nhân bản ô</string>
+    <string name="xj_add_count_title">Tạo bao nhiêu ô?</string>
+    <string name="xj_add_count_hint">Số ô (1–80), ví dụ 10</string>
+    <string name="xj_creating">Đang tạo %1$d ô…</string>
+    <string name="xj_created">Đã tạo %1$d/%2$d ô</string>
+    <string name="xj_rename_o">Đổi tên ô</string>
+    <string name="xj_launch_fail">Mở ô thất bại</string>
+    <string name="xj_no_o">Chưa có ô nào. Bấm + để thêm ô.</string>
+    <string name="xj_o_count">%1$d ô</string>
+    <string name="xj_stop_o">Dừng ô (thoát nền)</string>
+    <string name="xj_stop_all">Dừng tất cả ô</string>
+    <string name="xj_stopped">Đã dừng ô</string>
+    <string name="xj_stopped_all">Đã dừng tất cả ô</string>
 </resources>

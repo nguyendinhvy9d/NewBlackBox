@@ -247,8 +247,13 @@ public class ActivityStack {
         }
         
 
+        // Fix Samsung "Too many activity record": cac activity bi clearTop/clear chi duoc
+        // danh dau finished=true ma KHONG finish that -> stub ProxyActivity leak, don trong :pN
+        // -> One UI chan start. Reap that o day (newIntentRecord co finished=false nen khong bi dong).
+        finishAllActivity(userId);
+
         if (newIntentRecord != null) {
-            
+
             deliverNewIntentLocked(newIntentRecord, intent);
             return 0;
         } else if (ignore) {

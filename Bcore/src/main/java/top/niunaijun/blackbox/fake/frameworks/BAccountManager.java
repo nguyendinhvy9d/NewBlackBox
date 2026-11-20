@@ -80,6 +80,16 @@ public class BAccountManager extends BlackManager<IBAccountManagerService> {
         return null;
     }
 
+    // XJ: explicit userId variant (dùng khi Làm mới ô để xoá tài khoản của ô cụ thể)
+    public Account[] getAccountsAsUser(String type, int userId) {
+        try {
+            return getService().getAccountsAsUser(type, userId);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void getAccountByTypeAndFeatures(IAccountManagerResponse response, String accountType,
                                             String[] features) {
         try {
@@ -119,6 +129,16 @@ public class BAccountManager extends BlackManager<IBAccountManagerService> {
     public boolean removeAccountExplicitly(Account account) {
         try {
             return getService().removeAccountExplicitly(account, BActivityThread.getUserId());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // XJ: explicit userId variant (dùng khi Làm mới ô)
+    public boolean removeAccountExplicitly(Account account, int userId) {
+        try {
+            return getService().removeAccountExplicitly(account, userId);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

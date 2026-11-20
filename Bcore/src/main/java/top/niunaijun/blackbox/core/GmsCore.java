@@ -26,23 +26,25 @@ public class GmsCore {
     public static final String OFFICIAL_GMS_SIGNATURE = "3082020d30820176a0030201020204420e6b8b300d06092a864886f70d0101050500303111300f06035504031308416e64726f69643110300e060355040b1307416e64726f69643110300e060355040613025553301e170d033038303631343033313532345a270d3334303632323033313532345a303111300f06035504031308416e64726f69643110300e060355040b1307416e64726f69643110300e06035504061302555330819f300d06092a864886f70d010101050003818d0030818902818100b3967d32a4e21a206b0d9f4856f6e3c0ee0a3a7894a4ef6e885c3945f34177d6ee0d4948a313d528b14421b8a531e21b71217e57c6ed0013f9f60f64c01d9f0f9b6b7a5a8e0f117c2f0f421f1d7d0a2ec7039a5db7e94e240fae41d8e1215443a53e4b7e8499250f28e20257e84732101056efeeef8d4b31a89c445a4a49c9510203010001";
 
     static {
-        GOOGLE_APP.add(VENDING_PKG);
-        GOOGLE_APP.add("com.google.android.play.games");
-        GOOGLE_APP.add("com.google.android.wearable.app");
-        GOOGLE_APP.add("com.google.android.wearable.app.cn");
+        // XJang trim: bo Play Store + Play Games + wearables (nang, TikTok khong can)
+        // GOOGLE_APP.add(VENDING_PKG);
+        // GOOGLE_APP.add("com.google.android.play.games");
+        // GOOGLE_APP.add("com.google.android.wearable.app");
+        // GOOGLE_APP.add("com.google.android.wearable.app.cn");
 
         GOOGLE_SERVICE.add(GMS_PKG);
         GOOGLE_SERVICE.add(GSF_PKG);
         GOOGLE_SERVICE.add("com.google.android.gsf.login");
-        GOOGLE_SERVICE.add("com.google.android.backuptransport");
-        GOOGLE_SERVICE.add("com.google.android.backup");
         GOOGLE_SERVICE.add("com.google.android.configupdater");
-        GOOGLE_SERVICE.add("com.google.android.syncadapters.contacts");
-        GOOGLE_SERVICE.add("com.google.android.feedback");
         GOOGLE_SERVICE.add("com.google.android.onetimeinitializer");
         GOOGLE_SERVICE.add("com.google.android.partnersetup");
         GOOGLE_SERVICE.add("com.google.android.setupwizard");
-        GOOGLE_SERVICE.add("com.google.android.syncadapters.calendar");
+        // XJang trim: bo sync danh ba/lich + feedback + backup (chay nen nang, TikTok khong can)
+        // GOOGLE_SERVICE.add("com.google.android.backuptransport");
+        // GOOGLE_SERVICE.add("com.google.android.backup");
+        // GOOGLE_SERVICE.add("com.google.android.syncadapters.contacts");
+        // GOOGLE_SERVICE.add("com.google.android.feedback");
+        // GOOGLE_SERVICE.add("com.google.android.syncadapters.calendar");
     }
 
     public static boolean isGoogleService(String packageName) {
@@ -126,8 +128,7 @@ public class GmsCore {
         Set<String> coreApps = new HashSet<>();
         coreApps.add(GMS_PKG);
         coreApps.add(GSF_PKG);
-        coreApps.add(VENDING_PKG);
-        coreApps.add("com.google.android.play.games");
+        // XJang trim: khong them Play Store + Play Games vao core
 
         InstallResult installResult = installPackages(coreApps, userId);
         if (isInstalledGoogleService(userId)) {

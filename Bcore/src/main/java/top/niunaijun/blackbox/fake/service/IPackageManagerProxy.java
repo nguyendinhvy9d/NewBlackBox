@@ -117,6 +117,7 @@ public class IPackageManagerProxy extends BinderInvocationStub {
             String resolvedType = (String) args[1];
             int flags = MethodParameterUtils.toInt(args[2]);
             ResolveInfo resolveInfo = BlackBoxCore.getBPackageManager().resolveIntent(intent, resolvedType, flags, BlackBoxCore.getUserId());
+            XjLineDiag.xjLineLog("resolveIntent(cell)", intent, resolveInfo);
             if (resolveInfo != null) {
                 return resolveInfo;
             }
@@ -168,9 +169,11 @@ public class IPackageManagerProxy extends BinderInvocationStub {
 
             List<ResolveInfo> resolves = BlackBoxCore.getBPackageManager().queryIntentActivities(
                     intent, flags, type, BActivityThread.getUserId());
+            XjLineDiag.xjLineLog("queryIntentActivities(cell)", intent, resolves);
             if (resolves != null && !resolves.isEmpty()) {
                 return BuildCompat.isN() ? ParceledListSliceCompat.create(resolves) : resolves;
             }
+            XjLineDiag.xjLineLog("queryIntentActivities(FALLTHROUGH->host)", intent, null);
 
             return method.invoke(who, args);
         }
@@ -184,9 +187,11 @@ public class IPackageManagerProxy extends BinderInvocationStub {
             String resolvedType = (String) args[1];
             int flags = MethodParameterUtils.toInt(args[2]);
             ResolveInfo resolveInfo = BlackBoxCore.getBPackageManager().resolveService(intent, flags, resolvedType, BlackBoxCore.getUserId());
+            XjLineDiag.xjLineLog("resolveService(cell)", intent, resolveInfo);
             if (resolveInfo != null) {
                 return resolveInfo;
             }
+            XjLineDiag.xjLineLog("resolveService(FALLTHROUGH->host)", intent, null);
             return method.invoke(who, args);
         }
     }
