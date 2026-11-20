@@ -429,6 +429,11 @@ public final class XJProfile {
             }
             nativeInit(sUid, sHost, keys, vals);
             applyBuild(); // Build.MODEL == ro.product.model (nhat quan, het tamper)
+            // DIAG (go truoc khi ship khach): chung minh spoof song trong tien trinh o
+            try { android.util.Log.i("XJGEO", "uid=" + sUid
+                    + " tz=" + java.util.TimeZone.getDefault().getID()
+                    + " locale=" + java.util.Locale.getDefault()
+                    + " model=" + android.os.Build.MODEL); } catch (Throwable t) {}
             sNativeDone = true;
         } catch (Throwable t) { /* an toan, khong crash guest */ }
     }
