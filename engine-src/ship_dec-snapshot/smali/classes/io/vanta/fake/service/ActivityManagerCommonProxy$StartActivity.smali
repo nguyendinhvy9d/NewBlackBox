@@ -282,7 +282,7 @@
 
     move-result-object v11
 
-    if-eqz v11, :cond_5
+    if-eqz v11, :xjcond_drop
 
     .line 64
     new-instance v0, Ljava/lang/StringBuilder;
@@ -463,6 +463,16 @@
 
     .line 94
     invoke-static {v15}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    return-object v0
+
+    # XJ: custom-tab nhung KHONG co browser trong o -> nuot intent, chan loop CustomTabsRedirectProxy (het "No container browser" spin)
+    :xjcond_drop
+    const/4 v0, 0x0
+
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v0
 
