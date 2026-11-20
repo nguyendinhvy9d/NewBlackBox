@@ -377,14 +377,32 @@ public final class XJProfile {
         if (sNativeDone) return;
         try {
             ensure();
+            // --- (A0) Dia-ly NHAT: timezone + locale, LUON spoof (doc lap sSpoofModel) ---
+            // Chong "soi ra Viet Nam": IP Nhat nhung may khai +07 / vi = co do mismatch.
+            try { java.util.TimeZone.setDefault(java.util.TimeZone.getTimeZone("Asia/Tokyo")); } catch (Throwable t) {}
+            try { java.util.Locale.setDefault(java.util.Locale.JAPAN); } catch (Throwable t) {}
+            try { // android.icu rieng voi java.util tren Android
+                Class<?> ic = Class.forName("android.icu.util.TimeZone");
+                Object tz = ic.getMethod("getTimeZone", String.class).invoke(null, "Asia/Tokyo");
+                ic.getMethod("setDefault", ic).invoke(null, tz);
+            } catch (Throwable t) {}
             System.loadLibrary("xjhook");
+            // Native prop JP (bat duong SystemProperties/__system_property_get: bionic tzset, ICU)
+            final String[] GEO_K = {
+                "persist.sys.timezone", "persist.sys.locale",
+                "ro.product.locale", "ro.product.locale.language", "ro.product.locale.region"
+            };
+            final String[] GEO_V = {
+                "Asia/Tokyo", "ja-JP",
+                "ja-JP", "ja", "JP"
+            };
             String[] keys, vals;
             if (sSpoofModel) {
                 // KHONG spoof ro.product.board / ro.*.platform / ro.hardware -> giu THAT (khop SoC)
                 long inc = 1000000L + (seed("inc") % 8000000L);
                 String fp = sDev[0] + "/" + sDev[4] + "/" + sDev[3]
                         + ":12/SP1A.210812.016/" + inc + ":user/release-keys";
-                keys = new String[] {
+                String[] mk = new String[] {
                     "ro.product.model", "ro.product.brand", "ro.product.manufacturer",
                     "ro.product.device", "ro.product.name",
                     "ro.product.vendor.model", "ro.product.vendor.brand", "ro.product.vendor.manufacturer",
@@ -394,7 +412,7 @@ public final class XJProfile {
                     "ro.build.product", "ro.build.fingerprint", "ro.bootimage.build.fingerprint",
                     "ro.vendor.build.fingerprint", "ro.system.build.fingerprint", "ro.odm.build.fingerprint"
                 };
-                vals = new String[] {
+                String[] mv = new String[] {
                     sDev[2], sDev[0], sDev[1],
                     sDev[3], sDev[4],
                     sDev[2], sDev[0], sDev[1],
@@ -404,14 +422,23 @@ public final class XJProfile {
                     sDev[4], fp, fp,
                     fp, fp, fp
                 };
+                keys = cat(GEO_K, mk); vals = cat(GEO_V, mv);
             } else {
-                keys = new String[0];
-                vals = new String[0];
+                keys = GEO_K;
+                vals = GEO_V;
             }
             nativeInit(sUid, sHost, keys, vals);
             applyBuild(); // Build.MODEL == ro.product.model (nhat quan, het tamper)
             sNativeDone = true;
         } catch (Throwable t) { /* an toan, khong crash guest */ }
+    }
+
+    // Noi 2 mang String (dia-ly JP + model), tranh phu thuoc java.util.Arrays.
+    private static String[] cat(String[] a, String[] b) {
+        String[] r = new String[a.length + b.length];
+        System.arraycopy(a, 0, r, 0, a.length);
+        System.arraycopy(b, 0, r, a.length, b.length);
+        return r;
     }
 
     // ================= DEVICE INFO (goi tu launcher qua reflection) =================
