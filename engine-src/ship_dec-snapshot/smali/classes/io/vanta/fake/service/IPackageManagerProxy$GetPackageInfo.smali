@@ -75,6 +75,19 @@
 
     if-eqz v0, :cond_0
 
+    # XJ: app clone la base don (khong split) -> splitNames=null -> LINE fsecurity doc
+    # PackageInfo.splitNames.getClass() -> NPE crash loop. Set [] rong (dung cho app khong split).
+    iget-object v1, v0, Landroid/content/pm/PackageInfo;->splitNames:[Ljava/lang/String;
+
+    if-nez v1, :xjsnok
+
+    const/4 v1, 0x0
+
+    new-array v1, v1, [Ljava/lang/String;
+
+    iput-object v1, v0, Landroid/content/pm/PackageInfo;->splitNames:[Ljava/lang/String;
+
+    :xjsnok
     return-object v0
 
     .line 262
