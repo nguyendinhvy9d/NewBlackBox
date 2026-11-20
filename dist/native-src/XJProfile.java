@@ -85,11 +85,16 @@ public final class XJProfile {
         {"samsung","samsung","SM-S901B","r0s","r0sxxx","s5e9925","samsung","35316345"},    // S22
         {"samsung","samsung","SM-S908B","b0s","b0sxxx","s5e9925","samsung","35466545"},    // S22 Ultra
     };
-    // Snapdragon 720G/732G tam trung (atoll). OPPO CPH2159 = props THAT (may dang test).
+    // Snapdragon 720G/732G tam trung (atoll). KHONG dua model may THAT (vd OPPO CPH2159)
+    // vao pool: spoof thanh chinh host = vo nghia + lo may that + 2 o de trung. Chi dung
+    // cac may atoll KHAC, deu bao ro.board.platform=atoll (khop SoC that cua host atoll).
     private static final String[][] POOL_ATOLL = {
-        {"OPPO","OPPO","CPH2159","OP4F25L1","CPH2159T2","atoll","qcom","86234710"},         // OPPO (720G) - real
         {"Xiaomi","Xiaomi","M2003J6B2G","miatoll","miatoll","atoll","qcom","86891120"},     // Redmi Note 9 Pro (720G)
         {"Xiaomi","Xiaomi","M2007J20CG","surya","surya","atoll","qcom","86891130"},         // POCO X3 NFC (732G)
+        {"Xiaomi","Xiaomi","M2007J20CI","karna","karna","atoll","qcom","86891160"},         // POCO X3 (732G)
+        {"realme","realme","RMX2061","RMX2061","RMX2061","atoll","qcom","86606204"},         // realme 6 Pro (720G)
+        {"Xiaomi","Xiaomi","M2003J6B1I","excalibur","excalibur","atoll","qcom","86891180"}, // Redmi Note 9 Pro Max (720G)
+        {"Xiaomi","Xiaomi","M2003J6CI","gram","gram","atoll","qcom","86891190"},            // POCO M2 Pro (720G)
     };
     // MediaTek Dimensity 1200 (mt6893). Chuoi platform MTK co the khac may -> sai = pool nghi (an toan).
     private static final String[][] POOL_MT6893 = {
@@ -223,12 +228,15 @@ public final class XJProfile {
         sSalt = readSalt(sUid);   // doc salt per-o (rong -> ho so goc cu)
         String plat = realProp("ro.board.platform"); // doc THAT (hook chua cai)
         String[][] pool = poolFor(plat);
+        // +sUid lam offset: chon model TAT DINH theo uid, nhung md5(dev_0) va md5(dev_1)
+        // co the DONG DU mod len -> uid 0,1 luon trung model o moi co pool (da gap thuc te).
+        // Cong uid de uid lien tiep rai khac index -> 2-3 o dau KHONG trung model.
         if (pool != null) {
-            sDev = pool[(int) (seed("dev") % pool.length)];
+            sDev = pool[(int) ((seed("dev") + sUid) % pool.length)];
             sSpoofModel = true;
         } else {
             // SoC la -> khong spoof model (nhat quan tren moi may), chi lay TAC
-            sDev = POOL_SM8150[(int) (seed("dev") % POOL_SM8150.length)];
+            sDev = POOL_SM8150[(int) ((seed("dev") + sUid) % POOL_SM8150.length)];
             sSpoofModel = false;
         }
         sCar = CARRIERS[(int) (seed("car") % CARRIERS.length)];
@@ -472,7 +480,7 @@ public final class XJProfile {
             String[][] pool = poolFor(plat);
             boolean spoof = pool != null;
             String[][] pp = (pool != null) ? pool : POOL_SM8150;
-            String[] dev = pp[(int) (seedP("dev", host, uid, suf) % pp.length)];
+            String[] dev = pp[(int) ((seedP("dev", host, uid, suf) + uid) % pp.length)]; // +uid: khop ensure(), chong 2 o trung model
             String[] car = CARRIERS[(int) (seedP("car", host, uid, suf) % CARRIERS.length)];
             String mccmnc = car[0];
 

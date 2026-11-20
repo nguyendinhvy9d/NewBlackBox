@@ -73,1115 +73,1181 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .registers 15
+    .registers 17
 
     .line 19
     const/4 v0, 0x6
 
-    new-array v0, v0, [[Ljava/lang/String;
+    new-array v1, v0, [[Ljava/lang/String;
 
-    const-string v7, "qcom"
+    const-string v8, "qcom"
 
-    const-string v8, "35316310"
-
-    const-string v1, "samsung"
+    const-string v9, "35316310"
 
     const-string v2, "samsung"
 
-    const-string v3, "SM-G973U"
-
-    const-string v4, "beyond1q"
-
-    const-string v5, "beyond1que"
-
-    const-string v6, "msmnile"
-
-    filled-new-array/range {v1 .. v8}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    const/4 v2, 0x0
-
-    aput-object v1, v0, v2
-
-    const-string v9, "qcom"
-
-    const-string v10, "35316410"
-
     const-string v3, "samsung"
 
-    const-string v4, "samsung"
+    const-string v4, "SM-G973U"
 
-    const-string v5, "SM-G975U"
+    const-string v5, "beyond1q"
 
-    const-string v6, "beyond2q"
+    const-string v6, "beyond1que"
 
-    const-string v7, "beyond2que"
+    const-string v7, "msmnile"
 
-    const-string v8, "msmnile"
+    filled-new-array/range {v2 .. v9}, [Ljava/lang/String;
 
-    filled-new-array/range {v3 .. v10}, [Ljava/lang/String;
+    move-result-object v2
 
-    move-result-object v1
+    const/4 v3, 0x0
 
-    const/4 v3, 0x1
-
-    aput-object v1, v0, v3
+    aput-object v2, v1, v3
 
     const-string v10, "qcom"
 
-    const-string v11, "86891103"
+    const-string v11, "35316410"
 
-    const-string v4, "Xiaomi"
+    const-string v4, "samsung"
 
-    const-string v5, "Xiaomi"
+    const-string v5, "samsung"
 
-    const-string v6, "MI 9"
+    const-string v6, "SM-G975U"
 
-    const-string v7, "cepheus"
+    const-string v7, "beyond2q"
 
-    const-string v8, "cepheus"
+    const-string v8, "beyond2que"
 
     const-string v9, "msmnile"
 
     filled-new-array/range {v4 .. v11}, [Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v4, 0x2
+    const/4 v4, 0x1
 
-    aput-object v1, v0, v4
+    aput-object v2, v1, v4
 
     const-string v11, "qcom"
 
-    const-string v12, "86044204"
+    const-string v12, "86891103"
 
-    const-string v5, "OnePlus"
+    const-string v5, "Xiaomi"
 
-    const-string v6, "OnePlus"
+    const-string v6, "Xiaomi"
 
-    const-string v7, "GM1900"
+    const-string v7, "MI 9"
 
-    const-string v8, "OnePlus7"
+    const-string v8, "cepheus"
 
-    const-string v9, "OnePlus7"
+    const-string v9, "cepheus"
 
     const-string v10, "msmnile"
 
     filled-new-array/range {v5 .. v12}, [Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v5, 0x3
+    const/4 v5, 0x2
 
-    aput-object v1, v0, v5
+    aput-object v2, v1, v5
 
     const-string v12, "qcom"
 
-    const-string v13, "86234704"
+    const-string v13, "86044204"
 
-    const-string v6, "OPPO"
+    const-string v6, "OnePlus"
 
-    const-string v7, "OPPO"
+    const-string v7, "OnePlus"
 
-    const-string v8, "CPH1919"
+    const-string v8, "GM1900"
 
-    const-string v9, "CPH1919"
+    const-string v9, "OnePlus7"
 
-    const-string v10, "CPH1919"
+    const-string v10, "OnePlus7"
 
     const-string v11, "msmnile"
 
     filled-new-array/range {v6 .. v13}, [Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
-    const/4 v6, 0x4
+    const/4 v6, 0x3
 
-    aput-object v1, v0, v6
-
-    const-string v13, "qcom"
-
-    const-string v14, "35709111"
-
-    const-string v7, "asus"
-
-    const-string v8, "asus"
-
-    const-string v9, "ASUS_I01WD"
-
-    const-string v10, "I01WD"
-
-    const-string v11, "WW_I01WD"
-
-    const-string v12, "msmnile"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    const/4 v7, 0x5
-
-    aput-object v1, v0, v7
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_SM8150:[[Ljava/lang/String;
-
-    .line 28
-    new-array v0, v7, [[Ljava/lang/String;
+    aput-object v2, v1, v6
 
     const-string v13, "qcom"
 
-    const-string v14, "35316320"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-G981U"
-
-    const-string v10, "x1q"
-
-    const-string v11, "x1qsqw"
-
-    const-string v12, "kona"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "qcom"
-
-    const-string v14, "35316420"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-G986U"
-
-    const-string v10, "y2q"
-
-    const-string v11, "y2qsqw"
-
-    const-string v12, "kona"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    const-string v13, "qcom"
-
-    const-string v14, "35466520"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-G988U"
-
-    const-string v10, "z3q"
-
-    const-string v11, "z3qsqw"
-
-    const-string v12, "kona"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v4
-
-    const-string v13, "qcom"
-
-    const-string v14, "86044210"
-
-    const-string v7, "OnePlus"
-
-    const-string v8, "OnePlus"
-
-    const-string v9, "IN2015"
-
-    const-string v10, "instantnoodle"
-
-    const-string v11, "instantnoodle"
-
-    const-string v12, "kona"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v5
-
-    const-string v13, "qcom"
-
-    const-string v14, "86891110"
-
-    const-string v7, "Xiaomi"
-
-    const-string v8, "Xiaomi"
-
-    const-string v9, "M2001J2G"
-
-    const-string v10, "umi"
-
-    const-string v11, "umi_global"
-
-    const-string v12, "kona"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v6
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_KONA:[[Ljava/lang/String;
-
-    .line 36
-    new-array v0, v6, [[Ljava/lang/String;
-
-    const-string v13, "qcom"
-
-    const-string v14, "35316330"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-G991U"
-
-    const-string v10, "o1q"
-
-    const-string v11, "o1qsqw"
-
-    const-string v12, "lahaina"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "qcom"
-
-    const-string v14, "35316430"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-G996U"
-
-    const-string v10, "t2q"
-
-    const-string v11, "t2qsqw"
-
-    const-string v12, "lahaina"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    const-string v13, "qcom"
-
-    const-string v14, "35466530"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-G998U"
-
-    const-string v10, "p3q"
-
-    const-string v11, "p3qsqw"
-
-    const-string v12, "lahaina"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v4
-
-    const-string v13, "qcom"
-
-    const-string v14, "86044220"
-
-    const-string v7, "OnePlus"
-
-    const-string v8, "OnePlus"
-
-    const-string v9, "LE2115"
-
-    const-string v10, "lemonade"
-
-    const-string v11, "lemonade"
-
-    const-string v12, "lahaina"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v5
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_LAHAINA:[[Ljava/lang/String;
-
-    .line 43
-    new-array v0, v6, [[Ljava/lang/String;
-
-    const-string v13, "qcom"
-
-    const-string v14, "35316340"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S901U"
-
-    const-string v10, "r0q"
-
-    const-string v11, "r0qsqw"
-
-    const-string v12, "taro"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "qcom"
-
-    const-string v14, "35316440"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S906U"
-
-    const-string v10, "g0q"
-
-    const-string v11, "g0qsqw"
-
-    const-string v12, "taro"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    const-string v13, "qcom"
-
-    const-string v14, "35466540"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S908U"
-
-    const-string v10, "b0q"
-
-    const-string v11, "b0qsqw"
-
-    const-string v12, "taro"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v4
-
-    const-string v13, "qcom"
-
-    const-string v14, "86044230"
-
-    const-string v7, "OnePlus"
-
-    const-string v8, "OnePlus"
-
-    const-string v9, "NE2215"
-
-    const-string v10, "negroni"
-
-    const-string v11, "negroni"
-
-    const-string v12, "taro"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v5
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_TARO:[[Ljava/lang/String;
-
-    .line 50
-    new-array v0, v6, [[Ljava/lang/String;
-
-    const-string v13, "qcom"
-
-    const-string v14, "35316350"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S911U"
-
-    const-string v10, "dm1q"
-
-    const-string v11, "dm1qsqw"
-
-    const-string v12, "kalama"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "qcom"
-
-    const-string v14, "35316450"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S916U"
-
-    const-string v10, "dm2q"
-
-    const-string v11, "dm2qsqw"
-
-    const-string v12, "kalama"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    const-string v13, "qcom"
-
-    const-string v14, "35466550"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S918U"
-
-    const-string v10, "dm3q"
-
-    const-string v11, "dm3qsqw"
-
-    const-string v12, "kalama"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v4
-
-    const-string v13, "qcom"
-
-    const-string v14, "86044240"
-
-    const-string v7, "OnePlus"
-
-    const-string v8, "OnePlus"
-
-    const-string v9, "CPH2449"
-
-    const-string v10, "salami"
-
-    const-string v11, "salami"
-
-    const-string v12, "kalama"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v5
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_KALAMA:[[Ljava/lang/String;
-
-    .line 57
-    new-array v0, v6, [[Ljava/lang/String;
-
-    const-string v13, "qcom"
-
-    const-string v14, "35316360"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S921U"
-
-    const-string v10, "e1q"
-
-    const-string v11, "e1qsqw"
-
-    const-string v12, "pineapple"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "qcom"
-
-    const-string v14, "35316460"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S926U"
-
-    const-string v10, "e2q"
-
-    const-string v11, "e2qsqw"
-
-    const-string v12, "pineapple"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    const-string v13, "qcom"
-
-    const-string v14, "35466560"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S928U"
-
-    const-string v10, "e3q"
-
-    const-string v11, "e3qsqw"
-
-    const-string v12, "pineapple"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v4
-
-    const-string v13, "qcom"
-
-    const-string v14, "86044250"
-
-    const-string v7, "OnePlus"
-
-    const-string v8, "OnePlus"
-
-    const-string v9, "CPH2581"
-
-    const-string v10, "waffle"
-
-    const-string v11, "waffle"
-
-    const-string v12, "pineapple"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v5
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_PINEAPPLE:[[Ljava/lang/String;
-
-    .line 64
-    new-array v0, v5, [[Ljava/lang/String;
-
-    const-string v13, "google"
-
-    const-string v14, "35758108"
-
-    const-string v7, "google"
-
-    const-string v8, "Google"
-
-    const-string v9, "Pixel 6"
-
-    const-string v10, "oriole"
-
-    const-string v11, "oriole"
-
-    const-string v12, "gs101"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "google"
-
-    const-string v14, "35758118"
-
-    const-string v7, "google"
-
-    const-string v8, "Google"
-
-    const-string v9, "Pixel 6 Pro"
-
-    const-string v10, "raven"
-
-    const-string v11, "raven"
-
-    const-string v12, "gs101"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    const-string v13, "google"
-
-    const-string v14, "35758128"
-
-    const-string v7, "google"
-
-    const-string v8, "Google"
-
-    const-string v9, "Pixel 6a"
-
-    const-string v10, "bluejay"
-
-    const-string v11, "bluejay"
-
-    const-string v12, "gs101"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v4
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_TENSOR_G1:[[Ljava/lang/String;
-
-    .line 69
-    new-array v0, v5, [[Ljava/lang/String;
-
-    const-string v13, "google"
-
-    const-string v14, "35161407"
-
-    const-string v7, "google"
-
-    const-string v8, "Google"
-
-    const-string v9, "Pixel 7"
-
-    const-string v10, "panther"
-
-    const-string v11, "panther"
-
-    const-string v12, "gs201"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "google"
-
-    const-string v14, "35161417"
-
-    const-string v7, "google"
-
-    const-string v8, "Google"
-
-    const-string v9, "Pixel 7 Pro"
-
-    const-string v10, "cheetah"
-
-    const-string v11, "cheetah"
-
-    const-string v12, "gs201"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    const-string v13, "google"
-
-    const-string v14, "35161427"
-
-    const-string v7, "google"
-
-    const-string v8, "Google"
-
-    const-string v9, "Pixel 7a"
-
-    const-string v10, "lynx"
-
-    const-string v11, "lynx"
-
-    const-string v12, "gs201"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v4
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_TENSOR_G2:[[Ljava/lang/String;
-
-    .line 74
-    new-array v0, v4, [[Ljava/lang/String;
-
-    const-string v13, "google"
-
-    const-string v14, "35837713"
-
-    const-string v7, "google"
-
-    const-string v8, "Google"
-
-    const-string v9, "Pixel 8"
-
-    const-string v10, "shiba"
-
-    const-string v11, "shiba"
-
-    const-string v12, "zuma"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "google"
-
-    const-string v14, "35837723"
-
-    const-string v7, "google"
-
-    const-string v8, "Google"
-
-    const-string v9, "Pixel 8 Pro"
-
-    const-string v10, "husky"
-
-    const-string v11, "husky"
-
-    const-string v12, "zuma"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_TENSOR_G3:[[Ljava/lang/String;
-
-    .line 79
-    new-array v0, v5, [[Ljava/lang/String;
-
-    const-string v13, "samsung"
-
-    const-string v14, "35316325"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-G980F"
-
-    const-string v10, "x1s"
-
-    const-string v11, "x1sxxx"
-
-    const-string v12, "exynos9830"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "samsung"
-
-    const-string v14, "35316425"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-G985F"
-
-    const-string v10, "y2s"
-
-    const-string v11, "y2sxxx"
-
-    const-string v12, "exynos9830"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    const-string v13, "samsung"
-
-    const-string v14, "35466525"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-G988B"
-
-    const-string v10, "z3s"
-
-    const-string v11, "z3sxxx"
-
-    const-string v12, "exynos9830"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v4
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_EXY990:[[Ljava/lang/String;
-
-    .line 84
-    new-array v0, v4, [[Ljava/lang/String;
-
-    const-string v13, "samsung"
-
-    const-string v14, "35316345"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S901B"
-
-    const-string v10, "r0s"
-
-    const-string v11, "r0sxxx"
-
-    const-string v12, "s5e9925"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "samsung"
-
-    const-string v14, "35466545"
-
-    const-string v7, "samsung"
-
-    const-string v8, "samsung"
-
-    const-string v9, "SM-S908B"
-
-    const-string v10, "b0s"
-
-    const-string v11, "b0sxxx"
-
-    const-string v12, "s5e9925"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v3
-
-    sput-object v0, Lio/vanta/fake/XJProfile;->POOL_EXY2200:[[Ljava/lang/String;
-
-    .line 89
-    new-array v0, v5, [[Ljava/lang/String;
-
-    const-string v13, "qcom"
-
-    const-string v14, "86234710"
+    const-string v14, "86234704"
 
     const-string v7, "OPPO"
 
     const-string v8, "OPPO"
 
-    const-string v9, "CPH2159"
+    const-string v9, "CPH1919"
 
-    const-string v10, "OP4F25L1"
+    const-string v10, "CPH1919"
 
-    const-string v11, "CPH2159T2"
+    const-string v11, "CPH1919"
 
-    const-string v12, "atoll"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "qcom"
-
-    const-string v14, "86891120"
-
-    const-string v7, "Xiaomi"
-
-    const-string v8, "Xiaomi"
-
-    const-string v9, "M2003J6B2G"
-
-    const-string v10, "miatoll"
-
-    const-string v11, "miatoll"
-
-    const-string v12, "atoll"
+    const-string v12, "msmnile"
 
     filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    const/4 v7, 0x4
+
+    aput-object v2, v1, v7
+
+    const-string v14, "qcom"
+
+    const-string v15, "35709111"
+
+    const-string v8, "asus"
+
+    const-string v9, "asus"
+
+    const-string v10, "ASUS_I01WD"
+
+    const-string v11, "I01WD"
+
+    const-string v12, "WW_I01WD"
+
+    const-string v13, "msmnile"
+
+    filled-new-array/range {v8 .. v15}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    const/4 v8, 0x5
+
+    aput-object v2, v1, v8
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_SM8150:[[Ljava/lang/String;
+
+    .line 28
+    new-array v1, v8, [[Ljava/lang/String;
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316320"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-G981U"
+
+    const-string v12, "x1q"
+
+    const-string v13, "x1qsqw"
+
+    const-string v14, "kona"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316420"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-G986U"
+
+    const-string v12, "y2q"
+
+    const-string v13, "y2qsqw"
+
+    const-string v14, "kona"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    const-string v15, "qcom"
+
+    const-string v16, "35466520"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-G988U"
+
+    const-string v12, "z3q"
+
+    const-string v13, "z3qsqw"
+
+    const-string v14, "kona"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v5
+
+    const-string v15, "qcom"
+
+    const-string v16, "86044210"
+
+    const-string v9, "OnePlus"
+
+    const-string v10, "OnePlus"
+
+    const-string v11, "IN2015"
+
+    const-string v12, "instantnoodle"
+
+    const-string v13, "instantnoodle"
+
+    const-string v14, "kona"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v6
+
+    const-string v15, "qcom"
+
+    const-string v16, "86891110"
+
+    const-string v9, "Xiaomi"
+
+    const-string v10, "Xiaomi"
+
+    const-string v11, "M2001J2G"
+
+    const-string v12, "umi"
+
+    const-string v13, "umi_global"
+
+    const-string v14, "kona"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v7
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_KONA:[[Ljava/lang/String;
+
+    .line 36
+    new-array v1, v7, [[Ljava/lang/String;
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316330"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-G991U"
+
+    const-string v12, "o1q"
+
+    const-string v13, "o1qsqw"
+
+    const-string v14, "lahaina"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316430"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-G996U"
+
+    const-string v12, "t2q"
+
+    const-string v13, "t2qsqw"
+
+    const-string v14, "lahaina"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    const-string v15, "qcom"
+
+    const-string v16, "35466530"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-G998U"
+
+    const-string v12, "p3q"
+
+    const-string v13, "p3qsqw"
+
+    const-string v14, "lahaina"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v5
+
+    const-string v15, "qcom"
+
+    const-string v16, "86044220"
+
+    const-string v9, "OnePlus"
+
+    const-string v10, "OnePlus"
+
+    const-string v11, "LE2115"
+
+    const-string v12, "lemonade"
+
+    const-string v13, "lemonade"
+
+    const-string v14, "lahaina"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v6
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_LAHAINA:[[Ljava/lang/String;
+
+    .line 43
+    new-array v1, v7, [[Ljava/lang/String;
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316340"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S901U"
+
+    const-string v12, "r0q"
+
+    const-string v13, "r0qsqw"
+
+    const-string v14, "taro"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316440"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S906U"
+
+    const-string v12, "g0q"
+
+    const-string v13, "g0qsqw"
+
+    const-string v14, "taro"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    const-string v15, "qcom"
+
+    const-string v16, "35466540"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S908U"
+
+    const-string v12, "b0q"
+
+    const-string v13, "b0qsqw"
+
+    const-string v14, "taro"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v5
+
+    const-string v15, "qcom"
+
+    const-string v16, "86044230"
+
+    const-string v9, "OnePlus"
+
+    const-string v10, "OnePlus"
+
+    const-string v11, "NE2215"
+
+    const-string v12, "negroni"
+
+    const-string v13, "negroni"
+
+    const-string v14, "taro"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v6
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_TARO:[[Ljava/lang/String;
+
+    .line 50
+    new-array v1, v7, [[Ljava/lang/String;
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316350"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S911U"
+
+    const-string v12, "dm1q"
+
+    const-string v13, "dm1qsqw"
+
+    const-string v14, "kalama"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316450"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S916U"
+
+    const-string v12, "dm2q"
+
+    const-string v13, "dm2qsqw"
+
+    const-string v14, "kalama"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    const-string v15, "qcom"
+
+    const-string v16, "35466550"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S918U"
+
+    const-string v12, "dm3q"
+
+    const-string v13, "dm3qsqw"
+
+    const-string v14, "kalama"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v5
+
+    const-string v15, "qcom"
+
+    const-string v16, "86044240"
+
+    const-string v9, "OnePlus"
+
+    const-string v10, "OnePlus"
+
+    const-string v11, "CPH2449"
+
+    const-string v12, "salami"
+
+    const-string v13, "salami"
+
+    const-string v14, "kalama"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v6
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_KALAMA:[[Ljava/lang/String;
+
+    .line 57
+    new-array v1, v7, [[Ljava/lang/String;
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316360"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S921U"
+
+    const-string v12, "e1q"
+
+    const-string v13, "e1qsqw"
+
+    const-string v14, "pineapple"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "qcom"
+
+    const-string v16, "35316460"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S926U"
+
+    const-string v12, "e2q"
+
+    const-string v13, "e2qsqw"
+
+    const-string v14, "pineapple"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    const-string v15, "qcom"
+
+    const-string v16, "35466560"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S928U"
+
+    const-string v12, "e3q"
+
+    const-string v13, "e3qsqw"
+
+    const-string v14, "pineapple"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v5
+
+    const-string v15, "qcom"
+
+    const-string v16, "86044250"
+
+    const-string v9, "OnePlus"
+
+    const-string v10, "OnePlus"
+
+    const-string v11, "CPH2581"
+
+    const-string v12, "waffle"
+
+    const-string v13, "waffle"
+
+    const-string v14, "pineapple"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v6
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_PINEAPPLE:[[Ljava/lang/String;
+
+    .line 64
+    new-array v1, v6, [[Ljava/lang/String;
+
+    const-string v15, "google"
+
+    const-string v16, "35758108"
+
+    const-string v9, "google"
+
+    const-string v10, "Google"
+
+    const-string v11, "Pixel 6"
+
+    const-string v12, "oriole"
+
+    const-string v13, "oriole"
+
+    const-string v14, "gs101"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "google"
+
+    const-string v16, "35758118"
+
+    const-string v9, "google"
+
+    const-string v10, "Google"
+
+    const-string v11, "Pixel 6 Pro"
+
+    const-string v12, "raven"
+
+    const-string v13, "raven"
+
+    const-string v14, "gs101"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    const-string v15, "google"
+
+    const-string v16, "35758128"
+
+    const-string v9, "google"
+
+    const-string v10, "Google"
+
+    const-string v11, "Pixel 6a"
+
+    const-string v12, "bluejay"
+
+    const-string v13, "bluejay"
+
+    const-string v14, "gs101"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v5
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_TENSOR_G1:[[Ljava/lang/String;
+
+    .line 69
+    new-array v1, v6, [[Ljava/lang/String;
+
+    const-string v15, "google"
+
+    const-string v16, "35161407"
+
+    const-string v9, "google"
+
+    const-string v10, "Google"
+
+    const-string v11, "Pixel 7"
+
+    const-string v12, "panther"
+
+    const-string v13, "panther"
+
+    const-string v14, "gs201"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "google"
+
+    const-string v16, "35161417"
+
+    const-string v9, "google"
+
+    const-string v10, "Google"
+
+    const-string v11, "Pixel 7 Pro"
+
+    const-string v12, "cheetah"
+
+    const-string v13, "cheetah"
+
+    const-string v14, "gs201"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    const-string v15, "google"
+
+    const-string v16, "35161427"
+
+    const-string v9, "google"
+
+    const-string v10, "Google"
+
+    const-string v11, "Pixel 7a"
+
+    const-string v12, "lynx"
+
+    const-string v13, "lynx"
+
+    const-string v14, "gs201"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v5
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_TENSOR_G2:[[Ljava/lang/String;
+
+    .line 74
+    new-array v1, v5, [[Ljava/lang/String;
+
+    const-string v15, "google"
+
+    const-string v16, "35837713"
+
+    const-string v9, "google"
+
+    const-string v10, "Google"
+
+    const-string v11, "Pixel 8"
+
+    const-string v12, "shiba"
+
+    const-string v13, "shiba"
+
+    const-string v14, "zuma"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "google"
+
+    const-string v16, "35837723"
+
+    const-string v9, "google"
+
+    const-string v10, "Google"
+
+    const-string v11, "Pixel 8 Pro"
+
+    const-string v12, "husky"
+
+    const-string v13, "husky"
+
+    const-string v14, "zuma"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_TENSOR_G3:[[Ljava/lang/String;
+
+    .line 79
+    new-array v1, v6, [[Ljava/lang/String;
+
+    const-string v15, "samsung"
+
+    const-string v16, "35316325"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-G980F"
+
+    const-string v12, "x1s"
+
+    const-string v13, "x1sxxx"
+
+    const-string v14, "exynos9830"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "samsung"
+
+    const-string v16, "35316425"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-G985F"
+
+    const-string v12, "y2s"
+
+    const-string v13, "y2sxxx"
+
+    const-string v14, "exynos9830"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    const-string v15, "samsung"
+
+    const-string v16, "35466525"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-G988B"
+
+    const-string v12, "z3s"
+
+    const-string v13, "z3sxxx"
+
+    const-string v14, "exynos9830"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v5
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_EXY990:[[Ljava/lang/String;
+
+    .line 84
+    new-array v1, v5, [[Ljava/lang/String;
+
+    const-string v15, "samsung"
+
+    const-string v16, "35316345"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S901B"
+
+    const-string v12, "r0s"
+
+    const-string v13, "r0sxxx"
+
+    const-string v14, "s5e9925"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v3
+
+    const-string v15, "samsung"
+
+    const-string v16, "35466545"
+
+    const-string v9, "samsung"
+
+    const-string v10, "samsung"
+
+    const-string v11, "SM-S908B"
+
+    const-string v12, "b0s"
+
+    const-string v13, "b0sxxx"
+
+    const-string v14, "s5e9925"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    aput-object v2, v1, v4
+
+    sput-object v1, Lio/vanta/fake/XJProfile;->POOL_EXY2200:[[Ljava/lang/String;
+
+    .line 91
+    new-array v0, v0, [[Ljava/lang/String;
+
+    const-string v15, "qcom"
+
+    const-string v16, "86891120"
+
+    const-string v9, "Xiaomi"
+
+    const-string v10, "Xiaomi"
+
+    const-string v11, "M2003J6B2G"
+
+    const-string v12, "miatoll"
+
+    const-string v13, "miatoll"
+
+    const-string v14, "atoll"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
 
     move-result-object v1
 
     aput-object v1, v0, v3
 
-    const-string v13, "qcom"
+    const-string v15, "qcom"
 
-    const-string v14, "86891130"
+    const-string v16, "86891130"
 
-    const-string v7, "Xiaomi"
+    const-string v9, "Xiaomi"
 
-    const-string v8, "Xiaomi"
+    const-string v10, "Xiaomi"
 
-    const-string v9, "M2007J20CG"
+    const-string v11, "M2007J20CG"
 
-    const-string v10, "surya"
+    const-string v12, "surya"
 
-    const-string v11, "surya"
+    const-string v13, "surya"
 
-    const-string v12, "atoll"
+    const-string v14, "atoll"
 
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
 
     move-result-object v1
 
     aput-object v1, v0, v4
 
+    const-string v15, "qcom"
+
+    const-string v16, "86891160"
+
+    const-string v9, "Xiaomi"
+
+    const-string v10, "Xiaomi"
+
+    const-string v11, "M2007J20CI"
+
+    const-string v12, "karna"
+
+    const-string v13, "karna"
+
+    const-string v14, "atoll"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v1
+
+    aput-object v1, v0, v5
+
+    const-string v15, "qcom"
+
+    const-string v16, "86606204"
+
+    const-string v9, "realme"
+
+    const-string v10, "realme"
+
+    const-string v11, "RMX2061"
+
+    const-string v12, "RMX2061"
+
+    const-string v13, "RMX2061"
+
+    const-string v14, "atoll"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v1
+
+    aput-object v1, v0, v6
+
+    const-string v15, "qcom"
+
+    const-string v16, "86891180"
+
+    const-string v9, "Xiaomi"
+
+    const-string v10, "Xiaomi"
+
+    const-string v11, "M2003J6B1I"
+
+    const-string v12, "excalibur"
+
+    const-string v13, "excalibur"
+
+    const-string v14, "atoll"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v1
+
+    aput-object v1, v0, v7
+
+    const-string v15, "qcom"
+
+    const-string v16, "86891190"
+
+    const-string v9, "Xiaomi"
+
+    const-string v10, "Xiaomi"
+
+    const-string v11, "M2003J6CI"
+
+    const-string v12, "gram"
+
+    const-string v13, "gram"
+
+    const-string v14, "atoll"
+
+    filled-new-array/range {v9 .. v16}, [Ljava/lang/String;
+
+    move-result-object v1
+
+    aput-object v1, v0, v8
+
     sput-object v0, Lio/vanta/fake/XJProfile;->POOL_ATOLL:[[Ljava/lang/String;
 
-    .line 95
-    new-array v0, v5, [[Ljava/lang/String;
+    .line 100
+    new-array v0, v6, [[Ljava/lang/String;
 
-    const-string v13, "mediatek"
+    const-string v14, "mediatek"
 
-    const-string v14, "86044260"
-
-    const-string v7, "OnePlus"
+    const-string v15, "86044260"
 
     const-string v8, "OnePlus"
 
-    const-string v9, "DN2103"
+    const-string v9, "OnePlus"
 
     const-string v10, "DN2103"
 
     const-string v11, "DN2103"
 
-    const-string v12, "mt6893"
+    const-string v12, "DN2103"
 
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
+    const-string v13, "mt6893"
 
-    move-result-object v1
-
-    aput-object v1, v0, v2
-
-    const-string v13, "mediatek"
-
-    const-string v14, "86891140"
-
-    const-string v7, "realme"
-
-    const-string v8, "realme"
-
-    const-string v9, "RMX3031"
-
-    const-string v10, "RMX3031"
-
-    const-string v11, "RMX3031"
-
-    const-string v12, "mt6893"
-
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
+    filled-new-array/range {v8 .. v15}, [Ljava/lang/String;
 
     move-result-object v1
 
     aput-object v1, v0, v3
 
-    const-string v13, "mediatek"
+    const-string v14, "mediatek"
 
-    const-string v14, "86891150"
+    const-string v15, "86891140"
 
-    const-string v7, "Xiaomi"
+    const-string v8, "realme"
 
-    const-string v8, "Redmi"
+    const-string v9, "realme"
 
-    const-string v9, "M2012K10C"
+    const-string v10, "RMX3031"
 
-    const-string v10, "ares"
+    const-string v11, "RMX3031"
 
-    const-string v11, "ares"
+    const-string v12, "RMX3031"
 
-    const-string v12, "mt6893"
+    const-string v13, "mt6893"
 
-    filled-new-array/range {v7 .. v14}, [Ljava/lang/String;
+    filled-new-array/range {v8 .. v15}, [Ljava/lang/String;
 
     move-result-object v1
 
     aput-object v1, v0, v4
 
+    const-string v14, "mediatek"
+
+    const-string v15, "86891150"
+
+    const-string v8, "Xiaomi"
+
+    const-string v9, "Redmi"
+
+    const-string v10, "M2012K10C"
+
+    const-string v11, "ares"
+
+    const-string v12, "ares"
+
+    const-string v13, "mt6893"
+
+    filled-new-array/range {v8 .. v15}, [Ljava/lang/String;
+
+    move-result-object v1
+
+    aput-object v1, v0, v5
+
     sput-object v0, Lio/vanta/fake/XJProfile;->POOL_MT6893:[[Ljava/lang/String;
 
-    .line 129
-    new-array v0, v6, [[Ljava/lang/String;
+    .line 134
+    new-array v0, v7, [[Ljava/lang/String;
 
     const-string v1, "44010"
 
-    const-string v6, "NTT DOCOMO"
+    const-string v2, "NTT DOCOMO"
 
     const-string v7, "docomo"
 
     const-string v8, "jp"
 
-    filled-new-array {v1, v6, v7, v8}, [Ljava/lang/String;
+    filled-new-array {v1, v2, v7, v8}, [Ljava/lang/String;
 
     move-result-object v1
 
-    aput-object v1, v0, v2
+    aput-object v1, v0, v3
 
     const-string v1, "44020"
 
@@ -1191,7 +1257,7 @@
 
     move-result-object v1
 
-    aput-object v1, v0, v3
+    aput-object v1, v0, v4
 
     const-string v1, "44051"
 
@@ -1201,7 +1267,7 @@
 
     move-result-object v1
 
-    aput-object v1, v0, v4
+    aput-object v1, v0, v5
 
     const-string v1, "44011"
 
@@ -1211,11 +1277,11 @@
 
     move-result-object v1
 
-    aput-object v1, v0, v5
+    aput-object v1, v0, v6
 
     sput-object v0, Lio/vanta/fake/XJProfile;->CARRIERS:[[Ljava/lang/String;
 
-    .line 140
+    .line 145
     const-string v0, ""
 
     sput-object v0, Lio/vanta/fake/XJProfile;->sSalt:Ljava/lang/String;
@@ -1226,7 +1292,7 @@
 .method private constructor <init>()V
     .registers 1
 
-    .line 547
+    .line 555
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -1235,13 +1301,13 @@
 .method public static applyBuild()V
     .registers 11
 
-    .line 282
+    .line 290
     const-string v0, "/"
 
     :try_start_2
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
-    .line 283
+    .line 291
     sget-boolean v1, Lio/vanta/fake/XJProfile;->sSpoofModel:Z
     :try_end_7
     .catchall {:try_start_2 .. :try_end_7} :catchall_95
@@ -1257,7 +1323,7 @@
 
     return-void
 
-    .line 284
+    .line 292
     :cond_11
     const-string v1, "BRAND"
 
@@ -1269,7 +1335,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 285
+    .line 293
     const-string v1, "MANUFACTURER"
 
     sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
@@ -1280,7 +1346,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 286
+    .line 294
     const-string v1, "MODEL"
 
     sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
@@ -1291,7 +1357,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 287
+    .line 295
     const-string v1, "DEVICE"
 
     sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
@@ -1302,7 +1368,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 288
+    .line 296
     const-string v1, "PRODUCT"
 
     sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
@@ -1313,7 +1379,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 290
+    .line 298
     const-string v1, "inc"
 
     invoke-static {v1}, Lio/vanta/fake/XJProfile;->seed(Ljava/lang/String;)J
@@ -1328,7 +1394,7 @@
 
     add-long/2addr v7, v9
 
-    .line 291
+    .line 299
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1385,12 +1451,12 @@
 
     move-result-object v0
 
-    .line 293
+    .line 301
     const-string v1, "FINGERPRINT"
 
     invoke-static {v1, v0}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 294
+    .line 302
     sget-object v0, Lio/vanta/fake/XJProfile;->sSerial:Ljava/lang/String;
 
     invoke-static {v2, v0}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
@@ -1399,24 +1465,24 @@
 
     goto :goto_96
 
-    .line 295
+    .line 303
     :catchall_95
     move-exception v0
 
     :goto_96
     nop
 
-    .line 296
+    .line 304
     return-void
 .end method
 
 .method public static btMac()Ljava/lang/String;
     .registers 6
 
-    .line 352
+    .line 360
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
-    .line 353
+    .line 361
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1457,12 +1523,12 @@
 
     move-result-object v0
 
-    .line 354
+    .line 362
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 355
+    .line 363
     const/4 v2, 0x0
 
     :goto_32
@@ -1470,20 +1536,20 @@
 
     if-ge v2, v3, :cond_57
 
-    .line 356
+    .line 364
     if-lez v2, :cond_3c
 
     const/16 v3, 0x3a
 
     invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 357
+    .line 365
     :cond_3c
     aget-byte v3, v0, v2
 
     and-int/lit16 v3, v3, 0xff
 
-    .line 358
+    .line 366
     shr-int/lit8 v4, v3, 0x4
 
     const/16 v5, 0x10
@@ -1494,7 +1560,7 @@
 
     invoke-virtual {v1, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 359
+    .line 367
     and-int/lit8 v3, v3, 0xf
 
     invoke-static {v3, v5}, Ljava/lang/Character;->forDigit(II)C
@@ -1503,12 +1569,12 @@
 
     invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 355
+    .line 363
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_32
 
-    .line 361
+    .line 369
     :cond_57
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -1524,7 +1590,7 @@
 .method private static btMacFor(Ljava/lang/String;ILjava/lang/String;)Ljava/lang/String;
     .registers 6
 
-    .line 443
+    .line 451
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1555,12 +1621,12 @@
 
     move-result-object p0
 
-    .line 444
+    .line 452
     new-instance p1, Ljava/lang/StringBuilder;
 
     invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 445
+    .line 453
     const/4 p2, 0x0
 
     :goto_25
@@ -1568,20 +1634,20 @@
 
     if-ge p2, v0, :cond_4a
 
-    .line 446
+    .line 454
     if-lez p2, :cond_2f
 
     const/16 v0, 0x3a
 
     invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 447
+    .line 455
     :cond_2f
     aget-byte v0, p0, p2
 
     and-int/lit16 v0, v0, 0xff
 
-    .line 448
+    .line 456
     shr-int/lit8 v1, v0, 0x4
 
     const/16 v2, 0x10
@@ -1592,7 +1658,7 @@
 
     invoke-virtual {p1, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 449
+    .line 457
     and-int/lit8 v0, v0, 0xf
 
     invoke-static {v0, v2}, Ljava/lang/Character;->forDigit(II)C
@@ -1601,12 +1667,12 @@
 
     invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 445
+    .line 453
     add-int/lit8 p2, p2, 0x1
 
     goto :goto_25
 
-    .line 451
+    .line 459
     :cond_4a
     invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -1622,7 +1688,7 @@
 .method public static countryIso()Ljava/lang/String;
     .registers 1
 
-    .line 277
+    .line 285
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sIso:Ljava/lang/String;
@@ -1633,7 +1699,7 @@
 .method public static describe(I)Ljava/lang/String;
     .registers 52
 
-    .line 468
+    .line 476
     move/from16 v0, p0
 
     const-string v1, "/"
@@ -1647,27 +1713,27 @@
 
     move-result-object v4
 
-    .line 469
+    .line 477
     invoke-static/range {p0 .. p0}, Lio/vanta/fake/XJProfile;->readSalt(I)Ljava/lang/String;
 
     move-result-object v5
 
-    .line 470
+    .line 478
     invoke-static {v5}, Lio/vanta/fake/XJProfile;->sufOf(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v6
 
-    .line 471
+    .line 479
     invoke-static {v3}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v7
 
-    .line 472
+    .line 480
     invoke-static {v7}, Lio/vanta/fake/XJProfile;->poolFor(Ljava/lang/String;)[[Ljava/lang/String;
 
     move-result-object v7
 
-    .line 473
+    .line 481
     const/4 v9, 0x0
 
     if-eqz v7, :cond_21
@@ -1679,7 +1745,7 @@
     :cond_21
     const/4 v10, 0x0
 
-    .line 474
+    .line 482
     :goto_22
     if-eqz v7, :cond_25
 
@@ -1688,13 +1754,17 @@
     :cond_25
     sget-object v7, Lio/vanta/fake/XJProfile;->POOL_SM8150:[[Ljava/lang/String;
 
-    .line 475
+    .line 483
     :goto_27
     const-string v11, "dev"
 
     invoke-static {v11, v4, v0, v6}, Lio/vanta/fake/XJProfile;->seedP(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)J
 
     move-result-wide v11
+
+    int-to-long v13, v0
+
+    add-long/2addr v11, v13
 
     array-length v13, v7
 
@@ -1706,7 +1776,7 @@
 
     aget-object v7, v7, v12
 
-    .line 476
+    .line 484
     sget-object v11, Lio/vanta/fake/XJProfile;->CARRIERS:[[Ljava/lang/String;
 
     const-string v12, "car"
@@ -1727,10 +1797,10 @@
 
     aget-object v11, v11, v13
 
-    .line 477
+    .line 485
     aget-object v15, v11, v9
 
-    .line 479
+    .line 487
     const-string v12, "imei"
 
     const/4 v13, 0x6
@@ -1739,7 +1809,7 @@
 
     move-result-object v12
 
-    .line 480
+    .line 488
     new-instance v14, Ljava/lang/StringBuilder;
 
     const/4 v8, 0x7
@@ -1748,11 +1818,11 @@
 
     invoke-direct {v14, v9}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 481
+    .line 489
     const/4 v9, 0x0
 
-    :goto_55
-    if-ge v9, v13, :cond_60
+    :goto_57
+    if-ge v9, v13, :cond_62
 
     aget v13, v12, v9
 
@@ -1762,10 +1832,10 @@
 
     const/4 v13, 0x6
 
-    goto :goto_55
+    goto :goto_57
 
-    .line 482
-    :cond_60
+    .line 490
+    :cond_62
     invoke-virtual {v14}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v9
@@ -1776,12 +1846,12 @@
 
     invoke-virtual {v14, v9}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 483
+    .line 491
     invoke-virtual {v14}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v20
 
-    .line 485
+    .line 493
     const-string v9, "imsi"
 
     const/16 v12, 0xa
@@ -1790,16 +1860,16 @@
 
     move-result-object v9
 
-    .line 486
+    .line 494
     new-instance v13, Ljava/lang/StringBuilder;
 
     invoke-direct {v13, v15}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 487
+    .line 495
     const/4 v14, 0x0
 
-    :goto_7d
-    if-ge v14, v12, :cond_89
+    :goto_7f
+    if-ge v14, v12, :cond_8b
 
     aget v12, v9, v14
 
@@ -1809,15 +1879,15 @@
 
     const/16 v12, 0xa
 
-    goto :goto_7d
+    goto :goto_7f
 
-    .line 488
-    :cond_89
+    .line 496
+    :cond_8b
     invoke-virtual {v13}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v21
 
-    .line 490
+    .line 498
     const-string v9, "iccid"
 
     const/16 v12, 0xd
@@ -1826,14 +1896,14 @@
 
     move-result-object v9
 
-    .line 491
+    .line 499
     new-instance v13, Ljava/lang/StringBuilder;
 
     const-string v14, "8981"
 
     invoke-direct {v13, v14}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 492
+    .line 500
     const/4 v14, 0x3
 
     invoke-virtual {v15, v14}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -1842,11 +1912,11 @@
 
     invoke-virtual {v13, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 493
+    .line 501
     const/4 v8, 0x0
 
-    :goto_a5
-    if-ge v8, v12, :cond_b1
+    :goto_a7
+    if-ge v8, v12, :cond_b3
 
     aget v12, v9, v8
 
@@ -1856,10 +1926,10 @@
 
     const/16 v12, 0xd
 
-    goto :goto_a5
+    goto :goto_a7
 
-    .line 494
-    :cond_b1
+    .line 502
+    :cond_b3
     invoke-virtual {v13}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v8
@@ -1870,12 +1940,12 @@
 
     invoke-virtual {v13, v8}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 495
+    .line 503
     invoke-virtual {v13}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v22
 
-    .line 497
+    .line 505
     const-string v8, "line1"
 
     const/16 v9, 0x8
@@ -1884,7 +1954,7 @@
 
     move-result-object v8
 
-    .line 498
+    .line 506
     const/16 v12, 0x9
 
     const/4 v13, 0x7
@@ -1893,12 +1963,12 @@
 
     move-result-object v12
 
-    .line 499
+    .line 507
     new-instance v13, Ljava/lang/StringBuilder;
 
     invoke-direct {v13, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 500
+    .line 508
     const-string v14, "pre"
 
     invoke-static {v14, v4, v0, v6}, Lio/vanta/fake/XJProfile;->seedP(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)J
@@ -1921,13 +1991,13 @@
 
     invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 501
+    .line 509
     const/4 v2, 0x0
 
-    :goto_eb
+    :goto_ed
     const/16 v9, 0x8
 
-    if-ge v2, v9, :cond_f7
+    if-ge v2, v9, :cond_f9
 
     aget v10, v8, v2
 
@@ -1935,15 +2005,15 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_eb
+    goto :goto_ed
 
-    .line 502
-    :cond_f7
+    .line 510
+    :cond_f9
     invoke-virtual {v13}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v23
 
-    .line 504
+    .line 512
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -1990,7 +2060,7 @@
 
     move-result-object v24
 
-    .line 505
+    .line 513
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -2037,7 +2107,7 @@
 
     move-result-object v25
 
-    .line 506
+    .line 514
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -2080,12 +2150,12 @@
 
     move-result-object v26
 
-    .line 507
+    .line 515
     invoke-static {v4, v0, v6}, Lio/vanta/fake/XJProfile;->btMacFor(Ljava/lang/String;ILjava/lang/String;)Ljava/lang/String;
 
     move-result-object v27
 
-    .line 508
+    .line 516
     const-string v2, "inc"
 
     invoke-static {v2, v4, v0, v6}, Lio/vanta/fake/XJProfile;->seedP(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)J
@@ -2100,7 +2170,7 @@
 
     add-long/2addr v8, v12
 
-    .line 509
+    .line 517
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -2157,7 +2227,7 @@
 
     move-result-object v1
 
-    .line 512
+    .line 520
     const-string v32, "model"
 
     const-string v33, "brand"
@@ -2200,38 +2270,38 @@
 
     move-result-object v2
 
-    .line 519
+    .line 527
     nop
 
-    .line 520
-    if-eqz v31, :cond_1fa
+    .line 528
+    if-eqz v31, :cond_1fc
 
     const/4 v6, 0x2
 
     aget-object v6, v7, v6
 
-    goto :goto_200
+    goto :goto_202
 
-    :cond_1fa
+    :cond_1fc
     const-string v6, "ro.product.model"
 
     invoke-static {v6}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v6
 
-    :goto_200
+    :goto_202
     move-object v12, v6
 
-    .line 521
-    if-eqz v31, :cond_207
+    .line 529
+    if-eqz v31, :cond_209
 
     const/4 v6, 0x0
 
     aget-object v8, v7, v6
 
-    goto :goto_20e
+    goto :goto_210
 
-    :cond_207
+    :cond_209
     const/4 v6, 0x0
 
     const-string v8, "ro.product.brand"
@@ -2240,11 +2310,11 @@
 
     move-result-object v8
 
-    :goto_20e
+    :goto_210
     move-object v13, v8
 
-    .line 522
-    if-eqz v31, :cond_216
+    .line 530
+    if-eqz v31, :cond_218
 
     const/4 v8, 0x1
 
@@ -2252,9 +2322,9 @@
 
     move-object v14, v9
 
-    goto :goto_21d
+    goto :goto_21f
 
-    :cond_216
+    :cond_218
     const-string v8, "ro.product.manufacturer"
 
     invoke-static {v8}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
@@ -2263,9 +2333,9 @@
 
     move-object v14, v8
 
-    .line 523
-    :goto_21d
-    if-eqz v31, :cond_224
+    .line 531
+    :goto_21f
+    if-eqz v31, :cond_226
 
     const/4 v8, 0x3
 
@@ -2273,61 +2343,61 @@
 
     move-object v8, v9
 
-    goto :goto_22a
+    goto :goto_22c
 
-    :cond_224
+    :cond_226
     const-string v8, "ro.product.device"
 
     invoke-static {v8}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v8
 
-    .line 524
-    :goto_22a
-    if-eqz v31, :cond_22f
+    .line 532
+    :goto_22c
+    if-eqz v31, :cond_231
 
     aget-object v4, v7, v4
 
-    goto :goto_235
+    goto :goto_237
 
-    :cond_22f
+    :cond_231
     const-string v4, "ro.product.name"
 
     invoke-static {v4}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v4
 
-    .line 525
-    :goto_235
+    .line 533
+    :goto_237
     invoke-static {v3}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v3
 
     const-string v7, "ro.hardware.chipname"
 
-    .line 526
+    .line 534
     invoke-static {v7}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v18
 
-    .line 527
-    if-eqz v31, :cond_244
+    .line 535
+    if-eqz v31, :cond_246
 
-    :goto_241
+    :goto_243
     move-object/from16 v19, v1
 
-    goto :goto_24b
+    goto :goto_24d
 
-    :cond_244
+    :cond_246
     const-string v1, "ro.build.fingerprint"
 
     invoke-static {v1}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
-    goto :goto_241
+    goto :goto_243
 
-    :goto_24b
+    :goto_24d
     const/4 v1, 0x1
 
     aget-object v28, v11, v1
@@ -2350,32 +2420,32 @@
 
     move-result-object v1
 
-    .line 532
+    .line 540
     new-instance v3, Ljava/lang/StringBuilder;
 
     const-string v4, "{"
 
     invoke-direct {v3, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 533
+    .line 541
     const/4 v9, 0x0
 
-    :goto_265
+    :goto_267
     const/16 v4, 0x22
 
     const/16 v6, 0x13
 
-    if-ge v9, v6, :cond_292
+    if-ge v9, v6, :cond_294
 
-    .line 534
-    if-lez v9, :cond_272
+    .line 542
+    if-lez v9, :cond_274
 
     const/16 v6, 0x2c
 
     invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 535
-    :cond_272
+    .line 543
+    :cond_274
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     move-result-object v6
@@ -2404,13 +2474,13 @@
 
     invoke-virtual {v6, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 533
+    .line 541
     add-int/lit8 v9, v9, 0x1
 
-    goto :goto_265
+    goto :goto_267
 
-    .line 537
-    :cond_292
+    .line 545
+    :cond_294
     const-string v1, ",\"uid\":"
 
     invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -2419,7 +2489,7 @@
 
     invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    .line 538
+    .line 546
     const-string v0, ",\"spoofModel\":"
 
     invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -2430,7 +2500,7 @@
 
     invoke-virtual {v0, v8}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
-    .line 539
+    .line 547
     const-string v0, ",\"salt\":\""
 
     invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -2447,25 +2517,25 @@
 
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 540
+    .line 548
     const/16 v0, 0x7d
 
     invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 541
+    .line 549
     invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v0
-    :try_end_2c0
-    .catchall {:try_start_8 .. :try_end_2c0} :catchall_2c1
+    :try_end_2c2
+    .catchall {:try_start_8 .. :try_end_2c2} :catchall_2c3
 
     return-object v0
 
-    .line 542
-    :catchall_2c1
+    .line 550
+    :catchall_2c3
     move-exception v0
 
-    .line 543
+    .line 551
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -2504,7 +2574,7 @@
 .method private static digits(Ljava/lang/String;I)[I
     .registers 5
 
-    .line 204
+    .line 209
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2553,10 +2623,10 @@
 
     move-result-object p0
 
-    .line 205
+    .line 210
     new-array v0, p1, [I
 
-    .line 206
+    .line 211
     const/4 v1, 0x0
 
     :goto_34
@@ -2576,7 +2646,7 @@
 
     goto :goto_34
 
-    .line 207
+    .line 212
     :cond_43
     return-object v0
 .end method
@@ -2584,7 +2654,7 @@
 .method private static digitsP(Ljava/lang/String;Ljava/lang/String;IILjava/lang/String;)[I
     .registers 6
 
-    .line 437
+    .line 445
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2623,10 +2693,10 @@
 
     move-result-object p0
 
-    .line 438
+    .line 446
     new-array p1, p3, [I
 
-    .line 439
+    .line 447
     const/4 p2, 0x0
 
     :goto_2a
@@ -2646,7 +2716,7 @@
 
     goto :goto_2a
 
-    .line 440
+    .line 448
     :cond_39
     return-object p1
 .end method
@@ -2658,11 +2728,11 @@
 
     monitor-enter v0
 
-    .line 220
+    .line 225
     :try_start_3
     sget-boolean v1, Lio/vanta/fake/XJProfile;->sInit:Z
     :try_end_5
-    .catchall {:try_start_3 .. :try_end_5} :catchall_1ae
+    .catchall {:try_start_3 .. :try_end_5} :catchall_1b6
 
     if-eqz v1, :cond_9
 
@@ -2670,7 +2740,7 @@
 
     return-void
 
-    .line 221
+    .line 226
     :cond_9
     :try_start_9
     invoke-static {}, Lio/vanta/fake/XJProfile;->rawUid()I
@@ -2679,14 +2749,14 @@
 
     sput v1, Lio/vanta/fake/XJProfile;->sUid:I
 
-    .line 222
+    .line 227
     invoke-static {}, Lio/vanta/fake/XJProfile;->rawHost()Ljava/lang/String;
 
     move-result-object v1
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sHost:Ljava/lang/String;
 
-    .line 223
+    .line 228
     sget v1, Lio/vanta/fake/XJProfile;->sUid:I
 
     invoke-static {v1}, Lio/vanta/fake/XJProfile;->readSalt(I)Ljava/lang/String;
@@ -2695,31 +2765,37 @@
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sSalt:Ljava/lang/String;
 
-    .line 224
+    .line 229
     const-string v1, "ro.board.platform"
 
     invoke-static {v1}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 225
+    .line 230
     invoke-static {v1}, Lio/vanta/fake/XJProfile;->poolFor(Ljava/lang/String;)[[Ljava/lang/String;
 
     move-result-object v1
 
-    .line 226
+    .line 234
     const/4 v2, 0x1
 
     const/4 v3, 0x0
 
-    if-eqz v1, :cond_3c
+    if-eqz v1, :cond_40
 
-    .line 227
+    .line 235
     const-string v4, "dev"
 
     invoke-static {v4}, Lio/vanta/fake/XJProfile;->seed(Ljava/lang/String;)J
 
     move-result-wide v4
+
+    sget v6, Lio/vanta/fake/XJProfile;->sUid:I
+
+    int-to-long v6, v6
+
+    add-long/2addr v4, v6
 
     array-length v6, v1
 
@@ -2733,13 +2809,13 @@
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
 
-    .line 228
+    .line 236
     sput-boolean v2, Lio/vanta/fake/XJProfile;->sSpoofModel:Z
 
-    goto :goto_50
+    goto :goto_58
 
-    .line 231
-    :cond_3c
+    .line 239
+    :cond_40
     sget-object v1, Lio/vanta/fake/XJProfile;->POOL_SM8150:[[Ljava/lang/String;
 
     const-string v4, "dev"
@@ -2747,6 +2823,12 @@
     invoke-static {v4}, Lio/vanta/fake/XJProfile;->seed(Ljava/lang/String;)J
 
     move-result-wide v4
+
+    sget v6, Lio/vanta/fake/XJProfile;->sUid:I
+
+    int-to-long v6, v6
+
+    add-long/2addr v4, v6
 
     sget-object v6, Lio/vanta/fake/XJProfile;->POOL_SM8150:[[Ljava/lang/String;
 
@@ -2762,11 +2844,11 @@
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
 
-    .line 232
+    .line 240
     sput-boolean v3, Lio/vanta/fake/XJProfile;->sSpoofModel:Z
 
-    .line 234
-    :goto_50
+    .line 242
+    :goto_58
     sget-object v1, Lio/vanta/fake/XJProfile;->CARRIERS:[[Ljava/lang/String;
 
     const-string v4, "car"
@@ -2789,21 +2871,21 @@
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sCar:[Ljava/lang/String;
 
-    .line 235
+    .line 243
     sget-object v1, Lio/vanta/fake/XJProfile;->sCar:[Ljava/lang/String;
 
     aget-object v1, v1, v3
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sMccmnc:Ljava/lang/String;
 
-    .line 236
+    .line 244
     sget-object v1, Lio/vanta/fake/XJProfile;->sCar:[Ljava/lang/String;
 
     aget-object v1, v1, v2
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sNetName:Ljava/lang/String;
 
-    .line 237
+    .line 245
     sget-object v1, Lio/vanta/fake/XJProfile;->sCar:[Ljava/lang/String;
 
     const/4 v4, 0x2
@@ -2812,7 +2894,7 @@
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sSimName:Ljava/lang/String;
 
-    .line 238
+    .line 246
     sget-object v1, Lio/vanta/fake/XJProfile;->sCar:[Ljava/lang/String;
 
     const/4 v4, 0x3
@@ -2821,7 +2903,7 @@
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sIso:Ljava/lang/String;
 
-    .line 240
+    .line 248
     const-string v1, "imei"
 
     const/4 v5, 0x6
@@ -2830,7 +2912,7 @@
 
     move-result-object v1
 
-    .line 241
+    .line 249
     new-instance v6, Ljava/lang/StringBuilder;
 
     sget-object v7, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
@@ -2841,11 +2923,11 @@
 
     invoke-direct {v6, v7}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 242
+    .line 250
     const/4 v7, 0x0
 
-    :goto_8e
-    if-ge v7, v5, :cond_98
+    :goto_96
+    if-ge v7, v5, :cond_a0
 
     aget v9, v1, v7
 
@@ -2853,10 +2935,10 @@
 
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_8e
+    goto :goto_96
 
-    .line 243
-    :cond_98
+    .line 251
+    :cond_a0
     invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
@@ -2867,14 +2949,14 @@
 
     invoke-virtual {v6, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 244
+    .line 252
     invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sImei:Ljava/lang/String;
 
-    .line 246
+    .line 254
     const-string v1, "imsi"
 
     const/16 v5, 0xa
@@ -2883,18 +2965,18 @@
 
     move-result-object v1
 
-    .line 247
+    .line 255
     new-instance v6, Ljava/lang/StringBuilder;
 
     sget-object v7, Lio/vanta/fake/XJProfile;->sMccmnc:Ljava/lang/String;
 
     invoke-direct {v6, v7}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 248
+    .line 256
     const/4 v7, 0x0
 
-    :goto_b9
-    if-ge v7, v5, :cond_c3
+    :goto_c1
+    if-ge v7, v5, :cond_cb
 
     aget v9, v1, v7
 
@@ -2902,17 +2984,17 @@
 
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_b9
+    goto :goto_c1
 
-    .line 249
-    :cond_c3
+    .line 257
+    :cond_cb
     invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sImsi:Ljava/lang/String;
 
-    .line 251
+    .line 259
     const-string v1, "iccid"
 
     const/16 v5, 0xd
@@ -2921,14 +3003,14 @@
 
     move-result-object v1
 
-    .line 252
+    .line 260
     new-instance v6, Ljava/lang/StringBuilder;
 
     const-string v7, "8981"
 
     invoke-direct {v6, v7}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 253
+    .line 261
     sget-object v7, Lio/vanta/fake/XJProfile;->sMccmnc:Ljava/lang/String;
 
     invoke-virtual {v7, v4}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -2937,11 +3019,11 @@
 
     invoke-virtual {v6, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 254
+    .line 262
     const/4 v4, 0x0
 
-    :goto_e2
-    if-ge v4, v5, :cond_ec
+    :goto_ea
+    if-ge v4, v5, :cond_f4
 
     aget v7, v1, v4
 
@@ -2949,10 +3031,10 @@
 
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_e2
+    goto :goto_ea
 
-    .line 255
-    :cond_ec
+    .line 263
+    :cond_f4
     invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
@@ -2963,14 +3045,14 @@
 
     invoke-virtual {v6, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 256
+    .line 264
     invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sIccid:Ljava/lang/String;
 
-    .line 258
+    .line 266
     const-string v1, "line1"
 
     const/16 v4, 0x8
@@ -2979,21 +3061,21 @@
 
     move-result-object v1
 
-    .line 259
+    .line 267
     const/16 v5, 0x9
 
     filled-new-array {v8, v4, v5}, [I
 
     move-result-object v5
 
-    .line 260
+    .line 268
     new-instance v6, Ljava/lang/StringBuilder;
 
     const-string v7, "0"
 
     invoke-direct {v6, v7}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 261
+    .line 269
     const-string v7, "pre"
 
     invoke-static {v7}, Lio/vanta/fake/XJProfile;->seed(Ljava/lang/String;)J
@@ -3016,11 +3098,11 @@
 
     invoke-virtual {v5, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 262
+    .line 270
     const/4 v5, 0x0
 
-    :goto_128
-    if-ge v5, v4, :cond_132
+    :goto_130
+    if-ge v5, v4, :cond_13a
 
     aget v7, v1, v5
 
@@ -3028,17 +3110,17 @@
 
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_128
+    goto :goto_130
 
-    .line 263
-    :cond_132
+    .line 271
+    :cond_13a
     invoke-virtual {v6}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v1
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sLine1:Ljava/lang/String;
 
-    .line 264
+    .line 272
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -3095,7 +3177,7 @@
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sMeid:Ljava/lang/String;
 
-    .line 265
+    .line 273
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -3152,18 +3234,18 @@
 
     sput-object v1, Lio/vanta/fake/XJProfile;->sSerial:Ljava/lang/String;
 
-    .line 266
+    .line 274
     sput-boolean v2, Lio/vanta/fake/XJProfile;->sInit:Z
-    :try_end_1ac
-    .catchall {:try_start_9 .. :try_end_1ac} :catchall_1ae
+    :try_end_1b4
+    .catchall {:try_start_9 .. :try_end_1b4} :catchall_1b6
 
-    .line 267
+    .line 275
     monitor-exit v0
 
     return-void
 
-    .line 219
-    :catchall_1ae
+    .line 224
+    :catchall_1b6
     move-exception v1
 
     monitor-exit v0
@@ -3174,20 +3256,20 @@
 .method private static esc(Ljava/lang/String;)Ljava/lang/String;
     .registers 6
 
-    .line 454
+    .line 462
     if-nez p0, :cond_5
 
     const-string p0, ""
 
     return-object p0
 
-    .line 455
+    .line 463
     :cond_5
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 456
+    .line 464
     const/4 v1, 0x0
 
     :goto_b
@@ -3197,12 +3279,12 @@
 
     if-ge v1, v2, :cond_36
 
-    .line 457
+    .line 465
     invoke-virtual {p0, v1}, Ljava/lang/String;->charAt(I)C
 
     move-result v2
 
-    .line 458
+    .line 466
     const/16 v3, 0x22
 
     const/16 v4, 0x5c
@@ -3213,7 +3295,7 @@
 
     goto :goto_2c
 
-    .line 459
+    .line 467
     :cond_1e
     const/16 v3, 0xa
 
@@ -3225,13 +3307,13 @@
 
     goto :goto_33
 
-    .line 460
+    .line 468
     :cond_28
     invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     goto :goto_33
 
-    .line 458
+    .line 466
     :cond_2c
     :goto_2c
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -3240,13 +3322,13 @@
 
     invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 456
+    .line 464
     :goto_33
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_b
 
-    .line 462
+    .line 470
     :cond_36
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -3258,12 +3340,12 @@
 .method private static hex([B)Ljava/lang/String;
     .registers 7
 
-    .line 189
+    .line 194
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 190
+    .line 195
     array-length v1, p0
 
     const/4 v2, 0x0
@@ -3273,10 +3355,10 @@
 
     aget-byte v3, p0, v2
 
-    .line 191
+    .line 196
     and-int/lit16 v3, v3, 0xff
 
-    .line 192
+    .line 197
     shr-int/lit8 v4, v3, 0x4
 
     const/16 v5, 0x10
@@ -3287,7 +3369,7 @@
 
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 193
+    .line 198
     and-int/lit8 v3, v3, 0xf
 
     invoke-static {v3, v5}, Ljava/lang/Character;->forDigit(II)C
@@ -3296,12 +3378,12 @@
 
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 190
+    .line 195
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_7
 
-    .line 195
+    .line 200
     :cond_24
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -3313,7 +3395,7 @@
 .method public static iccid()Ljava/lang/String;
     .registers 1
 
-    .line 271
+    .line 279
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sIccid:Ljava/lang/String;
@@ -3324,7 +3406,7 @@
 .method public static imei()Ljava/lang/String;
     .registers 1
 
-    .line 269
+    .line 277
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sImei:Ljava/lang/String;
@@ -3335,7 +3417,7 @@
 .method public static imsi()Ljava/lang/String;
     .registers 1
 
-    .line 270
+    .line 278
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sImsi:Ljava/lang/String;
@@ -3346,7 +3428,7 @@
 .method public static line1()Ljava/lang/String;
     .registers 1
 
-    .line 272
+    .line 280
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sLine1:Ljava/lang/String;
@@ -3357,7 +3439,7 @@
 .method public static loadNative()V
     .registers 52
 
-    .line 369
+    .line 377
     const-string v0, "/"
 
     sget-boolean v1, Lio/vanta/fake/XJProfile;->sNativeDone:Z
@@ -3366,17 +3448,17 @@
 
     return-void
 
-    .line 371
+    .line 379
     :cond_7
     :try_start_7
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
-    .line 372
+    .line 380
     const-string v1, "xjhook"
 
     invoke-static {v1}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
 
-    .line 374
+    .line 382
     sget-boolean v1, Lio/vanta/fake/XJProfile;->sSpoofModel:Z
 
     const/4 v2, 0x1
@@ -3385,7 +3467,7 @@
 
     if-eqz v1, :cond_e0
 
-    .line 376
+    .line 384
     const-string v1, "inc"
 
     invoke-static {v1}, Lio/vanta/fake/XJProfile;->seed(Ljava/lang/String;)J
@@ -3400,7 +3482,7 @@
 
     add-long/2addr v4, v6
 
-    .line 377
+    .line 385
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -3461,7 +3543,7 @@
 
     move-result-object v29
 
-    .line 379
+    .line 387
     const-string v30, "ro.product.model"
 
     const-string v31, "ro.product.brand"
@@ -3510,7 +3592,7 @@
 
     move-result-object v0
 
-    .line 389
+    .line 397
     sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
 
     const/4 v4, 0x2
@@ -3593,17 +3675,17 @@
 
     move-result-object v1
 
-    .line 399
+    .line 407
     goto :goto_e4
 
-    .line 400
+    .line 408
     :cond_e0
     new-array v0, v3, [Ljava/lang/String;
 
-    .line 401
+    .line 409
     new-array v1, v3, [Ljava/lang/String;
 
-    .line 403
+    .line 411
     :goto_e4
     sget v3, Lio/vanta/fake/XJProfile;->sUid:I
 
@@ -3611,34 +3693,34 @@
 
     invoke-static {v3, v4, v0, v1}, Lio/vanta/fake/XJProfile;->nativeInit(ILjava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V
 
-    .line 404
+    .line 412
     invoke-static {}, Lio/vanta/fake/XJProfile;->applyBuild()V
 
-    .line 405
+    .line 413
     sput-boolean v2, Lio/vanta/fake/XJProfile;->sNativeDone:Z
     :try_end_f0
     .catchall {:try_start_7 .. :try_end_f0} :catchall_f1
 
     goto :goto_f2
 
-    .line 406
+    .line 414
     :catchall_f1
     move-exception v0
 
     :goto_f2
     nop
 
-    .line 407
+    .line 415
     return-void
 .end method
 
 .method private static luhn(Ljava/lang/String;)C
     .registers 6
 
-    .line 210
+    .line 215
     nop
 
-    .line 211
+    .line 216
     invoke-virtual {p0}, Ljava/lang/String;->length()I
 
     move-result v0
@@ -3652,14 +3734,14 @@
     :goto_8
     if-ltz v0, :cond_20
 
-    .line 212
+    .line 217
     invoke-virtual {p0, v0}, Ljava/lang/String;->charAt(I)C
 
     move-result v3
 
     add-int/lit8 v3, v3, -0x30
 
-    .line 213
+    .line 218
     if-eqz v1, :cond_1a
 
     mul-int/lit8 v3, v3, 0x2
@@ -3670,18 +3752,18 @@
 
     add-int/lit8 v3, v3, -0x9
 
-    .line 214
+    .line 219
     :cond_1a
     add-int/2addr v2, v3
 
-    .line 211
+    .line 216
     xor-int/lit8 v1, v1, 0x1
 
     add-int/lit8 v0, v0, -0x1
 
     goto :goto_8
 
-    .line 216
+    .line 221
     :cond_20
     rem-int/lit8 v2, v2, 0xa
 
@@ -3699,7 +3781,7 @@
 .method public static mccmnc()Ljava/lang/String;
     .registers 1
 
-    .line 274
+    .line 282
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sMccmnc:Ljava/lang/String;
@@ -3710,7 +3792,7 @@
 .method private static md5(Ljava/lang/String;)[B
     .registers 3
 
-    .line 185
+    .line 190
     :try_start_0
     const-string v0, "MD5"
 
@@ -3732,7 +3814,7 @@
 
     return-object p0
 
-    .line 186
+    .line 191
     :catchall_11
     move-exception p0
 
@@ -3746,7 +3828,7 @@
 .method public static meid()Ljava/lang/String;
     .registers 1
 
-    .line 273
+    .line 281
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sMeid:Ljava/lang/String;
@@ -3760,7 +3842,7 @@
 .method public static netName()Ljava/lang/String;
     .registers 1
 
-    .line 275
+    .line 283
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sNetName:Ljava/lang/String;
@@ -3771,14 +3853,14 @@
 .method private static poolFor(Ljava/lang/String;)[[Ljava/lang/String;
     .registers 3
 
-    .line 103
+    .line 108
     const/4 v0, 0x0
 
     if-nez p0, :cond_4
 
     return-object v0
 
-    .line 104
+    .line 109
     :cond_4
     invoke-virtual {p0}, Ljava/lang/String;->hashCode()I
 
@@ -3964,82 +4046,82 @@
     :goto_98
     packed-switch p0, :pswitch_data_fa
 
-    .line 118
+    .line 123
     return-object v0
 
-    .line 117
+    .line 122
     :pswitch_9c
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_MT6893:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 116
+    .line 121
     :pswitch_9f
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_ATOLL:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 115
+    .line 120
     :pswitch_a2
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_EXY2200:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 114
+    .line 119
     :pswitch_a5
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_EXY990:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 113
+    .line 118
     :pswitch_a8
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_TENSOR_G3:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 112
+    .line 117
     :pswitch_ab
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_TENSOR_G2:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 111
+    .line 116
     :pswitch_ae
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_TENSOR_G1:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 110
+    .line 115
     :pswitch_b1
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_PINEAPPLE:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 109
+    .line 114
     :pswitch_b4
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_KALAMA:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 108
+    .line 113
     :pswitch_b7
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_TARO:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 107
+    .line 112
     :pswitch_ba
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_LAHAINA:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 106
+    .line 111
     :pswitch_bd
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_KONA:[[Ljava/lang/String;
 
     return-object p0
 
-    .line 105
+    .line 110
     :pswitch_c0
     sget-object p0, Lio/vanta/fake/XJProfile;->POOL_SM8150:[[Ljava/lang/String;
 
@@ -4085,7 +4167,7 @@
 .method private static rawHost()Ljava/lang/String;
     .registers 4
 
-    .line 179
+    .line 184
     :try_start_0
     const-string v0, "io.vanta.VantaCore"
 
@@ -4093,7 +4175,7 @@
 
     move-result-object v0
 
-    .line 180
+    .line 185
     const-string v1, "getHostPkg"
 
     const/4 v2, 0x0
@@ -4112,7 +4194,7 @@
 
     move-result-object v0
 
-    .line 181
+    .line 186
     invoke-static {v0}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v0
@@ -4121,7 +4203,7 @@
 
     return-object v0
 
-    .line 182
+    .line 187
     :catchall_1b
     move-exception v0
 
@@ -4133,7 +4215,7 @@
 .method private static rawUid()I
     .registers 4
 
-    .line 172
+    .line 177
     const/4 v0, 0x0
 
     :try_start_1
@@ -4143,7 +4225,7 @@
 
     move-result-object v1
 
-    .line 173
+    .line 178
     const-string v2, "getUserId"
 
     new-array v3, v0, [Ljava/lang/Class;
@@ -4160,7 +4242,7 @@
 
     move-result-object v1
 
-    .line 174
+    .line 179
     check-cast v1, Ljava/lang/Integer;
 
     invoke-virtual {v1}, Ljava/lang/Integer;->intValue()I
@@ -4171,7 +4253,7 @@
 
     return v0
 
-    .line 175
+    .line 180
     :catchall_1d
     move-exception v1
 
@@ -4181,7 +4263,7 @@
 .method static readSalt(I)Ljava/lang/String;
     .registers 6
 
-    .line 151
+    .line 156
     const-string v0, ""
 
     :try_start_2
@@ -4207,7 +4289,7 @@
 
     invoke-direct {v1, p0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
 
-    .line 152
+    .line 157
     invoke-virtual {v1}, Ljava/io/File;->exists()Z
 
     move-result p0
@@ -4216,30 +4298,30 @@
 
     return-object v0
 
-    .line 153
+    .line 158
     :cond_21
     const/16 p0, 0x40
 
     new-array p0, p0, [B
 
-    .line 154
+    .line 159
     new-instance v2, Ljava/io/FileInputStream;
 
     invoke-direct {v2, v1}, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
 
-    .line 155
+    .line 160
     invoke-virtual {v2, p0}, Ljava/io/FileInputStream;->read([B)I
 
     move-result v1
 
     invoke-virtual {v2}, Ljava/io/FileInputStream;->close()V
 
-    .line 156
+    .line 161
     if-gtz v1, :cond_34
 
     return-object v0
 
-    .line 157
+    .line 162
     :cond_34
     new-instance v2, Ljava/lang/String;
 
@@ -4253,12 +4335,12 @@
 
     move-result-object p0
 
-    .line 158
+    .line 163
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 159
+    .line 164
     nop
 
     :goto_46
@@ -4268,12 +4350,12 @@
 
     if-ge v4, v2, :cond_6e
 
-    .line 160
+    .line 165
     invoke-virtual {p0, v4}, Ljava/lang/String;->charAt(I)C
 
     move-result v2
 
-    .line 161
+    .line 166
     const/16 v3, 0x30
 
     if-lt v2, v3, :cond_58
@@ -4303,13 +4385,13 @@
     :cond_68
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 159
+    .line 164
     :cond_6b
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_46
 
-    .line 163
+    .line 168
     :cond_6e
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -4319,7 +4401,7 @@
 
     return-object p0
 
-    .line 164
+    .line 169
     :catchall_73
     move-exception p0
 
@@ -4329,7 +4411,7 @@
 .method private static realProp(Ljava/lang/String;)Ljava/lang/String;
     .registers 7
 
-    .line 124
+    .line 129
     :try_start_0
     const-string v0, "android.os.SystemProperties"
 
@@ -4337,7 +4419,7 @@
 
     move-result-object v0
 
-    .line 125
+    .line 130
     const-string v1, "get"
 
     const/4 v2, 0x1
@@ -4372,7 +4454,7 @@
 
     return-object p0
 
-    .line 126
+    .line 131
     :catchall_22
     move-exception p0
 
@@ -4384,10 +4466,10 @@
 .method private static resolveHost()Ljava/lang/String;
     .registers 7
 
-    .line 415
+    .line 423
     const-string v0, "getHostPkg"
 
-    .line 417
+    .line 425
     const/4 v1, 0x0
 
     const/4 v2, 0x0
@@ -4399,7 +4481,7 @@
 
     move-result-object v3
 
-    .line 418
+    .line 426
     new-array v4, v1, [Ljava/lang/Class;
 
     invoke-virtual {v3, v0, v4}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
@@ -4418,7 +4500,7 @@
     :try_end_1a
     .catchall {:try_start_4 .. :try_end_1a} :catchall_1b
 
-    .line 419
+    .line 427
     goto :goto_1d
 
     :catchall_1b
@@ -4426,7 +4508,7 @@
 
     move-object v3, v2
 
-    .line 420
+    .line 428
     :goto_1d
     const-string v4, "null"
 
@@ -4452,7 +4534,7 @@
 
     if-eqz v5, :cond_4e
 
-    .line 422
+    .line 430
     :cond_35
     :try_start_35
     const-string v5, "top.niunaijun.blackbox.BlackBoxCore"
@@ -4461,7 +4543,7 @@
 
     move-result-object v5
 
-    .line 423
+    .line 431
     new-array v6, v1, [Ljava/lang/Class;
 
     invoke-virtual {v5, v0, v6}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
@@ -4480,7 +4562,7 @@
     :try_end_4b
     .catchall {:try_start_35 .. :try_end_4b} :catchall_4c
 
-    .line 424
+    .line 432
     :goto_4b
     goto :goto_4e
 
@@ -4489,7 +4571,7 @@
 
     goto :goto_4b
 
-    .line 426
+    .line 434
     :cond_4e
     :goto_4e
     if-eqz v3, :cond_5c
@@ -4509,7 +4591,7 @@
     :cond_5c
     const-string v3, "com.rekoo.pubgm"
 
-    .line 427
+    .line 435
     :cond_5e
     return-object v3
 .end method
@@ -4517,7 +4599,7 @@
 .method private static seed(Ljava/lang/String;)J
     .registers 8
 
-    .line 198
+    .line 203
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -4566,10 +4648,10 @@
 
     move-result-object p0
 
-    .line 199
+    .line 204
     nop
 
-    .line 200
+    .line 205
     const-wide/16 v0, 0x0
 
     const/4 v2, 0x0
@@ -4597,7 +4679,7 @@
 
     goto :goto_35
 
-    .line 201
+    .line 206
     :cond_45
     const-wide v2, 0x7fffffffffffffffL
 
@@ -4609,7 +4691,7 @@
 .method private static seedP(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)J
     .registers 8
 
-    .line 431
+    .line 439
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -4648,10 +4730,10 @@
 
     move-result-object p0
 
-    .line 432
+    .line 440
     nop
 
-    .line 433
+    .line 441
     const-wide/16 p1, 0x0
 
     const/4 p3, 0x0
@@ -4679,7 +4761,7 @@
 
     goto :goto_2b
 
-    .line 434
+    .line 442
     :cond_3b
     const-wide v0, 0x7fffffffffffffffL
 
@@ -4691,7 +4773,7 @@
 .method public static serial()Ljava/lang/String;
     .registers 1
 
-    .line 278
+    .line 286
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sSerial:Ljava/lang/String;
@@ -4702,7 +4784,7 @@
 .method private static set(Ljava/lang/String;Ljava/lang/String;)V
     .registers 5
 
-    .line 300
+    .line 308
     :try_start_0
     const-class v0, Landroid/os/Build;
 
@@ -4710,14 +4792,14 @@
 
     move-result-object p0
 
-    .line 301
+    .line 309
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Ljava/lang/reflect/Field;->setAccessible(Z)V
     :try_end_a
     .catchall {:try_start_0 .. :try_end_a} :catchall_26
 
-    .line 303
+    .line 311
     :try_start_a
     const-class v1, Ljava/lang/reflect/Field;
 
@@ -4727,10 +4809,10 @@
 
     move-result-object v1
 
-    .line 304
+    .line 312
     invoke-virtual {v1, v0}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
-    .line 305
+    .line 313
     invoke-virtual {p0}, Ljava/lang/reflect/Field;->getModifiers()I
 
     move-result v0
@@ -4743,14 +4825,14 @@
 
     goto :goto_20
 
-    .line 306
+    .line 314
     :catchall_1f
     move-exception v0
 
     :goto_20
     nop
 
-    .line 307
+    .line 315
     const/4 v0, 0x0
 
     :try_start_22
@@ -4760,21 +4842,21 @@
 
     goto :goto_27
 
-    .line 308
+    .line 316
     :catchall_26
     move-exception p0
 
     :goto_27
     nop
 
-    .line 309
+    .line 317
     return-void
 .end method
 
 .method public static simName()Ljava/lang/String;
     .registers 1
 
-    .line 276
+    .line 284
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sSimName:Ljava/lang/String;
@@ -4785,7 +4867,7 @@
 .method private static sufOf(Ljava/lang/String;)Ljava/lang/String;
     .registers 3
 
-    .line 167
+    .line 172
     if-eqz p0, :cond_1d
 
     invoke-virtual {p0}, Ljava/lang/String;->length()I
@@ -4828,7 +4910,7 @@
 .method public static xjPatchSecure(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
     .registers 11
 
-    .line 330
+    .line 338
     const-string v0, "android_id"
 
     if-eqz p1, :cond_8b
@@ -4840,11 +4922,11 @@
 
     goto/16 :goto_8b
 
-    .line 331
+    .line 339
     :cond_a
     nop
 
-    .line 332
+    .line 340
     array-length v1, p1
     :try_end_c
     .catchall {:try_start_4 .. :try_end_c} :catchall_88
@@ -4865,15 +4947,15 @@
     :try_start_14
     aget-object v7, p1, v4
 
-    .line 333
+    .line 341
     instance-of v8, v7, Ljava/lang/String;
 
     if-eqz v8, :cond_35
 
-    .line 334
+    .line 342
     check-cast v7, Ljava/lang/String;
 
-    .line 335
+    .line 343
     const-string v8, "GET_secure"
 
     invoke-virtual {v8, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -4886,7 +4968,7 @@
 
     goto :goto_35
 
-    .line 336
+    .line 344
     :cond_26
     invoke-virtual {v0, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -4898,7 +4980,7 @@
 
     goto :goto_35
 
-    .line 337
+    .line 345
     :cond_2e
     invoke-virtual {v6, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -4908,14 +4990,14 @@
 
     move-object v3, v6
 
-    .line 332
+    .line 340
     :cond_35
     :goto_35
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_10
 
-    .line 340
+    .line 348
     :cond_38
     if-eqz v5, :cond_87
 
@@ -4923,11 +5005,11 @@
 
     goto :goto_87
 
-    .line 341
+    .line 349
     :cond_3d
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
-    .line 343
+    .line 351
     invoke-virtual {v6, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
@@ -4940,7 +5022,7 @@
 
     goto :goto_7e
 
-    .line 344
+    .line 352
     :cond_4b
     new-instance p1, Ljava/lang/StringBuilder;
 
@@ -4992,7 +5074,7 @@
 
     move-result-object p1
 
-    .line 345
+    .line 353
     :goto_7e
     move-object v0, p0
 
@@ -5006,22 +5088,22 @@
 
     goto :goto_89
 
-    .line 340
+    .line 348
     :cond_87
     :goto_87
     return-object p0
 
-    .line 346
+    .line 354
     :catchall_88
     move-exception p1
 
     :goto_89
     nop
 
-    .line 347
+    .line 355
     return-object p0
 
-    .line 330
+    .line 338
     :cond_8b
     :goto_8b
     return-object p0
@@ -5030,18 +5112,18 @@
 .method public static xjSecure([Ljava/lang/Object;)Z
     .registers 9
 
-    .line 315
+    .line 323
     const/4 v0, 0x0
 
     if-nez p0, :cond_4
 
     return v0
 
-    .line 316
+    .line 324
     :cond_4
     nop
 
-    .line 317
+    .line 325
     array-length v1, p0
 
     const/4 v2, 0x0
@@ -5057,15 +5139,15 @@
 
     aget-object v6, p0, v2
 
-    .line 318
+    .line 326
     instance-of v7, v6, Ljava/lang/String;
 
     if-eqz v7, :cond_2f
 
-    .line 319
+    .line 327
     check-cast v6, Ljava/lang/String;
 
-    .line 320
+    .line 328
     const-string v7, "GET_secure"
 
     invoke-virtual {v7, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -5078,7 +5160,7 @@
 
     goto :goto_2f
 
-    .line 321
+    .line 329
     :cond_1e
     const-string v7, "android_id"
 
@@ -5099,14 +5181,14 @@
     :cond_2e
     const/4 v4, 0x1
 
-    .line 317
+    .line 325
     :cond_2f
     :goto_2f
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_9
 
-    .line 324
+    .line 332
     :cond_32
     if-eqz v3, :cond_37
 
