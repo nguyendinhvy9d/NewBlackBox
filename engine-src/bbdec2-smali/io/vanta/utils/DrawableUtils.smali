@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,19 +14,19 @@
 .end method
 
 .method public static drawableToBitmap(Landroid/graphics/drawable/Drawable;II)Landroid/graphics/Bitmap;
-    .locals 3
+    .registers 6
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     const/4 p0, 0x0
 
     return-object p0
 
     .line 14
-    :cond_0
+    :cond_4
     instance-of v0, p0, Landroid/graphics/drawable/BitmapDrawable;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_f
 
     .line 15
     check-cast p0, Landroid/graphics/drawable/BitmapDrawable;
@@ -38,25 +38,25 @@
     return-object p0
 
     .line 17
-    :cond_1
+    :cond_f
     invoke-virtual {p0}, Landroid/graphics/drawable/Drawable;->getOpacity()I
 
     move-result v0
 
     const/4 v1, -0x1
 
-    if-eq v0, v1, :cond_2
+    if-eq v0, v1, :cond_19
 
     .line 18
     sget-object v0, Landroid/graphics/Bitmap$Config;->ARGB_8888:Landroid/graphics/Bitmap$Config;
 
-    goto :goto_0
+    goto :goto_1b
 
-    :cond_2
+    :cond_19
     sget-object v0, Landroid/graphics/Bitmap$Config;->RGB_565:Landroid/graphics/Bitmap$Config;
 
     .line 20
-    :goto_0
+    :goto_1b
     invoke-static {p1, p2, v0}, Landroid/graphics/Bitmap;->createBitmap(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
 
     move-result-object v0

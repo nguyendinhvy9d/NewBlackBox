@@ -8,7 +8,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 10
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -19,13 +19,13 @@
 
 # virtual methods
 .method public fixAttributionSource(Ljava/lang/Object;ILjava/lang/String;)V
-    .locals 0
+    .registers 4
 
     return-void
 .end method
 
 .method public getMaxApi()I
-    .locals 1
+    .registers 2
 
     const/16 v0, 0x19
 
@@ -33,7 +33,7 @@
 .end method
 
 .method public getMinApi()I
-    .locals 1
+    .registers 2
 
     const/16 v0, 0x15
 
@@ -41,7 +41,7 @@
 .end method
 
 .method public hasActivityClient()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -49,7 +49,7 @@
 .end method
 
 .method public hasActivityTaskManager()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -57,7 +57,7 @@
 .end method
 
 .method public hasAttributionSource()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -65,7 +65,7 @@
 .end method
 
 .method public hasPermissionManagerService()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -73,7 +73,7 @@
 .end method
 
 .method public isBackgroundServiceRestricted()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -81,19 +81,19 @@
 .end method
 
 .method public prepareDexFile(Ljava/io/File;)V
-    .locals 0
+    .registers 2
 
     return-void
 .end method
 
 .method public sanitizePendingIntentFlags(IZ)I
-    .locals 0
+    .registers 3
 
     return p1
 .end method
 
 .method public sanitizeReceiverFlags(IZ)I
-    .locals 0
+    .registers 3
 
     return p1
 .end method

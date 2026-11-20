@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 252
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -44,6 +44,8 @@
     aget-object v0, p3, v0
 
     check-cast v0, Ljava/lang/String;
+
+    move-object v4, v0
 
     const/4 v1, 0x1
 
@@ -67,22 +69,26 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    const-string v5, "getPackageInfo-cell"
+
+    invoke-static {v5, v4, v0}, Lio/vanta/fake/service/XjLineDiag;->xjLinePkg(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V
+
+    if-eqz v0, :cond_21
 
     return-object v0
 
     .line 262
-    :cond_0
-    :try_start_0
+    :cond_21
+    :try_start_21
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_21 .. :try_end_25} :catchall_26
 
     return-object p1
 
-    :catchall_0
+    :catchall_26
     const/4 p1, 0x0
 
     return-object p1

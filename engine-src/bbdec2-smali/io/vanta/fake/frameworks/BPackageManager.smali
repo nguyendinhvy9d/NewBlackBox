@@ -25,7 +25,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 31
     new-instance v0, Lio/vanta/fake/frameworks/BPackageManager;
@@ -43,7 +43,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 30
     invoke-direct {p0}, Lio/vanta/fake/frameworks/BlackManager;-><init>()V
@@ -59,7 +59,7 @@
 .end method
 
 .method private crash(Ljava/lang/Throwable;)V
-    .locals 0
+    .registers 2
 
     .line 683
     invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
@@ -68,7 +68,7 @@
 .end method
 
 .method private createFallbackApplicationInfo(Ljava/lang/String;II)Landroid/content/pm/ApplicationInfo;
-    .locals 3
+    .registers 7
 
     .line 687
     new-instance p3, Ljava/lang/StringBuilder;
@@ -110,7 +110,7 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_2b
 
     .line 697
     iput-object v1, p3, Landroid/content/pm/ApplicationInfo;->sourceDir:Ljava/lang/String;
@@ -118,10 +118,10 @@
     .line 698
     iput-object v1, p3, Landroid/content/pm/ApplicationInfo;->publicSourceDir:Ljava/lang/String;
 
-    goto :goto_0
+    goto :goto_48
 
     .line 701
-    :cond_0
+    :cond_2b
     new-instance v1, Ljava/lang/StringBuilder;
 
     const-string v2, "No APK found for "
@@ -153,7 +153,7 @@
     iput-object v0, p3, Landroid/content/pm/ApplicationInfo;->publicSourceDir:Ljava/lang/String;
 
     .line 706
-    :goto_0
+    :goto_48
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v1, "/data/data/"
@@ -221,12 +221,12 @@
 .end method
 
 .method private createFallbackLaunchIntent(Ljava/lang/String;)Landroid/content/Intent;
-    .locals 4
+    .registers 6
 
     const/high16 v0, 0x10000000
 
     .line 125
-    :try_start_0
+    :try_start_2
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -239,16 +239,16 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_29
 
     .line 127
     invoke-virtual {v1, v0}, Landroid/content/Intent;->setFlags(I)Landroid/content/Intent;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_13
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_13} :catch_14
 
     return-object v1
 
-    :catch_0
+    :catch_14
     move-exception v1
 
     .line 131
@@ -271,7 +271,7 @@
     invoke-static {v3, v2, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 135
-    :cond_0
+    :cond_29
     new-instance v1, Landroid/content/Intent;
 
     const-string v2, "android.intent.action.MAIN"
@@ -293,7 +293,7 @@
 .end method
 
 .method private createFallbackPackageInfo(Ljava/lang/String;II)Landroid/content/pm/PackageInfo;
-    .locals 2
+    .registers 6
 
     .line 848
     new-instance v0, Ljava/lang/StringBuilder;
@@ -377,7 +377,7 @@
 .end method
 
 .method private findActualApkPath(Ljava/lang/String;)Ljava/lang/String;
-    .locals 17
+    .registers 19
 
     move-object/from16 v0, p1
 
@@ -408,7 +408,7 @@
 
     const-string v12, "BlackManager"
 
-    if-eqz v10, :cond_0
+    if-eqz v10, :cond_21
 
     .line 721
     const-string v0, "findActualApkPath called recursively, returning null to prevent infinite loop."
@@ -417,7 +417,7 @@
 
     return-object v11
 
-    :cond_0
+    :cond_21
     const/4 v10, 0x1
 
     .line 724
@@ -426,7 +426,7 @@
     const/4 v13, 0x0
 
     .line 728
-    :try_start_0
+    :try_start_25
     new-instance v14, Ljava/lang/StringBuilder;
 
     invoke-direct {v14, v9}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -656,23 +656,23 @@
 
     move v1, v13
 
-    :goto_0
-    if-ge v1, v9, :cond_2
+    :goto_10e
+    if-ge v1, v9, :cond_136
 
     .line 750
     aget-object v2, v14, v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_112
+    .catchall {:try_start_25 .. :try_end_112} :catchall_178
 
     move-object/from16 v3, p0
 
     .line 751
-    :try_start_1
+    :try_start_114
     invoke-direct {v3, v2}, Lio/vanta/fake/frameworks/BPackageManager;->isValidApkPath(Ljava/lang/String;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_133
 
     .line 752
     new-instance v0, Ljava/lang/StringBuilder;
@@ -694,29 +694,29 @@
     move-result-object v0
 
     invoke-static {v12, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_130
+    .catchall {:try_start_114 .. :try_end_130} :catchall_176
 
     .line 767
     sput-boolean v13, Lio/vanta/fake/frameworks/BPackageManager;->sIsFindingApkPath:Z
 
     return-object v2
 
-    :cond_1
+    :cond_133
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_10e
 
-    :cond_2
+    :cond_136
     move-object/from16 v3, p0
 
     .line 758
-    :try_start_2
+    :try_start_138
     invoke-direct/range {p0 .. p1}, Lio/vanta/fake/frameworks/BPackageManager;->findHashBasedApkPath(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_157
 
     .line 760
     new-instance v0, Ljava/lang/StringBuilder;
@@ -738,8 +738,8 @@
     move-result-object v0
 
     invoke-static {v12, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_154
+    .catchall {:try_start_138 .. :try_end_154} :catchall_176
 
     .line 767
     sput-boolean v13, Lio/vanta/fake/frameworks/BPackageManager;->sIsFindingApkPath:Z
@@ -747,8 +747,8 @@
     return-object v1
 
     .line 764
-    :cond_3
-    :try_start_3
+    :cond_157
+    :try_start_157
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -774,25 +774,25 @@
     move-result-object v0
 
     invoke-static {v12, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+    :try_end_173
+    .catchall {:try_start_157 .. :try_end_173} :catchall_176
 
     .line 767
     sput-boolean v13, Lio/vanta/fake/frameworks/BPackageManager;->sIsFindingApkPath:Z
 
     return-object v11
 
-    :catchall_0
+    :catchall_176
     move-exception v0
 
-    goto :goto_1
+    goto :goto_17b
 
-    :catchall_1
+    :catchall_178
     move-exception v0
 
     move-object/from16 v3, p0
 
-    :goto_1
+    :goto_17b
     sput-boolean v13, Lio/vanta/fake/frameworks/BPackageManager;->sIsFindingApkPath:Z
 
     .line 768
@@ -800,12 +800,12 @@
 .end method
 
 .method private findHashBasedApkPath(Ljava/lang/String;)Ljava/lang/String;
-    .locals 11
+    .registers 13
 
     const/4 v0, 0x0
 
     .line 774
-    :try_start_0
+    :try_start_1
     new-instance v1, Ljava/io/File;
 
     const-string v2, "/data/app"
@@ -817,18 +817,18 @@
 
     move-result v2
 
-    if-eqz v2, :cond_7
+    if-eqz v2, :cond_64
 
     invoke-virtual {v1}, Ljava/io/File;->isDirectory()Z
 
     move-result v2
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_15
 
-    goto :goto_4
+    goto :goto_64
 
     .line 780
-    :cond_0
+    :cond_15
     new-instance v2, Lio/vanta/fake/frameworks/BPackageManager$$ExternalSyntheticLambda0;
 
     invoke-direct {v2}, Lio/vanta/fake/frameworks/BPackageManager$$ExternalSyntheticLambda0;-><init>()V
@@ -837,20 +837,20 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_21
 
     return-object v0
 
     .line 785
-    :cond_1
+    :cond_21
     array-length v2, v1
 
     const/4 v3, 0x0
 
     move v4, v3
 
-    :goto_0
-    if-ge v4, v2, :cond_8
+    :goto_24
+    if-ge v4, v2, :cond_88
 
     aget-object v5, v1, v4
 
@@ -859,12 +859,12 @@
 
     move-result v6
 
-    if-nez v6, :cond_2
+    if-nez v6, :cond_2f
 
-    goto :goto_3
+    goto :goto_61
 
     .line 791
-    :cond_2
+    :cond_2f
     new-instance v6, Lio/vanta/fake/frameworks/BPackageManager$$ExternalSyntheticLambda1;
 
     invoke-direct {v6, p1}, Lio/vanta/fake/frameworks/BPackageManager$$ExternalSyntheticLambda1;-><init>(Ljava/lang/String;)V
@@ -873,18 +873,18 @@
 
     move-result-object v5
 
-    if-nez v5, :cond_3
+    if-nez v5, :cond_3b
 
-    goto :goto_3
+    goto :goto_61
 
     .line 796
-    :cond_3
+    :cond_3b
     array-length v6, v5
 
     move v7, v3
 
-    :goto_1
-    if-ge v7, v6, :cond_6
+    :goto_3d
+    if-ge v7, v6, :cond_61
 
     aget-object v8, v5, v7
 
@@ -893,12 +893,12 @@
 
     move-result v9
 
-    if-nez v9, :cond_4
+    if-nez v9, :cond_48
 
-    goto :goto_2
+    goto :goto_5e
 
     .line 802
-    :cond_4
+    :cond_48
     new-instance v9, Ljava/io/File;
 
     const-string v10, "base.apk"
@@ -914,34 +914,34 @@
 
     move-result v8
 
-    if-eqz v8, :cond_5
+    if-eqz v8, :cond_5e
 
     .line 804
     invoke-virtual {v9}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_5d
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_5d} :catch_65
 
     return-object p1
 
-    :cond_5
-    :goto_2
+    :cond_5e
+    :goto_5e
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_1
+    goto :goto_3d
 
-    :cond_6
-    :goto_3
+    :cond_61
+    :goto_61
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_24
 
-    :cond_7
-    :goto_4
+    :cond_64
+    :goto_64
     return-object v0
 
-    :catch_0
+    :catch_65
     move-exception v1
 
     .line 809
@@ -977,12 +977,12 @@
 
     invoke-static {v1, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_8
+    :cond_88
     return-object v0
 .end method
 
 .method public static get()Lio/vanta/fake/frameworks/BPackageManager;
-    .locals 1
+    .registers 1
 
     .line 36
     sget-object v0, Lio/vanta/fake/frameworks/BPackageManager;->sPackageManager:Lio/vanta/fake/frameworks/BPackageManager;
@@ -991,14 +991,14 @@
 .end method
 
 .method private isInstalledFallback(Ljava/lang/String;)Z
-    .locals 4
+    .registers 6
 
     const/4 v0, 0x1
 
     const/4 v1, 0x0
 
     .line 650
-    :try_start_0
+    :try_start_2
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v2
@@ -1008,13 +1008,13 @@
     move-result-object v2
 
     invoke-virtual {v2, p1, v1}, Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_d} :catch_e
 
     return v0
 
     .line 653
-    :catch_0
+    :catch_e
     new-instance v2, Ljava/lang/StringBuilder;
 
     const-string v3, "Fallback isInstalled check failed for "
@@ -1039,7 +1039,7 @@
 
     invoke-static {v3, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_53
 
     .line 655
     const-string v2, "com.media.bestrecorder.audiorecorder"
@@ -1048,7 +1048,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_3a
 
     const-string v2, "org.nomad.engine"
 
@@ -1057,10 +1057,10 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_53
 
     .line 657
-    :cond_0
+    :cond_3a
     new-instance v1, Ljava/lang/StringBuilder;
 
     const-string v2, "Returning true for known app "
@@ -1085,12 +1085,12 @@
 
     return v0
 
-    :cond_1
+    :cond_53
     return v1
 .end method
 
 .method private isValidApkPath(Ljava/lang/String;)Z
-    .locals 8
+    .registers 10
 
     .line 819
     const-string v0, "BlackManager"
@@ -1103,19 +1103,19 @@
     const/4 v3, 0x0
 
     .line 819
-    :try_start_0
+    :try_start_7
     const-string v4, "*"
 
     invoke-virtual {p1, v4}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_10
 
     return v3
 
     .line 823
-    :cond_0
+    :cond_10
     new-instance v4, Ljava/io/File;
 
     invoke-direct {v4, p1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
@@ -1125,17 +1125,17 @@
 
     move-result v5
 
-    if-nez v5, :cond_1
+    if-nez v5, :cond_1c
 
     return v3
 
     .line 829
-    :cond_1
+    :cond_1c
     invoke-virtual {v4}, Ljava/io/File;->canRead()Z
 
     move-result v5
 
-    if-nez v5, :cond_2
+    if-nez v5, :cond_33
 
     .line 830
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1155,7 +1155,7 @@
     return v3
 
     .line 834
-    :cond_2
+    :cond_33
     invoke-virtual {v4}, Ljava/io/File;->length()J
 
     move-result-wide v4
@@ -1164,7 +1164,7 @@
 
     cmp-long v2, v4, v6
 
-    if-gez v2, :cond_3
+    if-gez v2, :cond_5e
 
     .line 836
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1196,17 +1196,17 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_5d
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_5d} :catch_60
 
     return v3
 
-    :cond_3
+    :cond_5e
     const/4 p1, 0x1
 
     return p1
 
-    :catch_0
+    :catch_60
     move-exception v1
 
     .line 842
@@ -1244,7 +1244,7 @@
 .end method
 
 .method static synthetic lambda$findHashBasedApkPath$0(Ljava/io/File;Ljava/lang/String;)Z
-    .locals 0
+    .registers 2
 
     .line 780
     const-string p0, "~~"
@@ -1253,7 +1253,7 @@
 
     move-result p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_12
 
     const-string p0, "=="
 
@@ -1261,20 +1261,20 @@
 
     move-result p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_12
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_0
+    :cond_12
     const/4 p0, 0x0
 
     return p0
 .end method
 
 .method static synthetic lambda$findHashBasedApkPath$1(Ljava/lang/String;Ljava/io/File;Ljava/lang/String;)Z
-    .locals 0
+    .registers 3
 
     .line 791
     invoke-virtual {p2, p0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
@@ -1285,7 +1285,7 @@
 .end method
 
 .method private shouldUseFallbackMode()Z
-    .locals 2
+    .registers 3
 
     .line 47
     iget-object v0, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
@@ -1296,23 +1296,23 @@
 
     const/4 v1, 0x2
 
-    if-ge v0, v1, :cond_1
+    if-ge v0, v1, :cond_12
 
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->isServiceHealthy()Z
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_10
 
-    goto :goto_0
+    goto :goto_12
 
-    :cond_0
+    :cond_10
     const/4 v0, 0x0
 
     return v0
 
-    :cond_1
-    :goto_0
+    :cond_12
+    :goto_12
     const/4 v0, 0x1
 
     return v0
@@ -1321,7 +1321,7 @@
 
 # virtual methods
 .method public clearPackage(Ljava/lang/String;I)V
-    .locals 1
+    .registers 4
 
     .line 573
     :try_start_0
@@ -1332,12 +1332,12 @@
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/pm/IBPackageManagerService;->clearPackage(Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 575
@@ -1347,7 +1347,7 @@
 .end method
 
 .method public forceReinitialize()V
-    .locals 3
+    .registers 4
 
     .line 52
     const-string v0, "Force reinitializing PackageManager service"
@@ -1363,14 +1363,14 @@
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->resetTransactionThrottler()V
 
     .line 58
-    :try_start_0
+    :try_start_d
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1b
 
     .line 60
     const-string v0, "Successfully reinitialized PackageManager service"
@@ -1380,16 +1380,16 @@
     return-void
 
     .line 62
-    :cond_0
+    :cond_1b
     const-string v0, "Failed to reinitialize PackageManager service"
 
     invoke-static {v1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_20
+    .catch Ljava/lang/Exception; {:try_start_d .. :try_end_20} :catch_21
 
     return-void
 
-    :catch_0
+    :catch_21
     move-exception v0
 
     .line 65
@@ -1401,21 +1401,21 @@
 .end method
 
 .method public getActivityInfo(Landroid/content/ComponentName;II)Landroid/content/pm/ActivityInfo;
-    .locals 3
+    .registers 7
 
     .line 353
     const-string v0, "BlackManager"
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_3
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v2
 
     check-cast v2, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_11
 
     .line 355
     const-string p2, "PackageManager service is null for getActivityInfo, returning null"
@@ -1425,17 +1425,17 @@
     return-object v1
 
     .line 358
-    :cond_0
+    :cond_11
     invoke-interface {v2, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->getActivityInfo(Landroid/content/ComponentName;II)Landroid/content/pm/ActivityInfo;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_15
+    .catch Landroid/os/RemoteException; {:try_start_3 .. :try_end_15} :catch_2a
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_15} :catch_16
 
     return-object p1
 
-    :catch_0
+    :catch_16
     move-exception p2
 
     .line 363
@@ -1457,7 +1457,7 @@
 
     return-object v1
 
-    :catch_1
+    :catch_2a
     move-exception p2
 
     .line 360
@@ -1481,17 +1481,17 @@
 .end method
 
 .method public getApplicationInfo(Ljava/lang/String;II)Landroid/content/pm/ApplicationInfo;
-    .locals 4
+    .registers 8
 
     .line 285
     const-string v0, "BlackManager"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getServiceWithFallback()Lio/vanta/core/system/pm/IBPackageManagerService;
 
     move-result-object v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_12
 
     .line 287
     const-string v1, "PackageManager service is null for getApplicationInfo, using fallback"
@@ -1506,17 +1506,17 @@
     return-object p1
 
     .line 290
-    :cond_0
+    :cond_12
     invoke-interface {v1, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->getApplicationInfo(Ljava/lang/String;II)Landroid/content/pm/ApplicationInfo;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_16} :catch_2f
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_16} :catch_17
 
     return-object p1
 
-    :catch_0
+    :catch_17
     move-exception v1
 
     .line 295
@@ -1543,7 +1543,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_2f
     move-exception v1
 
     .line 292
@@ -1572,7 +1572,7 @@
 .end method
 
 .method public getInstalledApplications(II)Ljava/util/List;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(II)",
@@ -1593,12 +1593,12 @@
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/pm/IBPackageManagerService;->getInstalledApplications(II)Ljava/util/List;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object p1
 
-    :catch_0
+    :catch_b
     move-exception p1
 
     .line 557
@@ -1613,7 +1613,7 @@
 .end method
 
 .method public getInstalledPackages(II)Ljava/util/List;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(II)",
@@ -1634,12 +1634,12 @@
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/pm/IBPackageManagerService;->getInstalledPackages(II)Ljava/util/List;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object p1
 
-    :catch_0
+    :catch_b
     move-exception p1
 
     .line 566
@@ -1654,7 +1654,7 @@
 .end method
 
 .method public getInstalledPackagesAsUser(I)Ljava/util/List;
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I)",
@@ -1675,12 +1675,12 @@
     invoke-interface {v0, p1}, Lio/vanta/core/system/pm/IBPackageManagerService;->getInstalledPackagesAsUser(I)Ljava/util/List;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object p1
 
-    :catch_0
+    :catch_b
     move-exception p1
 
     .line 668
@@ -1695,14 +1695,14 @@
 .end method
 
 .method public getLaunchIntentForPackage(Ljava/lang/String;I)Landroid/content/Intent;
-    .locals 5
+    .registers 8
 
     .line 87
     invoke-direct {p0}, Lio/vanta/fake/frameworks/BPackageManager;->shouldUseFallbackMode()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_25
 
     .line 88
     new-instance p2, Ljava/lang/StringBuilder;
@@ -1737,7 +1737,7 @@
     return-object p1
 
     .line 92
-    :cond_0
+    :cond_25
     new-instance v0, Landroid/content/Intent;
 
     const-string v1, "android.intent.action.MAIN"
@@ -1772,17 +1772,17 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_4d
 
     .line 101
     invoke-interface {v2}, Ljava/util/List;->size()I
 
     move-result v4
 
-    if-gtz v4, :cond_2
+    if-gtz v4, :cond_68
 
     .line 103
-    :cond_1
+    :cond_4d
     invoke-virtual {v0, v1}, Landroid/content/Intent;->removeCategory(Ljava/lang/String;)V
 
     .line 104
@@ -1811,20 +1811,20 @@
 
     move-result-object v2
 
-    :cond_2
-    if-eqz v2, :cond_4
+    :cond_68
+    if-eqz v2, :cond_93
 
     .line 111
     invoke-interface {v2}, Ljava/util/List;->size()I
 
     move-result p1
 
-    if-gtz p1, :cond_3
+    if-gtz p1, :cond_71
 
-    goto :goto_0
+    goto :goto_93
 
     .line 114
-    :cond_3
+    :cond_71
     new-instance p1, Landroid/content/Intent;
 
     invoke-direct {p1, v0}, Landroid/content/Intent;-><init>(Landroid/content/Intent;)V
@@ -1861,25 +1861,25 @@
 
     return-object p1
 
-    :cond_4
-    :goto_0
+    :cond_93
+    :goto_93
     const/4 p1, 0x0
 
     return-object p1
 .end method
 
 .method public getPackageInfo(Ljava/lang/String;II)Landroid/content/pm/PackageInfo;
-    .locals 4
+    .registers 8
 
     .line 302
     const-string v0, "BlackManager"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getServiceWithFallback()Lio/vanta/core/system/pm/IBPackageManagerService;
 
     move-result-object v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_12
 
     .line 304
     const-string v1, "PackageManager service is null for getPackageInfo, using fallback"
@@ -1894,17 +1894,19 @@
     return-object p1
 
     .line 307
-    :cond_0
+    :cond_12
     invoke-interface {v1, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->getPackageInfo(Ljava/lang/String;II)Landroid/content/pm/PackageInfo;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_16} :catch_32
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_16} :catch_1a
+
+    invoke-static {p1, p2, p3}, Lio/vanta/fake/service/GmsCallerFix;->fixPkgInfo(Landroid/content/pm/PackageInfo;II)V
 
     return-object p1
 
-    :catch_0
+    :catch_1a
     move-exception v1
 
     .line 312
@@ -1931,7 +1933,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_32
     move-exception v1
 
     .line 309
@@ -1960,7 +1962,7 @@
 .end method
 
 .method public getPackagesForUid(I)[Ljava/lang/String;
-    .locals 2
+    .registers 4
 
     .line 675
     :try_start_0
@@ -1977,12 +1979,12 @@
     invoke-interface {v0, p1, v1}, Lio/vanta/core/system/pm/IBPackageManagerService;->getPackagesForUid(II)[Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 677
@@ -1997,21 +1999,21 @@
 .end method
 
 .method public getProviderInfo(Landroid/content/ComponentName;II)Landroid/content/pm/ProviderInfo;
-    .locals 3
+    .registers 7
 
     .line 370
     const-string v0, "BlackManager"
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_3
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v2
 
     check-cast v2, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_11
 
     .line 372
     const-string p2, "PackageManager service is null for getProviderInfo, returning null"
@@ -2021,17 +2023,17 @@
     return-object v1
 
     .line 375
-    :cond_0
+    :cond_11
     invoke-interface {v2, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->getProviderInfo(Landroid/content/ComponentName;II)Landroid/content/pm/ProviderInfo;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_15
+    .catch Landroid/os/RemoteException; {:try_start_3 .. :try_end_15} :catch_2a
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_15} :catch_16
 
     return-object p1
 
-    :catch_0
+    :catch_16
     move-exception p2
 
     .line 380
@@ -2053,7 +2055,7 @@
 
     return-object v1
 
-    :catch_1
+    :catch_2a
     move-exception p2
 
     .line 377
@@ -2077,21 +2079,21 @@
 .end method
 
 .method public getReceiverInfo(Landroid/content/ComponentName;II)Landroid/content/pm/ActivityInfo;
-    .locals 3
+    .registers 7
 
     .line 336
     const-string v0, "BlackManager"
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_3
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v2
 
     check-cast v2, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_11
 
     .line 338
     const-string p2, "PackageManager service is null for getReceiverInfo, returning null"
@@ -2101,17 +2103,17 @@
     return-object v1
 
     .line 341
-    :cond_0
+    :cond_11
     invoke-interface {v2, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->getReceiverInfo(Landroid/content/ComponentName;II)Landroid/content/pm/ActivityInfo;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_15
+    .catch Landroid/os/RemoteException; {:try_start_3 .. :try_end_15} :catch_2a
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_15} :catch_16
 
     return-object p1
 
-    :catch_0
+    :catch_16
     move-exception p2
 
     .line 346
@@ -2133,7 +2135,7 @@
 
     return-object v1
 
-    :catch_1
+    :catch_2a
     move-exception p2
 
     .line 343
@@ -2157,21 +2159,21 @@
 .end method
 
 .method public getServiceInfo(Landroid/content/ComponentName;II)Landroid/content/pm/ServiceInfo;
-    .locals 3
+    .registers 7
 
     .line 319
     const-string v0, "BlackManager"
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_3
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v2
 
     check-cast v2, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_11
 
     .line 321
     const-string p2, "PackageManager service is null for getServiceInfo, returning null"
@@ -2181,17 +2183,17 @@
     return-object v1
 
     .line 324
-    :cond_0
+    :cond_11
     invoke-interface {v2, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->getServiceInfo(Landroid/content/ComponentName;II)Landroid/content/pm/ServiceInfo;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_15
+    .catch Landroid/os/RemoteException; {:try_start_3 .. :try_end_15} :catch_2a
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_15} :catch_16
 
     return-object p1
 
-    :catch_0
+    :catch_16
     move-exception p2
 
     .line 329
@@ -2213,7 +2215,7 @@
 
     return-object v1
 
-    :catch_1
+    :catch_2a
     move-exception p2
 
     .line 326
@@ -2237,7 +2239,7 @@
 .end method
 
 .method protected getServiceName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 82
     const-string v0, "package_manager"
@@ -2246,7 +2248,7 @@
 .end method
 
 .method public getServiceWithFallback()Lio/vanta/core/system/pm/IBPackageManagerService;
-    .locals 2
+    .registers 3
 
     .line 71
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
@@ -2255,7 +2257,7 @@
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_18
 
     .line 73
     const-string v0, "BlackManager"
@@ -2274,12 +2276,12 @@
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    :cond_0
+    :cond_18
     return-object v0
 .end method
 
 .method public installPackageAsUser(Ljava/lang/String;Lio/vanta/entity/pm/InstallOption;I)Lio/vanta/entity/pm/InstallResult;
-    .locals 5
+    .registers 9
 
     .line 529
     const-string v0, "BlackManager"
@@ -2289,20 +2291,20 @@
 
     const-string v2, "Could not verify package info for: "
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_52
 
     .line 529
-    :try_start_0
+    :try_start_8
     invoke-virtual {p1}, Ljava/lang/String;->isEmpty()Z
 
     move-result v3
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_c
+    .catch Landroid/os/RemoteException; {:try_start_8 .. :try_end_c} :catch_5d
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_52
 
     .line 532
-    :try_start_1
+    :try_start_e
     invoke-static {}, Lio/vanta/VantaCore;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v3
@@ -2313,7 +2315,7 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_52
 
     .line 534
     iget-object v3, v3, Landroid/content/pm/PackageInfo;->packageName:Ljava/lang/String;
@@ -2328,7 +2330,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_52
 
     .line 537
     new-instance v4, Ljava/lang/StringBuilder;
@@ -2355,17 +2357,17 @@
     invoke-virtual {v1, v3}, Lio/vanta/entity/pm/InstallResult;->installError(Ljava/lang/String;)Lio/vanta/entity/pm/InstallResult;
 
     move-result-object p1
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
-    .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_40
+    .catch Ljava/lang/Exception; {:try_start_e .. :try_end_40} :catch_41
+    .catch Landroid/os/RemoteException; {:try_start_e .. :try_end_40} :catch_5d
 
     return-object p1
 
-    :catch_0
+    :catch_41
     move-exception v1
 
     .line 542
-    :try_start_2
+    :try_start_42
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -2381,7 +2383,7 @@
     invoke-static {v0, v2, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 546
-    :cond_0
+    :cond_52
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
@@ -2391,12 +2393,12 @@
     invoke-interface {v0, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->installPackageAsUser(Ljava/lang/String;Lio/vanta/entity/pm/InstallOption;I)Lio/vanta/entity/pm/InstallResult;
 
     move-result-object p1
-    :try_end_2
-    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_5c
+    .catch Landroid/os/RemoteException; {:try_start_42 .. :try_end_5c} :catch_5d
 
     return-object p1
 
-    :catch_1
+    :catch_5d
     move-exception p1
 
     .line 548
@@ -2408,7 +2410,7 @@
 .end method
 
 .method public isInstalled(Ljava/lang/String;I)Z
-    .locals 3
+    .registers 6
 
     .line 605
     invoke-direct {p0}, Lio/vanta/fake/frameworks/BPackageManager;->shouldUseFallbackMode()Z
@@ -2417,7 +2419,7 @@
 
     const-string v1, "BlackManager"
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_25
 
     .line 606
     new-instance p2, Ljava/lang/StringBuilder;
@@ -2450,15 +2452,15 @@
     return p1
 
     .line 611
-    :cond_0
-    :try_start_0
+    :cond_25
+    :try_start_25
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_37
 
     .line 613
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/pm/IBPackageManagerService;->isInstalled(Ljava/lang/String;I)Z
@@ -2473,18 +2475,18 @@
     return v0
 
     .line 617
-    :cond_1
+    :cond_37
     const-string v0, "PackageManager service is null, returning false for isInstalled check"
 
     invoke-static {v1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3c
+    .catch Landroid/os/DeadObjectException; {:try_start_25 .. :try_end_3c} :catch_55
+    .catch Landroid/os/RemoteException; {:try_start_25 .. :try_end_3c} :catch_49
+    .catch Ljava/lang/Exception; {:try_start_25 .. :try_end_3c} :catch_3d
 
-    goto :goto_0
+    goto :goto_80
 
-    :catch_0
+    :catch_3d
     move-exception p1
 
     .line 640
@@ -2497,9 +2499,9 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    goto :goto_0
+    goto :goto_80
 
-    :catch_1
+    :catch_49
     move-exception p1
 
     .line 637
@@ -2512,9 +2514,9 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    goto :goto_0
+    goto :goto_80
 
-    :catch_2
+    :catch_55
     move-exception v0
 
     .line 620
@@ -2531,14 +2533,14 @@
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->clearServiceCache()V
 
     .line 626
-    :try_start_1
+    :try_start_63
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_80
 
     .line 628
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/pm/IBPackageManagerService;->isInstalled(Ljava/lang/String;I)Z
@@ -2549,12 +2551,12 @@
     iget-object p2, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
 
     invoke-virtual {p2}, Lio/vanta/utils/TransactionThrottler;->reset()V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    :try_end_74
+    .catch Ljava/lang/Exception; {:try_start_63 .. :try_end_74} :catch_75
 
     return p1
 
-    :catch_3
+    :catch_75
     move-exception p1
 
     .line 633
@@ -2567,15 +2569,15 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    :cond_2
-    :goto_0
+    :cond_80
+    :goto_80
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method public queryBroadcastReceivers(Landroid/content/Intent;ILjava/lang/String;I)Ljava/util/List;
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2592,14 +2594,14 @@
     .line 442
     const-string v0, "BlackManager"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v1
 
     check-cast v1, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 444
     invoke-interface {v1, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->queryBroadcastReceivers(Landroid/content/Intent;ILjava/lang/String;I)Ljava/util/List;
@@ -2609,7 +2611,7 @@
     return-object p1
 
     .line 446
-    :cond_0
+    :cond_f
     const-string v1, "PackageManager service is null, returning empty list for queryBroadcastReceivers"
 
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -2618,13 +2620,13 @@
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_18
+    .catch Landroid/os/DeadObjectException; {:try_start_2 .. :try_end_18} :catch_27
+    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_18} :catch_19
 
     return-object p1
 
-    :catch_0
+    :catch_19
     move-exception p1
 
     .line 463
@@ -2642,7 +2644,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_27
     move-exception v1
 
     .line 450
@@ -2654,25 +2656,25 @@
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->clearServiceCache()V
 
     .line 454
-    :try_start_1
+    :try_start_30
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v1
 
     check-cast v1, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_43
 
     .line 456
     invoke-interface {v1, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->queryBroadcastReceivers(Landroid/content/Intent;ILjava/lang/String;I)Ljava/util/List;
 
     move-result-object p1
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_2
+    :try_end_3c
+    .catch Ljava/lang/Exception; {:try_start_30 .. :try_end_3c} :catch_3d
 
     return-object p1
 
-    :catch_2
+    :catch_3d
     move-exception p1
 
     .line 459
@@ -2681,7 +2683,7 @@
     invoke-static {v0, p2, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 461
-    :cond_1
+    :cond_43
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 
     move-result-object p1
@@ -2690,7 +2692,7 @@
 .end method
 
 .method public queryContentProviders(Ljava/lang/String;III)Ljava/util/List;
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2705,14 +2707,14 @@
     .line 499
     const-string v0, "BlackManager"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v1
 
     check-cast v1, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 501
     invoke-interface {v1, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->queryContentProviders(Ljava/lang/String;III)Ljava/util/List;
@@ -2722,7 +2724,7 @@
     return-object p1
 
     .line 503
-    :cond_0
+    :cond_f
     const-string v1, "PackageManager service is null, returning empty list for queryContentProviders"
 
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -2731,13 +2733,13 @@
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_18
+    .catch Landroid/os/DeadObjectException; {:try_start_2 .. :try_end_18} :catch_27
+    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_18} :catch_19
 
     return-object p1
 
-    :catch_0
+    :catch_19
     move-exception p1
 
     .line 520
@@ -2755,7 +2757,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_27
     move-exception v1
 
     .line 507
@@ -2767,25 +2769,25 @@
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->clearServiceCache()V
 
     .line 511
-    :try_start_1
+    :try_start_30
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v1
 
     check-cast v1, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_43
 
     .line 513
     invoke-interface {v1, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->queryContentProviders(Ljava/lang/String;III)Ljava/util/List;
 
     move-result-object p1
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_2
+    :try_end_3c
+    .catch Ljava/lang/Exception; {:try_start_30 .. :try_end_3c} :catch_3d
 
     return-object p1
 
-    :catch_2
+    :catch_3d
     move-exception p1
 
     .line 516
@@ -2794,7 +2796,7 @@
     invoke-static {v0, p2, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 518
-    :cond_1
+    :cond_43
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 
     move-result-object p1
@@ -2803,7 +2805,7 @@
 .end method
 
 .method public queryIntentActivities(Landroid/content/Intent;ILjava/lang/String;I)Ljava/util/List;
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2826,7 +2828,7 @@
 
     const-string v1, "BlackManager"
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_14
 
     .line 388
     const-string p1, "Throttling queryIntentActivities due to recent failures"
@@ -2841,7 +2843,7 @@
     return-object p1
 
     .line 393
-    :cond_0
+    :cond_14
     iget-object v0, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
 
     invoke-virtual {v0}, Lio/vanta/utils/TransactionThrottler;->getFailureCount()I
@@ -2850,7 +2852,7 @@
 
     const/4 v2, 0x2
 
-    if-lt v0, v2, :cond_1
+    if-lt v0, v2, :cond_27
 
     .line 394
     const-string p1, "Too many failures, returning empty list for queryIntentActivities"
@@ -2865,15 +2867,15 @@
     return-object p1
 
     .line 399
-    :cond_1
-    :try_start_0
+    :cond_27
+    :try_start_27
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_39
 
     .line 401
     invoke-interface {v0, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->queryIntentActivities(Landroid/content/Intent;ILjava/lang/String;I)Ljava/util/List;
@@ -2888,7 +2890,7 @@
     return-object v0
 
     .line 406
-    :cond_2
+    :cond_39
     const-string v0, "PackageManager service is null, returning empty list for queryIntentActivities"
 
     invoke-static {v1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -2897,13 +2899,13 @@
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_42
+    .catch Landroid/os/DeadObjectException; {:try_start_27 .. :try_end_42} :catch_56
+    .catch Landroid/os/RemoteException; {:try_start_27 .. :try_end_42} :catch_43
 
     return-object p1
 
-    :catch_0
+    :catch_43
     move-exception p1
 
     .line 433
@@ -2926,7 +2928,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_56
     move-exception v0
 
     .line 410
@@ -2951,17 +2953,17 @@
 
     const/4 v2, 0x3
 
-    if-ge v0, v2, :cond_3
+    if-ge v0, v2, :cond_8b
 
     .line 418
-    :try_start_1
+    :try_start_6d
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_90
 
     .line 420
     invoke-interface {v0, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->queryIntentActivities(Landroid/content/Intent;ILjava/lang/String;I)Ljava/util/List;
@@ -2972,12 +2974,12 @@
     iget-object p2, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
 
     invoke-virtual {p2}, Lio/vanta/utils/TransactionThrottler;->reset()V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_2
+    :try_end_7e
+    .catch Ljava/lang/Exception; {:try_start_6d .. :try_end_7e} :catch_7f
 
     return-object p1
 
-    :catch_2
+    :catch_7f
     move-exception p1
 
     .line 425
@@ -2990,17 +2992,17 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    goto :goto_0
+    goto :goto_90
 
     .line 429
-    :cond_3
+    :cond_8b
     const-string p1, "Skipping retry due to too many failures"
 
     invoke-static {v1, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 431
-    :cond_4
-    :goto_0
+    :cond_90
+    :goto_90
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 
     move-result-object p1
@@ -3009,7 +3011,7 @@
 .end method
 
 .method public queryIntentServices(Landroid/content/Intent;II)Ljava/util/List;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -3024,14 +3026,14 @@
     .line 471
     const-string v0, "BlackManager"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v1
 
     check-cast v1, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 473
     invoke-interface {v1, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->queryIntentServices(Landroid/content/Intent;II)Ljava/util/List;
@@ -3041,7 +3043,7 @@
     return-object p1
 
     .line 475
-    :cond_0
+    :cond_f
     const-string v1, "PackageManager service is null, returning empty list for queryIntentServices"
 
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -3050,13 +3052,13 @@
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_18
+    .catch Landroid/os/DeadObjectException; {:try_start_2 .. :try_end_18} :catch_27
+    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_18} :catch_19
 
     return-object p1
 
-    :catch_0
+    :catch_19
     move-exception p1
 
     .line 491
@@ -3074,7 +3076,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_27
     move-exception v1
 
     .line 479
@@ -3086,25 +3088,25 @@
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->clearServiceCache()V
 
     .line 482
-    :try_start_1
+    :try_start_30
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v1
 
     check-cast v1, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_43
 
     .line 484
     invoke-interface {v1, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->queryIntentServices(Landroid/content/Intent;II)Ljava/util/List;
 
     move-result-object p1
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_2
+    :try_end_3c
+    .catch Ljava/lang/Exception; {:try_start_30 .. :try_end_3c} :catch_3d
 
     return-object p1
 
-    :catch_2
+    :catch_3d
     move-exception p1
 
     .line 487
@@ -3113,7 +3115,7 @@
     invoke-static {v0, p2, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 489
-    :cond_1
+    :cond_43
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 
     move-result-object p1
@@ -3122,7 +3124,7 @@
 .end method
 
 .method public resetTransactionThrottler()V
-    .locals 2
+    .registers 3
 
     .line 41
     iget-object v0, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
@@ -3140,7 +3142,7 @@
 .end method
 
 .method public resolveActivity(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
-    .locals 4
+    .registers 9
 
     .line 188
     iget-object v0, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
@@ -3153,7 +3155,7 @@
 
     const-string v2, "BlackManager"
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_11
 
     .line 189
     const-string p1, "Throttling resolveActivity due to recent failures"
@@ -3163,15 +3165,15 @@
     return-object v1
 
     .line 194
-    :cond_0
-    :try_start_0
+    :cond_11
+    :try_start_11
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_23
 
     .line 196
     invoke-interface {v0, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->resolveActivity(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
@@ -3186,18 +3188,18 @@
     return-object v0
 
     .line 201
-    :cond_1
+    :cond_23
     const-string v0, "PackageManager service is null, returning null for resolveActivity"
 
     invoke-static {v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_28
+    .catch Landroid/os/DeadObjectException; {:try_start_11 .. :try_end_28} :catch_41
+    .catch Landroid/os/RemoteException; {:try_start_11 .. :try_end_28} :catch_35
+    .catch Ljava/lang/Exception; {:try_start_11 .. :try_end_28} :catch_29
 
-    goto :goto_0
+    goto :goto_6c
 
-    :catch_0
+    :catch_29
     move-exception p1
 
     .line 224
@@ -3210,9 +3212,9 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    goto :goto_0
+    goto :goto_6c
 
-    :catch_1
+    :catch_35
     move-exception p1
 
     .line 221
@@ -3225,9 +3227,9 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    goto :goto_0
+    goto :goto_6c
 
-    :catch_2
+    :catch_41
     move-exception v0
 
     .line 204
@@ -3244,14 +3246,14 @@
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->clearServiceCache()V
 
     .line 210
-    :try_start_1
+    :try_start_4f
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_6c
 
     .line 212
     invoke-interface {v0, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->resolveActivity(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
@@ -3262,12 +3264,12 @@
     iget-object p2, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
 
     invoke-virtual {p2}, Lio/vanta/utils/TransactionThrottler;->reset()V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    :try_end_60
+    .catch Ljava/lang/Exception; {:try_start_4f .. :try_end_60} :catch_61
 
     return-object p1
 
-    :catch_3
+    :catch_61
     move-exception p1
 
     .line 217
@@ -3280,13 +3282,13 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    :cond_2
-    :goto_0
+    :cond_6c
+    :goto_6c
     return-object v1
 .end method
 
 .method public resolveContentProvider(Ljava/lang/String;II)Landroid/content/pm/ProviderInfo;
-    .locals 4
+    .registers 8
 
     .line 232
     iget-object v0, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
@@ -3299,7 +3301,7 @@
 
     const-string v2, "BlackManager"
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_11
 
     .line 233
     const-string p1, "Throttling resolveContentProvider due to recent failures"
@@ -3309,15 +3311,15 @@
     return-object v1
 
     .line 238
-    :cond_0
-    :try_start_0
+    :cond_11
+    :try_start_11
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_23
 
     .line 240
     invoke-interface {v0, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->resolveContentProvider(Ljava/lang/String;II)Landroid/content/pm/ProviderInfo;
@@ -3332,18 +3334,18 @@
     return-object v0
 
     .line 245
-    :cond_1
+    :cond_23
     const-string v0, "PackageManager service is null, returning null for resolveContentProvider"
 
     invoke-static {v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_28
+    .catch Landroid/os/DeadObjectException; {:try_start_11 .. :try_end_28} :catch_41
+    .catch Landroid/os/RemoteException; {:try_start_11 .. :try_end_28} :catch_35
+    .catch Ljava/lang/Exception; {:try_start_11 .. :try_end_28} :catch_29
 
-    goto :goto_0
+    goto :goto_6c
 
-    :catch_0
+    :catch_29
     move-exception p1
 
     .line 268
@@ -3356,9 +3358,9 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    goto :goto_0
+    goto :goto_6c
 
-    :catch_1
+    :catch_35
     move-exception p1
 
     .line 265
@@ -3371,9 +3373,9 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    goto :goto_0
+    goto :goto_6c
 
-    :catch_2
+    :catch_41
     move-exception v0
 
     .line 248
@@ -3390,14 +3392,14 @@
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->clearServiceCache()V
 
     .line 254
-    :try_start_1
+    :try_start_4f
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_6c
 
     .line 256
     invoke-interface {v0, p1, p2, p3}, Lio/vanta/core/system/pm/IBPackageManagerService;->resolveContentProvider(Ljava/lang/String;II)Landroid/content/pm/ProviderInfo;
@@ -3408,12 +3410,12 @@
     iget-object p2, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
 
     invoke-virtual {p2}, Lio/vanta/utils/TransactionThrottler;->reset()V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    :try_end_60
+    .catch Ljava/lang/Exception; {:try_start_4f .. :try_end_60} :catch_61
 
     return-object p1
 
-    :catch_3
+    :catch_61
     move-exception p1
 
     .line 261
@@ -3426,13 +3428,13 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    :cond_2
-    :goto_0
+    :cond_6c
+    :goto_6c
     return-object v1
 .end method
 
 .method public resolveIntent(Landroid/content/Intent;Ljava/lang/String;II)Landroid/content/pm/ResolveInfo;
-    .locals 1
+    .registers 6
 
     .line 276
     :try_start_0
@@ -3445,12 +3447,12 @@
     invoke-interface {v0, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->resolveIntent(Landroid/content/Intent;Ljava/lang/String;II)Landroid/content/pm/ResolveInfo;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object p1
 
-    :catch_0
+    :catch_b
     move-exception p1
 
     .line 278
@@ -3462,7 +3464,7 @@
 .end method
 
 .method public resolveService(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
-    .locals 4
+    .registers 9
 
     .line 144
     iget-object v0, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
@@ -3475,7 +3477,7 @@
 
     const-string v2, "BlackManager"
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_11
 
     .line 145
     const-string p1, "Throttling resolveService due to recent failures"
@@ -3485,15 +3487,15 @@
     return-object v1
 
     .line 150
-    :cond_0
-    :try_start_0
+    :cond_11
+    :try_start_11
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_23
 
     .line 152
     invoke-interface {v0, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->resolveService(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
@@ -3508,18 +3510,18 @@
     return-object v0
 
     .line 157
-    :cond_1
+    :cond_23
     const-string v0, "PackageManager service is null, returning null for resolveService"
 
     invoke-static {v2, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_28
+    .catch Landroid/os/DeadObjectException; {:try_start_11 .. :try_end_28} :catch_41
+    .catch Landroid/os/RemoteException; {:try_start_11 .. :try_end_28} :catch_35
+    .catch Ljava/lang/Exception; {:try_start_11 .. :try_end_28} :catch_29
 
-    goto :goto_0
+    goto :goto_6c
 
-    :catch_0
+    :catch_29
     move-exception p1
 
     .line 180
@@ -3532,9 +3534,9 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    goto :goto_0
+    goto :goto_6c
 
-    :catch_1
+    :catch_35
     move-exception p1
 
     .line 177
@@ -3547,9 +3549,9 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    goto :goto_0
+    goto :goto_6c
 
-    :catch_2
+    :catch_41
     move-exception v0
 
     .line 160
@@ -3566,14 +3568,14 @@
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->clearServiceCache()V
 
     .line 166
-    :try_start_1
+    :try_start_4f
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BPackageManager;->getService()Landroid/os/IInterface;
 
     move-result-object v0
 
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_6c
 
     .line 168
     invoke-interface {v0, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IBPackageManagerService;->resolveService(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
@@ -3584,12 +3586,12 @@
     iget-object p2, p0, Lio/vanta/fake/frameworks/BPackageManager;->transactionThrottler:Lio/vanta/utils/TransactionThrottler;
 
     invoke-virtual {p2}, Lio/vanta/utils/TransactionThrottler;->reset()V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    :try_end_60
+    .catch Ljava/lang/Exception; {:try_start_4f .. :try_end_60} :catch_61
 
     return-object p1
 
-    :catch_3
+    :catch_61
     move-exception p1
 
     .line 173
@@ -3602,13 +3604,13 @@
 
     invoke-virtual {p1}, Lio/vanta/utils/TransactionThrottler;->recordFailure()V
 
-    :cond_2
-    :goto_0
+    :cond_6c
+    :goto_6c
     return-object v1
 .end method
 
 .method public stopPackage(Ljava/lang/String;I)V
-    .locals 1
+    .registers 4
 
     .line 581
     :try_start_0
@@ -3619,12 +3621,12 @@
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/pm/IBPackageManagerService;->stopPackage(Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 583
@@ -3634,7 +3636,7 @@
 .end method
 
 .method public uninstallPackage(Ljava/lang/String;)V
-    .locals 1
+    .registers 3
 
     .line 597
     :try_start_0
@@ -3645,12 +3647,12 @@
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
     invoke-interface {v0, p1}, Lio/vanta/core/system/pm/IBPackageManagerService;->uninstallPackage(Ljava/lang/String;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 599
@@ -3660,7 +3662,7 @@
 .end method
 
 .method public uninstallPackageAsUser(Ljava/lang/String;I)V
-    .locals 1
+    .registers 4
 
     .line 589
     :try_start_0
@@ -3671,12 +3673,12 @@
     check-cast v0, Lio/vanta/core/system/pm/IBPackageManagerService;
 
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/pm/IBPackageManagerService;->uninstallPackageAsUser(Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 591

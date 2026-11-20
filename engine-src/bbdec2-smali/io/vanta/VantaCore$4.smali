@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/VantaCore;)V
-    .locals 0
+    .registers 2
 
     .line 707
     iput-object p1, p0, Lio/vanta/VantaCore$4;->this$0:Lio/vanta/VantaCore;
@@ -36,12 +36,12 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .registers 5
 
     .line 711
     const-string v0, "VantaCore"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Executing process recovery"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -58,7 +58,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_21
 
     iget-object v1, p0, Lio/vanta/VantaCore$4;->this$0:Lio/vanta/VantaCore;
 
@@ -66,19 +66,19 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_21
 
     .line 717
     iget-object v1, p0, Lio/vanta/VantaCore$4;->this$0:Lio/vanta/VantaCore;
 
     invoke-static {v1}, Lio/vanta/VantaCore;->-$$Nest$mstartBlackProcess(Lio/vanta/VantaCore;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_21
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_21} :catch_22
 
-    :cond_0
+    :cond_21
     return-void
 
-    :catch_0
+    :catch_22
     move-exception v1
 
     .line 721

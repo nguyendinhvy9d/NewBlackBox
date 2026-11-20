@@ -25,7 +25,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 27
     new-instance v0, Lio/vanta/core/system/am/BJobManagerService;
@@ -38,7 +38,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 26
     invoke-direct {p0}, Lio/vanta/core/system/am/IBJobManagerService$Stub;-><init>()V
@@ -54,7 +54,7 @@
 .end method
 
 .method private formatKey(Ljava/lang/String;I)Ljava/lang/String;
-    .locals 1
+    .registers 4
 
     .line 90
     new-instance v0, Ljava/lang/StringBuilder;
@@ -83,7 +83,7 @@
 .end method
 
 .method public static get()Lio/vanta/core/system/am/BJobManagerService;
-    .locals 1
+    .registers 1
 
     .line 33
     sget-object v0, Lio/vanta/core/system/am/BJobManagerService;->sService:Lio/vanta/core/system/am/BJobManagerService;
@@ -94,7 +94,7 @@
 
 # virtual methods
 .method public cancel(Ljava/lang/String;II)I
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -105,7 +105,7 @@
 .end method
 
 .method public cancelAll(Ljava/lang/String;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -117,12 +117,12 @@
 
     move-result p2
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_7
 
-    goto :goto_1
+    goto :goto_3f
 
     .line 76
-    :cond_0
+    :cond_7
     iget-object p2, p0, Lio/vanta/core/system/am/BJobManagerService;->mJobRecords:Ljava/util/Map;
 
     invoke-interface {p2}, Ljava/util/Map;->keySet()Ljava/util/Set;
@@ -133,13 +133,13 @@
 
     move-result-object p2
 
-    :cond_1
-    :goto_0
+    :cond_11
+    :goto_11
     invoke-interface {p2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_3f
 
     invoke-interface {p2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -170,7 +170,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_11
 
     .line 78
     iget-object v1, p0, Lio/vanta/core/system/am/BJobManagerService;->mJobRecords:Ljava/util/Map;
@@ -181,15 +181,15 @@
 
     check-cast v0, Lio/vanta/entity/JobRecord;
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_2
-    :goto_1
+    :cond_3f
+    :goto_3f
     return-void
 .end method
 
 .method public queryJobRecord(Ljava/lang/String;II)Lio/vanta/entity/JobRecord;
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -213,7 +213,7 @@
 .end method
 
 .method public schedule(Landroid/app/job/JobInfo;I)Landroid/app/job/JobInfo;
-    .locals 8
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -246,12 +246,12 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_1a
 
     return-object p1
 
     .line 45
-    :cond_0
+    :cond_1a
     iget-object v0, v0, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
 
     .line 46
@@ -267,7 +267,7 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_56
 
     .line 48
     invoke-static {}, Lio/vanta/core/system/BProcessManagerService;->get()Lio/vanta/core/system/BProcessManagerService;
@@ -291,12 +291,12 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_3f
 
-    goto :goto_0
+    goto :goto_56
 
     .line 51
-    :cond_1
+    :cond_3f
     new-instance p1, Ljava/lang/RuntimeException;
 
     new-instance p2, Ljava/lang/StringBuilder;
@@ -320,8 +320,8 @@
     throw p1
 
     .line 55
-    :cond_2
-    :goto_0
+    :cond_56
+    :goto_56
     invoke-virtual {p0, v1, p1, v0}, Lio/vanta/core/system/am/BJobManagerService;->scheduleJob(Lio/vanta/core/system/ProcessRecord;Landroid/app/job/JobInfo;Landroid/content/pm/ServiceInfo;)Landroid/app/job/JobInfo;
 
     move-result-object p1
@@ -330,7 +330,7 @@
 .end method
 
 .method public scheduleJob(Lio/vanta/core/system/ProcessRecord;Landroid/app/job/JobInfo;Landroid/content/pm/ServiceInfo;)Landroid/app/job/JobInfo;
-    .locals 3
+    .registers 7
 
     .line 64
     new-instance v0, Lio/vanta/entity/JobRecord;
@@ -383,7 +383,7 @@
 .end method
 
 .method public systemReady()V
-    .locals 0
+    .registers 1
 
     return-void
 .end method

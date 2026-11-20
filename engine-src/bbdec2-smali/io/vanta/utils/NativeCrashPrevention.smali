@@ -16,7 +16,7 @@
 
 .field private static final TAG:Ljava/lang/String; = "NativeCrashPrevention"
 
-.field private static sIsInitialized:Z = false
+.field private static sIsInitialized:Z
 
 .field private static final sPreventionCache:Ljava/util/Map;
     .annotation system Ldalvik/annotation/Signature;
@@ -32,7 +32,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$smhandleNativeCrash(Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    .locals 0
+    .registers 2
 
     invoke-static {p0, p1}, Lio/vanta/utils/NativeCrashPrevention;->handleNativeCrash(Ljava/lang/Thread;Ljava/lang/Throwable;)V
 
@@ -40,7 +40,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 28
     new-instance v0, Ljava/util/HashMap;
@@ -84,7 +84,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -93,14 +93,14 @@
 .end method
 
 .method private static attemptNativeCrashRecovery(Ljava/lang/Thread;Ljava/lang/Throwable;)Z
-    .locals 3
+    .registers 5
 
     .line 192
     const-string p1, "NativeCrashPrevention"
 
     const/4 v0, 0x0
 
-    :try_start_0
+    :try_start_3
     const-string v1, "Attempting native crash recovery..."
 
     invoke-static {p1, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -112,7 +112,7 @@
 
     const/4 v1, 0x1
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_15
 
     .line 196
     const-string p0, "Successfully restarted crashed thread"
@@ -122,12 +122,12 @@
     return v1
 
     .line 201
-    :cond_0
+    :cond_15
     invoke-static {}, Lio/vanta/utils/NativeCrashPrevention;->clearNativeCaches()Z
 
     move-result p0
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_21
 
     .line 202
     const-string p0, "Successfully cleared native caches"
@@ -137,12 +137,12 @@
     return v1
 
     .line 207
-    :cond_1
+    :cond_21
     invoke-static {}, Lio/vanta/utils/NativeCrashPrevention;->reinitializeNativeLibraries()Z
 
     move-result p0
 
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_2d
 
     .line 208
     const-string p0, "Successfully reinitialized native libraries"
@@ -152,12 +152,12 @@
     return v1
 
     .line 213
-    :cond_2
+    :cond_2d
     invoke-static {}, Lio/vanta/utils/NativeCrashPrevention;->performMemoryCleanup()Z
 
     move-result p0
 
-    if-eqz p0, :cond_3
+    if-eqz p0, :cond_39
 
     .line 214
     const-string p0, "Successfully performed memory cleanup"
@@ -167,16 +167,16 @@
     return v1
 
     .line 218
-    :cond_3
+    :cond_39
     const-string p0, "All native crash recovery strategies failed"
 
     invoke-static {p1, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3e
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3e} :catch_3f
 
     return v0
 
-    :catch_0
+    :catch_3f
     move-exception p0
 
     .line 222
@@ -204,7 +204,7 @@
 .end method
 
 .method public static clearCache()V
-    .locals 2
+    .registers 2
 
     .line 455
     sget-object v0, Lio/vanta/utils/NativeCrashPrevention;->sPreventionCache:Ljava/util/Map;
@@ -222,12 +222,12 @@
 .end method
 
 .method private static clearClassCaches()V
-    .locals 4
+    .registers 4
 
     .line 279
     const-string v0, "NativeCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-class v1, Lio/vanta/fake/service/ClassLoaderProxy;
 
     .line 280
@@ -249,12 +249,12 @@
     const-string v1, "Class caches cleared"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_16} :catch_17
 
     return-void
 
-    :catch_0
+    :catch_17
     move-exception v1
 
     .line 293
@@ -282,14 +282,14 @@
 .end method
 
 .method private static clearCorruptedSystemProperties()V
-    .locals 7
+    .registers 7
 
     .line 335
     const-string v0, "NativeCrashPrevention"
 
     const/4 v1, 0x3
 
-    :try_start_0
+    :try_start_3
     new-array v2, v1, [Ljava/lang/String;
 
     const-string v3, "webview.data.dir"
@@ -310,21 +310,21 @@
 
     aput-object v3, v2, v5
 
-    :goto_0
-    if-ge v4, v1, :cond_1
+    :goto_14
+    if-ge v4, v1, :cond_59
 
     .line 341
     aget-object v3, v2, v4
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_18
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_18} :catch_42
 
     .line 343
-    :try_start_1
+    :try_start_18
     invoke-static {v3}, Ljava/lang/System;->getProperty(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v5
 
-    if-eqz v5, :cond_0
+    if-eqz v5, :cond_3f
 
     .line 344
     const-string v6, "corrupted"
@@ -333,7 +333,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_0
+    if-eqz v5, :cond_3f
 
     .line 345
     invoke-static {v3}, Ljava/lang/System;->clearProperty(Ljava/lang/String;)Ljava/lang/String;
@@ -358,16 +358,16 @@
     move-result-object v3
 
     invoke-static {v0, v3}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_3f
+    .catch Ljava/lang/Exception; {:try_start_18 .. :try_end_3f} :catch_3f
 
-    :catch_0
-    :cond_0
+    :catch_3f
+    :cond_3f
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_14
 
-    :catch_1
+    :catch_42
     move-exception v1
 
     .line 353
@@ -391,17 +391,17 @@
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
+    :cond_59
     return-void
 .end method
 
 .method private static clearNativeCaches()Z
-    .locals 4
+    .registers 4
 
     .line 244
     const-string v0, "NativeCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     invoke-static {}, Ljava/lang/System;->gc()V
 
     .line 247
@@ -414,14 +414,14 @@
     const-string v1, "Native caches cleared"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_10
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_10} :catch_12
 
     const/4 v0, 0x1
 
     return v0
 
-    :catch_0
+    :catch_12
     move-exception v1
 
     .line 256
@@ -451,31 +451,31 @@
 .end method
 
 .method private static clearReflectionCaches()V
-    .locals 4
+    .registers 4
 
     .line 265
     const-string v0, "NativeCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "java.lang.reflect.ReflectionFactory"
 
     invoke-static {v1}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 268
     const-string v1, "Reflection caches cleared"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_f
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_f} :catch_10
 
-    :cond_0
+    :cond_f
     return-void
 
-    :catch_0
+    :catch_10
     move-exception v1
 
     .line 271
@@ -503,12 +503,12 @@
 .end method
 
 .method private static getOriginalExceptionHandler()Ljava/lang/Thread$UncaughtExceptionHandler;
-    .locals 4
+    .registers 4
 
     const/4 v0, 0x0
 
     .line 444
-    :try_start_0
+    :try_start_1
     const-class v1, Ljava/lang/Thread;
 
     const-string v2, "defaultUncaughtExceptionHandler"
@@ -528,12 +528,12 @@
     move-result-object v1
 
     check-cast v1, Ljava/lang/Thread$UncaughtExceptionHandler;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_13
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_13} :catch_14
 
     return-object v1
 
-    :catch_0
+    :catch_14
     move-exception v1
 
     .line 448
@@ -563,7 +563,7 @@
 .end method
 
 .method public static getPreventionStats()Ljava/lang/String;
-    .locals 4
+    .registers 4
 
     .line 464
     sget-object v0, Lio/vanta/utils/NativeCrashPrevention;->sPreventionCache:Ljava/util/Map;
@@ -580,12 +580,12 @@
 
     move v2, v1
 
-    :goto_0
+    :goto_c
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_22
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -596,19 +596,19 @@
     .line 465
     iget-boolean v3, v3, Lio/vanta/utils/NativeCrashPrevention$PreventionResult;->success:Z
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_1f
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_c
 
-    :cond_0
+    :cond_1f
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_c
 
     .line 472
-    :cond_1
+    :cond_22
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v3, "Native Prevention Stats - Successful: "
@@ -654,7 +654,7 @@
 .end method
 
 .method public static getStatus()Ljava/lang/String;
-    .locals 3
+    .registers 3
 
     .line 478
     new-instance v0, Ljava/lang/StringBuilder;
@@ -734,7 +734,7 @@
 .end method
 
 .method private static handleNativeCrash(Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    .locals 5
+    .registers 7
 
     .line 111
     const-string v0, "NativeCrashPrevention"
@@ -743,7 +743,7 @@
     const-string v1, "Native crash detected in thread: "
 
     .line 111
-    :try_start_0
+    :try_start_4
     invoke-virtual {p0}, Ljava/lang/Thread;->getName()Ljava/lang/String;
 
     move-result-object v2
@@ -783,7 +783,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_42
 
     .line 118
     const-string v1, "Native crash confirmed, attempting recovery"
@@ -795,7 +795,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_3d
 
     .line 124
     const-string p0, "Successfully recovered from native crash"
@@ -805,28 +805,28 @@
     return-void
 
     .line 127
-    :cond_0
+    :cond_3d
     const-string v1, "Failed to recover from native crash"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 132
-    :cond_1
+    :cond_42
     invoke-static {}, Lio/vanta/utils/NativeCrashPrevention;->getOriginalExceptionHandler()Ljava/lang/Thread$UncaughtExceptionHandler;
 
     move-result-object v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_4b
 
     .line 134
     invoke-interface {v1, p0, p1}, Ljava/lang/Thread$UncaughtExceptionHandler;->uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4b
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4b} :catch_4c
 
-    :cond_2
+    :cond_4b
     return-void
 
-    :catch_0
+    :catch_4c
     move-exception p0
 
     .line 138
@@ -854,20 +854,20 @@
 .end method
 
 .method public static initialize()V
-    .locals 4
+    .registers 4
 
     .line 61
     const-string v0, "NativeCrashPrevention"
 
     sget-boolean v1, Lio/vanta/utils/NativeCrashPrevention;->sIsInitialized:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_7
 
     return-void
 
     .line 66
-    :cond_0
-    :try_start_0
+    :cond_7
+    :try_start_7
     const-string v1, "Initializing native crash prevention..."
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -893,12 +893,12 @@
     const-string v1, "Native crash prevention initialized successfully"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_20
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_20} :catch_21
 
     return-void
 
-    :catch_0
+    :catch_21
     move-exception v1
 
     .line 84
@@ -926,24 +926,24 @@
 .end method
 
 .method private static installMemoryProtection()V
-    .locals 4
+    .registers 4
 
     .line 383
     const-string v0, "NativeCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Installing memory protection"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 386
     invoke-static {}, Lio/vanta/utils/NativeCrashPrevention;->setupMemoryMonitoring()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_a} :catch_b
 
     return-void
 
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 389
@@ -971,24 +971,24 @@
 .end method
 
 .method private static installNativeLibraryMonitoring()V
-    .locals 4
+    .registers 4
 
     .line 360
     const-string v0, "NativeCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Installing native library monitoring"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 363
     invoke-static {}, Lio/vanta/utils/NativeCrashPrevention;->monitorNativeLibraryLoading()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_a} :catch_b
 
     return-void
 
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 366
@@ -1016,12 +1016,12 @@
 .end method
 
 .method private static installSignalHandlers()V
-    .locals 4
+    .registers 4
 
     .line 93
     const-string v0, "NativeCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Signal handlers prepared (requires native implementation)"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -1032,12 +1032,12 @@
     invoke-direct {v1}, Lio/vanta/utils/NativeCrashPrevention$1;-><init>()V
 
     invoke-static {v1}, Ljava/lang/Thread;->setDefaultUncaughtExceptionHandler(Ljava/lang/Thread$UncaughtExceptionHandler;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_f
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_f} :catch_10
 
     return-void
 
-    :catch_0
+    :catch_10
     move-exception v1
 
     .line 104
@@ -1065,24 +1065,24 @@
 .end method
 
 .method private static installThreadProtection()V
-    .locals 4
+    .registers 4
 
     .line 413
     const-string v0, "NativeCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Installing thread protection"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 416
     invoke-static {}, Lio/vanta/utils/NativeCrashPrevention;->setupThreadMonitoring()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_a} :catch_b
 
     return-void
 
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 419
@@ -1110,25 +1110,25 @@
 .end method
 
 .method private static isNativeCrash(Ljava/lang/Throwable;)Z
-    .locals 9
+    .registers 10
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return v0
 
     .line 146
-    :cond_0
+    :cond_4
     invoke-virtual {p0}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
 
     move-result-object v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_b
 
     return v0
 
-    :cond_1
+    :cond_b
     const/16 v2, 0xa
 
     .line 150
@@ -1194,8 +1194,8 @@
 
     move v4, v0
 
-    :goto_0
-    if-ge v4, v2, :cond_3
+    :goto_43
+    if-ge v4, v2, :cond_51
 
     .line 163
     aget-object v7, v3, v4
@@ -1205,30 +1205,30 @@
 
     move-result v7
 
-    if-eqz v7, :cond_2
+    if-eqz v7, :cond_4e
 
     return v5
 
-    :cond_2
+    :cond_4e
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_43
 
     .line 170
-    :cond_3
+    :cond_51
     invoke-virtual {p0}, Ljava/lang/Throwable;->getStackTrace()[Ljava/lang/StackTraceElement;
 
     move-result-object p0
 
-    if-eqz p0, :cond_7
+    if-eqz p0, :cond_82
 
     .line 172
     array-length v1, p0
 
     move v2, v0
 
-    :goto_1
-    if-ge v2, v1, :cond_7
+    :goto_59
+    if-ge v2, v1, :cond_82
 
     aget-object v3, p0, v2
 
@@ -1245,60 +1245,60 @@
     .line 176
     const-string v7, "native"
 
-    if-eqz v4, :cond_5
+    if-eqz v4, :cond_76
 
     invoke-virtual {v4, v6}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v8
 
-    if-nez v8, :cond_4
+    if-nez v8, :cond_75
 
     invoke-virtual {v4, v7}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_5
+    if-eqz v4, :cond_76
 
-    :cond_4
+    :cond_75
     return v5
 
-    :cond_5
-    if-eqz v3, :cond_6
+    :cond_76
+    if-eqz v3, :cond_7f
 
     .line 180
     invoke-virtual {v3, v7}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_7f
 
     return v5
 
-    :cond_6
+    :cond_7f
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_1
+    goto :goto_59
 
-    :cond_7
+    :cond_82
     return v0
 .end method
 
 .method private static monitorNativeLibraryLoading()V
-    .locals 4
+    .registers 4
 
     .line 374
     const-string v0, "NativeCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Native library monitoring prepared"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_7} :catch_8
 
     return-void
 
-    :catch_0
+    :catch_8
     move-exception v1
 
     .line 376
@@ -1326,22 +1326,22 @@
 .end method
 
 .method private static performMemoryCleanup()Z
-    .locals 6
+    .registers 6
 
     const/4 v0, 0x0
 
     move v1, v0
 
-    :goto_0
+    :goto_2
     const/4 v2, 0x3
 
     .line 314
     const-string v3, "NativeCrashPrevention"
 
-    if-ge v1, v2, :cond_0
+    if-ge v1, v2, :cond_12
 
     .line 315
-    :try_start_0
+    :try_start_7
     invoke-static {}, Ljava/lang/System;->gc()V
 
     const-wide/16 v4, 0x64
@@ -1351,24 +1351,24 @@
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_2
 
     .line 320
-    :cond_0
+    :cond_12
     invoke-static {}, Lio/vanta/utils/NativeCrashPrevention;->clearCorruptedSystemProperties()V
 
     .line 322
     const-string v1, "Memory cleanup completed"
 
     invoke-static {v3, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1a
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_1a} :catch_1c
 
     const/4 v0, 0x1
 
     return v0
 
-    :catch_0
+    :catch_1c
     move-exception v1
 
     .line 326
@@ -1396,23 +1396,23 @@
 .end method
 
 .method private static reinitializeNativeLibraries()Z
-    .locals 5
+    .registers 5
 
     .line 302
     const-string v0, "NativeCrashPrevention"
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_3
     const-string v2, "Native library reinitialization prepared"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_8
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_8} :catch_9
 
     return v1
 
-    :catch_0
+    :catch_9
     move-exception v2
 
     .line 305
@@ -1440,7 +1440,7 @@
 .end method
 
 .method private static restartCrashedThread(Ljava/lang/Thread;)Z
-    .locals 4
+    .registers 5
 
     .line 232
     const-string v0, "NativeCrashPrevention"
@@ -1451,7 +1451,7 @@
     const/4 v2, 0x0
 
     .line 232
-    :try_start_0
+    :try_start_5
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -1469,12 +1469,12 @@
     move-result-object p0
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_19
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_19} :catch_1a
 
     return v2
 
-    :catch_0
+    :catch_1a
     move-exception p0
 
     .line 235
@@ -1502,14 +1502,14 @@
 .end method
 
 .method private static setupMemoryMonitoring()V
-    .locals 9
+    .registers 9
 
     .line 397
     const-string v0, "NativeCrashPrevention"
 
     const-string v1, "Memory monitoring setup - Max: "
 
-    :try_start_0
+    :try_start_4
     invoke-static {}, Ljava/lang/Runtime;->getRuntime()Ljava/lang/Runtime;
 
     move-result-object v2
@@ -1563,12 +1563,12 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_38
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_38} :catch_39
 
     return-void
 
-    :catch_0
+    :catch_39
     move-exception v1
 
     .line 406
@@ -1596,12 +1596,12 @@
 .end method
 
 .method private static setupThreadMonitoring()V
-    .locals 4
+    .registers 4
 
     .line 427
     const-string v0, "NativeCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
     move-result-object v1
@@ -1611,22 +1611,22 @@
     move-result-object v1
 
     .line 428
-    :goto_0
+    :goto_a
     invoke-virtual {v1}, Ljava/lang/ThreadGroup;->getParent()Ljava/lang/ThreadGroup;
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_15
 
     .line 429
     invoke-virtual {v1}, Ljava/lang/ThreadGroup;->getParent()Ljava/lang/ThreadGroup;
 
     move-result-object v1
 
-    goto :goto_0
+    goto :goto_a
 
     .line 432
-    :cond_0
+    :cond_15
     invoke-virtual {v1}, Ljava/lang/ThreadGroup;->activeCount()I
 
     move-result v1
@@ -1651,12 +1651,12 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2f
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2f} :catch_30
 
     return-void
 
-    :catch_0
+    :catch_30
     move-exception v1
 
     .line 436

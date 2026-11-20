@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 123
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -50,7 +50,7 @@
 
     move-result-object v1
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_20
 
     const/4 v0, 0x1
 
@@ -59,7 +59,7 @@
 
     instance-of v2, v0, Landroid/os/IInterface;
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_20
 
     .line 129
     check-cast v0, Landroid/os/IInterface;
@@ -78,17 +78,17 @@
     return-object v1
 
     .line 137
-    :cond_0
-    :try_start_0
+    :cond_20
+    :try_start_20
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_24
+    .catch Ljava/lang/Exception; {:try_start_20 .. :try_end_24} :catch_25
 
     return-object p1
 
-    :catch_0
+    :catch_25
     move-exception p1
 
     .line 139
@@ -98,7 +98,7 @@
 
     instance-of p2, p2, Ljava/lang/SecurityException;
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_36
 
     .line 140
     const-string p1, "ILocationManagerProxy"
@@ -110,6 +110,6 @@
     return-object v1
 
     .line 143
-    :cond_1
+    :cond_36
     throw p1
 .end method

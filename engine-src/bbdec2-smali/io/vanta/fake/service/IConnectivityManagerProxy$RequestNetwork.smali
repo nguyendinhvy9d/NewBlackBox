@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 519
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,7 +29,7 @@
 .end method
 
 .method private createMockNetworkRequestResult()Ljava/lang/Object;
-    .locals 5
+    .registers 6
 
     .line 545
     const-string v0, "IConnectivityManagerProxy"
@@ -37,25 +37,25 @@
     const/4 v1, 0x0
 
     .line 547
-    :try_start_0
+    :try_start_3
     const-string v2, "android.net.NetworkRequest"
 
     invoke-static {v2}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_28
 
     .line 549
     const-string v2, "Created fallback NetworkRequest for internet access"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_10
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_10} :catch_11
 
     return-object v1
 
-    :catch_0
+    :catch_11
     move-exception v2
 
     .line 554
@@ -79,14 +79,14 @@
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_28
     return-object v1
 .end method
 
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -101,12 +101,12 @@
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 525
-    :try_start_0
+    :try_start_7
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_13
 
     .line 527
     const-string p2, "requestNetwork succeeded via original method"
@@ -116,7 +116,7 @@
     return-object p1
 
     .line 532
-    :cond_0
+    :cond_13
     const-string p1, "requestNetwork failed, creating fallback result"
 
     invoke-static {v1, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -125,12 +125,12 @@
     invoke-direct {p0}, Lio/vanta/fake/service/IConnectivityManagerProxy$RequestNetwork;->createMockNetworkRequestResult()Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1c
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_1c} :catch_1d
 
     return-object p1
 
-    :catch_0
+    :catch_1d
     move-exception p1
 
     .line 536

@@ -46,6 +46,7 @@
         Lio/vanta/fake/service/IActivityManagerProxy$StopService;,
         Lio/vanta/fake/service/IActivityManagerProxy$StartService;,
         Lio/vanta/fake/service/IActivityManagerProxy$GetContentProvider;,
+        Lio/vanta/fake/service/IActivityManagerProxy$RefContentProvider;,
         Lio/vanta/fake/service/IActivityManagerProxy$GetUidProcessCapabilities;,
         Lio/vanta/fake/service/IActivityManagerProxy$GetPackageProcessState;,
         Lio/vanta/fake/service/IActivityManagerProxy$GetUidProcessState;
@@ -65,7 +66,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 69
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
@@ -74,7 +75,7 @@
 .end method
 
 .method public static BindServiceCommon(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;I)Ljava/lang/Object;
-    .locals 22
+    .registers 26
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -100,7 +101,7 @@
     const/4 v7, 0x2
 
     .line 538
-    :try_start_0
+    :try_start_f
     aget-object v8, v3, v7
 
     check-cast v8, Landroid/content/Intent;
@@ -119,7 +120,7 @@
 
     check-cast v11, Landroid/app/IServiceConnection;
 
-    if-nez v8, :cond_0
+    if-nez v8, :cond_29
 
     .line 544
     const-string v0, "BindServiceCommon: Intent is null, proceeding with original call"
@@ -130,19 +131,19 @@
     invoke-virtual {v2, v1, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_7
+    :try_end_28
+    .catch Ljava/lang/Exception; {:try_start_f .. :try_end_28} :catch_29c
 
     return-object v0
 
     .line 550
-    :cond_0
-    :try_start_1
+    :cond_29
+    :try_start_29
     invoke-virtual {v8}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v12
 
-    if-eqz v12, :cond_1
+    if-eqz v12, :cond_42
 
     invoke-virtual {v8}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
@@ -160,25 +161,25 @@
 
     move-result v12
 
-    if-eqz v12, :cond_1
+    if-eqz v12, :cond_42
 
-    goto :goto_0
+    goto :goto_4a
 
     .line 552
-    :cond_1
+    :cond_42
     const-string v12, "_B_|_target_"
 
     invoke-virtual {v8, v12}, Landroid/content/Intent;->hasExtra(Ljava/lang/String;)Z
 
     move-result v12
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_48
+    .catchall {:try_start_29 .. :try_end_48} :catchall_4f
 
-    if-eqz v12, :cond_2
+    if-eqz v12, :cond_4f
 
     .line 558
-    :goto_0
-    :try_start_2
+    :goto_4a
+    :try_start_4a
     invoke-virtual {v2, v1, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
@@ -186,8 +187,8 @@
     return-object v0
 
     .line 563
-    :catchall_0
-    :cond_2
+    :catchall_4f
+    :cond_4f
     const-string v12, "_B_|_UserId"
 
     const/4 v13, -0x1
@@ -196,7 +197,7 @@
 
     move-result v12
 
-    if-ne v12, v13, :cond_3
+    if-ne v12, v13, :cond_5c
 
     .line 564
     invoke-static {}, Lio/vanta/app/BActivityThread;->getUserId()I
@@ -204,10 +205,12 @@
     move-result v12
 
     .line 566
-    :cond_3
+    :cond_5c
     invoke-static {}, Lio/vanta/app/BActivityThread;->getAppPackageName()Ljava/lang/String;
 
     move-result-object v13
+
+    invoke-static {v8}, Lio/vanta/fake/service/GmsCallerFix;->fixGmsComponentPkg(Landroid/content/Intent;)V
 
     .line 567
     invoke-virtual {v8}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
@@ -232,12 +235,12 @@
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v10
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_7
+    :try_end_77
+    .catch Ljava/lang/Exception; {:try_start_4a .. :try_end_77} :catch_29c
 
     const/4 v1, 0x0
 
-    :try_start_3
+    :try_start_78
     invoke-virtual {v10, v8, v1, v9, v12}, Lio/vanta/fake/frameworks/BPackageManager;->resolveService(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
 
     move-result-object v10
@@ -253,14 +256,14 @@
 
     const/16 v19, 0x1
 
-    if-nez v18, :cond_5
+    if-nez v18, :cond_9c
 
     .line 575
     invoke-virtual {v8}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
     move-result-object v18
 
-    if-eqz v18, :cond_4
+    if-eqz v18, :cond_99
 
     invoke-virtual {v8}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
@@ -269,35 +272,35 @@
     invoke-static/range {v18 .. v18}, Lio/vanta/core/env/AppSystemEnv;->isOpenPackage(Ljava/lang/String;)Z
 
     move-result v18
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_6
+    :try_end_96
+    .catch Ljava/lang/Exception; {:try_start_78 .. :try_end_96} :catch_298
 
-    if-eqz v18, :cond_4
+    if-eqz v18, :cond_99
 
-    goto :goto_1
+    goto :goto_9c
 
-    :cond_4
+    :cond_99
     move/from16 v18, v1
 
-    goto :goto_2
+    goto :goto_9e
 
-    :cond_5
-    :goto_1
+    :cond_9c
+    :goto_9c
     move/from16 v18, v19
 
-    :goto_2
-    if-nez v10, :cond_7
+    :goto_9e
+    if-nez v10, :cond_d9
 
-    if-nez v18, :cond_7
+    if-nez v18, :cond_d9
 
-    if-nez v7, :cond_7
+    if-nez v7, :cond_d9
 
-    if-eqz v15, :cond_7
+    if-eqz v15, :cond_d9
 
-    if-eqz v13, :cond_7
+    if-eqz v13, :cond_d9
 
     .line 580
-    :try_start_4
+    :try_start_a8
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
 
     move-result-object v1
@@ -306,7 +309,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_7
+    if-nez v1, :cond_d9
 
     .line 581
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -317,7 +320,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_d9
 
     .line 582
     new-instance v1, Landroid/content/Intent;
@@ -340,7 +343,7 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_6
+    if-eqz v1, :cond_d7
 
     .line 588
     invoke-virtual {v8, v13}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
@@ -349,28 +352,28 @@
 
     move-object v1, v13
 
-    goto :goto_4
+    goto :goto_de
 
-    :cond_6
+    :cond_d7
     move-object v1, v13
 
-    goto :goto_3
+    goto :goto_dc
 
-    :cond_7
+    :cond_d9
     move-object/from16 v21, v10
 
     move-object v1, v14
 
-    :goto_3
+    :goto_dc
     move-object/from16 v10, v21
 
     .line 592
-    :goto_4
+    :goto_de
     const-string v2, "BindServiceHook"
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_5
+    :try_end_e0
+    .catch Ljava/lang/Exception; {:try_start_a8 .. :try_end_e0} :catch_292
 
-    :try_start_5
+    :try_start_e0
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3, v6}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -445,22 +448,22 @@
 
     move-result-object v1
 
-    if-nez v10, :cond_9
+    if-nez v10, :cond_132
 
-    if-eqz v18, :cond_8
+    if-eqz v18, :cond_130
 
-    goto :goto_5
+    goto :goto_132
 
-    :cond_8
+    :cond_130
     const/4 v3, 0x0
 
-    goto :goto_6
+    goto :goto_134
 
-    :cond_9
-    :goto_5
+    :cond_132
+    :goto_132
     move/from16 v3, v19
 
-    :goto_6
+    :goto_134
     invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
     move-result-object v1
@@ -470,15 +473,15 @@
     move-result-object v1
 
     invoke-static {v2, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_5
-    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_5} :catch_4
+    :try_end_13f
+    .catch Ljava/lang/Exception; {:try_start_e0 .. :try_end_13f} :catch_28a
 
-    if-nez v10, :cond_e
+    if-nez v10, :cond_1af
 
-    if-nez v18, :cond_e
+    if-nez v18, :cond_1af
 
     .line 604
-    :try_start_6
+    :try_start_143
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -493,12 +496,12 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_c
+    if-eqz v1, :cond_1ab
 
     .line 605
     iget-object v2, v1, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
 
-    if-eqz v2, :cond_c
+    if-eqz v2, :cond_1ab
 
     .line 606
     new-instance v2, Landroid/content/ComponentName;
@@ -521,29 +524,29 @@
     invoke-static {v3}, Lio/vanta/core/env/AppSystemEnv;->isOpenPackage(Ljava/lang/String;)Z
 
     move-result v3
-    :try_end_6
-    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_2
+    :try_end_16b
+    .catch Ljava/lang/Exception; {:try_start_143 .. :try_end_16b} :catch_1ab
 
-    if-eqz v3, :cond_a
+    if-eqz v3, :cond_177
 
     .line 609
-    :try_start_7
+    :try_start_16d
     invoke-virtual {v8}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v1
 
-    if-nez v1, :cond_d
+    if-nez v1, :cond_1ad
 
     .line 610
     invoke-virtual {v8, v2}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
-    :try_end_7
-    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_7} :catch_3
+    :try_end_176
+    .catch Ljava/lang/Exception; {:try_start_16d .. :try_end_176} :catch_1ad
 
-    goto :goto_8
+    goto :goto_1ad
 
     .line 612
-    :cond_a
-    :try_start_8
+    :cond_177
+    :try_start_177
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v3
@@ -556,7 +559,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_c
+    if-eqz v1, :cond_1ab
 
     .line 613
     invoke-virtual {v8, v2}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
@@ -571,13 +574,13 @@
     invoke-virtual {v1, v8, v3, v9, v12}, Lio/vanta/fake/frameworks/BPackageManager;->resolveService(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
 
     move-result-object v1
-    :try_end_8
-    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_8} :catch_2
+    :try_end_191
+    .catch Ljava/lang/Exception; {:try_start_177 .. :try_end_191} :catch_1ab
 
-    if-nez v1, :cond_b
+    if-nez v1, :cond_1aa
 
     .line 616
-    :try_start_9
+    :try_start_193
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v6
@@ -586,106 +589,63 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_b
+    if-eqz v2, :cond_1aa
 
     .line 618
     new-instance v3, Landroid/content/pm/ResolveInfo;
 
     invoke-direct {v3}, Landroid/content/pm/ResolveInfo;-><init>()V
-    :try_end_9
-    .catch Ljava/lang/Exception; {:try_start_9 .. :try_end_9} :catch_1
+    :try_end_1a2
+    .catch Ljava/lang/Exception; {:try_start_193 .. :try_end_1a2} :catch_1a8
 
     .line 619
-    :try_start_a
+    :try_start_1a2
     iput-object v2, v3, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
-    :try_end_a
-    .catch Ljava/lang/Exception; {:try_start_a .. :try_end_a} :catch_0
+    :try_end_1a4
+    .catch Ljava/lang/Exception; {:try_start_1a2 .. :try_end_1a4} :catch_1a6
 
     move-object v10, v3
 
-    goto :goto_7
+    goto :goto_1ab
 
-    :catch_0
+    :catch_1a6
     move-object v10, v3
 
-    goto :goto_7
+    goto :goto_1ab
 
-    :catch_1
+    :catch_1a8
     move-object v10, v1
 
-    goto :goto_7
+    goto :goto_1ab
 
-    :cond_b
+    :cond_1aa
     move-object v10, v1
 
-    :catch_2
-    :cond_c
-    :goto_7
+    :catch_1ab
+    :cond_1ab
+    :goto_1ab
     move/from16 v19, v18
 
-    :catch_3
-    :cond_d
-    :goto_8
+    :catch_1ad
+    :cond_1ad
+    :goto_1ad
     move/from16 v18, v19
 
-    :cond_e
-    if-nez v10, :cond_f
+    :cond_1af
+    if-nez v10, :cond_1b7
 
-    if-nez v18, :cond_f
+    if-nez v18, :cond_1b7
 
     .line 628
-    :try_start_b
-    invoke-virtual {v8}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
+    :try_start_1b3
+    invoke-static {v8, v12}, Lio/vanta/fake/service/GmsCallerFix;->gmsFallbackService(Landroid/content/Intent;I)Landroid/content/pm/ResolveInfo;
 
-    move-result-object v1
+    move-result-object v10
 
-    if-eqz v1, :cond_f
+    :cond_1b7
+    if-nez v10, :cond_1ff
 
-    invoke-virtual {v8}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v1
-
-    if-eqz v1, :cond_f
-
-    .line 629
-    new-instance v1, Landroid/content/ComponentName;
-
-    const-string v2, "com.google.android.gms.chimera.PersistentApiService"
-
-    invoke-direct {v1, v0, v2}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 630
-    invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
-
-    move-result-object v0
-
-    const/4 v2, 0x0
-
-    invoke-virtual {v0, v1, v2, v12}, Lio/vanta/fake/frameworks/BPackageManager;->getServiceInfo(Landroid/content/ComponentName;II)Landroid/content/pm/ServiceInfo;
-
-    move-result-object v0
-
-    if-eqz v0, :cond_f
-
-    .line 632
-    invoke-virtual {v8, v1}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
-
-    .line 633
-    new-instance v10, Landroid/content/pm/ResolveInfo;
-
-    invoke-direct {v10}, Landroid/content/pm/ResolveInfo;-><init>()V
-
-    .line 634
-    iput-object v0, v10, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
-
-    :cond_f
-    if-nez v10, :cond_14
-
-    if-nez v18, :cond_14
+    if-nez v18, :cond_1ff
 
     .line 639
     new-instance v0, Ljava/lang/StringBuilder;
@@ -696,20 +656,20 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_10
+    if-eqz v1, :cond_1cb
 
     invoke-virtual {v8}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v1
 
-    goto :goto_9
+    goto :goto_1cf
 
-    :cond_10
+    :cond_1cb
     invoke-virtual {v8}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
     move-result-object v1
 
-    :goto_9
+    :goto_1cf
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
     move-result-object v0
@@ -734,25 +694,25 @@
     .line 642
     sget-object v1, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
 
-    if-eq v0, v1, :cond_13
+    if-eq v0, v1, :cond_1fc
 
     const-class v1, Ljava/lang/Boolean;
 
-    if-ne v0, v1, :cond_11
+    if-ne v0, v1, :cond_1ed
 
-    goto :goto_a
+    goto :goto_1fc
 
     .line 644
-    :cond_11
+    :cond_1ed
     sget-object v1, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
 
-    if-eq v0, v1, :cond_12
+    if-eq v0, v1, :cond_1f5
 
     const-class v1, Ljava/lang/Integer;
 
-    if-ne v0, v1, :cond_14
+    if-ne v0, v1, :cond_1ff
 
-    :cond_12
+    :cond_1f5
     const/16 v20, 0x0
 
     .line 645
@@ -763,67 +723,67 @@
     return-object v0
 
     .line 643
-    :cond_13
-    :goto_a
+    :cond_1fc
+    :goto_1fc
     sget-object v0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
 
     return-object v0
 
-    :cond_14
-    if-nez v10, :cond_16
+    :cond_1ff
+    if-nez v10, :cond_20c
 
-    if-eqz v18, :cond_15
+    if-eqz v18, :cond_204
 
-    goto :goto_b
+    goto :goto_20c
 
-    :cond_15
+    :cond_204
     move-object/from16 v1, p0
 
     move-object/from16 v2, p1
 
     move-object/from16 v3, p2
 
-    goto/16 :goto_d
+    goto/16 :goto_285
 
     .line 650
-    :cond_16
-    :goto_b
+    :cond_20c
+    :goto_20c
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
     move-result-object v0
 
-    if-nez v11, :cond_17
+    if-nez v11, :cond_214
 
     const/4 v1, 0x0
 
-    goto :goto_c
+    goto :goto_218
 
     .line 651
-    :cond_17
+    :cond_214
     invoke-interface {v11}, Landroid/app/IServiceConnection;->asBinder()Landroid/os/IBinder;
 
     move-result-object v1
 
     .line 650
-    :goto_c
+    :goto_218
     invoke-virtual {v0, v8, v1, v9, v12}, Lio/vanta/fake/frameworks/BActivityManager;->bindService(Landroid/content/Intent;Landroid/os/IBinder;Ljava/lang/String;I)Landroid/content/Intent;
 
     move-result-object v0
 
-    if-eqz v11, :cond_19
+    if-eqz v11, :cond_240
 
     .line 655
     invoke-virtual {v8}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v1
 
-    if-nez v1, :cond_18
+    if-nez v1, :cond_23a
 
-    if-eqz v10, :cond_18
+    if-eqz v10, :cond_23a
 
     iget-object v1, v10, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
 
-    if-eqz v1, :cond_18
+    if-eqz v1, :cond_23a
 
     .line 656
     new-instance v1, Landroid/content/ComponentName;
@@ -841,7 +801,7 @@
     invoke-virtual {v8, v1}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
     .line 658
-    :cond_18
+    :cond_23a
     invoke-static {v11, v8}, Lio/vanta/fake/delegate/ServiceConnectionDelegate;->createProxy(Landroid/app/IServiceConnection;Landroid/content/Intent;)Landroid/app/IServiceConnection;
 
     move-result-object v1
@@ -849,15 +809,15 @@
     .line 659
     aput-object v1, p2, v17
 
-    :cond_19
-    if-eqz v0, :cond_1a
+    :cond_240
+    if-eqz v0, :cond_270
 
     .line 663
     invoke-virtual {v0}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v1
 
-    if-eqz v1, :cond_1a
+    if-eqz v1, :cond_270
 
     .line 664
     invoke-virtual {v0}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
@@ -876,14 +836,14 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1a
+    if-eqz v1, :cond_270
 
     .line 665
     invoke-static/range {p2 .. p2}, Lio/vanta/fake/service/IActivityManagerProxy;->getFlagsIndex([Ljava/lang/Object;)I
 
     move-result v1
 
-    if-ltz v1, :cond_1a
+    if-ltz v1, :cond_270
 
     .line 667
     aget-object v2, p2, v1
@@ -904,19 +864,19 @@
     aput-object v2, p2, v1
 
     .line 672
-    :cond_1a
+    :cond_270
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
 
     move-result-object v1
 
     aput-object v1, p2, p3
 
-    if-eqz v0, :cond_15
+    if-eqz v0, :cond_204
 
     .line 675
     aput-object v0, p2, v16
-    :try_end_b
-    .catch Ljava/lang/Exception; {:try_start_b .. :try_end_b} :catch_4
+    :try_end_27a
+    .catch Ljava/lang/Exception; {:try_start_1b3 .. :try_end_27a} :catch_28a
 
     move-object/from16 v1, p0
 
@@ -925,7 +885,7 @@
     move-object/from16 v3, p2
 
     .line 676
-    :try_start_c
+    :try_start_280
     invoke-virtual {v2, v1, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
@@ -933,16 +893,16 @@
     return-object v0
 
     .line 679
-    :goto_d
+    :goto_285
     invoke-virtual {v2, v1, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_c
-    .catch Ljava/lang/Exception; {:try_start_c .. :try_end_c} :catch_7
+    :try_end_289
+    .catch Ljava/lang/Exception; {:try_start_280 .. :try_end_289} :catch_29c
 
     return-object v0
 
-    :catch_4
+    :catch_28a
     move-exception v0
 
     move-object/from16 v1, p0
@@ -951,29 +911,29 @@
 
     move-object/from16 v3, p2
 
-    goto :goto_e
+    goto :goto_29d
 
-    :catch_5
+    :catch_292
     move-exception v0
 
     move-object/from16 v1, p0
 
     move-object/from16 v2, p1
 
-    goto :goto_e
+    goto :goto_29d
 
-    :catch_6
+    :catch_298
     move-exception v0
 
     move-object/from16 v1, p0
 
-    goto :goto_e
+    goto :goto_29d
 
-    :catch_7
+    :catch_29c
     move-exception v0
 
     .line 681
-    :goto_e
+    :goto_29d
     const-string v5, "BindServiceCommon: Unexpected error"
 
     invoke-static {v4, v5, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
@@ -987,15 +947,15 @@
 .end method
 
 .method private static getFlagsIndex([Ljava/lang/Object;)I
-    .locals 3
+    .registers 4
 
     const/4 v0, 0x5
 
     .line 688
-    :goto_0
+    :goto_1
     array-length v1, p0
 
-    if-ge v0, v1, :cond_2
+    if-ge v0, v1, :cond_13
 
     .line 689
     aget-object v1, p0, v0
@@ -1003,47 +963,47 @@
     .line 690
     instance-of v2, v1, Ljava/lang/Integer;
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_12
 
     instance-of v1, v1, Ljava/lang/Long;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
+
+    goto :goto_12
+
+    :cond_f
+    add-int/lit8 v0, v0, 0x1
 
     goto :goto_1
 
-    :cond_0
-    add-int/lit8 v0, v0, 0x1
-
-    goto :goto_0
-
-    :cond_1
-    :goto_1
+    :cond_12
+    :goto_12
     return v0
 
-    :cond_2
+    :cond_13
     const/4 p0, -0x1
 
     return p0
 .end method
 
 .method private static isAudioPermission(Ljava/lang/String;)Z
-    .locals 2
+    .registers 3
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return v0
 
     .line 1135
-    :cond_0
+    :cond_4
     const-string v1, "android.permission.RECORD_AUDIO"
 
     invoke-virtual {p0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.CAPTURE_AUDIO_OUTPUT"
 
@@ -1052,7 +1012,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.MODIFY_AUDIO_SETTINGS"
 
@@ -1061,7 +1021,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_MICROPHONE"
 
@@ -1070,7 +1030,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION"
 
@@ -1079,7 +1039,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_CAMERA"
 
@@ -1088,7 +1048,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_LOCATION"
 
@@ -1097,7 +1057,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_HEALTH"
 
@@ -1106,7 +1066,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_DATA_SYNC"
 
@@ -1115,7 +1075,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_SPECIAL_USE"
 
@@ -1124,7 +1084,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED"
 
@@ -1133,7 +1093,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_PHONE_CALL"
 
@@ -1142,7 +1102,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_6e
 
     const-string v1, "android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE"
 
@@ -1151,31 +1111,31 @@
 
     move-result p0
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_6d
 
-    goto :goto_0
+    goto :goto_6e
 
-    :cond_1
+    :cond_6d
     return v0
 
-    :cond_2
-    :goto_0
+    :cond_6e
+    :goto_6e
     const/4 p0, 0x1
 
     return p0
 .end method
 
 .method private static isStorageOrMediaPermission(Ljava/lang/String;)Z
-    .locals 3
+    .registers 4
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return v0
 
     .line 1161
-    :cond_0
+    :cond_4
     const-string v1, "android.permission.READ_EXTERNAL_STORAGE"
 
     invoke-virtual {p0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -1184,7 +1144,7 @@
 
     const/4 v2, 0x1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.WRITE_EXTERNAL_STORAGE"
 
@@ -1193,19 +1153,19 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_16
 
-    goto :goto_0
+    goto :goto_71
 
     .line 1165
-    :cond_1
+    :cond_16
     const-string v1, "android.permission.READ_MEDIA_AUDIO"
 
     invoke-virtual {p0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.READ_MEDIA_VIDEO"
 
@@ -1214,7 +1174,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.READ_MEDIA_IMAGES"
 
@@ -1223,7 +1183,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.READ_MEDIA_VISUAL"
 
@@ -1232,7 +1192,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.READ_MEDIA_AURAL"
 
@@ -1241,7 +1201,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.ACCESS_MEDIA_LOCATION"
 
@@ -1250,19 +1210,19 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_47
 
-    goto :goto_0
+    goto :goto_71
 
     .line 1173
-    :cond_2
+    :cond_47
     const-string v1, "android.permission.READ_MEDIA_AUDIO_USER_SELECTED"
 
     invoke-virtual {p0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.READ_MEDIA_VIDEO_USER_SELECTED"
 
@@ -1271,7 +1231,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.READ_MEDIA_IMAGES_USER_SELECTED"
 
@@ -1280,7 +1240,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.READ_MEDIA_VISUAL_USER_SELECTED"
 
@@ -1289,7 +1249,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_71
 
     const-string v1, "android.permission.READ_MEDIA_AURAL_USER_SELECTED"
 
@@ -1298,29 +1258,29 @@
 
     move-result p0
 
-    if-eqz p0, :cond_3
+    if-eqz p0, :cond_70
 
-    goto :goto_0
+    goto :goto_71
 
-    :cond_3
+    :cond_70
     return v0
 
-    :cond_4
-    :goto_0
+    :cond_71
+    :goto_71
     return v2
 .end method
 
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 75
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     .line 76
     invoke-static {}, Lvanta/android/app/BRActivityManagerOreo;->get()Lvanta/android/app/ActivityManagerOreoStatic;
@@ -1331,15 +1291,15 @@
 
     move-result-object v0
 
-    goto :goto_0
+    goto :goto_1f
 
     .line 77
-    :cond_0
+    :cond_f
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isL()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1e
 
     .line 78
     invoke-static {}, Lvanta/android/app/BRActivityManagerNative;->get()Lvanta/android/app/ActivityManagerNativeStatic;
@@ -1350,13 +1310,13 @@
 
     move-result-object v0
 
-    goto :goto_0
+    goto :goto_1f
 
-    :cond_1
+    :cond_1e
     const/4 v0, 0x0
 
     .line 80
-    :goto_0
+    :goto_1f
     invoke-static {v0}, Lvanta/android/util/BRSingleton;->get(Ljava/lang/Object;)Lvanta/android/util/SingletonContext;
 
     move-result-object v0
@@ -1369,14 +1329,14 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 86
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_f
 
     .line 87
     invoke-static {}, Lvanta/android/app/BRActivityManagerOreo;->get()Lvanta/android/app/ActivityManagerOreoStatic;
@@ -1387,15 +1347,15 @@
 
     move-result-object p1
 
-    goto :goto_0
+    goto :goto_1f
 
     .line 88
-    :cond_0
+    :cond_f
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isL()Z
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_1e
 
     .line 89
     invoke-static {}, Lvanta/android/app/BRActivityManagerNative;->get()Lvanta/android/app/ActivityManagerNativeStatic;
@@ -1406,13 +1366,13 @@
 
     move-result-object p1
 
-    goto :goto_0
+    goto :goto_1f
 
-    :cond_1
+    :cond_1e
     const/4 p1, 0x0
 
     .line 91
-    :goto_0
+    :goto_1f
     invoke-static {p1}, Lvanta/android/util/BRSingleton;->get(Ljava/lang/Object;)Lvanta/android/util/SingletonContext;
 
     move-result-object p1
@@ -1423,7 +1383,7 @@
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 6
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -1451,7 +1411,7 @@
 
     move-result-object v4
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_23
 
     .line 113
     const-string v1, "checkUidPermission"
@@ -1460,7 +1420,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_23
 
     const-string v1, "checkPermissionWithToken"
 
@@ -1468,21 +1428,21 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_49
 
-    :cond_0
-    if-eqz p3, :cond_1
+    :cond_23
+    if-eqz p3, :cond_49
 
     .line 114
     array-length v1, p3
 
-    if-lez v1, :cond_1
+    if-lez v1, :cond_49
 
     aget-object v1, p3, v3
 
     instance-of v5, v1, Ljava/lang/String;
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_49
 
     .line 115
     check-cast v1, Ljava/lang/String;
@@ -1492,7 +1452,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_49
 
     .line 117
     new-instance p1, Ljava/lang/StringBuilder;
@@ -1514,18 +1474,18 @@
     return-object v4
 
     .line 123
-    :cond_1
-    :try_start_0
+    :cond_49
+    :try_start_49
     invoke-super {p0, p1, p2, p3}, Lio/vanta/fake/hook/ClassInvocationStub;->invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4d
+    .catch Ljava/lang/SecurityException; {:try_start_49 .. :try_end_4d} :catch_6a
+    .catch Ljava/lang/Exception; {:try_start_49 .. :try_end_4d} :catch_4e
 
     return-object p1
 
-    :catch_0
+    :catch_4e
     move-exception v0
 
     .line 156
@@ -1556,7 +1516,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_6a
     move-exception p1
 
     .line 125
@@ -1590,100 +1550,100 @@
     .line 127
     sget-object p2, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_18
+    if-eq p1, p2, :cond_14d
 
     const-class p2, Ljava/lang/Integer;
 
-    if-ne p1, p2, :cond_2
+    if-ne p1, p2, :cond_91
 
-    goto/16 :goto_a
+    goto/16 :goto_14d
 
     .line 129
-    :cond_2
+    :cond_91
     sget-object p2, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_17
+    if-eq p1, p2, :cond_14a
 
     const-class p2, Ljava/lang/Boolean;
 
-    if-ne p1, p2, :cond_3
+    if-ne p1, p2, :cond_9b
 
-    goto/16 :goto_9
+    goto/16 :goto_14a
 
     .line 131
-    :cond_3
+    :cond_9b
     sget-object p2, Ljava/lang/Long;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_16
+    if-eq p1, p2, :cond_143
 
     const-class p2, Ljava/lang/Long;
 
-    if-ne p1, p2, :cond_4
+    if-ne p1, p2, :cond_a5
 
-    goto/16 :goto_8
+    goto/16 :goto_143
 
     .line 133
-    :cond_4
+    :cond_a5
     sget-object p2, Ljava/lang/Float;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_15
+    if-eq p1, p2, :cond_13d
 
     const-class p2, Ljava/lang/Float;
 
-    if-ne p1, p2, :cond_5
+    if-ne p1, p2, :cond_af
 
-    goto/16 :goto_7
+    goto/16 :goto_13d
 
     .line 135
-    :cond_5
+    :cond_af
     sget-object p2, Ljava/lang/Double;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_14
+    if-eq p1, p2, :cond_136
 
     const-class p2, Ljava/lang/Double;
 
-    if-ne p1, p2, :cond_6
+    if-ne p1, p2, :cond_b9
 
-    goto/16 :goto_6
+    goto/16 :goto_136
 
     .line 137
-    :cond_6
+    :cond_b9
     sget-object p2, Ljava/lang/Byte;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_13
+    if-eq p1, p2, :cond_131
 
     const-class p2, Ljava/lang/Byte;
 
-    if-ne p1, p2, :cond_7
+    if-ne p1, p2, :cond_c3
 
-    goto/16 :goto_5
+    goto/16 :goto_131
 
     .line 139
-    :cond_7
+    :cond_c3
     sget-object p2, Ljava/lang/Short;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_12
+    if-eq p1, p2, :cond_12c
 
     const-class p2, Ljava/lang/Short;
 
-    if-ne p1, p2, :cond_8
+    if-ne p1, p2, :cond_cc
 
-    goto :goto_4
+    goto :goto_12c
 
     .line 141
-    :cond_8
+    :cond_cc
     sget-object p2, Ljava/lang/Character;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_11
+    if-eq p1, p2, :cond_127
 
     const-class p2, Ljava/lang/Character;
 
-    if-ne p1, p2, :cond_9
+    if-ne p1, p2, :cond_d5
 
-    goto :goto_3
+    goto :goto_127
 
     .line 144
-    :cond_9
+    :cond_d5
     const-string p1, "set"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
@@ -1692,7 +1652,7 @@
 
     const/4 p2, 0x0
 
-    if-nez p1, :cond_10
+    if-nez p1, :cond_126
 
     const-string p1, "update"
 
@@ -1700,19 +1660,19 @@
 
     move-result p1
 
-    if-eqz p1, :cond_a
+    if-eqz p1, :cond_e7
 
-    goto :goto_2
+    goto :goto_126
 
     .line 146
-    :cond_a
+    :cond_e7
     const-string p1, "get"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result p1
 
-    if-nez p1, :cond_10
+    if-nez p1, :cond_126
 
     const-string p1, "query"
 
@@ -1720,19 +1680,19 @@
 
     move-result p1
 
-    if-eqz p1, :cond_b
+    if-eqz p1, :cond_f8
 
-    goto :goto_2
+    goto :goto_126
 
     .line 148
-    :cond_b
+    :cond_f8
     const-string p1, "start"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result p1
 
-    if-nez p1, :cond_f
+    if-nez p1, :cond_121
 
     const-string p1, "bind"
 
@@ -1740,19 +1700,19 @@
 
     move-result p1
 
-    if-eqz p1, :cond_c
+    if-eqz p1, :cond_109
 
-    goto :goto_1
+    goto :goto_121
 
     .line 150
-    :cond_c
+    :cond_109
     const-string p1, "stop"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result p1
 
-    if-nez p1, :cond_e
+    if-nez p1, :cond_11b
 
     const-string p1, "unbind"
 
@@ -1760,15 +1720,15 @@
 
     move-result p1
 
-    if-eqz p1, :cond_d
+    if-eqz p1, :cond_11a
 
-    goto :goto_0
+    goto :goto_11b
 
-    :cond_d
+    :cond_11a
     return-object p2
 
-    :cond_e
-    :goto_0
+    :cond_11b
+    :goto_11b
     const/4 p1, 0x1
 
     .line 151
@@ -1779,21 +1739,21 @@
     return-object p1
 
     .line 149
-    :cond_f
-    :goto_1
+    :cond_121
+    :goto_121
     invoke-static {v3}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object p1
 
     return-object p1
 
-    :cond_10
-    :goto_2
+    :cond_126
+    :goto_126
     return-object p2
 
     .line 142
-    :cond_11
-    :goto_3
+    :cond_127
+    :goto_127
     invoke-static {v3}, Ljava/lang/Character;->valueOf(C)Ljava/lang/Character;
 
     move-result-object p1
@@ -1801,8 +1761,8 @@
     return-object p1
 
     .line 140
-    :cond_12
-    :goto_4
+    :cond_12c
+    :goto_12c
     invoke-static {v3}, Ljava/lang/Short;->valueOf(S)Ljava/lang/Short;
 
     move-result-object p1
@@ -1810,16 +1770,16 @@
     return-object p1
 
     .line 138
-    :cond_13
-    :goto_5
+    :cond_131
+    :goto_131
     invoke-static {v3}, Ljava/lang/Byte;->valueOf(B)Ljava/lang/Byte;
 
     move-result-object p1
 
     return-object p1
 
-    :cond_14
-    :goto_6
+    :cond_136
+    :goto_136
     const-wide/16 p1, 0x0
 
     .line 136
@@ -1829,8 +1789,8 @@
 
     return-object p1
 
-    :cond_15
-    :goto_7
+    :cond_13d
+    :goto_13d
     const/4 p1, 0x0
 
     .line 134
@@ -1840,8 +1800,8 @@
 
     return-object p1
 
-    :cond_16
-    :goto_8
+    :cond_143
+    :goto_143
     const-wide/16 p1, 0x0
 
     .line 132
@@ -1852,19 +1812,19 @@
     return-object p1
 
     .line 130
-    :cond_17
-    :goto_9
+    :cond_14a
+    :goto_14a
     sget-object p1, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
 
     return-object p1
 
-    :cond_18
-    :goto_a
+    :cond_14d
+    :goto_14d
     return-object v4
 .end method
 
 .method public isBadEnv()Z
-    .locals 2
+    .registers 3
 
     .line 96
     invoke-virtual {p0}, Lio/vanta/fake/service/IActivityManagerProxy;->getProxyInvocation()Ljava/lang/Object;
@@ -1875,20 +1835,20 @@
 
     move-result-object v1
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_c
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_c
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method protected onBindMethod()V
-    .locals 2
+    .registers 3
 
     .line 101
     invoke-super {p0}, Lio/vanta/fake/hook/ClassInvocationStub;->onBindMethod()V

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 47
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -40,7 +40,7 @@
 
     const/4 v0, 0x0
 
-    if-nez p3, :cond_1
+    if-nez p3, :cond_1c
 
     .line 51
     invoke-static {}, Lio/vanta/VantaCore;->getBStorageManager()Lio/vanta/fake/frameworks/BStorageManager;
@@ -61,7 +61,7 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_1b
 
     .line 53
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -70,12 +70,12 @@
 
     return-object p1
 
-    :cond_0
+    :cond_1b
     return-object v0
 
     .line 58
-    :cond_1
-    :try_start_0
+    :cond_1c
+    :try_start_1c
     aget-object v0, p3, v0
 
     check-cast v0, Ljava/lang/Integer;
@@ -115,22 +115,22 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_45
 
     .line 63
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_44
+    .catchall {:try_start_1c .. :try_end_44} :catchall_46
 
     return-object p1
 
-    :cond_2
+    :cond_45
     return-object v0
 
     .line 67
-    :catchall_0
+    :catchall_46
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

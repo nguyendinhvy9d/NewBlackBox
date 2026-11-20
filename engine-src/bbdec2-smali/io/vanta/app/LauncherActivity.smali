@@ -19,7 +19,7 @@
 
 # direct methods
 .method public static synthetic $r8$lambda$Jie1ZR9--rFQTVqTvsnp-eBUYdU(Lio/vanta/app/LauncherActivity;Landroid/content/Intent;I)V
-    .locals 0
+    .registers 3
 
     invoke-direct {p0, p1, p2}, Lio/vanta/app/LauncherActivity;->lambda$launchAppAsync$2(Landroid/content/Intent;I)V
 
@@ -27,7 +27,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 21
     invoke-direct {p0}, Landroid/app/Activity;-><init>()V
@@ -41,14 +41,14 @@
 .end method
 
 .method private getPackageInfoWithFallback(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
-    .locals 6
+    .registers 9
 
     const-string v0, "Created fallback PackageInfo for "
 
     const/4 v1, 0x0
 
     .line 137
-    :try_start_0
+    :try_start_3
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v2
@@ -56,12 +56,12 @@
     invoke-virtual {v2, p1, v1, p2}, Lio/vanta/fake/frameworks/BPackageManager;->getPackageInfo(Ljava/lang/String;II)Landroid/content/pm/PackageInfo;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_b
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_b} :catch_c
 
     return-object p1
 
-    :catch_0
+    :catch_c
     move-exception v2
 
     .line 139
@@ -98,7 +98,7 @@
     invoke-static {v3, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 143
-    :try_start_1
+    :try_start_2f
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v2
@@ -108,12 +108,12 @@
     invoke-virtual {v2, p1, v5, p2}, Lio/vanta/fake/frameworks/BPackageManager;->getPackageInfo(Ljava/lang/String;II)Landroid/content/pm/PackageInfo;
 
     move-result-object p1
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_39
+    .catch Ljava/lang/Exception; {:try_start_2f .. :try_end_39} :catch_3a
 
     return-object p1
 
-    :catch_1
+    :catch_3a
     move-exception v2
 
     .line 146
@@ -146,7 +146,7 @@
     invoke-static {v3, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 150
-    :try_start_2
+    :try_start_59
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v2
@@ -156,7 +156,7 @@
 
     move-result-object p2
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_b1
 
     .line 155
     new-instance v1, Landroid/content/pm/PackageInfo;
@@ -207,12 +207,12 @@
     move-result-object p2
 
     invoke-static {v3, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+    :try_end_8f
+    .catch Ljava/lang/Exception; {:try_start_59 .. :try_end_8f} :catch_90
 
     return-object v1
 
-    :catch_2
+    :catch_90
     move-exception p2
 
     .line 167
@@ -246,14 +246,14 @@
 
     invoke-static {v3, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_b1
     const/4 p1, 0x0
 
     return-object p1
 .end method
 
 .method static synthetic lambda$launchAppAsync$1(Ljava/lang/Exception;)V
-    .locals 3
+    .registers 4
 
     .line 195
     const-string v0, "SplashScreen"
@@ -262,7 +262,7 @@
     const-string v1, "Failed to launch app: "
 
     .line 195
-    :try_start_0
+    :try_start_4
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -280,12 +280,12 @@
     move-result-object p0
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_18
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_18} :catch_19
 
     return-void
 
-    :catch_0
+    :catch_19
     move-exception p0
 
     .line 197
@@ -297,12 +297,12 @@
 .end method
 
 .method private synthetic lambda$launchAppAsync$2(Landroid/content/Intent;I)V
-    .locals 3
+    .registers 6
 
     .line 179
     const-string v0, "SplashScreen"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Starting app launch in background thread"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -323,12 +323,12 @@
     const-string p1, "App launch initiated successfully"
 
     invoke-static {v0, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_18
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_18} :catch_19
 
     return-void
 
-    :catch_0
+    :catch_19
     move-exception p1
 
     .line 189
@@ -347,7 +347,7 @@
 .end method
 
 .method static synthetic lambda$onCreate$0(Landroid/widget/ImageView;)V
-    .locals 2
+    .registers 3
 
     .line 115
     invoke-virtual {p0}, Landroid/widget/ImageView;->animate()Landroid/view/ViewPropertyAnimator;
@@ -389,7 +389,7 @@
 .end method
 
 .method public static launch(Landroid/content/Intent;I)V
-    .locals 5
+    .registers 7
 
     .line 31
     const-string v0, "SplashScreen"
@@ -398,7 +398,7 @@
     const-string v1, "LauncherActivity.launch() called for package: "
 
     .line 31
-    :try_start_0
+    :try_start_4
     new-instance v2, Landroid/content/Intent;
 
     invoke-direct {v2}, Landroid/content/Intent;-><init>()V
@@ -461,12 +461,12 @@
     move-result-object p0
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_45
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_45} :catch_46
 
     return-void
 
-    :catch_0
+    :catch_46
     move-exception p0
 
     .line 41
@@ -478,7 +478,7 @@
 .end method
 
 .method private launchAppAsync(Landroid/content/Intent;I)V
-    .locals 2
+    .registers 5
 
     .line 177
     new-instance v0, Ljava/lang/Thread;
@@ -500,7 +500,7 @@
 
 # virtual methods
 .method protected onCreate(Landroid/os/Bundle;)V
-    .locals 10
+    .registers 12
 
     .line 48
     const-string v0, "SplashScreen"
@@ -515,7 +515,7 @@
     const-string v4, "LauncherActivity.onCreate() for package: "
 
     .line 48
-    :try_start_0
+    :try_start_a
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
     .line 50
@@ -523,7 +523,7 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_1c
 
     .line 52
     const-string p1, "Intent is null, finishing activity"
@@ -536,7 +536,7 @@
     return-void
 
     .line 57
-    :cond_0
+    :cond_1c
     const-string v5, "launch_intent"
 
     invoke-virtual {p1, v5}, Landroid/content/Intent;->getParcelableExtra(Ljava/lang/String;)Landroid/os/Parcelable;
@@ -561,14 +561,14 @@
 
     move-result p1
 
-    if-eqz v5, :cond_6
+    if-eqz v5, :cond_137
 
-    if-nez v6, :cond_1
+    if-nez v6, :cond_37
 
-    goto/16 :goto_2
+    goto/16 :goto_137
 
     .line 67
-    :cond_1
+    :cond_37
     new-instance v7, Ljava/lang/StringBuilder;
 
     invoke-direct {v7, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -598,7 +598,7 @@
 
     move-result-object v4
 
-    if-nez v4, :cond_2
+    if-nez v4, :cond_6e
 
     .line 73
     new-instance v3, Ljava/lang/StringBuilder;
@@ -621,10 +621,10 @@
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_0
+    goto :goto_7e
 
     .line 76
-    :cond_2
+    :cond_6e
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -638,19 +638,19 @@
     move-result-object v2
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_7e
+    .catch Ljava/lang/Exception; {:try_start_a .. :try_end_7e} :catch_140
 
-    :goto_0
+    :goto_7e
     const/4 v2, 0x0
 
-    if-eqz v4, :cond_3
+    if-eqz v4, :cond_bb
 
     .line 83
-    :try_start_1
+    :try_start_81
     iget-object v3, v4, Landroid/content/pm/PackageInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
-    if-eqz v3, :cond_3
+    if-eqz v3, :cond_bb
 
     .line 84
     invoke-virtual {p0}, Lio/vanta/app/LauncherActivity;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -671,22 +671,22 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_3
+    if-eqz v3, :cond_bb
 
     .line 87
     invoke-virtual {v3}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
     move-result-object v6
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_9b
+    .catch Ljava/lang/Exception; {:try_start_81 .. :try_end_9b} :catch_9c
 
-    goto :goto_1
+    goto :goto_bb
 
-    :catch_0
+    :catch_9c
     move-exception v3
 
     .line 90
-    :try_start_2
+    :try_start_9d
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -716,8 +716,8 @@
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 92
-    :cond_3
-    :goto_1
+    :cond_bb
+    :goto_bb
     sget v1, Lio/vanta/R$layout;->activity_launcher:I
 
     invoke-virtual {p0, v1}, Lio/vanta/app/LauncherActivity;->setContentView(I)V
@@ -744,7 +744,7 @@
 
     const/4 v7, 0x0
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_f2
 
     .line 96
     invoke-virtual {v3, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
@@ -779,10 +779,10 @@
     .line 102
     invoke-virtual {v3}, Landroid/view/ViewPropertyAnimator;->start()V
 
-    :cond_4
-    if-eqz v1, :cond_5
+    :cond_f2
+    if-eqz v1, :cond_133
 
-    if-eqz v2, :cond_5
+    if-eqz v2, :cond_133
 
     .line 105
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setImageDrawable(Landroid/graphics/drawable/Drawable;)V
@@ -849,26 +849,26 @@
     invoke-virtual {v1}, Landroid/view/ViewPropertyAnimator;->start()V
 
     .line 125
-    :cond_5
+    :cond_133
     invoke-direct {p0, v5, p1}, Lio/vanta/app/LauncherActivity;->launchAppAsync(Landroid/content/Intent;I)V
 
-    goto :goto_3
+    goto :goto_149
 
     .line 62
-    :cond_6
-    :goto_2
+    :cond_137
+    :goto_137
     const-string p1, "Missing launch intent or package name, finishing activity"
 
     invoke-static {v0, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 63
     invoke-virtual {p0}, Lio/vanta/app/LauncherActivity;->finish()V
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_13f
+    .catch Ljava/lang/Exception; {:try_start_9d .. :try_end_13f} :catch_140
 
     return-void
 
-    :catch_1
+    :catch_140
     move-exception p1
 
     .line 128
@@ -879,12 +879,12 @@
     .line 129
     invoke-virtual {p0}, Lio/vanta/app/LauncherActivity;->finish()V
 
-    :goto_3
+    :goto_149
     return-void
 .end method
 
 .method protected onPause()V
-    .locals 1
+    .registers 2
 
     .line 206
     invoke-super {p0}, Landroid/app/Activity;->onPause()V
@@ -898,7 +898,7 @@
 .end method
 
 .method protected onResume()V
-    .locals 1
+    .registers 2
 
     .line 212
     invoke-super {p0}, Landroid/app/Activity;->onResume()V
@@ -906,11 +906,11 @@
     .line 213
     iget-boolean v0, p0, Lio/vanta/app/LauncherActivity;->isRunning:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_a
 
     .line 214
     invoke-virtual {p0}, Lio/vanta/app/LauncherActivity;->finish()V
 
-    :cond_0
+    :cond_a
     return-void
 .end method

@@ -18,7 +18,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 8
     new-instance v0, Landroid/os/Handler;
@@ -35,7 +35,7 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 10
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -44,7 +44,7 @@
 .end method
 
 .method public static activate(Landroid/content/Context;Ljava/lang/String;Lio/vanta/core/system/api/BetaActivationManager$Callback;)V
-    .locals 1
+    .registers 4
 
     .line 14
     new-instance p0, Lio/vanta/core/system/api/BetaActivationManager$Result;
@@ -55,7 +55,7 @@
 
     invoke-direct {p0, p1, v0}, Lio/vanta/core/system/api/BetaActivationManager$Result;-><init>(ZLjava/lang/String;)V
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_14
 
     .line 16
     sget-object p1, Lio/vanta/core/system/api/BetaActivationManager;->MAIN_HANDLER:Landroid/os/Handler;
@@ -66,12 +66,12 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    :cond_0
+    :cond_14
     return-void
 .end method
 
 .method public static activateBlocking(Landroid/content/Context;Ljava/lang/String;)Lio/vanta/core/system/api/BetaActivationManager$Result;
-    .locals 1
+    .registers 3
 
     .line 21
     new-instance p0, Lio/vanta/core/system/api/BetaActivationManager$Result;
@@ -86,13 +86,13 @@
 .end method
 
 .method public static clear(Landroid/content/Context;)V
-    .locals 0
+    .registers 1
 
     return-void
 .end method
 
 .method public static getMessage(Landroid/content/Context;)Ljava/lang/String;
-    .locals 0
+    .registers 1
 
     .line 35
     const-string p0, "Activated"
@@ -101,7 +101,7 @@
 .end method
 
 .method public static isActivated(Landroid/content/Context;)Z
-    .locals 0
+    .registers 1
 
     const/4 p0, 0x1
 
@@ -109,7 +109,7 @@
 .end method
 
 .method static synthetic lambda$activate$0(Lio/vanta/core/system/api/BetaActivationManager$Callback;Lio/vanta/core/system/api/BetaActivationManager$Result;)V
-    .locals 0
+    .registers 2
 
     .line 16
     invoke-interface {p0, p1}, Lio/vanta/core/system/api/BetaActivationManager$Callback;->onResult(Lio/vanta/core/system/api/BetaActivationManager$Result;)V
@@ -118,7 +118,7 @@
 .end method
 
 .method static synthetic lambda$restoreIfPresent$1(Lio/vanta/core/system/api/BetaActivationManager$Callback;)V
-    .locals 3
+    .registers 4
 
     .line 26
     new-instance v0, Lio/vanta/core/system/api/BetaActivationManager$Result;
@@ -135,9 +135,9 @@
 .end method
 
 .method public static restoreIfPresent(Landroid/content/Context;Lio/vanta/core/system/api/BetaActivationManager$Callback;)V
-    .locals 1
+    .registers 3
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_c
 
     .line 26
     sget-object p0, Lio/vanta/core/system/api/BetaActivationManager;->MAIN_HANDLER:Landroid/os/Handler;
@@ -148,6 +148,6 @@
 
     invoke-virtual {p0, v0}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    :cond_0
+    :cond_c
     return-void
 .end method

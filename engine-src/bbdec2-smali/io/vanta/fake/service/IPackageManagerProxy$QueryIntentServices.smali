@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 207
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -47,6 +47,8 @@
 
     check-cast v0, Landroid/content/Intent;
 
+    invoke-static {v0}, Lio/vanta/fake/service/GmsCallerFix;->fixGmsComponentPkg(Landroid/content/Intent;)V
+
     .line 211
     const-class v1, Ljava/lang/Integer;
 
@@ -56,7 +58,7 @@
 
     check-cast v1, Ljava/lang/Integer;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_1a
 
     const/4 v1, 0x0
 
@@ -65,8 +67,8 @@
 
     move-result-object v1
 
-    :cond_0
-    if-eqz v0, :cond_1
+    :cond_1a
+    if-eqz v0, :cond_2d
 
     .line 216
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
@@ -85,27 +87,27 @@
 
     move-result-object v1
 
-    goto :goto_0
+    goto :goto_2e
 
-    :cond_1
+    :cond_2d
     const/4 v1, 0x0
 
-    :goto_0
-    if-eqz v1, :cond_3
+    :goto_2e
+    if-eqz v1, :cond_42
 
     .line 218
     invoke-interface {v1}, Ljava/util/List;->isEmpty()Z
 
     move-result v2
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_42
 
     .line 219
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isN()Z
 
     move-result p1
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_41
 
     .line 220
     invoke-static {v1}, Lio/vanta/utils/compat/ParceledListSliceCompat;->create(Ljava/util/List;)Ljava/lang/Object;
@@ -114,11 +116,11 @@
 
     return-object p1
 
-    :cond_2
+    :cond_41
     return-object v1
 
-    :cond_3
-    if-eqz v0, :cond_5
+    :cond_42
+    if-eqz v0, :cond_5d
 
     .line 226
     invoke-virtual {v0}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
@@ -135,24 +137,24 @@
 
     move-result v2
 
-    if-nez v2, :cond_4
+    if-nez v2, :cond_58
 
     invoke-static {v0}, Lio/vanta/core/env/AppSystemEnv;->isOpenPackage(Landroid/content/ComponentName;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_5d
 
     .line 229
-    :cond_4
+    :cond_58
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
     return-object p1
 
-    :cond_5
-    if-nez v1, :cond_6
+    :cond_5d
+    if-nez v1, :cond_64
 
     .line 234
     new-instance v1, Ljava/util/ArrayList;
@@ -160,12 +162,12 @@
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     .line 236
-    :cond_6
+    :cond_64
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isN()Z
 
     move-result p1
 
-    if-eqz p1, :cond_7
+    if-eqz p1, :cond_6f
 
     .line 237
     invoke-static {v1}, Lio/vanta/utils/compat/ParceledListSliceCompat;->create(Ljava/util/List;)Ljava/lang/Object;
@@ -174,6 +176,6 @@
 
     return-object p1
 
-    :cond_7
+    :cond_6f
     return-object v1
 .end method

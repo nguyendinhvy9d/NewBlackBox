@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 143
     invoke-direct {p0}, Landroid/app/Service;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public onBind(Landroid/content/Intent;)Landroid/os/IBinder;
-    .locals 0
+    .registers 2
 
     const/4 p1, 0x0
 
@@ -35,7 +35,7 @@
 .end method
 
 .method public onCreate()V
-    .locals 2
+    .registers 3
 
     .line 146
     const-string v0, "DaemonService"
@@ -51,7 +51,7 @@
 .end method
 
 .method public onDestroy()V
-    .locals 2
+    .registers 3
 
     .line 180
     const-string v0, "DaemonService"
@@ -67,7 +67,7 @@
 .end method
 
 .method public onStartCommand(Landroid/content/Intent;II)I
-    .locals 2
+    .registers 6
 
     .line 152
     const-string p1, "DaemonInnerService -> onStartCommand"
@@ -79,7 +79,7 @@
     const/4 p1, 0x2
 
     .line 156
-    :try_start_0
+    :try_start_8
     const-string p3, "notification"
 
     invoke-virtual {p0, p3}, Lio/vanta/core/system/DaemonService$DaemonInnerService;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -88,7 +88,7 @@
 
     check-cast p3, Landroid/app/NotificationManager;
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_1e
 
     .line 158
     invoke-static {}, Lio/vanta/core/system/DaemonService;->-$$Nest$sfgetNOTIFY_ID()I
@@ -103,14 +103,14 @@
     invoke-static {p2, p3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 163
-    :cond_0
+    :cond_1e
     invoke-virtual {p0}, Lio/vanta/core/system/DaemonService$DaemonInnerService;->stopSelf()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_21
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_21} :catch_22
 
     return p1
 
-    :catch_0
+    :catch_22
     move-exception p3
 
     .line 167

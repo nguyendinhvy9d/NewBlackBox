@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>(ZLjava/lang/String;JZ)V
-    .locals 0
+    .registers 6
 
     .line 111
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -34,12 +34,12 @@
     .line 112
     iput-boolean p1, p0, Lio/vanta/license/LicenseManager$Result;->success:Z
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_9
 
     .line 113
     const-string p2, ""
 
-    :cond_0
+    :cond_9
     iput-object p2, p0, Lio/vanta/license/LicenseManager$Result;->message:Ljava/lang/String;
 
     .line 114
@@ -54,7 +54,7 @@
 
 # virtual methods
 .method public getExpiresAt()J
-    .locals 2
+    .registers 3
 
     .line 127
     iget-wide v0, p0, Lio/vanta/license/LicenseManager$Result;->expiresAt:J
@@ -63,7 +63,7 @@
 .end method
 
 .method public getMessage()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 123
     iget-object v0, p0, Lio/vanta/license/LicenseManager$Result;->message:Ljava/lang/String;
@@ -72,7 +72,7 @@
 .end method
 
 .method public isFromOfflineCache()Z
-    .locals 1
+    .registers 2
 
     .line 131
     iget-boolean v0, p0, Lio/vanta/license/LicenseManager$Result;->fromOfflineCache:Z
@@ -81,7 +81,7 @@
 .end method
 
 .method public isSuccess()Z
-    .locals 1
+    .registers 2
 
     .line 119
     iget-boolean v0, p0, Lio/vanta/license/LicenseManager$Result;->success:Z
@@ -90,7 +90,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 5
+    .registers 6
 
     .line 135
     iget-boolean v0, p0, Lio/vanta/license/LicenseManager$Result;->success:Z

@@ -33,7 +33,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 33
     new-instance v0, Lio/vanta/core/system/notification/BNotificationManagerService;
@@ -46,7 +46,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 32
     invoke-direct {p0}, Lio/vanta/core/system/notification/IBNotificationManagerService$Stub;-><init>()V
@@ -77,7 +77,7 @@
 .end method
 
 .method public static get()Lio/vanta/core/system/notification/BNotificationManagerService;
-    .locals 1
+    .registers 1
 
     .line 44
     sget-object v0, Lio/vanta/core/system/notification/BNotificationManagerService;->sService:Lio/vanta/core/system/notification/BNotificationManagerService;
@@ -86,9 +86,9 @@
 .end method
 
 .method private getBlackChannelId(Ljava/lang/String;I)Ljava/lang/String;
-    .locals 2
+    .registers 5
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_20
 
     .line 275
     const-string v0, "@black-"
@@ -97,12 +97,12 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_b
 
-    goto :goto_0
+    goto :goto_20
 
     .line 278
-    :cond_0
+    :cond_b
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -123,15 +123,15 @@
 
     move-result-object p1
 
-    :cond_1
-    :goto_0
+    :cond_20
+    :goto_20
     return-object p1
 .end method
 
 .method private getBlackGroupId(Ljava/lang/String;I)Ljava/lang/String;
-    .locals 2
+    .registers 5
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_20
 
     .line 289
     const-string v0, "@black-group-"
@@ -140,12 +140,12 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_b
 
-    goto :goto_0
+    goto :goto_20
 
     .line 291
-    :cond_0
+    :cond_b
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -166,13 +166,13 @@
 
     move-result-object p1
 
-    :cond_1
-    :goto_0
+    :cond_20
+    :goto_20
     return-object p1
 .end method
 
 .method public static getNotificationId(IILjava/lang/String;)I
-    .locals 1
+    .registers 4
 
     .line 301
     new-instance v0, Ljava/lang/StringBuilder;
@@ -203,7 +203,7 @@
 .end method
 
 .method private getNotificationRecord(Ljava/lang/String;I)Lio/vanta/core/system/notification/NotificationRecord;
-    .locals 2
+    .registers 5
 
     .line 54
     new-instance v0, Ljava/lang/StringBuilder;
@@ -234,7 +234,7 @@
     monitor-enter p2
 
     .line 56
-    :try_start_0
+    :try_start_1a
     iget-object v0, p0, Lio/vanta/core/system/notification/BNotificationManagerService;->mNotificationRecords:Ljava/util/Map;
 
     invoke-interface {v0, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -243,7 +243,7 @@
 
     check-cast v0, Lio/vanta/core/system/notification/NotificationRecord;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_2e
 
     .line 58
     new-instance v0, Lio/vanta/core/system/notification/NotificationRecord;
@@ -256,26 +256,26 @@
     invoke-interface {v1, p1, v0}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 61
-    :cond_0
+    :cond_2e
     monitor-exit p2
 
     return-object v0
 
-    :catchall_0
+    :catchall_30
     move-exception p1
 
     .line 62
     monitor-exit p2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_32
+    .catchall {:try_start_1a .. :try_end_32} :catchall_30
 
     throw p1
 .end method
 
 .method private getRealChannelId(Ljava/lang/String;)Ljava/lang/String;
-    .locals 2
+    .registers 4
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_12
 
     .line 282
     const-string v0, "@black-"
@@ -284,12 +284,12 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_b
 
-    goto :goto_0
+    goto :goto_12
 
     .line 285
-    :cond_0
+    :cond_b
     invoke-virtual {p1, v0}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
 
     move-result-object p1
@@ -298,15 +298,15 @@
 
     aget-object p1, p1, v0
 
-    :cond_1
-    :goto_0
+    :cond_12
+    :goto_12
     return-object p1
 .end method
 
 .method private getRealGroupId(Ljava/lang/String;)Ljava/lang/String;
-    .locals 2
+    .registers 4
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_12
 
     .line 295
     const-string v0, "@black-group-"
@@ -315,12 +315,12 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_b
 
-    goto :goto_0
+    goto :goto_12
 
     .line 297
-    :cond_0
+    :cond_b
     invoke-virtual {p1, v0}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
 
     move-result-object p1
@@ -329,13 +329,13 @@
 
     aget-object p1, p1, v0
 
-    :cond_1
-    :goto_0
+    :cond_12
+    :goto_12
     return-object p1
 .end method
 
 .method private handleNotificationChannel(Landroid/app/NotificationChannel;I)V
-    .locals 2
+    .registers 5
 
     .line 212
     invoke-static {p1}, Lvanta/android/app/BRNotificationChannel;->get(Ljava/lang/Object;)Lvanta/android/app/NotificationChannelContext;
@@ -370,7 +370,7 @@
 .end method
 
 .method private handleNotificationGroup(Landroid/app/NotificationChannelGroup;I)V
-    .locals 1
+    .registers 4
 
     .line 228
     invoke-static {p1}, Lvanta/android/app/BRNotificationChannelGroup;->get(Ljava/lang/Object;)Lvanta/android/app/NotificationChannelGroupContext;
@@ -395,19 +395,19 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_29
 
     .line 235
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
 
-    :goto_0
+    :goto_19
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_29
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -418,14 +418,14 @@
     .line 236
     invoke-virtual {p0, v0, p2}, Lio/vanta/core/system/notification/BNotificationManagerService;->createNotificationChannel(Landroid/app/NotificationChannel;I)V
 
-    goto :goto_0
+    goto :goto_19
 
-    :cond_0
+    :cond_29
     return-void
 .end method
 
 .method private removeNotificationRecord(Ljava/lang/String;I)V
-    .locals 1
+    .registers 4
 
     .line 66
     new-instance v0, Ljava/lang/StringBuilder;
@@ -456,7 +456,7 @@
     monitor-enter p2
 
     .line 68
-    :try_start_0
+    :try_start_1a
     iget-object v0, p0, Lio/vanta/core/system/notification/BNotificationManagerService;->mNotificationRecords:Ljava/util/Map;
 
     invoke-interface {v0, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
@@ -466,18 +466,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_21
     move-exception p1
 
     monitor-exit p2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_1a .. :try_end_23} :catchall_21
 
     throw p1
 .end method
 
 .method private resetNotificationChannel(Landroid/app/NotificationChannel;)V
-    .locals 1
+    .registers 3
 
     .line 221
     invoke-static {p1}, Lvanta/android/app/BRNotificationChannel;->get(Ljava/lang/Object;)Lvanta/android/app/NotificationChannelContext;
@@ -501,7 +501,7 @@
 .end method
 
 .method private resetNotificationGroup(Landroid/app/NotificationChannelGroup;)V
-    .locals 1
+    .registers 3
 
     .line 242
     invoke-static {p1}, Lvanta/android/app/BRNotificationChannelGroup;->get(Ljava/lang/Object;)Lvanta/android/app/NotificationChannelGroupContext;
@@ -526,19 +526,19 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_29
 
     .line 249
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
 
-    :goto_0
+    :goto_19
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_29
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -549,16 +549,16 @@
     .line 250
     invoke-direct {p0, v0}, Lio/vanta/core/system/notification/BNotificationManagerService;->resetNotificationChannel(Landroid/app/NotificationChannel;)V
 
-    goto :goto_0
+    goto :goto_19
 
-    :cond_0
+    :cond_29
     return-void
 .end method
 
 
 # virtual methods
 .method public cancelNotificationWithTag(ILjava/lang/String;I)V
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -578,12 +578,12 @@
 
     move-result-object p2
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_f
 
     return-void
 
     .line 201
-    :cond_0
+    :cond_f
     invoke-virtual {p2}, Lio/vanta/core/system/ProcessRecord;->getPackageName()Ljava/lang/String;
 
     move-result-object v0
@@ -612,7 +612,7 @@
     monitor-enter p3
 
     .line 206
-    :try_start_0
+    :try_start_27
     iget-object p2, p2, Lio/vanta/core/system/notification/NotificationRecord;->mIds:Ljava/util/Set;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -626,18 +626,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_32
     move-exception p1
 
     monitor-exit p3
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_34
+    .catchall {:try_start_27 .. :try_end_34} :catchall_32
 
     throw p1
 .end method
 
 .method public createNotificationChannel(Landroid/app/NotificationChannel;I)V
-    .locals 2
+    .registers 5
 
     .line 104
     invoke-static {}, Lio/vanta/core/system/notification/BNotificationManagerService;->getCallingPid()I
@@ -653,12 +653,12 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_f
 
     return-void
 
     .line 108
-    :cond_0
+    :cond_f
     invoke-direct {p0, p1, p2}, Lio/vanta/core/system/notification/BNotificationManagerService;->handleNotificationChannel(Landroid/app/NotificationChannel;I)V
 
     .line 109
@@ -684,7 +684,7 @@
     monitor-enter v0
 
     .line 114
-    :try_start_0
+    :try_start_25
     iget-object p2, p2, Lio/vanta/core/system/notification/NotificationRecord;->mNotificationChannels:Ljava/util/Map;
 
     invoke-virtual {p1}, Landroid/app/NotificationChannel;->getId()Ljava/lang/String;
@@ -698,18 +698,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_30
     move-exception p1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_32
+    .catchall {:try_start_25 .. :try_end_32} :catchall_30
 
     throw p1
 .end method
 
 .method public createNotificationChannelGroup(Landroid/app/NotificationChannelGroup;I)V
-    .locals 2
+    .registers 5
 
     .line 138
     invoke-static {}, Lio/vanta/core/system/notification/BNotificationManagerService;->getCallingPid()I
@@ -725,12 +725,12 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_f
 
     return-void
 
     .line 142
-    :cond_0
+    :cond_f
     invoke-direct {p0, p1, p2}, Lio/vanta/core/system/notification/BNotificationManagerService;->handleNotificationGroup(Landroid/app/NotificationChannelGroup;I)V
 
     .line 143
@@ -756,7 +756,7 @@
     monitor-enter v0
 
     .line 148
-    :try_start_0
+    :try_start_25
     iget-object p2, p2, Lio/vanta/core/system/notification/NotificationRecord;->mNotificationChannelGroups:Ljava/util/Map;
 
     invoke-virtual {p1}, Landroid/app/NotificationChannelGroup;->getId()Ljava/lang/String;
@@ -770,18 +770,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_30
     move-exception p1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_32
+    .catchall {:try_start_25 .. :try_end_32} :catchall_30
 
     throw p1
 .end method
 
 .method public deleteNotificationChannel(Ljava/lang/String;I)V
-    .locals 2
+    .registers 5
 
     .line 121
     invoke-static {}, Lio/vanta/core/system/notification/BNotificationManagerService;->getCallingPid()I
@@ -797,12 +797,12 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_f
 
     return-void
 
     .line 125
-    :cond_0
+    :cond_f
     invoke-virtual {v0}, Lio/vanta/core/system/ProcessRecord;->getPackageName()Ljava/lang/String;
 
     move-result-object v0
@@ -817,7 +817,7 @@
     monitor-enter v1
 
     .line 127
-    :try_start_0
+    :try_start_1a
     iget-object v0, v0, Lio/vanta/core/system/notification/NotificationRecord;->mNotificationChannels:Ljava/util/Map;
 
     invoke-interface {v0, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
@@ -826,7 +826,7 @@
 
     check-cast p1, Landroid/app/NotificationChannel;
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_31
 
     .line 129
     invoke-virtual {p1}, Landroid/app/NotificationChannel;->getId()Ljava/lang/String;
@@ -843,23 +843,23 @@
     invoke-virtual {p2, p1}, Landroid/app/NotificationManager;->deleteNotificationChannel(Ljava/lang/String;)V
 
     .line 132
-    :cond_1
+    :cond_31
     monitor-exit v1
 
     return-void
 
-    :catchall_0
+    :catchall_33
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_35
+    .catchall {:try_start_1a .. :try_end_35} :catchall_33
 
     throw p1
 .end method
 
 .method public deleteNotificationChannelGroup(Ljava/lang/String;I)V
-    .locals 2
+    .registers 5
 
     .line 155
     invoke-static {}, Lio/vanta/core/system/notification/BNotificationManagerService;->getCallingPid()I
@@ -875,12 +875,12 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_f
 
     return-void
 
     .line 159
-    :cond_0
+    :cond_f
     invoke-virtual {v0}, Lio/vanta/core/system/ProcessRecord;->getPackageName()Ljava/lang/String;
 
     move-result-object v0
@@ -895,7 +895,7 @@
     monitor-enter v1
 
     .line 161
-    :try_start_0
+    :try_start_1a
     iget-object v0, v0, Lio/vanta/core/system/notification/NotificationRecord;->mNotificationChannelGroups:Ljava/util/Map;
 
     invoke-interface {v0, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
@@ -904,7 +904,7 @@
 
     check-cast p1, Landroid/app/NotificationChannelGroup;
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_31
 
     .line 163
     invoke-virtual {p1}, Landroid/app/NotificationChannelGroup;->getId()Ljava/lang/String;
@@ -921,23 +921,23 @@
     invoke-virtual {p2, p1}, Landroid/app/NotificationManager;->deleteNotificationChannelGroup(Ljava/lang/String;)V
 
     .line 166
-    :cond_1
+    :cond_31
     monitor-exit v1
 
     return-void
 
-    :catchall_0
+    :catchall_33
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_35
+    .catchall {:try_start_1a .. :try_end_35} :catchall_33
 
     throw p1
 .end method
 
 .method public deletePackageNotification(Ljava/lang/String;I)V
-    .locals 4
+    .registers 7
 
     .line 257
     invoke-direct {p0, p1, p2}, Lio/vanta/core/system/notification/BNotificationManagerService;->getNotificationRecord(Ljava/lang/String;I)Lio/vanta/core/system/notification/NotificationRecord;
@@ -949,7 +949,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_52
 
     .line 259
     iget-object v1, v0, Lio/vanta/core/system/notification/NotificationRecord;->mNotificationChannelGroups:Ljava/util/Map;
@@ -962,12 +962,12 @@
 
     move-result-object v1
 
-    :goto_0
+    :goto_14
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_2e
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -989,10 +989,10 @@
 
     invoke-virtual {v3, v2}, Landroid/app/NotificationManager;->deleteNotificationChannelGroup(Ljava/lang/String;)V
 
-    goto :goto_0
+    goto :goto_14
 
     .line 263
-    :cond_0
+    :cond_2e
     iget-object v1, v0, Lio/vanta/core/system/notification/NotificationRecord;->mNotificationChannels:Ljava/util/Map;
 
     invoke-interface {v1}, Ljava/util/Map;->values()Ljava/util/Collection;
@@ -1003,12 +1003,12 @@
 
     move-result-object v1
 
-    :goto_1
+    :goto_38
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_52
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1030,22 +1030,22 @@
 
     invoke-virtual {v3, v2}, Landroid/app/NotificationManager;->deleteNotificationChannel(Ljava/lang/String;)V
 
-    goto :goto_1
+    goto :goto_38
 
     .line 268
-    :cond_1
+    :cond_52
     iget-object v0, v0, Lio/vanta/core/system/notification/NotificationRecord;->mIds:Ljava/util/Set;
 
     invoke-interface {v0}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
 
-    :goto_2
+    :goto_58
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_6e
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1062,17 +1062,17 @@
 
     invoke-virtual {v2, v1}, Landroid/app/NotificationManager;->cancel(I)V
 
-    goto :goto_2
+    goto :goto_58
 
     .line 271
-    :cond_2
+    :cond_6e
     invoke-direct {p0, p1, p2}, Lio/vanta/core/system/notification/BNotificationManagerService;->removeNotificationRecord(Ljava/lang/String;I)V
 
     return-void
 .end method
 
 .method public enqueueNotificationWithTag(ILjava/lang/String;Landroid/app/Notification;I)V
-    .locals 2
+    .registers 7
 
     .line 171
     invoke-static {}, Lio/vanta/core/system/BProcessManagerService;->get()Lio/vanta/core/system/BProcessManagerService;
@@ -1087,12 +1087,12 @@
 
     move-result-object p2
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_f
 
     return-void
 
     .line 174
-    :cond_0
+    :cond_f
     invoke-virtual {p2}, Lio/vanta/core/system/ProcessRecord;->getPackageName()Ljava/lang/String;
 
     move-result-object v0
@@ -1106,7 +1106,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_43
 
     .line 177
     invoke-static {p3}, Lvanta/android/app/BRNotificationO;->get(Ljava/lang/Object;)Lvanta/android/app/NotificationOContext;
@@ -1118,7 +1118,7 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_32
 
     .line 180
     invoke-interface {v0}, Lvanta/android/app/NotificationOContext;->mChannelId()Ljava/lang/String;
@@ -1133,12 +1133,12 @@
     invoke-interface {v0, v1}, Lvanta/android/app/NotificationOContext;->_set_mChannelId(Ljava/lang/Object;)V
 
     .line 184
-    :cond_1
+    :cond_32
     invoke-interface {v0}, Lvanta/android/app/NotificationOContext;->_check_mGroupKey()Ljava/lang/reflect/Field;
 
     move-result-object v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_43
 
     .line 185
     invoke-interface {v0}, Lvanta/android/app/NotificationOContext;->mGroupKey()Ljava/lang/String;
@@ -1153,7 +1153,7 @@
     invoke-interface {v0, v1}, Lvanta/android/app/NotificationOContext;->_set_mGroupKey(Ljava/lang/Object;)V
 
     .line 189
-    :cond_2
+    :cond_43
     invoke-virtual {p2}, Lio/vanta/core/system/ProcessRecord;->getPackageName()Ljava/lang/String;
 
     move-result-object p2
@@ -1168,7 +1168,7 @@
     monitor-enter p4
 
     .line 191
-    :try_start_0
+    :try_start_4e
     iget-object p2, p2, Lio/vanta/core/system/notification/NotificationRecord;->mIds:Ljava/util/Set;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1179,8 +1179,8 @@
 
     .line 192
     monitor-exit p4
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_58
+    .catchall {:try_start_4e .. :try_end_58} :catchall_5e
 
     .line 193
     iget-object p2, p0, Lio/vanta/core/system/notification/BNotificationManagerService;->mRealNotificationManager:Landroid/app/NotificationManager;
@@ -1189,20 +1189,20 @@
 
     return-void
 
-    :catchall_0
+    :catchall_5e
     move-exception p1
 
     .line 192
-    :try_start_1
+    :try_start_5f
     monitor-exit p4
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_60
+    .catchall {:try_start_5f .. :try_end_60} :catchall_5e
 
     throw p1
 .end method
 
 .method public getNotificationChannel(Ljava/lang/String;I)Landroid/app/NotificationChannel;
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1223,14 +1223,14 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_10
 
     const/4 p1, 0x0
 
     return-object p1
 
     .line 79
-    :cond_0
+    :cond_10
     invoke-virtual {v0}, Lio/vanta/core/system/ProcessRecord;->getPackageName()Ljava/lang/String;
 
     move-result-object v0
@@ -1245,7 +1245,7 @@
     monitor-enter v0
 
     .line 81
-    :try_start_0
+    :try_start_1b
     iget-object p2, p2, Lio/vanta/core/system/notification/NotificationRecord;->mNotificationChannels:Ljava/util/Map;
 
     invoke-interface {p2, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -1258,19 +1258,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_25
     move-exception p1
 
     .line 82
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_27
+    .catchall {:try_start_1b .. :try_end_27} :catchall_25
 
     throw p1
 .end method
 
 .method public getNotificationChannelGroups(Ljava/lang/String;I)Ljava/util/List;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1299,7 +1299,7 @@
     monitor-enter p2
 
     .line 97
-    :try_start_0
+    :try_start_7
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object p1, p1, Lio/vanta/core/system/notification/NotificationRecord;->mNotificationChannelGroups:Ljava/util/Map;
@@ -1314,19 +1314,19 @@
 
     return-object v0
 
-    :catchall_0
+    :catchall_14
     move-exception p1
 
     .line 98
     monitor-exit p2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_16
+    .catchall {:try_start_7 .. :try_end_16} :catchall_14
 
     throw p1
 .end method
 
 .method public getNotificationChannels(Ljava/lang/String;I)Ljava/util/List;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1355,7 +1355,7 @@
     monitor-enter p2
 
     .line 89
-    :try_start_0
+    :try_start_7
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object p1, p1, Lio/vanta/core/system/notification/NotificationRecord;->mNotificationChannels:Ljava/util/Map;
@@ -1370,19 +1370,19 @@
 
     return-object v0
 
-    :catchall_0
+    :catchall_14
     move-exception p1
 
     .line 90
     monitor-exit p2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_16
+    .catchall {:try_start_7 .. :try_end_16} :catchall_14
 
     throw p1
 .end method
 
 .method public systemReady()V
-    .locals 1
+    .registers 2
 
     .line 49
     invoke-static {}, Lio/vanta/core/system/notification/NotificationChannelManager;->get()Lio/vanta/core/system/notification/NotificationChannelManager;

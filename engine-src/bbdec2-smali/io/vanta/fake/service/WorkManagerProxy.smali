@@ -22,7 +22,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 19
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
@@ -33,17 +33,17 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 7
+    .registers 8
 
     const/4 v0, 0x0
 
     .line 25
-    :try_start_0
+    :try_start_1
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_2c
 
     .line 28
     const-string v2, "androidx.work.WorkManager"
@@ -77,12 +77,12 @@
     invoke-virtual {v2, v0, v1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_23
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_23} :catch_24
 
     return-object v0
 
-    :catch_0
+    :catch_24
     move-exception v1
 
     .line 33
@@ -92,18 +92,18 @@
 
     invoke-static {v2, v3, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_0
+    :cond_2c
     return-object v0
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     return-void
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

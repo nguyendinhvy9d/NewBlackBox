@@ -19,7 +19,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 613
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method synthetic constructor <init>(Lio/vanta/utils/CrashMonitor-IA;)V
-    .locals 0
+    .registers 2
 
     invoke-direct {p0}, Lio/vanta/utils/CrashMonitor$MemoryCrashRecovery;-><init>()V
 
@@ -38,19 +38,19 @@
 
 # virtual methods
 .method public attemptRecovery(Lio/vanta/utils/CrashMonitor$CrashInfo;)Z
-    .locals 2
+    .registers 4
 
     .line 631
     :try_start_0
     invoke-static {}, Ljava/lang/System;->gc()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_3} :catch_5
 
     const/4 p1, 0x1
 
     return p1
 
-    :catch_0
+    :catch_5
     move-exception p1
 
     .line 634
@@ -82,9 +82,9 @@
 .end method
 
 .method public canHandle(Ljava/lang/String;Ljava/lang/String;)Z
-    .locals 0
+    .registers 3
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_1c
 
     .line 621
     const-string p1, "OutOfMemoryError"
@@ -94,7 +94,7 @@
 
     move-result p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_1a
 
     const-string p1, "Memory"
 
@@ -103,7 +103,7 @@
 
     move-result p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_1a
 
     const-string p1, "SIGSEGV"
 
@@ -112,21 +112,21 @@
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_1c
 
-    :cond_0
+    :cond_1a
     const/4 p1, 0x1
 
     return p1
 
-    :cond_1
+    :cond_1c
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method public getName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 616
     const-string v0, "Memory Crash Recovery"
@@ -135,7 +135,7 @@
 .end method
 
 .method public getPriority()I
-    .locals 1
+    .registers 2
 
     const/16 v0, 0x3c
 

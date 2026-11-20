@@ -12,7 +12,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 22
     new-instance v0, Lio/vanta/core/system/os/BStorageManagerService;
@@ -25,7 +25,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Lio/vanta/core/system/os/IBStorageManagerService$Stub;-><init>()V
@@ -34,7 +34,7 @@
 .end method
 
 .method public static get()Lio/vanta/core/system/os/BStorageManagerService;
-    .locals 1
+    .registers 1
 
     .line 25
     sget-object v0, Lio/vanta/core/system/os/BStorageManagerService;->sService:Lio/vanta/core/system/os/BStorageManagerService;
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public getUriForFile(Ljava/lang/String;)Landroid/net/Uri;
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -73,7 +73,7 @@
 .end method
 
 .method public getVolumeList(ILjava/lang/String;II)[Landroid/os/storage/StorageVolume;
-    .locals 4
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -93,13 +93,13 @@
 
     const/4 p3, 0x0
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_d
 
     return-object p3
 
     .line 37
-    :cond_0
-    :try_start_0
+    :cond_d
+    :try_start_d
     invoke-static {}, Lvanta/android/os/storage/BRStorageManager;->get()Lvanta/android/os/storage/StorageManagerStatic;
 
     move-result-object p1
@@ -116,16 +116,16 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_1
+    if-nez p1, :cond_20
 
     return-object p3
 
     .line 40
-    :cond_1
+    :cond_20
     array-length v0, p1
 
-    :goto_0
-    if-ge p2, v0, :cond_3
+    :goto_21
+    if-ge p2, v0, :cond_44
 
     aget-object v1, p1, p2
 
@@ -145,7 +145,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_41
 
     .line 43
     invoke-static {v1}, Lvanta/android/os/storage/BRStorageVolume;->get(Ljava/lang/Object;)Lvanta/android/os/storage/StorageVolumeContext;
@@ -157,18 +157,18 @@
     move-result-object v2
 
     invoke-interface {v1, v2}, Lvanta/android/os/storage/StorageVolumeContext;->_set_mInternalPath(Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_41
+    .catch Ljava/lang/Exception; {:try_start_d .. :try_end_41} :catch_45
 
-    :cond_2
+    :cond_41
     add-int/lit8 p2, p2, 0x1
 
-    goto :goto_0
+    goto :goto_21
 
-    :cond_3
+    :cond_44
     return-object p1
 
-    :catch_0
+    :catch_45
     move-exception p1
 
     .line 48
@@ -178,7 +178,7 @@
 .end method
 
 .method public systemReady()V
-    .locals 0
+    .registers 1
 
     return-void
 .end method

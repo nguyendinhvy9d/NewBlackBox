@@ -11,7 +11,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 16
     new-instance v0, Lio/vanta/core/system/notification/NotificationChannelManager;
@@ -24,7 +24,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -34,17 +34,17 @@
 
     const/16 v1, 0x1a
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_c
 
     .line 26
     invoke-direct {p0}, Lio/vanta/core/system/notification/NotificationChannelManager;->registerAppChannel()V
 
-    :cond_0
+    :cond_c
     return-void
 .end method
 
 .method public static get()Lio/vanta/core/system/notification/NotificationChannelManager;
-    .locals 1
+    .registers 1
 
     .line 21
     sget-object v0, Lio/vanta/core/system/notification/NotificationChannelManager;->sManager:Lio/vanta/core/system/notification/NotificationChannelManager;
@@ -53,7 +53,7 @@
 .end method
 
 .method private registerAppChannel()V
-    .locals 5
+    .registers 6
 
     .line 32
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;

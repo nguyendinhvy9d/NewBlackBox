@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 6
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -19,7 +19,7 @@
 .end method
 
 .method public getLogSenderChatId()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 34
     const-string v0, "-1003719573856"
@@ -28,7 +28,7 @@
 .end method
 
 .method public isDisableFlagSecure()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -36,7 +36,7 @@
 .end method
 
 .method public isEnableDaemonService()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x1
 
@@ -44,7 +44,7 @@
 .end method
 
 .method public isEnableLauncherActivity()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x1
 
@@ -52,7 +52,7 @@
 .end method
 
 .method public isUseVpnNetwork()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -60,7 +60,7 @@
 .end method
 
 .method public requestInstallPackage(Ljava/io/File;I)Z
-    .locals 0
+    .registers 3
 
     const/4 p1, 0x0
 

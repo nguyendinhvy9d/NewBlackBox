@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/app/BActivityThread;Landroid/content/Context;Ljava/lang/String;Landroid/content/Context;)V
-    .locals 0
+    .registers 5
 
     .line 988
     iput-object p1, p0, Lio/vanta/app/BActivityThread$5;->this$0:Lio/vanta/app/BActivityThread;
@@ -41,7 +41,7 @@
 
 # virtual methods
 .method public getApplicationContext()Landroid/content/Context;
-    .locals 3
+    .registers 4
 
     .line 1037
     :try_start_0
@@ -50,12 +50,12 @@
     invoke-virtual {v0}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_6} :catch_7
 
     return-object v0
 
-    :catch_0
+    :catch_7
     move-exception v0
 
     .line 1039
@@ -85,7 +85,7 @@
 .end method
 
 .method public getClassLoader()Ljava/lang/ClassLoader;
-    .locals 4
+    .registers 5
 
     .line 1022
     :try_start_0
@@ -94,12 +94,12 @@
     invoke-virtual {v0}, Landroid/content/Context;->getClassLoader()Ljava/lang/ClassLoader;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_6} :catch_7
 
     return-object v0
 
-    :catch_0
+    :catch_7
     move-exception v0
 
     .line 1024
@@ -126,16 +126,16 @@
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 1026
-    :try_start_1
+    :try_start_20
     invoke-static {}, Ljava/lang/ClassLoader;->getSystemClassLoader()Ljava/lang/ClassLoader;
 
     move-result-object v0
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_24
+    .catch Ljava/lang/Exception; {:try_start_20 .. :try_end_24} :catch_25
 
     return-object v0
 
-    :catch_1
+    :catch_25
     move-exception v0
 
     .line 1028
@@ -165,7 +165,7 @@
 .end method
 
 .method public getPackageManager()Landroid/content/pm/PackageManager;
-    .locals 3
+    .registers 4
 
     .line 997
     :try_start_0
@@ -174,12 +174,12 @@
     invoke-virtual {v0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_6} :catch_7
 
     return-object v0
 
-    :catch_0
+    :catch_7
     move-exception v0
 
     .line 999
@@ -211,7 +211,7 @@
 .end method
 
 .method public getPackageName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 991
     iget-object v0, p0, Lio/vanta/app/BActivityThread$5;->val$packageName:Ljava/lang/String;
@@ -220,7 +220,7 @@
 .end method
 
 .method public getResources()Landroid/content/res/Resources;
-    .locals 4
+    .registers 5
 
     .line 1007
     :try_start_0
@@ -229,12 +229,12 @@
     invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_6} :catch_7
 
     return-object v0
 
-    :catch_0
+    :catch_7
     move-exception v0
 
     .line 1009
@@ -261,16 +261,16 @@
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 1011
-    :try_start_1
+    :try_start_20
     invoke-static {}, Landroid/content/res/Resources;->getSystem()Landroid/content/res/Resources;
 
     move-result-object v0
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_24
+    .catch Ljava/lang/Exception; {:try_start_20 .. :try_end_24} :catch_25
 
     return-object v0
 
-    :catch_1
+    :catch_25
     move-exception v0
 
     .line 1013

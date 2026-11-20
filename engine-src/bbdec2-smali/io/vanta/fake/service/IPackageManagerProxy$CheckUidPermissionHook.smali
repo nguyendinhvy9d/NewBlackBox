@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 703
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,19 +31,19 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_40
 
     .line 706
     array-length v0, p3
 
-    if-lez v0, :cond_1
+    if-lez v0, :cond_40
 
     const/4 v0, 0x0
 
@@ -51,7 +51,7 @@
 
     instance-of v2, v1, Ljava/lang/String;
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_40
 
     .line 707
     check-cast v1, Ljava/lang/String;
@@ -61,7 +61,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_40
 
     .line 709
     new-instance p1, Ljava/lang/StringBuilder;
@@ -85,16 +85,16 @@
 
     const/4 v1, 0x1
 
-    if-le p2, v1, :cond_0
+    if-le p2, v1, :cond_2c
 
     aget-object p2, p3, v1
 
-    goto :goto_0
+    goto :goto_2e
 
-    :cond_0
+    :cond_2c
     const-string p2, "?"
 
-    :goto_0
+    :goto_2e
     invoke-virtual {p1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
     move-result-object p1
@@ -116,7 +116,7 @@
     return-object p1
 
     .line 714
-    :cond_1
+    :cond_40
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

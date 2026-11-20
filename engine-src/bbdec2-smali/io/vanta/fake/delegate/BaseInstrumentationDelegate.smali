@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Landroid/app/Instrumentation;-><init>()V
@@ -18,7 +18,7 @@
 .end method
 
 .method private static varargs invokeExecStartActivity(Ljava/lang/Object;[Ljava/lang/Class;)Lio/vanta/utils/Reflector;
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -41,11 +41,11 @@
 
     move-result-object v0
 
-    :goto_0
-    if-eqz v0, :cond_0
+    :goto_4
+    if-eqz v0, :cond_1a
 
     .line 509
-    :try_start_0
+    :try_start_6
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
@@ -60,21 +60,21 @@
     invoke-virtual {v1, v2, p1}, Lio/vanta/utils/Reflector;->method(Ljava/lang/String;[Ljava/lang/Class;)Lio/vanta/utils/Reflector;
 
     move-result-object p0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_14
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_14} :catch_15
 
     return-object p0
 
     .line 512
-    :catch_0
+    :catch_15
     invoke-virtual {v0}, Ljava/lang/Class;->getSuperclass()Ljava/lang/Class;
 
     move-result-object v0
 
-    goto :goto_0
+    goto :goto_4
 
     .line 515
-    :cond_0
+    :cond_1a
     new-instance p0, Ljava/lang/NoSuchMethodException;
 
     invoke-direct {p0}, Ljava/lang/NoSuchMethodException;-><init>()V
@@ -83,7 +83,7 @@
 .end method
 
 .method private storeResultsForOlderVersions(Landroid/os/Bundle;)V
-    .locals 8
+    .registers 10
 
     .line 86
     const-string v0, "BaseInstrumentationDelegate"
@@ -94,7 +94,7 @@
     const-string v2, "results_"
 
     .line 86
-    :try_start_0
+    :try_start_6
     const-string v3, "io.vanta.utils.ResultsStorage"
 
     invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -178,12 +178,12 @@
     move-result-object p1
 
     invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_56
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_56} :catch_57
 
     return-void
 
-    :catch_0
+    :catch_57
     move-exception p1
 
     .line 95
@@ -211,17 +211,17 @@
 .end method
 
 .method private storeResultsInPreferences(Landroid/os/Bundle;)V
-    .locals 6
+    .registers 8
 
     .line 102
     const-string v0, "BaseInstrumentationDelegate"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->getContext()Landroid/content/Context;
 
     move-result-object v1
 
-    if-eqz v1, :cond_6
+    if-eqz v1, :cond_87
 
     .line 104
     const-string v2, "instrumentation_results"
@@ -246,13 +246,13 @@
 
     move-result-object v2
 
-    :cond_0
-    :goto_0
+    :cond_1b
+    :goto_1b
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_5
+    if-eqz v3, :cond_6d
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -268,20 +268,20 @@
     .line 110
     instance-of v5, v4, Ljava/lang/String;
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_35
 
     .line 111
     check-cast v4, Ljava/lang/String;
 
     invoke-interface {v1, v3, v4}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 112
-    :cond_1
+    :cond_35
     instance-of v5, v4, Ljava/lang/Integer;
 
-    if-eqz v5, :cond_2
+    if-eqz v5, :cond_43
 
     .line 113
     check-cast v4, Ljava/lang/Integer;
@@ -292,13 +292,13 @@
 
     invoke-interface {v1, v3, v4}, Landroid/content/SharedPreferences$Editor;->putInt(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 114
-    :cond_2
+    :cond_43
     instance-of v5, v4, Ljava/lang/Boolean;
 
-    if-eqz v5, :cond_3
+    if-eqz v5, :cond_51
 
     .line 115
     check-cast v4, Ljava/lang/Boolean;
@@ -309,13 +309,13 @@
 
     invoke-interface {v1, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 116
-    :cond_3
+    :cond_51
     instance-of v5, v4, Ljava/lang/Long;
 
-    if-eqz v5, :cond_4
+    if-eqz v5, :cond_5f
 
     .line 117
     check-cast v4, Ljava/lang/Long;
@@ -326,13 +326,13 @@
 
     invoke-interface {v1, v3, v4, v5}, Landroid/content/SharedPreferences$Editor;->putLong(Ljava/lang/String;J)Landroid/content/SharedPreferences$Editor;
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 118
-    :cond_4
+    :cond_5f
     instance-of v5, v4, Ljava/lang/Float;
 
-    if-eqz v5, :cond_0
+    if-eqz v5, :cond_1b
 
     .line 119
     check-cast v4, Ljava/lang/Float;
@@ -343,10 +343,10 @@
 
     invoke-interface {v1, v3, v4}, Landroid/content/SharedPreferences$Editor;->putFloat(Ljava/lang/String;F)Landroid/content/SharedPreferences$Editor;
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 124
-    :cond_5
+    :cond_6d
     const-string p1, "timestamp"
 
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -371,13 +371,13 @@
     const-string p1, "Stored results in SharedPreferences"
 
     invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_87
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_87} :catch_88
 
-    :cond_6
+    :cond_87
     return-void
 
-    :catch_0
+    :catch_88
     move-exception p1
 
     .line 131
@@ -407,7 +407,7 @@
 
 # virtual methods
 .method public addMonitor(Landroid/content/IntentFilter;Landroid/app/Instrumentation$ActivityResult;Z)Landroid/app/Instrumentation$ActivityMonitor;
-    .locals 1
+    .registers 5
 
     .line 222
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -420,7 +420,7 @@
 .end method
 
 .method public addMonitor(Ljava/lang/String;Landroid/app/Instrumentation$ActivityResult;Z)Landroid/app/Instrumentation$ActivityMonitor;
-    .locals 1
+    .registers 5
 
     .line 227
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -433,7 +433,7 @@
 .end method
 
 .method public addMonitor(Landroid/app/Instrumentation$ActivityMonitor;)V
-    .locals 1
+    .registers 3
 
     .line 217
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -444,14 +444,14 @@
 .end method
 
 .method public addResults(Landroid/os/Bundle;)V
-    .locals 2
+    .registers 4
 
     .line 60
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x1a
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_c
 
     .line 61
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -460,16 +460,16 @@
 
     return-void
 
-    :cond_0
-    if-eqz p1, :cond_1
+    :cond_c
+    if-eqz p1, :cond_3a
 
     .line 66
-    :try_start_0
+    :try_start_e
     invoke-virtual {p1}, Landroid/os/Bundle;->isEmpty()Z
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_3a
 
     .line 68
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -483,12 +483,12 @@
 
     .line 74
     invoke-direct {p0, p1}, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->storeResultsInPreferences(Landroid/os/Bundle;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_20
+    .catch Ljava/lang/Exception; {:try_start_e .. :try_end_20} :catch_21
 
     return-void
 
-    :catch_0
+    :catch_21
     move-exception p1
 
     .line 77
@@ -514,12 +514,12 @@
 
     invoke-static {v0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
+    :cond_3a
     return-void
 .end method
 
 .method public callActivityOnCreate(Landroid/app/Activity;Landroid/os/Bundle;)V
-    .locals 2
+    .registers 5
 
     .line 312
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -539,12 +539,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_11
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_21
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -555,14 +555,14 @@
     .line 314
     invoke-virtual {v1, p1, p2}, Lio/vanta/app/configuration/AppLifecycleCallback;->onActivityCreated(Landroid/app/Activity;Landroid/os/Bundle;)V
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_21
     return-void
 .end method
 
 .method public callActivityOnCreate(Landroid/app/Activity;Landroid/os/Bundle;Landroid/os/PersistableBundle;)V
-    .locals 1
+    .registers 5
 
     .line 320
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -582,12 +582,12 @@
 
     move-result-object p3
 
-    :goto_0
+    :goto_11
     invoke-interface {p3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_21
 
     invoke-interface {p3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -598,14 +598,14 @@
     .line 322
     invoke-virtual {v0, p1, p2}, Lio/vanta/app/configuration/AppLifecycleCallback;->onActivityCreated(Landroid/app/Activity;Landroid/os/Bundle;)V
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_21
     return-void
 .end method
 
 .method public callActivityOnDestroy(Landroid/app/Activity;)V
-    .locals 2
+    .registers 4
 
     .line 328
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -625,12 +625,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_11
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_21
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -641,14 +641,14 @@
     .line 330
     invoke-virtual {v1, p1}, Lio/vanta/app/configuration/AppLifecycleCallback;->onActivityDestroyed(Landroid/app/Activity;)V
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_21
     return-void
 .end method
 
 .method public callActivityOnNewIntent(Landroid/app/Activity;Landroid/content/Intent;)V
-    .locals 1
+    .registers 4
 
     .line 356
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -659,7 +659,7 @@
 .end method
 
 .method public callActivityOnPause(Landroid/app/Activity;)V
-    .locals 2
+    .registers 4
 
     .line 403
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -679,12 +679,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_11
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_21
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -695,14 +695,14 @@
     .line 405
     invoke-virtual {v1, p1}, Lio/vanta/app/configuration/AppLifecycleCallback;->onActivityPaused(Landroid/app/Activity;)V
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_21
     return-void
 .end method
 
 .method public callActivityOnPostCreate(Landroid/app/Activity;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
 
     .line 346
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -713,7 +713,7 @@
 .end method
 
 .method public callActivityOnPostCreate(Landroid/app/Activity;Landroid/os/Bundle;Landroid/os/PersistableBundle;)V
-    .locals 1
+    .registers 5
 
     .line 351
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -724,7 +724,7 @@
 .end method
 
 .method public callActivityOnRestart(Landroid/app/Activity;)V
-    .locals 1
+    .registers 3
 
     .line 369
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -735,7 +735,7 @@
 .end method
 
 .method public callActivityOnRestoreInstanceState(Landroid/app/Activity;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
 
     .line 336
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -746,7 +746,7 @@
 .end method
 
 .method public callActivityOnRestoreInstanceState(Landroid/app/Activity;Landroid/os/Bundle;Landroid/os/PersistableBundle;)V
-    .locals 1
+    .registers 5
 
     .line 341
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -757,7 +757,7 @@
 .end method
 
 .method public callActivityOnResume(Landroid/app/Activity;)V
-    .locals 2
+    .registers 4
 
     .line 374
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -777,12 +777,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_11
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_21
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -793,14 +793,14 @@
     .line 376
     invoke-virtual {v1, p1}, Lio/vanta/app/configuration/AppLifecycleCallback;->onActivityResumed(Landroid/app/Activity;)V
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_21
     return-void
 .end method
 
 .method public callActivityOnSaveInstanceState(Landroid/app/Activity;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
 
     .line 390
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -811,7 +811,7 @@
 .end method
 
 .method public callActivityOnSaveInstanceState(Landroid/app/Activity;Landroid/os/Bundle;Landroid/os/PersistableBundle;)V
-    .locals 1
+    .registers 5
 
     .line 395
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -831,12 +831,12 @@
 
     move-result-object p3
 
-    :goto_0
+    :goto_11
     invoke-interface {p3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_21
 
     invoke-interface {p3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -847,14 +847,14 @@
     .line 397
     invoke-virtual {v0, p1, p2}, Lio/vanta/app/configuration/AppLifecycleCallback;->onActivitySaveInstanceState(Landroid/app/Activity;Landroid/os/Bundle;)V
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_21
     return-void
 .end method
 
 .method public callActivityOnStart(Landroid/app/Activity;)V
-    .locals 2
+    .registers 4
 
     .line 361
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -874,12 +874,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_11
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_21
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -890,14 +890,14 @@
     .line 363
     invoke-virtual {v1, p1}, Lio/vanta/app/configuration/AppLifecycleCallback;->onActivityStarted(Landroid/app/Activity;)V
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_21
     return-void
 .end method
 
 .method public callActivityOnStop(Landroid/app/Activity;)V
-    .locals 2
+    .registers 4
 
     .line 382
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -917,12 +917,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_11
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_21
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -933,14 +933,14 @@
     .line 384
     invoke-virtual {v1, p1}, Lio/vanta/app/configuration/AppLifecycleCallback;->onActivityStopped(Landroid/app/Activity;)V
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_21
     return-void
 .end method
 
 .method public callActivityOnUserLeaving(Landroid/app/Activity;)V
-    .locals 1
+    .registers 3
 
     .line 411
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -951,7 +951,7 @@
 .end method
 
 .method public callApplicationOnCreate(Landroid/app/Application;)V
-    .locals 1
+    .registers 3
 
     .line 297
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -962,7 +962,7 @@
 .end method
 
 .method public checkMonitorHit(Landroid/app/Instrumentation$ActivityMonitor;I)Z
-    .locals 1
+    .registers 4
 
     .line 232
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -975,7 +975,7 @@
 .end method
 
 .method public endPerformanceSnapshot()V
-    .locals 1
+    .registers 2
 
     .line 152
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -986,7 +986,7 @@
 .end method
 
 .method public execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Landroid/app/Activity;Landroid/content/Intent;I)Landroid/app/Instrumentation$ActivityResult;
-    .locals 4
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -1061,7 +1061,7 @@
 .end method
 
 .method public execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Landroid/app/Activity;Landroid/content/Intent;ILandroid/os/Bundle;)Landroid/app/Instrumentation$ActivityResult;
-    .locals 4
+    .registers 12
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -1142,7 +1142,7 @@
 .end method
 
 .method public execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Landroid/app/Activity;Landroid/content/Intent;ILandroid/os/Bundle;Landroid/os/UserHandle;)Landroid/app/Instrumentation$ActivityResult;
-    .locals 4
+    .registers 13
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -1229,7 +1229,7 @@
 .end method
 
 .method public execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Landroid/app/Fragment;Landroid/content/Intent;I)Landroid/app/Instrumentation$ActivityResult;
-    .locals 4
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -1304,7 +1304,7 @@
 .end method
 
 .method public execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Landroid/app/Fragment;Landroid/content/Intent;ILandroid/os/Bundle;)Landroid/app/Instrumentation$ActivityResult;
-    .locals 4
+    .registers 12
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -1385,7 +1385,7 @@
 .end method
 
 .method public execStartActivity(Landroid/content/Context;Landroid/os/IBinder;Landroid/os/IBinder;Ljava/lang/String;Landroid/content/Intent;ILandroid/os/Bundle;)Landroid/app/Instrumentation$ActivityResult;
-    .locals 4
+    .registers 12
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -1466,7 +1466,7 @@
 .end method
 
 .method public finish(ILandroid/os/Bundle;)V
-    .locals 1
+    .registers 4
 
     .line 137
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1477,7 +1477,7 @@
 .end method
 
 .method public getAllocCounts()Landroid/os/Bundle;
-    .locals 1
+    .registers 2
 
     .line 426
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1490,7 +1490,7 @@
 .end method
 
 .method public getBinderCounts()Landroid/os/Bundle;
-    .locals 1
+    .registers 2
 
     .line 431
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1503,7 +1503,7 @@
 .end method
 
 .method public getComponentName()Landroid/content/ComponentName;
-    .locals 1
+    .registers 2
 
     .line 167
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1516,7 +1516,7 @@
 .end method
 
 .method public getContext()Landroid/content/Context;
-    .locals 1
+    .registers 2
 
     .line 162
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1529,7 +1529,7 @@
 .end method
 
 .method public getTargetContext()Landroid/content/Context;
-    .locals 1
+    .registers 2
 
     .line 172
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1542,7 +1542,7 @@
 .end method
 
 .method public getUiAutomation()Landroid/app/UiAutomation;
-    .locals 1
+    .registers 2
 
     .line 436
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1555,7 +1555,7 @@
 .end method
 
 .method public invokeContextMenuAction(Landroid/app/Activity;II)Z
-    .locals 1
+    .registers 5
 
     .line 257
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1568,7 +1568,7 @@
 .end method
 
 .method public invokeMenuActionSync(Landroid/app/Activity;II)Z
-    .locals 1
+    .registers 5
 
     .line 252
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1581,7 +1581,7 @@
 .end method
 
 .method public isProfiling()Z
-    .locals 1
+    .registers 2
 
     .line 177
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1594,7 +1594,7 @@
 .end method
 
 .method public newActivity(Ljava/lang/Class;Landroid/content/Context;Landroid/os/IBinder;Landroid/app/Application;Landroid/content/Intent;Landroid/content/pm/ActivityInfo;Ljava/lang/CharSequence;Landroid/app/Activity;Ljava/lang/String;Ljava/lang/Object;)Landroid/app/Activity;
-    .locals 11
+    .registers 22
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1652,7 +1652,7 @@
 .end method
 
 .method public newActivity(Ljava/lang/ClassLoader;Ljava/lang/String;Landroid/content/Intent;)Landroid/app/Activity;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/ClassNotFoundException;,
@@ -1672,7 +1672,7 @@
 .end method
 
 .method public newApplication(Ljava/lang/ClassLoader;Ljava/lang/String;Landroid/content/Context;)Landroid/app/Application;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/ClassNotFoundException;,
@@ -1692,7 +1692,7 @@
 .end method
 
 .method public onCreate(Landroid/os/Bundle;)V
-    .locals 1
+    .registers 3
 
     .line 35
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1703,7 +1703,7 @@
 .end method
 
 .method public onDestroy()V
-    .locals 1
+    .registers 2
 
     .line 157
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1714,7 +1714,7 @@
 .end method
 
 .method public onException(Ljava/lang/Object;Ljava/lang/Throwable;)Z
-    .locals 1
+    .registers 4
 
     .line 50
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1727,7 +1727,7 @@
 .end method
 
 .method public onStart()V
-    .locals 1
+    .registers 2
 
     .line 45
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1738,7 +1738,7 @@
 .end method
 
 .method public removeMonitor(Landroid/app/Instrumentation$ActivityMonitor;)V
-    .locals 1
+    .registers 3
 
     .line 247
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1749,7 +1749,7 @@
 .end method
 
 .method public runOnMainSync(Ljava/lang/Runnable;)V
-    .locals 1
+    .registers 3
 
     .line 207
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1760,7 +1760,7 @@
 .end method
 
 .method public sendCharacterSync(I)V
-    .locals 1
+    .registers 3
 
     .line 277
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1771,7 +1771,7 @@
 .end method
 
 .method public sendKeyDownUpSync(I)V
-    .locals 1
+    .registers 3
 
     .line 272
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1782,7 +1782,7 @@
 .end method
 
 .method public sendKeySync(Landroid/view/KeyEvent;)V
-    .locals 1
+    .registers 3
 
     .line 267
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1793,7 +1793,7 @@
 .end method
 
 .method public sendPointerSync(Landroid/view/MotionEvent;)V
-    .locals 1
+    .registers 3
 
     .line 282
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1804,7 +1804,7 @@
 .end method
 
 .method public sendStatus(ILandroid/os/Bundle;)V
-    .locals 1
+    .registers 4
 
     .line 55
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1815,7 +1815,7 @@
 .end method
 
 .method public sendStringSync(Ljava/lang/String;)V
-    .locals 1
+    .registers 3
 
     .line 262
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1826,7 +1826,7 @@
 .end method
 
 .method public sendTrackballEventSync(Landroid/view/MotionEvent;)V
-    .locals 1
+    .registers 3
 
     .line 287
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1837,7 +1837,7 @@
 .end method
 
 .method public setAutomaticPerformanceSnapshots()V
-    .locals 1
+    .registers 2
 
     .line 142
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1848,7 +1848,7 @@
 .end method
 
 .method public setInTouchMode(Z)V
-    .locals 1
+    .registers 3
 
     .line 192
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1859,7 +1859,7 @@
 .end method
 
 .method public start()V
-    .locals 1
+    .registers 2
 
     .line 40
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1870,7 +1870,7 @@
 .end method
 
 .method public startActivitySync(Landroid/content/Intent;)Landroid/app/Activity;
-    .locals 1
+    .registers 3
 
     .line 212
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1883,7 +1883,7 @@
 .end method
 
 .method public startAllocCounting()V
-    .locals 1
+    .registers 2
 
     .line 416
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1894,7 +1894,7 @@
 .end method
 
 .method public startPerformanceSnapshot()V
-    .locals 1
+    .registers 2
 
     .line 147
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1905,7 +1905,7 @@
 .end method
 
 .method public startProfiling()V
-    .locals 1
+    .registers 2
 
     .line 182
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1916,7 +1916,7 @@
 .end method
 
 .method public stopAllocCounting()V
-    .locals 1
+    .registers 2
 
     .line 421
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1927,7 +1927,7 @@
 .end method
 
 .method public stopProfiling()V
-    .locals 1
+    .registers 2
 
     .line 187
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1938,7 +1938,7 @@
 .end method
 
 .method public waitForIdle(Ljava/lang/Runnable;)V
-    .locals 1
+    .registers 3
 
     .line 197
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1949,7 +1949,7 @@
 .end method
 
 .method public waitForIdleSync()V
-    .locals 1
+    .registers 2
 
     .line 202
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1960,7 +1960,7 @@
 .end method
 
 .method public waitForMonitor(Landroid/app/Instrumentation$ActivityMonitor;)Landroid/app/Activity;
-    .locals 1
+    .registers 3
 
     .line 237
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;
@@ -1973,7 +1973,7 @@
 .end method
 
 .method public waitForMonitorWithTimeout(Landroid/app/Instrumentation$ActivityMonitor;J)Landroid/app/Activity;
-    .locals 1
+    .registers 5
 
     .line 242
     iget-object v0, p0, Lio/vanta/fake/delegate/BaseInstrumentationDelegate;->mBaseInstrumentation:Landroid/app/Instrumentation;

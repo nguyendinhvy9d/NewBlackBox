@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/VantaCore;)V
-    .locals 0
+    .registers 2
 
     .line 556
     iput-object p1, p0, Lio/vanta/VantaCore$1;->this$0:Lio/vanta/VantaCore;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public onServiceConnected(Landroid/content/ComponentName;Landroid/os/IBinder;)V
-    .locals 0
+    .registers 3
 
     .line 559
     const-string p1, "VantaCore"
@@ -49,7 +49,7 @@
 .end method
 
 .method public onServiceDisconnected(Landroid/content/ComponentName;)V
-    .locals 1
+    .registers 3
 
     .line 563
     const-string p1, "VantaCore"

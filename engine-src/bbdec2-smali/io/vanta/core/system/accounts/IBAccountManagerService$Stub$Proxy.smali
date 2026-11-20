@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 653
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public accountAuthenticated(Landroid/accounts/Account;I)Z
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -55,7 +55,7 @@
     move-result-object v1
 
     .line 1142
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -82,15 +82,15 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_2c
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_25
 
     const/4 v2, 0x1
 
     .line 1150
-    :cond_0
+    :cond_25
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 1151
@@ -98,7 +98,7 @@
 
     return v2
 
-    :catchall_0
+    :catchall_2c
     move-exception p1
 
     .line 1150
@@ -112,7 +112,7 @@
 .end method
 
 .method public addAccount(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZLandroid/os/Bundle;I)V
-    .locals 3
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -130,7 +130,7 @@
     move-result-object v1
 
     .line 1042
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -167,8 +167,8 @@
 
     .line 1051
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2d
+    .catchall {:try_start_8 .. :try_end_2d} :catchall_34
 
     .line 1054
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -178,7 +178,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_34
     move-exception p1
 
     .line 1054
@@ -192,7 +192,7 @@
 .end method
 
 .method public addAccountAsUser(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZLandroid/os/Bundle;I)V
-    .locals 3
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -210,7 +210,7 @@
     move-result-object v1
 
     .line 1063
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -247,8 +247,8 @@
 
     .line 1072
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2d
+    .catchall {:try_start_8 .. :try_end_2d} :catchall_34
 
     .line 1075
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -258,7 +258,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_34
     move-exception p1
 
     .line 1075
@@ -272,7 +272,7 @@
 .end method
 
 .method public addAccountExplicitly(Landroid/accounts/Account;Ljava/lang/String;Landroid/os/Bundle;I)Z
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -290,7 +290,7 @@
     move-result-object v1
 
     .line 822
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -323,15 +323,15 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_28
+    .catchall {:try_start_8 .. :try_end_28} :catchall_32
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_2b
 
     const/4 v2, 0x1
 
     .line 832
-    :cond_0
+    :cond_2b
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 833
@@ -339,7 +339,7 @@
 
     return v2
 
-    :catchall_0
+    :catchall_32
     move-exception p1
 
     .line 832
@@ -353,7 +353,7 @@
 .end method
 
 .method public addAccountExplicitlyWithVisibility(Landroid/accounts/Account;Ljava/lang/String;Landroid/os/Bundle;Ljava/util/Map;I)Z
-    .locals 3
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -371,7 +371,7 @@
     move-result-object v1
 
     .line 1200
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -407,15 +407,15 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2b
+    .catchall {:try_start_8 .. :try_end_2b} :catchall_35
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_2e
 
     const/4 v2, 0x1
 
     .line 1211
-    :cond_0
+    :cond_2e
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 1212
@@ -423,7 +423,7 @@
 
     return v2
 
-    :catchall_0
+    :catchall_35
     move-exception p1
 
     .line 1211
@@ -437,7 +437,7 @@
 .end method
 
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 658
     iget-object v0, p0, Lio/vanta/core/system/accounts/IBAccountManagerService$Stub$Proxy;->mRemote:Landroid/os/IBinder;
@@ -446,7 +446,7 @@
 .end method
 
 .method public clearPassword(Landroid/accounts/Account;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -464,7 +464,7 @@
     move-result-object v1
 
     .line 969
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -486,8 +486,8 @@
 
     .line 973
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_8 .. :try_end_1e} :catchall_25
 
     .line 976
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -497,7 +497,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_25
     move-exception p1
 
     .line 976
@@ -511,7 +511,7 @@
 .end method
 
 .method public confirmCredentialsAsUser(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Landroid/os/Bundle;ZI)V
-    .locals 3
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -529,7 +529,7 @@
     move-result-object v1
 
     .line 1122
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -560,8 +560,8 @@
 
     .line 1129
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_27
+    .catchall {:try_start_8 .. :try_end_27} :catchall_2e
 
     .line 1132
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -571,7 +571,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2e
     move-exception p1
 
     .line 1132
@@ -585,7 +585,7 @@
 .end method
 
 .method public copyAccountToUser(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;II)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -603,7 +603,7 @@
     move-result-object v1
 
     .line 879
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -631,8 +631,8 @@
 
     .line 885
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 888
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -642,7 +642,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 888
@@ -656,7 +656,7 @@
 .end method
 
 .method public editProperties(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;ZI)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -674,7 +674,7 @@
     move-result-object v1
 
     .line 1104
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -702,8 +702,8 @@
 
     .line 1110
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 1113
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -713,7 +713,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 1113
@@ -727,7 +727,7 @@
 .end method
 
 .method public getAccountByTypeAndFeatures(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;[Ljava/lang/String;I)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -745,7 +745,7 @@
     move-result-object v1
 
     .line 785
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -773,8 +773,8 @@
 
     .line 791
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_8 .. :try_end_23} :catchall_2a
 
     .line 794
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -784,7 +784,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2a
     move-exception p1
 
     .line 794
@@ -798,7 +798,7 @@
 .end method
 
 .method public getAccountVisibility(Landroid/accounts/Account;Ljava/lang/String;I)I
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -816,7 +816,7 @@
     move-result-object v1
 
     .line 1243
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -846,8 +846,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_8 .. :try_end_25} :catchall_2c
 
     .line 1252
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -857,7 +857,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_2c
     move-exception p1
 
     .line 1252
@@ -871,7 +871,7 @@
 .end method
 
 .method public getAccountsAndVisibilityForPackage(Ljava/lang/String;Ljava/lang/String;I)Ljava/util/Map;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -889,7 +889,7 @@
     move-result-object v1
 
     .line 1264
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -928,8 +928,8 @@
     invoke-virtual {v1, p1}, Landroid/os/Parcel;->readHashMap(Ljava/lang/ClassLoader;)Ljava/util/HashMap;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2d
+    .catchall {:try_start_8 .. :try_end_2d} :catchall_34
 
     .line 1274
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -939,7 +939,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_34
     move-exception p1
 
     .line 1274
@@ -953,7 +953,7 @@
 .end method
 
 .method public getAccountsAsUser(Ljava/lang/String;I)[Landroid/accounts/Account;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -971,7 +971,7 @@
     move-result-object v1
 
     .line 767
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1002,8 +1002,8 @@
     move-result-object p1
 
     check-cast p1, [Landroid/accounts/Account;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_8 .. :try_end_25} :catchall_2c
 
     .line 775
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1013,7 +1013,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2c
     move-exception p1
 
     .line 775
@@ -1027,7 +1027,7 @@
 .end method
 
 .method public getAccountsByFeatures(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;[Ljava/lang/String;I)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1045,7 +1045,7 @@
     move-result-object v1
 
     .line 803
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1073,8 +1073,8 @@
 
     .line 809
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 812
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1084,7 +1084,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 812
@@ -1098,7 +1098,7 @@
 .end method
 
 .method public getAccountsByTypeForPackage(Ljava/lang/String;Ljava/lang/String;I)[Landroid/accounts/Account;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1116,7 +1116,7 @@
     move-result-object v1
 
     .line 747
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1150,8 +1150,8 @@
     move-result-object p1
 
     check-cast p1, [Landroid/accounts/Account;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_28
+    .catchall {:try_start_8 .. :try_end_28} :catchall_2f
 
     .line 756
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1161,7 +1161,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2f
     move-exception p1
 
     .line 756
@@ -1175,7 +1175,7 @@
 .end method
 
 .method public getAccountsForPackage(Ljava/lang/String;II)[Landroid/accounts/Account;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1193,7 +1193,7 @@
     move-result-object v1
 
     .line 727
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1227,8 +1227,8 @@
     move-result-object p1
 
     check-cast p1, [Landroid/accounts/Account;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_28
+    .catchall {:try_start_8 .. :try_end_28} :catchall_2f
 
     .line 736
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1238,7 +1238,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2f
     move-exception p1
 
     .line 736
@@ -1252,7 +1252,7 @@
 .end method
 
 .method public getAuthToken(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Ljava/lang/String;ZZLandroid/os/Bundle;I)V
-    .locals 3
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1270,7 +1270,7 @@
     move-result-object v1
 
     .line 1021
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1307,8 +1307,8 @@
 
     .line 1030
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2d
+    .catchall {:try_start_8 .. :try_end_2d} :catchall_34
 
     .line 1033
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1318,7 +1318,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_34
     move-exception p1
 
     .line 1033
@@ -1332,7 +1332,7 @@
 .end method
 
 .method public getAuthTokenLabel(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1350,7 +1350,7 @@
     move-result-object v1
 
     .line 1160
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1378,8 +1378,8 @@
 
     .line 1166
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 1169
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1389,7 +1389,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 1169
@@ -1403,7 +1403,7 @@
 .end method
 
 .method public getAuthenticatorTypes(I)[Landroid/accounts/AuthenticatorDescription;
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1421,7 +1421,7 @@
     move-result-object v1
 
     .line 709
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1449,8 +1449,8 @@
     move-result-object p1
 
     check-cast p1, [Landroid/accounts/AuthenticatorDescription;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_29
 
     .line 716
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1460,7 +1460,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_29
     move-exception p1
 
     .line 716
@@ -1474,7 +1474,7 @@
 .end method
 
 .method public final getInterfaceDescriptor()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 662
     const-string v0, "io.vanta.core.system.accounts.IBAccountManagerService"
@@ -1483,7 +1483,7 @@
 .end method
 
 .method public getPackagesAndVisibilityForAccount(Landroid/accounts/Account;I)Ljava/util/Map;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1501,7 +1501,7 @@
     move-result-object v1
 
     .line 1180
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1537,8 +1537,8 @@
     invoke-virtual {v1, p1}, Landroid/os/Parcel;->readHashMap(Ljava/lang/ClassLoader;)Ljava/util/HashMap;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2a
+    .catchall {:try_start_8 .. :try_end_2a} :catchall_31
 
     .line 1189
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1548,7 +1548,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_31
     move-exception p1
 
     .line 1189
@@ -1562,7 +1562,7 @@
 .end method
 
 .method public getPassword(Landroid/accounts/Account;I)Ljava/lang/String;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1580,7 +1580,7 @@
     move-result-object v1
 
     .line 670
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1607,8 +1607,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 678
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1618,7 +1618,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 678
@@ -1632,7 +1632,7 @@
 .end method
 
 .method public getUserData(Landroid/accounts/Account;Ljava/lang/String;I)Ljava/lang/String;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1650,7 +1650,7 @@
     move-result-object v1
 
     .line 689
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1680,8 +1680,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 698
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1691,7 +1691,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 698
@@ -1705,7 +1705,7 @@
 .end method
 
 .method public invalidateAuthToken(Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1723,7 +1723,7 @@
     move-result-object v1
 
     .line 897
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1748,8 +1748,8 @@
 
     .line 902
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 905
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1759,7 +1759,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 905
@@ -1773,7 +1773,7 @@
 .end method
 
 .method public peekAuthToken(Landroid/accounts/Account;Ljava/lang/String;I)Ljava/lang/String;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1791,7 +1791,7 @@
     move-result-object v1
 
     .line 915
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1821,8 +1821,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_8 .. :try_end_25} :catchall_2c
 
     .line 924
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1832,7 +1832,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2c
     move-exception p1
 
     .line 924
@@ -1846,7 +1846,7 @@
 .end method
 
 .method public registerAccountListener([Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1864,7 +1864,7 @@
     move-result-object v1
 
     .line 1284
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1889,8 +1889,8 @@
 
     .line 1289
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 1292
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1900,7 +1900,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 1292
@@ -1914,7 +1914,7 @@
 .end method
 
 .method public removeAccountAsUser(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;ZI)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1932,7 +1932,7 @@
     move-result-object v1
 
     .line 842
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1960,8 +1960,8 @@
 
     .line 848
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 851
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1971,7 +1971,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 851
@@ -1985,7 +1985,7 @@
 .end method
 
 .method public removeAccountExplicitly(Landroid/accounts/Account;I)Z
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -2003,7 +2003,7 @@
     move-result-object v1
 
     .line 861
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2030,15 +2030,15 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_2c
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_25
 
     const/4 v2, 0x1
 
     .line 869
-    :cond_0
+    :cond_25
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 870
@@ -2046,7 +2046,7 @@
 
     return v2
 
-    :catchall_0
+    :catchall_2c
     move-exception p1
 
     .line 869
@@ -2060,7 +2060,7 @@
 .end method
 
 .method public setAccountVisibility(Landroid/accounts/Account;Ljava/lang/String;II)Z
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -2078,7 +2078,7 @@
     move-result-object v1
 
     .line 1222
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2111,15 +2111,15 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_28
+    .catchall {:try_start_8 .. :try_end_28} :catchall_32
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_2b
 
     const/4 v2, 0x1
 
     .line 1232
-    :cond_0
+    :cond_2b
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 1233
@@ -2127,7 +2127,7 @@
 
     return v2
 
-    :catchall_0
+    :catchall_32
     move-exception p1
 
     .line 1232
@@ -2141,7 +2141,7 @@
 .end method
 
 .method public setAuthToken(Landroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -2159,7 +2159,7 @@
     move-result-object v1
 
     .line 934
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2187,8 +2187,8 @@
 
     .line 940
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 943
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2198,7 +2198,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 943
@@ -2212,7 +2212,7 @@
 .end method
 
 .method public setPassword(Landroid/accounts/Account;Ljava/lang/String;I)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -2230,7 +2230,7 @@
     move-result-object v1
 
     .line 952
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2255,8 +2255,8 @@
 
     .line 957
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 960
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2266,7 +2266,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 960
@@ -2280,7 +2280,7 @@
 .end method
 
 .method public setUserData(Landroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -2298,7 +2298,7 @@
     move-result-object v1
 
     .line 985
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2326,8 +2326,8 @@
 
     .line 991
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 994
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2337,7 +2337,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 994
@@ -2351,7 +2351,7 @@
 .end method
 
 .method public unregisterAccountListener([Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -2369,7 +2369,7 @@
     move-result-object v1
 
     .line 1301
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2394,8 +2394,8 @@
 
     .line 1306
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 1309
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2405,7 +2405,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 1309
@@ -2419,7 +2419,7 @@
 .end method
 
 .method public updateAppPermission(Landroid/accounts/Account;Ljava/lang/String;IZ)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -2437,7 +2437,7 @@
     move-result-object v1
 
     .line 1003
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2465,8 +2465,8 @@
 
     .line 1009
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 1012
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2476,7 +2476,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 1012
@@ -2490,7 +2490,7 @@
 .end method
 
 .method public updateCredentials(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Ljava/lang/String;ZLandroid/os/Bundle;I)V
-    .locals 3
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -2508,7 +2508,7 @@
     move-result-object v1
 
     .line 1084
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.accounts.IBAccountManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2542,8 +2542,8 @@
 
     .line 1092
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2a
+    .catchall {:try_start_8 .. :try_end_2a} :catchall_31
 
     .line 1095
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2553,7 +2553,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_31
     move-exception p1
 
     .line 1095

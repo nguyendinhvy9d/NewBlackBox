@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 507
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 6
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,14 +45,14 @@
     .line 512
     const-string v2, "ActivityManagerStub"
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_3d
 
-    :try_start_0
+    :try_start_7
     array-length v3, p3
 
     const/4 v4, 0x2
 
-    if-lt v3, v4, :cond_0
+    if-lt v3, v4, :cond_3d
 
     const/4 v3, 0x1
 
@@ -66,14 +66,14 @@
 
     move-result-object v4
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_3d
 
     .line 517
     invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v5
 
-    if-nez v5, :cond_0
+    if-nez v5, :cond_3d
 
     .line 518
     new-instance p1, Ljava/lang/StringBuilder;
@@ -109,17 +109,17 @@
     return-object v1
 
     .line 525
-    :cond_0
+    :cond_3d
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_41
+    .catch Ljava/lang/SecurityException; {:try_start_7 .. :try_end_41} :catch_49
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_41} :catch_42
 
     return-object p1
 
-    :catch_0
+    :catch_42
     move-exception p1
 
     .line 530
@@ -129,7 +129,7 @@
 
     return-object v1
 
-    :catch_1
+    :catch_49
     move-exception p1
 
     .line 527

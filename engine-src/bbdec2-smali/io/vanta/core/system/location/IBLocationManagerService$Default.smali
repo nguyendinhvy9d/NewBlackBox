@@ -19,7 +19,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 13
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -38,7 +38,7 @@
 .end method
 
 .method public getAllCell(ILjava/lang/String;)Ljava/util/List;
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
@@ -62,7 +62,7 @@
 .end method
 
 .method public getCell(ILjava/lang/String;)Lio/vanta/entity/location/BCell;
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -75,7 +75,7 @@
 .end method
 
 .method public getGlobalLocation()Lio/vanta/entity/location/BLocation;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -88,7 +88,7 @@
 .end method
 
 .method public getGlobalNeighboringCell()Ljava/util/List;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -110,7 +110,7 @@
 .end method
 
 .method public getLocation(ILjava/lang/String;)Lio/vanta/entity/location/BLocation;
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -123,7 +123,7 @@
 .end method
 
 .method public getNeighboringCell(ILjava/lang/String;)Ljava/util/List;
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
@@ -147,7 +147,7 @@
 .end method
 
 .method public getPattern(ILjava/lang/String;)I
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -160,7 +160,7 @@
 .end method
 
 .method public removeUpdates(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -171,7 +171,7 @@
 .end method
 
 .method public requestLocationUpdates(Landroid/os/IBinder;Ljava/lang/String;I)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -182,7 +182,7 @@
 .end method
 
 .method public setAllCell(ILjava/lang/String;Ljava/util/List;)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
@@ -203,7 +203,7 @@
 .end method
 
 .method public setCell(ILjava/lang/String;Lio/vanta/entity/location/BCell;)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -214,7 +214,7 @@
 .end method
 
 .method public setGlobalAllCell(Ljava/util/List;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -234,7 +234,7 @@
 .end method
 
 .method public setGlobalCell(Lio/vanta/entity/location/BCell;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -245,7 +245,7 @@
 .end method
 
 .method public setGlobalLocation(Lio/vanta/entity/location/BLocation;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -256,7 +256,7 @@
 .end method
 
 .method public setGlobalNeighboringCell(Ljava/util/List;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -276,7 +276,7 @@
 .end method
 
 .method public setLocation(ILjava/lang/String;Lio/vanta/entity/location/BLocation;)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -287,7 +287,7 @@
 .end method
 
 .method public setNeighboringCell(ILjava/lang/String;Ljava/util/List;)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
@@ -308,7 +308,7 @@
 .end method
 
 .method public setPattern(ILjava/lang/String;I)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;

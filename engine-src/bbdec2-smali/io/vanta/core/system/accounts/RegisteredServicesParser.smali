@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 16
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -16,56 +16,56 @@
 
 # virtual methods
 .method public getParser(Landroid/content/Context;Landroid/content/pm/ServiceInfo;Ljava/lang/String;)Landroid/content/res/XmlResourceParser;
-    .locals 2
+    .registers 6
 
     .line 19
     iget-object v0, p2, Landroid/content/pm/ServiceInfo;->metaData:Landroid/os/Bundle;
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1d
 
     .line 21
     invoke-virtual {v0, p3}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
 
     move-result p3
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_1d
 
     .line 24
-    :try_start_0
+    :try_start_b
     iget-object p2, p2, Landroid/content/pm/ServiceInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
     invoke-virtual {p0, p1, p2}, Lio/vanta/core/system/accounts/RegisteredServicesParser;->getResources(Landroid/content/Context;Landroid/content/pm/ApplicationInfo;)Landroid/content/res/Resources;
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_14
 
     return-object v1
 
     .line 27
-    :cond_0
+    :cond_14
     invoke-virtual {p1, p3}, Landroid/content/res/Resources;->getXml(I)Landroid/content/res/XmlResourceParser;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_18
+    .catch Ljava/lang/Exception; {:try_start_b .. :try_end_18} :catch_19
 
     return-object p1
 
-    :catch_0
+    :catch_19
     move-exception p1
 
     .line 29
     invoke-virtual {p1}, Ljava/lang/Exception;->printStackTrace()V
 
-    :cond_1
+    :cond_1d
     return-object v1
 .end method
 
 .method public getResources(Landroid/content/Context;Landroid/content/pm/ApplicationInfo;)Landroid/content/res/Resources;
-    .locals 0
+    .registers 3
 
     .line 37
     invoke-static {p1, p2}, Lio/vanta/core/system/pm/PackageManagerCompat;->getResources(Landroid/content/Context;Landroid/content/pm/ApplicationInfo;)Landroid/content/res/Resources;

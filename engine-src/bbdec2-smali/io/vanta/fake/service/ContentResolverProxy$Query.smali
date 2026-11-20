@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 39
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,19 +31,19 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_5b
 
     .line 42
     array-length v0, p3
 
-    if-lez v0, :cond_1
+    if-lez v0, :cond_5b
 
     const/4 v0, 0x0
 
@@ -51,7 +51,7 @@
 
     instance-of v1, v0, Landroid/net/Uri;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_5b
 
     .line 43
     check-cast v0, Landroid/net/Uri;
@@ -68,7 +68,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_42
 
     const-string v1, "media"
 
@@ -76,7 +76,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_42
 
     const-string v1, "content://media/external/audio"
 
@@ -85,7 +85,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_42
 
     const-string v1, "content://media/internal/audio"
 
@@ -94,7 +94,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_42
 
     const-string v1, "content://media/external/file"
 
@@ -103,7 +103,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_42
 
     const-string v1, "content://media/internal/file"
 
@@ -112,10 +112,10 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_5b
 
     .line 53
-    :cond_0
+    :cond_42
     new-instance v1, Ljava/lang/StringBuilder;
 
     const-string v2, "ContentResolver: Allowing audio query: "
@@ -142,7 +142,7 @@
     return-object p1
 
     .line 61
-    :cond_1
+    :cond_5b
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

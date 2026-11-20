@@ -21,13 +21,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 0
+    .registers 0
 
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -45,7 +45,7 @@
 .end method
 
 .method private checkActivityClient()V
-    .locals 2
+    .registers 3
 
     .line 222
     :try_start_0
@@ -60,7 +60,7 @@
     .line 223
     instance-of v1, v0, Ljava/lang/reflect/Proxy;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_33
 
     .line 224
     new-instance v1, Lio/vanta/fake/service/IActivityClientProxy;
@@ -103,13 +103,13 @@
     move-result-object v1
 
     invoke-interface {v0, v1}, Lvanta/android/app/ActivityClientActivityClientControllerSingletonContext;->_set_mKnownInstance(Ljava/lang/Object;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_33
+    .catchall {:try_start_0 .. :try_end_33} :catchall_34
 
-    :cond_0
+    :cond_33
     return-void
 
-    :catchall_0
+    :catchall_34
     move-exception v0
 
     .line 232
@@ -119,7 +119,7 @@
 .end method
 
 .method private getH()Landroid/os/Handler;
-    .locals 1
+    .registers 2
 
     .line 52
     invoke-static {}, Lio/vanta/VantaCore;->mainThread()Ljava/lang/Object;
@@ -139,7 +139,7 @@
 .end method
 
 .method private getHCallback()Landroid/os/Handler$Callback;
-    .locals 1
+    .registers 2
 
     .line 48
     invoke-direct {p0}, Lio/vanta/fake/service/HCallbackProxy;->getH()Landroid/os/Handler;
@@ -158,7 +158,7 @@
 .end method
 
 .method private getLaunchActivityItem(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 6
 
     .line 105
     invoke-static {p1}, Lvanta/android/app/servertransaction/BRClientTransaction;->get(Ljava/lang/Object;)Lvanta/android/app/servertransaction/ClientTransactionContext;
@@ -171,7 +171,7 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_20
 
     .line 108
     new-instance v0, Ljava/lang/StringBuilder;
@@ -195,17 +195,17 @@
     return-object v1
 
     .line 112
-    :cond_0
+    :cond_20
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
 
-    :cond_1
+    :cond_24
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_45
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -232,16 +232,16 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_24
 
     return-object v0
 
-    :cond_2
+    :cond_45
     return-object v1
 .end method
 
 .method private handleCreateService(Ljava/lang/Object;)Z
-    .locals 5
+    .registers 7
 
     .line 203
     invoke-static {}, Lio/vanta/app/BActivityThread;->getAppConfig()Lio/vanta/entity/AppConfig;
@@ -250,7 +250,7 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_64
 
     .line 204
     invoke-static {}, Lio/vanta/app/BActivityThread;->getAppPackageName()Ljava/lang/String;
@@ -281,7 +281,7 @@
 
     move-result v3
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_64
 
     iget-object v3, v2, Landroid/content/pm/ServiceInfo;->name:Ljava/lang/String;
 
@@ -298,7 +298,7 @@
 
     move-result v3
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_64
 
     .line 210
     new-instance v3, Ljava/lang/StringBuilder;
@@ -350,44 +350,44 @@
 
     return p1
 
-    :cond_0
+    :cond_64
     return v1
 .end method
 
 .method private handleLaunchActivity(Ljava/lang/Object;)Z
-    .locals 9
+    .registers 11
 
     .line 122
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isPie()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_b
 
     .line 124
     invoke-direct {p0, p1}, Lio/vanta/fake/service/HCallbackProxy;->getLaunchActivityItem(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
-    goto :goto_0
+    goto :goto_c
 
-    :cond_0
+    :cond_b
     move-object v0, p1
 
-    :goto_0
+    :goto_c
     const/4 v1, 0x0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_10
 
     return v1
 
     .line 134
-    :cond_1
+    :cond_10
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isPie()Z
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_27
 
     .line 135
     invoke-static {v0}, Lvanta/android/app/servertransaction/BRLaunchActivityItem;->get(Ljava/lang/Object;)Lvanta/android/app/servertransaction/LaunchActivityItemContext;
@@ -407,10 +407,10 @@
 
     move-result-object p1
 
-    goto :goto_1
+    goto :goto_33
 
     .line 138
-    :cond_2
+    :cond_27
     invoke-static {v0}, Lvanta/android/app/BRActivityThreadActivityClientRecord;->get(Ljava/lang/Object;)Lvanta/android/app/ActivityThreadActivityClientRecordContext;
 
     move-result-object p1
@@ -425,13 +425,13 @@
 
     move-result-object p1
 
-    :goto_1
-    if-nez v2, :cond_3
+    :goto_33
+    if-nez v2, :cond_36
 
     return v1
 
     .line 146
-    :cond_3
+    :cond_36
     invoke-static {v2}, Lio/vanta/proxy/record/ProxyActivityRecord;->create(Landroid/content/Intent;)Lio/vanta/proxy/record/ProxyActivityRecord;
 
     move-result-object v2
@@ -439,7 +439,7 @@
     .line 147
     iget-object v3, v2, Lio/vanta/proxy/record/ProxyActivityRecord;->mActivityInfo:Landroid/content/pm/ActivityInfo;
 
-    if-eqz v3, :cond_a
+    if-eqz v3, :cond_138
 
     .line 149
     invoke-static {}, Lio/vanta/app/BActivityThread;->getAppConfig()Lio/vanta/entity/AppConfig;
@@ -448,10 +448,10 @@
 
     const-string v5, "HCallbackStub"
 
-    if-nez v4, :cond_4
+    if-nez v4, :cond_75
 
     .line 151
-    :try_start_0
+    :try_start_46
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
     move-result-object v4
@@ -466,7 +466,7 @@
 
     move-result-object v4
 
-    if-eqz v4, :cond_4
+    if-eqz v4, :cond_75
 
     .line 153
     invoke-static {}, Lio/vanta/app/BActivityThread;->currentActivityThread()Lio/vanta/app/BActivityThread;
@@ -474,12 +474,12 @@
     move-result-object v6
 
     invoke-virtual {v6, v4}, Lio/vanta/app/BActivityThread;->initProcess(Lio/vanta/entity/AppConfig;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_5d
+    .catchall {:try_start_46 .. :try_end_5d} :catchall_5e
 
-    goto :goto_2
+    goto :goto_75
 
-    :catchall_0
+    :catchall_5e
     move-exception v4
 
     .line 156
@@ -504,15 +504,15 @@
     invoke-static {v5, v4}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 160
-    :cond_4
-    :goto_2
+    :cond_75
+    :goto_75
     iget-object v4, v3, Landroid/content/pm/ActivityInfo;->targetActivity:Ljava/lang/String;
 
-    if-eqz v4, :cond_5
+    if-eqz v4, :cond_86
 
     iget-object v4, v2, Lio/vanta/proxy/record/ProxyActivityRecord;->mTarget:Landroid/content/Intent;
 
-    if-eqz v4, :cond_5
+    if-eqz v4, :cond_86
 
     .line 161
     iget-object v4, v2, Lio/vanta/proxy/record/ProxyActivityRecord;->mTarget:Landroid/content/Intent;
@@ -524,7 +524,7 @@
     invoke-virtual {v4, v6, v7}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
     .line 164
-    :cond_5
+    :cond_86
     invoke-static {}, Lio/vanta/app/BActivityThread;->currentActivityThread()Lio/vanta/app/BActivityThread;
 
     move-result-object v4
@@ -533,7 +533,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_6
+    if-nez v4, :cond_9d
 
     .line 165
     invoke-static {}, Lio/vanta/app/BActivityThread;->currentActivityThread()Lio/vanta/app/BActivityThread;
@@ -551,7 +551,24 @@
     return p1
 
     .line 170
-    :cond_6
+    :cond_9d
+    iget-object v4, v2, Lio/vanta/proxy/record/ProxyActivityRecord;->mTarget:Landroid/content/Intent;
+
+    if-eqz v4, :cond_ae
+
+    invoke-static {}, Lio/vanta/VantaCore;->getApplication()Landroid/app/Application;
+
+    move-result-object v6
+
+    if-eqz v6, :cond_ae
+
+    invoke-virtual {v6}, Landroid/app/Application;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v6
+
+    invoke-virtual {v4, v6}, Landroid/content/Intent;->setExtrasClassLoader(Ljava/lang/ClassLoader;)V
+
+    :cond_ae
     invoke-static {}, Lvanta/android/app/BRActivityManagerNative;->get()Lvanta/android/app/ActivityManagerNativeStatic;
 
     move-result-object v4
@@ -586,14 +603,14 @@
 
     move-result v4
 
-    if-eqz v4, :cond_7
+    if-eqz v4, :cond_df
 
     .line 174
     invoke-static {v0}, Lvanta/android/app/servertransaction/BRLaunchActivityItem;->get(Ljava/lang/Object;)Lvanta/android/app/servertransaction/LaunchActivityItemContext;
 
     move-result-object v4
 
-    if-eqz v4, :cond_7
+    if-eqz v4, :cond_df
 
     .line 176
     iget-object v6, v2, Lio/vanta/proxy/record/ProxyActivityRecord;->mTarget:Landroid/content/Intent;
@@ -604,15 +621,15 @@
     invoke-interface {v4, v3}, Lvanta/android/app/servertransaction/LaunchActivityItemContext;->_set_mInfo(Ljava/lang/Object;)V
 
     .line 180
-    :cond_7
+    :cond_df
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isS()Z
 
     move-result v4
 
-    if-eqz v4, :cond_9
+    if-eqz v4, :cond_126
 
     .line 182
-    :try_start_1
+    :try_start_e5
     invoke-static {}, Lio/vanta/VantaCore;->mainThread()Ljava/lang/Object;
 
     move-result-object v0
@@ -625,7 +642,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_8
+    if-eqz p1, :cond_122
 
     .line 184
     invoke-static {p1}, Lvanta/android/app/BRActivityThreadActivityClientRecord;->get(Ljava/lang/Object;)Lvanta/android/app/ActivityThreadActivityClientRecordContext;
@@ -650,12 +667,12 @@
     move-result-object v0
 
     invoke-interface {p1, v0}, Lvanta/android/app/ActivityThreadActivityClientRecordContext;->_set_packageInfo(Ljava/lang/Object;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_10a
+    .catchall {:try_start_e5 .. :try_end_10a} :catchall_10b
 
-    goto :goto_3
+    goto :goto_122
 
-    :catchall_1
+    :catchall_10b
     move-exception p1
 
     .line 190
@@ -680,19 +697,19 @@
     invoke-static {v5, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 192
-    :cond_8
-    :goto_3
+    :cond_122
+    :goto_122
     invoke-direct {p0}, Lio/vanta/fake/service/HCallbackProxy;->checkActivityClient()V
 
-    goto :goto_4
+    goto :goto_138
 
     .line 193
-    :cond_9
+    :cond_126
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isPie()Z
 
     move-result p1
 
-    if-nez p1, :cond_a
+    if-nez p1, :cond_138
 
     .line 194
     invoke-static {v0}, Lvanta/android/app/BRActivityThreadActivityClientRecord;->get(Ljava/lang/Object;)Lvanta/android/app/ActivityThreadActivityClientRecordContext;
@@ -707,15 +724,15 @@
     .line 196
     invoke-interface {p1, v3}, Lvanta/android/app/ActivityThreadActivityClientRecordContext;->_set_activityInfo(Ljava/lang/Object;)V
 
-    :cond_a
-    :goto_4
+    :cond_138
+    :goto_138
     return v1
 .end method
 
 
 # virtual methods
 .method public handleMessage(Landroid/os/Message;)Z
-    .locals 4
+    .registers 6
 
     .line 73
     iget-object v0, p0, Lio/vanta/fake/service/HCallbackProxy;->mBeing:Ljava/util/concurrent/atomic/AtomicBoolean;
@@ -728,15 +745,15 @@
 
     const/4 v2, 0x0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_8f
 
     .line 75
-    :try_start_0
+    :try_start_a
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isPie()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_39
 
     .line 76
     iget v0, p1, Landroid/os/Message;->what:I
@@ -753,7 +770,7 @@
 
     move-result v3
 
-    if-ne v0, v3, :cond_1
+    if-ne v0, v3, :cond_5d
 
     .line 77
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
@@ -762,7 +779,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_5d
 
     .line 78
     invoke-direct {p0}, Lio/vanta/fake/service/HCallbackProxy;->getH()Landroid/os/Handler;
@@ -774,11 +791,11 @@
     move-result-object p1
 
     invoke-virtual {v0, p1}, Landroid/os/Handler;->sendMessageAtFrontOfQueue(Landroid/os/Message;)Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_33
+    .catchall {:try_start_a .. :try_end_33} :catchall_88
 
     .line 98
-    :goto_0
+    :goto_33
     iget-object p1, p0, Lio/vanta/fake/service/HCallbackProxy;->mBeing:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {p1, v2}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
@@ -786,8 +803,8 @@
     return v1
 
     .line 83
-    :cond_0
-    :try_start_1
+    :cond_39
+    :try_start_39
     iget v0, p1, Landroid/os/Message;->what:I
 
     invoke-static {}, Lvanta/android/app/BRActivityThreadH;->get()Lvanta/android/app/ActivityThreadHStatic;
@@ -802,7 +819,7 @@
 
     move-result v3
 
-    if-ne v0, v3, :cond_1
+    if-ne v0, v3, :cond_5d
 
     .line 84
     iget-object v0, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
@@ -811,7 +828,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_5d
 
     .line 85
     invoke-direct {p0}, Lio/vanta/fake/service/HCallbackProxy;->getH()Landroid/os/Handler;
@@ -824,10 +841,10 @@
 
     invoke-virtual {v0, p1}, Landroid/os/Handler;->sendMessageAtFrontOfQueue(Landroid/os/Message;)Z
 
-    goto :goto_0
+    goto :goto_33
 
     .line 90
-    :cond_1
+    :cond_5d
     iget v0, p1, Landroid/os/Message;->what:I
 
     invoke-static {}, Lvanta/android/app/BRActivityThreadH;->get()Lvanta/android/app/ActivityThreadHStatic;
@@ -842,7 +859,7 @@
 
     move-result v1
 
-    if-ne v0, v1, :cond_2
+    if-ne v0, v1, :cond_79
 
     .line 91
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
@@ -850,11 +867,11 @@
     invoke-direct {p0, p1}, Lio/vanta/fake/service/HCallbackProxy;->handleCreateService(Ljava/lang/Object;)Z
 
     move-result p1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_73
+    .catchall {:try_start_39 .. :try_end_73} :catchall_88
 
     .line 98
-    :goto_1
+    :goto_73
     iget-object v0, p0, Lio/vanta/fake/service/HCallbackProxy;->mBeing:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0, v2}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
@@ -862,30 +879,30 @@
     return p1
 
     .line 93
-    :cond_2
-    :try_start_2
+    :cond_79
+    :try_start_79
     iget-object v0, p0, Lio/vanta/fake/service/HCallbackProxy;->mOtherCallback:Landroid/os/Handler$Callback;
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_82
 
     .line 94
     invoke-interface {v0, p1}, Landroid/os/Handler$Callback;->handleMessage(Landroid/os/Message;)Z
 
     move-result p1
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_81
+    .catchall {:try_start_79 .. :try_end_81} :catchall_88
 
-    goto :goto_1
+    goto :goto_73
 
     .line 98
-    :cond_3
+    :cond_82
     iget-object p1, p0, Lio/vanta/fake/service/HCallbackProxy;->mBeing:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {p1, v2}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
     return v2
 
-    :catchall_0
+    :catchall_88
     move-exception p1
 
     iget-object v0, p0, Lio/vanta/fake/service/HCallbackProxy;->mBeing:Ljava/util/concurrent/atomic/AtomicBoolean;
@@ -895,12 +912,12 @@
     .line 99
     throw p1
 
-    :cond_4
+    :cond_8f
     return v2
 .end method
 
 .method public injectHook()V
-    .locals 2
+    .registers 3
 
     .line 58
     invoke-direct {p0}, Lio/vanta/fake/service/HCallbackProxy;->getHCallback()Landroid/os/Handler$Callback;
@@ -909,9 +926,9 @@
 
     iput-object v0, p0, Lio/vanta/fake/service/HCallbackProxy;->mOtherCallback:Landroid/os/Handler$Callback;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_23
 
-    if-eq v0, p0, :cond_0
+    if-eq v0, p0, :cond_20
 
     .line 59
     invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -934,16 +951,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_23
 
-    :cond_0
+    :cond_20
     const/4 v0, 0x0
 
     .line 60
     iput-object v0, p0, Lio/vanta/fake/service/HCallbackProxy;->mOtherCallback:Landroid/os/Handler$Callback;
 
     .line 62
-    :cond_1
+    :cond_23
     invoke-direct {p0}, Lio/vanta/fake/service/HCallbackProxy;->getH()Landroid/os/Handler;
 
     move-result-object v0
@@ -958,22 +975,22 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     .line 67
     invoke-direct {p0}, Lio/vanta/fake/service/HCallbackProxy;->getHCallback()Landroid/os/Handler$Callback;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_a
 
-    if-eq v0, p0, :cond_0
+    if-eq v0, p0, :cond_a
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_a
     const/4 v0, 0x0
 
     return v0

@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/pm/BPackageManagerService;)V
-    .locals 0
+    .registers 2
 
     .line 78
     iput-object p1, p0, Lio/vanta/core/system/pm/BPackageManagerService$1;->this$0:Lio/vanta/core/system/pm/BPackageManagerService;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
-    .locals 0
+    .registers 3
 
     .line 81
     invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
@@ -45,7 +45,7 @@
 
     move-result p2
 
-    if-nez p2, :cond_1
+    if-nez p2, :cond_23
 
     .line 83
     const-string p2, "android.intent.action.PACKAGE_ADDED"
@@ -54,7 +54,7 @@
 
     move-result p2
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_1a
 
     const-string p2, "android.intent.action.PACKAGE_REMOVED"
 
@@ -62,10 +62,10 @@
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_23
 
     .line 84
-    :cond_0
+    :cond_1a
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackageManagerService$1;->this$0:Lio/vanta/core/system/pm/BPackageManagerService;
 
     invoke-static {p1}, Lio/vanta/core/system/pm/BPackageManagerService;->-$$Nest$fgetmSettings(Lio/vanta/core/system/pm/BPackageManagerService;)Lio/vanta/core/system/pm/Settings;
@@ -74,6 +74,6 @@
 
     invoke-virtual {p1}, Lio/vanta/core/system/pm/Settings;->scanPackage()V
 
-    :cond_1
+    :cond_23
     return-void
 .end method

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 42
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,19 +29,19 @@
 .end method
 
 .method private createSafeAttributionSource(ILjava/lang/String;)Ljava/lang/Object;
-    .locals 8
+    .registers 11
 
     const/4 v0, 0x0
 
     .line 69
-    :try_start_0
+    :try_start_1
     const-string v1, "android.content.AttributionSource"
 
     invoke-static {v1}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_7} :catch_66
 
     const/4 v2, 0x3
 
@@ -52,7 +52,7 @@
     const/4 v5, 0x0
 
     .line 75
-    :try_start_1
+    :try_start_b
     new-array v6, v2, [Ljava/lang/Class;
 
     sget-object v7, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
@@ -70,15 +70,15 @@
     invoke-virtual {v1, v6}, Ljava/lang/Class;->getDeclaredConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
 
     move-result-object v1
-    :try_end_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_1} :catch_0
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_2
+    :try_end_1d
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_b .. :try_end_1d} :catch_1e
+    .catch Ljava/lang/Exception; {:try_start_b .. :try_end_1d} :catch_66
 
-    goto :goto_0
+    goto :goto_33
 
     .line 79
-    :catch_0
-    :try_start_2
+    :catch_1e
+    :try_start_1e
     new-array v6, v4, [Ljava/lang/Class;
 
     sget-object v7, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
@@ -92,23 +92,23 @@
     invoke-virtual {v1, v6}, Ljava/lang/Class;->getDeclaredConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
 
     move-result-object v1
-    :try_end_2
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_2 .. :try_end_2} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+    :try_end_2c
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_1e .. :try_end_2c} :catch_2d
+    .catch Ljava/lang/Exception; {:try_start_1e .. :try_end_2c} :catch_66
 
-    goto :goto_0
+    goto :goto_33
 
     .line 82
-    :catch_1
-    :try_start_3
+    :catch_2d
+    :try_start_2d
     new-array v6, v5, [Ljava/lang/Class;
 
     invoke-virtual {v1, v6}, Ljava/lang/Class;->getDeclaredConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
 
     move-result-object v1
 
-    :goto_0
-    if-eqz v1, :cond_2
+    :goto_33
+    if-eqz v1, :cond_65
 
     .line 87
     invoke-virtual {v1, v3}, Ljava/lang/reflect/Constructor;->setAccessible(Z)V
@@ -118,7 +118,7 @@
 
     move-result v3
 
-    if-ne v3, v2, :cond_0
+    if-ne v3, v2, :cond_4b
 
     .line 90
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -136,12 +136,12 @@
     return-object p1
 
     .line 91
-    :cond_0
+    :cond_4b
     invoke-virtual {v1}, Ljava/lang/reflect/Constructor;->getParameterCount()I
 
     move-result v2
 
-    if-ne v2, v4, :cond_1
+    if-ne v2, v4, :cond_5e
 
     .line 92
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -159,21 +159,21 @@
     return-object p1
 
     .line 94
-    :cond_1
+    :cond_5e
     new-array p1, v5, [Ljava/lang/Object;
 
     invoke-virtual {v1, p1}, Ljava/lang/reflect/Constructor;->newInstance([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+    :try_end_64
+    .catch Ljava/lang/Exception; {:try_start_2d .. :try_end_64} :catch_66
 
     return-object p1
 
-    :cond_2
+    :cond_65
     return-object v0
 
-    :catch_2
+    :catch_66
     move-exception p1
 
     .line 100
@@ -205,7 +205,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -219,7 +219,7 @@
     const-string v1, "Creating AttributionSource with UID: "
 
     .line 47
-    :try_start_0
+    :try_start_4
     invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
 
     move-result v2
@@ -259,21 +259,21 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_2d
 
     return-object v1
 
     .line 59
-    :cond_0
+    :cond_2d
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_31
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_31} :catch_32
 
     return-object p1
 
-    :catch_0
+    :catch_32
     move-exception p1
 
     .line 61

@@ -19,7 +19,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 13
     new-instance v0, Lio/vanta/fake/frameworks/BJobManager;
@@ -32,7 +32,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 12
     invoke-direct {p0}, Lio/vanta/fake/frameworks/BlackManager;-><init>()V
@@ -41,7 +41,7 @@
 .end method
 
 .method public static get()Lio/vanta/fake/frameworks/BJobManager;
-    .locals 1
+    .registers 1
 
     .line 16
     sget-object v0, Lio/vanta/fake/frameworks/BJobManager;->sJobManager:Lio/vanta/fake/frameworks/BJobManager;
@@ -52,7 +52,7 @@
 
 # virtual methods
 .method public cancel(Ljava/lang/String;I)I
-    .locals 2
+    .registers 5
 
     .line 52
     :try_start_0
@@ -69,12 +69,12 @@
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/am/IBJobManagerService;->cancel(Ljava/lang/String;II)I
 
     move-result p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 54
@@ -86,7 +86,7 @@
 .end method
 
 .method public cancelAll(Ljava/lang/String;)V
-    .locals 2
+    .registers 4
 
     .line 44
     :try_start_0
@@ -101,12 +101,12 @@
     move-result v1
 
     invoke-interface {v0, p1, v1}, Lio/vanta/core/system/am/IBJobManagerService;->cancelAll(Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 46
@@ -116,7 +116,7 @@
 .end method
 
 .method protected getServiceName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 21
     const-string v0, "job_manager"
@@ -125,7 +125,7 @@
 .end method
 
 .method public queryJobRecord(Ljava/lang/String;I)Lio/vanta/entity/JobRecord;
-    .locals 2
+    .registers 5
 
     .line 35
     :try_start_0
@@ -142,12 +142,12 @@
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/am/IBJobManagerService;->queryJobRecord(Ljava/lang/String;II)Lio/vanta/entity/JobRecord;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 37
@@ -159,7 +159,7 @@
 .end method
 
 .method public schedule(Landroid/app/job/JobInfo;)Landroid/app/job/JobInfo;
-    .locals 2
+    .registers 4
 
     .line 26
     :try_start_0
@@ -176,12 +176,12 @@
     invoke-interface {v0, p1, v1}, Lio/vanta/core/system/am/IBJobManagerService;->schedule(Landroid/app/job/JobInfo;I)Landroid/app/job/JobInfo;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 28

@@ -26,7 +26,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/accounts/BAccountManagerService;Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;ZZLjava/lang/String;ZLandroid/accounts/Account;ILandroid/os/Bundle;)V
-    .locals 0
+    .registers 12
 
     .line 903
     iput-object p1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$8;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public onError(ILjava/lang/String;)V
-    .locals 0
+    .registers 3
 
     .line 934
     invoke-super {p0, p1, p2}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->onError(ILjava/lang/String;)V
@@ -54,7 +54,7 @@
 .end method
 
 .method public onResult(Landroid/os/Bundle;)V
-    .locals 0
+    .registers 2
 
     .line 929
     invoke-super {p0, p1}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->onResult(Landroid/os/Bundle;)V
@@ -63,7 +63,7 @@
 .end method
 
 .method public run()V
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -91,8 +91,8 @@
 
     const/4 v2, 0x0
 
-    :goto_0
-    if-ge v2, v1, :cond_1
+    :goto_12
+    if-ge v2, v1, :cond_2b
 
     aget-object v3, v0, v2
 
@@ -103,7 +103,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_28
 
     .line 915
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$8;->mAuthenticator:Landroid/accounts/IAccountAuthenticator;
@@ -116,17 +116,17 @@
 
     return-void
 
-    :cond_0
+    :cond_28
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_12
 
-    :cond_1
+    :cond_2b
     return-void
 .end method
 
 .method protected toDebugString(J)Ljava/lang/String;
-    .locals 1
+    .registers 4
 
     .line 906
     new-instance v0, Ljava/lang/StringBuilder;

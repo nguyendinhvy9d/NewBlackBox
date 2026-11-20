@@ -28,7 +28,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$fgetmBindCount(Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;)Ljava/util/concurrent/atomic/AtomicInteger;
-    .locals 0
+    .registers 1
 
     iget-object p0, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mBindCount:Ljava/util/concurrent/atomic/AtomicInteger;
 
@@ -36,7 +36,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$fgetmIntent(Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;)Landroid/content/Intent;
-    .locals 0
+    .registers 1
 
     iget-object p0, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mIntent:Landroid/content/Intent;
 
@@ -44,7 +44,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$fgetmServiceInfo(Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;)Landroid/content/pm/ServiceInfo;
-    .locals 0
+    .registers 1
 
     iget-object p0, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mServiceInfo:Landroid/content/pm/ServiceInfo;
 
@@ -52,7 +52,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$fgetmStartId(Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;)Ljava/util/concurrent/atomic/AtomicInteger;
-    .locals 0
+    .registers 1
 
     iget-object p0, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mStartId:Ljava/util/concurrent/atomic/AtomicInteger;
 
@@ -60,7 +60,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$fputmConnectedServiceRecord(Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;Lio/vanta/core/system/am/ActiveServices$ConnectedServiceRecord;)V
-    .locals 0
+    .registers 2
 
     iput-object p1, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mConnectedServiceRecord:Lio/vanta/core/system/am/ActiveServices$ConnectedServiceRecord;
 
@@ -68,7 +68,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$fputmIntent(Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;Landroid/content/Intent;)V
-    .locals 0
+    .registers 2
 
     iput-object p1, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mIntent:Landroid/content/Intent;
 
@@ -76,7 +76,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$fputmServiceInfo(Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;Landroid/content/pm/ServiceInfo;)V
-    .locals 0
+    .registers 2
 
     iput-object p1, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mServiceInfo:Landroid/content/pm/ServiceInfo;
 
@@ -84,7 +84,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 356
     invoke-direct {p0}, Lio/vanta/core/IEmpty$Stub;-><init>()V
@@ -113,7 +113,7 @@
 
 # virtual methods
 .method public decrementBindCountAndGet()I
-    .locals 1
+    .registers 2
 
     .line 371
     iget-object v0, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mBindCount:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -126,7 +126,7 @@
 .end method
 
 .method public getAndIncrementStartId()I
-    .locals 1
+    .registers 2
 
     .line 367
     iget-object v0, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mStartId:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -139,7 +139,7 @@
 .end method
 
 .method public incrementBindCountAndGet()I
-    .locals 1
+    .registers 2
 
     .line 375
     iget-object v0, p0, Lio/vanta/core/system/am/ActiveServices$RunningServiceRecord;->mBindCount:Ljava/util/concurrent/atomic/AtomicInteger;

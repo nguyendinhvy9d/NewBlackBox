@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 207
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -41,11 +41,11 @@
     .line 210
     const-string v0, "IWebViewUpdateServiceProxy"
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_1e
 
     array-length v1, p3
 
-    if-lez v1, :cond_0
+    if-lez v1, :cond_1e
 
     const/4 v1, 0x0
 
@@ -72,17 +72,17 @@
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 216
-    :cond_0
-    :try_start_0
+    :cond_1e
+    :try_start_1e
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_22
+    .catch Ljava/lang/Exception; {:try_start_1e .. :try_end_22} :catch_23
 
     return-object p1
 
-    :catch_0
+    :catch_23
     move-exception p1
 
     .line 218

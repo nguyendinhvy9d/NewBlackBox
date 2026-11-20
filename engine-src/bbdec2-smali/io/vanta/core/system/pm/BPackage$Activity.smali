@@ -28,7 +28,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/pm/PackageParser$Activity;)V
-    .locals 3
+    .registers 5
 
     .line 243
     invoke-direct {p0, p1}, Lio/vanta/core/system/pm/BPackage$Component;-><init>(Landroid/content/pm/PackageParser$Component;)V
@@ -41,7 +41,7 @@
     .line 245
     iget-object v0, p1, Landroid/content/pm/PackageParser$Activity;->intents:Ljava/util/ArrayList;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_35
 
     .line 246
     iget-object v0, p1, Landroid/content/pm/PackageParser$Activity;->intents:Ljava/util/ArrayList;
@@ -64,12 +64,12 @@
 
     move-result-object p1
 
-    :goto_0
+    :goto_1e
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_35
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -86,14 +86,14 @@
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_1e
 
-    :cond_0
+    :cond_35
     return-void
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .locals 4
+    .registers 6
 
     .line 255
     invoke-direct {p0, p1}, Lio/vanta/core/system/pm/BPackage$Component;-><init>(Landroid/os/Parcel;)V
@@ -125,10 +125,10 @@
 
     iput-object v1, p0, Lio/vanta/core/system/pm/BPackage$Activity;->intents:Ljava/util/ArrayList;
 
-    :goto_0
+    :goto_1c
     add-int/lit8 v1, v0, -0x1
 
-    if-lez v0, :cond_0
+    if-lez v0, :cond_38
 
     .line 260
     const-class v0, Lio/vanta/core/system/pm/BPackage;
@@ -154,8 +154,8 @@
 
     move v0, v1
 
-    goto :goto_0
+    goto :goto_1c
 
-    :cond_0
+    :cond_38
     return-void
 .end method

@@ -22,7 +22,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/accounts/AuthenticatorDescription;Landroid/content/pm/ServiceInfo;)V
-    .locals 0
+    .registers 3
 
     .line 1511
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V

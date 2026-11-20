@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 113
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -48,7 +48,7 @@
     .line 116
     const-string v1, "LevelDbProxy"
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_f
 
     .line 117
     const-string p1, "LevelDB delete called on null database, returning false"
@@ -58,17 +58,17 @@
     return-object v0
 
     .line 121
-    :cond_0
-    :try_start_0
+    :cond_f
+    :try_start_f
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_13
+    .catch Ljava/lang/Exception; {:try_start_f .. :try_end_13} :catch_14
 
     return-object p1
 
-    :catch_0
+    :catch_14
     move-exception p1
 
     .line 123

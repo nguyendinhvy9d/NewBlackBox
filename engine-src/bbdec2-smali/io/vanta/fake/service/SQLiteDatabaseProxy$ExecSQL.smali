@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 84
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,12 +45,12 @@
 
     const/4 v2, 0x0
 
-    :try_start_0
+    :try_start_4
     aget-object v1, p3, v1
 
     check-cast v1, Ljava/lang/String;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_18
 
     .line 89
     const-string v3, "DurableJob"
@@ -59,7 +59,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_18
 
     .line 90
     const-string v1, "SQLiteDatabase: execSQL called with DurableJob table, ignoring"
@@ -69,17 +69,17 @@
     return-object v2
 
     .line 94
-    :cond_0
+    :cond_18
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/database/sqlite/SQLiteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1c
+    .catch Landroid/database/sqlite/SQLiteException; {:try_start_4 .. :try_end_1c} :catch_28
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_1c} :catch_1d
 
     return-object p1
 
-    :catch_0
+    :catch_1d
     move-exception v1
 
     .line 99
@@ -94,7 +94,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_28
     move-exception p1
 
     .line 96

@@ -21,13 +21,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 0
+    .registers 0
 
     return-void
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,9 +36,9 @@
 .end method
 
 .method private static bytesToHex([B)Ljava/lang/String;
-    .locals 5
+    .registers 6
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_5
 
     .line 170
     const-string p0, ""
@@ -46,7 +46,7 @@
     return-object p0
 
     .line 171
-    :cond_0
+    :cond_5
     new-instance v0, Ljava/lang/StringBuilder;
 
     array-length v1, p0
@@ -60,8 +60,8 @@
 
     const/4 v2, 0x0
 
-    :goto_0
-    if-ge v2, v1, :cond_1
+    :goto_f
+    if-ge v2, v1, :cond_29
 
     aget-byte v3, p0, v2
 
@@ -86,10 +86,10 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_f
 
     .line 175
-    :cond_1
+    :cond_29
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object p0
@@ -98,7 +98,7 @@
 .end method
 
 .method private static computeProofOfPossession(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
-    .locals 5
+    .registers 7
 
     .line 144
     const-string p0, "bcore_dev_identity_key"
@@ -107,7 +107,7 @@
     const-string v0, "bcore_pop:"
 
     .line 144
-    :try_start_0
+    :try_start_4
     const-string v1, "AndroidKeyStore"
 
     invoke-static {v1}, Ljava/security/KeyStore;->getInstance(Ljava/lang/String;)Ljava/security/KeyStore;
@@ -124,7 +124,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_7b
 
     .line 147
     invoke-virtual {v1, p0, v2}, Ljava/security/KeyStore;->getKey(Ljava/lang/String;[C)Ljava/security/Key;
@@ -133,25 +133,25 @@
 
     check-cast p0, Ljavax/crypto/SecretKey;
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_7b
 
     .line 150
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1, v0}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_26
 
     const-string p1, ""
 
-    goto :goto_0
+    goto :goto_2a
 
-    :cond_0
+    :cond_26
     invoke-virtual {p1}, Ljava/lang/String;->trim()Ljava/lang/String;
 
     move-result-object p1
 
-    :goto_0
+    :goto_2a
     invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object p1
@@ -209,16 +209,16 @@
 
     move-result p0
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_7b
 
     .line 159
     const-string p0, "hw_keystore_verified"
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_61
+    .catchall {:try_start_4 .. :try_end_61} :catchall_62
 
     return-object p0
 
-    :catchall_0
+    :catchall_62
     move-exception p0
 
     .line 164
@@ -245,7 +245,7 @@
     invoke-static {p1, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 166
-    :cond_1
+    :cond_7b
     new-instance p0, Ljava/lang/StringBuilder;
 
     const-string p1, "pop_fallback_"
@@ -270,41 +270,41 @@
 .end method
 
 .method public static getDeviceId(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
-    .locals 5
+    .registers 7
 
     .line 41
     sget-object v0, Lio/vanta/license/DeviceIdentifier;->sCachedDeviceId:Ljava/lang/String;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_7
 
     .line 42
     sget-object p0, Lio/vanta/license/DeviceIdentifier;->sCachedDeviceId:Ljava/lang/String;
 
     return-object p0
 
-    :cond_0
-    if-eqz p0, :cond_1
+    :cond_7
+    if-eqz p0, :cond_e
 
     .line 45
     invoke-virtual {p0}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
 
     move-result-object v0
 
-    goto :goto_0
+    goto :goto_f
 
-    :cond_1
+    :cond_e
     const/4 v0, 0x0
 
-    :goto_0
-    if-nez v0, :cond_2
+    :goto_f
+    if-nez v0, :cond_12
 
-    goto :goto_1
+    goto :goto_13
 
-    :cond_2
+    :cond_12
     move-object p0, v0
 
     .line 51
-    :goto_1
+    :goto_13
     invoke-static {p0}, Lio/vanta/license/DeviceIdentifier;->getOrGenerateKeystoreSeed(Landroid/content/Context;)Ljava/lang/String;
 
     move-result-object v0
@@ -317,10 +317,10 @@
     .line 57
     const-string v2, "unknown_aid"
 
-    if-eqz p0, :cond_3
+    if-eqz p0, :cond_32
 
     .line 59
-    :try_start_0
+    :try_start_1f
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object p0
@@ -331,22 +331,22 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_3
+    if-eqz p0, :cond_32
 
     .line 60
     invoke-virtual {p0}, Ljava/lang/String;->isEmpty()Z
 
     move-result v3
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2f
+    .catchall {:try_start_1f .. :try_end_2f} :catchall_32
 
-    if-nez v3, :cond_3
+    if-nez v3, :cond_32
 
     move-object v2, p0
 
     .line 66
-    :catchall_0
-    :cond_3
+    :catchall_32
+    :cond_32
     new-instance p0, Ljava/lang/StringBuilder;
 
     invoke-direct {p0}, Ljava/lang/StringBuilder;-><init>()V
@@ -388,18 +388,18 @@
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
 
-    if-nez p1, :cond_4
+    if-nez p1, :cond_61
 
     const-string p1, ""
 
-    goto :goto_2
+    goto :goto_65
 
-    :cond_4
+    :cond_61
     invoke-virtual {p1}, Ljava/lang/String;->trim()Ljava/lang/String;
 
     move-result-object p1
 
-    :goto_2
+    :goto_65
     invoke-virtual {v3, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object p1
@@ -454,7 +454,7 @@
 .end method
 
 .method private static declared-synchronized getOrGenerateKeystoreSeed(Landroid/content/Context;)Ljava/lang/String;
-    .locals 12
+    .registers 13
 
     const-string v0, "Keystore seed cryptographic operation note: "
 
@@ -462,10 +462,10 @@
 
     monitor-enter v1
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_11
 
     .line 80
-    :try_start_0
+    :try_start_7
     invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
 
     move-result-object p0
@@ -473,16 +473,16 @@
     invoke-virtual {p0}, Ljava/util/UUID;->toString()Ljava/lang/String;
 
     move-result-object p0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_f
+    .catchall {:try_start_7 .. :try_end_f} :catchall_120
 
     monitor-exit v1
 
     return-object p0
 
     .line 83
-    :cond_0
-    :try_start_1
+    :cond_11
+    :try_start_11
     const-string v2, "bcore_dev_vault"
 
     const/4 v3, 0x0
@@ -508,11 +508,11 @@
     invoke-interface {p0, v4, v5}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v4
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_28
+    .catchall {:try_start_11 .. :try_end_28} :catchall_120
 
     .line 88
-    :try_start_2
+    :try_start_28
     const-string v5, "AndroidKeyStore"
 
     invoke-static {v5}, Ljava/security/KeyStore;->getInstance(Ljava/lang/String;)Ljava/security/KeyStore;
@@ -533,7 +533,7 @@
 
     const/4 v8, 0x1
 
-    if-nez v7, :cond_1
+    if-nez v7, :cond_6f
 
     .line 91
     const-string v7, "AES"
@@ -594,7 +594,7 @@
     invoke-virtual {v7}, Ljavax/crypto/KeyGenerator;->generateKey()Ljavax/crypto/SecretKey;
 
     .line 101
-    :cond_1
+    :cond_6f
     const-string v7, "bcore_dev_identity_key"
 
     invoke-virtual {v5, v7, v6}, Ljava/security/KeyStore;->getKey(Ljava/lang/String;[C)Ljava/security/Key;
@@ -610,13 +610,13 @@
 
     const/4 v7, 0x2
 
-    if-nez v6, :cond_2
+    if-nez v6, :cond_a6
 
     invoke-virtual {v4}, Ljava/lang/String;->isEmpty()Z
 
     move-result v6
 
-    if-nez v6, :cond_2
+    if-nez v6, :cond_a6
 
     .line 105
     invoke-static {v4, v3}, Landroid/util/Base64;->decode(Ljava/lang/String;I)[B
@@ -653,18 +653,18 @@
     invoke-static {v2}, Lio/vanta/license/DeviceIdentifier;->bytesToHex([B)Ljava/lang/String;
 
     move-result-object p0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_a4
+    .catchall {:try_start_28 .. :try_end_a4} :catchall_e4
 
     monitor-exit v1
 
     return-object p0
 
-    :cond_2
+    :cond_a6
     const/16 v2, 0x20
 
     .line 114
-    :try_start_3
+    :try_start_a8
     new-array v2, v2, [B
 
     .line 115
@@ -728,18 +728,18 @@
     invoke-static {v2}, Lio/vanta/license/DeviceIdentifier;->bytesToHex([B)Ljava/lang/String;
 
     move-result-object p0
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+    :try_end_e2
+    .catchall {:try_start_a8 .. :try_end_e2} :catchall_e4
 
     monitor-exit v1
 
     return-object p0
 
-    :catchall_0
+    :catchall_e4
     move-exception v2
 
     .line 130
-    :try_start_4
+    :try_start_e5
     const-string v3, "BcoreDeviceId"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -774,7 +774,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_11e
 
     .line 136
     invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
@@ -797,28 +797,28 @@
     move-result-object p0
 
     invoke-interface {p0}, Landroid/content/SharedPreferences$Editor;->apply()V
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_11e
+    .catchall {:try_start_e5 .. :try_end_11e} :catchall_120
 
     .line 139
-    :cond_3
+    :cond_11e
     monitor-exit v1
 
     return-object v0
 
-    :catchall_1
+    :catchall_120
     move-exception p0
 
-    :try_start_5
+    :try_start_121
     monitor-exit v1
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
+    :try_end_122
+    .catchall {:try_start_121 .. :try_end_122} :catchall_120
 
     throw p0
 .end method
 
 .method public static sha256(Ljava/lang/String;)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 180
     :try_start_0
@@ -843,13 +843,13 @@
     invoke-static {v0}, Lio/vanta/license/DeviceIdentifier;->bytesToHex([B)Ljava/lang/String;
 
     move-result-object p0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_14
+    .catchall {:try_start_0 .. :try_end_14} :catchall_15
 
     return-object p0
 
     .line 184
-    :catchall_0
+    :catchall_15
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v1, "dev_fallback_"

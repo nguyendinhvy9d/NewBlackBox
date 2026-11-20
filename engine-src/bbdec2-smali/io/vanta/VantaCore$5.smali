@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/VantaCore;)V
-    .locals 0
+    .registers 2
 
     .line 800
     iput-object p1, p0, Lio/vanta/VantaCore$5;->this$0:Lio/vanta/VantaCore;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public run()V
-    .locals 2
+    .registers 3
 
     .line 803
     const-string v0, "VantaCore"
@@ -52,7 +52,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1c
 
     iget-object v0, p0, Lio/vanta/VantaCore$5;->this$0:Lio/vanta/VantaCore;
 
@@ -60,13 +60,13 @@
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_1c
 
     .line 805
     iget-object v0, p0, Lio/vanta/VantaCore$5;->this$0:Lio/vanta/VantaCore;
 
     invoke-static {v0}, Lio/vanta/VantaCore;->-$$Nest$mstartBlackProcess(Lio/vanta/VantaCore;)V
 
-    :cond_0
+    :cond_1c
     return-void
 .end method

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 96
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 7
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -56,7 +56,7 @@
 
     const/4 v4, 0x1
 
-    if-le v3, v4, :cond_0
+    if-le v3, v4, :cond_14
 
     aget-object v3, p3, v4
 
@@ -65,7 +65,7 @@
     invoke-virtual {v3}, Ljava/lang/Boolean;->booleanValue()Z
 
     .line 103
-    :cond_0
+    :cond_14
     invoke-static {}, Lio/vanta/fake/service/ClassLoaderProxy;->-$$Nest$sfgetsClassCache()Ljava/util/Map;
 
     move-result-object v3
@@ -76,7 +76,7 @@
 
     const-string v4, "ClassLoaderProxy"
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_3b
 
     .line 104
     new-instance p1, Ljava/lang/StringBuilder;
@@ -107,7 +107,7 @@
     return-object p1
 
     .line 109
-    :cond_1
+    :cond_3b
     invoke-static {v2}, Lio/vanta/fake/service/ClassLoaderProxy;->-$$Nest$smisProblematicClass(Ljava/lang/String;)Z
 
     move-result v3
@@ -116,7 +116,7 @@
 
     const-string v6, ", returning null"
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_5b
 
     .line 110
     new-instance p1, Ljava/lang/StringBuilder;
@@ -142,13 +142,13 @@
     return-object v5
 
     .line 116
-    :cond_2
-    :try_start_0
+    :cond_5b
+    :try_start_5b
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p1, :cond_3
+    if-eqz p1, :cond_9b
 
     .line 119
     invoke-static {}, Lio/vanta/fake/service/ClassLoaderProxy;->-$$Nest$sfgetsClassCache()Ljava/util/Map;
@@ -175,12 +175,12 @@
     move-result-object p2
 
     invoke-static {v4, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7b
+    .catch Ljava/lang/Exception; {:try_start_5b .. :try_end_7b} :catch_7c
 
     return-object p1
 
-    :catch_0
+    :catch_7c
     move-exception p1
 
     .line 124
@@ -213,12 +213,12 @@
     invoke-static {v4, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 128
-    :cond_3
+    :cond_9b
     invoke-static {v2}, Lio/vanta/fake/service/ClassLoaderProxy;->-$$Nest$smtryFallbackClassLoaders(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object p1
 
-    if-eqz p1, :cond_4
+    if-eqz p1, :cond_bb
 
     .line 130
     invoke-static {}, Lio/vanta/fake/service/ClassLoaderProxy;->-$$Nest$sfgetsClassCache()Ljava/util/Map;
@@ -247,7 +247,7 @@
     return-object p1
 
     .line 136
-    :cond_4
+    :cond_bb
     new-instance p1, Ljava/lang/StringBuilder;
 
     invoke-direct {p1, v0}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V

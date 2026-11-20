@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/lang/Thread$UncaughtExceptionHandler;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -41,23 +41,23 @@
 
 # virtual methods
 .method public uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    .locals 1
+    .registers 4
 
     .line 145
     :try_start_0
     const-string v0, "JavaException"
 
     invoke-static {v0, p1, p2}, Lio/vanta/utils/CrashMonitor;->handleCrash(Ljava/lang/String;Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_5
+    .catchall {:try_start_0 .. :try_end_5} :catchall_5
 
     .line 147
-    :catchall_0
+    :catchall_5
     invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_29
 
     invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
 
@@ -67,7 +67,7 @@
 
     move-result-object v0
 
-    if-ne p1, v0, :cond_0
+    if-ne p1, v0, :cond_29
 
     .line 148
     const-string p1, "CrashMonitor"
@@ -88,18 +88,18 @@
     .line 150
     invoke-static {p1}, Ljava/lang/System;->exit(I)V
 
-    goto :goto_0
+    goto :goto_30
 
     .line 151
-    :cond_0
+    :cond_29
     iget-object v0, p0, Lio/vanta/utils/CrashMonitor$1;->val$defaultHandler:Ljava/lang/Thread$UncaughtExceptionHandler;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_30
 
     .line 152
     invoke-interface {v0, p1, p2}, Ljava/lang/Thread$UncaughtExceptionHandler;->uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
 
-    :cond_1
-    :goto_0
+    :cond_30
+    :goto_30
     return-void
 .end method

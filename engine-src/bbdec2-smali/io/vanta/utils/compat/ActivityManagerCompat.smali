@@ -29,7 +29,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 14
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .end method
 
 .method public static finishActivity(Landroid/os/IBinder;ILandroid/content/Intent;)Z
-    .locals 2
+    .registers 5
 
     .line 67
     invoke-static {}, Lvanta/android/app/BRActivityManagerNative;->get()Lvanta/android/app/ActivityManagerNativeStatic;
@@ -67,17 +67,17 @@
 .end method
 
 .method public static setActivityOrientation(Landroid/app/Activity;I)V
-    .locals 1
+    .registers 3
 
     .line 79
     :try_start_0
     invoke-virtual {p0, p1}, Landroid/app/Activity;->setRequestedOrientation(I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_3
+    .catchall {:try_start_0 .. :try_end_3} :catchall_4
 
     return-void
 
-    :catchall_0
+    :catchall_4
     move-exception v0
 
     .line 81
@@ -93,7 +93,7 @@
     move-result-object p0
 
     .line 85
-    :goto_0
+    :goto_10
     invoke-static {p0}, Lvanta/android/app/BRActivity;->get(Ljava/lang/Object;)Lvanta/android/app/ActivityContext;
 
     move-result-object v0
@@ -102,14 +102,14 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1c
 
     move-object p0, v0
 
-    goto :goto_0
+    goto :goto_10
 
     .line 92
-    :cond_0
+    :cond_1c
     invoke-static {p0}, Lvanta/android/app/BRActivity;->get(Ljava/lang/Object;)Lvanta/android/app/ActivityContext;
 
     move-result-object p0
@@ -119,7 +119,7 @@
     move-result-object p0
 
     .line 94
-    :try_start_1
+    :try_start_24
     invoke-static {}, Lvanta/android/app/BRActivityManagerNative;->get()Lvanta/android/app/ActivityManagerNativeStatic;
 
     move-result-object v0
@@ -133,17 +133,17 @@
     move-result-object v0
 
     invoke-interface {v0, p0, p1}, Lvanta/android/app/IActivityManagerContext;->setRequestedOrientation(Landroid/os/IBinder;I)Ljava/lang/Void;
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_33
+    .catchall {:try_start_24 .. :try_end_33} :catchall_34
 
-    goto :goto_1
+    goto :goto_38
 
-    :catchall_1
+    :catchall_34
     move-exception p0
 
     .line 96
     invoke-virtual {p0}, Ljava/lang/Throwable;->printStackTrace()V
 
-    :goto_1
+    :goto_38
     return-void
 .end method

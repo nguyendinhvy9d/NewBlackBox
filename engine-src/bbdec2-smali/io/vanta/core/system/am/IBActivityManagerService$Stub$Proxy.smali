@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 512
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public acquireContentProviderClient(Landroid/content/pm/ProviderInfo;)Landroid/os/IBinder;
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -55,7 +55,7 @@
     move-result-object v1
 
     .line 775
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -79,8 +79,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1f
+    .catchall {:try_start_8 .. :try_end_1f} :catchall_26
 
     .line 782
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -90,7 +90,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_26
     move-exception p1
 
     .line 782
@@ -104,7 +104,7 @@
 .end method
 
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 517
     iget-object v0, p0, Lio/vanta/core/system/am/IBActivityManagerService$Stub$Proxy;->mRemote:Landroid/os/IBinder;
@@ -113,7 +113,7 @@
 .end method
 
 .method public bindService(Landroid/content/Intent;Landroid/os/IBinder;Ljava/lang/String;I)Landroid/content/Intent;
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -131,7 +131,7 @@
     move-result-object v1
 
     .line 670
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -168,8 +168,8 @@
     move-result-object p1
 
     check-cast p1, Landroid/content/Intent;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2c
+    .catchall {:try_start_8 .. :try_end_2c} :catchall_33
 
     .line 680
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -179,7 +179,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_33
     move-exception p1
 
     .line 680
@@ -193,7 +193,7 @@
 .end method
 
 .method public finishBroadcast(Lio/vanta/entity/am/PendingResultData;)V
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -211,7 +211,7 @@
     move-result-object v1
 
     .line 949
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -230,8 +230,8 @@
 
     .line 952
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_8 .. :try_end_1b} :catchall_22
 
     .line 955
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -241,7 +241,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_22
     move-exception p1
 
     .line 955
@@ -255,7 +255,7 @@
 .end method
 
 .method public getCallingActivity(Landroid/os/IBinder;I)Landroid/content/ComponentName;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -273,7 +273,7 @@
     move-result-object v1
 
     .line 984
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -304,8 +304,8 @@
     move-result-object p1
 
     check-cast p1, Landroid/content/ComponentName;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_26
+    .catchall {:try_start_8 .. :try_end_26} :catchall_2d
 
     .line 992
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -315,7 +315,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2d
     move-exception p1
 
     .line 992
@@ -329,7 +329,7 @@
 .end method
 
 .method public getCallingPackage(Landroid/os/IBinder;I)Ljava/lang/String;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -347,7 +347,7 @@
     move-result-object v1
 
     .line 965
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -374,8 +374,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_29
 
     .line 973
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -385,7 +385,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_29
     move-exception p1
 
     .line 973
@@ -399,7 +399,7 @@
 .end method
 
 .method public getIntentSender(Landroid/os/IBinder;Ljava/lang/String;II)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -417,7 +417,7 @@
     move-result-object v1
 
     .line 1002
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -445,8 +445,8 @@
 
     .line 1008
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 1011
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -456,7 +456,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 1011
@@ -470,7 +470,7 @@
 .end method
 
 .method public final getInterfaceDescriptor()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 521
     const-string v0, "io.vanta.core.system.am.IBActivityManagerService"
@@ -479,7 +479,7 @@
 .end method
 
 .method public getPackageForIntentSender(Landroid/os/IBinder;I)Ljava/lang/String;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -497,7 +497,7 @@
     move-result-object v1
 
     .line 1021
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -524,8 +524,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_29
 
     .line 1029
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -535,7 +535,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_29
     move-exception p1
 
     .line 1029
@@ -549,7 +549,7 @@
 .end method
 
 .method public getRunningAppProcesses(Ljava/lang/String;I)Lio/vanta/entity/am/RunningAppProcessInfo;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -567,7 +567,7 @@
     move-result-object v1
 
     .line 895
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -598,8 +598,8 @@
     move-result-object p1
 
     check-cast p1, Lio/vanta/entity/am/RunningAppProcessInfo;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_26
+    .catchall {:try_start_8 .. :try_end_26} :catchall_2d
 
     .line 903
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -609,7 +609,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2d
     move-exception p1
 
     .line 903
@@ -623,7 +623,7 @@
 .end method
 
 .method public getRunningServices(Ljava/lang/String;I)Lio/vanta/entity/am/RunningServiceInfo;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -641,7 +641,7 @@
     move-result-object v1
 
     .line 914
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -672,8 +672,8 @@
     move-result-object p1
 
     check-cast p1, Lio/vanta/entity/am/RunningServiceInfo;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_26
+    .catchall {:try_start_8 .. :try_end_26} :catchall_2d
 
     .line 922
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -683,7 +683,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2d
     move-exception p1
 
     .line 922
@@ -697,7 +697,7 @@
 .end method
 
 .method public getUidForIntentSender(Landroid/os/IBinder;I)I
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -715,7 +715,7 @@
     move-result-object v1
 
     .line 1040
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -742,8 +742,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_29
 
     .line 1048
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -753,7 +753,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_29
     move-exception p1
 
     .line 1048
@@ -767,7 +767,7 @@
 .end method
 
 .method public initProcess(Ljava/lang/String;Ljava/lang/String;I)Lio/vanta/entity/AppConfig;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -785,7 +785,7 @@
     move-result-object v1
 
     .line 529
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -819,8 +819,8 @@
     move-result-object p1
 
     check-cast p1, Lio/vanta/entity/AppConfig;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_28
+    .catchall {:try_start_8 .. :try_end_28} :catchall_2f
 
     .line 538
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -830,7 +830,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2f
     move-exception p1
 
     .line 538
@@ -844,7 +844,7 @@
 .end method
 
 .method public onActivityCreated(ILandroid/os/IBinder;Landroid/os/IBinder;)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -862,7 +862,7 @@
     move-result-object v1
 
     .line 832
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -887,8 +887,8 @@
 
     .line 837
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 840
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -898,7 +898,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 840
@@ -912,7 +912,7 @@
 .end method
 
 .method public onActivityDestroyed(Landroid/os/IBinder;)V
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -930,7 +930,7 @@
     move-result-object v1
 
     .line 864
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -949,8 +949,8 @@
 
     .line 867
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_8 .. :try_end_1b} :catchall_22
 
     .line 870
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -960,7 +960,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_22
     move-exception p1
 
     .line 870
@@ -974,7 +974,7 @@
 .end method
 
 .method public onActivityResumed(Landroid/os/IBinder;)V
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -992,7 +992,7 @@
     move-result-object v1
 
     .line 849
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1011,8 +1011,8 @@
 
     .line 852
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_8 .. :try_end_1b} :catchall_22
 
     .line 855
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1022,7 +1022,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_22
     move-exception p1
 
     .line 855
@@ -1036,7 +1036,7 @@
 .end method
 
 .method public onFinishActivity(Landroid/os/IBinder;)V
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1054,7 +1054,7 @@
     move-result-object v1
 
     .line 879
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1073,8 +1073,8 @@
 
     .line 882
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_8 .. :try_end_1b} :catchall_22
 
     .line 885
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1084,7 +1084,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_22
     move-exception p1
 
     .line 885
@@ -1098,7 +1098,7 @@
 .end method
 
 .method public onServiceDestroy(Landroid/content/Intent;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1116,7 +1116,7 @@
     move-result-object v1
 
     .line 758
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1138,8 +1138,8 @@
 
     .line 762
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_8 .. :try_end_1e} :catchall_25
 
     .line 765
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1149,7 +1149,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_25
     move-exception p1
 
     .line 765
@@ -1163,7 +1163,7 @@
 .end method
 
 .method public onServiceUnbind(Landroid/content/Intent;I)Lio/vanta/entity/UnbindRecord;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1181,7 +1181,7 @@
     move-result-object v1
 
     .line 740
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1212,8 +1212,8 @@
     move-result-object p1
 
     check-cast p1, Lio/vanta/entity/UnbindRecord;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_26
+    .catchall {:try_start_8 .. :try_end_26} :catchall_2d
 
     .line 748
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1223,7 +1223,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2d
     move-exception p1
 
     .line 748
@@ -1237,7 +1237,7 @@
 .end method
 
 .method public onStartCommand(Landroid/content/Intent;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1255,7 +1255,7 @@
     move-result-object v1
 
     .line 723
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1277,8 +1277,8 @@
 
     .line 727
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_8 .. :try_end_1e} :catchall_25
 
     .line 730
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1288,7 +1288,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_25
     move-exception p1
 
     .line 730
@@ -1302,7 +1302,7 @@
 .end method
 
 .method public peekService(Landroid/content/Intent;Ljava/lang/String;I)Landroid/os/IBinder;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1320,7 +1320,7 @@
     move-result-object v1
 
     .line 813
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1350,8 +1350,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_8 .. :try_end_25} :catchall_2c
 
     .line 822
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1361,7 +1361,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2c
     move-exception p1
 
     .line 822
@@ -1375,7 +1375,7 @@
 .end method
 
 .method public restartProcess(Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1393,7 +1393,7 @@
     move-result-object v1
 
     .line 548
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1418,8 +1418,8 @@
 
     .line 553
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_20
+    .catchall {:try_start_8 .. :try_end_20} :catchall_27
 
     .line 556
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1429,7 +1429,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_27
     move-exception p1
 
     .line 556
@@ -1443,7 +1443,7 @@
 .end method
 
 .method public scheduleBroadcastReceiver(Landroid/content/Intent;Lio/vanta/entity/am/PendingResultData;I)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1461,7 +1461,7 @@
     move-result-object v1
 
     .line 932
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1486,8 +1486,8 @@
 
     .line 937
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 940
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1497,7 +1497,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 940
@@ -1511,7 +1511,7 @@
 .end method
 
 .method public sendBroadcast(Landroid/content/Intent;Ljava/lang/String;I)Landroid/content/Intent;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1529,7 +1529,7 @@
     move-result-object v1
 
     .line 793
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1563,8 +1563,8 @@
     move-result-object p1
 
     check-cast p1, Landroid/content/Intent;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_29
+    .catchall {:try_start_8 .. :try_end_29} :catchall_30
 
     .line 802
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1574,7 +1574,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_30
     move-exception p1
 
     .line 802
@@ -1588,7 +1588,7 @@
 .end method
 
 .method public startActivities(I[Landroid/content/Intent;[Ljava/lang/String;Landroid/os/IBinder;Landroid/os/Bundle;)I
-    .locals 3
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1606,7 +1606,7 @@
     move-result-object v1
 
     .line 607
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1642,8 +1642,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2a
+    .catchall {:try_start_8 .. :try_end_2a} :catchall_31
 
     .line 618
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1653,7 +1653,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_31
     move-exception p1
 
     .line 618
@@ -1667,7 +1667,7 @@
 .end method
 
 .method public startActivity(Landroid/content/Intent;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1685,7 +1685,7 @@
     move-result-object v1
 
     .line 565
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1707,8 +1707,8 @@
 
     .line 569
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catchall {:try_start_8 .. :try_end_1d} :catchall_24
 
     .line 572
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1718,7 +1718,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_24
     move-exception p1
 
     .line 572
@@ -1732,7 +1732,7 @@
 .end method
 
 .method public startActivityAms(ILandroid/content/Intent;Ljava/lang/String;Landroid/os/IBinder;Ljava/lang/String;IILandroid/os/Bundle;)I
-    .locals 3
+    .registers 12
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1750,7 +1750,7 @@
     move-result-object v1
 
     .line 582
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1795,8 +1795,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_33
+    .catchall {:try_start_8 .. :try_end_33} :catchall_3a
 
     .line 596
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1806,7 +1806,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_3a
     move-exception p1
 
     .line 596
@@ -1820,7 +1820,7 @@
 .end method
 
 .method public startService(Landroid/content/Intent;Ljava/lang/String;ZI)Landroid/content/ComponentName;
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1838,7 +1838,7 @@
     move-result-object v1
 
     .line 629
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1875,8 +1875,8 @@
     move-result-object p1
 
     check-cast p1, Landroid/content/ComponentName;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2b
+    .catchall {:try_start_8 .. :try_end_2b} :catchall_32
 
     .line 639
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1886,7 +1886,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_32
     move-exception p1
 
     .line 639
@@ -1900,7 +1900,7 @@
 .end method
 
 .method public stopService(Landroid/content/Intent;Ljava/lang/String;I)I
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1918,7 +1918,7 @@
     move-result-object v1
 
     .line 650
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -1948,8 +1948,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 659
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -1959,7 +1959,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 659
@@ -1973,7 +1973,7 @@
 .end method
 
 .method public stopServiceToken(Landroid/content/ComponentName;Landroid/os/IBinder;I)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1991,7 +1991,7 @@
     move-result-object v1
 
     .line 706
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2016,8 +2016,8 @@
 
     .line 711
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 714
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2027,7 +2027,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 714
@@ -2041,7 +2041,7 @@
 .end method
 
 .method public unbindService(Landroid/os/IBinder;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -2059,7 +2059,7 @@
     move-result-object v1
 
     .line 690
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -2081,8 +2081,8 @@
 
     .line 694
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_8 .. :try_end_1e} :catchall_25
 
     .line 697
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -2092,7 +2092,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_25
     move-exception p1
 
     .line 697

@@ -16,7 +16,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 89
     invoke-direct {p0}, Lio/vanta/proxy/ProxyJobService;-><init>()V

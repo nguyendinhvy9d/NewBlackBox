@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/fake/frameworks/BlackManager;Landroid/os/IInterface;)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -45,21 +45,21 @@
 
 # virtual methods
 .method public binderDied()V
-    .locals 4
+    .registers 5
 
     .line 98
     const-string v0, "BlackManager"
 
-    :try_start_0
+    :try_start_2
     iget-object v1, p0, Lio/vanta/fake/frameworks/BlackManager$1;->val$serviceRef:Landroid/os/IInterface;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_30
 
     invoke-interface {v1}, Landroid/os/IInterface;->asBinder()Landroid/os/IBinder;
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_30
 
     .line 99
     iget-object v1, p0, Lio/vanta/fake/frameworks/BlackManager$1;->val$serviceRef:Landroid/os/IInterface;
@@ -71,12 +71,12 @@
     const/4 v2, 0x0
 
     invoke-interface {v1, p0, v2}, Landroid/os/IBinder;->unlinkToDeath(Landroid/os/IBinder$DeathRecipient;I)Z
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_16} :catch_17
 
-    goto :goto_0
+    goto :goto_30
 
-    :catch_0
+    :catch_17
     move-exception v1
 
     .line 102
@@ -103,8 +103,8 @@
     invoke-static {v0, v2, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 104
-    :cond_0
-    :goto_0
+    :cond_30
+    :goto_30
     iget-object v1, p0, Lio/vanta/fake/frameworks/BlackManager$1;->this$0:Lio/vanta/fake/frameworks/BlackManager;
 
     const/4 v2, 0x0

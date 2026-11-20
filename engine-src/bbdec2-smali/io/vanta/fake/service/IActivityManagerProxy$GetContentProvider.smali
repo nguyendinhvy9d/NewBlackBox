@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 186
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,27 +31,27 @@
 
 # virtual methods
 .method protected getAuthIndex()I
-    .locals 1
+    .registers 2
 
     .line 294
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isQ()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     const/4 v0, 0x2
 
     return v0
 
-    :cond_0
+    :cond_8
     const/4 v0, 0x1
 
     return v0
 .end method
 
 .method protected getUserIndex()I
-    .locals 1
+    .registers 2
 
     .line 302
     invoke-virtual {p0}, Lio/vanta/fake/service/IActivityManagerProxy$GetContentProvider;->getAuthIndex()I
@@ -64,7 +64,7 @@
 .end method
 
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 9
+    .registers 13
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -82,14 +82,13 @@
     .line 193
     instance-of v2, v1, Ljava/lang/String;
 
-    if-eqz v2, :cond_e
+    if-eqz v2, :cond_19c
 
     .line 194
     move-object v2, v1
 
     check-cast v2, Ljava/lang/String;
 
-    # XJ DIAG: log authority + luong vao getContentProvider -> tim provider checkin bi treo (enter khong co exit)
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
@@ -130,17 +129,17 @@
 
     const/4 v4, 0x0
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_3d
 
     return-object v4
 
     .line 203
-    :cond_0
+    :cond_3d
     invoke-static {v2}, Lio/vanta/proxy/ProxyManifest;->isProxy(Ljava/lang/String;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_48
 
     .line 204
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -150,12 +149,12 @@
     return-object p1
 
     .line 207
-    :cond_1
+    :cond_48
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isQ()Z
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_55
 
     const/4 v3, 0x1
 
@@ -167,7 +166,7 @@
     aput-object v5, p3, v3
 
     .line 211
-    :cond_2
+    :cond_55
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v3
@@ -184,7 +183,7 @@
 
     move-result-object v3
 
-    if-nez v3, :cond_5
+    if-nez v3, :cond_b7
 
     .line 215
     const-string v0, "settings"
@@ -193,7 +192,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_af
 
     const-string v0, "media"
 
@@ -202,7 +201,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_af
 
     const-string v0, "telephony"
 
@@ -211,7 +210,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_af
 
     const-string v0, "com.google.android.gms"
 
@@ -220,7 +219,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_af
 
     const-string v0, "com.android.vending"
 
@@ -229,7 +228,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_af
 
     const-string v0, "com.google.android.gsf"
 
@@ -238,7 +237,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_af
 
     const-string v0, "com.google.android.gms.chimera"
 
@@ -247,7 +246,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_af
 
     const-string v0, "com.huawei.android.launcher.settings"
 
@@ -256,7 +255,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_af
 
     const-string v0, "com.hihonor.android.launcher.settings"
 
@@ -265,16 +264,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_ae
 
-    goto :goto_0
+    goto :goto_af
 
-    :cond_3
+    :cond_ae
     return-object v4
 
     .line 224
-    :cond_4
-    :goto_0
+    :cond_af
+    :goto_af
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
@@ -285,14 +284,14 @@
     return-object p1
 
     .line 233
-    :cond_5
+    :cond_b7
     invoke-static {}, Lio/vanta/app/BActivityThread;->getAppPid()I
 
     move-result v5
 
     const/4 v6, -0x1
 
-    if-eq v5, v6, :cond_8
+    if-eq v5, v6, :cond_11d
 
     .line 234
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
@@ -313,7 +312,7 @@
 
     move-result-object v5
 
-    if-eqz v5, :cond_6
+    if-eqz v5, :cond_e1
 
     .line 239
     iget v6, v5, Lio/vanta/entity/AppConfig;->bpid:I
@@ -322,7 +321,7 @@
 
     move-result v7
 
-    if-eq v6, v7, :cond_6
+    if-eq v6, v7, :cond_e1
 
     .line 240
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
@@ -334,13 +333,13 @@
 
     move-result-object v4
 
-    goto :goto_1
+    goto :goto_105
 
-    :cond_6
-    if-eqz v5, :cond_7
+    :cond_e1
+    if-eqz v5, :cond_105
 
     .line 244
-    :try_start_0
+    :try_start_e3
     invoke-static {}, Lio/vanta/app/BActivityThread;->currentActivityThread()Lio/vanta/app/BActivityThread;
 
     move-result-object v6
@@ -348,12 +347,12 @@
     invoke-virtual {v6, v3}, Lio/vanta/app/BActivityThread;->acquireContentProviderClient(Landroid/content/pm/ProviderInfo;)Landroid/os/IBinder;
 
     move-result-object v4
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_eb
+    .catchall {:try_start_e3 .. :try_end_eb} :catchall_ec
 
-    goto :goto_1
+    goto :goto_105
 
-    :catchall_0
+    :catchall_ec
     move-exception v6
 
     .line 246
@@ -379,9 +378,9 @@
 
     invoke-static {v7, v6}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_7
-    :goto_1
-    if-eqz v5, :cond_8
+    :cond_105
+    :goto_105
+    if-eqz v5, :cond_11d
 
     .line 250
     iget v5, v5, Lio/vanta/entity/AppConfig;->bpid:I
@@ -407,8 +406,8 @@
 
     aput-object v5, p3, v0
 
-    :cond_8
-    if-nez v4, :cond_9
+    :cond_11d
+    if-nez v4, :cond_127
 
     .line 255
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -421,12 +420,12 @@
     return-object p1
 
     .line 260
-    :cond_9
+    :cond_127
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p1, :cond_d
+    if-eqz p1, :cond_19b
 
     .line 262
     invoke-static {}, Lvanta/android/content/BRContentProviderNative;->get()Lvanta/android/content/ContentProviderNativeStatic;
@@ -444,7 +443,7 @@
 
     move-result p3
 
-    if-nez p3, :cond_b
+    if-nez p3, :cond_152
 
     const-string p3, "gservices"
 
@@ -452,12 +451,12 @@
 
     move-result p3
 
-    if-eqz p3, :cond_a
+    if-eqz p3, :cond_146
 
-    goto :goto_2
+    goto :goto_152
 
     .line 267
-    :cond_a
+    :cond_146
     new-instance p3, Lio/vanta/fake/service/context/providers/ContentProviderStub;
 
     invoke-direct {p3}, Lio/vanta/fake/service/context/providers/ContentProviderStub;-><init>()V
@@ -468,11 +467,11 @@
 
     move-result-object p2
 
-    goto :goto_3
+    goto :goto_15d
 
     .line 265
-    :cond_b
-    :goto_2
+    :cond_152
+    :goto_152
     new-instance p3, Lio/vanta/fake/service/context/providers/SystemProviderStub;
 
     invoke-direct {p3}, Lio/vanta/fake/service/context/providers/SystemProviderStub;-><init>()V
@@ -484,13 +483,13 @@
     move-result-object p2
 
     .line 270
-    :goto_3
-    :try_start_1
+    :goto_15d
+    :try_start_15d
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result p3
 
-    if-eqz p3, :cond_c
+    if-eqz p3, :cond_172
 
     .line 271
     invoke-static {p1}, Lvanta/android/content/BRContentProviderHolderOreo;->get(Ljava/lang/Object;)Lvanta/android/content/ContentProviderHolderOreoContext;
@@ -506,10 +505,10 @@
 
     invoke-interface {p3, p2}, Lvanta/android/content/ContentProviderHolderOreoContext;->_set_provider(Ljava/lang/Object;)V
 
-    goto :goto_4
+    goto :goto_19b
 
     .line 274
-    :cond_c
+    :cond_172
     invoke-static {p1}, Lvanta/android/app/BRIActivityManagerContentProviderHolder;->get(Ljava/lang/Object;)Lvanta/android/app/IActivityManagerContentProviderHolderContext;
 
     move-result-object p3
@@ -522,14 +521,14 @@
     move-result-object p3
 
     invoke-interface {p3, p2}, Lvanta/android/app/IActivityManagerContentProviderHolderContext;->_set_provider(Ljava/lang/Object;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_180
+    .catchall {:try_start_15d .. :try_end_180} :catchall_181
 
-    goto :goto_4
+    goto :goto_19b
 
     .line 279
-    :catchall_1
-    :try_start_2
+    :catchall_181
+    :try_start_181
     invoke-static {p1}, Lio/vanta/utils/Reflector;->with(Ljava/lang/Object;)Lio/vanta/utils/Reflector;
 
     move-result-object p3
@@ -554,16 +553,16 @@
     move-result-object p3
 
     invoke-virtual {p3, p2}, Lio/vanta/utils/Reflector;->set(Ljava/lang/Object;)Lio/vanta/utils/Reflector;
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
+    :try_end_19b
+    .catchall {:try_start_181 .. :try_end_19b} :catchall_19b
 
-    :catchall_2
-    :cond_d
-    :goto_4
+    :catchall_19b
+    :cond_19b
+    :goto_19b
     return-object p1
 
     .line 289
-    :cond_e
+    :cond_19c
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

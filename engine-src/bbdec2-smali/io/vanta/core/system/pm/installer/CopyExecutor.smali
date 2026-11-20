@@ -12,7 +12,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 15
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 
 # virtual methods
 .method public exec(Lio/vanta/core/system/pm/BPackageSettings;Lio/vanta/entity/pm/InstallOption;I)I
-    .locals 9
+    .registers 13
 
     .line 22
     const-string p3, ": "
@@ -32,7 +32,7 @@
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_5
     new-instance v2, Ljava/io/File;
 
     iget-object v3, p1, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
@@ -56,7 +56,7 @@
 
     iget-object v2, v2, Lio/vanta/core/system/pm/BPackage;->splitCodePaths:[Ljava/lang/String;
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_83
 
     .line 25
     iget-object v2, p1, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
@@ -67,15 +67,15 @@
 
     move v4, v1
 
-    :goto_0
-    if-ge v4, v3, :cond_0
+    :goto_25
+    if-ge v4, v3, :cond_83
 
     aget-object v5, v2, v4
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_29
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_29} :catch_60
 
     .line 27
-    :try_start_1
+    :try_start_29
     new-instance v6, Ljava/io/File;
 
     invoke-direct {v6, v5}, Ljava/io/File;-><init>(Ljava/lang/String;)V
@@ -89,16 +89,16 @@
     move-result-object v7
 
     invoke-static {v6, v7}, Lio/vanta/utils/NativeUtils;->copyNativeLib(Ljava/io/File;Ljava/io/File;)V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_39
+    .catch Ljava/lang/Exception; {:try_start_29 .. :try_end_39} :catch_3a
 
-    goto :goto_1
+    goto :goto_5d
 
-    :catch_0
+    :catch_3a
     move-exception v6
 
     .line 29
-    :try_start_2
+    :try_start_3b
     new-instance v7, Ljava/lang/StringBuilder;
 
     invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
@@ -130,15 +130,15 @@
     move-result-object v5
 
     invoke-static {v0, v5}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_5d
+    .catch Ljava/lang/Exception; {:try_start_3b .. :try_end_5d} :catch_60
 
-    :goto_1
+    :goto_5d
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_25
 
-    :catch_1
+    :catch_60
     move-exception v2
 
     .line 34
@@ -174,7 +174,7 @@
 
     invoke-static {v0, p3}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_83
     const/4 p3, 0x2
 
     .line 36
@@ -182,7 +182,7 @@
 
     move-result p3
 
-    if-eqz p3, :cond_4
+    if-eqz p3, :cond_128
 
     .line 38
     new-instance p3, Ljava/io/File;
@@ -205,32 +205,32 @@
     const/16 v3, 0x8
 
     .line 41
-    :try_start_3
+    :try_start_9d
     invoke-virtual {p2, v3}, Lio/vanta/entity/pm/InstallOption;->isFlag(I)Z
 
     move-result p2
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_ad
 
     .line 42
     invoke-static {p3, v2}, Lio/vanta/utils/FileUtils;->renameTo(Ljava/io/File;Ljava/io/File;)Z
 
     move-result p2
 
-    if-nez p2, :cond_2
+    if-nez p2, :cond_b0
 
     .line 44
     invoke-static {p3, v2}, Lio/vanta/utils/FileUtils;->copyFile(Ljava/io/File;Ljava/io/File;)V
 
-    goto :goto_2
+    goto :goto_b0
 
     .line 47
-    :cond_1
+    :cond_ad
     invoke-static {p3, v2}, Lio/vanta/utils/FileUtils;->copyFile(Ljava/io/File;Ljava/io/File;)V
 
     .line 49
-    :cond_2
-    :goto_2
+    :cond_b0
+    :goto_b0
     invoke-virtual {v2}, Ljava/io/File;->setReadOnly()Z
 
     .line 51
@@ -247,7 +247,7 @@
 
     iget-object p2, p2, Lio/vanta/core/system/pm/BPackage;->splitCodePaths:[Ljava/lang/String;
 
-    if-eqz p2, :cond_5
+    if-eqz p2, :cond_12c
 
     iget-object p2, p1, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
 
@@ -255,7 +255,7 @@
 
     array-length p2, p2
 
-    if-lez p2, :cond_5
+    if-lez p2, :cond_12c
 
     .line 55
     iget-object p2, p1, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
@@ -269,14 +269,14 @@
     move v2, v1
 
     .line 56
-    :goto_3
+    :goto_d0
     iget-object v3, p1, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
 
     iget-object v3, v3, Lio/vanta/core/system/pm/BPackage;->splitCodePaths:[Ljava/lang/String;
 
     array-length v3, v3
 
-    if-ge v2, v3, :cond_3
+    if-ge v2, v3, :cond_f9
 
     .line 57
     new-instance v3, Ljava/io/File;
@@ -313,10 +313,10 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_3
+    goto :goto_d0
 
     .line 63
-    :cond_3
+    :cond_f9
     iget-object v2, p1, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
 
     iput-object p3, v2, Lio/vanta/core/system/pm/BPackage;->splitCodePaths:[Ljava/lang/String;
@@ -355,12 +355,12 @@
     move-result-object p1
 
     invoke-static {v0, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_2
+    :try_end_121
+    .catch Ljava/io/IOException; {:try_start_9d .. :try_end_121} :catch_122
 
-    goto :goto_4
+    goto :goto_12c
 
-    :catch_2
+    :catch_122
     move-exception p1
 
     .line 67
@@ -370,13 +370,13 @@
 
     return p1
 
-    :cond_4
+    :cond_128
     const/4 p1, 0x1
 
     .line 70
     invoke-virtual {p2, p1}, Lio/vanta/entity/pm/InstallOption;->isFlag(I)Z
 
-    :cond_5
-    :goto_4
+    :cond_12c
+    :goto_12c
     return v1
 .end method

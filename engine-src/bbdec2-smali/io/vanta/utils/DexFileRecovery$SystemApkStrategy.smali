@@ -19,7 +19,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 212
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method synthetic constructor <init>(Lio/vanta/utils/DexFileRecovery-IA;)V
-    .locals 0
+    .registers 2
 
     invoke-direct {p0}, Lio/vanta/utils/DexFileRecovery$SystemApkStrategy;-><init>()V
 
@@ -36,7 +36,7 @@
 .end method
 
 .method static synthetic lambda$attemptRecovery$0(Ljava/io/File;Ljava/lang/String;)Z
-    .locals 0
+    .registers 2
 
     .line 241
     const-string p0, ".apk"
@@ -51,12 +51,12 @@
 
 # virtual methods
 .method public attemptRecovery(Ljava/lang/String;)Lio/vanta/utils/DexFileRecovery$RecoveryResult;
-    .locals 8
+    .registers 10
 
     const/4 p1, 0x4
 
     .line 227
-    :try_start_0
+    :try_start_1
     new-array v0, p1, [Ljava/lang/String;
 
     const-string v1, "/system/app"
@@ -85,8 +85,8 @@
 
     move v1, v2
 
-    :goto_0
-    if-ge v1, p1, :cond_2
+    :goto_18
+    if-ge v1, p1, :cond_85
 
     .line 234
     aget-object v3, v0, v1
@@ -101,28 +101,28 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_82
 
     invoke-virtual {v4}, Ljava/io/File;->isDirectory()Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_82
 
     .line 237
     invoke-virtual {v4}, Ljava/io/File;->listFiles()[Ljava/io/File;
 
     move-result-object v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_82
 
     .line 239
     array-length v4, v3
 
     move v5, v2
 
-    :goto_1
-    if-ge v5, v4, :cond_1
+    :goto_35
+    if-ge v5, v4, :cond_82
 
     aget-object v6, v3, v5
 
@@ -131,7 +131,7 @@
 
     move-result v7
 
-    if-eqz v7, :cond_0
+    if-eqz v7, :cond_7f
 
     .line 241
     new-instance v7, Lio/vanta/utils/DexFileRecovery$SystemApkStrategy$$ExternalSyntheticLambda0;
@@ -142,12 +142,12 @@
 
     move-result-object v6
 
-    if-eqz v6, :cond_0
+    if-eqz v6, :cond_7f
 
     .line 242
     array-length v7, v6
 
-    if-lez v7, :cond_0
+    if-lez v7, :cond_7f
 
     .line 243
     aget-object v6, v6, v2
@@ -157,7 +157,7 @@
 
     move-result v7
 
-    if-eqz v7, :cond_0
+    if-eqz v7, :cond_7f
 
     .line 245
     const-string p1, "DexFileRecovery"
@@ -201,29 +201,29 @@
 
     return-object p1
 
-    :cond_0
+    :cond_7f
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_1
+    goto :goto_35
 
-    :cond_1
+    :cond_82
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_18
 
     .line 255
-    :cond_2
+    :cond_85
     new-instance p1, Lio/vanta/utils/DexFileRecovery$RecoveryResult;
 
     const-string v0, "No valid system APK files found"
 
     invoke-direct {p1, v0}, Lio/vanta/utils/DexFileRecovery$RecoveryResult;-><init>(Ljava/lang/String;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_8c
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_8c} :catch_8d
 
     return-object p1
 
-    :catch_0
+    :catch_8d
     move-exception p1
 
     .line 257
@@ -253,7 +253,7 @@
 .end method
 
 .method public getName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 215
     const-string v0, "System APK"
@@ -262,7 +262,7 @@
 .end method
 
 .method public getPriority()I
-    .locals 1
+    .registers 2
 
     const/16 v0, 0x3c
 

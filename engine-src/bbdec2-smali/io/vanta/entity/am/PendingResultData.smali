@@ -46,7 +46,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 127
     new-instance v0, Lio/vanta/entity/am/PendingResultData$1;
@@ -59,7 +59,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -79,7 +79,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/BroadcastReceiver$PendingResult;)V
-    .locals 1
+    .registers 3
 
     .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -95,17 +95,17 @@
 
     iput-object v0, p0, Lio/vanta/entity/am/PendingResultData;->mBToken:Ljava/lang/String;
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_10
 
     return-void
 
     .line 41
-    :cond_0
+    :cond_10
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isM()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_73
 
     .line 42
     invoke-static {p1}, Lvanta/android/content/BRBroadcastReceiverPendingResultM;->get(Ljava/lang/Object;)Lvanta/android/content/BroadcastReceiverPendingResultMContext;
@@ -213,7 +213,7 @@
     return-void
 
     .line 54
-    :cond_1
+    :cond_73
     invoke-static {p1}, Lvanta/android/content/BRBroadcastReceiverPendingResult;->get(Ljava/lang/Object;)Lvanta/android/content/BroadcastReceiverPendingResultContext;
 
     move-result-object p1
@@ -309,7 +309,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 3
+    .registers 5
 
     .line 112
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -330,16 +330,16 @@
 
     const/4 v2, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_13
 
     move v0, v1
 
-    goto :goto_0
+    goto :goto_14
 
-    :cond_0
+    :cond_13
     move v0, v2
 
-    :goto_0
+    :goto_14
     iput-boolean v0, p0, Lio/vanta/entity/am/PendingResultData;->mOrderedHint:Z
 
     .line 115
@@ -347,16 +347,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1e
 
     move v0, v1
 
-    goto :goto_1
+    goto :goto_1f
 
-    :cond_1
+    :cond_1e
     move v0, v2
 
-    :goto_1
+    :goto_1f
     iput-boolean v0, p0, Lio/vanta/entity/am/PendingResultData;->mInitialStickyHint:Z
 
     .line 116
@@ -406,16 +406,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_4d
 
     move v0, v1
 
-    goto :goto_2
+    goto :goto_4e
 
-    :cond_2
+    :cond_4d
     move v0, v2
 
-    :goto_2
+    :goto_4e
     iput-boolean v0, p0, Lio/vanta/entity/am/PendingResultData;->mAbortBroadcast:Z
 
     .line 123
@@ -423,14 +423,14 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_57
 
-    goto :goto_3
+    goto :goto_58
 
-    :cond_3
+    :cond_57
     move v1, v2
 
-    :goto_3
+    :goto_58
     iput-boolean v1, p0, Lio/vanta/entity/am/PendingResultData;->mFinished:Z
 
     .line 124
@@ -446,14 +446,14 @@
 
 # virtual methods
 .method public build()Landroid/content/BroadcastReceiver$PendingResult;
-    .locals 11
+    .registers 12
 
     .line 68
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isM()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_21
 
     .line 69
     invoke-static {}, Lvanta/android/content/BRBroadcastReceiverPendingResultM;->get()Lvanta/android/content/BroadcastReceiverPendingResultMStatic;
@@ -485,7 +485,7 @@
     return-object v0
 
     .line 71
-    :cond_0
+    :cond_21
     invoke-static {}, Lvanta/android/content/BRBroadcastReceiverPendingResult;->get()Lvanta/android/content/BroadcastReceiverPendingResultStatic;
 
     move-result-object v1
@@ -514,7 +514,7 @@
 .end method
 
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -522,7 +522,7 @@
 .end method
 
 .method public readFromParcel(Landroid/os/Parcel;)V
-    .locals 3
+    .registers 5
 
     .line 98
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
@@ -540,16 +540,16 @@
 
     const/4 v2, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_10
 
     move v0, v1
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_10
     move v0, v2
 
-    :goto_0
+    :goto_11
     iput-boolean v0, p0, Lio/vanta/entity/am/PendingResultData;->mOrderedHint:Z
 
     .line 100
@@ -557,16 +557,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1b
 
     move v0, v1
 
-    goto :goto_1
+    goto :goto_1c
 
-    :cond_1
+    :cond_1b
     move v0, v2
 
-    :goto_1
+    :goto_1c
     iput-boolean v0, p0, Lio/vanta/entity/am/PendingResultData;->mInitialStickyHint:Z
 
     .line 101
@@ -616,16 +616,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_4a
 
     move v0, v1
 
-    goto :goto_2
+    goto :goto_4b
 
-    :cond_2
+    :cond_4a
     move v0, v2
 
-    :goto_2
+    :goto_4b
     iput-boolean v0, p0, Lio/vanta/entity/am/PendingResultData;->mAbortBroadcast:Z
 
     .line 108
@@ -633,14 +633,14 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_54
 
-    goto :goto_3
+    goto :goto_55
 
-    :cond_3
+    :cond_54
     move v1, v2
 
-    :goto_3
+    :goto_55
     iput-boolean v1, p0, Lio/vanta/entity/am/PendingResultData;->mFinished:Z
 
     .line 109
@@ -654,7 +654,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 141
     new-instance v0, Ljava/lang/StringBuilder;
@@ -803,7 +803,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 0
+    .registers 3
 
     .line 83
     iget p2, p0, Lio/vanta/entity/am/PendingResultData;->mType:I

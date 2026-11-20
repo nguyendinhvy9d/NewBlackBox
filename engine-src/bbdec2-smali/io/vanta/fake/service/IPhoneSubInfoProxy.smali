@@ -25,7 +25,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 15
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
@@ -39,7 +39,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_19
 
     .line 17
     invoke-static {}, Lvanta/android/telephony/BRTelephonyManager;->get()Lvanta/android/telephony/TelephonyManagerStatic;
@@ -55,7 +55,7 @@
     invoke-interface {v0, v1}, Lvanta/android/telephony/TelephonyManagerStatic;->_set_sServiceHandleCacheEnabled(Ljava/lang/Object;)V
 
     .line 19
-    :cond_0
+    :cond_19
     invoke-static {}, Lvanta/android/telephony/BRTelephonyManager;->get()Lvanta/android/telephony/TelephonyManagerStatic;
 
     move-result-object v0
@@ -64,7 +64,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_2a
 
     .line 20
     invoke-static {}, Lvanta/android/telephony/BRTelephonyManager;->get()Lvanta/android/telephony/TelephonyManagerStatic;
@@ -73,14 +73,14 @@
 
     invoke-interface {v0}, Lvanta/android/telephony/TelephonyManagerStatic;->getSubscriberInfoService()Ljava/lang/Object;
 
-    :cond_1
+    :cond_2a
     return-void
 .end method
 
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 26
     invoke-static {}, Lvanta/android/telephony/BRTelephonyManager;->get()Lvanta/android/telephony/TelephonyManagerStatic;
@@ -95,7 +95,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 31
     invoke-static {}, Lvanta/android/telephony/BRTelephonyManager;->get()Lvanta/android/telephony/TelephonyManagerStatic;
@@ -108,7 +108,7 @@
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -123,12 +123,12 @@
     invoke-super {p0, p1, p2, p3}, Lio/vanta/fake/hook/ClassInvocationStub;->invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7
+    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_7} :catch_8
 
     return-object p1
 
-    :catch_0
+    :catch_8
     move-exception p1
 
     .line 40
@@ -178,42 +178,42 @@
 
     const/4 p3, 0x0
 
-    if-ne p1, p2, :cond_0
+    if-ne p1, p2, :cond_39
 
     return-object p3
 
     .line 44
-    :cond_0
+    :cond_39
     sget-object p2, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
 
     const/4 v0, 0x0
 
-    if-eq p1, p2, :cond_4
+    if-eq p1, p2, :cond_52
 
     const-class p2, Ljava/lang/Integer;
 
-    if-ne p1, p2, :cond_1
+    if-ne p1, p2, :cond_43
 
-    goto :goto_1
+    goto :goto_52
 
     .line 46
-    :cond_1
+    :cond_43
     sget-object p2, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_3
+    if-eq p1, p2, :cond_4d
 
     const-class p2, Ljava/lang/Boolean;
 
-    if-ne p1, p2, :cond_2
+    if-ne p1, p2, :cond_4c
 
-    goto :goto_0
+    goto :goto_4d
 
-    :cond_2
+    :cond_4c
     return-object p3
 
     .line 47
-    :cond_3
-    :goto_0
+    :cond_4d
+    :goto_4d
     invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object p1
@@ -221,8 +221,8 @@
     return-object p1
 
     .line 45
-    :cond_4
-    :goto_1
+    :cond_52
+    :goto_52
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object p1
@@ -231,7 +231,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

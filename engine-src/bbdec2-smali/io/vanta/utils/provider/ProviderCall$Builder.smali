@@ -30,7 +30,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 1
+    .registers 4
 
     .line 40
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -59,14 +59,14 @@
 
 # virtual methods
 .method public addArg(Ljava/lang/String;Ljava/lang/Object;)Lio/vanta/utils/provider/ProviderCall$Builder;
-    .locals 2
+    .registers 5
 
-    if-eqz p2, :cond_7
+    if-eqz p2, :cond_7d
 
     .line 57
     instance-of v0, p2, Ljava/lang/Boolean;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_12
 
     .line 58
     iget-object v0, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->bundle:Landroid/os/Bundle;
@@ -82,10 +82,10 @@
     return-object p0
 
     .line 59
-    :cond_0
+    :cond_12
     instance-of v0, p2, Ljava/lang/Integer;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_22
 
     .line 60
     iget-object v0, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->bundle:Landroid/os/Bundle;
@@ -101,10 +101,10 @@
     return-object p0
 
     .line 61
-    :cond_1
+    :cond_22
     instance-of v0, p2, Ljava/lang/String;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_2e
 
     .line 62
     iget-object v0, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->bundle:Landroid/os/Bundle;
@@ -116,10 +116,10 @@
     return-object p0
 
     .line 63
-    :cond_2
+    :cond_2e
     instance-of v0, p2, Ljava/io/Serializable;
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_3a
 
     .line 64
     iget-object v0, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->bundle:Landroid/os/Bundle;
@@ -131,10 +131,10 @@
     return-object p0
 
     .line 65
-    :cond_3
+    :cond_3a
     instance-of v0, p2, Landroid/os/Bundle;
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_46
 
     .line 66
     iget-object v0, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->bundle:Landroid/os/Bundle;
@@ -146,10 +146,10 @@
     return-object p0
 
     .line 67
-    :cond_4
+    :cond_46
     instance-of v0, p2, Landroid/os/Parcelable;
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_52
 
     .line 68
     iget-object v0, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->bundle:Landroid/os/Bundle;
@@ -161,10 +161,10 @@
     return-object p0
 
     .line 69
-    :cond_5
+    :cond_52
     instance-of v0, p2, [I
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_5e
 
     .line 70
     iget-object v0, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->bundle:Landroid/os/Bundle;
@@ -176,7 +176,7 @@
     return-object p0
 
     .line 72
-    :cond_6
+    :cond_5e
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -207,12 +207,12 @@
 
     throw p1
 
-    :cond_7
+    :cond_7d
     return-object p0
 .end method
 
 .method public arg(Ljava/lang/String;)Lio/vanta/utils/provider/ProviderCall$Builder;
-    .locals 0
+    .registers 2
 
     .line 51
     iput-object p1, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->arg:Ljava/lang/String;
@@ -221,7 +221,7 @@
 .end method
 
 .method public call()Landroid/os/Bundle;
-    .locals 6
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/IllegalAccessException;
@@ -249,19 +249,19 @@
 .end method
 
 .method public callSafely()Landroid/os/Bundle;
-    .locals 1
+    .registers 2
 
     .line 89
     :try_start_0
     invoke-virtual {p0}, Lio/vanta/utils/provider/ProviderCall$Builder;->call()Landroid/os/Bundle;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/IllegalAccessException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 91
@@ -273,7 +273,7 @@
 .end method
 
 .method public methodName(Ljava/lang/String;)Lio/vanta/utils/provider/ProviderCall$Builder;
-    .locals 0
+    .registers 2
 
     .line 46
     iput-object p1, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->method:Ljava/lang/String;
@@ -282,7 +282,7 @@
 .end method
 
 .method public retry(I)Lio/vanta/utils/provider/ProviderCall$Builder;
-    .locals 0
+    .registers 2
 
     .line 79
     iput p1, p0, Lio/vanta/utils/provider/ProviderCall$Builder;->retryCount:I

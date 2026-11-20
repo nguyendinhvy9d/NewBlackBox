@@ -68,7 +68,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 17
     invoke-direct {p0}, Landroid/app/Activity;-><init>()V
@@ -79,11 +79,11 @@
 
 # virtual methods
 .method protected onActivityResult(IILandroid/content/Intent;)V
-    .locals 1
+    .registers 5
 
     const v0, 0x4e6d64
 
-    if-ne p1, v0, :cond_0
+    if-ne p1, v0, :cond_2a
 
     .line 99
     new-instance p1, Ljava/lang/StringBuilder;
@@ -123,14 +123,14 @@
     return-void
 
     .line 104
-    :cond_0
+    :cond_2a
     invoke-super {p0, p1, p2, p3}, Landroid/app/Activity;->onActivityResult(IILandroid/content/Intent;)V
 
     return-void
 .end method
 
 .method protected onCreate(Landroid/os/Bundle;)V
-    .locals 10
+    .registers 12
 
     .line 23
     const-string v0, "_B_|_P_target_"
@@ -156,12 +156,12 @@
 
     invoke-virtual {v5, v6}, Lio/vanta/fake/hook/HookManager;->checkEnv(Ljava/lang/Class;)V
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_19
 
     return-void
 
     .line 30
-    :cond_0
+    :cond_19
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getIntent()Landroid/content/Intent;
 
     move-result-object p1
@@ -189,20 +189,20 @@
 
     invoke-static {v6, v5}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz p1, :cond_a
+    if-eqz p1, :cond_151
 
     .line 32
     iget-object v5, p1, Lio/vanta/proxy/record/ProxyPendingRecord;->mTarget:Landroid/content/Intent;
 
-    if-nez v5, :cond_1
+    if-nez v5, :cond_3d
 
-    goto/16 :goto_1
+    goto/16 :goto_151
 
-    :cond_1
+    :cond_3d
     const/4 v5, 0x0
 
     .line 38
-    :try_start_0
+    :try_start_3e
     iget-object v7, p1, Lio/vanta/proxy/record/ProxyPendingRecord;->mTarget:Landroid/content/Intent;
 
     .line 40
@@ -210,7 +210,7 @@
 
     move-result-object v8
 
-    if-eqz v8, :cond_2
+    if-eqz v8, :cond_4f
 
     .line 41
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
@@ -221,15 +221,15 @@
 
     move-result-object v8
 
-    goto :goto_0
+    goto :goto_5f
 
     .line 42
-    :cond_2
+    :cond_4f
     invoke-static {}, Lio/vanta/VantaCore;->getApplication()Landroid/app/Application;
 
     move-result-object v8
 
-    if-eqz v8, :cond_3
+    if-eqz v8, :cond_5e
 
     .line 43
     invoke-static {}, Lio/vanta/VantaCore;->getApplication()Landroid/app/Application;
@@ -240,19 +240,19 @@
 
     move-result-object v8
 
-    goto :goto_0
+    goto :goto_5f
 
-    :cond_3
+    :cond_5e
     const/4 v8, 0x0
 
-    :goto_0
-    if-eqz v8, :cond_4
+    :goto_5f
+    if-eqz v8, :cond_64
 
     .line 46
     invoke-virtual {v7, v8}, Landroid/content/Intent;->setExtrasClassLoader(Ljava/lang/ClassLoader;)V
 
     .line 49
-    :cond_4
+    :cond_64
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getIntent()Landroid/content/Intent;
 
     move-result-object v8
@@ -282,13 +282,13 @@
 
     move-result-object v8
 
-    if-eqz v8, :cond_5
+    if-eqz v8, :cond_84
 
     .line 62
     invoke-virtual {v7, v8}, Landroid/content/Intent;->putExtras(Landroid/os/Bundle;)Landroid/content/Intent;
 
     .line 66
-    :cond_5
+    :cond_84
     invoke-virtual {v7, v1}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
 
     .line 67
@@ -299,20 +299,20 @@
 
     .line 69
     invoke-virtual {v7, v3}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_90
+    .catchall {:try_start_3e .. :try_end_90} :catchall_133
 
     .line 72
     const-string v0, "com.google.android.gms"
 
-    if-nez v9, :cond_6
+    if-nez v9, :cond_b6
 
-    :try_start_1
+    :try_start_94
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getCallingPackage()Ljava/lang/String;
 
     move-result-object v1
 
-    if-eqz v1, :cond_6
+    if-eqz v1, :cond_b6
 
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getCallingPackage()Ljava/lang/String;
 
@@ -326,7 +326,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_6
+    if-nez v1, :cond_b6
 
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getCallingPackage()Ljava/lang/String;
 
@@ -336,22 +336,22 @@
 
     move-result v1
 
-    if-nez v1, :cond_6
+    if-nez v1, :cond_b6
 
     .line 73
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getCallingPackage()Ljava/lang/String;
 
     move-result-object v9
 
-    :cond_6
-    if-nez v9, :cond_7
+    :cond_b6
+    if-nez v9, :cond_e6
 
     .line 75
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getCallingActivity()Landroid/content/ComponentName;
 
     move-result-object v1
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_e6
 
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getCallingActivity()Landroid/content/ComponentName;
 
@@ -369,7 +369,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_7
+    if-nez v1, :cond_e6
 
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getCallingActivity()Landroid/content/ComponentName;
 
@@ -383,7 +383,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_7
+    if-nez v1, :cond_e6
 
     .line 76
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->getCallingActivity()Landroid/content/ComponentName;
@@ -394,13 +394,13 @@
 
     move-result-object v9
 
-    :cond_7
-    if-nez v9, :cond_8
+    :cond_e6
+    if-nez v9, :cond_102
 
     .line 78
     iget-object v1, p1, Lio/vanta/proxy/record/ProxyPendingRecord;->mCreatorPkg:Ljava/lang/String;
 
-    if-eqz v1, :cond_8
+    if-eqz v1, :cond_102
 
     iget-object v1, p1, Lio/vanta/proxy/record/ProxyPendingRecord;->mCreatorPkg:Ljava/lang/String;
 
@@ -408,7 +408,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_8
+    if-nez v0, :cond_102
 
     iget-object v0, p1, Lio/vanta/proxy/record/ProxyPendingRecord;->mCreatorPkg:Ljava/lang/String;
 
@@ -420,19 +420,19 @@
 
     move-result v0
 
-    if-nez v0, :cond_8
+    if-nez v0, :cond_102
 
     .line 79
     iget-object v9, p1, Lio/vanta/proxy/record/ProxyPendingRecord;->mCreatorPkg:Ljava/lang/String;
 
-    :cond_8
-    if-eqz v9, :cond_9
+    :cond_102
+    if-eqz v9, :cond_107
 
     .line 83
     invoke-virtual {v7, v2, v9}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
     .line 85
-    :cond_9
+    :cond_107
     new-instance p1, Ljava/lang/StringBuilder;
 
     invoke-direct {p1, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -472,12 +472,12 @@
 
     .line 88
     invoke-virtual {p0, v7, p1}, Lio/vanta/proxy/ProxyPendingActivity;->startActivityForResult(Landroid/content/Intent;I)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_132
+    .catchall {:try_start_94 .. :try_end_132} :catchall_133
 
     return-void
 
-    :catchall_0
+    :catchall_133
     move-exception p1
 
     .line 90
@@ -510,8 +510,8 @@
     return-void
 
     .line 33
-    :cond_a
-    :goto_1
+    :cond_151
+    :goto_151
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyPendingActivity;->finish()V
 
     return-void

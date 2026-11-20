@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 266
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,7 +29,7 @@
 .end method
 
 .method private extractCorruptedFilePathFromError(Ljava/lang/Exception;Ljava/lang/Object;)Ljava/lang/String;
-    .locals 5
+    .registers 8
 
     .line 302
     const-string v0, "/data/app/"
@@ -40,26 +40,26 @@
     const-string v2, "Could not extract path via reflection: "
 
     .line 302
-    :try_start_0
+    :try_start_6
     invoke-virtual {p1}, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
 
     move-result-object p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_29
 
     .line 305
     invoke-virtual {p1, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_29
 
     .line 307
     invoke-virtual {p1, v0}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
 
     move-result v0
 
-    if-ltz v0, :cond_1
+    if-ltz v0, :cond_29
 
     .line 309
     const-string p2, " "
@@ -68,7 +68,7 @@
 
     move-result p2
 
-    if-gez p2, :cond_0
+    if-gez p2, :cond_24
 
     .line 311
     invoke-virtual {p1}, Ljava/lang/String;->length()I
@@ -76,18 +76,18 @@
     move-result p2
 
     .line 313
-    :cond_0
+    :cond_24
     invoke-virtual {p1, v0, p2}, Ljava/lang/String;->substring(II)Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_28
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_28} :catch_84
 
     return-object p1
 
     .line 320
-    :cond_1
-    :try_start_1
+    :cond_29
+    :try_start_29
     invoke-virtual {p2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object p1
@@ -108,7 +108,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_9b
 
     .line 324
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -131,12 +131,12 @@
 
     check-cast p1, [Ljava/lang/Object;
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_9b
 
     .line 327
     array-length p2, p1
 
-    if-lez p2, :cond_2
+    if-lez p2, :cond_9b
 
     const/4 p2, 0x0
 
@@ -164,16 +164,16 @@
     move-result-object p1
 
     check-cast p1, Ljava/lang/String;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_6d
+    .catch Ljava/lang/Exception; {:try_start_29 .. :try_end_6d} :catch_6e
 
     return-object p1
 
-    :catch_0
+    :catch_6e
     move-exception p1
 
     .line 335
-    :try_start_2
+    :try_start_6f
     new-instance p2, Ljava/lang/StringBuilder;
 
     invoke-direct {p2, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -191,12 +191,12 @@
     move-result-object p1
 
     invoke-static {v1, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_83
+    .catch Ljava/lang/Exception; {:try_start_6f .. :try_end_83} :catch_84
 
-    goto :goto_0
+    goto :goto_9b
 
-    :catch_1
+    :catch_84
     move-exception p1
 
     .line 339
@@ -220,8 +220,8 @@
 
     invoke-static {v1, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_2
-    :goto_0
+    :cond_9b
+    :goto_9b
     const/4 p1, 0x0
 
     return-object p1
@@ -230,7 +230,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -242,12 +242,12 @@
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object p1
 
-    :catch_0
+    :catch_5
     move-exception p2
 
     .line 272
@@ -258,7 +258,7 @@
     .line 273
     const-string v0, "ClassLoaderProxy"
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_62
 
     const-string v1, "classes.dex"
 
@@ -266,7 +266,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_62
 
     const-string v1, "Entry not found"
 
@@ -274,7 +274,7 @@
 
     move-result p3
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_62
 
     .line 274
     const-string p3, "DexPathList: classes.dex entry not found, attempting recovery"
@@ -286,7 +286,7 @@
 
     move-result-object p3
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_62
 
     .line 279
     invoke-static {p3}, Lio/vanta/utils/DexFileRecovery;->recoverDexFile(Ljava/lang/String;)Lio/vanta/utils/DexFileRecovery$RecoveryResult;
@@ -296,7 +296,7 @@
     .line 280
     iget-boolean v1, p3, Lio/vanta/utils/DexFileRecovery$RecoveryResult;->success:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_4e
 
     .line 281
     new-instance v1, Ljava/lang/StringBuilder;
@@ -324,12 +324,12 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_62
 
     return-object p1
 
     .line 288
-    :cond_0
+    :cond_4e
     new-instance p1, Ljava/lang/StringBuilder;
 
     const-string v1, "DexPathList: DEX file recovery failed: "
@@ -349,7 +349,7 @@
     invoke-static {v0, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 293
-    :cond_1
+    :cond_62
     new-instance p1, Ljava/lang/StringBuilder;
 
     const-string p3, "DexPathList: loadDexFile failed, returning null: "

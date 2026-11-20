@@ -28,7 +28,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 41
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -39,14 +39,14 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_1f
 
     .line 45
     array-length v0, p3
@@ -59,7 +59,7 @@
     .line 47
     instance-of v1, v1, Ljava/lang/Integer;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1f
 
     .line 48
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -84,7 +84,7 @@
     aput-object v1, p3, v0
 
     .line 52
-    :cond_0
+    :cond_1f
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

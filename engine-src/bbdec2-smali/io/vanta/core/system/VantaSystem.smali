@@ -23,7 +23,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 36
     new-instance v0, Ljava/util/concurrent/atomic/AtomicBoolean;
@@ -38,7 +38,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 33
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -54,12 +54,12 @@
 .end method
 
 .method public static getSystem()Lio/vanta/core/system/VantaSystem;
-    .locals 2
+    .registers 2
 
     .line 39
     sget-object v0, Lio/vanta/core/system/VantaSystem;->sNomadSystem:Lio/vanta/core/system/VantaSystem;
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_17
 
     .line 40
     const-class v0, Lio/vanta/core/system/VantaSystem;
@@ -67,10 +67,10 @@
     monitor-enter v0
 
     .line 41
-    :try_start_0
+    :try_start_7
     sget-object v1, Lio/vanta/core/system/VantaSystem;->sNomadSystem:Lio/vanta/core/system/VantaSystem;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_12
 
     .line 42
     new-instance v1, Lio/vanta/core/system/VantaSystem;
@@ -80,23 +80,23 @@
     sput-object v1, Lio/vanta/core/system/VantaSystem;->sNomadSystem:Lio/vanta/core/system/VantaSystem;
 
     .line 44
-    :cond_0
+    :cond_12
     monitor-exit v0
 
-    goto :goto_0
+    goto :goto_17
 
-    :catchall_0
+    :catchall_14
     move-exception v1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_16
+    .catchall {:try_start_7 .. :try_end_16} :catchall_14
 
     throw v1
 
     .line 46
-    :cond_1
-    :goto_0
+    :cond_17
+    :goto_17
     sget-object v0, Lio/vanta/core/system/VantaSystem;->sNomadSystem:Lio/vanta/core/system/VantaSystem;
 
     return-object v0
@@ -105,7 +105,7 @@
 
 # virtual methods
 .method public startup()V
-    .locals 5
+    .registers 6
 
     .line 50
     sget-object v0, Lio/vanta/core/system/VantaSystem;->isStartup:Ljava/util/concurrent/atomic/AtomicBoolean;
@@ -116,12 +116,12 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_a
 
     return-void
 
     .line 52
-    :cond_0
+    :cond_a
     invoke-static {}, Lio/vanta/core/env/BEnvironment;->load()V
 
     .line 54
@@ -221,12 +221,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_6d
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_7d
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -237,10 +237,10 @@
     .line 67
     invoke-interface {v1}, Lio/vanta/core/system/ISystemService;->systemReady()V
 
-    goto :goto_0
+    goto :goto_6d
 
     .line 70
-    :cond_1
+    :cond_7d
     invoke-static {}, Lio/vanta/core/env/AppSystemEnv;->getPreInstallPackages()Ljava/util/List;
 
     move-result-object v0
@@ -250,14 +250,14 @@
 
     move-result-object v0
 
-    :catch_0
-    :cond_2
-    :goto_1
+    :catch_85
+    :cond_85
+    :goto_85
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_b5
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -266,7 +266,7 @@
     check-cast v1, Ljava/lang/String;
 
     .line 73
-    :try_start_0
+    :try_start_91
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
 
     move-result-object v2
@@ -277,7 +277,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_2
+    if-nez v2, :cond_85
 
     .line 74
     invoke-static {}, Lio/vanta/VantaCore;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -304,13 +304,13 @@
     move-result-object v4
 
     invoke-virtual {v2, v1, v4, v3}, Lio/vanta/core/system/pm/BPackageManagerService;->installPackageAsUser(Ljava/lang/String;Lio/vanta/entity/pm/InstallOption;I)Lio/vanta/entity/pm/InstallResult;
-    :try_end_0
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_b4
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_91 .. :try_end_b4} :catch_85
 
-    goto :goto_1
+    goto :goto_85
 
     .line 81
-    :cond_3
+    :cond_b5
     invoke-static {}, Lio/vanta/core/system/JarManager;->getInstance()Lio/vanta/core/system/JarManager;
 
     move-result-object v0

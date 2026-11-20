@@ -15,7 +15,7 @@
 
 # direct methods
 .method public constructor <init>(ILandroid/content/pm/ActivityInfo;Landroid/content/Intent;Landroid/os/IBinder;)V
-    .locals 0
+    .registers 5
 
     .line 16
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,17 +36,17 @@
 .end method
 
 .method public static create(Landroid/content/Intent;)Lio/vanta/proxy/record/ProxyActivityRecord;
-    .locals 4
+    .registers 5
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     const/4 p0, 0x0
 
     return-object p0
 
     .line 33
-    :cond_0
-    :try_start_0
+    :cond_4
+    :try_start_4
     const-class v0, Lio/vanta/proxy/record/ProxyActivityRecord;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
@@ -58,7 +58,7 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_18
 
     .line 35
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
@@ -70,13 +70,13 @@
     move-result-object v0
 
     .line 37
-    :cond_1
+    :cond_18
     invoke-virtual {p0, v0}, Landroid/content/Intent;->setExtrasClassLoader(Ljava/lang/ClassLoader;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_4 .. :try_end_1b} :catchall_1b
 
     .line 40
-    :catchall_0
+    :catchall_1b
     const-string v0, "_B_|_user_id_"
 
     const/4 v1, 0x0
@@ -103,17 +103,17 @@
 
     check-cast v2, Landroid/content/Intent;
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_45
 
     .line 43
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
 
     move-result-object v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_45
 
     .line 45
-    :try_start_1
+    :try_start_3a
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
 
     move-result-object v3
@@ -123,12 +123,12 @@
     move-result-object v3
 
     invoke-virtual {v2, v3}, Landroid/content/Intent;->setExtrasClassLoader(Ljava/lang/ClassLoader;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_45
+    .catchall {:try_start_3a .. :try_end_45} :catchall_45
 
     .line 49
-    :catchall_1
-    :cond_2
+    :catchall_45
+    :cond_45
     const-string v3, "_B_|_activity_record_v_"
 
     invoke-static {p0, v3}, Lio/vanta/utils/compat/BundleCompat;->getBinder(Landroid/content/Intent;Ljava/lang/String;)Landroid/os/IBinder;
@@ -144,7 +144,7 @@
 .end method
 
 .method public static saveStub(Landroid/content/Intent;Landroid/content/Intent;Landroid/content/pm/ActivityInfo;Landroid/os/IBinder;I)V
-    .locals 1
+    .registers 6
 
     .line 24
     const-string v0, "_B_|_user_id_"

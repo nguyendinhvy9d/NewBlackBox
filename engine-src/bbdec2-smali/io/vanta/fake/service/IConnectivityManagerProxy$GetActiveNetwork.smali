@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 370
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 6
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -42,24 +42,24 @@
     const-string v0, "IConnectivityManagerProxy"
 
     .line 376
-    :try_start_0
+    :try_start_2
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_6} :catch_4a
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_9
 
     return-object v1
 
-    :cond_0
+    :cond_9
     const/4 v1, 0x0
 
     const/4 v2, 0x1
 
     .line 386
-    :try_start_1
+    :try_start_b
     const-class v3, Landroid/net/Network;
 
     new-array v4, v2, [Ljava/lang/Class;
@@ -86,14 +86,14 @@
     move-result-object v3
 
     check-cast v3, Landroid/net/Network;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_25
+    .catch Ljava/lang/Exception; {:try_start_b .. :try_end_25} :catch_26
 
-    goto :goto_0
+    goto :goto_3a
 
     .line 391
-    :catch_0
-    :try_start_2
+    :catch_26
+    :try_start_26
     const-class v3, Landroid/net/Network;
 
     new-array v4, v1, [Ljava/lang/Class;
@@ -115,12 +115,12 @@
     move-object v3, v1
 
     check-cast v3, Landroid/net/Network;
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_3a
+    .catch Ljava/lang/Exception; {:try_start_26 .. :try_end_3a} :catch_40
 
     .line 400
-    :goto_0
-    :try_start_3
+    :goto_3a
+    :try_start_3a
     const-string v1, "Created mock Network object for sandboxed app (fallback)"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -128,7 +128,7 @@
     return-object v3
 
     .line 396
-    :catch_1
+    :catch_40
     const-string v1, "Could not create Network object, falling back to original method"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -137,12 +137,12 @@
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+    :try_end_49
+    .catch Ljava/lang/Exception; {:try_start_3a .. :try_end_49} :catch_4a
 
     return-object p1
 
-    :catch_2
+    :catch_4a
     move-exception v1
 
     .line 403

@@ -27,7 +27,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 8
     new-instance v0, Ljava/util/ArrayList;
@@ -102,7 +102,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 7
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -111,7 +111,7 @@
 .end method
 
 .method public static getPreInstallPackages()Ljava/util/List;
-    .locals 1
+    .registers 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -128,7 +128,7 @@
 .end method
 
 .method public static isBlackPackage(Ljava/lang/String;)Z
-    .locals 0
+    .registers 1
 
     const/4 p0, 0x0
 
@@ -136,9 +136,9 @@
 .end method
 
 .method public static isOpenPackage(Landroid/content/ComponentName;)Z
-    .locals 0
+    .registers 1
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_e
 
     .line 36
     invoke-virtual {p0}, Landroid/content/ComponentName;->getPackageName()Ljava/lang/String;
@@ -149,22 +149,22 @@
 
     move-result p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_e
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_0
+    :cond_e
     const/4 p0, 0x0
 
     return p0
 .end method
 
 .method public static isOpenPackage(Ljava/lang/String;)Z
-    .locals 1
+    .registers 2
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_c
 
     .line 32
     sget-object v0, Lio/vanta/core/env/AppSystemEnv;->sSystemPackages:Ljava/util/List;
@@ -173,13 +173,13 @@
 
     move-result p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_c
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_0
+    :cond_c
     const/4 p0, 0x0
 
     return p0

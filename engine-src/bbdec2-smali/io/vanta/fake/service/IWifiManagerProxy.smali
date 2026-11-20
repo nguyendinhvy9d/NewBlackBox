@@ -17,7 +17,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 22
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -38,7 +38,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 27
     invoke-static {}, Lvanta/android/net/wifi/BRIWifiManagerStub;->get()Lvanta/android/net/wifi/IWifiManagerStubStatic;
@@ -63,7 +63,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 32
     const-string p1, "wifi"
@@ -74,7 +74,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

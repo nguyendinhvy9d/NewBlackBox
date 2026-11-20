@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 40
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,35 +31,35 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_2
+    if-eqz p3, :cond_25
 
     const/4 v0, 0x0
 
     .line 45
-    :goto_0
+    :goto_3
     array-length v1, p3
 
-    if-ge v0, v1, :cond_2
+    if-ge v0, v1, :cond_25
 
     .line 46
     aget-object v1, p3, v0
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_b
 
-    goto :goto_1
+    goto :goto_22
 
     .line 48
-    :cond_0
+    :cond_b
     instance-of v1, v1, Landroid/content/ComponentName;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_22
 
     .line 49
     new-instance v1, Landroid/content/ComponentName;
@@ -80,14 +80,14 @@
 
     aput-object v1, p3, v0
 
-    :cond_1
-    :goto_1
+    :cond_22
+    :goto_22
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_3
 
     .line 53
-    :cond_2
+    :cond_25
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

@@ -36,7 +36,7 @@
 
 # direct methods
 .method protected constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 48
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -45,7 +45,7 @@
 .end method
 
 .method public static findMethodByFirstName(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Method;
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -66,8 +66,8 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_1
+    :goto_6
+    if-ge v1, v0, :cond_18
 
     aget-object v2, p0, v1
 
@@ -80,23 +80,23 @@
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_15
 
     return-object v2
 
-    :cond_0
+    :cond_15
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_6
 
-    :cond_1
+    :cond_18
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method public static on(Ljava/lang/Class;)Lio/vanta/utils/Reflector;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -118,7 +118,7 @@
 .end method
 
 .method public static on(Ljava/lang/String;)Lio/vanta/utils/Reflector;
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -142,7 +142,7 @@
 .end method
 
 .method public static on(Ljava/lang/String;Z)Lio/vanta/utils/Reflector;
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -164,7 +164,7 @@
 .end method
 
 .method public static on(Ljava/lang/String;ZLjava/lang/ClassLoader;)Lio/vanta/utils/Reflector;
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -180,12 +180,12 @@
     invoke-static {p0}, Lio/vanta/utils/Reflector;->on(Ljava/lang/Class;)Lio/vanta/utils/Reflector;
 
     move-result-object p0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_8
+    .catchall {:try_start_0 .. :try_end_8} :catchall_9
 
     return-object p0
 
-    :catchall_0
+    :catchall_9
     move-exception p0
 
     .line 34
@@ -199,7 +199,7 @@
 .end method
 
 .method public static with(Ljava/lang/Object;)Lio/vanta/utils/Reflector;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -225,7 +225,7 @@
 
 # virtual methods
 .method public bind(Ljava/lang/Object;)Lio/vanta/utils/Reflector;
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -243,7 +243,7 @@
 .end method
 
 .method public varargs call([Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<R:",
@@ -271,7 +271,7 @@
 .end method
 
 .method public varargs callByCaller(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<R:",
@@ -300,30 +300,30 @@
     invoke-virtual {p0, p1, v1, v2}, Lio/vanta/utils/Reflector;->check(Ljava/lang/Object;Ljava/lang/reflect/Member;Ljava/lang/String;)V
 
     .line 196
-    :try_start_0
+    :try_start_9
     iget-object v1, p0, Lio/vanta/utils/Reflector;->mMethod:Ljava/lang/reflect/Method;
 
     invoke-virtual {v1, p1, p2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_f
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_9 .. :try_end_f} :catch_25
+    .catchall {:try_start_9 .. :try_end_f} :catchall_10
 
     return-object p1
 
-    :catchall_0
+    :catchall_10
     move-exception p1
 
     .line 210
     instance-of p2, p1, Ljava/lang/RuntimeException;
 
-    if-nez p2, :cond_1
+    if-nez p2, :cond_22
 
     .line 212
     instance-of p2, p1, Ljava/lang/Error;
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_1c
 
     .line 213
     check-cast p1, Ljava/lang/Error;
@@ -331,7 +331,7 @@
     throw p1
 
     .line 215
-    :cond_0
+    :cond_1c
     new-instance p2, Ljava/lang/Exception;
 
     invoke-direct {p2, v0, p1}, Ljava/lang/Exception;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
@@ -339,12 +339,12 @@
     throw p2
 
     .line 211
-    :cond_1
+    :cond_22
     check-cast p1, Ljava/lang/RuntimeException;
 
     throw p1
 
-    :catch_0
+    :catch_25
     move-exception p1
 
     .line 198
@@ -355,12 +355,12 @@
     .line 203
     instance-of p2, p1, Ljava/lang/RuntimeException;
 
-    if-nez p2, :cond_3
+    if-nez p2, :cond_3b
 
     .line 205
     instance-of p2, p1, Ljava/lang/Error;
 
-    if-eqz p2, :cond_2
+    if-eqz p2, :cond_35
 
     .line 206
     check-cast p1, Ljava/lang/Error;
@@ -368,7 +368,7 @@
     throw p1
 
     .line 208
-    :cond_2
+    :cond_35
     new-instance p2, Ljava/lang/Exception;
 
     invoke-direct {p2, v0, p1}, Ljava/lang/Exception;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
@@ -376,23 +376,23 @@
     throw p2
 
     .line 204
-    :cond_3
+    :cond_3b
     check-cast p1, Ljava/lang/RuntimeException;
 
     throw p1
 .end method
 
 .method protected check(Ljava/lang/Object;Ljava/lang/reflect/Member;Ljava/lang/String;)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
         }
     .end annotation
 
-    if-eqz p2, :cond_2
+    if-eqz p2, :cond_1b
 
-    if-nez p1, :cond_1
+    if-nez p1, :cond_17
 
     .line 89
     invoke-interface {p2}, Ljava/lang/reflect/Member;->getModifiers()I
@@ -403,12 +403,12 @@
 
     move-result p2
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_f
 
-    goto :goto_0
+    goto :goto_17
 
     .line 90
-    :cond_0
+    :cond_f
     new-instance p1, Ljava/lang/Exception;
 
     const-string p2, "Need a caller!"
@@ -418,14 +418,14 @@
     throw p1
 
     .line 92
-    :cond_1
-    :goto_0
+    :cond_17
+    :goto_17
     invoke-virtual {p0, p1}, Lio/vanta/utils/Reflector;->checked(Ljava/lang/Object;)Ljava/lang/Object;
 
     return-void
 
     .line 87
-    :cond_2
+    :cond_1b
     new-instance p1, Ljava/lang/Exception;
 
     new-instance p2, Ljava/lang/StringBuilder;
@@ -452,14 +452,14 @@
 .end method
 
 .method protected checked(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
         }
     .end annotation
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_32
 
     .line 79
     iget-object v0, p0, Lio/vanta/utils/Reflector;->mType:Ljava/lang/Class;
@@ -468,12 +468,12 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_b
 
-    goto :goto_0
+    goto :goto_32
 
     .line 82
-    :cond_0
+    :cond_b
     new-instance v0, Ljava/lang/Exception;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -512,13 +512,13 @@
 
     throw v0
 
-    :cond_1
-    :goto_0
+    :cond_32
+    :goto_32
     return-object p1
 .end method
 
 .method public varargs constructor([Ljava/lang/Class;)Lio/vanta/utils/Reflector;
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([",
@@ -556,12 +556,12 @@
 
     .line 57
     iput-object p1, p0, Lio/vanta/utils/Reflector;->mMethod:Ljava/lang/reflect/Method;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_11
+    .catchall {:try_start_0 .. :try_end_11} :catchall_12
 
     return-object p0
 
-    :catchall_0
+    :catchall_12
     move-exception p1
 
     .line 60
@@ -575,7 +575,7 @@
 .end method
 
 .method public field(Ljava/lang/String;)Lio/vanta/utils/Reflector;
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -602,12 +602,12 @@
 
     .line 110
     iput-object p1, p0, Lio/vanta/utils/Reflector;->mMethod:Ljava/lang/reflect/Method;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_f
+    .catchall {:try_start_0 .. :try_end_f} :catchall_10
 
     return-object p0
 
-    :catchall_0
+    :catchall_10
     move-exception p1
 
     .line 113
@@ -621,7 +621,7 @@
 .end method
 
 .method protected findField(Ljava/lang/String;)Ljava/lang/reflect/Field;
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/NoSuchFieldException;
@@ -635,45 +635,45 @@
     invoke-virtual {v0, p1}, Ljava/lang/Class;->getField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_0 .. :try_end_6} :catch_7
 
     return-object p1
 
-    :catch_0
+    :catch_7
     move-exception v0
 
     .line 121
     iget-object v1, p0, Lio/vanta/utils/Reflector;->mType:Ljava/lang/Class;
 
-    :goto_0
-    if-eqz v1, :cond_0
+    :goto_a
+    if-eqz v1, :cond_16
 
     .line 123
-    :try_start_1
+    :try_start_c
     invoke-virtual {v1, p1}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object p1
-    :try_end_1
-    .catch Ljava/lang/NoSuchFieldException; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_10
+    .catch Ljava/lang/NoSuchFieldException; {:try_start_c .. :try_end_10} :catch_11
 
     return-object p1
 
     .line 121
-    :catch_1
+    :catch_11
     invoke-virtual {v1}, Ljava/lang/Class;->getSuperclass()Ljava/lang/Class;
 
     move-result-object v1
 
-    goto :goto_0
+    goto :goto_a
 
     .line 128
-    :cond_0
+    :cond_16
     throw v0
 .end method
 
 .method protected varargs findMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -698,45 +698,45 @@
     invoke-virtual {v0, p1, p2}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_6} :catch_7
 
     return-object p1
 
-    :catch_0
+    :catch_7
     move-exception v0
 
     .line 177
     iget-object v1, p0, Lio/vanta/utils/Reflector;->mType:Ljava/lang/Class;
 
-    :goto_0
-    if-eqz v1, :cond_0
+    :goto_a
+    if-eqz v1, :cond_16
 
     .line 179
-    :try_start_1
+    :try_start_c
     invoke-virtual {v1, p1, p2}, Ljava/lang/Class;->getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object p1
-    :try_end_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_10
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_c .. :try_end_10} :catch_11
 
     return-object p1
 
     .line 177
-    :catch_1
+    :catch_11
     invoke-virtual {v1}, Ljava/lang/Class;->getSuperclass()Ljava/lang/Class;
 
     move-result-object v1
 
-    goto :goto_0
+    goto :goto_a
 
     .line 184
-    :cond_0
+    :cond_16
     throw v0
 .end method
 
 .method public get()Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<R:",
@@ -762,7 +762,7 @@
 .end method
 
 .method public get(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<R:",
@@ -787,18 +787,18 @@
     invoke-virtual {p0, p1, v0, v1}, Lio/vanta/utils/Reflector;->check(Ljava/lang/Object;Ljava/lang/reflect/Member;Ljava/lang/String;)V
 
     .line 141
-    :try_start_0
+    :try_start_7
     iget-object v0, p0, Lio/vanta/utils/Reflector;->mField:Ljava/lang/reflect/Field;
 
     invoke-virtual {v0, p1}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_d
+    .catchall {:try_start_7 .. :try_end_d} :catchall_e
 
     return-object p1
 
-    :catchall_0
+    :catchall_e
     move-exception p1
 
     .line 143
@@ -812,7 +812,7 @@
 .end method
 
 .method public varargs method(Ljava/lang/String;[Ljava/lang/Class;)Lio/vanta/utils/Reflector;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -850,12 +850,12 @@
 
     .line 166
     iput-object p1, p0, Lio/vanta/utils/Reflector;->mField:Ljava/lang/reflect/Field;
-    :try_end_0
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_f
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_0 .. :try_end_f} :catch_10
 
     return-object p0
 
-    :catch_0
+    :catch_10
     move-exception p1
 
     .line 169
@@ -869,7 +869,7 @@
 .end method
 
 .method public varargs newInstance([Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<R:",
@@ -891,20 +891,20 @@
 
     iget-object v1, p0, Lio/vanta/utils/Reflector;->mConstructor:Ljava/lang/reflect/Constructor;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1d
 
     .line 70
-    :try_start_0
+    :try_start_6
     invoke-virtual {v1, p1}, Ljava/lang/reflect/Constructor;->newInstance([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_0 .. :try_end_0} :catch_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_a
+    .catch Ljava/lang/reflect/InvocationTargetException; {:try_start_6 .. :try_end_a} :catch_12
+    .catchall {:try_start_6 .. :try_end_a} :catchall_b
 
     return-object p1
 
-    :catchall_0
+    :catchall_b
     move-exception p1
 
     .line 74
@@ -914,7 +914,7 @@
 
     throw v1
 
-    :catch_0
+    :catch_12
     move-exception p1
 
     .line 72
@@ -929,7 +929,7 @@
     throw v1
 
     .line 67
-    :cond_0
+    :cond_1d
     new-instance p1, Ljava/lang/Exception;
 
     const-string v0, "Constructor was null!"
@@ -940,7 +940,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;)Lio/vanta/utils/Reflector;
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -958,7 +958,7 @@
 .end method
 
 .method public set(Ljava/lang/Object;Ljava/lang/Object;)Lio/vanta/utils/Reflector;
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -973,16 +973,16 @@
     invoke-virtual {p0, p1, v0, v1}, Lio/vanta/utils/Reflector;->check(Ljava/lang/Object;Ljava/lang/reflect/Member;Ljava/lang/String;)V
 
     .line 154
-    :try_start_0
+    :try_start_7
     iget-object v0, p0, Lio/vanta/utils/Reflector;->mField:Ljava/lang/reflect/Field;
 
     invoke-virtual {v0, p1, p2}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_c
+    .catchall {:try_start_7 .. :try_end_c} :catchall_d
 
     return-object p0
 
-    :catchall_0
+    :catchall_d
     move-exception p1
 
     .line 157
@@ -996,7 +996,7 @@
 .end method
 
 .method public unbind()Lio/vanta/utils/Reflector;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

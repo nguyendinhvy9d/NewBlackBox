@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;I)V
-    .locals 0
+    .registers 3
 
     .line 14
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -28,7 +28,7 @@
 
 # virtual methods
 .method protected getMethodName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 21
     iget-object v0, p0, Lio/vanta/fake/service/base/UidMethodProxy;->name:Ljava/lang/String;
@@ -37,7 +37,7 @@
 .end method
 
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -60,7 +60,7 @@
 
     move-result v1
 
-    if-ne v0, v1, :cond_0
+    if-ne v0, v1, :cond_1c
 
     .line 28
     iget v0, p0, Lio/vanta/fake/service/base/UidMethodProxy;->index:I
@@ -76,7 +76,7 @@
     aput-object v1, p3, v0
 
     .line 30
-    :cond_0
+    :cond_1c
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

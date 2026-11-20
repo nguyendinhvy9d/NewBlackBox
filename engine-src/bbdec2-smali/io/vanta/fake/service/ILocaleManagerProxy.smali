@@ -35,7 +35,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$sfgetsLocales()Ljava/util/Map;
-    .locals 1
+    .registers 1
 
     sget-object v0, Lio/vanta/fake/service/ILocaleManagerProxy;->sLocales:Ljava/util/Map;
 
@@ -43,7 +43,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 20
     new-instance v0, Ljava/util/HashMap;
@@ -56,7 +56,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 25
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -75,7 +75,7 @@
 .end method
 
 .method private constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 29
     invoke-direct {p0, p1}, Lio/vanta/fake/hook/BinderInvocationStub;-><init>(Landroid/os/IBinder;)V
@@ -89,20 +89,20 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 6
+    .registers 7
 
     .line 35
     iget-object v0, p0, Lio/vanta/fake/service/ILocaleManagerProxy;->mRawBinder:Landroid/os/IBinder;
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     return-object v1
 
     .line 37
-    :cond_0
-    :try_start_0
+    :cond_6
+    :try_start_6
     const-string v0, "android.app.ILocaleManager$Stub"
 
     invoke-static {v0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -136,12 +136,12 @@
     invoke-virtual {v0, v1, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_24
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_24} :catch_25
 
     return-object v0
 
-    :catch_0
+    :catch_25
     move-exception v0
 
     .line 41
@@ -171,7 +171,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 48
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -184,7 +184,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_16
 
     .line 49
     invoke-virtual {p0, p2}, Lio/vanta/fake/service/ILocaleManagerProxy;->replaceSystemService(Ljava/lang/String;)V
@@ -196,12 +196,12 @@
 
     invoke-static {p1, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_16
     return-void
 .end method
 
 .method public isBadEnv()Z
-    .locals 2
+    .registers 3
 
     .line 56
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -214,15 +214,15 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_10
 
-    if-eq v0, p0, :cond_0
+    if-eq v0, p0, :cond_10
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_10
     const/4 v0, 0x0
 
     return v0

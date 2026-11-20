@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 8
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method protected afterHook(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -27,7 +27,7 @@
 .end method
 
 .method protected beforeHook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -40,7 +40,7 @@
 .end method
 
 .method protected getMethodName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -56,7 +56,7 @@
 .end method
 
 .method protected isEnable()Z
-    .locals 1
+    .registers 2
 
     .line 24
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;

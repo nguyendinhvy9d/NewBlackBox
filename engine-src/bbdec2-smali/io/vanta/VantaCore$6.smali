@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/VantaCore;)V
-    .locals 0
+    .registers 2
 
     .line 1712
     iput-object p1, p0, Lio/vanta/VantaCore$6;->this$0:Lio/vanta/VantaCore;
@@ -36,12 +36,12 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .registers 5
 
     .line 1717
     const-string v0, "VantaCore"
 
-    :try_start_0
+    :try_start_2
     new-instance v1, Landroid/content/Intent;
 
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -62,7 +62,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_20
 
     .line 1721
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -71,10 +71,10 @@
 
     invoke-virtual {v2, v1}, Landroid/content/Context;->startForegroundService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    goto :goto_0
+    goto :goto_27
 
     .line 1723
-    :cond_0
+    :cond_20
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v2
@@ -82,16 +82,16 @@
     invoke-virtual {v2, v1}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
     .line 1726
-    :goto_0
+    :goto_27
     const-string v1, "VPN service started successfully for internet access"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2c
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2c} :catch_2d
 
     return-void
 
-    :catch_0
+    :catch_2d
     move-exception v1
 
     .line 1728

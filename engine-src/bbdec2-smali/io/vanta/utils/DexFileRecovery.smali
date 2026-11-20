@@ -46,7 +46,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 31
     new-instance v0, Ljava/util/HashMap;
@@ -69,7 +69,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -78,7 +78,7 @@
 .end method
 
 .method public static clearCache()V
-    .locals 2
+    .registers 2
 
     .line 415
     sget-object v0, Lio/vanta/utils/DexFileRecovery;->sRecoveryCache:Ljava/util/Map;
@@ -96,7 +96,7 @@
 .end method
 
 .method public static forceRecovery(Ljava/lang/String;)Lio/vanta/utils/DexFileRecovery$RecoveryResult;
-    .locals 1
+    .registers 2
 
     .line 439
     sget-object v0, Lio/vanta/utils/DexFileRecovery;->sRecoveryCache:Ljava/util/Map;
@@ -112,7 +112,7 @@
 .end method
 
 .method public static getRecoveryStats()Ljava/lang/String;
-    .locals 4
+    .registers 4
 
     .line 424
     sget-object v0, Lio/vanta/utils/DexFileRecovery;->sRecoveryCache:Ljava/util/Map;
@@ -129,12 +129,12 @@
 
     move v2, v1
 
-    :goto_0
+    :goto_c
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_22
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -145,19 +145,19 @@
     .line 425
     iget-boolean v3, v3, Lio/vanta/utils/DexFileRecovery$RecoveryResult;->success:Z
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_1f
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_c
 
-    :cond_0
+    :cond_1f
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_c
 
     .line 432
-    :cond_1
+    :cond_22
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v3, "Recovery Stats - Successful: "
@@ -203,7 +203,7 @@
 .end method
 
 .method private static initializeRecoveryStrategies()V
-    .locals 3
+    .registers 3
 
     .line 83
     sget-object v0, Lio/vanta/utils/DexFileRecovery;->sRecoveryStrategies:Ljava/util/List;
@@ -284,7 +284,7 @@
 .end method
 
 .method public static isValidApkFile(Ljava/io/File;)Z
-    .locals 9
+    .registers 10
 
     .line 389
     const-string v0, ": "
@@ -296,109 +296,109 @@
 
     const/4 v3, 0x0
 
-    if-eqz p0, :cond_3
+    if-eqz p0, :cond_8a
 
     .line 389
     invoke-virtual {p0}, Ljava/io/File;->exists()Z
 
     move-result v4
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_11
 
-    goto/16 :goto_2
+    goto/16 :goto_8a
 
     .line 395
-    :cond_0
-    :try_start_0
+    :cond_11
+    :try_start_11
     invoke-virtual {p0}, Ljava/io/File;->length()J
 
     move-result-wide v4
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_15
+    .catch Ljava/lang/Exception; {:try_start_11 .. :try_end_15} :catch_67
 
     const-wide/32 v6, 0xf4240
 
     cmp-long v4, v4, v6
 
-    if-gez v4, :cond_1
+    if-gez v4, :cond_1d
 
     return v3
 
     .line 400
-    :cond_1
-    :try_start_1
+    :cond_1d
+    :try_start_1d
     new-instance v4, Ljava/util/zip/ZipFile;
 
     invoke-direct {v4, p0}, Ljava/util/zip/ZipFile;-><init>(Ljava/io/File;)V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_22
+    .catch Ljava/lang/Exception; {:try_start_1d .. :try_end_22} :catch_45
 
     .line 401
-    :try_start_2
+    :try_start_22
     const-string v5, "classes.dex"
 
     invoke-virtual {v4, v5}, Ljava/util/zip/ZipFile;->getEntry(Ljava/lang/String;)Ljava/util/zip/ZipEntry;
 
     move-result-object v5
 
-    if-eqz v5, :cond_2
+    if-eqz v5, :cond_36
 
     .line 402
     invoke-virtual {v5}, Ljava/util/zip/ZipEntry;->getSize()J
 
     move-result-wide v5
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_2e
+    .catchall {:try_start_22 .. :try_end_2e} :catchall_3b
 
     const-wide/16 v7, 0x0
 
     cmp-long v5, v5, v7
 
-    if-lez v5, :cond_2
+    if-lez v5, :cond_36
 
     const/4 v5, 0x1
 
-    goto :goto_0
+    goto :goto_37
 
-    :cond_2
+    :cond_36
     move v5, v3
 
     .line 403
-    :goto_0
-    :try_start_3
+    :goto_37
+    :try_start_37
     invoke-virtual {v4}, Ljava/util/zip/ZipFile;->close()V
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_0
+    :try_end_3a
+    .catch Ljava/lang/Exception; {:try_start_37 .. :try_end_3a} :catch_45
 
     return v5
 
-    :catchall_0
+    :catchall_3b
     move-exception v5
 
     .line 400
-    :try_start_4
+    :try_start_3c
     invoke-virtual {v4}, Ljava/util/zip/ZipFile;->close()V
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_3f
+    .catchall {:try_start_3c .. :try_end_3f} :catchall_40
 
-    goto :goto_1
+    goto :goto_44
 
-    :catchall_1
+    :catchall_40
     move-exception v4
 
-    :try_start_5
+    :try_start_41
     invoke-virtual {v5, v4}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
 
-    :goto_1
+    :goto_44
     throw v5
-    :try_end_5
-    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_5} :catch_0
+    :try_end_45
+    .catch Ljava/lang/Exception; {:try_start_41 .. :try_end_45} :catch_45
 
-    :catch_0
+    :catch_45
     move-exception v4
 
     .line 404
-    :try_start_6
+    :try_start_46
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-direct {v5, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -428,12 +428,12 @@
     move-result-object v2
 
     invoke-static {v1, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_6
-    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_1
+    :try_end_66
+    .catch Ljava/lang/Exception; {:try_start_46 .. :try_end_66} :catch_67
 
     return v3
 
-    :catch_1
+    :catch_67
     move-exception v2
 
     .line 408
@@ -469,13 +469,13 @@
 
     invoke-static {v1, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_3
-    :goto_2
+    :cond_8a
+    :goto_8a
     return v3
 .end method
 
 .method static synthetic lambda$initializeRecoveryStrategies$0(Lio/vanta/utils/DexFileRecovery$RecoveryStrategy;Lio/vanta/utils/DexFileRecovery$RecoveryStrategy;)I
-    .locals 0
+    .registers 2
 
     .line 90
     invoke-interface {p1}, Lio/vanta/utils/DexFileRecovery$RecoveryStrategy;->getPriority()I
@@ -494,9 +494,9 @@
 .end method
 
 .method public static recoverDexFile(Ljava/lang/String;)Lio/vanta/utils/DexFileRecovery$RecoveryResult;
-    .locals 7
+    .registers 8
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_a
 
     .line 98
     new-instance p0, Lio/vanta/utils/DexFileRecovery$RecoveryResult;
@@ -508,7 +508,7 @@
     return-object p0
 
     .line 102
-    :cond_0
+    :cond_a
     sget-object v0, Lio/vanta/utils/DexFileRecovery;->sRecoveryCache:Ljava/util/Map;
 
     invoke-interface {v0, p0}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
@@ -519,7 +519,7 @@
 
     const-string v3, "DexFileRecovery"
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_37
 
     .line 103
     invoke-interface {v0, p0}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -556,7 +556,7 @@
     return-object v0
 
     .line 108
-    :cond_1
+    :cond_37
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v1, "Attempting to recover corrupted DEX file: "
@@ -580,12 +580,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_4f
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_f3
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -594,7 +594,7 @@
     check-cast v1, Lio/vanta/utils/DexFileRecovery$RecoveryStrategy;
 
     .line 113
-    :try_start_0
+    :try_start_5b
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -627,7 +627,7 @@
     .line 116
     iget-boolean v5, v4, Lio/vanta/utils/DexFileRecovery$RecoveryResult;->success:Z
 
-    if-eqz v5, :cond_2
+    if-eqz v5, :cond_a7
 
     .line 117
     new-instance v5, Ljava/lang/StringBuilder;
@@ -672,7 +672,7 @@
     return-object v4
 
     .line 121
-    :cond_2
+    :cond_a7
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
@@ -706,12 +706,12 @@
     move-result-object v4
 
     invoke-static {v3, v4}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_cb
+    .catch Ljava/lang/Exception; {:try_start_5b .. :try_end_cb} :catch_cc
 
-    goto :goto_0
+    goto :goto_4f
 
-    :catch_0
+    :catch_cc
     move-exception v4
 
     .line 124
@@ -749,10 +749,10 @@
 
     invoke-static {v3, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto/16 :goto_0
+    goto/16 :goto_4f
 
     .line 129
-    :cond_3
+    :cond_f3
     new-instance v0, Lio/vanta/utils/DexFileRecovery$RecoveryResult;
 
     new-instance v1, Ljava/lang/StringBuilder;

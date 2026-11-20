@@ -21,7 +21,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 19
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -42,7 +42,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 9
+    .registers 10
 
     .line 26
     const-string v0, "android.hardware.ISensorPrivacyManager$Stub"
@@ -61,7 +61,7 @@
     const/4 v6, 0x0
 
     .line 30
-    :try_start_0
+    :try_start_d
     invoke-static {v0}, Lio/vanta/utils/Reflector;->on(Ljava/lang/String;)Lio/vanta/utils/Reflector;
 
     move-result-object v7
@@ -82,16 +82,16 @@
     invoke-virtual {v7, v8}, Lio/vanta/utils/Reflector;->call([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_21
+    .catch Ljava/lang/Exception; {:try_start_d .. :try_end_21} :catch_22
 
-    goto :goto_0
+    goto :goto_83
 
-    :catch_0
+    :catch_22
     move-exception v7
 
     .line 33
-    :try_start_1
+    :try_start_23
     new-instance v8, Ljava/lang/StringBuilder;
 
     invoke-direct {v8, v5}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -109,11 +109,11 @@
     move-result-object v5
 
     invoke-static {v3, v5}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    :try_end_37
+    .catch Ljava/lang/Exception; {:try_start_23 .. :try_end_37} :catch_9a
 
     .line 37
-    :try_start_2
+    :try_start_37
     const-string v5, "android.hardware.ISensorPrivacyManager"
 
     invoke-static {v5}, Lio/vanta/utils/Reflector;->on(Ljava/lang/String;)Lio/vanta/utils/Reflector;
@@ -136,16 +136,16 @@
     invoke-virtual {v5, v7}, Lio/vanta/utils/Reflector;->call([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_4d
+    .catch Ljava/lang/Exception; {:try_start_37 .. :try_end_4d} :catch_4e
 
-    goto :goto_0
+    goto :goto_83
 
-    :catch_1
+    :catch_4e
     move-exception v5
 
     .line 40
-    :try_start_3
+    :try_start_4f
     new-instance v7, Ljava/lang/StringBuilder;
 
     invoke-direct {v7, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -163,11 +163,11 @@
     move-result-object v4
 
     invoke-static {v3, v4}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_3
+    :try_end_63
+    .catch Ljava/lang/Exception; {:try_start_4f .. :try_end_63} :catch_9a
 
     .line 44
-    :try_start_4
+    :try_start_63
     invoke-static {v0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v0
@@ -203,14 +203,14 @@
     invoke-virtual {v0, v6, v1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_2
+    :try_end_83
+    .catch Ljava/lang/Exception; {:try_start_63 .. :try_end_83} :catch_93
 
-    :goto_0
-    if-eqz v0, :cond_0
+    :goto_83
+    if-eqz v0, :cond_8d
 
     .line 55
-    :try_start_5
+    :try_start_85
     const-string v1, "Successfully obtained ISensorPrivacyManager interface"
 
     invoke-static {v3, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -221,26 +221,26 @@
     return-object v0
 
     .line 58
-    :cond_0
+    :cond_8d
     const-string v0, "Reflection succeeded but returned null interface"
 
     invoke-static {v3, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     return-object v6
 
-    :catch_2
+    :catch_93
     move-exception v0
 
     .line 48
     const-string v1, "All reflection paths failed for ISensorPrivacyManager"
 
     invoke-static {v3, v1, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    :try_end_5
-    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_5} :catch_3
+    :try_end_99
+    .catch Ljava/lang/Exception; {:try_start_85 .. :try_end_99} :catch_9a
 
     return-object v6
 
-    :catch_3
+    :catch_9a
     move-exception v0
 
     .line 63
@@ -252,7 +252,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 70
     const-string p1, "sensor_privacy"
@@ -263,7 +263,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

@@ -24,7 +24,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 21
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 2
+    .registers 3
 
     .line 28
     const-string v0, "IDnsResolverProxy"
@@ -60,12 +60,12 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 2
+    .registers 5
 
     .line 35
     const-string p1, "IDnsResolverProxy"
 
-    :try_start_0
+    :try_start_2
     const-string p2, "dnsresolver"
 
     invoke-virtual {p0, p2}, Lio/vanta/fake/service/IDnsResolverProxy;->replaceSystemService(Ljava/lang/String;)V
@@ -74,12 +74,12 @@
     const-string p2, "IDnsResolverProxy: Successfully injected DNS resolver service"
 
     invoke-static {p1, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_c
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_c} :catch_d
 
     return-void
 
-    :catch_0
+    :catch_d
     move-exception p2
 
     .line 38
@@ -107,7 +107,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

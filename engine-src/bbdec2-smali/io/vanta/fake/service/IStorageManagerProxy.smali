@@ -14,7 +14,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 22
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -35,7 +35,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 28
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
@@ -44,7 +44,7 @@
 
     const-string v1, "mount"
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_19
 
     .line 29
     invoke-static {}, Lvanta/android/os/storage/BRIStorageManagerStub;->get()Lvanta/android/os/storage/IStorageManagerStubStatic;
@@ -66,7 +66,7 @@
     return-object v0
 
     .line 31
-    :cond_0
+    :cond_19
     invoke-static {}, Lvanta/android/os/mount/BRIMountServiceStub;->get()Lvanta/android/os/mount/IMountServiceStubStatic;
 
     move-result-object v0
@@ -87,7 +87,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 38
     const-string p1, "mount"
@@ -98,7 +98,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 99
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 104
     iget-object v0, p0, Lio/vanta/core/system/os/IBStorageManagerService$Stub$Proxy;->mRemote:Landroid/os/IBinder;
@@ -46,7 +46,7 @@
 .end method
 
 .method public final getInterfaceDescriptor()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 108
     const-string v0, "io.vanta.core.system.os.IBStorageManagerService"
@@ -55,7 +55,7 @@
 .end method
 
 .method public getUriForFile(Ljava/lang/String;)Landroid/net/Uri;
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -73,7 +73,7 @@
     move-result-object v1
 
     .line 137
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.os.IBStorageManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -101,8 +101,8 @@
     move-result-object p1
 
     check-cast p1, Landroid/net/Uri;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_29
 
     .line 144
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -112,7 +112,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_29
     move-exception p1
 
     .line 144
@@ -126,7 +126,7 @@
 .end method
 
 .method public getVolumeList(ILjava/lang/String;II)[Landroid/os/storage/StorageVolume;
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -144,7 +144,7 @@
     move-result-object v1
 
     .line 116
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.os.IBStorageManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -181,8 +181,8 @@
     move-result-object p1
 
     check-cast p1, [Landroid/os/storage/StorageVolume;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2b
+    .catchall {:try_start_8 .. :try_end_2b} :catchall_32
 
     .line 126
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -192,7 +192,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_32
     move-exception p1
 
     .line 126

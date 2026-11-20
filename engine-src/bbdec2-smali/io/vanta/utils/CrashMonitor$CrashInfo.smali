@@ -30,7 +30,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V
-    .locals 0
+    .registers 6
 
     .line 57
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -63,7 +63,7 @@
 
 # virtual methods
 .method public toString()Ljava/lang/String;
-    .locals 5
+    .registers 6
 
     .line 68
     new-instance v0, Ljava/lang/StringBuilder;
@@ -99,16 +99,16 @@
     .line 69
     iget-boolean v1, p0, Lio/vanta/utils/CrashMonitor$CrashInfo;->wasRecovered:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_26
 
     const-string v1, "RECOVERED"
 
-    goto :goto_0
+    goto :goto_28
 
-    :cond_0
+    :cond_26
     const-string v1, "FAILED"
 
-    :goto_0
+    :goto_28
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v0

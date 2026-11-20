@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 50
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,21 +29,21 @@
 .end method
 
 .method private createMockWorkResult()Ljava/lang/Object;
-    .locals 4
+    .registers 5
 
     const/4 v0, 0x0
 
     .line 79
-    :try_start_0
+    :try_start_1
     const-string v1, "androidx.work.Operation"
 
     invoke-static {v1}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_6} :catch_7
 
     return-object v0
 
-    :catch_0
+    :catch_7
     move-exception v1
 
     .line 83
@@ -59,7 +59,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -69,25 +69,25 @@
     .line 54
     const-string v0, "WorkManagerProxy"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "WorkManager: enqueue() called"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_4a
 
     const/4 v1, 0x0
 
     .line 58
-    :goto_0
+    :goto_a
     array-length v2, p3
 
-    if-ge v1, v2, :cond_1
+    if-ge v1, v2, :cond_4a
 
     .line 59
     aget-object v2, p3, v1
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_47
 
     .line 60
     new-instance v2, Ljava/lang/StringBuilder;
@@ -142,22 +142,22 @@
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_47
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_a
 
     .line 66
-    :cond_1
+    :cond_4a
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4e
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_4e} :catch_4f
 
     return-object p1
 
-    :catch_0
+    :catch_4f
     move-exception p1
 
     .line 69

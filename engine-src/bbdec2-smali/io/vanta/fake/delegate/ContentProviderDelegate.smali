@@ -19,7 +19,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 30
     new-instance v0, Ljava/util/HashSet;
@@ -32,7 +32,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,7 +41,7 @@
 .end method
 
 .method private static clearContentProvider(Ljava/lang/Object;)V
-    .locals 2
+    .registers 3
 
     .line 103
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
@@ -50,7 +50,7 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_19
 
     .line 104
     invoke-static {p0}, Lvanta/android/providers/BRSettingsNameValueCacheOreo;->get(Ljava/lang/Object;)Lvanta/android/providers/SettingsNameValueCacheOreoContext;
@@ -61,7 +61,7 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_18
 
     .line 106
     invoke-static {p0}, Lvanta/android/providers/BRSettingsContentProviderHolder;->get(Ljava/lang/Object;)Lvanta/android/providers/SettingsContentProviderHolderContext;
@@ -70,11 +70,11 @@
 
     invoke-interface {p0, v1}, Lvanta/android/providers/SettingsContentProviderHolderContext;->_set_mContentProvider(Ljava/lang/Object;)V
 
-    :cond_0
+    :cond_18
     return-void
 
     .line 109
-    :cond_1
+    :cond_19
     invoke-static {p0}, Lvanta/android/providers/BRSettingsNameValueCache;->get(Ljava/lang/Object;)Lvanta/android/providers/SettingsNameValueCacheContext;
 
     move-result-object p0
@@ -85,7 +85,7 @@
 .end method
 
 .method public static clearSettingProvider()V
-    .locals 1
+    .registers 1
 
     .line 86
     invoke-static {}, Lvanta/android/providers/BRSettingsSystem;->get()Lvanta/android/providers/SettingsSystemStatic;
@@ -96,13 +96,13 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_d
 
     .line 88
     invoke-static {v0}, Lio/vanta/fake/delegate/ContentProviderDelegate;->clearContentProvider(Ljava/lang/Object;)V
 
     .line 90
-    :cond_0
+    :cond_d
     invoke-static {}, Lvanta/android/providers/BRSettingsSecure;->get()Lvanta/android/providers/SettingsSecureStatic;
 
     move-result-object v0
@@ -111,18 +111,18 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1a
 
     .line 92
     invoke-static {v0}, Lio/vanta/fake/delegate/ContentProviderDelegate;->clearContentProvider(Ljava/lang/Object;)V
 
     .line 94
-    :cond_1
+    :cond_1a
     invoke-static {}, Lvanta/android/providers/BRSettingsGlobal;->getRealClass()Ljava/lang/Class;
 
     move-result-object v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_2d
 
     .line 95
     invoke-static {}, Lvanta/android/providers/BRSettingsGlobal;->get()Lvanta/android/providers/SettingsGlobalStatic;
@@ -133,17 +133,17 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_2d
 
     .line 97
     invoke-static {v0}, Lio/vanta/fake/delegate/ContentProviderDelegate;->clearContentProvider(Ljava/lang/Object;)V
 
-    :cond_2
+    :cond_2d
     return-void
 .end method
 
 .method public static init()V
-    .locals 8
+    .registers 8
 
     .line 63
     invoke-static {}, Lio/vanta/fake/delegate/ContentProviderDelegate;->clearSettingProvider()V
@@ -194,13 +194,13 @@
 
     move-result-object v0
 
-    :cond_0
-    :goto_0
+    :cond_2d
+    :goto_2d
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_7e
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -215,16 +215,16 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_2d
 
     .line 71
     array-length v3, v2
 
-    if-gtz v3, :cond_1
+    if-gtz v3, :cond_45
 
-    goto :goto_0
+    goto :goto_2d
 
-    :cond_1
+    :cond_45
     const/4 v3, 0x0
 
     .line 74
@@ -237,7 +237,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_2d
 
     .line 76
     sget-object v4, Lio/vanta/fake/delegate/ContentProviderDelegate;->sInjected:Ljava/util/Set;
@@ -285,21 +285,21 @@
 
     invoke-interface {v1, v4}, Lvanta/android/app/ActivityThreadProviderClientRecordPContext;->_set_mNames(Ljava/lang/Object;)V
 
-    goto :goto_0
+    goto :goto_2d
 
-    :cond_2
+    :cond_7e
     return-void
 .end method
 
 .method public static update(Ljava/lang/Object;Ljava/lang/String;)V
-    .locals 3
+    .registers 5
 
     .line 34
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     .line 35
     invoke-static {p0}, Lvanta/android/content/BRContentProviderHolderOreo;->get(Ljava/lang/Object;)Lvanta/android/content/ContentProviderHolderOreoContext;
@@ -310,10 +310,10 @@
 
     move-result-object v0
 
-    goto :goto_0
+    goto :goto_17
 
     .line 37
-    :cond_0
+    :cond_f
     invoke-static {p0}, Lvanta/android/app/BRIActivityManagerContentProviderHolder;->get(Ljava/lang/Object;)Lvanta/android/app/IActivityManagerContentProviderHolderContext;
 
     move-result-object v0
@@ -323,15 +323,15 @@
     move-result-object v0
 
     .line 40
-    :goto_0
+    :goto_17
     instance-of v1, v0, Ljava/lang/reflect/Proxy;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_1c
 
     return-void
 
     .line 43
-    :cond_1
+    :cond_1c
     invoke-virtual {p1}, Ljava/lang/String;->hashCode()I
 
     invoke-virtual {p1}, Ljava/lang/String;->hashCode()I
@@ -340,90 +340,90 @@
 
     const/4 v2, -0x1
 
-    sparse-switch v1, :sswitch_data_0
+    sparse-switch v1, :sswitch_data_92
 
-    goto :goto_1
+    goto :goto_5e
 
-    :sswitch_0
+    :sswitch_28
     const-string v1, "settings"
 
     invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
-    if-nez p1, :cond_2
+    if-nez p1, :cond_31
 
-    goto :goto_1
+    goto :goto_5e
 
-    :cond_2
+    :cond_31
     const/4 v2, 0x4
 
-    goto :goto_1
+    goto :goto_5e
 
-    :sswitch_1
+    :sswitch_33
     const-string v1, "telephony"
 
     invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
-    if-nez p1, :cond_3
+    if-nez p1, :cond_3c
 
-    goto :goto_1
+    goto :goto_5e
 
-    :cond_3
+    :cond_3c
     const/4 v2, 0x3
 
-    goto :goto_1
+    goto :goto_5e
 
-    :sswitch_2
+    :sswitch_3e
     const-string v1, "media"
 
     invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
-    if-nez p1, :cond_4
+    if-nez p1, :cond_47
 
-    goto :goto_1
+    goto :goto_5e
 
-    :cond_4
+    :cond_47
     const/4 v2, 0x2
 
-    goto :goto_1
+    goto :goto_5e
 
-    :sswitch_3
+    :sswitch_49
     const-string v1, "gservices"
 
     invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
-    if-nez p1, :cond_5
+    if-nez p1, :cond_52
 
-    goto :goto_1
+    goto :goto_5e
 
-    :cond_5
+    :cond_52
     const/4 v2, 0x1
 
-    goto :goto_1
+    goto :goto_5e
 
-    :sswitch_4
+    :sswitch_54
     const-string v1, "com.google.android.gsf.gservices"
 
     invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
 
-    if-nez p1, :cond_6
+    if-nez p1, :cond_5d
 
-    goto :goto_1
+    goto :goto_5e
 
-    :cond_6
+    :cond_5d
     const/4 v2, 0x0
 
-    :goto_1
-    packed-switch v2, :pswitch_data_0
+    :goto_5e
+    packed-switch v2, :pswitch_data_a8
 
     .line 52
     new-instance p1, Lio/vanta/fake/service/context/providers/ContentProviderStub;
@@ -438,10 +438,10 @@
 
     move-result-object p1
 
-    goto :goto_2
+    goto :goto_7c
 
     .line 49
-    :pswitch_0
+    :pswitch_6f
     new-instance p1, Lio/vanta/fake/service/context/providers/SystemProviderStub;
 
     invoke-direct {p1}, Lio/vanta/fake/service/context/providers/SystemProviderStub;-><init>()V
@@ -455,12 +455,12 @@
     move-result-object p1
 
     .line 55
-    :goto_2
+    :goto_7c
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result v0
 
-    if-eqz v0, :cond_7
+    if-eqz v0, :cond_8a
 
     .line 56
     invoke-static {p0}, Lvanta/android/content/BRContentProviderHolderOreo;->get(Ljava/lang/Object;)Lvanta/android/content/ContentProviderHolderOreoContext;
@@ -472,7 +472,7 @@
     return-void
 
     .line 58
-    :cond_7
+    :cond_8a
     invoke-static {p0}, Lvanta/android/app/BRIActivityManagerContentProviderHolder;->get(Ljava/lang/Object;)Lvanta/android/app/IActivityManagerContentProviderHolderContext;
 
     move-result-object p0
@@ -481,21 +481,21 @@
 
     return-void
 
-    :sswitch_data_0
+    :sswitch_data_92
     .sparse-switch
-        -0x18b9a016 -> :sswitch_4
-        -0x642463b -> :sswitch_3
-        0x62f6fe4 -> :sswitch_2
-        0x2eaeb418 -> :sswitch_1
-        0x5582bc23 -> :sswitch_0
+        -0x18b9a016 -> :sswitch_54
+        -0x642463b -> :sswitch_49
+        0x62f6fe4 -> :sswitch_3e
+        0x2eaeb418 -> :sswitch_33
+        0x5582bc23 -> :sswitch_28
     .end sparse-switch
 
-    :pswitch_data_0
+    :pswitch_data_a8
     .packed-switch 0x0
-        :pswitch_0
-        :pswitch_0
-        :pswitch_0
-        :pswitch_0
-        :pswitch_0
+        :pswitch_6f
+        :pswitch_6f
+        :pswitch_6f
+        :pswitch_6f
+        :pswitch_6f
     .end packed-switch
 .end method

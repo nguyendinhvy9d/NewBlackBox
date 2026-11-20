@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/VantaCore;)V
-    .locals 0
+    .registers 2
 
     .line 645
     iput-object p1, p0, Lio/vanta/VantaCore$3;->this$0:Lio/vanta/VantaCore;
@@ -36,12 +36,12 @@
 
 # virtual methods
 .method public run()V
-    .locals 5
+    .registers 6
 
     .line 650
     const-string v0, "VantaCore"
 
-    :try_start_0
+    :try_start_2
     new-instance v1, Landroid/os/Bundle;
 
     invoke-direct {v1}, Landroid/os/Bundle;-><init>()V
@@ -66,7 +66,7 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_21
 
     .line 654
     const-string v1, "Black process started successfully, SystemCallProvider is accessible"
@@ -76,16 +76,16 @@
     return-void
 
     .line 656
-    :cond_0
+    :cond_21
     const-string v1, "Black process started but SystemCallProvider is not accessible yet"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_26
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_26} :catch_27
 
     return-void
 
-    :catch_0
+    :catch_27
     move-exception v1
 
     .line 659

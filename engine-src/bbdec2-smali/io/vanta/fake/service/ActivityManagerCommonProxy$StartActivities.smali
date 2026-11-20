@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 250
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,27 +31,27 @@
 
 # virtual methods
 .method public getIntents()I
-    .locals 1
+    .registers 2
 
     .line 271
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isR()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     const/4 v0, 0x3
 
     return v0
 
-    :cond_0
+    :cond_8
     const/4 v0, 0x2
 
     return v0
 .end method
 
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 9
+    .registers 13
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -102,7 +102,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_29
 
     .line 260
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -112,13 +112,13 @@
     return-object p1
 
     .line 263
-    :cond_0
+    :cond_29
     array-length p2, v5
 
     const/4 p3, 0x0
 
-    :goto_0
-    if-ge p3, p2, :cond_1
+    :goto_2b
+    if-ge p3, p2, :cond_3d
 
     aget-object v0, v5, p3
 
@@ -135,10 +135,10 @@
 
     add-int/lit8 p3, p3, 0x1
 
-    goto :goto_0
+    goto :goto_2b
 
     .line 266
-    :cond_1
+    :cond_3d
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
     move-result-object v3

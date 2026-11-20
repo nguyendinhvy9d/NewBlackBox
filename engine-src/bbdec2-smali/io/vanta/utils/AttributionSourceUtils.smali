@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 8
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -18,7 +18,7 @@
 .end method
 
 .method public static createSafeAttributionSource()Ljava/lang/Object;
-    .locals 9
+    .registers 9
 
     .line 131
     const-string v0, "AttributionSourceUtils"
@@ -27,14 +27,14 @@
 
     const/4 v2, 0x0
 
-    :try_start_0
+    :try_start_5
     const-string v3, "android.content.AttributionSource"
 
     invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v3
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    :try_end_b
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_b} :catch_5d
 
     const/4 v4, 0x2
 
@@ -43,7 +43,7 @@
     const/4 v6, 0x0
 
     .line 138
-    :try_start_1
+    :try_start_e
     new-array v4, v4, [Ljava/lang/Class;
 
     sget-object v7, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
@@ -70,7 +70,7 @@
 
     move-result-object v7
 
-    invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
+    invoke-static {}, Lio/vanta/utils/AttributionSourceUtils;->xjAttrPkg()Ljava/lang/String;
 
     move-result-object v8
 
@@ -81,14 +81,14 @@
     invoke-virtual {v4, v7}, Ljava/lang/reflect/Constructor;->newInstance([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_33
+    .catch Ljava/lang/Exception; {:try_start_e .. :try_end_33} :catch_34
 
     return-object v0
 
     .line 144
-    :catch_0
-    :try_start_2
+    :catch_34
+    :try_start_34
     new-array v4, v6, [Ljava/lang/Class;
 
     invoke-virtual {v3, v4}, Ljava/lang/Class;->getDeclaredConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
@@ -107,16 +107,16 @@
 
     .line 149
     invoke-static {v3}, Lio/vanta/utils/AttributionSourceUtils;->fixAttributionSourceUid(Ljava/lang/Object;)V
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_46
+    .catch Ljava/lang/Exception; {:try_start_34 .. :try_end_46} :catch_47
 
     return-object v3
 
-    :catch_1
+    :catch_47
     move-exception v3
 
     .line 151
-    :try_start_3
+    :try_start_48
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -134,12 +134,12 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+    :try_end_5c
+    .catch Ljava/lang/Exception; {:try_start_48 .. :try_end_5c} :catch_5d
 
     return-object v2
 
-    :catch_2
+    :catch_5d
     move-exception v1
 
     .line 158
@@ -166,30 +166,112 @@
     return-object v2
 .end method
 
+.method public static fixArgsToVuid([Ljava/lang/Object;)V
+    .registers 6
+
+    if-nez p0, :cond_3
+
+    return-void
+
+    :cond_3
+    const/4 v0, 0x0
+
+    :goto_4
+    array-length v1, p0
+
+    if-ge v0, v1, :cond_3d
+
+    aget-object v1, p0, v0
+
+    if-eqz v1, :cond_3a
+
+    invoke-virtual {v1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/Class;->getName()Ljava/lang/String;
+
+    move-result-object v2
+
+    const-string v3, "AttributionSource"
+
+    invoke-virtual {v2, v3}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_3a
+
+    :try_start_1b
+    invoke-virtual {v1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v2
+
+    const-string v3, "mAttributionSourceState"
+
+    invoke-virtual {v2, v3}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+
+    move-result-object v2
+
+    const/4 v3, 0x1
+
+    invoke-virtual {v2, v3}, Ljava/lang/reflect/Field;->setAccessible(Z)V
+
+    invoke-virtual {v2, v1}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v2
+
+    if-eqz v2, :cond_38
+
+    invoke-static {}, Lio/vanta/VantaCore;->getBUid()I
+
+    move-result v3
+
+    const-string v4, "com.google.android.gms"
+
+    invoke-static {v2, v3, v4}, Lio/vanta/utils/AttributionSourceUtils;->fixStateRecursive(Ljava/lang/Object;ILjava/lang/String;)V
+    :try_end_38
+    .catchall {:try_start_1b .. :try_end_38} :catchall_39
+
+    :cond_38
+    goto :goto_3a
+
+    :catchall_39
+    move-exception v2
+
+    :cond_3a
+    :goto_3a
+    add-int/lit8 v0, v0, 0x1
+
+    goto :goto_4
+
+    :cond_3d
+    return-void
+.end method
+
 .method public static fixAttributionSourceInArgs([Ljava/lang/Object;)V
-    .locals 6
+    .registers 7
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
-    goto/16 :goto_4
+    goto/16 :goto_77
 
-    :cond_0
+    :cond_4
     const/4 v0, 0x0
 
     move v1, v0
 
     .line 15
-    :goto_0
+    :goto_6
     array-length v2, p0
 
     const-string v3, "AttributionSourceUtils"
 
-    if-ge v1, v2, :cond_2
+    if-ge v1, v2, :cond_42
 
     .line 16
     aget-object v2, p0, v1
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_3f
 
     .line 17
     invoke-virtual {v2}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -206,22 +288,22 @@
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_3f
 
     .line 19
-    :try_start_0
+    :try_start_1f
     invoke-static {v2}, Lio/vanta/utils/AttributionSourceUtils;->fixAttributionSourceUid(Ljava/lang/Object;)V
 
     .line 20
     const-string v2, "Fixed AttributionSource UID in method arguments"
 
     invoke-static {v3, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_27
+    .catch Ljava/lang/Exception; {:try_start_1f .. :try_end_27} :catch_28
 
-    goto :goto_1
+    goto :goto_3f
 
-    :catch_0
+    :catch_28
     move-exception v2
 
     .line 22
@@ -245,23 +327,23 @@
 
     invoke-static {v3, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
-    :goto_1
+    :cond_3f
+    :goto_3f
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_6
 
     .line 28
-    :cond_2
-    :goto_2
+    :cond_42
+    :goto_42
     array-length v1, p0
 
-    if-ge v0, v1, :cond_4
+    if-ge v0, v1, :cond_77
 
     .line 29
     aget-object v1, p0, v0
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_74
 
     .line 30
     invoke-virtual {v1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -278,17 +360,17 @@
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_74
 
     .line 32
-    :try_start_1
+    :try_start_59
     invoke-static {v1}, Lio/vanta/utils/AttributionSourceUtils;->fixAttributionSourceInBundle(Ljava/lang/Object;)V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_5c
+    .catch Ljava/lang/Exception; {:try_start_59 .. :try_end_5c} :catch_5d
 
-    goto :goto_3
+    goto :goto_74
 
-    :catch_1
+    :catch_5d
     move-exception v1
 
     .line 34
@@ -312,30 +394,30 @@
 
     invoke-static {v3, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_3
-    :goto_3
+    :cond_74
+    :goto_74
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_2
+    goto :goto_42
 
-    :cond_4
-    :goto_4
+    :cond_77
+    :goto_77
     return-void
 .end method
 
 .method public static fixAttributionSourceInBundle(Ljava/lang/Object;)V
-    .locals 8
+    .registers 9
 
     .line 103
     const-string v0, "AttributionSourceUtils"
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_6
 
-    goto/16 :goto_1
+    goto/16 :goto_87
 
     .line 106
-    :cond_0
-    :try_start_0
+    :cond_6
+    :try_start_6
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
@@ -364,25 +446,25 @@
 
     move-result-object v1
 
-    :catch_0
-    :cond_1
-    :goto_0
+    :catch_1f
+    :cond_1f
+    :goto_1f
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_87
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v2
 
     check-cast v2, Ljava/lang/String;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_2b
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_2b} :catch_70
 
     .line 111
-    :try_start_1
+    :try_start_2b
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v4
@@ -410,7 +492,7 @@
 
     move-result-object v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_1f
 
     .line 114
     invoke-virtual {v4}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -427,7 +509,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_1f
 
     .line 115
     invoke-static {v4}, Lio/vanta/utils/AttributionSourceUtils;->fixAttributionSourceUid(Ljava/lang/Object;)V
@@ -452,12 +534,12 @@
     move-result-object v2
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_6f
+    .catch Ljava/lang/Exception; {:try_start_2b .. :try_end_6f} :catch_1f
 
-    goto :goto_0
+    goto :goto_1f
 
-    :catch_1
+    :catch_70
     move-exception p0
 
     .line 123
@@ -481,23 +563,23 @@
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_2
-    :goto_1
+    :cond_87
+    :goto_87
     return-void
 .end method
 
 .method public static fixAttributionSourceUid(Ljava/lang/Object;)V
-    .locals 13
+    .registers 14
 
     .line 42
     const-string v0, "AttributionSourceUtils"
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_6
 
-    goto/16 :goto_4
+    goto/16 :goto_116
 
     .line 43
-    :cond_0
+    :cond_6
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -505,18 +587,18 @@
     invoke-static {v1}, Lio/vanta/utils/compat/HiddenApiCompat;->bypassHiddenApi(Landroid/content/Context;)Z
 
     .line 45
-    :try_start_0
+    :try_start_d
     invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
 
     move-result v1
 
     invoke-static {p0, v1}, Lio/vanta/utils/compat/ContextCompat;->fixAttributionSourceState(Ljava/lang/Object;I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_14
+    .catchall {:try_start_d .. :try_end_14} :catchall_15
 
-    goto :goto_0
+    goto :goto_2c
 
-    :catchall_0
+    :catchall_15
     move-exception v1
 
     .line 47
@@ -540,11 +622,11 @@
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :goto_0
+    :goto_2c
     const/4 v1, 0x1
 
     .line 51
-    :try_start_1
+    :try_start_2d
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v2
@@ -563,27 +645,27 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_4b
 
     .line 55
     invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
 
     move-result v3
 
-    invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
+    invoke-static {}, Lio/vanta/utils/AttributionSourceUtils;->xjAttrPkg()Ljava/lang/String;
 
     move-result-object v4
 
     invoke-static {v2, v3, v4}, Lio/vanta/utils/AttributionSourceUtils;->fixStateRecursive(Ljava/lang/Object;ILjava/lang/String;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_4b
+    .catchall {:try_start_2d .. :try_end_4b} :catchall_4b
 
-    :catchall_1
-    :cond_1
+    :catchall_4b
+    :cond_4b
     const/4 v2, 0x0
 
     .line 60
-    :try_start_2
+    :try_start_4c
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v3
@@ -603,19 +685,19 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_65
 
-    if-eq v3, p0, :cond_2
+    if-eq v3, p0, :cond_65
 
     .line 63
     invoke-static {v3}, Lio/vanta/utils/AttributionSourceUtils;->fixAttributionSourceUid(Ljava/lang/Object;)V
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
+    :try_end_65
+    .catchall {:try_start_4c .. :try_end_65} :catchall_65
 
     .line 68
-    :catchall_2
-    :cond_2
-    :try_start_3
+    :catchall_65
+    :cond_65
+    :try_start_65
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v3
@@ -659,16 +741,16 @@
 
     move v6, v2
 
-    :goto_1
-    if-ge v6, v4, :cond_3
+    :goto_89
+    if-ge v6, v4, :cond_b9
 
     .line 70
     aget-object v10, v5, v6
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_6
+    :try_end_8d
+    .catchall {:try_start_65 .. :try_end_8d} :catchall_ff
 
     .line 72
-    :try_start_4
+    :try_start_8d
     invoke-virtual {v3, v10}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v11
@@ -707,20 +789,20 @@
     move-result-object v10
 
     invoke-static {v0, v10}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_3
+    :try_end_b5
+    .catchall {:try_start_8d .. :try_end_b5} :catchall_b6
 
-    goto :goto_2
+    goto :goto_b9
 
-    :catchall_3
+    :catchall_b6
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_1
+    goto :goto_89
 
     .line 81
-    :cond_3
-    :goto_2
-    :try_start_5
+    :cond_b9
+    :goto_b9
+    :try_start_b9
     const-string v4, "setUid"
 
     new-array v5, v1, [Ljava/lang/Class;
@@ -750,12 +832,12 @@
     move-result-object v5
 
     invoke-virtual {v4, p0, v5}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_4
+    :try_end_d7
+    .catchall {:try_start_b9 .. :try_end_d7} :catchall_d7
 
     .line 86
-    :catchall_4
-    :try_start_6
+    :catchall_d7
+    :try_start_d7
     new-array v4, v9, [Ljava/lang/String;
 
     const-string v5, "mPackageName"
@@ -774,16 +856,16 @@
 
     aput-object v5, v4, v8
 
-    :goto_3
-    if-ge v2, v9, :cond_4
+    :goto_e9
+    if-ge v2, v9, :cond_116
 
     .line 87
     aget-object v5, v4, v2
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_6
+    :try_end_ed
+    .catchall {:try_start_d7 .. :try_end_ed} :catchall_ff
 
     .line 89
-    :try_start_7
+    :try_start_ed
     invoke-virtual {v3, v5}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v5
@@ -792,22 +874,22 @@
     invoke-virtual {v5, v1}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
     .line 91
-    invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
+    invoke-static {}, Lio/vanta/utils/AttributionSourceUtils;->xjAttrPkg()Ljava/lang/String;
 
     move-result-object v6
 
     invoke-virtual {v5, p0, v6}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-    :try_end_7
-    .catchall {:try_start_7 .. :try_end_7} :catchall_5
+    :try_end_fb
+    .catchall {:try_start_ed .. :try_end_fb} :catchall_fc
 
-    goto :goto_4
+    goto :goto_116
 
-    :catchall_5
+    :catchall_fc
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_3
+    goto :goto_e9
 
-    :catchall_6
+    :catchall_ff
     move-exception p0
 
     .line 96
@@ -831,23 +913,23 @@
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_4
-    :goto_4
+    :cond_116
+    :goto_116
     return-void
 .end method
 
 .method private static fixStateRecursive(Ljava/lang/Object;ILjava/lang/String;)V
-    .locals 3
+    .registers 6
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_3
 
-    goto :goto_1
+    goto :goto_5b
 
-    :cond_0
+    :cond_3
     const/4 v0, 0x1
 
     .line 203
-    :try_start_0
+    :try_start_4
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
@@ -863,12 +945,12 @@
 
     .line 205
     invoke-virtual {v1, p0, p1}, Ljava/lang/reflect/Field;->setInt(Ljava/lang/Object;I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_14
+    .catchall {:try_start_4 .. :try_end_14} :catchall_14
 
     .line 208
-    :catchall_0
-    :try_start_1
+    :catchall_14
+    :try_start_14
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
@@ -884,12 +966,12 @@
 
     .line 210
     invoke-virtual {v1, p0, p2}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_24
+    .catchall {:try_start_14 .. :try_end_24} :catchall_24
 
     .line 213
-    :catchall_1
-    :try_start_2
+    :catchall_24
+    :try_start_24
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
@@ -909,12 +991,12 @@
     move-result v2
 
     invoke-virtual {v1, p0, v2}, Ljava/lang/reflect/Field;->setInt(Ljava/lang/Object;I)V
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
+    :try_end_38
+    .catchall {:try_start_24 .. :try_end_38} :catchall_38
 
     .line 218
-    :catchall_2
-    :try_start_3
+    :catchall_38
+    :try_start_38
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
@@ -936,7 +1018,7 @@
     .line 221
     instance-of v0, p0, [Ljava/lang/Object;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_5b
 
     .line 222
     check-cast p0, [Ljava/lang/Object;
@@ -945,41 +1027,41 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_1
+    :goto_51
+    if-ge v1, v0, :cond_5b
 
     aget-object v2, p0, v1
 
     .line 223
     invoke-static {v2, p1, p2}, Lio/vanta/utils/AttributionSourceUtils;->fixStateRecursive(Ljava/lang/Object;ILjava/lang/String;)V
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_3
+    :try_end_58
+    .catchall {:try_start_38 .. :try_end_58} :catchall_5b
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_51
 
-    :catchall_3
-    :cond_1
-    :goto_1
+    :catchall_5b
+    :cond_5b
+    :goto_5b
     return-void
 .end method
 
 .method public static validateAttributionSource(Ljava/lang/Object;)Z
-    .locals 10
+    .registers 11
 
     .line 166
     const-string v0, "AttributionSourceUtils"
 
     const/4 v1, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_6
 
     return v1
 
     .line 169
-    :cond_0
-    :try_start_0
+    :cond_6
+    :try_start_6
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v2
@@ -1025,16 +1107,16 @@
 
     move v5, v1
 
-    :goto_0
-    if-ge v5, v3, :cond_2
+    :goto_2b
+    if-ge v5, v3, :cond_60
 
     .line 172
     aget-object v7, v4, v5
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_2f
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_2f} :catch_69
 
     .line 174
-    :try_start_1
+    :try_start_2f
     invoke-virtual {v2, v7}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v7
@@ -1050,7 +1132,7 @@
     .line 177
     instance-of v8, v7, Ljava/lang/Integer;
 
-    if-eqz v8, :cond_1
+    if-eqz v8, :cond_5d
 
     .line 178
     check-cast v7, Ljava/lang/Integer;
@@ -1059,7 +1141,7 @@
 
     move-result v7
 
-    if-lez v7, :cond_1
+    if-lez v7, :cond_5d
 
     .line 180
     new-instance v8, Ljava/lang/StringBuilder;
@@ -1081,32 +1163,32 @@
     move-result-object v7
 
     invoke-static {v0, v7}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_5c
+    .catch Ljava/lang/Exception; {:try_start_2f .. :try_end_5c} :catch_5d
 
     return v6
 
-    :catch_0
-    :cond_1
+    :catch_5d
+    :cond_5d
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_0
+    goto :goto_2b
 
     .line 190
-    :cond_2
-    :try_start_2
+    :cond_60
+    :try_start_60
     const-string v2, "AttributionSource validation failed, attempting to fix"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 191
     invoke-static {p0}, Lio/vanta/utils/AttributionSourceUtils;->fixAttributionSourceUid(Ljava/lang/Object;)V
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_68
+    .catch Ljava/lang/Exception; {:try_start_60 .. :try_end_68} :catch_69
 
     return v6
 
-    :catch_1
+    :catch_69
     move-exception p0
 
     .line 195
@@ -1131,4 +1213,14 @@
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     return v1
+.end method
+
+.method public static xjAttrPkg()Ljava/lang/String;
+    .registers 3
+
+    invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
 .end method

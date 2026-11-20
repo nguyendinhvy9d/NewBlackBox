@@ -38,13 +38,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 0
+    .registers 0
 
     return-void
 .end method
 
 .method private constructor <init>()V
-    .locals 3
+    .registers 4
 
     .line 49
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -132,12 +132,12 @@
 .end method
 
 .method public static get()Lio/vanta/core/system/ServiceManager;
-    .locals 2
+    .registers 2
 
     .line 35
     sget-object v0, Lio/vanta/core/system/ServiceManager;->sServiceManager:Lio/vanta/core/system/ServiceManager;
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_17
 
     .line 36
     const-class v0, Lio/vanta/core/system/ServiceManager;
@@ -145,10 +145,10 @@
     monitor-enter v0
 
     .line 37
-    :try_start_0
+    :try_start_7
     sget-object v1, Lio/vanta/core/system/ServiceManager;->sServiceManager:Lio/vanta/core/system/ServiceManager;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_12
 
     .line 38
     new-instance v1, Lio/vanta/core/system/ServiceManager;
@@ -158,30 +158,30 @@
     sput-object v1, Lio/vanta/core/system/ServiceManager;->sServiceManager:Lio/vanta/core/system/ServiceManager;
 
     .line 40
-    :cond_0
+    :cond_12
     monitor-exit v0
 
-    goto :goto_0
+    goto :goto_17
 
-    :catchall_0
+    :catchall_14
     move-exception v1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_16
+    .catchall {:try_start_7 .. :try_end_16} :catchall_14
 
     throw v1
 
     .line 42
-    :cond_1
-    :goto_0
+    :cond_17
+    :goto_17
     sget-object v0, Lio/vanta/core/system/ServiceManager;->sServiceManager:Lio/vanta/core/system/ServiceManager;
 
     return-object v0
 .end method
 
 .method public static getService(Ljava/lang/String;)Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 46
     invoke-static {}, Lio/vanta/core/system/ServiceManager;->get()Lio/vanta/core/system/ServiceManager;
@@ -196,7 +196,7 @@
 .end method
 
 .method public static initBlackManager()V
-    .locals 2
+    .registers 2
 
     .line 66
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
@@ -276,7 +276,7 @@
 
 # virtual methods
 .method public getServiceInternal(Ljava/lang/String;)Landroid/os/IBinder;
-    .locals 1
+    .registers 3
 
     .line 62
     iget-object v0, p0, Lio/vanta/core/system/ServiceManager;->mCaches:Ljava/util/Map;

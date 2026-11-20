@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 354
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -41,21 +41,38 @@
     .line 357
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
-    move-result-object p1
+    move-result-object v0
 
-    const/4 p2, 0x0
+    const/4 v1, 0x0
 
-    aget-object p2, p3, p2
+    aget-object v1, p3, v1
 
-    check-cast p2, Landroid/os/IBinder;
+    check-cast v1, Landroid/os/IBinder;
 
     invoke-static {}, Lio/vanta/app/BActivityThread;->getUserId()I
 
-    move-result p3
+    move-result v2
 
-    invoke-virtual {p1, p2, p3}, Lio/vanta/fake/frameworks/BActivityManager;->getCallingPackage(Landroid/os/IBinder;I)Ljava/lang/String;
+    invoke-virtual {v0, v1, v2}, Lio/vanta/fake/frameworks/BActivityManager;->getCallingPackage(Landroid/os/IBinder;I)Ljava/lang/String;
 
-    move-result-object p1
+    move-result-object v3
 
-    return-object p1
+    :try_start_11
+    invoke-static {}, Lio/vanta/VantaCore;->getCallingBUid()I
+
+    move-result v4
+
+    invoke-static {v3, v4}, Lio/vanta/fake/service/GmsCallerFix;->resolveCallerPkg(Ljava/lang/String;I)Ljava/lang/String;
+
+    move-result-object v3
+    :try_end_19
+    .catchall {:try_start_11 .. :try_end_19} :catchall_1a
+
+    goto :goto_1b
+
+    :catchall_1a
+    move-exception v4
+
+    :goto_1b
+    return-object v3
 .end method

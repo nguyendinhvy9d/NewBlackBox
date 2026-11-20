@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 18
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -32,12 +32,12 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 7
+    .registers 8
 
     const/4 v0, 0x0
 
     .line 24
-    :try_start_0
+    :try_start_1
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
 
     move-result-object v1
@@ -48,12 +48,12 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_e
 
     return-object v0
 
     .line 26
-    :cond_0
+    :cond_e
     const-string v2, "android.safetycenter.ISafetyCenterManager$Stub"
 
     invoke-static {v2}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -85,15 +85,15 @@
     invoke-virtual {v2, v0, v1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2a
+    .catchall {:try_start_1 .. :try_end_2a} :catchall_2a
 
-    :catchall_0
+    :catchall_2a
     return-object v0
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 1
+    .registers 4
 
     .line 36
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -106,13 +106,13 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_1e
 
     .line 37
     invoke-virtual {p0, v0}, Lio/vanta/fake/service/ISafetyCenterManagerProxy;->replaceSystemService(Ljava/lang/String;)V
 
     .line 39
-    :try_start_0
+    :try_start_f
     const-string p1, "android.safetycenter.SafetyCenterFrameworkInitializer"
 
     invoke-static {p1}, Lio/vanta/utils/Reflector;->on(Ljava/lang/String;)Lio/vanta/utils/Reflector;
@@ -128,16 +128,16 @@
 
     .line 41
     invoke-virtual {p1, p2}, Lio/vanta/utils/Reflector;->set(Ljava/lang/Object;)Lio/vanta/utils/Reflector;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_f .. :try_end_1e} :catchall_1e
 
-    :catchall_0
-    :cond_0
+    :catchall_1e
+    :cond_1e
     return-void
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -163,22 +163,22 @@
 
     move-result-object v3
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_12
 
     return-object v3
 
     .line 71
-    :cond_0
-    :try_start_0
+    :cond_12
+    :try_start_12
     invoke-super {p0, p1, p2, p3}, Lio/vanta/fake/hook/BinderInvocationStub;->invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/SecurityException; {:try_start_12 .. :try_end_16} :catch_17
 
     return-object p1
 
-    :catch_0
+    :catch_17
     move-exception p1
 
     .line 73
@@ -222,15 +222,15 @@
     .line 75
     sget-object p2, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
 
-    if-ne p1, p2, :cond_1
+    if-ne p1, p2, :cond_43
 
     return-object v3
 
     .line 76
-    :cond_1
+    :cond_43
     sget-object p2, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
 
-    if-ne p1, p2, :cond_2
+    if-ne p1, p2, :cond_4c
 
     invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -239,10 +239,10 @@
     return-object p1
 
     .line 77
-    :cond_2
+    :cond_4c
     sget-object p2, Ljava/lang/Long;->TYPE:Ljava/lang/Class;
 
-    if-ne p1, p2, :cond_3
+    if-ne p1, p2, :cond_57
 
     const-wide/16 p1, 0x0
 
@@ -252,14 +252,14 @@
 
     return-object p1
 
-    :cond_3
+    :cond_57
     const/4 p1, 0x0
 
     return-object p1
 .end method
 
 .method public isBadEnv()Z
-    .locals 2
+    .registers 3
 
     .line 49
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -272,22 +272,22 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_10
 
-    if-eq v0, p0, :cond_0
+    if-eq v0, p0, :cond_10
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_10
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method protected onBindMethod()V
-    .locals 4
+    .registers 5
 
     .line 55
     invoke-super {p0}, Lio/vanta/fake/hook/BinderInvocationStub;->onBindMethod()V

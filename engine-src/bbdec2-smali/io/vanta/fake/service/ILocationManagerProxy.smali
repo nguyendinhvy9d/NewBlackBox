@@ -27,7 +27,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 30
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -48,7 +48,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 35
     invoke-static {}, Lvanta/android/location/BRILocationManagerStub;->get()Lvanta/android/location/ILocationManagerStubStatic;
@@ -73,7 +73,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 40
     const-string p1, "location"
@@ -84,7 +84,7 @@
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -99,7 +99,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_3e
 
     .line 55
     const-string v1, "com.google.android.gms"
@@ -108,7 +108,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_3e
 
     .line 57
     invoke-virtual {p2}, Ljava/lang/reflect/Method;->getName()Ljava/lang/String;
@@ -121,7 +121,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_35
 
     .line 58
     invoke-virtual {p2}, Ljava/lang/reflect/Method;->getName()Ljava/lang/String;
@@ -134,7 +134,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_35
 
     .line 59
     invoke-virtual {p2}, Ljava/lang/reflect/Method;->getName()Ljava/lang/String;
@@ -147,10 +147,10 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_3e
 
     .line 60
-    :cond_0
+    :cond_35
     const-string p1, "ILocationManagerProxy"
 
     const-string p2, "Blocking location request from Google Play Services to prevent crash"
@@ -162,7 +162,7 @@
     return-object p1
 
     .line 65
-    :cond_1
+    :cond_3e
     invoke-super {p0, p1, p2, p3}, Lio/vanta/fake/hook/BinderInvocationStub;->invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
@@ -171,7 +171,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

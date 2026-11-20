@@ -30,7 +30,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 52
     new-instance v0, Lio/vanta/entity/pm/InstallResult$1;
@@ -43,7 +43,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -57,7 +57,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 2
+    .registers 4
 
     .line 31
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -72,14 +72,14 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_d
 
-    goto :goto_0
+    goto :goto_e
 
-    :cond_0
+    :cond_d
     const/4 v0, 0x0
 
-    :goto_0
+    :goto_e
     iput-boolean v0, p0, Lio/vanta/entity/pm/InstallResult;->success:Z
 
     .line 33
@@ -102,7 +102,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -110,7 +110,7 @@
 .end method
 
 .method public installError(Ljava/lang/String;)Lio/vanta/entity/pm/InstallResult;
-    .locals 1
+    .registers 3
 
     .line 46
     iput-object p1, p0, Lio/vanta/entity/pm/InstallResult;->msg:Ljava/lang/String;
@@ -129,7 +129,7 @@
 .end method
 
 .method public installError(Ljava/lang/String;Ljava/lang/String;)Lio/vanta/entity/pm/InstallResult;
-    .locals 1
+    .registers 4
 
     .line 38
     iput-object p2, p0, Lio/vanta/entity/pm/InstallResult;->msg:Ljava/lang/String;
@@ -151,7 +151,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 0
+    .registers 3
 
     .line 23
     iget-boolean p2, p0, Lio/vanta/entity/pm/InstallResult;->success:Z

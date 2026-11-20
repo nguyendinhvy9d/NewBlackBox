@@ -40,7 +40,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 20
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -61,7 +61,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 8
+    .registers 9
 
     .line 25
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -79,7 +79,7 @@
     .line 26
     const-string v2, "AudioPermissionProxy"
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_15
 
     .line 27
     const-string v0, "Failed to get audio service binder"
@@ -89,8 +89,8 @@
     return-object v1
 
     .line 33
-    :cond_0
-    :try_start_0
+    :cond_15
+    :try_start_15
     const-string v3, "android.media.IAudioService$Stub"
 
     invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -123,7 +123,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_39
 
     .line 38
     const-string v3, "Successfully obtained IAudioService interface"
@@ -133,16 +133,16 @@
     return-object v0
 
     .line 41
-    :cond_1
+    :cond_39
     const-string v0, "Reflection succeeded but returned null interface"
 
     invoke-static {v2, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3e
+    .catch Ljava/lang/Exception; {:try_start_15 .. :try_end_3e} :catch_3f
 
     return-object v1
 
-    :catch_0
+    :catch_3f
     move-exception v0
 
     .line 45
@@ -154,7 +154,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 52
     const-string p1, "audio"
@@ -165,7 +165,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

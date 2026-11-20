@@ -27,7 +27,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/entity/ServiceRecord;Landroid/os/IBinder;Landroid/content/Intent$FilterComparison;)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -49,7 +49,7 @@
 
 # virtual methods
 .method public binderDied()V
-    .locals 2
+    .registers 3
 
     .line 78
     iget-object v0, p0, Lio/vanta/entity/ServiceRecord$1;->val$iBinder:Landroid/os/IBinder;

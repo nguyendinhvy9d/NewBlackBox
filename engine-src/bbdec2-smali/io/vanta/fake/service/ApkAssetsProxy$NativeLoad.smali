@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 67
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,7 +45,7 @@
 
     check-cast v0, Ljava/lang/String;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_59
 
     .line 73
     const-string v1, "resource-cache"
@@ -54,7 +54,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_30
 
     const-string v1, "@idmap"
 
@@ -63,7 +63,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_30
 
     const-string v1, ".frro"
 
@@ -72,7 +72,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_30
 
     const-string v1, "systemui"
 
@@ -81,7 +81,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_30
 
     const-string v1, "data@resource-cache@"
 
@@ -90,12 +90,12 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_30
 
-    goto :goto_0
+    goto :goto_59
 
     .line 78
-    :cond_0
+    :cond_30
     new-instance p1, Ljava/lang/StringBuilder;
 
     const-string p2, "Blocking problematic native load path: "
@@ -136,8 +136,8 @@
     throw p1
 
     .line 83
-    :cond_1
-    :goto_0
+    :cond_59
+    :goto_59
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

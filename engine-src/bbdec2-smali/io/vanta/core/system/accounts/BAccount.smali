@@ -61,7 +61,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 64
     new-instance v0, Lio/vanta/core/system/accounts/BAccount$1;
@@ -74,7 +74,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 52
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -104,7 +104,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 2
+    .registers 4
 
     .line 55
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -192,7 +192,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -200,7 +200,7 @@
 .end method
 
 .method public insertExtra(Ljava/lang/String;Ljava/lang/String;)V
-    .locals 1
+    .registers 4
 
     .line 25
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccount;->accountUserData:Ljava/util/HashMap;
@@ -211,16 +211,16 @@
 .end method
 
 .method public isMatch(Landroid/accounts/Account;)Z
-    .locals 1
+    .registers 3
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     const/4 p1, 0x0
 
     return p1
 
     .line 21
-    :cond_0
+    :cond_4
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccount;->account:Landroid/accounts/Account;
 
     invoke-virtual {p1, v0}, Landroid/accounts/Account;->equals(Ljava/lang/Object;)Z
@@ -231,7 +231,7 @@
 .end method
 
 .method public readFromParcel(Landroid/os/Parcel;)V
-    .locals 2
+    .registers 4
 
     .line 44
     const-class v0, Landroid/accounts/Account;
@@ -293,7 +293,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 2
+    .registers 5
 
     .line 35
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccount;->account:Landroid/accounts/Account;

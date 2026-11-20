@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 41
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,7 +29,7 @@
 .end method
 
 .method public static intIP2StringIP(I)Ljava/lang/String;
-    .locals 3
+    .registers 4
 
     .line 53
     new-instance v0, Ljava/lang/StringBuilder;
@@ -88,7 +88,7 @@
 .end method
 
 .method public static ip2Int(Ljava/lang/String;)I
-    .locals 4
+    .registers 5
 
     .line 61
     const-string v0, "\\."
@@ -102,10 +102,10 @@
     move v1, v0
 
     .line 63
-    :goto_0
+    :goto_8
     array-length v2, p0
 
-    if-ge v0, v2, :cond_0
+    if-ge v0, v2, :cond_18
 
     .line 65
     aget-object v2, p0, v0
@@ -122,16 +122,16 @@
 
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_8
 
-    :cond_0
+    :cond_18
     return v1
 .end method
 
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -150,9 +150,7 @@
 
     move-result-object p2
 
-    invoke-static {}, Lio/vanta/fake/service/IWifiManagerProxy$GetConnectionInfo;->xjMac()Ljava/lang/String;
-
-    move-result-object p3
+    const-string p3, "ac:62:5a:82:65:c4"
 
     invoke-interface {p2, p3}, Lvanta/android/net/wifi/WifiInfoContext;->_set_mBSSID(Ljava/lang/Object;)V
 
@@ -181,75 +179,4 @@
     invoke-interface {p2, p3}, Lvanta/android/net/wifi/WifiInfoContext;->_set_mWifiSsid(Ljava/lang/Object;)V
 
     return-object p1
-.end method
-
-.method private static xjMac()Ljava/lang/String;
-    .locals 6
-
-    new-instance v0, Ljava/lang/StringBuilder;
-
-    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    const-string v1, "_mac_"
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-static {}, Lio/vanta/VantaCore;->getUserId()I
-
-    move-result v1
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lio/vanta/utils/Md5Utils;->md5(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const/4 v2, 0x0
-
-    :xj_loop
-    const/4 v3, 0x6
-
-    if-ge v2, v3, :xj_done
-
-    if-eqz v2, :xj_nocolon
-
-    const-string v3, ":"
-
-    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    :xj_nocolon
-    mul-int/lit8 v4, v2, 0x2
-
-    add-int/lit8 v5, v4, 0x2
-
-    invoke-virtual {v0, v4, v5}, Ljava/lang/String;->substring(II)Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    add-int/lit8 v2, v2, 0x1
-
-    goto :xj_loop
-
-    :xj_done
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v0
-
-    return-object v0
 .end method

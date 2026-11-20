@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 38
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -41,20 +41,20 @@
     .line 43
     const-string v0, "ISystemSensorManagerProxy"
 
-    :try_start_0
+    :try_start_2
     invoke-static {p3}, Lio/vanta/utils/AttributionSourceUtils;->fixAttributionSourceInArgs([Ljava/lang/Object;)V
 
     .line 46
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Ljava/lang/SecurityException; {:try_start_2 .. :try_end_9} :catch_26
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_9} :catch_a
 
     return-object p1
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 56
@@ -85,7 +85,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_26
     move-exception p1
 
     .line 49
@@ -93,7 +93,7 @@
 
     move-result-object p2
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_54
 
     .line 50
     const-string p3, "Calling uid"
@@ -102,7 +102,7 @@
 
     move-result p3
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_54
 
     const-string p3, "doesn\'t match source uid"
 
@@ -110,7 +110,7 @@
 
     move-result p3
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_54
 
     .line 51
     new-instance p1, Ljava/lang/StringBuilder;
@@ -137,6 +137,6 @@
     return-object p1
 
     .line 54
-    :cond_0
+    :cond_54
     throw p1
 .end method

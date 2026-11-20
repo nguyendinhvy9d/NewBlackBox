@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/pm/PackageParser$IntentInfo;)V
-    .locals 0
+    .registers 2
 
     .line 417
     invoke-direct {p0, p1}, Lio/vanta/core/system/pm/BPackage$IntentInfo;-><init>(Landroid/content/pm/PackageParser$IntentInfo;)V
@@ -29,7 +29,7 @@
 .end method
 
 .method public constructor <init>(Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
-    .locals 0
+    .registers 2
 
     .line 421
     invoke-direct {p0, p1}, Lio/vanta/core/system/pm/BPackage$IntentInfo;-><init>(Lio/vanta/core/system/pm/BPackage$IntentInfo;)V

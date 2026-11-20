@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 6
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -18,7 +18,7 @@
 .end method
 
 .method public static testConfiguration()V
-    .locals 8
+    .registers 8
 
     .line 79
     const-string v0, "Testing JAR configuration"
@@ -62,8 +62,8 @@
 
     const/4 v3, 0x0
 
-    :goto_0
-    if-ge v3, v2, :cond_0
+    :goto_26
+    if-ge v3, v2, :cond_7b
 
     aget-object v4, v0, v3
 
@@ -151,10 +151,10 @@
 
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_26
 
     .line 94
-    :cond_0
+    :cond_7b
     invoke-static {}, Lio/vanta/core/system/JarConfig;->getOptimalBufferSize()I
 
     move-result v0
@@ -201,7 +201,7 @@
 .end method
 
 .method private static testJarFileRetrieval(Lio/vanta/core/system/JarManager;)V
-    .locals 2
+    .registers 3
 
     .line 56
     invoke-virtual {p0}, Lio/vanta/core/system/JarManager;->getEmptyJar()Ljava/io/File;
@@ -210,51 +210,51 @@
 
     const-string v1, "JarManagerTest"
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_e
 
     .line 57
     const-string v0, "Empty JAR retrieved successfully"
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_0
+    goto :goto_13
 
     .line 59
-    :cond_0
+    :cond_e
     const-string v0, "Empty JAR retrieval failed"
 
     invoke-static {v1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 63
-    :goto_0
+    :goto_13
     invoke-virtual {p0}, Lio/vanta/core/system/JarManager;->getJunitJar()Ljava/io/File;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1f
 
     .line 64
     const-string v0, "JUnit JAR retrieved successfully"
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_1
+    goto :goto_24
 
     .line 66
-    :cond_1
+    :cond_1f
     const-string v0, "JUnit JAR retrieval failed"
 
     invoke-static {v1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 70
-    :goto_1
+    :goto_24
     const-string v0, "empty.jar"
 
     invoke-virtual {p0, v0}, Lio/vanta/core/system/JarManager;->getJarFile(Ljava/lang/String;)Ljava/io/File;
 
     move-result-object p0
 
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_32
 
     .line 71
     const-string p0, "Generic JAR retrieval for empty.jar successful"
@@ -264,7 +264,7 @@
     return-void
 
     .line 73
-    :cond_2
+    :cond_32
     const-string p0, "Generic JAR retrieval for empty.jar failed"
 
     invoke-static {v1, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -273,7 +273,7 @@
 .end method
 
 .method public static testJarManager()V
-    .locals 7
+    .registers 7
 
     .line 11
     const-string v0, "JUnit JAR info: "
@@ -289,7 +289,7 @@
     invoke-static {v4, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 14
-    :try_start_0
+    :try_start_d
     invoke-static {}, Lio/vanta/core/system/JarManager;->getInstance()Lio/vanta/core/system/JarManager;
 
     move-result-object v3
@@ -312,7 +312,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_0
+    if-nez v5, :cond_2c
 
     .line 25
     const-string v5, "Async initialization not complete, trying sync"
@@ -323,7 +323,7 @@
     invoke-virtual {v3}, Lio/vanta/core/system/JarManager;->initializeSync()V
 
     .line 30
-    :cond_0
+    :cond_2c
     const-string v5, "Testing JAR file retrieval"
 
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -409,12 +409,12 @@
     const-string v0, "JAR Manager test completed successfully"
 
     invoke-static {v4, v0}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_83
+    .catch Ljava/lang/Exception; {:try_start_d .. :try_end_83} :catch_84
 
     return-void
 
-    :catch_0
+    :catch_84
     move-exception v0
 
     .line 49

@@ -25,7 +25,7 @@
 
 # direct methods
 .method public constructor <init>(IILjava/lang/String;)V
-    .locals 1
+    .registers 5
 
     .line 16
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -52,7 +52,7 @@
 
 # virtual methods
 .method public addTopActivity(Lio/vanta/core/system/am/ActivityRecord;)V
-    .locals 1
+    .registers 3
 
     .line 32
     iget-object v0, p0, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -63,7 +63,7 @@
 .end method
 
 .method public getTopActivityRecord()Lio/vanta/core/system/am/ActivityRecord;
-    .locals 3
+    .registers 4
 
     .line 40
     iget-object v0, p0, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -74,8 +74,8 @@
 
     add-int/lit8 v0, v0, -0x1
 
-    :goto_0
-    if-ltz v0, :cond_1
+    :goto_8
+    if-ltz v0, :cond_1a
 
     .line 41
     iget-object v1, p0, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -89,23 +89,23 @@
     .line 42
     iget-boolean v2, v1, Lio/vanta/core/system/am/ActivityRecord;->finished:Z
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_17
 
     return-object v1
 
-    :cond_0
+    :cond_17
     add-int/lit8 v0, v0, -0x1
 
-    goto :goto_0
+    goto :goto_8
 
-    :cond_1
+    :cond_1a
     const/4 v0, 0x0
 
     return-object v0
 .end method
 
 .method public needNewTask()Z
-    .locals 2
+    .registers 3
 
     .line 23
     iget-object v0, p0, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -114,12 +114,12 @@
 
     move-result-object v0
 
-    :cond_0
+    :cond_6
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_18
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -130,20 +130,20 @@
     .line 24
     iget-boolean v1, v1, Lio/vanta/core/system/am/ActivityRecord;->finished:Z
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_6
 
     const/4 v0, 0x0
 
     return v0
 
-    :cond_1
+    :cond_18
     const/4 v0, 0x1
 
     return v0
 .end method
 
 .method public removeActivity(Lio/vanta/core/system/am/ActivityRecord;)V
-    .locals 1
+    .registers 3
 
     .line 36
     iget-object v0, p0, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;

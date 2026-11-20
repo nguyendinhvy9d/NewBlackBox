@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 330
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 8
+    .registers 12
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -42,17 +42,17 @@
     const-string v0, "IConnectivityManagerProxy"
 
     .line 336
-    :try_start_0
+    :try_start_2
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_6} :catch_49
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_3d
 
     .line 340
-    :try_start_1
+    :try_start_8
     invoke-virtual {v1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v2
@@ -101,38 +101,38 @@
     move-result-object v3
 
     invoke-virtual {v2, v1, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_37
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_37} :catch_38
 
     return-object v1
 
-    :catch_0
+    :catch_38
     move-exception v2
 
     .line 346
-    :try_start_2
+    :try_start_39
     invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
 
     return-object v1
 
     .line 354
-    :cond_0
+    :cond_3d
     invoke-static {}, Lio/vanta/fake/service/IConnectivityManagerProxy;->-$$Nest$smcreateNetworkCapabilities()Ljava/lang/Object;
 
     move-result-object v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_60
 
     .line 357
     const-string v2, "Created enhanced NetworkCapabilities for sandboxed app (fallback)"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_48
+    .catch Ljava/lang/Exception; {:try_start_39 .. :try_end_48} :catch_49
 
     return-object v1
 
-    :catch_1
+    :catch_49
     move-exception v1
 
     .line 361
@@ -157,7 +157,7 @@
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 364
-    :cond_1
+    :cond_60
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

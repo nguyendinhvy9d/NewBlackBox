@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 974
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,47 +31,47 @@
 
 # virtual methods
 .method public getPermissionIndex()I
-    .locals 1
+    .registers 2
 
     .line 1019
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isS()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     const/4 v0, 0x6
 
     return v0
 
-    :cond_0
+    :cond_8
     const/4 v0, 0x5
 
     return v0
 .end method
 
 .method public getReceiverIndex()I
-    .locals 1
+    .registers 2
 
     .line 1012
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isS()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     const/4 v0, 0x4
 
     return v0
 
-    :cond_0
+    :cond_8
     const/4 v0, 0x3
 
     return v0
 .end method
 
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 6
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -88,33 +88,33 @@
 
     move v2, v1
 
-    :goto_0
+    :goto_6
     const/4 v3, 0x0
 
-    if-ge v2, v0, :cond_1
+    if-ge v2, v0, :cond_15
 
     aget-object v4, p3, v2
 
     .line 980
     instance-of v5, v4, Landroid/content/IntentFilter;
 
-    if-eqz v5, :cond_0
+    if-eqz v5, :cond_12
 
     .line 981
     check-cast v4, Landroid/content/IntentFilter;
 
-    goto :goto_1
+    goto :goto_16
 
-    :cond_0
+    :cond_12
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_6
 
-    :cond_1
+    :cond_15
     move-object v4, v3
 
     .line 985
-    :goto_1
+    :goto_16
     invoke-virtual {p0}, Lio/vanta/fake/service/IActivityManagerProxy$RegisterReceiverWithFeature;->getReceiverIndex()I
 
     move-result v0
@@ -122,7 +122,7 @@
     .line 986
     aget-object v2, p3, v0
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_3b
 
     .line 987
     check-cast v2, Landroid/content/IIntentReceiver;
@@ -141,7 +141,7 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_39
 
     .line 992
     invoke-virtual {v2}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -155,18 +155,18 @@
     invoke-interface {v2, v4}, Lvanta/android/app/LoadedApkReceiverDispatcherContext;->_set_mIIntentReceiver(Ljava/lang/Object;)V
 
     .line 995
-    :cond_2
+    :cond_39
     aput-object v4, p3, v0
 
     .line 998
-    :cond_3
+    :cond_3b
     invoke-virtual {p0}, Lio/vanta/fake/service/IActivityManagerProxy$RegisterReceiverWithFeature;->getPermissionIndex()I
 
     move-result v0
 
     aget-object v0, p3, v0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_49
 
     .line 999
     invoke-virtual {p0}, Lio/vanta/fake/service/IActivityManagerProxy$RegisterReceiverWithFeature;->getPermissionIndex()I
@@ -176,10 +176,10 @@
     aput-object v3, p3, v0
 
     .line 1002
-    :cond_4
+    :cond_49
     array-length v0, p3
 
-    if-lez v0, :cond_5
+    if-lez v0, :cond_6a
 
     array-length v0, p3
 
@@ -189,7 +189,7 @@
 
     instance-of v0, v0, Ljava/lang/Integer;
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_6a
 
     .line 1003
     array-length v0, p3
@@ -221,7 +221,7 @@
     aput-object v1, p3, v0
 
     .line 1008
-    :cond_5
+    :cond_6a
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

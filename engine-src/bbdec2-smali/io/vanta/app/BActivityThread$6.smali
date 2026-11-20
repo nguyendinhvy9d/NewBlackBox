@@ -22,7 +22,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/content/Context;Ljava/lang/String;Landroid/content/Context;)V
-    .locals 0
+    .registers 4
 
     .line 1226
     iput-object p2, p0, Lio/vanta/app/BActivityThread$6;->val$packageName:Ljava/lang/String;
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public getApplicationContext()Landroid/content/Context;
-    .locals 1
+    .registers 2
 
     .line 1249
     iget-object v0, p0, Lio/vanta/app/BActivityThread$6;->val$baseContext:Landroid/content/Context;
@@ -50,7 +50,7 @@
 .end method
 
 .method public getClassLoader()Ljava/lang/ClassLoader;
-    .locals 1
+    .registers 2
 
     .line 1244
     iget-object v0, p0, Lio/vanta/app/BActivityThread$6;->val$baseContext:Landroid/content/Context;
@@ -63,7 +63,7 @@
 .end method
 
 .method public getPackageManager()Landroid/content/pm/PackageManager;
-    .locals 1
+    .registers 2
 
     .line 1234
     iget-object v0, p0, Lio/vanta/app/BActivityThread$6;->val$baseContext:Landroid/content/Context;
@@ -76,7 +76,7 @@
 .end method
 
 .method public getPackageName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 1229
     iget-object v0, p0, Lio/vanta/app/BActivityThread$6;->val$packageName:Ljava/lang/String;
@@ -85,7 +85,7 @@
 .end method
 
 .method public getResources()Landroid/content/res/Resources;
-    .locals 1
+    .registers 2
 
     .line 1239
     iget-object v0, p0, Lio/vanta/app/BActivityThread$6;->val$baseContext:Landroid/content/Context;

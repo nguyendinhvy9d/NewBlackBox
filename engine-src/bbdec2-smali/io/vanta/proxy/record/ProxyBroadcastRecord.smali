@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Intent;I)V
-    .locals 0
+    .registers 3
 
     .line 10
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -26,7 +26,7 @@
 .end method
 
 .method public static create(Landroid/content/Intent;)Lio/vanta/proxy/record/ProxyBroadcastRecord;
-    .locals 3
+    .registers 4
 
     .line 21
     const-string v0, "_B_|_target_"
@@ -55,7 +55,7 @@
 .end method
 
 .method public static saveStub(Landroid/content/Intent;Landroid/content/Intent;I)V
-    .locals 1
+    .registers 4
 
     .line 16
     const-string v0, "_B_|_target_"
@@ -73,7 +73,7 @@
 
 # virtual methods
 .method public toString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 28
     new-instance v0, Ljava/lang/StringBuilder;

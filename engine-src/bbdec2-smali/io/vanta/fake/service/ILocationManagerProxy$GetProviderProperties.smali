@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 163
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -48,7 +48,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_33
 
     .line 169
     invoke-static {v0}, Lvanta/android/location/provider/BRProviderProperties;->get(Ljava/lang/Object;)Lvanta/android/location/provider/ProviderPropertiesContext;
@@ -80,7 +80,7 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_33
 
     .line 171
     invoke-static {v0}, Lvanta/android/location/provider/BRProviderProperties;->get(Ljava/lang/Object;)Lvanta/android/location/provider/ProviderPropertiesContext;
@@ -94,7 +94,7 @@
     invoke-interface {v0, v1}, Lvanta/android/location/provider/ProviderPropertiesContext;->_set_mHasCellRequirement(Ljava/lang/Object;)V
 
     .line 174
-    :cond_0
+    :cond_33
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

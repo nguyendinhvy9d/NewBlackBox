@@ -42,7 +42,7 @@
 
 # direct methods
 .method public constructor <init>([Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([TT;)V"
@@ -61,7 +61,7 @@
 
 # virtual methods
 .method public iterator()Ljava/util/Iterator;
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -73,7 +73,7 @@
     .line 19
     iget-object v0, p0, Lio/vanta/core/system/pm/FastImmutableArraySet;->mIterator:Lio/vanta/core/system/pm/FastImmutableArraySet$FastIterator;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_e
 
     .line 21
     new-instance v0, Lio/vanta/core/system/pm/FastImmutableArraySet$FastIterator;
@@ -87,7 +87,7 @@
 
     return-object v0
 
-    :cond_0
+    :cond_e
     const/4 v1, 0x0
 
     .line 24
@@ -97,7 +97,7 @@
 .end method
 
 .method public size()I
-    .locals 1
+    .registers 2
 
     .line 31
     iget-object v0, p0, Lio/vanta/core/system/pm/FastImmutableArraySet;->mContents:[Ljava/lang/Object;

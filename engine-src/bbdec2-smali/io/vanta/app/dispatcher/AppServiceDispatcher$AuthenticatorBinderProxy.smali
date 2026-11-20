@@ -22,7 +22,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/os/IBinder;Landroid/app/Service;)V
-    .locals 0
+    .registers 3
 
     .line 352
     invoke-direct {p0}, Landroid/os/Binder;-><init>()V
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public getInterfaceDescriptor()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 360
     :try_start_0
@@ -48,20 +48,20 @@
     invoke-interface {v0}, Landroid/os/IBinder;->getInterfaceDescriptor()Ljava/lang/String;
 
     move-result-object v0
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_6} :catch_7
 
     return-object v0
 
     .line 362
-    :catch_0
+    :catch_7
     const-string v0, "android.accounts.IAccountAuthenticator"
 
     return-object v0
 .end method
 
 .method protected onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    .locals 4
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -76,7 +76,7 @@
     const-wide v2, 0x3e8000003e8L
 
     .line 373
-    :try_start_0
+    :try_start_9
     invoke-static {v2, v3}, Landroid/os/Binder;->restoreCallingIdentity(J)V
 
     .line 376
@@ -89,7 +89,7 @@
 
     invoke-static {v2}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->-$$Nest$smfixAuthenticatorContext(Ljava/lang/Object;)V
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_1c
 
     const/4 v2, 0x0
 
@@ -97,21 +97,21 @@
     invoke-virtual {p2, v2}, Landroid/os/Parcel;->setDataPosition(I)V
 
     .line 382
-    :cond_0
+    :cond_1c
     iget-object v2, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher$AuthenticatorBinderProxy;->mTarget:Landroid/os/IBinder;
 
     invoke-interface {v2, p1, p2, p3, p4}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_9 .. :try_end_22} :catchall_26
 
     .line 384
     invoke-static {v0, v1}, Landroid/os/Binder;->restoreCallingIdentity(J)V
 
     return p1
 
-    :catchall_0
+    :catchall_26
     move-exception p1
 
     invoke-static {v0, v1}, Landroid/os/Binder;->restoreCallingIdentity(J)V

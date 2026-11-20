@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 3
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static enableQQLogOutput(Ljava/lang/String;Ljava/lang/ClassLoader;)V
-    .locals 1
+    .registers 3
 
     .line 7
     const-string v0, "com.tencent.mobileqq"
@@ -23,10 +23,10 @@
 
     move-result p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_23
 
     .line 9
-    :try_start_0
+    :try_start_8
     const-string p0, "com.tencent.qphone.base.util.QLog"
 
     const/4 v0, 0x1
@@ -50,17 +50,17 @@
     move-result-object p1
 
     invoke-virtual {p0, p1}, Lio/vanta/utils/Reflector;->set(Ljava/lang/Object;)Lio/vanta/utils/Reflector;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1e
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_1e} :catch_1f
 
     return-void
 
-    :catch_0
+    :catch_1f
     move-exception p0
 
     .line 13
     invoke-virtual {p0}, Ljava/lang/Exception;->printStackTrace()V
 
-    :cond_0
+    :cond_23
     return-void
 .end method

@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 20
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -32,7 +32,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 2
+    .registers 3
 
     .line 25
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -45,14 +45,14 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_e
 
     const/4 v0, 0x0
 
     return-object v0
 
     .line 29
-    :cond_0
+    :cond_e
     invoke-static {}, Lvanta/android/app/backup/BRIBackupManagerStub;->get()Lvanta/android/app/backup/IBackupManagerStubStatic;
 
     move-result-object v1
@@ -65,7 +65,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 1
+    .registers 4
 
     .line 34
     const-string p1, "backup"
@@ -73,7 +73,7 @@
     invoke-virtual {p0, p1}, Lio/vanta/fake/service/IBackupManagerProxy;->replaceSystemService(Ljava/lang/String;)V
 
     .line 36
-    :try_start_0
+    :try_start_5
     const-string p1, "android.app.backup.BackupManager"
 
     invoke-static {p1}, Lio/vanta/utils/Reflector;->on(Ljava/lang/String;)Lio/vanta/utils/Reflector;
@@ -89,15 +89,15 @@
 
     .line 38
     invoke-virtual {p1, p2}, Lio/vanta/utils/Reflector;->set(Ljava/lang/Object;)Lio/vanta/utils/Reflector;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_14
+    .catchall {:try_start_5 .. :try_end_14} :catchall_14
 
-    :catchall_0
+    :catchall_14
     return-void
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 6
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -118,7 +118,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_7
+    if-nez v2, :cond_b3
 
     const-string v2, "isBackupEnabled"
 
@@ -126,7 +126,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_7
+    if-nez v2, :cond_b3
 
     const-string v2, "isAppEligibleForBackup"
 
@@ -134,11 +134,11 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_20
 
-    goto/16 :goto_0
+    goto/16 :goto_b3
 
-    :cond_0
+    :cond_20
     const-wide/16 v1, 0x0
 
     const/4 v3, 0x0
@@ -146,17 +146,17 @@
     const/4 v4, 0x0
 
     .line 81
-    :try_start_0
+    :try_start_24
     invoke-super {p0, p1, p2, p3}, Lio/vanta/fake/hook/BinderInvocationStub;->invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_28
+    .catch Ljava/lang/SecurityException; {:try_start_24 .. :try_end_28} :catch_6e
+    .catchall {:try_start_24 .. :try_end_28} :catchall_29
 
     return-object p1
 
-    :catchall_0
+    :catchall_29
     move-exception p1
 
     .line 90
@@ -202,7 +202,7 @@
     .line 92
     sget-object p2, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
 
-    if-ne p1, p2, :cond_1
+    if-ne p1, p2, :cond_5b
 
     invoke-static {v4}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
@@ -211,10 +211,10 @@
     return-object p1
 
     .line 93
-    :cond_1
+    :cond_5b
     sget-object p2, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
 
-    if-ne p1, p2, :cond_2
+    if-ne p1, p2, :cond_64
 
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -223,10 +223,10 @@
     return-object p1
 
     .line 94
-    :cond_2
+    :cond_64
     sget-object p2, Ljava/lang/Long;->TYPE:Ljava/lang/Class;
 
-    if-ne p1, p2, :cond_3
+    if-ne p1, p2, :cond_6d
 
     invoke-static {v1, v2}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
@@ -234,10 +234,10 @@
 
     return-object p1
 
-    :cond_3
+    :cond_6d
     return-object v3
 
-    :catch_0
+    :catch_6e
     move-exception p1
 
     .line 83
@@ -283,7 +283,7 @@
     .line 85
     sget-object p2, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
 
-    if-ne p1, p2, :cond_4
+    if-ne p1, p2, :cond_a0
 
     invoke-static {v4}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
@@ -292,10 +292,10 @@
     return-object p1
 
     .line 86
-    :cond_4
+    :cond_a0
     sget-object p2, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
 
-    if-ne p1, p2, :cond_5
+    if-ne p1, p2, :cond_a9
 
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
@@ -304,10 +304,10 @@
     return-object p1
 
     .line 87
-    :cond_5
+    :cond_a9
     sget-object p2, Ljava/lang/Long;->TYPE:Ljava/lang/Class;
 
-    if-ne p1, p2, :cond_6
+    if-ne p1, p2, :cond_b2
 
     invoke-static {v1, v2}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
@@ -315,11 +315,11 @@
 
     return-object p1
 
-    :cond_6
+    :cond_b2
     return-object v3
 
-    :cond_7
-    :goto_0
+    :cond_b3
+    :goto_b3
     const/4 p1, 0x1
 
     .line 78
@@ -331,7 +331,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 2
+    .registers 3
 
     .line 45
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -344,22 +344,22 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_10
 
-    if-eq v0, p0, :cond_0
+    if-eq v0, p0, :cond_10
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_10
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method protected onBindMethod()V
-    .locals 5
+    .registers 6
 
     .line 51
     invoke-super {p0}, Lio/vanta/fake/hook/BinderInvocationStub;->onBindMethod()V

@@ -36,7 +36,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 119
     new-instance v0, Lio/vanta/core/system/accounts/BUserAccounts$1;
@@ -49,7 +49,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 111
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -72,7 +72,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 114
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -113,7 +113,7 @@
 
 # virtual methods
 .method public addAccount(Landroid/accounts/Account;)Lio/vanta/core/system/accounts/BAccount;
-    .locals 1
+    .registers 3
 
     .line 28
     new-instance v0, Lio/vanta/core/system/accounts/BAccount;
@@ -132,7 +132,7 @@
 .end method
 
 .method public delAccount(Landroid/accounts/Account;)Z
-    .locals 1
+    .registers 3
 
     .line 43
     invoke-virtual {p0, p1}, Lio/vanta/core/system/accounts/BUserAccounts;->getAccount(Landroid/accounts/Account;)Lio/vanta/core/system/accounts/BAccount;
@@ -150,7 +150,7 @@
 .end method
 
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -158,28 +158,28 @@
 .end method
 
 .method public findAccountLastAuthenticatedTime(Landroid/accounts/Account;)J
-    .locals 2
+    .registers 4
 
     .line 87
     invoke-virtual {p0, p1}, Lio/vanta/core/system/accounts/BUserAccounts;->getAccount(Landroid/accounts/Account;)Lio/vanta/core/system/accounts/BAccount;
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_9
 
     .line 89
     iget-wide v0, p1, Lio/vanta/core/system/accounts/BAccount;->updateLastAuthenticatedTime:J
 
     return-wide v0
 
-    :cond_0
+    :cond_9
     const-wide/16 v0, -0x1
 
     return-wide v0
 .end method
 
 .method public getAccount(Landroid/accounts/Account;)Lio/vanta/core/system/accounts/BAccount;
-    .locals 3
+    .registers 5
 
     .line 35
     iget-object v0, p0, Lio/vanta/core/system/accounts/BUserAccounts;->accounts:Ljava/util/List;
@@ -188,12 +188,12 @@
 
     move-result-object v0
 
-    :cond_0
+    :cond_6
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_19
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -206,18 +206,18 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_6
 
     return-object v1
 
-    :cond_1
+    :cond_19
     const/4 p1, 0x0
 
     return-object p1
 .end method
 
 .method public getAccountUserData(Landroid/accounts/Account;)Ljava/util/Map;
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -235,7 +235,7 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_c
 
     .line 58
     new-instance p1, Ljava/util/HashMap;
@@ -245,14 +245,14 @@
     return-object p1
 
     .line 59
-    :cond_0
+    :cond_c
     iget-object p1, p1, Lio/vanta/core/system/accounts/BAccount;->accountUserData:Ljava/util/HashMap;
 
     return-object p1
 .end method
 
 .method public getAccountsByType(Ljava/lang/String;)[Landroid/accounts/Account;
-    .locals 4
+    .registers 6
 
     .line 70
     new-instance v0, Ljava/util/ArrayList;
@@ -266,13 +266,13 @@
 
     move-result-object v1
 
-    :cond_0
-    :goto_0
+    :cond_b
+    :goto_b
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_27
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -289,16 +289,16 @@
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_b
 
     .line 73
     iget-object v2, v2, Lio/vanta/core/system/accounts/BAccount;->account:Landroid/accounts/Account;
 
     invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_b
 
-    :cond_1
+    :cond_27
     const/4 p1, 0x0
 
     .line 76
@@ -314,7 +314,7 @@
 .end method
 
 .method public getAuthToken(Landroid/accounts/Account;)Ljava/util/Map;
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -332,7 +332,7 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_c
 
     .line 65
     new-instance p1, Ljava/util/HashMap;
@@ -342,14 +342,14 @@
     return-object p1
 
     .line 66
-    :cond_0
+    :cond_c
     iget-object p1, p1, Lio/vanta/core/system/accounts/BAccount;->authTokens:Ljava/util/HashMap;
 
     return-object p1
 .end method
 
 .method public getVisibility(Landroid/accounts/Account;)Ljava/util/Map;
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -367,7 +367,7 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_c
 
     .line 51
     new-instance p1, Ljava/util/HashMap;
@@ -377,14 +377,14 @@
     return-object p1
 
     .line 52
-    :cond_0
+    :cond_c
     iget-object p1, p1, Lio/vanta/core/system/accounts/BAccount;->visibility:Ljava/util/HashMap;
 
     return-object p1
 .end method
 
 .method public readFromParcel(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 107
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
@@ -406,7 +406,7 @@
 .end method
 
 .method public toAccounts()[Landroid/accounts/Account;
-    .locals 3
+    .registers 4
 
     .line 20
     new-instance v0, Ljava/util/ArrayList;
@@ -420,12 +420,12 @@
 
     move-result-object v1
 
-    :goto_0
+    :goto_b
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_1d
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -438,9 +438,9 @@
 
     invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_b
 
-    :cond_0
+    :cond_1d
     const/4 v1, 0x0
 
     .line 24
@@ -456,14 +456,14 @@
 .end method
 
 .method public updateLastAuthenticatedTime(Landroid/accounts/Account;)V
-    .locals 2
+    .registers 4
 
     .line 80
     invoke-virtual {p0, p1}, Lio/vanta/core/system/accounts/BUserAccounts;->getAccount(Landroid/accounts/Account;)Lio/vanta/core/system/accounts/BAccount;
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_c
 
     .line 82
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -472,12 +472,12 @@
 
     iput-wide v0, p1, Lio/vanta/core/system/accounts/BAccount;->updateLastAuthenticatedTime:J
 
-    :cond_0
+    :cond_c
     return-void
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 0
+    .registers 3
 
     .line 102
     iget p2, p0, Lio/vanta/core/system/accounts/BUserAccounts;->userId:I

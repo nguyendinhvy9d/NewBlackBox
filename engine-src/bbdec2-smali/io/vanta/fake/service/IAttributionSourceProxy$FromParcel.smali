@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 140
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,12 +29,12 @@
 .end method
 
 .method private createSafeAttributionSource(ILjava/lang/String;)Ljava/lang/Object;
-    .locals 6
+    .registers 9
 
     const/4 v0, 0x0
 
     .line 176
-    :try_start_0
+    :try_start_1
     const-string v1, "android.content.AttributionSource"
 
     invoke-static {v1}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -83,12 +83,12 @@
     invoke-virtual {v1, p1}, Ljava/lang/reflect/Constructor;->newInstance([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2c
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_2c} :catch_2d
 
     return-object p1
 
-    :catch_0
+    :catch_2d
     move-exception p1
 
     .line 181
@@ -118,7 +118,7 @@
 .end method
 
 .method private fixAttributionSourceUid(Ljava/lang/Object;)V
-    .locals 8
+    .registers 10
 
     .line 163
     const-string v0, "IAttributionSourceProxy"
@@ -127,7 +127,7 @@
     const-string v1, "Fixed AttributionSource UID to: "
 
     .line 163
-    :try_start_0
+    :try_start_4
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v2
@@ -185,12 +185,12 @@
     move-result-object p1
 
     invoke-static {v0, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3c
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_3c} :catch_3d
 
     return-void
 
-    :catch_0
+    :catch_3d
     move-exception p1
 
     .line 170
@@ -220,7 +220,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -233,7 +233,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_a
 
     .line 148
     invoke-direct {p0, p1}, Lio/vanta/fake/service/IAttributionSourceProxy$FromParcel;->fixAttributionSourceUid(Ljava/lang/Object;)V
@@ -241,7 +241,7 @@
     return-object p1
 
     .line 153
-    :cond_0
+    :cond_a
     invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
 
     move-result p1
@@ -253,12 +253,10 @@
     invoke-direct {p0, p1, p2}, Lio/vanta/fake/service/IAttributionSourceProxy$FromParcel;->createSafeAttributionSource(ILjava/lang/String;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_16} :catch_16
 
-    return-object p1
-
-    :catch_0
+    :catch_16
     move-exception p1
 
     .line 155

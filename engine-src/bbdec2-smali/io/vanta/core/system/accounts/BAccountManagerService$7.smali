@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/accounts/BAccountManagerService;Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;ZZLjava/lang/String;ZLjava/lang/String;Ljava/lang/String;)V
-    .locals 0
+    .registers 11
 
     .line 807
     iput-object p1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$7;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -41,9 +41,9 @@
 
 # virtual methods
 .method public onResult(Landroid/os/Bundle;)V
-    .locals 2
+    .registers 4
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_14
 
     .line 823
     const-string v0, "authTokenLabelKey"
@@ -66,14 +66,14 @@
     return-void
 
     .line 828
-    :cond_0
+    :cond_14
     invoke-super {p0, p1}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->onResult(Landroid/os/Bundle;)V
 
     return-void
 .end method
 
 .method public run()V
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -91,7 +91,7 @@
 .end method
 
 .method protected toDebugString(J)Ljava/lang/String;
-    .locals 1
+    .registers 4
 
     .line 810
     new-instance v0, Ljava/lang/StringBuilder;

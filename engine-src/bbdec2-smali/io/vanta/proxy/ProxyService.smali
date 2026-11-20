@@ -70,7 +70,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 19
     invoke-direct {p0}, Landroid/app/Service;-><init>()V
@@ -79,14 +79,14 @@
 .end method
 
 .method private showNotification()V
-    .locals 5
+    .registers 6
 
     .line 77
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_8d
 
     .line 78
     const-string v0, "notification"
@@ -123,13 +123,13 @@
     .line 80
     const-string v2, "VantaCore Service"
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_3d
 
     invoke-virtual {v0, v1}, Landroid/app/NotificationManager;->getNotificationChannel(Ljava/lang/String;)Landroid/app/NotificationChannel;
 
     move-result-object v3
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_3d
 
     .line 81
     new-instance v3, Landroid/app/NotificationChannel;
@@ -147,7 +147,7 @@
     invoke-virtual {v0, v3}, Landroid/app/NotificationManager;->createNotificationChannel(Landroid/app/NotificationChannel;)V
 
     .line 89
-    :cond_0
+    :cond_3d
     new-instance v0, Landroidx/core/app/NotificationCompat$Builder;
 
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyService;->getApplicationContext()Landroid/content/Context;
@@ -176,12 +176,12 @@
     move-result-object v0
 
     .line 94
-    :try_start_0
+    :try_start_56
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isU()Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_6e
 
     .line 95
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -203,7 +203,7 @@
     return-void
 
     .line 97
-    :cond_1
+    :cond_6e
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
 
     move-result-object v1
@@ -217,14 +217,14 @@
     move-result-object v2
 
     invoke-virtual {p0, v1, v2}, Lio/vanta/proxy/ProxyService;->startForeground(ILandroid/app/Notification;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_7d
+    .catchall {:try_start_56 .. :try_end_7d} :catchall_7e
 
     return-void
 
     .line 101
-    :catchall_0
-    :try_start_1
+    :catchall_7e
+    :try_start_7e
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
 
     move-result-object v1
@@ -238,18 +238,18 @@
     move-result-object v0
 
     invoke-virtual {p0, v1, v0}, Lio/vanta/proxy/ProxyService;->startForeground(ILandroid/app/Notification;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_8d
+    .catchall {:try_start_7e .. :try_end_8d} :catchall_8d
 
-    :catchall_1
-    :cond_2
+    :catchall_8d
+    :cond_8d
     return-void
 .end method
 
 
 # virtual methods
 .method public onBind(Landroid/content/Intent;)Landroid/os/IBinder;
-    .locals 1
+    .registers 3
 
     .line 27
     iput-object p1, p0, Lio/vanta/proxy/ProxyService;->mIntent:Landroid/content/Intent;
@@ -267,7 +267,7 @@
 .end method
 
 .method public onConfigurationChanged(Landroid/content/res/Configuration;)V
-    .locals 1
+    .registers 3
 
     .line 54
     invoke-super {p0, p1}, Landroid/app/Service;->onConfigurationChanged(Landroid/content/res/Configuration;)V
@@ -283,7 +283,7 @@
 .end method
 
 .method public onDestroy()V
-    .locals 2
+    .registers 3
 
     .line 43
     invoke-super {p0}, Landroid/app/Service;->onDestroy()V
@@ -291,19 +291,19 @@
     .line 44
     iget-object v0, p0, Lio/vanta/proxy/ProxyService;->mIntent:Landroid/content/Intent;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1a
 
     .line 45
     invoke-static {v0}, Lio/vanta/proxy/record/ProxyServiceRecord;->create(Landroid/content/Intent;)Lio/vanta/proxy/record/ProxyServiceRecord;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1a
 
     .line 46
     iget-object v1, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mServiceIntent:Landroid/content/Intent;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1a
 
     .line 47
     invoke-static {}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->get()Lio/vanta/app/dispatcher/AppServiceDispatcher;
@@ -314,12 +314,12 @@
 
     invoke-virtual {v1, v0}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->stopService(Landroid/content/Intent;)V
 
-    :cond_0
+    :cond_1a
     return-void
 .end method
 
 .method public onLowMemory()V
-    .locals 1
+    .registers 2
 
     .line 60
     invoke-super {p0}, Landroid/app/Service;->onLowMemory()V
@@ -335,12 +335,12 @@
 .end method
 
 .method public onStartCommand(Landroid/content/Intent;II)I
-    .locals 2
+    .registers 6
 
     .line 33
     iput-object p1, p0, Lio/vanta/proxy/ProxyService;->mIntent:Landroid/content/Intent;
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_10
 
     .line 34
     const-string v0, "_nomad_req_foreground_"
@@ -351,13 +351,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_10
 
     .line 35
     invoke-direct {p0}, Lio/vanta/proxy/ProxyService;->showNotification()V
 
     .line 37
-    :cond_0
+    :cond_10
     invoke-static {}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->get()Lio/vanta/app/dispatcher/AppServiceDispatcher;
 
     move-result-object v0
@@ -370,7 +370,7 @@
 .end method
 
 .method public onTrimMemory(I)V
-    .locals 1
+    .registers 3
 
     .line 66
     invoke-super {p0, p1}, Landroid/app/Service;->onTrimMemory(I)V
@@ -386,7 +386,7 @@
 .end method
 
 .method public onUnbind(Landroid/content/Intent;)Z
-    .locals 1
+    .registers 3
 
     .line 72
     invoke-static {}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->get()Lio/vanta/app/dispatcher/AppServiceDispatcher;

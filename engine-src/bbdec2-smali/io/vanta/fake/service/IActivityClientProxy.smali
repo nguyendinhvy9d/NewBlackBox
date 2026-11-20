@@ -30,7 +30,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
 
     .line 23
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public getProxyInvocation()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 51
     invoke-super {p0}, Lio/vanta/fake/hook/ClassInvocationStub;->getProxyInvocation()Ljava/lang/Object;
@@ -55,17 +55,17 @@
 .end method
 
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 29
     iget-object v0, p0, Lio/vanta/fake/service/IActivityClientProxy;->who:Ljava/lang/Object;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
     return-object v0
 
     .line 32
-    :cond_0
+    :cond_5
     invoke-static {}, Lvanta/android/app/BRActivityClient;->get()Lvanta/android/app/ActivityClientStatic;
 
     move-result-object v0
@@ -96,7 +96,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 39
     invoke-static {}, Lvanta/android/app/BRActivityClient;->get()Lvanta/android/app/ActivityClientStatic;
@@ -127,7 +127,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -135,7 +135,7 @@
 .end method
 
 .method public onlyProxy(Z)V
-    .locals 0
+    .registers 2
 
     .line 56
     invoke-super {p0, p1}, Lio/vanta/fake/hook/ClassInvocationStub;->onlyProxy(Z)V

@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;ZLjava/lang/String;)V
-    .locals 0
+    .registers 4
 
     .line 45
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,7 +53,7 @@
 
 # virtual methods
 .method public toString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 54
     new-instance v0, Ljava/lang/StringBuilder;
@@ -64,16 +64,16 @@
 
     iget-boolean v1, p0, Lio/vanta/utils/NativeCrashPrevention$PreventionResult;->success:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_e
 
     const-string v1, "successful"
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_0
+    :cond_e
     const-string v1, "failed"
 
-    :goto_0
+    :goto_10
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v0

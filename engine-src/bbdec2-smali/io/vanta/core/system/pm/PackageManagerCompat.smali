@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 38
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method private static checkUseInstalledOrHidden(ILio/vanta/core/system/pm/BPackageUserState;Landroid/content/pm/ApplicationInfo;)Z
-    .locals 0
+    .registers 3
 
     .line 378
     iget-object p0, p2, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
@@ -25,34 +25,34 @@
 
     const/4 p2, 0x0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_a
 
     return p2
 
     .line 381
-    :cond_0
+    :cond_a
     iget-boolean p0, p1, Lio/vanta/core/system/pm/BPackageUserState;->installed:Z
 
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_15
 
     iget-boolean p0, p1, Lio/vanta/core/system/pm/BPackageUserState;->hidden:Z
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_13
 
-    goto :goto_0
+    goto :goto_15
 
-    :cond_1
+    :cond_13
     const/4 p0, 0x1
 
     return p0
 
-    :cond_2
-    :goto_0
+    :cond_15
+    :goto_15
     return p2
 .end method
 
 .method private static fixJar(Landroid/content/pm/ApplicationInfo;)V
-    .locals 4
+    .registers 5
 
     .line 390
     new-instance v0, Ljava/util/HashSet;
@@ -66,7 +66,7 @@
 
     const-string v2, "/system/framework/org.apache.http.legacy.boot.jar"
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_1d
 
     .line 392
     const-string v1, "/system/framework/org.apache.http.legacy.jar"
@@ -75,24 +75,24 @@
 
     move-result v3
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_19
 
     .line 393
     invoke-interface {v0, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_20
 
     .line 395
-    :cond_0
+    :cond_19
     invoke-interface {v0, v1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_20
 
     .line 398
-    :cond_1
+    :cond_1d
     invoke-interface {v0, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    :goto_0
+    :goto_20
     const/4 v1, 0x0
 
     .line 405
@@ -110,7 +110,7 @@
 .end method
 
 .method public static generateActivityInfo(Lio/vanta/core/system/pm/BPackage$Activity;ILio/vanta/core/system/pm/BPackageUserState;I)Landroid/content/pm/ActivityInfo;
-    .locals 3
+    .registers 7
 
     .line 221
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$Activity;->info:Landroid/content/pm/ActivityInfo;
@@ -121,14 +121,14 @@
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_c
 
     const/4 p0, 0x0
 
     return-object p0
 
     .line 225
-    :cond_0
+    :cond_c
     new-instance v0, Landroid/content/pm/ActivityInfo;
 
     iget-object v1, p0, Lio/vanta/core/system/pm/BPackage$Activity;->info:Landroid/content/pm/ActivityInfo;
@@ -164,7 +164,7 @@
 .end method
 
 .method public static generateApplicationInfo(Lio/vanta/core/system/pm/BPackage;ILio/vanta/core/system/pm/BPackageUserState;I)Landroid/content/pm/ApplicationInfo;
-    .locals 6
+    .registers 10
 
     .line 284
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
@@ -175,13 +175,13 @@
 
     const/4 v0, 0x0
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_a
 
     return-object v0
 
     .line 289
-    :cond_0
-    :try_start_0
+    :cond_a
+    :try_start_a
     invoke-static {}, Lio/vanta/VantaCore;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object p2
@@ -193,8 +193,8 @@
     invoke-virtual {p2, v1, p1}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
 
     move-result-object p2
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/Exception; {:try_start_a .. :try_end_16} :catch_1af
 
     .line 293
     iget-object v1, p0, Lio/vanta/core/system/pm/BPackage;->baseCodePath:Ljava/lang/String;
@@ -204,7 +204,7 @@
 
     const/4 v3, 0x0
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_29
 
     .line 295
     invoke-static {}, Lio/vanta/VantaCore;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -221,7 +221,7 @@
     iput-object v2, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
     .line 298
-    :cond_1
+    :cond_29
     new-instance v2, Landroid/content/pm/ApplicationInfo;
 
     iget-object v4, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
@@ -230,7 +230,7 @@
 
     and-int/lit16 p1, p1, 0x80
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_38
 
     .line 300
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->mAppMetaData:Landroid/os/Bundle;
@@ -238,7 +238,7 @@
     iput-object p1, v2, Landroid/content/pm/ApplicationInfo;->metaData:Landroid/os/Bundle;
 
     .line 302
-    :cond_2
+    :cond_38
     iget-object p1, v2, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
 
     invoke-static {p1, p3}, Lio/vanta/core/env/BEnvironment;->getDataDir(Ljava/lang/String;I)Ljava/io/File;
@@ -263,13 +263,13 @@
 
     move-result v4
 
-    if-eqz v4, :cond_3
+    if-eqz v4, :cond_64
 
     invoke-virtual {p1}, Ljava/io/File;->list()[Ljava/lang/String;
 
     move-result-object v4
 
-    if-eqz v4, :cond_3
+    if-eqz v4, :cond_64
 
     invoke-virtual {p1}, Ljava/io/File;->list()[Ljava/lang/String;
 
@@ -277,7 +277,7 @@
 
     array-length v4, v4
 
-    if-lez v4, :cond_3
+    if-lez v4, :cond_64
 
     .line 305
     invoke-virtual {p1}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
@@ -286,10 +286,10 @@
 
     iput-object p1, v2, Landroid/content/pm/ApplicationInfo;->nativeLibraryDir:Ljava/lang/String;
 
-    goto :goto_0
+    goto :goto_73
 
     .line 306
-    :cond_3
+    :cond_64
     iget-object v4, p0, Lio/vanta/core/system/pm/BPackage;->installOption:Lio/vanta/entity/pm/InstallOption;
 
     const/4 v5, 0x1
@@ -298,7 +298,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_4
+    if-nez v4, :cond_73
 
     .line 307
     invoke-virtual {p1}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
@@ -308,8 +308,8 @@
     iput-object p1, v2, Landroid/content/pm/ApplicationInfo;->nativeLibraryDir:Ljava/lang/String;
 
     .line 309
-    :cond_4
-    :goto_0
+    :cond_73
+    :goto_73
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->packageName:Ljava/lang/String;
 
     iget-object v4, v2, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
@@ -336,13 +336,13 @@
     .line 314
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->splitCodePaths:[Ljava/lang/String;
 
-    if-eqz p1, :cond_5
+    if-eqz p1, :cond_9d
 
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->splitCodePaths:[Ljava/lang/String;
 
     array-length p1, p1
 
-    if-lez p1, :cond_5
+    if-lez p1, :cond_9d
 
     .line 315
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->splitCodePaths:[Ljava/lang/String;
@@ -359,19 +359,19 @@
 
     iput-object p1, v2, Landroid/content/pm/ApplicationInfo;->splitNames:[Ljava/lang/String;
 
-    goto :goto_2
+    goto :goto_cb
 
     .line 318
-    :cond_5
+    :cond_9d
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
-    if-eqz p1, :cond_7
+    if-eqz p1, :cond_cb
 
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
     iget-object p1, p1, Landroid/content/pm/ApplicationInfo;->splitSourceDirs:[Ljava/lang/String;
 
-    if-eqz p1, :cond_7
+    if-eqz p1, :cond_cb
 
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
@@ -379,7 +379,7 @@
 
     array-length p1, p1
 
-    if-lez p1, :cond_7
+    if-lez p1, :cond_cb
 
     .line 319
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
@@ -393,20 +393,20 @@
 
     iget-object p1, p1, Landroid/content/pm/ApplicationInfo;->splitPublicSourceDirs:[Ljava/lang/String;
 
-    if-eqz p1, :cond_6
+    if-eqz p1, :cond_bf
 
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
     iget-object p1, p1, Landroid/content/pm/ApplicationInfo;->splitPublicSourceDirs:[Ljava/lang/String;
 
-    goto :goto_1
+    goto :goto_c3
 
-    :cond_6
+    :cond_bf
     iget-object p1, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
     iget-object p1, p1, Landroid/content/pm/ApplicationInfo;->splitSourceDirs:[Ljava/lang/String;
 
-    :goto_1
+    :goto_c3
     iput-object p1, v2, Landroid/content/pm/ApplicationInfo;->splitPublicSourceDirs:[Ljava/lang/String;
 
     .line 321
@@ -417,21 +417,21 @@
     iput-object p1, v2, Landroid/content/pm/ApplicationInfo;->splitNames:[Ljava/lang/String;
 
     .line 324
-    :cond_7
-    :goto_2
+    :cond_cb
+    :goto_cb
     iget-object p1, v2, Landroid/content/pm/ApplicationInfo;->splitSourceDirs:[Ljava/lang/String;
 
-    if-eqz p1, :cond_8
+    if-eqz p1, :cond_d4
 
     iget-object p1, v2, Landroid/content/pm/ApplicationInfo;->splitSourceDirs:[Ljava/lang/String;
 
     array-length p1, p1
 
-    if-nez p1, :cond_a
+    if-nez p1, :cond_100
 
     .line 326
-    :cond_8
-    :try_start_1
+    :cond_d4
+    :try_start_d4
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object p1
@@ -446,18 +446,18 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_a
+    if-eqz p1, :cond_100
 
     .line 327
     iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->splitSourceDirs:[Ljava/lang/String;
 
-    if-eqz v1, :cond_a
+    if-eqz v1, :cond_100
 
     iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->splitSourceDirs:[Ljava/lang/String;
 
     array-length v1, v1
 
-    if-lez v1, :cond_a
+    if-lez v1, :cond_100
 
     .line 328
     iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->splitSourceDirs:[Ljava/lang/String;
@@ -467,38 +467,38 @@
     .line 329
     iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->splitPublicSourceDirs:[Ljava/lang/String;
 
-    if-eqz v1, :cond_9
+    if-eqz v1, :cond_f8
 
     iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->splitPublicSourceDirs:[Ljava/lang/String;
 
-    goto :goto_3
+    goto :goto_fa
 
-    :cond_9
+    :cond_f8
     iget-object v1, p1, Landroid/content/pm/ApplicationInfo;->splitSourceDirs:[Ljava/lang/String;
 
-    :goto_3
+    :goto_fa
     iput-object v1, v2, Landroid/content/pm/ApplicationInfo;->splitPublicSourceDirs:[Ljava/lang/String;
 
     .line 330
     iget-object p1, p1, Landroid/content/pm/ApplicationInfo;->splitNames:[Ljava/lang/String;
 
     iput-object p1, v2, Landroid/content/pm/ApplicationInfo;->splitNames:[Ljava/lang/String;
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_100
+    .catchall {:try_start_d4 .. :try_end_100} :catchall_100
 
     .line 337
-    :catchall_0
-    :cond_a
+    :catchall_100
+    :cond_100
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isL()Z
 
     move-result p1
 
-    if-eqz p1, :cond_f
+    if-eqz p1, :cond_14d
 
-    if-eqz p2, :cond_b
+    if-eqz p2, :cond_110
 
     .line 341
-    :try_start_2
+    :try_start_108
     invoke-static {p2}, Lvanta/android/content/pm/BRApplicationInfoL;->get(Ljava/lang/Object;)Lvanta/android/content/pm/ApplicationInfoLContext;
 
     move-result-object p1
@@ -506,46 +506,46 @@
     invoke-interface {p1}, Lvanta/android/content/pm/ApplicationInfoLContext;->primaryCpuAbi()Ljava/lang/String;
 
     move-result-object v0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_110
+    .catchall {:try_start_108 .. :try_end_110} :catchall_110
 
-    :catchall_1
-    :cond_b
-    if-eqz v0, :cond_c
+    :catchall_110
+    :cond_110
+    if-eqz v0, :cond_118
 
     .line 345
     invoke-virtual {v0}, Ljava/lang/String;->isEmpty()Z
 
     move-result p1
 
-    if-eqz p1, :cond_e
+    if-eqz p1, :cond_128
 
     .line 346
-    :cond_c
+    :cond_118
     sget-object p1, Landroid/os/Build;->SUPPORTED_ABIS:[Ljava/lang/String;
 
-    if-eqz p1, :cond_d
+    if-eqz p1, :cond_126
 
     sget-object p1, Landroid/os/Build;->SUPPORTED_ABIS:[Ljava/lang/String;
 
     array-length p1, p1
 
-    if-lez p1, :cond_d
+    if-lez p1, :cond_126
 
     .line 347
     sget-object p1, Landroid/os/Build;->SUPPORTED_ABIS:[Ljava/lang/String;
 
     aget-object v0, p1, v3
 
-    goto :goto_4
+    goto :goto_128
 
     .line 349
-    :cond_d
+    :cond_126
     sget-object v0, Landroid/os/Build;->CPU_ABI:Ljava/lang/String;
 
     .line 352
-    :cond_e
-    :goto_4
+    :cond_128
+    :goto_128
     invoke-static {v2}, Lvanta/android/content/pm/BRApplicationInfoL;->get(Ljava/lang/Object;)Lvanta/android/content/pm/ApplicationInfoLContext;
 
     move-result-object p1
@@ -583,12 +583,12 @@
     invoke-interface {p1, p2}, Lvanta/android/content/pm/ApplicationInfoLContext;->_set_scanSourceDir(Ljava/lang/Object;)V
 
     .line 356
-    :cond_f
+    :cond_14d
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isN()Z
 
     move-result p1
 
-    if-eqz p1, :cond_13
+    if-eqz p1, :cond_1ab
 
     .line 357
     iget-object p0, p0, Lio/vanta/core/system/pm/BPackage;->packageName:Ljava/lang/String;
@@ -612,7 +612,7 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_10
+    if-eqz p0, :cond_172
 
     .line 360
     invoke-static {v2}, Lvanta/android/content/pm/BRApplicationInfoN;->get(Ljava/lang/Object;)Lvanta/android/content/pm/ApplicationInfoNContext;
@@ -624,7 +624,7 @@
     invoke-interface {p0, p1}, Lvanta/android/content/pm/ApplicationInfoNContext;->_set_deviceEncryptedDataDir(Ljava/lang/Object;)V
 
     .line 362
-    :cond_10
+    :cond_172
     invoke-static {v2}, Lvanta/android/content/pm/BRApplicationInfoN;->get(Ljava/lang/Object;)Lvanta/android/content/pm/ApplicationInfoNContext;
 
     move-result-object p0
@@ -633,7 +633,7 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_11
+    if-eqz p0, :cond_185
 
     .line 363
     invoke-static {v2}, Lvanta/android/content/pm/BRApplicationInfoN;->get(Ljava/lang/Object;)Lvanta/android/content/pm/ApplicationInfoNContext;
@@ -645,7 +645,7 @@
     invoke-interface {p0, p1}, Lvanta/android/content/pm/ApplicationInfoNContext;->_set_credentialEncryptedDataDir(Ljava/lang/Object;)V
 
     .line 365
-    :cond_11
+    :cond_185
     invoke-static {v2}, Lvanta/android/content/pm/BRApplicationInfoN;->get(Ljava/lang/Object;)Lvanta/android/content/pm/ApplicationInfoNContext;
 
     move-result-object p0
@@ -654,7 +654,7 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_12
+    if-eqz p0, :cond_198
 
     .line 366
     invoke-static {v2}, Lvanta/android/content/pm/BRApplicationInfoN;->get(Ljava/lang/Object;)Lvanta/android/content/pm/ApplicationInfoNContext;
@@ -666,7 +666,7 @@
     invoke-interface {p0, p1}, Lvanta/android/content/pm/ApplicationInfoNContext;->_set_deviceProtectedDataDir(Ljava/lang/Object;)V
 
     .line 368
-    :cond_12
+    :cond_198
     invoke-static {v2}, Lvanta/android/content/pm/BRApplicationInfoN;->get(Ljava/lang/Object;)Lvanta/android/content/pm/ApplicationInfoNContext;
 
     move-result-object p0
@@ -675,7 +675,7 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_13
+    if-eqz p0, :cond_1ab
 
     .line 369
     invoke-static {v2}, Lvanta/android/content/pm/BRApplicationInfoN;->get(Ljava/lang/Object;)Lvanta/android/content/pm/ApplicationInfoNContext;
@@ -687,28 +687,28 @@
     invoke-interface {p0, p1}, Lvanta/android/content/pm/ApplicationInfoNContext;->_set_credentialProtectedDataDir(Ljava/lang/Object;)V
 
     .line 372
-    :cond_13
+    :cond_1ab
     invoke-static {v2}, Lio/vanta/core/system/pm/PackageManagerCompat;->fixJar(Landroid/content/pm/ApplicationInfo;)V
 
     return-object v2
 
-    :catch_0
+    :catch_1af
     return-object v0
 .end method
 
 .method public static generateInstrumentationInfo(Lio/vanta/core/system/pm/BPackage$Instrumentation;I)Landroid/content/pm/InstrumentationInfo;
-    .locals 1
+    .registers 3
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     const/4 p0, 0x0
 
     return-object p0
 
-    :cond_0
+    :cond_4
     and-int/lit16 p1, p1, 0x80
 
-    if-nez p1, :cond_1
+    if-nez p1, :cond_b
 
     .line 276
     iget-object p0, p0, Lio/vanta/core/system/pm/BPackage$Instrumentation;->info:Landroid/content/pm/InstrumentationInfo;
@@ -716,7 +716,7 @@
     return-object p0
 
     .line 278
-    :cond_1
+    :cond_b
     new-instance p1, Landroid/content/pm/InstrumentationInfo;
 
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$Instrumentation;->info:Landroid/content/pm/InstrumentationInfo;
@@ -732,7 +732,7 @@
 .end method
 
 .method public static generatePackageInfo(Lio/vanta/core/system/pm/BPackage;IJJLio/vanta/core/system/pm/BPackageUserState;I)Landroid/content/pm/PackageInfo;
-    .locals 5
+    .registers 13
 
     .line 57
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
@@ -743,12 +743,12 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_a
 
     return-object v1
 
     .line 61
-    :cond_0
+    :cond_a
     new-instance v0, Landroid/content/pm/PackageInfo;
 
     invoke-direct {v0}, Landroid/content/pm/PackageInfo;-><init>()V
@@ -798,7 +798,7 @@
 
     move-result p2
 
-    if-nez p2, :cond_1
+    if-nez p2, :cond_44
 
     .line 72
     iget-object p2, p0, Lio/vanta/core/system/pm/BPackage;->requestedPermissions:Ljava/util/ArrayList;
@@ -817,27 +817,27 @@
     .line 74
     iput-object p2, v0, Landroid/content/pm/PackageInfo;->requestedPermissions:[Ljava/lang/String;
 
-    :cond_1
+    :cond_44
     and-int/lit16 p2, p1, 0x100
 
     const/4 p3, 0x0
 
-    if-eqz p2, :cond_2
+    if-eqz p2, :cond_4d
 
     .line 78
     new-array p2, p3, [I
 
     iput-object p2, v0, Landroid/content/pm/PackageInfo;->gids:[I
 
-    :cond_2
+    :cond_4d
     and-int/lit16 p2, p1, 0x4000
 
-    if-eqz p2, :cond_6
+    if-eqz p2, :cond_83
 
     .line 81
     iget-object p2, p0, Lio/vanta/core/system/pm/BPackage;->configPreferences:Ljava/util/ArrayList;
 
-    if-eqz p2, :cond_3
+    if-eqz p2, :cond_5c
 
     iget-object p2, p0, Lio/vanta/core/system/pm/BPackage;->configPreferences:Ljava/util/ArrayList;
 
@@ -845,13 +845,13 @@
 
     move-result p2
 
-    goto :goto_0
+    goto :goto_5d
 
-    :cond_3
+    :cond_5c
     move p2, p3
 
-    :goto_0
-    if-lez p2, :cond_4
+    :goto_5d
+    if-lez p2, :cond_6a
 
     .line 83
     new-array p2, p2, [Landroid/content/pm/ConfigurationInfo;
@@ -866,10 +866,10 @@
     invoke-virtual {p2, p4}, Ljava/util/ArrayList;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
 
     .line 86
-    :cond_4
+    :cond_6a
     iget-object p2, p0, Lio/vanta/core/system/pm/BPackage;->reqFeatures:Ljava/util/ArrayList;
 
-    if-eqz p2, :cond_5
+    if-eqz p2, :cond_75
 
     iget-object p2, p0, Lio/vanta/core/system/pm/BPackage;->reqFeatures:Ljava/util/ArrayList;
 
@@ -877,13 +877,13 @@
 
     move-result p2
 
-    goto :goto_1
+    goto :goto_76
 
-    :cond_5
+    :cond_75
     move p2, p3
 
-    :goto_1
-    if-lez p2, :cond_6
+    :goto_76
+    if-lez p2, :cond_83
 
     .line 88
     new-array p2, p2, [Landroid/content/pm/FeatureInfo;
@@ -897,10 +897,10 @@
 
     invoke-virtual {p2, p4}, Ljava/util/ArrayList;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
 
-    :cond_6
+    :cond_83
     and-int/lit8 p2, p1, 0x1
 
-    if-eqz p2, :cond_8
+    if-eqz p2, :cond_b3
 
     .line 93
     iput-object v1, v0, Landroid/content/pm/PackageInfo;->activities:[Landroid/content/pm/ActivityInfo;
@@ -912,7 +912,7 @@
 
     move-result p2
 
-    if-lez p2, :cond_8
+    if-lez p2, :cond_b3
 
     .line 97
     new-array p4, p2, [Landroid/content/pm/ActivityInfo;
@@ -921,8 +921,8 @@
 
     move v2, p5
 
-    :goto_2
-    if-ge p5, p2, :cond_7
+    :goto_95
+    if-ge p5, p2, :cond_ab
 
     .line 99
     iget-object v3, p0, Lio/vanta/core/system/pm/BPackage;->activities:Ljava/util/ArrayList;
@@ -946,10 +946,10 @@
 
     move v2, v4
 
-    goto :goto_2
+    goto :goto_95
 
     .line 102
-    :cond_7
+    :cond_ab
     invoke-static {p4, v2}, Lio/vanta/utils/ArrayUtils;->trimToSize([Ljava/lang/Object;I)[Ljava/lang/Object;
 
     move-result-object p2
@@ -958,10 +958,10 @@
 
     iput-object p2, v0, Landroid/content/pm/PackageInfo;->activities:[Landroid/content/pm/ActivityInfo;
 
-    :cond_8
+    :cond_b3
     and-int/lit8 p2, p1, 0x2
 
-    if-eqz p2, :cond_a
+    if-eqz p2, :cond_e3
 
     .line 106
     iput-object v1, v0, Landroid/content/pm/PackageInfo;->receivers:[Landroid/content/pm/ActivityInfo;
@@ -973,7 +973,7 @@
 
     move-result p2
 
-    if-lez p2, :cond_a
+    if-lez p2, :cond_e3
 
     .line 110
     new-array p4, p2, [Landroid/content/pm/ActivityInfo;
@@ -982,8 +982,8 @@
 
     move v2, p5
 
-    :goto_3
-    if-ge p5, p2, :cond_9
+    :goto_c5
+    if-ge p5, p2, :cond_db
 
     .line 112
     iget-object v3, p0, Lio/vanta/core/system/pm/BPackage;->receivers:Ljava/util/ArrayList;
@@ -1007,10 +1007,10 @@
 
     move v2, v4
 
-    goto :goto_3
+    goto :goto_c5
 
     .line 115
-    :cond_9
+    :cond_db
     invoke-static {p4, v2}, Lio/vanta/utils/ArrayUtils;->trimToSize([Ljava/lang/Object;I)[Ljava/lang/Object;
 
     move-result-object p2
@@ -1019,10 +1019,10 @@
 
     iput-object p2, v0, Landroid/content/pm/PackageInfo;->receivers:[Landroid/content/pm/ActivityInfo;
 
-    :cond_a
+    :cond_e3
     and-int/lit8 p2, p1, 0x4
 
-    if-eqz p2, :cond_f
+    if-eqz p2, :cond_123
 
     .line 119
     iput-object v1, v0, Landroid/content/pm/PackageInfo;->services:[Landroid/content/pm/ServiceInfo;
@@ -1034,7 +1034,7 @@
 
     move-result p2
 
-    if-lez p2, :cond_f
+    if-lez p2, :cond_123
 
     .line 123
     new-array p4, p2, [Landroid/content/pm/ServiceInfo;
@@ -1043,8 +1043,8 @@
 
     move v2, p5
 
-    :goto_4
-    if-ge p5, p2, :cond_e
+    :goto_f5
+    if-ge p5, p2, :cond_11b
 
     .line 125
     iget-object v3, p0, Lio/vanta/core/system/pm/BPackage;->services:Ljava/util/ArrayList;
@@ -1060,44 +1060,44 @@
 
     move-result-object v3
 
-    if-nez v3, :cond_b
+    if-nez v3, :cond_106
 
-    goto :goto_6
+    goto :goto_118
 
-    :cond_b
+    :cond_106
     and-int/lit16 v4, p1, 0x80
 
-    if-eqz v4, :cond_c
+    if-eqz v4, :cond_113
 
     .line 130
     iget-object v4, v3, Landroid/content/pm/ServiceInfo;->metaData:Landroid/os/Bundle;
 
-    if-eqz v4, :cond_d
+    if-eqz v4, :cond_118
 
     add-int/lit8 v4, v2, 0x1
 
     .line 131
     aput-object v3, p4, v2
 
-    goto :goto_5
+    goto :goto_117
 
-    :cond_c
+    :cond_113
     add-int/lit8 v4, v2, 0x1
 
     .line 134
     aput-object v3, p4, v2
 
-    :goto_5
+    :goto_117
     move v2, v4
 
-    :cond_d
-    :goto_6
+    :cond_118
+    :goto_118
     add-int/lit8 p5, p5, 0x1
 
-    goto :goto_4
+    goto :goto_f5
 
     .line 137
-    :cond_e
+    :cond_11b
     invoke-static {p4, v2}, Lio/vanta/utils/ArrayUtils;->trimToSize([Ljava/lang/Object;I)[Ljava/lang/Object;
 
     move-result-object p2
@@ -1106,10 +1106,10 @@
 
     iput-object p2, v0, Landroid/content/pm/PackageInfo;->services:[Landroid/content/pm/ServiceInfo;
 
-    :cond_f
+    :cond_123
     and-int/lit8 p2, p1, 0x8
 
-    if-eqz p2, :cond_12
+    if-eqz p2, :cond_155
 
     .line 141
     iput-object v1, v0, Landroid/content/pm/PackageInfo;->providers:[Landroid/content/pm/ProviderInfo;
@@ -1121,7 +1121,7 @@
 
     move-result p2
 
-    if-lez p2, :cond_12
+    if-lez p2, :cond_155
 
     .line 145
     new-array p4, p2, [Landroid/content/pm/ProviderInfo;
@@ -1130,8 +1130,8 @@
 
     move v2, p5
 
-    :goto_7
-    if-ge p5, p2, :cond_11
+    :goto_135
+    if-ge p5, p2, :cond_14d
 
     .line 147
     iget-object v3, p0, Lio/vanta/core/system/pm/BPackage;->providers:Ljava/util/ArrayList;
@@ -1147,7 +1147,7 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_10
+    if-eqz v3, :cond_14a
 
     add-int/lit8 v4, v2, 0x1
 
@@ -1156,13 +1156,13 @@
 
     move v2, v4
 
-    :cond_10
+    :cond_14a
     add-int/lit8 p5, p5, 0x1
 
-    goto :goto_7
+    goto :goto_135
 
     .line 153
-    :cond_11
+    :cond_14d
     invoke-static {p4, v2}, Lio/vanta/utils/ArrayUtils;->trimToSize([Ljava/lang/Object;I)[Ljava/lang/Object;
 
     move-result-object p2
@@ -1171,10 +1171,10 @@
 
     iput-object p2, v0, Landroid/content/pm/PackageInfo;->providers:[Landroid/content/pm/ProviderInfo;
 
-    :cond_12
+    :cond_155
     and-int/lit8 p2, p1, 0x10
 
-    if-eqz p2, :cond_13
+    if-eqz p2, :cond_17d
 
     .line 157
     iput-object v1, v0, Landroid/content/pm/PackageInfo;->instrumentation:[Landroid/content/pm/InstrumentationInfo;
@@ -1186,7 +1186,7 @@
 
     move-result p2
 
-    if-lez p2, :cond_13
+    if-lez p2, :cond_17d
 
     .line 160
     new-array p4, p2, [Landroid/content/pm/InstrumentationInfo;
@@ -1195,8 +1195,8 @@
 
     move p4, p3
 
-    :goto_8
-    if-ge p4, p2, :cond_13
+    :goto_168
+    if-ge p4, p2, :cond_17d
 
     .line 162
     iget-object p5, v0, Landroid/content/pm/PackageInfo;->instrumentation:[Landroid/content/pm/InstrumentationInfo;
@@ -1219,12 +1219,12 @@
 
     add-int/lit8 p4, p4, 0x1
 
-    goto :goto_8
+    goto :goto_168
 
-    :cond_13
+    :cond_17d
     and-int/lit16 p2, p1, 0x1000
 
-    if-eqz p2, :cond_15
+    if-eqz p2, :cond_1c8
 
     .line 168
     iput-object v1, v0, Landroid/content/pm/PackageInfo;->permissions:[Landroid/content/pm/PermissionInfo;
@@ -1236,7 +1236,7 @@
 
     move-result p2
 
-    if-lez p2, :cond_14
+    if-lez p2, :cond_1a5
 
     .line 171
     new-array p4, p2, [Landroid/content/pm/PermissionInfo;
@@ -1245,8 +1245,8 @@
 
     move p4, p3
 
-    :goto_9
-    if-ge p4, p2, :cond_14
+    :goto_190
+    if-ge p4, p2, :cond_1a5
 
     .line 173
     iget-object p5, v0, Landroid/content/pm/PackageInfo;->permissions:[Landroid/content/pm/PermissionInfo;
@@ -1267,10 +1267,10 @@
 
     add-int/lit8 p4, p4, 0x1
 
-    goto :goto_9
+    goto :goto_190
 
     .line 176
-    :cond_14
+    :cond_1a5
     iput-object v1, v0, Landroid/content/pm/PackageInfo;->requestedPermissions:[Ljava/lang/String;
 
     .line 177
@@ -1280,7 +1280,7 @@
 
     move-result p2
 
-    if-lez p2, :cond_15
+    if-lez p2, :cond_1c8
 
     .line 179
     new-array p4, p2, [Ljava/lang/String;
@@ -1292,8 +1292,8 @@
 
     iput-object p4, v0, Landroid/content/pm/PackageInfo;->requestedPermissionsFlags:[I
 
-    :goto_a
-    if-ge p3, p2, :cond_15
+    :goto_1b7
+    if-ge p3, p2, :cond_1c8
 
     .line 182
     iget-object p4, p0, Lio/vanta/core/system/pm/BPackage;->requestedPermissions:Ljava/util/ArrayList;
@@ -1311,11 +1311,11 @@
 
     add-int/lit8 p3, p3, 0x1
 
-    goto :goto_a
+    goto :goto_1b7
 
     .line 194
-    :cond_15
-    :try_start_0
+    :cond_1c8
+    :try_start_1c8
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object p2
@@ -1329,91 +1329,95 @@
     invoke-virtual {p2, p3, p1}, Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
 
     move-result-object v1
-    :try_end_0
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1d6
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_1c8 .. :try_end_1d6} :catch_1d6
 
-    :catch_0
+    :catch_1d6
+    iget-object p2, p0, Lio/vanta/core/system/pm/BPackage;->packageName:Ljava/lang/String;
+
+    invoke-static {p2, p1}, Lio/vanta/fake/service/GmsCallerFix;->logSigQ(Ljava/lang/String;I)V
+
     and-int/lit8 p2, p1, 0x40
 
-    if-eqz p2, :cond_18
+    if-eqz p2, :cond_1f4
 
-    if-eqz v1, :cond_17
+    if-eqz v1, :cond_1f0
 
     .line 198
     iget-object p2, v1, Landroid/content/pm/PackageInfo;->signatures:[Landroid/content/pm/Signature;
 
-    if-eqz p2, :cond_17
+    if-eqz p2, :cond_1f0
 
     iget-object p2, v1, Landroid/content/pm/PackageInfo;->signatures:[Landroid/content/pm/Signature;
 
     array-length p2, p2
 
-    if-nez p2, :cond_16
+    if-nez p2, :cond_1eb
 
-    goto :goto_b
+    goto :goto_1f0
 
     .line 201
-    :cond_16
+    :cond_1eb
     iget-object p2, v1, Landroid/content/pm/PackageInfo;->signatures:[Landroid/content/pm/Signature;
 
     iput-object p2, v0, Landroid/content/pm/PackageInfo;->signatures:[Landroid/content/pm/Signature;
 
-    goto :goto_c
+    goto :goto_1f4
 
     .line 199
-    :cond_17
-    :goto_b
+    :cond_1f0
+    :goto_1f0
     iget-object p2, p0, Lio/vanta/core/system/pm/BPackage;->mSignatures:[Landroid/content/pm/Signature;
 
     iput-object p2, v0, Landroid/content/pm/PackageInfo;->signatures:[Landroid/content/pm/Signature;
 
     .line 204
-    :cond_18
-    :goto_c
+    :cond_1f4
+    :goto_1f4
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isPie()Z
 
     move-result p2
 
-    if-eqz p2, :cond_1b
+    if-eqz p2, :cond_22c
 
     const/high16 p2, 0x8000000
 
     and-int/2addr p1, p2
 
-    if-eqz p1, :cond_1b
+    if-eqz p1, :cond_22c
 
-    if-eqz v1, :cond_1a
+    if-eqz v1, :cond_20b
 
     .line 206
     iget-object p1, v1, Landroid/content/pm/PackageInfo;->signingInfo:Landroid/content/pm/SigningInfo;
 
-    if-nez p1, :cond_19
+    if-nez p1, :cond_206
 
-    goto :goto_d
+    goto :goto_20b
 
     .line 213
-    :cond_19
+    :cond_206
     iget-object p0, v1, Landroid/content/pm/PackageInfo;->signingInfo:Landroid/content/pm/SigningInfo;
 
     iput-object p0, v0, Landroid/content/pm/PackageInfo;->signingInfo:Landroid/content/pm/SigningInfo;
 
-    goto :goto_e
+    goto :goto_22c
 
     .line 207
-    :cond_1a
-    :goto_d
+    :cond_20b
+    :goto_20b
     sget-object p1, Landroid/content/pm/PackageParser$SigningDetails;->UNKNOWN:Landroid/content/pm/PackageParser$SigningDetails;
 
     .line 208
     iget-object p2, p0, Lio/vanta/core/system/pm/BPackage;->mSigningDetails:Lio/vanta/core/system/pm/BPackage$SigningDetails;
 
-    if-eqz p2, :cond_1b
+    if-eqz p2, :cond_22c
 
     iget-object p2, p0, Lio/vanta/core/system/pm/BPackage;->mSigningDetails:Lio/vanta/core/system/pm/BPackage$SigningDetails;
 
     iget-object p2, p2, Lio/vanta/core/system/pm/BPackage$SigningDetails;->signatures:[Landroid/content/pm/Signature;
 
-    if-eqz p2, :cond_1b
+    if-eqz p2, :cond_22c
 
     .line 209
     invoke-static {p1}, Lvanta/android/content/pm/BRPackageParserSigningDetails;->get(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserSigningDetailsContext;
@@ -1437,25 +1441,27 @@
 
     iput-object p0, v0, Landroid/content/pm/PackageInfo;->signingInfo:Landroid/content/pm/SigningInfo;
 
-    :cond_1b
-    :goto_e
+    :cond_22c
+    :goto_22c
+    invoke-static {v0}, Lio/vanta/fake/service/GmsCallerFix;->xjLogSig(Landroid/content/pm/PackageInfo;)V
+
     return-object v0
 .end method
 
 .method public static generatePackageInfo(Lio/vanta/core/system/pm/BPackageSettings;ILio/vanta/core/system/pm/BPackageUserState;I)Landroid/content/pm/PackageInfo;
-    .locals 9
+    .registers 13
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return-object v0
 
     .line 44
-    :cond_0
+    :cond_4
     iget-object v1, p0, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_14
 
     const-wide/16 v3, 0x0
 
@@ -1468,33 +1474,33 @@
     move v8, p3
 
     .line 48
-    :try_start_0
+    :try_start_f
     invoke-static/range {v1 .. v8}, Lio/vanta/core/system/pm/PackageManagerCompat;->generatePackageInfo(Lio/vanta/core/system/pm/BPackage;IJJLio/vanta/core/system/pm/BPackageUserState;I)Landroid/content/pm/PackageInfo;
 
     move-result-object p0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_f .. :try_end_13} :catchall_14
 
     return-object p0
 
-    :catchall_0
-    :cond_1
+    :catchall_14
+    :cond_14
     return-object v0
 .end method
 
 .method public static generatePermissionInfo(Lio/vanta/core/system/pm/BPackage$Permission;I)Landroid/content/pm/PermissionInfo;
-    .locals 1
+    .registers 3
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     const/4 p0, 0x0
 
     return-object p0
 
-    :cond_0
+    :cond_4
     and-int/lit16 p1, p1, 0x80
 
-    if-nez p1, :cond_1
+    if-nez p1, :cond_b
 
     .line 265
     iget-object p0, p0, Lio/vanta/core/system/pm/BPackage$Permission;->info:Landroid/content/pm/PermissionInfo;
@@ -1502,7 +1508,7 @@
     return-object p0
 
     .line 267
-    :cond_1
+    :cond_b
     new-instance p1, Landroid/content/pm/PermissionInfo;
 
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$Permission;->info:Landroid/content/pm/PermissionInfo;
@@ -1518,7 +1524,7 @@
 .end method
 
 .method public static generateProviderInfo(Lio/vanta/core/system/pm/BPackage$Provider;ILio/vanta/core/system/pm/BPackageUserState;I)Landroid/content/pm/ProviderInfo;
-    .locals 4
+    .registers 8
 
     .line 245
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$Provider;->info:Landroid/content/pm/ProviderInfo;
@@ -1531,12 +1537,12 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_c
 
     return-object v1
 
     .line 249
-    :cond_0
+    :cond_c
     new-instance v0, Landroid/content/pm/ProviderInfo;
 
     iget-object v2, p0, Lio/vanta/core/system/pm/BPackage$Provider;->info:Landroid/content/pm/ProviderInfo;
@@ -1546,12 +1552,12 @@
     .line 250
     iget-object v2, v0, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_18
 
     return-object v1
 
     .line 252
-    :cond_1
+    :cond_18
     iget-object v2, p0, Lio/vanta/core/system/pm/BPackage$Provider;->metaData:Landroid/os/Bundle;
 
     iput-object v2, v0, Landroid/content/pm/ProviderInfo;->metaData:Landroid/os/Bundle;
@@ -1569,13 +1575,13 @@
 
     and-int/lit16 v2, p1, 0x800
 
-    if-nez v2, :cond_2
+    if-nez v2, :cond_2c
 
     .line 255
     iput-object v1, v0, Landroid/content/pm/ProviderInfo;->uriPermissionPatterns:[Landroid/os/PatternMatcher;
 
     .line 257
-    :cond_2
+    :cond_2c
     iget-object p0, p0, Lio/vanta/core/system/pm/BPackage$Provider;->owner:Lio/vanta/core/system/pm/BPackage;
 
     invoke-static {p0, p1, p2, p3}, Lio/vanta/core/system/pm/PackageManagerCompat;->generateApplicationInfo(Lio/vanta/core/system/pm/BPackage;ILio/vanta/core/system/pm/BPackageUserState;I)Landroid/content/pm/ApplicationInfo;
@@ -1588,7 +1594,7 @@
 .end method
 
 .method public static generateServiceInfo(Lio/vanta/core/system/pm/BPackage$Service;ILio/vanta/core/system/pm/BPackageUserState;I)Landroid/content/pm/ServiceInfo;
-    .locals 3
+    .registers 7
 
     .line 233
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$Service;->info:Landroid/content/pm/ServiceInfo;
@@ -1599,14 +1605,14 @@
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_c
 
     const/4 p0, 0x0
 
     return-object p0
 
     .line 237
-    :cond_0
+    :cond_c
     new-instance v0, Landroid/content/pm/ServiceInfo;
 
     iget-object v1, p0, Lio/vanta/core/system/pm/BPackage$Service;->info:Landroid/content/pm/ServiceInfo;
@@ -1642,7 +1648,7 @@
 .end method
 
 .method public static getResources(Landroid/content/Context;Landroid/content/pm/ApplicationInfo;)Landroid/content/res/Resources;
-    .locals 2
+    .registers 4
 
     .line 409
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
@@ -1655,7 +1661,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_31
 
     .line 411
     invoke-static {}, Lvanta/android/content/res/BRAssetManager;->get()Lvanta/android/content/res/AssetManagerStatic;
@@ -1697,7 +1703,7 @@
 
     return-object p1
 
-    :cond_0
+    :cond_31
     const/4 p0, 0x0
 
     return-object p0

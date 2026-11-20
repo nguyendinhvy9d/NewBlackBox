@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 62
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -48,17 +48,17 @@
     invoke-static {v2, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 69
-    :try_start_0
+    :try_start_9
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_37
 
     .line 70
     instance-of p2, p1, [Landroid/content/pm/PackageInfo;
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_37
 
     .line 71
     move-object p2, p1
@@ -68,7 +68,7 @@
     .line 72
     array-length p3, p2
 
-    if-lez p3, :cond_0
+    if-lez p3, :cond_37
 
     .line 73
     new-instance p3, Ljava/lang/StringBuilder;
@@ -92,12 +92,12 @@
     move-result-object p2
 
     invoke-static {v2, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_30
+    .catch Ljava/lang/Exception; {:try_start_9 .. :try_end_30} :catch_31
 
     return-object p1
 
-    :catch_0
+    :catch_31
     move-exception p1
 
     .line 78
@@ -106,7 +106,7 @@
     invoke-static {v2, p2, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 82
-    :cond_0
+    :cond_37
     const-string p1, "WebViewUpdateService: Returning empty array to prevent conflicts"
 
     invoke-static {v2, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I

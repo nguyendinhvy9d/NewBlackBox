@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 705
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -50,24 +50,24 @@
     const/4 v1, 0x0
 
     .line 711
-    :try_start_0
+    :try_start_a
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_3
+    :try_end_e
+    .catch Ljava/lang/Exception; {:try_start_a .. :try_end_e} :catch_64
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_11
 
     return-object p1
 
-    :cond_0
+    :cond_11
     const/4 p1, 0x0
 
     const/4 p2, 0x1
 
     .line 723
-    :try_start_1
+    :try_start_13
     const-class p3, Landroid/net/Network;
 
     new-array v3, p2, [Ljava/lang/Class;
@@ -94,14 +94,14 @@
     move-result-object p3
 
     check-cast p3, Landroid/net/Network;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_2d
+    .catch Ljava/lang/Exception; {:try_start_13 .. :try_end_2d} :catch_2e
 
-    goto :goto_0
+    goto :goto_42
 
     .line 728
-    :catch_0
-    :try_start_2
+    :catch_2e
+    :try_start_2e
     const-class p3, Landroid/net/Network;
 
     new-array v3, p1, [Ljava/lang/Class;
@@ -123,12 +123,12 @@
     move-object p3, p1
 
     check-cast p3, Landroid/net/Network;
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_42
+    .catch Ljava/lang/Exception; {:try_start_2e .. :try_end_42} :catch_48
 
     .line 737
-    :goto_0
-    :try_start_3
+    :goto_42
+    :try_start_42
     const-string p1, "Created fallback Network for type"
 
     invoke-static {v2, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -136,20 +136,20 @@
     return-object p3
 
     .line 733
-    :catch_1
+    :catch_48
     const-string p1, "Could not create Network object, returning null"
 
     invoke-static {v2, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+    :try_end_4d
+    .catch Ljava/lang/Exception; {:try_start_42 .. :try_end_4d} :catch_4e
 
     return-object v1
 
-    :catch_2
+    :catch_4e
     move-exception p1
 
     .line 740
-    :try_start_4
+    :try_start_4f
     new-instance p2, Ljava/lang/StringBuilder;
 
     invoke-direct {p2, v0}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -167,12 +167,12 @@
     move-result-object p1
 
     invoke-static {v2, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_3
+    :try_end_63
+    .catch Ljava/lang/Exception; {:try_start_4f .. :try_end_63} :catch_64
 
     return-object v1
 
-    :catch_3
+    :catch_64
     move-exception p1
 
     .line 747

@@ -28,7 +28,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/accounts/BAccountManagerService;Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;ZZLjava/lang/String;ZLandroid/accounts/Account;Landroid/accounts/IAccountManagerResponse;Lio/vanta/core/system/accounts/BUserAccounts;I)V
-    .locals 0
+    .registers 13
 
     .line 423
     iput-object p1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$2;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -49,9 +49,9 @@
 
 # virtual methods
 .method public onResult(Landroid/os/Bundle;)V
-    .locals 7
+    .registers 9
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_1a
 
     .line 437
     const-string v0, "booleanResult"
@@ -63,7 +63,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1a
 
     .line 440
     iget-object v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$2;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -82,7 +82,7 @@
 
     return-void
 
-    :cond_0
+    :cond_1a
     move-object v3, p1
 
     .line 442
@@ -92,7 +92,7 @@
 .end method
 
 .method public run()V
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -110,7 +110,7 @@
 .end method
 
 .method protected toDebugString(J)Ljava/lang/String;
-    .locals 1
+    .registers 4
 
     .line 426
     new-instance v0, Ljava/lang/StringBuilder;

@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 14
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -26,7 +26,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 19
     invoke-static {}, Lvanta/android/view/BRIGraphicsStatsStub;->get()Lvanta/android/view/IGraphicsStatsStubStatic;
@@ -51,7 +51,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 24
     const-string p1, "fingerprint"
@@ -62,7 +62,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -70,7 +70,7 @@
 .end method
 
 .method protected onBindMethod()V
-    .locals 2
+    .registers 3
 
     .line 34
     invoke-super {p0}, Lio/vanta/fake/hook/BinderInvocationStub;->onBindMethod()V

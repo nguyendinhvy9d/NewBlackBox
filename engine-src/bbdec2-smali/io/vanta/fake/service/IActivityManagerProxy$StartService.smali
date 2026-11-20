@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 307
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,27 +31,27 @@
 
 # virtual methods
 .method public getRequireForeground()I
-    .locals 1
+    .registers 2
 
     .line 434
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     const/4 v0, 0x3
 
     return v0
 
-    :cond_0
+    :cond_8
     const/4 v0, -0x1
 
     return v0
 .end method
 
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 16
+    .registers 20
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -71,7 +71,7 @@
 
     check-cast v4, Landroid/content/Intent;
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_12
 
     .line 312
     invoke-virtual {v1, v0, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -81,13 +81,15 @@
     return-object v0
 
     .line 316
-    :cond_0
-    :try_start_0
+    :cond_12
+    :try_start_12
+    invoke-static {v4}, Lio/vanta/fake/service/GmsCallerFix;->fixGmsComponentPkg(Landroid/content/Intent;)V
+
     invoke-virtual {v4}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v5
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_2e
 
     invoke-virtual {v4}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
@@ -105,32 +107,32 @@
 
     move-result v5
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_2e
 
-    goto :goto_0
+    goto :goto_36
 
     .line 318
-    :cond_1
+    :cond_2e
     const-string v5, "_B_|_target_"
 
     invoke-virtual {v4, v5}, Landroid/content/Intent;->hasExtra(Ljava/lang/String;)Z
 
     move-result v5
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_34
+    .catchall {:try_start_12 .. :try_end_34} :catchall_3b
 
-    if-eqz v5, :cond_2
+    if-eqz v5, :cond_3b
 
     .line 324
-    :goto_0
+    :goto_36
     invoke-virtual {v1, v0, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
     return-object v0
 
-    :catchall_0
-    :cond_2
+    :catchall_3b
+    :cond_3b
     const/4 v5, 0x2
 
     .line 326
@@ -174,13 +176,13 @@
 
     move-result-object v11
 
-    if-nez v11, :cond_3
+    if-nez v11, :cond_8e
 
-    if-nez v9, :cond_3
+    if-nez v9, :cond_8e
 
-    if-eqz v8, :cond_3
+    if-eqz v8, :cond_8e
 
-    if-eqz v6, :cond_3
+    if-eqz v6, :cond_8e
 
     .line 340
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -191,7 +193,7 @@
 
     move-result v13
 
-    if-nez v13, :cond_3
+    if-nez v13, :cond_8e
 
     .line 341
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -202,7 +204,7 @@
 
     move-result v13
 
-    if-eqz v13, :cond_3
+    if-eqz v13, :cond_8e
 
     .line 342
     new-instance v11, Landroid/content/Intent;
@@ -229,15 +231,15 @@
 
     move-object v14, v6
 
-    goto :goto_1
+    goto :goto_90
 
-    :cond_3
+    :cond_8e
     move-object v13, v4
 
     move-object v14, v7
 
     .line 348
-    :goto_1
+    :goto_90
     new-instance v15, Ljava/lang/StringBuilder;
 
     const-string v3, "[ServiceResolution] startService: callerVirtualPkg="
@@ -321,7 +323,7 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_123
 
     .line 358
     invoke-virtual {v4}, Landroid/content/Intent;->getExtras()Landroid/os/Bundle;
@@ -336,12 +338,12 @@
 
     move-result-object v3
 
-    :goto_2
+    :goto_f2
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v7
 
-    if-eqz v7, :cond_4
+    if-eqz v7, :cond_123
 
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -384,16 +386,16 @@
 
     invoke-static {v6, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_2
+    goto :goto_f2
 
     .line 363
-    :cond_4
+    :cond_123
     const-string v3, "[ServiceResolution] isOpenPackage=true, delegating to host"
 
-    if-nez v11, :cond_7
+    if-nez v11, :cond_187
 
     .line 365
-    :try_start_1
+    :try_start_127
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v7
@@ -406,12 +408,12 @@
 
     move-result-object v7
 
-    if-eqz v7, :cond_7
+    if-eqz v7, :cond_187
 
     .line 366
     iget-object v8, v7, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
 
-    if-eqz v8, :cond_7
+    if-eqz v8, :cond_187
 
     .line 367
     new-instance v8, Landroid/content/ComponentName;
@@ -435,7 +437,7 @@
 
     move-result v9
 
-    if-eqz v9, :cond_5
+    if-eqz v9, :cond_158
 
     .line 369
     invoke-static {v6, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -448,7 +450,7 @@
     return-object v0
 
     .line 371
-    :cond_5
+    :cond_158
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v9
@@ -461,7 +463,7 @@
 
     move-result v7
 
-    if-eqz v7, :cond_7
+    if-eqz v7, :cond_187
 
     .line 372
     invoke-virtual {v4, v8}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
@@ -474,13 +476,13 @@
     invoke-virtual {v7, v4, v12, v5, v10}, Lio/vanta/fake/frameworks/BPackageManager;->resolveService(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
 
     move-result-object v7
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_3
+    :try_end_171
+    .catchall {:try_start_127 .. :try_end_171} :catchall_187
 
-    if-nez v7, :cond_6
+    if-nez v7, :cond_186
 
     .line 375
-    :try_start_2
+    :try_start_173
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v9
@@ -489,41 +491,41 @@
 
     move-result-object v8
 
-    if-eqz v8, :cond_6
+    if-eqz v8, :cond_186
 
     .line 377
     new-instance v9, Landroid/content/pm/ResolveInfo;
 
     invoke-direct {v9}, Landroid/content/pm/ResolveInfo;-><init>()V
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
+    :try_end_182
+    .catchall {:try_start_173 .. :try_end_182} :catchall_186
 
     .line 378
-    :try_start_3
+    :try_start_182
     iput-object v8, v9, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+    :try_end_184
+    .catchall {:try_start_182 .. :try_end_184} :catchall_184
 
-    :catchall_1
+    :catchall_184
     move-object v11, v9
 
-    goto :goto_3
+    goto :goto_187
 
-    :catchall_2
-    :cond_6
+    :catchall_186
+    :cond_186
     move-object v11, v7
 
-    :catchall_3
-    :cond_7
-    :goto_3
-    if-nez v11, :cond_8
+    :catchall_187
+    :cond_187
+    :goto_187
+    if-nez v11, :cond_1b6
 
     .line 387
     invoke-virtual {v4}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
     move-result-object v7
 
-    if-eqz v7, :cond_8
+    if-eqz v7, :cond_1b6
 
     invoke-virtual {v4}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
@@ -535,7 +537,7 @@
 
     move-result v7
 
-    if-eqz v7, :cond_8
+    if-eqz v7, :cond_1b6
 
     .line 388
     new-instance v7, Landroid/content/ComponentName;
@@ -553,7 +555,7 @@
 
     move-result-object v8
 
-    if-eqz v8, :cond_8
+    if-eqz v8, :cond_1b6
 
     .line 391
     invoke-virtual {v4, v7}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
@@ -566,17 +568,17 @@
     .line 393
     iput-object v8, v11, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
 
-    :cond_8
+    :cond_1b6
     const/4 v7, 0x0
 
-    if-nez v11, :cond_c
+    if-nez v11, :cond_1e6
 
     .line 399
     invoke-virtual {v4}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v5
 
-    if-eqz v5, :cond_9
+    if-eqz v5, :cond_1c8
 
     .line 400
     invoke-virtual {v4}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
@@ -587,15 +589,15 @@
 
     move-result v12
 
-    goto :goto_4
+    goto :goto_1d6
 
     .line 401
-    :cond_9
+    :cond_1c8
     invoke-virtual {v4}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
     move-result-object v5
 
-    if-eqz v5, :cond_a
+    if-eqz v5, :cond_1d6
 
     .line 402
     invoke-virtual {v4}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
@@ -606,9 +608,9 @@
 
     move-result v12
 
-    :cond_a
-    :goto_4
-    if-eqz v12, :cond_b
+    :cond_1d6
+    :goto_1d6
+    if-eqz v12, :cond_1e0
 
     .line 405
     invoke-static {v6, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -621,7 +623,7 @@
     return-object v0
 
     .line 408
-    :cond_b
+    :cond_1e0
     const-string v0, "[ServiceResolution] service NOT started (resolveInfo is null)"
 
     invoke-static {v6, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -629,14 +631,14 @@
     return-object v7
 
     .line 412
-    :cond_c
+    :cond_1e6
     invoke-virtual/range {p0 .. p0}, Lio/vanta/fake/service/IActivityManagerProxy$StartService;->getRequireForeground()I
 
     move-result v0
 
     const/4 v1, -0x1
 
-    if-eq v0, v1, :cond_d
+    if-eq v0, v1, :cond_1f6
 
     .line 415
     aget-object v0, v2, v0
@@ -647,27 +649,27 @@
 
     move-result v0
 
-    goto :goto_5
+    goto :goto_1f7
 
-    :cond_d
+    :cond_1f6
     move v0, v12
 
-    :goto_5
-    if-eq v13, v4, :cond_e
+    :goto_1f7
+    if-eq v13, v4, :cond_1fa
 
     move-object v4, v13
 
     .line 422
-    :cond_e
+    :cond_1fa
     invoke-virtual {v4}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v1
 
-    if-nez v1, :cond_f
+    if-nez v1, :cond_214
 
     iget-object v1, v11, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
 
-    if-eqz v1, :cond_f
+    if-eqz v1, :cond_214
 
     .line 423
     new-instance v1, Landroid/content/ComponentName;
@@ -685,7 +687,7 @@
     invoke-virtual {v4, v1}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
     .line 426
-    :cond_f
+    :cond_214
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
     move-result-object v1
@@ -711,24 +713,24 @@
 
     move-result-object v1
 
-    if-nez v0, :cond_11
+    if-nez v0, :cond_236
 
     iget-object v2, v11, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
 
-    if-eqz v2, :cond_10
+    if-eqz v2, :cond_234
 
-    goto :goto_6
+    goto :goto_236
 
-    :cond_10
+    :cond_234
     move v3, v12
 
-    goto :goto_7
+    goto :goto_237
 
-    :cond_11
-    :goto_6
+    :cond_236
+    :goto_236
     const/4 v3, 0x1
 
-    :goto_7
+    :goto_237
     invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
     move-result-object v1
@@ -739,17 +741,17 @@
 
     invoke-static {v6, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz v0, :cond_12
+    if-eqz v0, :cond_246
 
     move-object v7, v0
 
-    goto :goto_8
+    goto :goto_257
 
     .line 429
-    :cond_12
+    :cond_246
     iget-object v0, v11, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
 
-    if-eqz v0, :cond_13
+    if-eqz v0, :cond_257
 
     .line 430
     new-instance v7, Landroid/content/ComponentName;
@@ -764,7 +766,7 @@
 
     invoke-direct {v7, v0, v1}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
-    :cond_13
-    :goto_8
+    :cond_257
+    :goto_257
     return-object v7
 .end method

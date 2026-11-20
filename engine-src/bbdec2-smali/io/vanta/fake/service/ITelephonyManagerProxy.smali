@@ -34,7 +34,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 30
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -53,7 +53,7 @@
 .end method
 
 .method private constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 34
     invoke-direct {p0, p1}, Lio/vanta/fake/hook/BinderInvocationStub;-><init>(Landroid/os/IBinder;)V
@@ -67,19 +67,19 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 2
+    .registers 3
 
     .line 40
     iget-object v0, p0, Lio/vanta/fake/service/ITelephonyManagerProxy;->mRawBinder:Landroid/os/IBinder;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     const/4 v0, 0x0
 
     return-object v0
 
     .line 41
-    :cond_0
+    :cond_6
     invoke-static {}, Lvanta/com/android/internal/telephony/BRITelephonyStub;->get()Lvanta/com/android/internal/telephony/ITelephonyStubStatic;
 
     move-result-object v0
@@ -94,7 +94,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 46
     const-string p1, "phone"
@@ -105,7 +105,7 @@
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -117,34 +117,34 @@
     invoke-super {p0, p1, p2, p3}, Lio/vanta/fake/hook/BinderInvocationStub;->invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_4
+    .catchall {:try_start_0 .. :try_end_4} :catchall_5
 
     return-object p1
 
-    :catchall_0
+    :catchall_5
     move-exception p1
 
     .line 59
     instance-of p3, p1, Ljava/lang/reflect/InvocationTargetException;
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_14
 
     invoke-virtual {p1}, Ljava/lang/Throwable;->getCause()Ljava/lang/Throwable;
 
     move-result-object p3
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_14
 
     invoke-virtual {p1}, Ljava/lang/Throwable;->getCause()Ljava/lang/Throwable;
 
     move-result-object p1
 
     .line 60
-    :cond_0
+    :cond_14
     instance-of p3, p1, Ljava/lang/SecurityException;
 
-    if-eqz p3, :cond_7
+    if-eqz p3, :cond_71
 
     .line 61
     new-instance p3, Ljava/lang/StringBuilder;
@@ -193,45 +193,45 @@
 
     const/4 p3, 0x0
 
-    if-eq p1, p2, :cond_6
+    if-eq p1, p2, :cond_6c
 
     const-class p2, Ljava/lang/Boolean;
 
-    if-ne p1, p2, :cond_1
+    if-ne p1, p2, :cond_4c
 
-    goto :goto_2
+    goto :goto_6c
 
     .line 65
-    :cond_1
+    :cond_4c
     sget-object p2, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_5
+    if-eq p1, p2, :cond_67
 
     const-class p2, Ljava/lang/Integer;
 
-    if-ne p1, p2, :cond_2
+    if-ne p1, p2, :cond_55
 
-    goto :goto_1
+    goto :goto_67
 
     .line 67
-    :cond_2
+    :cond_55
     sget-object p2, Ljava/lang/Long;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_4
+    if-eq p1, p2, :cond_60
 
     const-class p2, Ljava/lang/Long;
 
-    if-ne p1, p2, :cond_3
+    if-ne p1, p2, :cond_5e
 
-    goto :goto_0
+    goto :goto_60
 
-    :cond_3
+    :cond_5e
     const/4 p1, 0x0
 
     return-object p1
 
-    :cond_4
-    :goto_0
+    :cond_60
+    :goto_60
     const-wide/16 p1, 0x0
 
     .line 68
@@ -242,8 +242,8 @@
     return-object p1
 
     .line 66
-    :cond_5
-    :goto_1
+    :cond_67
+    :goto_67
     invoke-static {p3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object p1
@@ -251,8 +251,8 @@
     return-object p1
 
     .line 64
-    :cond_6
-    :goto_2
+    :cond_6c
+    :goto_6c
     invoke-static {p3}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object p1
@@ -260,12 +260,12 @@
     return-object p1
 
     .line 72
-    :cond_7
+    :cond_71
     throw p1
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

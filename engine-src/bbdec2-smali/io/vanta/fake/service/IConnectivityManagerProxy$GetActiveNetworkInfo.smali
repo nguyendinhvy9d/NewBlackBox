@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 412
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -43,17 +43,17 @@
     const/4 v1, 0x1
 
     .line 416
-    :try_start_0
+    :try_start_2
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_6} :catch_30
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_30
 
     .line 420
-    :try_start_1
+    :try_start_8
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object p2
@@ -95,15 +95,15 @@
     move-result-object p3
 
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_2f
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_2f} :catch_2f
 
-    :catch_0
+    :catch_2f
     return-object p1
 
     .line 432
-    :catch_1
-    :cond_0
+    :catch_30
+    :cond_30
     const-string p1, "IConnectivityManagerProxy"
 
     const-string p2, "Creating fallback NetworkInfo for getActiveNetworkInfo"

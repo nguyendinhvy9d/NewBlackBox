@@ -40,7 +40,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 20
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -61,7 +61,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 7
+    .registers 8
 
     .line 25
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -76,13 +76,13 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_e
 
     return-object v1
 
     .line 31
-    :cond_0
-    :try_start_0
+    :cond_e
+    :try_start_e
     const-string v2, "miui.security.ISecurityManager$Stub"
 
     invoke-static {v2}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -114,12 +114,12 @@
     invoke-virtual {v2, v1, v0}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2a
+    .catch Ljava/lang/Exception; {:try_start_e .. :try_end_2a} :catch_2b
 
     return-object v0
 
-    :catch_0
+    :catch_2b
     move-exception v0
 
     .line 35
@@ -149,7 +149,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 42
     const-string p1, "miui.security.SecurityManager"
@@ -160,7 +160,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -168,7 +168,7 @@
 .end method
 
 .method public isEnable()Z
-    .locals 2
+    .registers 3
 
     .line 51
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -181,20 +181,20 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_e
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_e
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method protected onBindMethod()V
-    .locals 1
+    .registers 2
 
     .line 56
     invoke-super {p0}, Lio/vanta/fake/hook/BinderInvocationStub;->onBindMethod()V

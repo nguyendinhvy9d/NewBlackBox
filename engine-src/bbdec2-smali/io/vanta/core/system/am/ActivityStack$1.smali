@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/am/ActivityStack;Landroid/os/Looper;)V
-    .locals 0
+    .registers 3
 
     .line 57
     iput-object p1, p0, Lio/vanta/core/system/am/ActivityStack$1;->this$0:Lio/vanta/core/system/am/ActivityStack;
@@ -33,22 +33,22 @@
 
 # virtual methods
 .method public handleMessage(Landroid/os/Message;)V
-    .locals 1
+    .registers 3
 
     .line 60
     iget v0, p1, Landroid/os/Message;->what:I
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
-    goto :goto_0
+    goto :goto_14
 
     .line 62
-    :cond_0
+    :cond_5
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast p1, Lio/vanta/core/system/am/ActivityRecord;
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_14
 
     .line 64
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack$1;->this$0:Lio/vanta/core/system/am/ActivityStack;
@@ -59,7 +59,7 @@
 
     invoke-interface {v0, p1}, Ljava/util/Set;->remove(Ljava/lang/Object;)Z
 
-    :cond_1
-    :goto_0
+    :cond_14
+    :goto_14
     return-void
 .end method

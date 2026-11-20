@@ -19,7 +19,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 12
+    .registers 12
 
     const/16 v0, 0x8
 
@@ -178,7 +178,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 34
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -187,7 +187,7 @@
 .end method
 
 .method public static clearCache()V
-    .locals 1
+    .registers 1
 
     const/4 v0, 0x0
 
@@ -203,28 +203,28 @@
 .end method
 
 .method public static findContainerBrowser()Ljava/lang/String;
-    .locals 11
+    .registers 11
 
     .line 136
     const-string v0, "BrowserRedirectProxy"
 
     sget-boolean v1, Lio/vanta/fake/service/BrowserRedirectProxy;->sCheckedForBrowser:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_b
 
     sget-object v1, Lio/vanta/fake/service/BrowserRedirectProxy;->sCachedContainerBrowser:Ljava/lang/String;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_b
 
     return-object v1
 
-    :cond_0
+    :cond_b
     const/4 v1, 0x0
 
     const/4 v2, 0x1
 
     .line 141
-    :try_start_0
+    :try_start_d
     invoke-static {}, Lio/vanta/app/BActivityThread;->getUserId()I
 
     move-result v3
@@ -238,15 +238,15 @@
 
     move v7, v6
 
-    :goto_0
-    if-ge v7, v5, :cond_2
+    :goto_16
+    if-ge v7, v5, :cond_42
 
     aget-object v8, v4, v7
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_1a
+    .catch Ljava/lang/Exception; {:try_start_d .. :try_end_1a} :catch_bd
 
     .line 146
-    :try_start_1
+    :try_start_1a
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v9
@@ -256,7 +256,7 @@
 
     move-result-object v9
 
-    if-eqz v9, :cond_1
+    if-eqz v9, :cond_3f
 
     .line 149
     new-instance v9, Ljava/lang/StringBuilder;
@@ -284,20 +284,20 @@
 
     .line 151
     sput-boolean v2, Lio/vanta/fake/service/BrowserRedirectProxy;->sCheckedForBrowser:Z
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_3e
+    .catch Ljava/lang/Exception; {:try_start_1a .. :try_end_3e} :catch_3f
 
     return-object v8
 
-    :catch_0
-    :cond_1
+    :catch_3f
+    :cond_3f
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_0
+    goto :goto_16
 
     .line 160
-    :cond_2
-    :try_start_2
+    :cond_42
+    :try_start_42
     new-instance v4, Landroid/content/Intent;
 
     const-string v5, "android.intent.action.VIEW"
@@ -320,26 +320,26 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_8
+    if-eqz v3, :cond_d4
 
     .line 164
     invoke-interface {v3}, Ljava/util/List;->isEmpty()Z
 
     move-result v4
 
-    if-nez v4, :cond_8
+    if-nez v4, :cond_d4
 
     .line 165
     invoke-interface {v3}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v3
 
-    :cond_3
+    :cond_63
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_8
+    if-eqz v4, :cond_d4
 
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -350,7 +350,7 @@
     .line 166
     iget-object v5, v4, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
 
-    if-eqz v5, :cond_3
+    if-eqz v5, :cond_63
 
     .line 167
     iget-object v4, v4, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
@@ -364,8 +364,8 @@
 
     move v8, v6
 
-    :goto_1
-    if-ge v8, v7, :cond_5
+    :goto_7b
+    if-ge v8, v7, :cond_8a
 
     aget-object v9, v5, v8
 
@@ -374,22 +374,22 @@
 
     move-result v9
 
-    if-eqz v9, :cond_4
+    if-eqz v9, :cond_87
 
     move v5, v2
 
-    goto :goto_2
+    goto :goto_8b
 
-    :cond_4
+    :cond_87
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_1
+    goto :goto_7b
 
-    :cond_5
+    :cond_8a
     move v5, v6
 
-    :goto_2
-    if-nez v5, :cond_7
+    :goto_8b
+    if-nez v5, :cond_a0
 
     .line 177
     sget-object v7, Lio/vanta/fake/service/BrowserRedirectProxy;->NON_CONTAINER_BROWSERS:[Ljava/lang/String;
@@ -398,8 +398,8 @@
 
     move v9, v6
 
-    :goto_3
-    if-ge v9, v8, :cond_7
+    :goto_91
+    if-ge v9, v8, :cond_a0
 
     aget-object v10, v7, v9
 
@@ -408,20 +408,20 @@
 
     move-result v10
 
-    if-eqz v10, :cond_6
+    if-eqz v10, :cond_9d
 
     move v5, v2
 
-    goto :goto_4
+    goto :goto_a0
 
-    :cond_6
+    :cond_9d
     add-int/lit8 v9, v9, 0x1
 
-    goto :goto_3
+    goto :goto_91
 
-    :cond_7
-    :goto_4
-    if-nez v5, :cond_3
+    :cond_a0
+    :goto_a0
+    if-nez v5, :cond_63
 
     .line 185
     new-instance v3, Ljava/lang/StringBuilder;
@@ -449,12 +449,12 @@
 
     .line 187
     sput-boolean v2, Lio/vanta/fake/service/BrowserRedirectProxy;->sCheckedForBrowser:Z
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_bc
+    .catch Ljava/lang/Exception; {:try_start_42 .. :try_end_bc} :catch_bd
 
     return-object v4
 
-    :catch_1
+    :catch_bd
     move-exception v3
 
     .line 195
@@ -479,14 +479,14 @@
     invoke-static {v0, v3}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 198
-    :cond_8
+    :cond_d4
     sput-boolean v2, Lio/vanta/fake/service/BrowserRedirectProxy;->sCheckedForBrowser:Z
 
     return-object v1
 .end method
 
 .method public static getSupportedBrowserPackages()Ljava/util/List;
-    .locals 2
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -523,16 +523,16 @@
 .end method
 
 .method public static isBrowserIntent(Landroid/content/Intent;)Z
-    .locals 3
+    .registers 4
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return v0
 
     .line 87
-    :cond_0
+    :cond_4
     invoke-virtual {p0}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v1
@@ -544,39 +544,39 @@
 
     move-result v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_11
 
     return v0
 
     .line 92
-    :cond_1
+    :cond_11
     invoke-virtual {p0}, Landroid/content/Intent;->getData()Landroid/net/Uri;
 
     move-result-object p0
 
-    if-nez p0, :cond_2
+    if-nez p0, :cond_18
 
     return v0
 
     .line 97
-    :cond_2
+    :cond_18
     invoke-virtual {p0}, Landroid/net/Uri;->getScheme()Ljava/lang/String;
 
     move-result-object p0
 
-    if-nez p0, :cond_3
+    if-nez p0, :cond_1f
 
     return v0
 
     .line 103
-    :cond_3
+    :cond_1f
     const-string v1, "http"
 
     invoke-virtual {p0, v1}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
 
     move-result v1
 
-    if-nez v1, :cond_5
+    if-nez v1, :cond_31
 
     const-string v1, "https"
 
@@ -584,48 +584,48 @@
 
     move-result p0
 
-    if-eqz p0, :cond_4
+    if-eqz p0, :cond_30
 
-    goto :goto_0
+    goto :goto_31
 
-    :cond_4
+    :cond_30
     return v0
 
-    :cond_5
-    :goto_0
+    :cond_31
+    :goto_31
     const/4 p0, 0x1
 
     return p0
 .end method
 
 .method public static isFacebookCallback(Landroid/net/Uri;)Z
-    .locals 3
+    .registers 4
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return v0
 
     .line 282
-    :cond_0
+    :cond_4
     invoke-virtual {p0}, Landroid/net/Uri;->getHost()Ljava/lang/String;
 
     move-result-object v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_b
 
     return v0
 
     .line 288
-    :cond_1
+    :cond_b
     const-string v2, "facebook.com"
 
     invoke-virtual {v1, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v2
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_49
 
     const-string v2, "fb.com"
 
@@ -634,7 +634,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_49
 
     const-string v2, "fbcdn.net"
 
@@ -643,7 +643,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_3
+    if-nez v1, :cond_49
 
     .line 291
     invoke-virtual {p0}, Landroid/net/Uri;->toString()Ljava/lang/String;
@@ -656,7 +656,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_3
+    if-nez v1, :cond_49
 
     .line 292
     invoke-virtual {p0}, Landroid/net/Uri;->toString()Ljava/lang/String;
@@ -669,7 +669,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_3
+    if-nez v1, :cond_49
 
     .line 293
     invoke-virtual {p0}, Landroid/net/Uri;->toString()Ljava/lang/String;
@@ -682,22 +682,22 @@
 
     move-result p0
 
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_48
 
-    goto :goto_0
+    goto :goto_49
 
-    :cond_2
+    :cond_48
     return v0
 
-    :cond_3
-    :goto_0
+    :cond_49
+    :goto_49
     const/4 p0, 0x1
 
     return p0
 .end method
 
 .method public static isTargetingSystemBrowser(Landroid/content/Intent;)Z
-    .locals 7
+    .registers 8
 
     .line 110
     invoke-virtual {p0}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
@@ -708,7 +708,7 @@
 
     const/4 v2, 0x1
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1e
 
     .line 112
     invoke-virtual {v0}, Landroid/content/ComponentName;->getPackageName()Ljava/lang/String;
@@ -722,8 +722,8 @@
 
     move v5, v1
 
-    :goto_0
-    if-ge v5, v4, :cond_1
+    :goto_10
+    if-ge v5, v4, :cond_1e
 
     aget-object v6, v3, v5
 
@@ -732,22 +732,22 @@
 
     move-result v6
 
-    if-eqz v6, :cond_0
+    if-eqz v6, :cond_1b
 
     return v2
 
-    :cond_0
+    :cond_1b
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_0
+    goto :goto_10
 
     .line 120
-    :cond_1
+    :cond_1e
     invoke-virtual {p0}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
     move-result-object p0
 
-    if-eqz p0, :cond_3
+    if-eqz p0, :cond_36
 
     .line 122
     sget-object v0, Lio/vanta/fake/service/BrowserRedirectProxy;->SYSTEM_BROWSERS:[Ljava/lang/String;
@@ -756,8 +756,8 @@
 
     move v4, v1
 
-    :goto_1
-    if-ge v4, v3, :cond_3
+    :goto_28
+    if-ge v4, v3, :cond_36
 
     aget-object v5, v0, v4
 
@@ -766,21 +766,21 @@
 
     move-result v5
 
-    if-eqz v5, :cond_2
+    if-eqz v5, :cond_33
 
     return v2
 
-    :cond_2
+    :cond_33
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_1
+    goto :goto_28
 
-    :cond_3
+    :cond_36
     return v1
 .end method
 
 .method public static redirectToContainerBrowser(Landroid/content/Intent;)Landroid/content/Intent;
-    .locals 9
+    .registers 10
 
     const-string v0, "Set browser component: "
 
@@ -791,12 +791,12 @@
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_a
 
     return-object v2
 
     .line 219
-    :cond_0
+    :cond_a
     invoke-static {}, Lio/vanta/fake/service/BrowserRedirectProxy;->findContainerBrowser()Ljava/lang/String;
 
     move-result-object v1
@@ -804,7 +804,7 @@
     .line 220
     const-string v3, "BrowserRedirectProxy"
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_18
 
     .line 221
     const-string p0, "No browser found in container, cannot redirect"
@@ -814,7 +814,7 @@
     return-object v2
 
     .line 225
-    :cond_1
+    :cond_18
     invoke-virtual {p0}, Landroid/content/Intent;->getData()Landroid/net/Uri;
 
     move-result-object p0
@@ -866,17 +866,17 @@
 
     const/16 v7, 0x22
 
-    if-lt v6, v7, :cond_2
+    if-lt v6, v7, :cond_68
 
     .line 245
-    :try_start_0
+    :try_start_4d
     invoke-virtual {v4}, Landroid/content/Intent;->getExtras()Landroid/os/Bundle;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_50
+    .catch Ljava/lang/Exception; {:try_start_4d .. :try_end_50} :catch_51
 
-    goto :goto_0
+    goto :goto_68
 
-    :catch_0
+    :catch_51
     move-exception v6
 
     .line 247
@@ -901,9 +901,9 @@
     invoke-static {v3, v6}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 253
-    :cond_2
-    :goto_0
-    :try_start_1
+    :cond_68
+    :goto_68
+    :try_start_68
     invoke-static {}, Lio/vanta/app/BActivityThread;->getUserId()I
 
     move-result v6
@@ -928,14 +928,14 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_3
+    if-eqz p0, :cond_c3
 
     .line 260
     invoke-interface {p0}, Ljava/util/List;->isEmpty()Z
 
     move-result v2
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_c3
 
     .line 261
     invoke-interface {p0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -973,12 +973,12 @@
     move-result-object p0
 
     invoke-static {v3, p0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_ab
+    .catch Ljava/lang/Exception; {:try_start_68 .. :try_end_ab} :catch_ac
 
-    goto :goto_1
+    goto :goto_c3
 
-    :catch_1
+    :catch_ac
     move-exception p0
 
     .line 268
@@ -1002,7 +1002,7 @@
 
     invoke-static {v3, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_3
-    :goto_1
+    :cond_c3
+    :goto_c3
     return-object v4
 .end method

@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/VantaCore;)V
-    .locals 0
+    .registers 2
 
     .line 1934
     iput-object p1, p0, Lio/vanta/VantaCore$7;->this$0:Lio/vanta/VantaCore;
@@ -36,12 +36,12 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .registers 5
 
     .line 1938
     const-string v0, "VantaCore"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Executing server process recovery"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -58,7 +58,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_48
 
     iget-object v1, p0, Lio/vanta/VantaCore$7;->this$0:Lio/vanta/VantaCore;
 
@@ -70,7 +70,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_48
 
     .line 1944
     new-instance v1, Landroid/content/Intent;
@@ -96,7 +96,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_41
 
     .line 1949
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -108,19 +108,19 @@
     return-void
 
     .line 1951
-    :cond_0
+    :cond_41
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v2
 
     invoke-virtual {v2, v1}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_48
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_48} :catch_49
 
-    :cond_1
+    :cond_48
     return-void
 
-    :catch_0
+    :catch_49
     move-exception v1
 
     .line 1956

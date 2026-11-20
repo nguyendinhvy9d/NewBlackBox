@@ -29,7 +29,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 22
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -50,7 +50,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 9
+    .registers 10
 
     .line 27
     const-string v0, "android.media.IAudioService$Stub"
@@ -78,7 +78,7 @@
     .line 28
     const-string v6, "AudioServiceProxy"
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_1d
 
     .line 29
     const-string v0, "Failed to get AUDIO_SERVICE binder"
@@ -88,8 +88,8 @@
     return-object v5
 
     .line 39
-    :cond_0
-    :try_start_0
+    :cond_1d
+    :try_start_1d
     invoke-static {v0}, Lio/vanta/utils/Reflector;->on(Ljava/lang/String;)Lio/vanta/utils/Reflector;
 
     move-result-object v7
@@ -101,16 +101,16 @@
     invoke-virtual {v7, v8}, Lio/vanta/utils/Reflector;->call([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_29
+    .catch Ljava/lang/Exception; {:try_start_1d .. :try_end_29} :catch_2a
 
-    goto :goto_0
+    goto :goto_7b
 
-    :catch_0
+    :catch_2a
     move-exception v7
 
     .line 41
-    :try_start_1
+    :try_start_2b
     new-instance v8, Ljava/lang/StringBuilder;
 
     invoke-direct {v8, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -128,11 +128,11 @@
     move-result-object v3
 
     invoke-static {v6, v3}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    :try_end_3f
+    .catch Ljava/lang/Exception; {:try_start_2b .. :try_end_3f} :catch_92
 
     .line 45
-    :try_start_2
+    :try_start_3f
     const-string v3, "android.media.IAudioService"
 
     invoke-static {v3}, Lio/vanta/utils/Reflector;->on(Ljava/lang/String;)Lio/vanta/utils/Reflector;
@@ -146,16 +146,16 @@
     invoke-virtual {v3, v7}, Lio/vanta/utils/Reflector;->call([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_4d
+    .catch Ljava/lang/Exception; {:try_start_3f .. :try_end_4d} :catch_4e
 
-    goto :goto_0
+    goto :goto_7b
 
-    :catch_1
+    :catch_4e
     move-exception v3
 
     .line 47
-    :try_start_3
+    :try_start_4f
     new-instance v7, Ljava/lang/StringBuilder;
 
     invoke-direct {v7, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -173,11 +173,11 @@
     move-result-object v2
 
     invoke-static {v6, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_3
+    :try_end_63
+    .catch Ljava/lang/Exception; {:try_start_4f .. :try_end_63} :catch_92
 
     .line 51
-    :try_start_4
+    :try_start_63
     invoke-static {v0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v0
@@ -205,14 +205,14 @@
     invoke-virtual {v0, v5, v1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_2
+    :try_end_7b
+    .catch Ljava/lang/Exception; {:try_start_63 .. :try_end_7b} :catch_8b
 
-    :goto_0
-    if-eqz v0, :cond_1
+    :goto_7b
+    if-eqz v0, :cond_85
 
     .line 62
-    :try_start_5
+    :try_start_7d
     const-string v1, "Successfully obtained IAudioService interface"
 
     invoke-static {v6, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -223,26 +223,26 @@
     return-object v0
 
     .line 65
-    :cond_1
+    :cond_85
     const-string v0, "Reflection succeeded but returned null interface"
 
     invoke-static {v6, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     return-object v5
 
-    :catch_2
+    :catch_8b
     move-exception v0
 
     .line 55
     const-string v1, "All reflection paths failed for IAudioService"
 
     invoke-static {v6, v1, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    :try_end_5
-    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_5} :catch_3
+    :try_end_91
+    .catch Ljava/lang/Exception; {:try_start_7d .. :try_end_91} :catch_92
 
     return-object v5
 
-    :catch_3
+    :catch_92
     move-exception v0
 
     .line 70
@@ -254,7 +254,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 77
     const-string p1, "audio"
@@ -265,7 +265,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 12
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -20,7 +20,7 @@
 .end method
 
 .method public static send(Ljava/lang/String;Ljava/io/File;Ljava/lang/String;)Ljava/lang/String;
-    .locals 9
+    .registers 12
 
     const-string v0, "\"\r\n"
 
@@ -33,30 +33,30 @@
     .line 17
     const-string v4, "LogSender"
 
-    if-eqz p0, :cond_8
+    if-eqz p0, :cond_20c
 
     invoke-virtual {p0}, Ljava/lang/String;->isEmpty()Z
 
     move-result v5
 
-    if-eqz v5, :cond_0
+    if-eqz v5, :cond_14
 
-    goto/16 :goto_4
+    goto/16 :goto_20c
 
-    :cond_0
-    if-eqz p1, :cond_7
+    :cond_14
+    if-eqz p1, :cond_1f7
 
     .line 21
     invoke-virtual {p1}, Ljava/io/File;->exists()Z
 
     move-result v5
 
-    if-nez v5, :cond_1
+    if-nez v5, :cond_1e
 
-    goto/16 :goto_3
+    goto/16 :goto_1f7
 
     .line 26
-    :cond_1
+    :cond_1e
     const-string v5, "https://logs-sender-api.vercel.app/api/%s/upload"
 
     filled-new-array {p0}, [Ljava/lang/Object;
@@ -91,7 +91,7 @@
     move-result-object v5
 
     .line 32
-    :try_start_0
+    :try_start_3f
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -168,18 +168,18 @@
     move-result-object v6
 
     invoke-direct {v2, v6}, Ljava/io/DataOutputStream;-><init>(Ljava/io/OutputStream;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_8c
+    .catch Ljava/lang/Exception; {:try_start_3f .. :try_end_8c} :catch_1cc
 
     .line 46
     const-string v6, "--"
 
     const-string v7, "\r\n"
 
-    if-eqz p2, :cond_2
+    if-eqz p2, :cond_ba
 
     .line 47
-    :try_start_1
+    :try_start_92
     new-instance v8, Ljava/lang/StringBuilder;
 
     invoke-direct {v8, v6}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -219,7 +219,7 @@
     invoke-virtual {v2, v7}, Ljava/io/DataOutputStream;->writeBytes(Ljava/lang/String;)V
 
     .line 57
-    :cond_2
+    :cond_ba
     new-instance p2, Ljava/lang/StringBuilder;
 
     invoke-direct {p2, v6}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -280,22 +280,22 @@
     new-array p1, p1, [B
 
     .line 65
-    :goto_0
+    :goto_f7
     invoke-virtual {p2, p1}, Ljava/io/FileInputStream;->read([B)I
 
     move-result v0
 
     const/4 v1, -0x1
 
-    if-eq v0, v1, :cond_3
+    if-eq v0, v1, :cond_102
 
     .line 66
     invoke-virtual {v2, p1, v3, v0}, Ljava/io/DataOutputStream;->write([BII)V
 
-    goto :goto_0
+    goto :goto_f7
 
     .line 68
-    :cond_3
+    :cond_102
     invoke-virtual {p2}, Ljava/io/FileInputStream;->close()V
 
     .line 69
@@ -341,16 +341,16 @@
 
     const/16 p2, 0xc8
 
-    if-eq p1, p2, :cond_6
+    if-eq p1, p2, :cond_1b4
 
     const/16 p2, 0xc9
 
-    if-ne p1, p2, :cond_4
+    if-ne p1, p2, :cond_138
 
-    goto/16 :goto_2
+    goto/16 :goto_1b4
 
     .line 79
-    :cond_4
+    :cond_138
     new-instance p2, Ljava/lang/StringBuilder;
 
     invoke-direct {p2}, Ljava/lang/StringBuilder;-><init>()V
@@ -368,11 +368,11 @@
     invoke-virtual {p2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object p2
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_14b
+    .catch Ljava/lang/Exception; {:try_start_92 .. :try_end_14b} :catch_1cc
 
     .line 81
-    :try_start_2
+    :try_start_14b
     new-instance v0, Ljava/io/BufferedReader;
 
     new-instance v1, Ljava/io/InputStreamReader;
@@ -391,20 +391,20 @@
     invoke-direct {p0}, Ljava/lang/StringBuilder;-><init>()V
 
     .line 84
-    :goto_1
+    :goto_15e
     invoke-virtual {v0}, Ljava/io/BufferedReader;->readLine()Ljava/lang/String;
 
     move-result-object v1
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_168
 
     .line 85
     invoke-virtual {p0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto :goto_1
+    goto :goto_15e
 
     .line 87
-    :cond_5
+    :cond_168
     invoke-virtual {v0}, Ljava/io/BufferedReader;->close()V
 
     .line 88
@@ -454,14 +454,14 @@
     move-result-object p0
 
     invoke-static {v4, p0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
+    :try_end_19c
+    .catch Ljava/lang/Exception; {:try_start_14b .. :try_end_19c} :catch_19d
 
     return-object p2
 
     .line 91
-    :catch_0
-    :try_start_3
+    :catch_19d
+    :try_start_19d
     new-instance p0, Ljava/lang/StringBuilder;
 
     invoke-direct {p0}, Ljava/lang/StringBuilder;-><init>()V
@@ -485,8 +485,8 @@
     return-object p2
 
     .line 76
-    :cond_6
-    :goto_2
+    :cond_1b4
+    :goto_1b4
     new-instance p0, Ljava/lang/StringBuilder;
 
     invoke-direct {p0}, Ljava/lang/StringBuilder;-><init>()V
@@ -506,14 +506,14 @@
     move-result-object p0
 
     invoke-static {v4, p0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_1
+    :try_end_1ca
+    .catch Ljava/lang/Exception; {:try_start_19d .. :try_end_1ca} :catch_1cc
 
     const/4 p0, 0x0
 
     return-object p0
 
-    :catch_1
+    :catch_1cc
     move-exception p0
 
     .line 96
@@ -559,8 +559,8 @@
     return-object p0
 
     .line 22
-    :cond_7
-    :goto_3
+    :cond_1f7
+    :goto_1f7
     new-instance p0, Ljava/lang/StringBuilder;
 
     const-string p2, "Log file not found: "
@@ -583,8 +583,8 @@
     return-object p0
 
     .line 18
-    :cond_8
-    :goto_4
+    :cond_20c
+    :goto_20c
     const-string p0, "Chat ID invalid, cannot send logs"
 
     invoke-static {v4, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I

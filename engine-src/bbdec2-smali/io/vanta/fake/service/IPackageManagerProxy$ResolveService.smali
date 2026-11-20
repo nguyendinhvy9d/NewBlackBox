@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 192
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -44,6 +44,10 @@
     aget-object v0, p3, v0
 
     check-cast v0, Landroid/content/Intent;
+
+    move-object v5, v0
+
+    invoke-static {v0}, Lio/vanta/fake/service/GmsCallerFix;->fixGmsComponentPkg(Landroid/content/Intent;)V
 
     const/4 v1, 0x1
 
@@ -74,12 +78,16 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    const-string v6, "resolveService-cell"
+
+    invoke-static {v6, v5, v0}, Lio/vanta/fake/service/XjLineDiag;->xjLineLog(Ljava/lang/String;Landroid/content/Intent;Ljava/lang/Object;)V
+
+    if-eqz v0, :cond_29
 
     return-object v0
 
     .line 202
-    :cond_0
+    :cond_29
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

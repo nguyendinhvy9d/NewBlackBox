@@ -47,24 +47,28 @@
 
     move-result v1
 
+    invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Ljava/lang/String;
+
+    invoke-static {v1, v2}, Lio/vanta/fake/service/GmsCallerFix;->gnuLog(ILjava/lang/String;)V
+
     invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
 
-    move-result v2
+    move-result v0
 
-    if-ne v1, v2, :cond_orig
+    if-ne v1, v0, :cond_1f
 
     invoke-static {}, Lio/vanta/fake/service/GmsCallerFix;->callerPkg()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v0
 
-    if-eqz v1, :cond_orig
+    if-eqz v0, :cond_1f
 
-    return-object v1
+    return-object v0
 
-    :cond_orig
-    invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-
-    move-result-object p1
-
-    return-object p1
+    :cond_1f
+    return-object v2
 .end method

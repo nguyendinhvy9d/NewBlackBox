@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/app/BActivityThread;)V
-    .locals 0
+    .registers 2
 
     .line 592
     iput-object p1, p0, Lio/vanta/app/BActivityThread$3;->this$0:Lio/vanta/app/BActivityThread;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public getInfo()Landroid/content/pm/ApplicationInfo;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -41,7 +41,7 @@
 .end method
 
 .method public getProviders()Ljava/util/List;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",

@@ -27,12 +27,12 @@
     .end annotation
 .end field
 
-.field private static sIsInitialized:Z = false
+.field private static sIsInitialized:Z
 
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     const/16 v0, 0xf
 
@@ -142,7 +142,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -151,26 +151,26 @@
 .end method
 
 .method public static applyCrashPrevention(Ljava/lang/String;)V
-    .locals 5
+    .registers 6
 
     .line 229
     const-string v0, "SocialMediaCrashPrevention"
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_5
 
-    goto :goto_1
+    goto :goto_3a
 
     .line 236
-    :cond_0
-    :try_start_0
+    :cond_5
+    :try_start_5
     sget-object v1, Lio/vanta/utils/SocialMediaAppCrashPrevention;->SOCIAL_MEDIA_PACKAGES:[Ljava/lang/String;
 
     array-length v2, v1
 
     const/4 v3, 0x0
 
-    :goto_0
-    if-ge v3, v2, :cond_2
+    :goto_9
+    if-ge v3, v2, :cond_3a
 
     aget-object v4, v1, v3
 
@@ -179,7 +179,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_37
 
     .line 244
     new-instance v1, Ljava/lang/StringBuilder;
@@ -211,25 +211,25 @@
 
     check-cast v1, Lio/vanta/utils/SocialMediaAppCrashPrevention$CrashPreventionStrategy;
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_3a
 
     .line 249
     invoke-interface {v1}, Lio/vanta/utils/SocialMediaAppCrashPrevention$CrashPreventionStrategy;->apply()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_36
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_36} :catch_3b
 
     return-void
 
-    :cond_1
+    :cond_37
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_9
 
-    :cond_2
-    :goto_1
+    :cond_3a
+    :goto_3a
     return-void
 
-    :catch_0
+    :catch_3b
     move-exception v1
 
     .line 254
@@ -267,7 +267,7 @@
 .end method
 
 .method public static getCrashPreventionStatus()Ljava/lang/String;
-    .locals 3
+    .registers 3
 
     .line 265
     new-instance v0, Ljava/lang/StringBuilder;
@@ -345,12 +345,12 @@
 .end method
 
 .method private static hookWebViewConstructor()V
-    .locals 6
+    .registers 6
 
     .line 113
     const-string v0, "SocialMediaCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-class v1, Landroid/webkit/WebView;
 
     const/4 v2, 0x1
@@ -374,12 +374,12 @@
     const-string v1, "WebView constructor hook prepared"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_18
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_18} :catch_19
 
     return-void
 
-    :catch_0
+    :catch_19
     move-exception v1
 
     .line 119
@@ -407,19 +407,19 @@
 .end method
 
 .method private static hookWebViewDatabase()V
-    .locals 5
+    .registers 5
 
     .line 127
     const-string v0, "SocialMediaCrashPrevention"
 
     const-string v1, "Created WebView directory: "
 
-    :try_start_0
+    :try_start_4
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_85
 
     .line 129
     invoke-virtual {v2}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
@@ -472,7 +472,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_50
 
     .line 135
     invoke-virtual {v3}, Ljava/io/File;->mkdirs()Z
@@ -493,7 +493,7 @@
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 140
-    :cond_0
+    :cond_50
     const-string v1, "webview.data.dir"
 
     invoke-static {v1, v2}, Ljava/lang/System;->setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -543,13 +543,13 @@
     move-result-object v2
 
     invoke-static {v1, v2}, Ljava/lang/System;->setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_85
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_85} :catch_86
 
-    :cond_1
+    :cond_85
     return-void
 
-    :catch_0
+    :catch_86
     move-exception v1
 
     .line 145
@@ -577,20 +577,20 @@
 .end method
 
 .method public static initialize()V
-    .locals 4
+    .registers 4
 
     .line 49
     const-string v0, "SocialMediaCrashPrevention"
 
     sget-boolean v1, Lio/vanta/utils/SocialMediaAppCrashPrevention;->sIsInitialized:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_7
 
     return-void
 
     .line 54
-    :cond_0
-    :try_start_0
+    :cond_7
+    :try_start_7
     const-string v1, "Initializing social media app crash prevention..."
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -619,12 +619,12 @@
     const-string v1, "Social media app crash prevention initialized successfully"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_23
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_23} :catch_24
 
     return-void
 
-    :catch_0
+    :catch_24
     move-exception v1
 
     .line 75
@@ -652,21 +652,21 @@
 .end method
 
 .method private static installAttributionSourceCrashPrevention()V
-    .locals 4
+    .registers 4
 
     .line 153
     const-string v0, "SocialMediaCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "AttributionSource crash prevention installed"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_7} :catch_8
 
     return-void
 
-    :catch_0
+    :catch_8
     move-exception v1
 
     .line 155
@@ -694,17 +694,17 @@
 .end method
 
 .method private static installContextCrashPrevention()V
-    .locals 4
+    .registers 4
 
     .line 163
     const-string v0, "SocialMediaCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_10
 
     .line 165
     const-string v1, "Host context is null, attempting to recover"
@@ -715,16 +715,16 @@
     invoke-static {}, Lio/vanta/utils/SocialMediaAppCrashPrevention;->recoverContext()V
 
     .line 170
-    :cond_0
+    :cond_10
     const-string v1, "Context crash prevention installed"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_15
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_15} :catch_16
 
     return-void
 
-    :catch_0
+    :catch_16
     move-exception v1
 
     .line 172
@@ -752,21 +752,21 @@
 .end method
 
 .method private static installMediaCrashPrevention()V
-    .locals 4
+    .registers 4
 
     .line 190
     const-string v0, "SocialMediaCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Media crash prevention installed"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_7} :catch_8
 
     return-void
 
-    :catch_0
+    :catch_8
     move-exception v1
 
     .line 192
@@ -794,21 +794,21 @@
 .end method
 
 .method private static installPermissionCrashPrevention()V
-    .locals 4
+    .registers 4
 
     .line 180
     const-string v0, "SocialMediaCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Permission crash prevention installed"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_7} :catch_8
 
     return-void
 
-    :catch_0
+    :catch_8
     move-exception v1
 
     .line 182
@@ -836,12 +836,12 @@
 .end method
 
 .method private static installWebViewCrashPrevention()V
-    .locals 4
+    .registers 4
 
     .line 98
     const-string v0, "SocialMediaCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     invoke-static {}, Lio/vanta/utils/SocialMediaAppCrashPrevention;->hookWebViewConstructor()V
 
     .line 101
@@ -851,12 +851,12 @@
     const-string v1, "WebView crash prevention installed"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception v1
 
     .line 105
@@ -884,12 +884,12 @@
 .end method
 
 .method public static isSocialMediaApp()Z
-    .locals 6
+    .registers 6
 
     const/4 v0, 0x0
 
     .line 82
-    :try_start_0
+    :try_start_1
     invoke-static {}, Lio/vanta/app/BActivityThread;->getAppPackageName()Ljava/lang/String;
 
     move-result-object v1
@@ -901,8 +901,8 @@
 
     move v4, v0
 
-    :goto_0
-    if-ge v4, v3, :cond_1
+    :goto_9
+    if-ge v4, v3, :cond_31
 
     aget-object v5, v2, v4
 
@@ -910,21 +910,21 @@
     invoke-virtual {v5, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v5
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_11
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_11} :catch_18
 
-    if-eqz v5, :cond_0
+    if-eqz v5, :cond_15
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_15
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_9
 
-    :catch_0
+    :catch_18
     move-exception v1
 
     .line 89
@@ -950,12 +950,12 @@
 
     invoke-static {v2, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
+    :cond_31
     return v0
 .end method
 
 .method private static recoverContext()V
-    .locals 8
+    .registers 8
 
     .line 200
     const-string v0, "SocialMediaCrashPrevention"
@@ -965,7 +965,7 @@
     const/4 v2, 0x0
 
     .line 204
-    :try_start_0
+    :try_start_5
     const-string v3, "android.app.ActivityThread"
 
     invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -990,7 +990,7 @@
 
     move-result-object v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_43
 
     .line 209
     const-string v6, "getSystemContext"
@@ -1009,18 +1009,18 @@
     move-result-object v3
 
     check-cast v3, Landroid/content/Context;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2c
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_2c} :catch_2e
 
     move-object v2, v3
 
-    goto :goto_0
+    goto :goto_43
 
-    :catch_0
+    :catch_2e
     move-exception v3
 
     .line 213
-    :try_start_1
+    :try_start_2f
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -1039,20 +1039,20 @@
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
-    :goto_0
-    if-eqz v2, :cond_1
+    :cond_43
+    :goto_43
+    if-eqz v2, :cond_62
 
     .line 217
     const-string v1, "Successfully recovered context"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_4a
+    .catch Ljava/lang/Exception; {:try_start_2f .. :try_end_4a} :catch_4b
 
-    goto :goto_1
+    goto :goto_62
 
-    :catch_1
+    :catch_4b
     move-exception v1
 
     .line 223
@@ -1076,7 +1076,7 @@
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
-    :goto_1
+    :cond_62
+    :goto_62
     return-void
 .end method

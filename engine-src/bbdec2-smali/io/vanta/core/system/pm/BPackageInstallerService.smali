@@ -14,7 +14,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 18
     new-instance v0, Lio/vanta/core/system/pm/BPackageInstallerService;
@@ -27,7 +27,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 17
     invoke-direct {p0}, Lio/vanta/core/system/pm/IBPackageInstallerService$Stub;-><init>()V
@@ -36,7 +36,7 @@
 .end method
 
 .method public static get()Lio/vanta/core/system/pm/BPackageInstallerService;
-    .locals 1
+    .registers 1
 
     .line 21
     sget-object v0, Lio/vanta/core/system/pm/BPackageInstallerService;->sService:Lio/vanta/core/system/pm/BPackageInstallerService;
@@ -47,7 +47,7 @@
 
 # virtual methods
 .method public clearPackage(Lio/vanta/core/system/pm/BPackageSettings;I)I
-    .locals 6
+    .registers 9
 
     .line 72
     new-instance v0, Ljava/util/ArrayList;
@@ -76,12 +76,12 @@
 
     move-result-object v0
 
-    :cond_0
+    :cond_1b
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_54
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -131,18 +131,18 @@
 
     invoke-static {v4, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_1b
 
     return v3
 
-    :cond_1
+    :cond_54
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method public installPackageAsUser(Lio/vanta/core/system/pm/BPackageSettings;I)I
-    .locals 7
+    .registers 10
 
     .line 28
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -155,7 +155,7 @@
 
     const-string v1, "BPackageInstallerService"
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_13
 
     .line 29
     const-string p1, "installPackageAsUser blocked: Bcore license is not authorized"
@@ -167,7 +167,7 @@
     return p1
 
     .line 32
-    :cond_0
+    :cond_13
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -201,12 +201,12 @@
 
     move-result-object v0
 
-    :cond_1
+    :cond_36
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_6d
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -254,31 +254,31 @@
 
     invoke-static {v1, v3}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_36
 
     return v4
 
-    :cond_2
+    :cond_6d
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method public systemReady()V
-    .locals 0
+    .registers 1
 
     return-void
 .end method
 
 .method public uninstallPackageAsUser(Lio/vanta/core/system/pm/BPackageSettings;ZI)I
-    .locals 5
+    .registers 9
 
     .line 52
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_f
 
     .line 55
     new-instance p2, Lio/vanta/core/system/pm/installer/RemoveAppExecutor;
@@ -288,7 +288,7 @@
     invoke-interface {v0, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 58
-    :cond_0
+    :cond_f
     new-instance p2, Lio/vanta/core/system/pm/installer/RemoveUserExecutor;
 
     invoke-direct {p2}, Lio/vanta/core/system/pm/installer/RemoveUserExecutor;-><init>()V
@@ -303,12 +303,12 @@
 
     move-result-object v0
 
-    :cond_1
+    :cond_1d
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_56
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -358,18 +358,18 @@
 
     invoke-static {v3, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_1d
 
     return v2
 
-    :cond_2
+    :cond_56
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method public updatePackage(Lio/vanta/core/system/pm/BPackageSettings;)I
-    .locals 4
+    .registers 6
 
     .line 90
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -382,7 +382,7 @@
 
     const/4 v1, -0x1
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_13
 
     .line 91
     const-string p1, "BPackageInstallerService"
@@ -394,7 +394,7 @@
     return v1
 
     .line 94
-    :cond_0
+    :cond_13
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -421,12 +421,12 @@
 
     move-result-object v0
 
-    :cond_1
+    :cond_2e
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_41
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -439,11 +439,11 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_2e
 
     return v3
 
-    :cond_2
+    :cond_41
     const/4 p1, 0x0
 
     return p1

@@ -46,7 +46,7 @@
 
 # direct methods
 .method private static synthetic $values()[Lio/vanta/utils/compat/BuildCompat$ROMType;
-    .locals 9
+    .registers 9
 
     .line 146
     sget-object v0, Lio/vanta/utils/compat/BuildCompat$ROMType;->EMUI:Lio/vanta/utils/compat/BuildCompat$ROMType;
@@ -75,7 +75,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 147
     new-instance v0, Lio/vanta/utils/compat/BuildCompat$ROMType;
@@ -187,7 +187,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;I)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -201,7 +201,7 @@
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Lio/vanta/utils/compat/BuildCompat$ROMType;
-    .locals 1
+    .registers 2
 
     .line 146
     const-class v0, Lio/vanta/utils/compat/BuildCompat$ROMType;
@@ -216,7 +216,7 @@
 .end method
 
 .method public static values()[Lio/vanta/utils/compat/BuildCompat$ROMType;
-    .locals 1
+    .registers 1
 
     .line 146
     sget-object v0, Lio/vanta/utils/compat/BuildCompat$ROMType;->$VALUES:[Lio/vanta/utils/compat/BuildCompat$ROMType;

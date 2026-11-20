@@ -19,7 +19,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 17
     new-instance v0, Lio/vanta/fake/frameworks/BAccountManager;
@@ -32,7 +32,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 16
     invoke-direct {p0}, Lio/vanta/fake/frameworks/BlackManager;-><init>()V
@@ -41,7 +41,7 @@
 .end method
 
 .method public static get()Lio/vanta/fake/frameworks/BAccountManager;
-    .locals 1
+    .registers 1
 
     .line 20
     sget-object v0, Lio/vanta/fake/frameworks/BAccountManager;->sBAccountManager:Lio/vanta/fake/frameworks/BAccountManager;
@@ -52,7 +52,7 @@
 
 # virtual methods
 .method public accountAuthenticated(Landroid/accounts/Account;)Z
-    .locals 2
+    .registers 4
 
     .line 260
     :try_start_0
@@ -69,12 +69,12 @@
     invoke-interface {v0, p1, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->accountAuthenticated(Landroid/accounts/Account;I)Z
 
     move-result p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 262
@@ -86,7 +86,7 @@
 .end method
 
 .method public addAccount(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZLandroid/os/Bundle;)V
-    .locals 9
+    .registers 16
 
     .line 209
     :try_start_0
@@ -102,6 +102,28 @@
 
     move-result v8
 
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "guest addAccount uid="
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v8}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    const-string v3, "XJACCT"
+
+    invoke-static {v3, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
     move-object v2, p1
 
     move-object v3, p2
@@ -115,12 +137,12 @@
     move-object v7, p6
 
     invoke-interface/range {v1 .. v8}, Lio/vanta/core/system/accounts/IBAccountManagerService;->addAccount(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZLandroid/os/Bundle;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2c
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_2c} :catch_2d
 
     return-void
 
-    :catch_0
+    :catch_2d
     move-exception v0
 
     move-object p1, v0
@@ -132,7 +154,7 @@
 .end method
 
 .method public addAccountAsUser(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZLandroid/os/Bundle;)V
-    .locals 8
+    .registers 15
 
     .line 218
     invoke-static {}, Lio/vanta/app/BActivityThread;->getUserId()I
@@ -159,7 +181,7 @@
 .end method
 
 .method public addAccountAsUser(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZLandroid/os/Bundle;I)V
-    .locals 9
+    .registers 17
 
     .line 225
     :try_start_0
@@ -186,12 +208,12 @@
     move/from16 v8, p7
 
     invoke-interface/range {v1 .. v8}, Lio/vanta/core/system/accounts/IBAccountManagerService;->addAccountAsUser(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;ZLandroid/os/Bundle;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_12
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_12} :catch_13
 
     return-void
 
-    :catch_0
+    :catch_13
     move-exception v0
 
     move-object p1, v0
@@ -203,7 +225,7 @@
 .end method
 
 .method public addAccountExplicitly(Landroid/accounts/Account;Ljava/lang/String;Landroid/os/Bundle;)Z
-    .locals 2
+    .registers 6
 
     .line 103
     :try_start_0
@@ -220,12 +242,12 @@
     invoke-interface {v0, p1, p2, p3, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->addAccountExplicitly(Landroid/accounts/Account;Ljava/lang/String;Landroid/os/Bundle;I)Z
 
     move-result p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 105
@@ -237,7 +259,7 @@
 .end method
 
 .method public addAccountExplicitlyWithVisibility(Landroid/accounts/Account;Ljava/lang/String;Landroid/os/Bundle;Ljava/util/Map;)Z
-    .locals 7
+    .registers 12
 
     .line 289
     :try_start_0
@@ -264,12 +286,12 @@
     invoke-interface/range {v1 .. v6}, Lio/vanta/core/system/accounts/IBAccountManagerService;->addAccountExplicitlyWithVisibility(Landroid/accounts/Account;Ljava/lang/String;Landroid/os/Bundle;Ljava/util/Map;I)Z
 
     move-result p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_13
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_13} :catch_14
 
     return p1
 
-    :catch_0
+    :catch_14
     move-exception v0
 
     move-object p1, v0
@@ -283,7 +305,7 @@
 .end method
 
 .method public clearPassword(Landroid/accounts/Account;)V
-    .locals 2
+    .registers 4
 
     .line 173
     :try_start_0
@@ -298,12 +320,12 @@
     move-result v1
 
     invoke-interface {v0, p1, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->clearPassword(Landroid/accounts/Account;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 175
@@ -313,7 +335,7 @@
 .end method
 
 .method public confirmCredentialsAsUser(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Landroid/os/Bundle;Z)V
-    .locals 7
+    .registers 12
 
     .line 252
     :try_start_0
@@ -338,12 +360,12 @@
     move v5, p4
 
     invoke-interface/range {v1 .. v6}, Lio/vanta/core/system/accounts/IBAccountManagerService;->confirmCredentialsAsUser(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Landroid/os/Bundle;ZI)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_12
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_12} :catch_13
 
     return-void
 
-    :catch_0
+    :catch_13
     move-exception v0
 
     move-object p1, v0
@@ -355,7 +377,7 @@
 .end method
 
 .method public copyAccountToUser(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;II)V
-    .locals 1
+    .registers 6
 
     .line 131
     :try_start_0
@@ -366,12 +388,12 @@
     check-cast v0, Lio/vanta/core/system/accounts/IBAccountManagerService;
 
     invoke-interface {v0, p1, p2, p3, p4}, Lio/vanta/core/system/accounts/IBAccountManagerService;->copyAccountToUser(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;II)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 133
@@ -381,7 +403,7 @@
 .end method
 
 .method public editProperties(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Z)V
-    .locals 2
+    .registers 6
 
     .line 243
     :try_start_0
@@ -396,12 +418,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, p3, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->editProperties(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;ZI)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 245
@@ -411,7 +433,7 @@
 .end method
 
 .method public getAccountByTypeAndFeatures(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;[Ljava/lang/String;)V
-    .locals 2
+    .registers 6
 
     .line 86
     :try_start_0
@@ -426,12 +448,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, p3, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAccountByTypeAndFeatures(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;[Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 88
@@ -441,7 +463,7 @@
 .end method
 
 .method public getAccountVisibility(Landroid/accounts/Account;Ljava/lang/String;)I
-    .locals 2
+    .registers 5
 
     .line 307
     :try_start_0
@@ -458,12 +480,12 @@
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAccountVisibility(Landroid/accounts/Account;Ljava/lang/String;I)I
 
     move-result p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 309
@@ -475,7 +497,7 @@
 .end method
 
 .method public getAccountsAndVisibilityForPackage(Ljava/lang/String;Ljava/lang/String;)Ljava/util/Map;
-    .locals 2
+    .registers 5
 
     .line 318
     :try_start_0
@@ -492,12 +514,12 @@
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAccountsAndVisibilityForPackage(Ljava/lang/String;Ljava/lang/String;I)Ljava/util/Map;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 320
@@ -509,7 +531,7 @@
 .end method
 
 .method public getAccountsAsUser(Ljava/lang/String;)[Landroid/accounts/Account;
-    .locals 2
+    .registers 4
 
     .line 76
     :try_start_0
@@ -526,12 +548,12 @@
     invoke-interface {v0, p1, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAccountsAsUser(Ljava/lang/String;I)[Landroid/accounts/Account;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 78
@@ -543,7 +565,7 @@
 .end method
 
 .method public getAccountsByFeatures(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;[Ljava/lang/String;)V
-    .locals 2
+    .registers 6
 
     .line 95
     :try_start_0
@@ -558,12 +580,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, p3, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAccountsByFeatures(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;[Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 97
@@ -573,7 +595,7 @@
 .end method
 
 .method public getAccountsByTypeForPackage(Ljava/lang/String;Ljava/lang/String;)[Landroid/accounts/Account;
-    .locals 2
+    .registers 5
 
     .line 67
     :try_start_0
@@ -590,12 +612,12 @@
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAccountsByTypeForPackage(Ljava/lang/String;Ljava/lang/String;I)[Landroid/accounts/Account;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 69
@@ -607,7 +629,7 @@
 .end method
 
 .method public getAccountsForPackage(Ljava/lang/String;I)[Landroid/accounts/Account;
-    .locals 2
+    .registers 5
 
     .line 58
     :try_start_0
@@ -624,12 +646,12 @@
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAccountsForPackage(Ljava/lang/String;II)[Landroid/accounts/Account;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 60
@@ -641,7 +663,7 @@
 .end method
 
 .method public getAuthToken(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Ljava/lang/String;ZZLandroid/os/Bundle;)V
-    .locals 9
+    .registers 16
 
     .line 199
     :try_start_0
@@ -670,12 +692,12 @@
     move-object v7, p6
 
     invoke-interface/range {v1 .. v8}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAuthToken(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Ljava/lang/String;ZZLandroid/os/Bundle;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_14
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_14} :catch_15
 
     return-void
 
-    :catch_0
+    :catch_15
     move-exception v0
 
     move-object p1, v0
@@ -687,7 +709,7 @@
 .end method
 
 .method public getAuthTokenLabel(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 2
+    .registers 6
 
     .line 270
     :try_start_0
@@ -702,12 +724,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, p3, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAuthTokenLabel(Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 272
@@ -717,7 +739,7 @@
 .end method
 
 .method public getAuthenticatorTypes()[Landroid/accounts/AuthenticatorDescription;
-    .locals 2
+    .registers 3
 
     .line 49
     :try_start_0
@@ -734,12 +756,12 @@
     invoke-interface {v0, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getAuthenticatorTypes(I)[Landroid/accounts/AuthenticatorDescription;
 
     move-result-object v0
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object v0
 
-    :catch_0
+    :catch_f
     move-exception v0
 
     .line 51
@@ -751,7 +773,7 @@
 .end method
 
 .method public getPackagesAndVisibilityForAccount(Landroid/accounts/Account;)Ljava/util/Map;
-    .locals 2
+    .registers 4
 
     .line 279
     :try_start_0
@@ -768,12 +790,12 @@
     invoke-interface {v0, p1, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getPackagesAndVisibilityForAccount(Landroid/accounts/Account;I)Ljava/util/Map;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 281
@@ -785,7 +807,7 @@
 .end method
 
 .method public getPassword(Landroid/accounts/Account;)Ljava/lang/String;
-    .locals 2
+    .registers 4
 
     .line 30
     :try_start_0
@@ -802,12 +824,12 @@
     invoke-interface {v0, p1, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getPassword(Landroid/accounts/Account;I)Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 32
@@ -819,7 +841,7 @@
 .end method
 
 .method protected getServiceName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 25
     const-string v0, "account_manager"
@@ -828,7 +850,7 @@
 .end method
 
 .method public getUserData(Landroid/accounts/Account;Ljava/lang/String;)Ljava/lang/String;
-    .locals 2
+    .registers 5
 
     .line 40
     :try_start_0
@@ -845,12 +867,12 @@
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->getUserData(Landroid/accounts/Account;Ljava/lang/String;I)Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 42
@@ -862,7 +884,7 @@
 .end method
 
 .method public invalidateAuthToken(Ljava/lang/String;Ljava/lang/String;)V
-    .locals 2
+    .registers 5
 
     .line 139
     :try_start_0
@@ -877,12 +899,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->invalidateAuthToken(Ljava/lang/String;Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 141
@@ -892,7 +914,7 @@
 .end method
 
 .method public peekAuthToken(Landroid/accounts/Account;Ljava/lang/String;)Ljava/lang/String;
-    .locals 2
+    .registers 5
 
     .line 147
     :try_start_0
@@ -909,12 +931,12 @@
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->peekAuthToken(Landroid/accounts/Account;Ljava/lang/String;I)Ljava/lang/String;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return-object p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 149
@@ -926,7 +948,7 @@
 .end method
 
 .method public registerAccountListener([Ljava/lang/String;Ljava/lang/String;)V
-    .locals 2
+    .registers 5
 
     .line 327
     :try_start_0
@@ -941,12 +963,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->registerAccountListener([Ljava/lang/String;Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 329
@@ -956,7 +978,7 @@
 .end method
 
 .method public removeAccountAsUser(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Z)V
-    .locals 2
+    .registers 6
 
     .line 113
     :try_start_0
@@ -971,12 +993,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, p3, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->removeAccountAsUser(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;ZI)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 115
@@ -986,7 +1008,7 @@
 .end method
 
 .method public removeAccountExplicitly(Landroid/accounts/Account;)Z
-    .locals 2
+    .registers 4
 
     .line 121
     :try_start_0
@@ -1003,12 +1025,12 @@
     invoke-interface {v0, p1, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->removeAccountExplicitly(Landroid/accounts/Account;I)Z
 
     move-result p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 123
@@ -1020,7 +1042,7 @@
 .end method
 
 .method public setAccountVisibility(Landroid/accounts/Account;Ljava/lang/String;I)Z
-    .locals 2
+    .registers 6
 
     .line 298
     :try_start_0
@@ -1037,12 +1059,12 @@
     invoke-interface {v0, p1, p2, p3, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->setAccountVisibility(Landroid/accounts/Account;Ljava/lang/String;II)Z
 
     move-result p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_e} :catch_f
 
     return p1
 
-    :catch_0
+    :catch_f
     move-exception p1
 
     .line 300
@@ -1054,7 +1076,7 @@
 .end method
 
 .method public setAuthToken(Landroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 2
+    .registers 6
 
     .line 156
     :try_start_0
@@ -1069,12 +1091,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, p3, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->setAuthToken(Landroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 158
@@ -1084,7 +1106,7 @@
 .end method
 
 .method public setPassword(Landroid/accounts/Account;Ljava/lang/String;)V
-    .locals 2
+    .registers 5
 
     .line 165
     :try_start_0
@@ -1099,12 +1121,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->setPassword(Landroid/accounts/Account;Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 167
@@ -1114,7 +1136,7 @@
 .end method
 
 .method public setUserData(Landroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 2
+    .registers 6
 
     .line 181
     :try_start_0
@@ -1129,12 +1151,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, p3, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->setUserData(Landroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 183
@@ -1144,7 +1166,7 @@
 .end method
 
 .method public unregisterAccountListener([Ljava/lang/String;Ljava/lang/String;)V
-    .locals 2
+    .registers 5
 
     .line 335
     :try_start_0
@@ -1159,12 +1181,12 @@
     move-result v1
 
     invoke-interface {v0, p1, p2, v1}, Lio/vanta/core/system/accounts/IBAccountManagerService;->unregisterAccountListener([Ljava/lang/String;Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception p1
 
     .line 337
@@ -1174,7 +1196,7 @@
 .end method
 
 .method public updateAppPermission(Landroid/accounts/Account;Ljava/lang/String;IZ)V
-    .locals 1
+    .registers 6
 
     .line 189
     :try_start_0
@@ -1185,12 +1207,12 @@
     check-cast v0, Lio/vanta/core/system/accounts/IBAccountManagerService;
 
     invoke-interface {v0, p1, p2, p3, p4}, Lio/vanta/core/system/accounts/IBAccountManagerService;->updateAppPermission(Landroid/accounts/Account;Ljava/lang/String;IZ)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 191
@@ -1200,7 +1222,7 @@
 .end method
 
 .method public updateCredentials(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Ljava/lang/String;ZLandroid/os/Bundle;)V
-    .locals 8
+    .registers 14
 
     .line 234
     :try_start_0
@@ -1227,12 +1249,12 @@
     move-object v6, p5
 
     invoke-interface/range {v1 .. v7}, Lio/vanta/core/system/accounts/IBAccountManagerService;->updateCredentials(Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Ljava/lang/String;ZLandroid/os/Bundle;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_13
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_13} :catch_14
 
     return-void
 
-    :catch_0
+    :catch_14
     move-exception v0
 
     move-object p1, v0

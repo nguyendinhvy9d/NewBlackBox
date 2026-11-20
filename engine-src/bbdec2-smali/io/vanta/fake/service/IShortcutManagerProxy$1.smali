@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/fake/service/IShortcutManagerProxy;Ljava/lang/String;)V
-    .locals 0
+    .registers 3
 
     .line 57
     iput-object p1, p0, Lio/vanta/fake/service/IShortcutManagerProxy$1;->this$0:Lio/vanta/fake/service/IShortcutManagerProxy;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;

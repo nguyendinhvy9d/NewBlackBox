@@ -16,7 +16,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
-    .locals 0
+    .registers 2
 
     invoke-static {p0, p1}, Lio/vanta/core/system/pm/IBPackageManagerService$_Parcel;->readTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
 
@@ -26,7 +26,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$smwriteTypedList(Landroid/os/Parcel;Ljava/util/List;I)V
-    .locals 0
+    .registers 3
 
     invoke-static {p0, p1, p2}, Lio/vanta/core/system/pm/IBPackageManagerService$_Parcel;->writeTypedList(Landroid/os/Parcel;Ljava/util/List;I)V
 
@@ -34,7 +34,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
-    .locals 0
+    .registers 3
 
     invoke-static {p0, p1, p2}, Lio/vanta/core/system/pm/IBPackageManagerService$_Parcel;->writeTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
@@ -42,7 +42,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 1011
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -51,7 +51,7 @@
 .end method
 
 .method private static readTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -68,7 +68,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_b
 
     .line 1016
     invoke-interface {p1, p0}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
@@ -77,14 +77,14 @@
 
     return-object p0
 
-    :cond_0
+    :cond_b
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method private static writeTypedList(Landroid/os/Parcel;Ljava/util/List;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T::",
@@ -96,7 +96,7 @@
         }
     .end annotation
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_7
 
     const/4 p1, -0x1
 
@@ -106,7 +106,7 @@
     return-void
 
     .line 1035
-    :cond_0
+    :cond_7
     invoke-interface {p1}, Ljava/util/List;->size()I
 
     move-result v0
@@ -116,8 +116,8 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_1
+    :goto_f
+    if-ge v1, v0, :cond_1d
 
     .line 1039
     invoke-interface {p1, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -130,14 +130,14 @@
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_f
 
-    :cond_1
+    :cond_1d
     return-void
 .end method
 
 .method private static writeTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T::",
@@ -148,7 +148,7 @@
         }
     .end annotation
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_a
 
     const/4 v0, 0x1
 
@@ -160,7 +160,7 @@
 
     return-void
 
-    :cond_0
+    :cond_a
     const/4 p1, 0x0
 
     .line 1027

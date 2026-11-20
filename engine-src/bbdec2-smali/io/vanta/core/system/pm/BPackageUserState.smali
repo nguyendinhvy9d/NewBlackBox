@@ -28,7 +28,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 48
     new-instance v0, Lio/vanta/core/system/pm/BPackageUserState$1;
@@ -41,7 +41,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 12
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -63,7 +63,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 3
+    .registers 5
 
     .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -77,16 +77,16 @@
 
     const/4 v2, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_d
 
     move v0, v1
 
-    goto :goto_0
+    goto :goto_e
 
-    :cond_0
+    :cond_d
     move v0, v2
 
-    :goto_0
+    :goto_e
     iput-boolean v0, p0, Lio/vanta/core/system/pm/BPackageUserState;->installed:Z
 
     .line 38
@@ -94,16 +94,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_18
 
     move v0, v1
 
-    goto :goto_1
+    goto :goto_19
 
-    :cond_1
+    :cond_18
     move v0, v2
 
-    :goto_1
+    :goto_19
     iput-boolean v0, p0, Lio/vanta/core/system/pm/BPackageUserState;->stopped:Z
 
     .line 39
@@ -111,21 +111,21 @@
 
     move-result p1
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_22
 
-    goto :goto_2
+    goto :goto_23
 
-    :cond_2
+    :cond_22
     move v1, v2
 
-    :goto_2
+    :goto_23
     iput-boolean v1, p0, Lio/vanta/core/system/pm/BPackageUserState;->hidden:Z
 
     return-void
 .end method
 
 .method public constructor <init>(Lio/vanta/core/system/pm/BPackageUserState;)V
-    .locals 1
+    .registers 3
 
     .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -149,7 +149,7 @@
 .end method
 
 .method public static create()Lio/vanta/core/system/pm/BPackageUserState;
-    .locals 2
+    .registers 2
 
     .line 19
     new-instance v0, Lio/vanta/core/system/pm/BPackageUserState;
@@ -167,7 +167,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -175,7 +175,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 0
+    .registers 3
 
     .line 31
     iget-boolean p2, p0, Lio/vanta/core/system/pm/BPackageUserState;->installed:Z

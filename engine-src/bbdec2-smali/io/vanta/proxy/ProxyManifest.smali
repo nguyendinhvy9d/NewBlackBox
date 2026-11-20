@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 8
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -18,7 +18,7 @@
 .end method
 
 .method public static TransparentProxyActivity(I)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 32
     sget-object v0, Ljava/util/Locale;->CHINA:Ljava/util/Locale;
@@ -41,7 +41,7 @@
 .end method
 
 .method public static getBindProvider()Ljava/lang/String;
-    .locals 2
+    .registers 2
 
     .line 16
     new-instance v0, Ljava/lang/StringBuilder;
@@ -70,7 +70,7 @@
 .end method
 
 .method public static getProcessName(I)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 52
     new-instance v0, Ljava/lang/StringBuilder;
@@ -103,7 +103,7 @@
 .end method
 
 .method public static getProxyActivity(I)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 28
     sget-object v0, Ljava/util/Locale;->CHINA:Ljava/util/Locale;
@@ -126,7 +126,7 @@
 .end method
 
 .method public static getProxyAuthorities(I)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 20
     sget-object v0, Ljava/util/Locale;->CHINA:Ljava/util/Locale;
@@ -153,7 +153,7 @@
 .end method
 
 .method public static getProxyFileProvider()Ljava/lang/String;
-    .locals 2
+    .registers 2
 
     .line 44
     new-instance v0, Ljava/lang/StringBuilder;
@@ -182,7 +182,7 @@
 .end method
 
 .method public static getProxyJobService(I)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 40
     sget-object v0, Ljava/util/Locale;->CHINA:Ljava/util/Locale;
@@ -205,7 +205,7 @@
 .end method
 
 .method public static getProxyPendingActivity(I)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 24
     sget-object v0, Ljava/util/Locale;->CHINA:Ljava/util/Locale;
@@ -228,7 +228,7 @@
 .end method
 
 .method public static getProxyReceiver()Ljava/lang/String;
-    .locals 2
+    .registers 2
 
     .line 48
     new-instance v0, Ljava/lang/StringBuilder;
@@ -257,7 +257,7 @@
 .end method
 
 .method public static getProxyService(I)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 36
     sget-object v0, Ljava/util/Locale;->CHINA:Ljava/util/Locale;
@@ -280,7 +280,7 @@
 .end method
 
 .method public static isProxy(Ljava/lang/String;)Z
-    .locals 1
+    .registers 2
 
     .line 12
     invoke-static {}, Lio/vanta/proxy/ProxyManifest;->getBindProvider()Ljava/lang/String;
@@ -291,7 +291,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_15
 
     const-string v0, "proxy_content_provider_"
 
@@ -299,17 +299,17 @@
 
     move-result p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_13
 
-    goto :goto_0
+    goto :goto_15
 
-    :cond_0
+    :cond_13
     const/4 p0, 0x0
 
     return p0
 
-    :cond_1
-    :goto_0
+    :cond_15
+    :goto_15
     const/4 p0, 0x1
 
     return p0

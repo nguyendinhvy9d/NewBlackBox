@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 91
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,21 +29,21 @@
 .end method
 
 .method private createMockWorkResult()Ljava/lang/Object;
-    .locals 4
+    .registers 5
 
     const/4 v0, 0x0
 
     .line 117
-    :try_start_0
+    :try_start_1
     const-string v1, "androidx.work.Operation"
 
     invoke-static {v1}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_6} :catch_7
 
     return-object v0
 
-    :catch_0
+    :catch_7
     move-exception v1
 
     .line 121
@@ -59,7 +59,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -73,17 +73,17 @@
     const-string v1, "WorkManager: Unique work name: "
 
     .line 95
-    :try_start_0
+    :try_start_4
     const-string v2, "WorkManager: enqueueUniqueWork() called"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_23
 
     .line 98
     array-length v2, p3
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_23
 
     const/4 v2, 0x0
 
@@ -108,16 +108,16 @@
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 104
-    :cond_0
+    :cond_23
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_27
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_27} :catch_28
 
     return-object p1
 
-    :catch_0
+    :catch_28
     move-exception p1
 
     .line 107

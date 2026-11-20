@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 442
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -49,7 +49,7 @@
     const/4 v1, 0x0
 
     .line 446
-    :try_start_0
+    :try_start_6
     aget-object v0, p3, v0
 
     check-cast v0, Landroid/content/Intent;
@@ -61,14 +61,14 @@
 
     check-cast p3, Ljava/lang/String;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_4e
 
     .line 450
     invoke-virtual {v0}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_4e
 
     .line 451
     invoke-virtual {v0}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
@@ -89,7 +89,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_4e
 
     .line 456
     new-instance p3, Ljava/lang/StringBuilder;
@@ -130,7 +130,7 @@
     return-object p1
 
     .line 462
-    :cond_0
+    :cond_4e
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
     move-result-object p2
@@ -146,13 +146,13 @@
     invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_5e
+    .catch Ljava/lang/SecurityException; {:try_start_6 .. :try_end_5e} :catch_6a
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_5e} :catch_5f
 
     return-object p1
 
-    :catch_0
+    :catch_5f
     move-exception p2
 
     .line 467
@@ -167,7 +167,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_6a
     move-exception p2
 
     .line 464

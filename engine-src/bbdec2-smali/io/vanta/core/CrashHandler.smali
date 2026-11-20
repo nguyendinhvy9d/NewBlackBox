@@ -12,7 +12,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 13
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -31,7 +31,7 @@
 .end method
 
 .method public static create()V
-    .locals 1
+    .registers 1
 
     .line 10
     new-instance v0, Lio/vanta/core/CrashHandler;
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    .locals 2
+    .registers 5
 
     .line 20
     new-instance v0, Ljava/lang/StringBuilder;
@@ -78,7 +78,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_2d
 
     .line 22
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
@@ -92,14 +92,14 @@
     invoke-interface {v0, p1, p2}, Ljava/lang/Thread$UncaughtExceptionHandler;->uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
 
     .line 24
-    :cond_0
+    :cond_2d
     iget-object v0, p0, Lio/vanta/core/CrashHandler;->mDefaultHandler:Ljava/lang/Thread$UncaughtExceptionHandler;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_34
 
     .line 25
     invoke-interface {v0, p1, p2}, Ljava/lang/Thread$UncaughtExceptionHandler;->uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
 
-    :cond_1
+    :cond_34
     return-void
 .end method

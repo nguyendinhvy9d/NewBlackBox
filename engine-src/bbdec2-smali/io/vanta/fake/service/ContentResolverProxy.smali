@@ -21,7 +21,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 18
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
@@ -32,7 +32,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 24
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -47,13 +47,13 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     return-void
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 10
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getDeclaringClass(Ljava/lang/reflect/Method;)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 14
     invoke-virtual {p0}, Ljava/lang/reflect/Method;->getDeclaringClass()Ljava/lang/Class;
@@ -37,7 +37,7 @@
 .end method
 
 .method private static getDesc(Ljava/lang/Class;)Ljava/lang/String;
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -52,7 +52,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_b
 
     .line 37
     invoke-static {p0}, Lio/vanta/jnihook/MethodUtils;->getPrimitiveLetter(Ljava/lang/Class;)Ljava/lang/String;
@@ -62,12 +62,12 @@
     return-object p0
 
     .line 39
-    :cond_0
+    :cond_b
     invoke-virtual {p0}, Ljava/lang/Class;->isArray()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_29
 
     .line 40
     new-instance v0, Ljava/lang/StringBuilder;
@@ -95,7 +95,7 @@
     return-object p0
 
     .line 42
-    :cond_1
+    :cond_29
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v1, "L"
@@ -124,7 +124,7 @@
 .end method
 
 .method public static getDesc(Ljava/lang/reflect/Method;)Ljava/lang/String;
-    .locals 4
+    .registers 5
 
     .line 24
     new-instance v0, Ljava/lang/StringBuffer;
@@ -141,10 +141,10 @@
     const/4 v2, 0x0
 
     .line 27
-    :goto_0
+    :goto_c
     array-length v3, v1
 
-    if-ge v2, v3, :cond_0
+    if-ge v2, v3, :cond_1b
 
     .line 28
     aget-object v3, v1, v2
@@ -157,10 +157,10 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_c
 
     .line 30
-    :cond_0
+    :cond_1b
     const-string v1, ")"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuffer;->append(Ljava/lang/String;)Ljava/lang/StringBuffer;
@@ -185,7 +185,7 @@
 .end method
 
 .method public static getMethodName(Ljava/lang/reflect/Method;)Ljava/lang/String;
-    .locals 0
+    .registers 1
 
     .line 19
     invoke-virtual {p0}, Ljava/lang/reflect/Method;->getName()Ljava/lang/String;
@@ -196,7 +196,7 @@
 .end method
 
 .method private static getPrimitiveLetter(Ljava/lang/Class;)Ljava/lang/String;
-    .locals 3
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -213,7 +213,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_b
 
     .line 58
     const-string p0, "I"
@@ -221,14 +221,14 @@
     return-object p0
 
     .line 60
-    :cond_0
+    :cond_b
     sget-object v0, Ljava/lang/Void;->TYPE:Ljava/lang/Class;
 
     invoke-virtual {v0, p0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_16
 
     .line 61
     const-string p0, "V"
@@ -236,14 +236,14 @@
     return-object p0
 
     .line 63
-    :cond_1
+    :cond_16
     sget-object v0, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
 
     invoke-virtual {v0, p0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_21
 
     .line 64
     const-string p0, "Z"
@@ -251,14 +251,14 @@
     return-object p0
 
     .line 66
-    :cond_2
+    :cond_21
     sget-object v0, Ljava/lang/Character;->TYPE:Ljava/lang/Class;
 
     invoke-virtual {v0, p0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_2c
 
     .line 67
     const-string p0, "C"
@@ -266,14 +266,14 @@
     return-object p0
 
     .line 69
-    :cond_3
+    :cond_2c
     sget-object v0, Ljava/lang/Byte;->TYPE:Ljava/lang/Class;
 
     invoke-virtual {v0, p0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_37
 
     .line 70
     const-string p0, "B"
@@ -281,14 +281,14 @@
     return-object p0
 
     .line 72
-    :cond_4
+    :cond_37
     sget-object v0, Ljava/lang/Short;->TYPE:Ljava/lang/Class;
 
     invoke-virtual {v0, p0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_42
 
     .line 73
     const-string p0, "S"
@@ -296,14 +296,14 @@
     return-object p0
 
     .line 75
-    :cond_5
+    :cond_42
     sget-object v0, Ljava/lang/Float;->TYPE:Ljava/lang/Class;
 
     invoke-virtual {v0, p0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_4d
 
     .line 76
     const-string p0, "F"
@@ -311,14 +311,14 @@
     return-object p0
 
     .line 78
-    :cond_6
+    :cond_4d
     sget-object v0, Ljava/lang/Long;->TYPE:Ljava/lang/Class;
 
     invoke-virtual {v0, p0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_7
+    if-eqz v0, :cond_58
 
     .line 79
     const-string p0, "J"
@@ -326,14 +326,14 @@
     return-object p0
 
     .line 81
-    :cond_7
+    :cond_58
     sget-object v0, Ljava/lang/Double;->TYPE:Ljava/lang/Class;
 
     invoke-virtual {v0, p0}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_63
 
     .line 82
     const-string p0, "D"
@@ -341,7 +341,7 @@
     return-object p0
 
     .line 84
-    :cond_8
+    :cond_63
     new-instance v0, Ljava/lang/IllegalStateException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -374,7 +374,7 @@
 .end method
 
 .method private static getType(Ljava/lang/Class;)Ljava/lang/String;
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -389,7 +389,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1e
 
     .line 47
     new-instance v0, Ljava/lang/StringBuilder;
@@ -417,12 +417,12 @@
     return-object p0
 
     .line 49
-    :cond_0
+    :cond_1e
     invoke-virtual {p0}, Ljava/lang/Class;->isPrimitive()Z
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_31
 
     .line 50
     invoke-virtual {p0}, Ljava/lang/Class;->getName()Ljava/lang/String;
@@ -441,7 +441,7 @@
     return-object p0
 
     .line 53
-    :cond_1
+    :cond_31
     invoke-static {p0}, Lio/vanta/jnihook/MethodUtils;->getPrimitiveLetter(Ljava/lang/Class;)Ljava/lang/String;
 
     move-result-object p0

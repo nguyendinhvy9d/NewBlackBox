@@ -70,7 +70,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 21
     new-instance v0, Lio/vanta/core/system/user/BUserHandle;
@@ -126,7 +126,7 @@
 .end method
 
 .method public constructor <init>(I)V
-    .locals 0
+    .registers 2
 
     .line 228
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -138,7 +138,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .locals 0
+    .registers 2
 
     .line 294
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -154,7 +154,7 @@
 .end method
 
 .method public static getAppId(I)I
-    .locals 1
+    .registers 2
 
     const v0, 0x186a0
 
@@ -165,7 +165,7 @@
 .end method
 
 .method public static getCacheAppGid(I)I
-    .locals 1
+    .registers 2
 
     .line 182
     invoke-static {p0}, Lio/vanta/core/system/user/BUserHandle;->getUserId(I)I
@@ -184,15 +184,15 @@
 .end method
 
 .method public static getCacheAppGid(II)I
-    .locals 1
+    .registers 3
 
     const/16 v0, 0x2710
 
-    if-lt p1, v0, :cond_0
+    if-lt p1, v0, :cond_f
 
     const/16 v0, 0x4e1f
 
-    if-gt p1, v0, :cond_0
+    if-gt p1, v0, :cond_f
 
     add-int/lit16 p1, p1, 0x2710
 
@@ -203,14 +203,14 @@
 
     return p0
 
-    :cond_0
+    :cond_f
     const/4 p0, -0x1
 
     return p0
 .end method
 
 .method public static getCallingAppId()I
-    .locals 1
+    .registers 1
 
     .line 127
     invoke-static {}, Landroid/os/Binder;->getCallingUid()I
@@ -225,7 +225,7 @@
 .end method
 
 .method public static getCallingUserId()I
-    .locals 1
+    .registers 1
 
     .line 122
     invoke-static {}, Landroid/os/Binder;->getCallingUid()I
@@ -240,7 +240,7 @@
 .end method
 
 .method public static getSharedAppGid(I)I
-    .locals 1
+    .registers 2
 
     .line 156
     invoke-static {p0}, Lio/vanta/core/system/user/BUserHandle;->getUserId(I)I
@@ -259,15 +259,15 @@
 .end method
 
 .method public static getSharedAppGid(II)I
-    .locals 1
+    .registers 3
 
     const/16 p0, 0x2710
 
-    if-lt p1, p0, :cond_0
+    if-lt p1, p0, :cond_d
 
     const/16 v0, 0x4e1f
 
-    if-gt p1, v0, :cond_0
+    if-gt p1, v0, :cond_d
 
     const p0, -0x9c40
 
@@ -275,21 +275,21 @@
 
     return p1
 
-    :cond_0
-    if-ltz p1, :cond_1
+    :cond_d
+    if-ltz p1, :cond_12
 
-    if-gt p1, p0, :cond_1
+    if-gt p1, p0, :cond_12
 
     return p1
 
-    :cond_1
+    :cond_12
     const/4 p0, -0x1
 
     return p0
 .end method
 
 .method public static getUid(II)I
-    .locals 1
+    .registers 3
 
     const v0, 0x186a0
 
@@ -304,7 +304,7 @@
 .end method
 
 .method public static getUserGid(I)I
-    .locals 1
+    .registers 2
 
     const/16 v0, 0x270d
 
@@ -317,7 +317,7 @@
 .end method
 
 .method public static getUserHandleForUid(I)Lio/vanta/core/system/user/BUserHandle;
-    .locals 0
+    .registers 1
 
     .line 108
     invoke-static {p0}, Lio/vanta/core/system/user/BUserHandle;->getUserId(I)I
@@ -332,7 +332,7 @@
 .end method
 
 .method public static getUserId(I)I
-    .locals 1
+    .registers 2
 
     const v0, 0x186a0
 
@@ -343,11 +343,11 @@
 .end method
 
 .method public static isApp(I)Z
-    .locals 2
+    .registers 3
 
     const/4 v0, 0x0
 
-    if-lez p0, :cond_0
+    if-lez p0, :cond_11
 
     .line 89
     invoke-static {p0}, Lio/vanta/core/system/user/BUserHandle;->getAppId(I)I
@@ -356,26 +356,26 @@
 
     const/16 v1, 0x2710
 
-    if-lt p0, v1, :cond_0
+    if-lt p0, v1, :cond_11
 
     const/16 v1, 0x4e1f
 
-    if-gt p0, v1, :cond_0
+    if-gt p0, v1, :cond_11
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_0
+    :cond_11
     return v0
 .end method
 
 .method public static isCore(I)Z
-    .locals 2
+    .registers 3
 
     const/4 v0, 0x0
 
-    if-ltz p0, :cond_0
+    if-ltz p0, :cond_d
 
     .line 99
     invoke-static {p0}, Lio/vanta/core/system/user/BUserHandle;->getAppId(I)I
@@ -384,18 +384,18 @@
 
     const/16 v1, 0x2710
 
-    if-ge p0, v1, :cond_0
+    if-ge p0, v1, :cond_d
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_0
+    :cond_d
     return v0
 .end method
 
 .method public static isSameApp(II)Z
-    .locals 0
+    .registers 2
 
     .line 83
     invoke-static {p0}, Lio/vanta/core/system/user/BUserHandle;->getAppId(I)I
@@ -406,20 +406,20 @@
 
     move-result p1
 
-    if-ne p0, p1, :cond_0
+    if-ne p0, p1, :cond_c
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_0
+    :cond_c
     const/4 p0, 0x0
 
     return p0
 .end method
 
 .method public static isSameUser(II)Z
-    .locals 0
+    .registers 2
 
     .line 78
     invoke-static {p0}, Lio/vanta/core/system/user/BUserHandle;->getUserId(I)I
@@ -430,20 +430,20 @@
 
     move-result p1
 
-    if-ne p0, p1, :cond_0
+    if-ne p0, p1, :cond_c
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_0
+    :cond_c
     const/4 p0, 0x0
 
     return p0
 .end method
 
 .method public static myUserId()I
-    .locals 1
+    .registers 1
 
     .line 213
     invoke-static {}, Landroid/os/Process;->myUid()I
@@ -458,16 +458,16 @@
 .end method
 
 .method public static of(I)Lio/vanta/core/system/user/BUserHandle;
-    .locals 1
+    .registers 2
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_5
 
     .line 132
     sget-object p0, Lio/vanta/core/system/user/BUserHandle;->SYSTEM:Lio/vanta/core/system/user/BUserHandle;
 
     return-object p0
 
-    :cond_0
+    :cond_5
     new-instance v0, Lio/vanta/core/system/user/BUserHandle;
 
     invoke-direct {v0, p0}, Lio/vanta/core/system/user/BUserHandle;-><init>(I)V
@@ -476,7 +476,7 @@
 .end method
 
 .method public static parseUserArg(Ljava/lang/String;)I
-    .locals 3
+    .registers 4
 
     .line 197
     const-string v0, "all"
@@ -485,21 +485,21 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_a
 
     const/4 p0, -0x1
 
     return p0
 
     .line 199
-    :cond_0
+    :cond_a
     const-string v0, "current"
 
     invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_35
 
     const-string v0, "cur"
 
@@ -507,23 +507,23 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1b
 
-    goto :goto_0
+    goto :goto_35
 
     .line 203
-    :cond_1
-    :try_start_0
+    :cond_1b
+    :try_start_1b
     invoke-static {p0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
 
     move-result p0
-    :try_end_0
-    .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1f
+    .catch Ljava/lang/NumberFormatException; {:try_start_1b .. :try_end_1f} :catch_20
 
     return p0
 
     .line 205
-    :catch_0
+    :catch_20
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -544,15 +544,15 @@
 
     throw v0
 
-    :cond_2
-    :goto_0
+    :cond_35
+    :goto_35
     const/4 p0, -0x2
 
     return p0
 .end method
 
 .method public static readFromParcel(Landroid/os/Parcel;)Lio/vanta/core/system/user/BUserHandle;
-    .locals 1
+    .registers 2
 
     .line 278
     invoke-virtual {p0}, Landroid/os/Parcel;->readInt()I
@@ -561,7 +561,7 @@
 
     const/16 v0, -0x2710
 
-    if-eq p0, v0, :cond_0
+    if-eq p0, v0, :cond_e
 
     .line 279
     new-instance v0, Lio/vanta/core/system/user/BUserHandle;
@@ -570,16 +570,16 @@
 
     return-object v0
 
-    :cond_0
+    :cond_e
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method public static writeToParcel(Lio/vanta/core/system/user/BUserHandle;Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_7
 
     const/4 v0, 0x0
 
@@ -588,7 +588,7 @@
 
     return-void
 
-    :cond_0
+    :cond_7
     const/16 p0, -0x2710
 
     .line 272
@@ -600,7 +600,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -608,36 +608,36 @@
 .end method
 
 .method public equals(Ljava/lang/Object;)Z
-    .locals 2
+    .registers 4
 
     const/4 v0, 0x0
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_d
 
     .line 246
-    :try_start_0
+    :try_start_3
     check-cast p1, Lio/vanta/core/system/user/BUserHandle;
 
     .line 247
     iget v1, p0, Lio/vanta/core/system/user/BUserHandle;->mHandle:I
 
     iget p1, p1, Lio/vanta/core/system/user/BUserHandle;->mHandle:I
-    :try_end_0
-    .catch Ljava/lang/ClassCastException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Ljava/lang/ClassCastException; {:try_start_3 .. :try_end_9} :catch_d
 
-    if-ne v1, p1, :cond_0
+    if-ne v1, p1, :cond_d
 
     const/4 p1, 0x1
 
     return p1
 
-    :catch_0
-    :cond_0
+    :catch_d
+    :cond_d
     return v0
 .end method
 
 .method public getIdentifier()I
-    .locals 1
+    .registers 2
 
     .line 234
     iget v0, p0, Lio/vanta/core/system/user/BUserHandle;->mHandle:I
@@ -646,7 +646,7 @@
 .end method
 
 .method public hashCode()I
-    .locals 1
+    .registers 2
 
     .line 256
     iget v0, p0, Lio/vanta/core/system/user/BUserHandle;->mHandle:I
@@ -655,7 +655,7 @@
 .end method
 
 .method public isOwner()Z
-    .locals 1
+    .registers 2
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
 
@@ -670,7 +670,7 @@
 .end method
 
 .method public isSystem()Z
-    .locals 1
+    .registers 2
 
     .line 224
     sget-object v0, Lio/vanta/core/system/user/BUserHandle;->SYSTEM:Lio/vanta/core/system/user/BUserHandle;
@@ -683,7 +683,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 239
     new-instance v0, Ljava/lang/StringBuilder;
@@ -712,7 +712,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 0
+    .registers 3
 
     .line 264
     iget p2, p0, Lio/vanta/core/system/user/BUserHandle;->mHandle:I

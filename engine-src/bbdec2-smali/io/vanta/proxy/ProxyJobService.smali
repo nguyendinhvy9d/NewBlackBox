@@ -66,7 +66,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 11
     invoke-direct {p0}, Landroid/app/job/JobService;-><init>()V
@@ -77,7 +77,7 @@
 
 # virtual methods
 .method public onConfigurationChanged(Landroid/content/res/Configuration;)V
-    .locals 1
+    .registers 3
 
     .line 37
     invoke-super {p0, p1}, Landroid/app/job/JobService;->onConfigurationChanged(Landroid/content/res/Configuration;)V
@@ -93,7 +93,7 @@
 .end method
 
 .method public onDestroy()V
-    .locals 1
+    .registers 2
 
     .line 31
     invoke-super {p0}, Landroid/app/job/JobService;->onDestroy()V
@@ -109,7 +109,7 @@
 .end method
 
 .method public onLowMemory()V
-    .locals 1
+    .registers 2
 
     .line 43
     invoke-super {p0}, Landroid/app/job/JobService;->onLowMemory()V
@@ -125,7 +125,7 @@
 .end method
 
 .method public onStartCommand(Landroid/content/Intent;II)I
-    .locals 0
+    .registers 4
 
     const/4 p1, 0x2
 
@@ -133,7 +133,7 @@
 .end method
 
 .method public onStartJob(Landroid/app/job/JobParameters;)Z
-    .locals 1
+    .registers 3
 
     .line 16
     invoke-static {}, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->get()Lio/vanta/app/dispatcher/AppJobServiceDispatcher;
@@ -148,7 +148,7 @@
 .end method
 
 .method public onStopJob(Landroid/app/job/JobParameters;)Z
-    .locals 1
+    .registers 3
 
     .line 21
     invoke-static {}, Lio/vanta/app/dispatcher/AppJobServiceDispatcher;->get()Lio/vanta/app/dispatcher/AppJobServiceDispatcher;
@@ -163,7 +163,7 @@
 .end method
 
 .method public onTrimMemory(I)V
-    .locals 1
+    .registers 3
 
     .line 49
     invoke-super {p0, p1}, Landroid/app/job/JobService;->onTrimMemory(I)V

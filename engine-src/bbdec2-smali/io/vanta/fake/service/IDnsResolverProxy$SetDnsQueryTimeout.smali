@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 139
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -47,13 +47,13 @@
 
     invoke-static {v2, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_3d
 
     .line 146
-    :try_start_0
+    :try_start_b
     array-length v1, p3
 
-    if-lez v1, :cond_0
+    if-lez v1, :cond_3d
 
     const/4 v1, 0x0
 
@@ -61,7 +61,7 @@
 
     instance-of v4, v3, Ljava/lang/Integer;
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_3d
 
     .line 147
     check-cast v3, Ljava/lang/Integer;
@@ -105,16 +105,16 @@
     aput-object v0, p3, v1
 
     .line 151
-    :cond_0
+    :cond_3d
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_41
+    .catch Ljava/lang/Exception; {:try_start_b .. :try_end_41} :catch_42
 
     return-object p1
 
-    :catch_0
+    :catch_42
     move-exception p1
 
     .line 153

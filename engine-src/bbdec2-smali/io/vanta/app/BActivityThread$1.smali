@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/app/BActivityThread;Landroid/os/IBinder;)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public binderDied()V
-    .locals 3
+    .registers 4
 
     .line 195
     invoke-static {}, Lio/vanta/app/BActivityThread;->-$$Nest$sfgetmConfigLock()Ljava/lang/Object;
@@ -55,27 +55,27 @@
     monitor-enter v0
 
     .line 197
-    :try_start_0
+    :try_start_5
     iget-object v1, p0, Lio/vanta/app/BActivityThread$1;->val$iBinder:Landroid/os/IBinder;
 
     const/4 v2, 0x0
 
     invoke-interface {v1, p0, v2}, Landroid/os/IBinder;->linkToDeath(Landroid/os/IBinder$DeathRecipient;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_b
+    .catch Landroid/os/RemoteException; {:try_start_5 .. :try_end_b} :catch_e
+    .catchall {:try_start_5 .. :try_end_b} :catchall_c
 
-    goto :goto_0
+    goto :goto_e
 
-    :catchall_0
+    :catchall_c
     move-exception v1
 
-    goto :goto_1
+    goto :goto_16
 
     .line 200
-    :catch_0
-    :goto_0
-    :try_start_1
+    :catch_e
+    :goto_e
+    :try_start_e
     iget-object v1, p0, Lio/vanta/app/BActivityThread$1;->this$0:Lio/vanta/app/BActivityThread;
 
     const/4 v2, 0x0
@@ -87,10 +87,10 @@
 
     return-void
 
-    :goto_1
+    :goto_16
     monitor-exit v0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_17
+    .catchall {:try_start_e .. :try_end_17} :catchall_c
 
     throw v1
 .end method

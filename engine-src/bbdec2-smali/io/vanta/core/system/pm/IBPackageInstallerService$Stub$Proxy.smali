@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 127
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 132
     iget-object v0, p0, Lio/vanta/core/system/pm/IBPackageInstallerService$Stub$Proxy;->mRemote:Landroid/os/IBinder;
@@ -46,7 +46,7 @@
 .end method
 
 .method public clearPackage(Lio/vanta/core/system/pm/BPackageSettings;I)I
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -64,7 +64,7 @@
     move-result-object v1
 
     .line 183
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.pm.IBPackageInstallerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -91,8 +91,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 191
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -102,7 +102,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 191
@@ -116,7 +116,7 @@
 .end method
 
 .method public final getInterfaceDescriptor()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 136
     const-string v0, "io.vanta.core.system.pm.IBPackageInstallerService"
@@ -125,7 +125,7 @@
 .end method
 
 .method public installPackageAsUser(Lio/vanta/core/system/pm/BPackageSettings;I)I
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -143,7 +143,7 @@
     move-result-object v1
 
     .line 144
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.pm.IBPackageInstallerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -170,8 +170,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 152
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -181,7 +181,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 152
@@ -195,7 +195,7 @@
 .end method
 
 .method public uninstallPackageAsUser(Lio/vanta/core/system/pm/BPackageSettings;ZI)I
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -213,7 +213,7 @@
     move-result-object v1
 
     .line 163
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.pm.IBPackageInstallerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -243,8 +243,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 172
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -254,7 +254,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 172
@@ -268,7 +268,7 @@
 .end method
 
 .method public updatePackage(Lio/vanta/core/system/pm/BPackageSettings;)I
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -286,7 +286,7 @@
     move-result-object v1
 
     .line 202
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.pm.IBPackageInstallerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -310,8 +310,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_8 .. :try_end_1e} :catchall_25
 
     .line 209
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -321,7 +321,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_25
     move-exception p1
 
     .line 209

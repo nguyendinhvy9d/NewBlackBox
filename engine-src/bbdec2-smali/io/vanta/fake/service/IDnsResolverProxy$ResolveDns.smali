@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 49
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,7 +29,7 @@
 .end method
 
 .method private createFallbackDnsResult()Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 73
     :try_start_0
@@ -54,12 +54,12 @@
     move-result-object v1
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_17
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_17} :catch_18
 
     return-object v0
 
-    :catch_0
+    :catch_18
     move-exception v0
 
     .line 78
@@ -96,7 +96,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -111,17 +111,17 @@
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 55
-    :try_start_0
+    :try_start_7
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_e
 
     return-object p1
 
     .line 61
-    :cond_0
+    :cond_e
     const-string p1, "DNS resolution failed, providing fallback"
 
     invoke-static {v1, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -130,12 +130,12 @@
     invoke-direct {p0}, Lio/vanta/fake/service/IDnsResolverProxy$ResolveDns;->createFallbackDnsResult()Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_17
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_17} :catch_18
 
     return-object p1
 
-    :catch_0
+    :catch_18
     move-exception p1
 
     .line 65

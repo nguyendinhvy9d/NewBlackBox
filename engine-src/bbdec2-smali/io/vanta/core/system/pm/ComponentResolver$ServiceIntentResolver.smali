@@ -40,7 +40,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$fgetmServices(Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;)Landroid/util/ArrayMap;
-    .locals 0
+    .registers 1
 
     iget-object p0, p0, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;->mServices:Landroid/util/ArrayMap;
 
@@ -48,7 +48,7 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 297
     invoke-direct {p0}, Lio/vanta/core/system/pm/IntentResolver;-><init>()V
@@ -64,7 +64,7 @@
 .end method
 
 .method synthetic constructor <init>(Lio/vanta/core/system/pm/ComponentResolver-IA;)V
-    .locals 0
+    .registers 2
 
     invoke-direct {p0}, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;-><init>()V
 
@@ -74,7 +74,7 @@
 
 # virtual methods
 .method addService(Lio/vanta/core/system/pm/BPackage$Service;)V
-    .locals 3
+    .registers 5
 
     .line 338
     iget-object v0, p0, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;->mServices:Landroid/util/ArrayMap;
@@ -94,8 +94,8 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_0
+    :goto_10
+    if-ge v1, v0, :cond_20
 
     .line 342
     iget-object v2, p1, Lio/vanta/core/system/pm/BPackage$Service;->intents:Ljava/util/ArrayList;
@@ -111,14 +111,14 @@
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_0
+    :cond_20
     return-void
 .end method
 
 .method protected bridge synthetic isPackageForFilter(Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)Z
-    .locals 0
+    .registers 3
 
     .line 297
     check-cast p2, Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;
@@ -131,7 +131,7 @@
 .end method
 
 .method protected isPackageForFilter(Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;)Z
-    .locals 0
+    .registers 3
 
     .line 360
     iget-object p2, p2, Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;->service:Lio/vanta/core/system/pm/BPackage$Service;
@@ -148,7 +148,7 @@
 .end method
 
 .method protected bridge synthetic newArray(I)[Lio/vanta/core/system/pm/BPackage$IntentInfo;
-    .locals 0
+    .registers 2
 
     .line 297
     invoke-virtual {p0, p1}, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;->newArray(I)[Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;
@@ -159,7 +159,7 @@
 .end method
 
 .method protected newArray(I)[Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;
-    .locals 0
+    .registers 2
 
     .line 365
     new-array p1, p1, [Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;
@@ -168,7 +168,7 @@
 .end method
 
 .method protected newResult(Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;II)Landroid/content/pm/ResolveInfo;
-    .locals 3
+    .registers 7
 
     .line 371
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;->service:Lio/vanta/core/system/pm/BPackage$Service;
@@ -178,14 +178,14 @@
 
     iget-object v1, v1, Lio/vanta/core/system/pm/BPackage;->mExtras:Lio/vanta/core/system/pm/BPackageSettings;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_a
 
     const/4 p1, 0x0
 
     return-object p1
 
     .line 376
-    :cond_0
+    :cond_a
     iget v2, p0, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;->mFlags:I
 
     invoke-virtual {v1, p3}, Lio/vanta/core/system/pm/BPackageSettings;->readUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
@@ -209,7 +209,7 @@
 
     and-int/lit8 p3, p3, 0x40
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_25
 
     .line 381
     iget-object p3, p1, Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;->intentFilter:Landroid/content/IntentFilter;
@@ -217,7 +217,7 @@
     iput-object p3, v1, Landroid/content/pm/ResolveInfo;->filter:Landroid/content/IntentFilter;
 
     .line 383
-    :cond_1
+    :cond_25
     iget-object p3, p1, Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;->intentFilter:Landroid/content/IntentFilter;
 
     invoke-virtual {p3}, Landroid/content/IntentFilter;->getPriority()I
@@ -260,7 +260,7 @@
 .end method
 
 .method protected bridge synthetic newResult(Lio/vanta/core/system/pm/BPackage$IntentInfo;II)Ljava/lang/Object;
-    .locals 0
+    .registers 4
 
     .line 297
     check-cast p1, Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;
@@ -273,7 +273,7 @@
 .end method
 
 .method queryIntent(Landroid/content/Intent;Ljava/lang/String;II)Ljava/util/List;
-    .locals 1
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -293,17 +293,17 @@
 
     and-int/2addr p3, v0
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_9
 
     const/4 p3, 0x1
 
-    goto :goto_0
+    goto :goto_a
 
-    :cond_0
+    :cond_9
     const/4 p3, 0x0
 
     .line 309
-    :goto_0
+    :goto_a
     invoke-super {p0, p1, p2, p3, p4}, Lio/vanta/core/system/pm/IntentResolver;->queryIntent(Landroid/content/Intent;Ljava/lang/String;ZI)Ljava/util/List;
 
     move-result-object p1
@@ -312,7 +312,7 @@
 .end method
 
 .method public queryIntent(Landroid/content/Intent;Ljava/lang/String;ZI)Ljava/util/List;
-    .locals 1
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -325,17 +325,17 @@
         }
     .end annotation
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_5
 
     const/high16 v0, 0x10000
 
-    goto :goto_0
+    goto :goto_6
 
-    :cond_0
+    :cond_5
     const/4 v0, 0x0
 
     .line 302
-    :goto_0
+    :goto_6
     iput v0, p0, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;->mFlags:I
 
     .line 303
@@ -347,7 +347,7 @@
 .end method
 
 .method queryIntentForPackage(Landroid/content/Intent;Ljava/lang/String;ILjava/util/List;I)Ljava/util/List;
-    .locals 7
+    .registers 13
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -363,14 +363,14 @@
         }
     .end annotation
 
-    if-nez p4, :cond_0
+    if-nez p4, :cond_4
 
     const/4 p1, 0x0
 
     return-object p1
 
     .line 319
-    :cond_0
+    :cond_4
     iput p3, p0, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;->mFlags:I
 
     const/high16 v0, 0x10000
@@ -379,19 +379,19 @@
 
     const/4 v0, 0x0
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_f
 
     const/4 p3, 0x1
 
     move v4, p3
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_1
+    :cond_f
     move v4, v0
 
     .line 321
-    :goto_0
+    :goto_10
     invoke-interface {p4}, Ljava/util/List;->size()I
 
     move-result p3
@@ -401,8 +401,8 @@
 
     invoke-direct {v5, p3}, Ljava/util/ArrayList;-><init>(I)V
 
-    :goto_1
-    if-ge v0, p3, :cond_3
+    :goto_19
+    if-ge v0, p3, :cond_3a
 
     .line 326
     invoke-interface {p4, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -413,14 +413,14 @@
 
     iget-object v1, v1, Lio/vanta/core/system/pm/BPackage$Service;->intents:Ljava/util/ArrayList;
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_37
 
     .line 327
     invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
 
     move-result v2
 
-    if-lez v2, :cond_2
+    if-lez v2, :cond_37
 
     .line 329
     invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
@@ -435,12 +435,12 @@
     .line 331
     invoke-virtual {v5, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    :cond_2
+    :cond_37
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_19
 
-    :cond_3
+    :cond_3a
     move-object v1, p0
 
     move-object v2, p1
@@ -458,7 +458,7 @@
 .end method
 
 .method removeService(Lio/vanta/core/system/pm/BPackage$Service;)V
-    .locals 3
+    .registers 5
 
     .line 348
     iget-object v0, p0, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;->mServices:Landroid/util/ArrayMap;
@@ -478,8 +478,8 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_0
+    :goto_10
+    if-ge v1, v0, :cond_20
 
     .line 352
     iget-object v2, p1, Lio/vanta/core/system/pm/BPackage$Service;->intents:Ljava/util/ArrayList;
@@ -495,8 +495,8 @@
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_0
+    :cond_20
     return-void
 .end method

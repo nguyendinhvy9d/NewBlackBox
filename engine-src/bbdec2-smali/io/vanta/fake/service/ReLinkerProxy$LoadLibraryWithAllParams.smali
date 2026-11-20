@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 63
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,21 +31,21 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_2d
 
     .line 66
     array-length p1, p3
 
     const/4 p2, 0x2
 
-    if-le p1, p2, :cond_0
+    if-le p1, p2, :cond_2d
 
     const/4 p1, 0x1
 
@@ -88,7 +88,7 @@
 
     invoke-static {p2, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_2d
     const/4 p1, 0x0
 
     return-object p1

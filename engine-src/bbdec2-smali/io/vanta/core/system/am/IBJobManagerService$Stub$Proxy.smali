@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 129
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 134
     iget-object v0, p0, Lio/vanta/core/system/am/IBJobManagerService$Stub$Proxy;->mRemote:Landroid/os/IBinder;
@@ -46,7 +46,7 @@
 .end method
 
 .method public cancel(Ljava/lang/String;II)I
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -64,7 +64,7 @@
     move-result-object v1
 
     .line 201
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBJobManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -94,8 +94,8 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 210
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -105,7 +105,7 @@
 
     return p1
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 210
@@ -119,7 +119,7 @@
 .end method
 
 .method public cancelAll(Ljava/lang/String;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -137,7 +137,7 @@
     move-result-object v1
 
     .line 184
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBJobManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -159,8 +159,8 @@
 
     .line 188
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catchall {:try_start_8 .. :try_end_1d} :catchall_24
 
     .line 191
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -170,7 +170,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_24
     move-exception p1
 
     .line 191
@@ -184,7 +184,7 @@
 .end method
 
 .method public final getInterfaceDescriptor()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 138
     const-string v0, "io.vanta.core.system.am.IBJobManagerService"
@@ -193,7 +193,7 @@
 .end method
 
 .method public queryJobRecord(Ljava/lang/String;II)Lio/vanta/entity/JobRecord;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -211,7 +211,7 @@
     move-result-object v1
 
     .line 165
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBJobManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -245,8 +245,8 @@
     move-result-object p1
 
     check-cast p1, Lio/vanta/entity/JobRecord;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_28
+    .catchall {:try_start_8 .. :try_end_28} :catchall_2f
 
     .line 174
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -256,7 +256,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2f
     move-exception p1
 
     .line 174
@@ -270,7 +270,7 @@
 .end method
 
 .method public schedule(Landroid/app/job/JobInfo;I)Landroid/app/job/JobInfo;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -288,7 +288,7 @@
     move-result-object v1
 
     .line 146
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.am.IBJobManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -319,8 +319,8 @@
     move-result-object p1
 
     check-cast p1, Landroid/app/job/JobInfo;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_8 .. :try_end_25} :catchall_2c
 
     .line 154
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -330,7 +330,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2c
     move-exception p1
 
     .line 154

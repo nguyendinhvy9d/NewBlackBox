@@ -20,22 +20,22 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 3
+    .registers 4
 
     .line 17
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
 
     .line 19
-    :try_start_0
+    :try_start_3
     const-string v0, "android.app.ResourcesManager"
 
     invoke-static {v0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
-    :try_end_0
-    .catch Ljava/lang/ClassNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_8
+    .catch Ljava/lang/ClassNotFoundException; {:try_start_3 .. :try_end_8} :catch_9
 
     return-void
 
-    :catch_0
+    :catch_9
     move-exception v0
 
     .line 21
@@ -67,7 +67,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -75,13 +75,13 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     return-void
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -89,7 +89,7 @@
 .end method
 
 .method protected onBindMethod()V
-    .locals 0
+    .registers 1
 
     .line 42
     invoke-super {p0}, Lio/vanta/fake/hook/ClassInvocationStub;->onBindMethod()V

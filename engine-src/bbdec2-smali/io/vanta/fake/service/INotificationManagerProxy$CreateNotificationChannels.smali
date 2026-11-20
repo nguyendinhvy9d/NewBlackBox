@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 123
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -58,22 +58,22 @@
 
     move-result-object p2
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_13
 
     return-object p2
 
     .line 130
-    :cond_0
+    :cond_13
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
 
-    :goto_0
+    :goto_17
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result p3
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_2b
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -88,8 +88,8 @@
 
     invoke-virtual {v0, p3}, Lio/vanta/fake/frameworks/BNotificationManager;->createNotificationChannel(Landroid/app/NotificationChannel;)V
 
-    goto :goto_0
+    goto :goto_17
 
-    :cond_1
+    :cond_2b
     return-object p2
 .end method

@@ -24,7 +24,7 @@
 
 # direct methods
 .method public constructor <init>(Lio/vanta/entity/ServiceRecord;)V
-    .locals 1
+    .registers 3
 
     .line 19
     iput-object p1, p0, Lio/vanta/entity/ServiceRecord$BoundInfo;->this$0:Lio/vanta/entity/ServiceRecord;
@@ -46,7 +46,7 @@
 
 # virtual methods
 .method public decrementAndGetBindCount()I
-    .locals 1
+    .registers 2
 
     .line 28
     iget-object v0, p0, Lio/vanta/entity/ServiceRecord$BoundInfo;->mBindCount:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -59,7 +59,7 @@
 .end method
 
 .method public getIBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 32
     iget-object v0, p0, Lio/vanta/entity/ServiceRecord$BoundInfo;->mIBinder:Landroid/os/IBinder;
@@ -68,7 +68,7 @@
 .end method
 
 .method public incrementAndGetBindCount()I
-    .locals 1
+    .registers 2
 
     .line 24
     iget-object v0, p0, Lio/vanta/entity/ServiceRecord$BoundInfo;->mBindCount:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -81,7 +81,7 @@
 .end method
 
 .method public setIBinder(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 36
     iput-object p1, p0, Lio/vanta/entity/ServiceRecord$BoundInfo;->mIBinder:Landroid/os/IBinder;

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 122
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -44,6 +44,8 @@
     aget-object v0, p3, v0
 
     check-cast v0, Landroid/content/Intent;
+
+    move-object v5, v0
 
     const/4 v1, 0x1
 
@@ -66,7 +68,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_21
 
     .line 130
     const-string p1, "PackageManagerStub"
@@ -80,7 +82,7 @@
     return-object p1
 
     .line 134
-    :cond_0
+    :cond_21
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v3
@@ -93,12 +95,16 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    const-string v6, "resolveIntent-cell"
+
+    invoke-static {v6, v5, v0}, Lio/vanta/fake/service/XjLineDiag;->xjLineLog(Ljava/lang/String;Landroid/content/Intent;Ljava/lang/Object;)V
+
+    if-eqz v0, :cond_35
 
     return-object v0
 
     .line 138
-    :cond_1
+    :cond_35
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

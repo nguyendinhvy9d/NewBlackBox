@@ -56,7 +56,7 @@
 
 # direct methods
 .method public static synthetic $r8$lambda$_jN0YPLQzyCqgEBFyCHhSwUE1HE(Lio/vanta/core/system/JarManager;)V
-    .locals 0
+    .registers 1
 
     invoke-direct {p0}, Lio/vanta/core/system/JarManager;->lambda$initializeAsync$0()V
 
@@ -64,7 +64,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 22
     invoke-static {}, Lio/vanta/core/system/JarConfig;->getRequiredJars()[Lio/vanta/core/system/JarConfig$JarDefinition;
@@ -84,7 +84,7 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 46
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -130,7 +130,7 @@
 .end method
 
 .method private copyJarFromAssets(Landroid/content/Context;Lio/vanta/core/system/JarConfig$JarDefinition;Ljava/io/File;)V
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -155,7 +155,7 @@
     const/4 v4, 0x0
 
     .line 180
-    :try_start_0
+    :try_start_d
     invoke-virtual {p1}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
 
     move-result-object p1
@@ -164,7 +164,7 @@
 
     move-result-object v4
 
-    if-eqz v4, :cond_3
+    if-eqz v4, :cond_56
 
     .line 186
     invoke-virtual {p3}, Ljava/io/File;->getParentFile()Ljava/io/File;
@@ -176,18 +176,18 @@
 
     move-result v3
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_3b
 
     invoke-virtual {p1}, Ljava/io/File;->mkdirs()Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_28
 
-    goto :goto_0
+    goto :goto_3b
 
     .line 188
-    :cond_0
+    :cond_28
     new-instance p3, Ljava/io/IOException;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -207,23 +207,23 @@
     throw p3
 
     .line 192
-    :cond_1
-    :goto_0
+    :cond_3b
+    :goto_3b
     invoke-static {v4, p3, p2}, Lio/vanta/utils/JarUtils;->copyFileWithProgress(Ljava/io/InputStream;Ljava/io/File;Ljava/lang/String;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_3e
+    .catchall {:try_start_d .. :try_end_3e} :catchall_69
 
-    if-eqz v4, :cond_2
+    if-eqz v4, :cond_55
 
     .line 197
-    :try_start_1
+    :try_start_40
     invoke-virtual {v4}, Ljava/io/InputStream;->close()V
-    :try_end_1
-    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_43
+    .catch Ljava/io/IOException; {:try_start_40 .. :try_end_43} :catch_44
 
     return-void
 
-    :catch_0
+    :catch_44
     move-exception p1
 
     .line 199
@@ -241,12 +241,12 @@
 
     invoke-static {v1, p2, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_2
+    :cond_55
     return-void
 
     .line 182
-    :cond_3
-    :try_start_2
+    :cond_56
+    :try_start_56
     new-instance p1, Ljava/io/IOException;
 
     new-instance p3, Ljava/lang/StringBuilder;
@@ -264,23 +264,23 @@
     invoke-direct {p1, p3}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
 
     throw p1
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_69
+    .catchall {:try_start_56 .. :try_end_69} :catchall_69
 
-    :catchall_0
+    :catchall_69
     move-exception p1
 
-    if-eqz v4, :cond_4
+    if-eqz v4, :cond_81
 
     .line 197
-    :try_start_3
+    :try_start_6c
     invoke-virtual {v4}, Ljava/io/InputStream;->close()V
-    :try_end_3
-    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_1
+    :try_end_6f
+    .catch Ljava/io/IOException; {:try_start_6c .. :try_end_6f} :catch_70
 
-    goto :goto_1
+    goto :goto_81
 
-    :catch_1
+    :catch_70
     move-exception p3
 
     .line 199
@@ -299,18 +299,18 @@
     invoke-static {v1, p2, p3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 202
-    :cond_4
-    :goto_1
+    :cond_81
+    :goto_81
     throw p1
 .end method
 
 .method public static getInstance()Lio/vanta/core/system/JarManager;
-    .locals 2
+    .registers 2
 
     .line 36
     sget-object v0, Lio/vanta/core/system/JarManager;->sInstance:Lio/vanta/core/system/JarManager;
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_17
 
     .line 37
     const-class v0, Lio/vanta/core/system/JarManager;
@@ -318,10 +318,10 @@
     monitor-enter v0
 
     .line 38
-    :try_start_0
+    :try_start_7
     sget-object v1, Lio/vanta/core/system/JarManager;->sInstance:Lio/vanta/core/system/JarManager;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_12
 
     .line 39
     new-instance v1, Lio/vanta/core/system/JarManager;
@@ -331,30 +331,30 @@
     sput-object v1, Lio/vanta/core/system/JarManager;->sInstance:Lio/vanta/core/system/JarManager;
 
     .line 41
-    :cond_0
+    :cond_12
     monitor-exit v0
 
-    goto :goto_0
+    goto :goto_17
 
-    :catchall_0
+    :catchall_14
     move-exception v1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_16
+    .catchall {:try_start_7 .. :try_end_16} :catchall_14
 
     throw v1
 
     .line 43
-    :cond_1
-    :goto_0
+    :cond_17
+    :goto_17
     sget-object v0, Lio/vanta/core/system/JarManager;->sInstance:Lio/vanta/core/system/JarManager;
 
     return-object v0
 .end method
 
 .method private getTargetFile(Lio/vanta/core/system/JarConfig$JarDefinition;)Ljava/io/File;
-    .locals 2
+    .registers 4
 
     .line 171
     new-instance v0, Ljava/io/File;
@@ -373,14 +373,14 @@
 .end method
 
 .method private initializeJarEnvironment()V
-    .locals 9
+    .registers 10
 
     .line 116
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_37
 
     .line 121
     const-string v1, "Starting JAR environment initialization"
@@ -396,20 +396,20 @@
 
     const/4 v4, 0x0
 
-    :goto_0
-    if-ge v4, v3, :cond_0
+    :goto_11
+    if-ge v4, v3, :cond_33
 
     aget-object v5, v1, v4
 
     .line 125
-    :try_start_0
+    :try_start_15
     invoke-direct {p0, v0, v5}, Lio/vanta/core/system/JarManager;->processJarFile(Landroid/content/Context;Lio/vanta/core/system/JarConfig$JarDefinition;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_18
+    .catch Ljava/lang/Exception; {:try_start_15 .. :try_end_18} :catch_19
 
-    goto :goto_1
+    goto :goto_30
 
-    :catch_0
+    :catch_19
     move-exception v6
 
     .line 127
@@ -433,19 +433,19 @@
 
     invoke-static {v2, v5, v6}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :goto_1
+    :goto_30
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_11
 
     .line 133
-    :cond_0
+    :cond_33
     invoke-direct {p0}, Lio/vanta/core/system/JarManager;->verifyJarEnvironment()V
 
     return-void
 
     .line 118
-    :cond_1
+    :cond_37
     new-instance v0, Ljava/lang/IllegalStateException;
 
     const-string v1, "VantaCore context is null"
@@ -456,7 +456,7 @@
 .end method
 
 .method private isFileValid(Ljava/io/File;Lio/vanta/core/system/JarConfig$JarDefinition;)Z
-    .locals 7
+    .registers 10
 
     .line 209
     invoke-virtual {p1}, Ljava/io/File;->exists()Z
@@ -467,7 +467,7 @@
 
     const-string v2, "JarManager"
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_1c
 
     .line 210
     new-instance p2, Ljava/lang/StringBuilder;
@@ -489,7 +489,7 @@
     return v1
 
     .line 214
-    :cond_0
+    :cond_1c
     invoke-virtual {p1}, Ljava/io/File;->length()J
 
     move-result-wide v3
@@ -498,7 +498,7 @@
 
     cmp-long v0, v3, v5
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_39
 
     .line 215
     new-instance p2, Ljava/lang/StringBuilder;
@@ -520,12 +520,12 @@
     return v1
 
     .line 220
-    :cond_1
+    :cond_39
     invoke-static {p1, p2}, Lio/vanta/core/system/JarConfig;->validateFile(Ljava/io/File;Lio/vanta/core/system/JarConfig$JarDefinition;)Z
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_78
 
     .line 221
     new-instance v0, Ljava/lang/StringBuilder;
@@ -587,12 +587,12 @@
     return v1
 
     .line 228
-    :cond_2
+    :cond_78
     invoke-static {p1}, Lio/vanta/utils/JarUtils;->calculateFileHash(Ljava/io/File;)Ljava/lang/String;
 
     move-result-object p1
 
-    if-eqz p1, :cond_3
+    if-eqz p1, :cond_87
 
     .line 230
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mJarHashes:Ljava/util/concurrent/ConcurrentHashMap;
@@ -603,21 +603,21 @@
 
     invoke-virtual {v0, p2, p1}, Ljava/util/concurrent/ConcurrentHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_3
+    :cond_87
     const/4 p1, 0x1
 
     return p1
 .end method
 
 .method private synthetic lambda$initializeAsync$0()V
-    .locals 4
+    .registers 5
 
     .line 56
     const-string v0, "JarManager"
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_3
     invoke-direct {p0}, Lio/vanta/core/system/JarManager;->initializeJarEnvironment()V
 
     .line 57
@@ -631,38 +631,38 @@
     const-string v2, "JAR environment initialized successfully"
 
     invoke-static {v0, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_11
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_11} :catch_19
+    .catchall {:try_start_3 .. :try_end_11} :catchall_17
 
     .line 62
-    :goto_0
+    :goto_11
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mIsInitializing:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v0, v1}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
     return-void
 
-    :catchall_0
+    :catchall_17
     move-exception v0
 
-    goto :goto_1
+    goto :goto_20
 
-    :catch_0
+    :catch_19
     move-exception v2
 
     .line 60
-    :try_start_1
+    :try_start_1a
     const-string v3, "Failed to initialize JAR environment"
 
     invoke-static {v0, v3, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_1f
+    .catchall {:try_start_1a .. :try_end_1f} :catchall_17
 
-    goto :goto_0
+    goto :goto_11
 
     .line 62
-    :goto_1
+    :goto_20
     iget-object v2, p0, Lio/vanta/core/system/JarManager;->mIsInitializing:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     invoke-virtual {v2, v1}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
@@ -672,7 +672,7 @@
 .end method
 
 .method private processJarFile(Landroid/content/Context;Lio/vanta/core/system/JarConfig$JarDefinition;)V
-    .locals 4
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/io/IOException;
@@ -733,20 +733,20 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_91
 
     .line 151
     invoke-virtual {v1}, Ljava/io/File;->exists()Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_5b
 
     invoke-direct {p0, v1, p2}, Lio/vanta/core/system/JarManager;->isFileValid(Ljava/io/File;Lio/vanta/core/system/JarConfig$JarDefinition;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_5b
 
     .line 152
     new-instance p1, Ljava/lang/StringBuilder;
@@ -773,7 +773,7 @@
     return-void
 
     .line 158
-    :cond_0
+    :cond_5b
     invoke-direct {p0, p1, p2, v1}, Lio/vanta/core/system/JarManager;->copyJarFromAssets(Landroid/content/Context;Lio/vanta/core/system/JarConfig$JarDefinition;Ljava/io/File;)V
 
     .line 161
@@ -781,7 +781,7 @@
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_7c
 
     .line 165
     iget-object p1, p0, Lio/vanta/core/system/JarManager;->mJarCache:Ljava/util/concurrent/ConcurrentHashMap;
@@ -808,7 +808,7 @@
     return-void
 
     .line 162
-    :cond_1
+    :cond_7c
     new-instance p1, Ljava/io/IOException;
 
     new-instance p2, Ljava/lang/StringBuilder;
@@ -830,7 +830,7 @@
     throw p1
 
     .line 147
-    :cond_2
+    :cond_91
     new-instance p1, Ljava/io/IOException;
 
     new-instance p2, Ljava/lang/StringBuilder;
@@ -853,7 +853,7 @@
 .end method
 
 .method private verifyJarEnvironment()V
-    .locals 9
+    .registers 10
 
     .line 243
     sget-object v0, Lio/vanta/core/system/JarManager;->REQUIRED_JARS:[Lio/vanta/core/system/JarConfig$JarDefinition;
@@ -866,10 +866,10 @@
 
     move v4, v3
 
-    :goto_0
+    :goto_6
     const-string v5, "JarManager"
 
-    if-ge v4, v1, :cond_3
+    if-ge v4, v1, :cond_4f
 
     aget-object v6, v0, v4
 
@@ -887,22 +887,22 @@
 
     check-cast v8, Ljava/io/File;
 
-    if-eqz v8, :cond_0
+    if-eqz v8, :cond_20
 
     .line 246
     invoke-virtual {v8}, Ljava/io/File;->exists()Z
 
     move-result v8
 
-    if-nez v8, :cond_2
+    if-nez v8, :cond_4c
 
     .line 247
-    :cond_0
+    :cond_20
     invoke-virtual {v6}, Lio/vanta/core/system/JarConfig$JarDefinition;->isRequired()Z
 
     move-result v6
 
-    if-eqz v6, :cond_1
+    if-eqz v6, :cond_3a
 
     .line 248
     new-instance v2, Ljava/lang/StringBuilder;
@@ -923,10 +923,10 @@
 
     move v2, v3
 
-    goto :goto_1
+    goto :goto_4c
 
     .line 251
-    :cond_1
+    :cond_3a
     new-instance v6, Ljava/lang/StringBuilder;
 
     const-string v8, "Optional JAR file missing: "
@@ -943,14 +943,14 @@
 
     invoke-static {v5, v6}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_2
-    :goto_1
+    :cond_4c
+    :goto_4c
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_6
 
-    :cond_3
-    if-nez v2, :cond_4
+    :cond_4f
+    if-nez v2, :cond_57
 
     .line 257
     const-string v0, "JAR environment verification failed - some required files are missing"
@@ -960,7 +960,7 @@
     return-void
 
     .line 259
-    :cond_4
+    :cond_57
     const-string v0, "JAR environment verification passed"
 
     invoke-static {v5, v0}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
@@ -971,7 +971,7 @@
 
 # virtual methods
 .method public clearCache()V
-    .locals 2
+    .registers 3
 
     .line 265
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mJarCache:Ljava/util/concurrent/ConcurrentHashMap;
@@ -999,7 +999,7 @@
 .end method
 
 .method public getCacheStats()Ljava/lang/String;
-    .locals 4
+    .registers 5
 
     .line 273
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mJarCache:Ljava/util/concurrent/ConcurrentHashMap;
@@ -1058,7 +1058,7 @@
 .end method
 
 .method public getEmptyJar()Ljava/io/File;
-    .locals 1
+    .registers 2
 
     .line 106
     const-string v0, "empty.jar"
@@ -1071,7 +1071,7 @@
 .end method
 
 .method public getJarFile(Ljava/lang/String;)Ljava/io/File;
-    .locals 3
+    .registers 5
 
     .line 90
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mIsInitialized:Ljava/util/concurrent/atomic/AtomicBoolean;
@@ -1082,7 +1082,7 @@
 
     const-string v1, "JarManager"
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_12
 
     .line 91
     const-string v0, "JAR environment not initialized, attempting sync initialization"
@@ -1093,7 +1093,7 @@
     invoke-virtual {p0}, Lio/vanta/core/system/JarManager;->initializeSync()V
 
     .line 95
-    :cond_0
+    :cond_12
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mJarCache:Ljava/util/concurrent/ConcurrentHashMap;
 
     invoke-virtual {v0, p1}, Ljava/util/concurrent/ConcurrentHashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -1102,19 +1102,19 @@
 
     check-cast v0, Ljava/io/File;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_23
 
     .line 96
     invoke-virtual {v0}, Ljava/io/File;->exists()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_23
 
     return-object v0
 
     .line 100
-    :cond_1
+    :cond_23
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v2, "JAR file not found in cache: "
@@ -1137,7 +1137,7 @@
 .end method
 
 .method public getJarInfo(Ljava/lang/String;)Ljava/lang/String;
-    .locals 6
+    .registers 8
 
     .line 279
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mJarCache:Ljava/util/concurrent/ConcurrentHashMap;
@@ -1166,14 +1166,14 @@
 
     check-cast v2, Ljava/lang/String;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_5f
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_1d
 
-    goto :goto_1
+    goto :goto_5f
 
     .line 288
-    :cond_0
+    :cond_1d
     invoke-virtual {v0}, Ljava/io/File;->length()J
 
     move-result-wide v3
@@ -1182,7 +1182,7 @@
 
     move-result-object v0
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_4a
 
     .line 289
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1219,13 +1219,13 @@
 
     move-result-object v2
 
-    goto :goto_0
+    goto :goto_4c
 
-    :cond_1
+    :cond_4a
     const-string v2, "N/A"
 
     .line 290
-    :goto_0
+    :goto_4c
     invoke-virtual {v1}, Lio/vanta/core/system/JarConfig$JarDefinition;->isRequired()Z
 
     move-result v1
@@ -1248,8 +1248,8 @@
     return-object p1
 
     .line 284
-    :cond_2
-    :goto_1
+    :cond_5f
+    :goto_5f
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v1, "JAR not found: "
@@ -1268,7 +1268,7 @@
 .end method
 
 .method public getJunitJar()Ljava/io/File;
-    .locals 1
+    .registers 2
 
     .line 111
     const-string v0, "junit.jar"
@@ -1281,7 +1281,7 @@
 .end method
 
 .method public initializeAsync()V
-    .locals 3
+    .registers 4
 
     .line 50
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mIsInitialized:Ljava/util/concurrent/atomic/AtomicBoolean;
@@ -1290,7 +1290,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_21
 
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mIsInitializing:Ljava/util/concurrent/atomic/AtomicBoolean;
 
@@ -1300,12 +1300,12 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_12
 
-    goto :goto_0
+    goto :goto_21
 
     .line 54
-    :cond_0
+    :cond_12
     new-instance v0, Ljava/lang/Thread;
 
     new-instance v1, Lio/vanta/core/system/JarManager$$ExternalSyntheticLambda0;
@@ -1319,13 +1319,13 @@
     .line 64
     invoke-virtual {v0}, Ljava/lang/Thread;->start()V
 
-    :cond_1
-    :goto_0
+    :cond_21
+    :goto_21
     return-void
 .end method
 
 .method public initializeSync()V
-    .locals 3
+    .registers 4
 
     .line 69
     const-string v0, "JarManager"
@@ -1336,13 +1336,13 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_b
 
     return-void
 
     .line 74
-    :cond_0
-    :try_start_0
+    :cond_b
+    :try_start_b
     invoke-direct {p0}, Lio/vanta/core/system/JarManager;->initializeJarEnvironment()V
 
     .line 75
@@ -1356,12 +1356,12 @@
     const-string v1, "JAR environment initialized successfully"
 
     invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_19
+    .catch Ljava/lang/Exception; {:try_start_b .. :try_end_19} :catch_1a
 
     return-void
 
-    :catch_0
+    :catch_1a
     move-exception v1
 
     .line 78
@@ -1380,7 +1380,7 @@
 .end method
 
 .method public isReady()Z
-    .locals 1
+    .registers 2
 
     .line 85
     iget-object v0, p0, Lio/vanta/core/system/JarManager;->mIsInitialized:Ljava/util/concurrent/atomic/AtomicBoolean;

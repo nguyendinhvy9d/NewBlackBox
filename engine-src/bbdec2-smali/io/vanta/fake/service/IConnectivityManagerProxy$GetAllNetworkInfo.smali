@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 228
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,19 +29,19 @@
 .end method
 
 .method private createNetworkInfoArray()Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 251
     :try_start_0
     invoke-static {}, Lio/vanta/fake/service/IConnectivityManagerProxy;->-$$Nest$smcreateNetworkInfoArray()Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 253
@@ -78,7 +78,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -88,17 +88,17 @@
     .line 233
     const-string v0, "IConnectivityManagerProxy"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_9
 
     return-object p1
 
     .line 239
-    :cond_0
+    :cond_9
     const-string p1, "Creating fallback NetworkInfo array for getAllNetworkInfo"
 
     invoke-static {v0, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -107,12 +107,12 @@
     invoke-direct {p0}, Lio/vanta/fake/service/IConnectivityManagerProxy$GetAllNetworkInfo;->createNetworkInfoArray()Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_12
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_12} :catch_13
 
     return-object p1
 
-    :catch_0
+    :catch_13
     move-exception p1
 
     .line 243

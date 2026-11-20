@@ -27,7 +27,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/BProcessManagerService;Lio/vanta/core/system/ProcessRecord;Landroid/os/IBinder;)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -49,7 +49,7 @@
 
 # virtual methods
 .method public binderDied()V
-    .locals 2
+    .registers 3
 
     .line 179
     new-instance v0, Ljava/lang/StringBuilder;

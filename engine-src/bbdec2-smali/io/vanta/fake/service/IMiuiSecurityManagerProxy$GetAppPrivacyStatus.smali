@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 93
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -43,19 +43,19 @@
 
     const/4 p2, 0x0
 
-    if-lez p1, :cond_0
+    if-lez p1, :cond_9
 
     aget-object p1, p3, p2
 
     check-cast p1, Ljava/lang/String;
 
-    goto :goto_0
+    goto :goto_b
 
-    :cond_0
+    :cond_9
     const-string p1, "unknown"
 
     .line 98
-    :goto_0
+    :goto_b
     new-instance p3, Ljava/lang/StringBuilder;
 
     const-string v0, "GetAppPrivacyStatus: Returning default status for "

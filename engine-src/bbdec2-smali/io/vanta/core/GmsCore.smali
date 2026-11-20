@@ -35,7 +35,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 15
     new-instance v0, Ljava/util/LinkedHashSet;
@@ -135,7 +135,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 12
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -144,7 +144,7 @@
 .end method
 
 .method public static installGApps(I)Lio/vanta/entity/pm/InstallResult;
-    .locals 2
+    .registers 3
 
     .line 112
     new-instance v0, Ljava/util/LinkedHashSet;
@@ -169,17 +169,27 @@
     .line 118
     iget-boolean v1, v0, Lio/vanta/entity/pm/InstallResult;->success:Z
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_1a
 
     .line 119
     invoke-static {p0}, Lio/vanta/core/GmsCore;->uninstallGApps(I)V
 
-    :cond_0
+    :cond_1a
+    return-object v0
+.end method
+
+.method public static installGmsPkg(Lio/vanta/VantaCore;Ljava/lang/String;I)Lio/vanta/entity/pm/InstallResult;
+    .registers 5
+
+    invoke-virtual {p0, p1, p2}, Lio/vanta/VantaCore;->installPackageAsUser(Ljava/lang/String;I)Lio/vanta/entity/pm/InstallResult;
+
+    move-result-object v0
+
     return-object v0
 .end method
 
 .method private static installPackages(Ljava/util/Set;I)Lio/vanta/entity/pm/InstallResult;
-    .locals 9
+    .registers 11
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -209,15 +219,15 @@
 
     move v3, v2
 
-    :cond_0
-    :goto_0
+    :cond_f
+    :goto_f
     invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
     const-string v5, "com.google.android.gms"
 
-    if-eqz v4, :cond_4
+    if-eqz v4, :cond_86
 
     invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -232,23 +242,23 @@
 
     const/4 v7, 0x1
 
-    if-eqz v6, :cond_1
+    if-eqz v6, :cond_2c
 
     .line 57
     invoke-virtual {v5, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_f
 
-    :goto_1
+    :goto_2a
     move v3, v7
 
-    goto :goto_0
+    goto :goto_f
 
     .line 64
-    :cond_1
-    :try_start_0
+    :cond_2c
+    :try_start_2c
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v6
@@ -258,25 +268,25 @@
     move-result-object v6
 
     invoke-virtual {v6, v4, v2}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
-    :try_end_0
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_37
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_2c .. :try_end_37} :catch_74
 
     .line 76
-    invoke-virtual {v0, v4, p1}, Lio/vanta/VantaCore;->installPackageAsUser(Ljava/lang/String;I)Lio/vanta/entity/pm/InstallResult;
+    invoke-static {v0, v4, p1}, Lio/vanta/core/GmsCore;->installGmsPkg(Lio/vanta/VantaCore;Ljava/lang/String;I)Lio/vanta/entity/pm/InstallResult;
 
     move-result-object v6
 
     .line 77
     iget-boolean v8, v6, Lio/vanta/entity/pm/InstallResult;->success:Z
 
-    if-nez v8, :cond_3
+    if-nez v8, :cond_6a
 
     .line 78
     invoke-virtual {v5, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v5
 
-    if-eqz v5, :cond_2
+    if-eqz v5, :cond_49
 
     .line 79
     invoke-static {v1, p1}, Lio/vanta/core/GmsCore;->uninstallPackages(Ljava/util/Set;I)V
@@ -284,7 +294,7 @@
     return-object v6
 
     .line 82
-    :cond_2
+    :cond_49
     new-instance v5, Ljava/lang/StringBuilder;
 
     const-string v7, "Optional package install failed: "
@@ -315,10 +325,10 @@
 
     invoke-static {v5, v4}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_0
+    goto :goto_f
 
     .line 86
-    :cond_3
+    :cond_6a
     invoke-interface {v1, v4}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     .line 87
@@ -326,17 +336,17 @@
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_f
 
-    goto :goto_1
+    goto :goto_2a
 
     .line 68
-    :catch_0
+    :catch_74
     invoke-virtual {v5, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_f
 
     .line 69
     new-instance p0, Lio/vanta/entity/pm/InstallResult;
@@ -351,8 +361,8 @@
 
     return-object p0
 
-    :cond_4
-    if-nez v3, :cond_5
+    :cond_86
+    if-nez v3, :cond_97
 
     .line 93
     invoke-static {v1, p1}, Lio/vanta/core/GmsCore;->uninstallPackages(Ljava/util/Set;I)V
@@ -371,7 +381,7 @@
     return-object p0
 
     .line 99
-    :cond_5
+    :cond_97
     new-instance p0, Lio/vanta/entity/pm/InstallResult;
 
     invoke-direct {p0}, Lio/vanta/entity/pm/InstallResult;-><init>()V
@@ -380,7 +390,7 @@
 .end method
 
 .method public static isGoogleAppOrService(Ljava/lang/String;)Z
-    .locals 1
+    .registers 2
 
     .line 47
     sget-object v0, Lio/vanta/core/GmsCore;->GOOGLE_APP:Ljava/util/Set;
@@ -389,7 +399,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_13
 
     sget-object v0, Lio/vanta/core/GmsCore;->GOOGLE_SERVICE:Ljava/util/Set;
 
@@ -397,24 +407,24 @@
 
     move-result p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_11
 
-    goto :goto_0
+    goto :goto_13
 
-    :cond_0
+    :cond_11
     const/4 p0, 0x0
 
     return p0
 
-    :cond_1
-    :goto_0
+    :cond_13
+    :goto_13
     const/4 p0, 0x1
 
     return p0
 .end method
 
 .method public static isGoogleService(Ljava/lang/String;)Z
-    .locals 1
+    .registers 2
 
     .line 43
     sget-object v0, Lio/vanta/core/GmsCore;->GOOGLE_SERVICE:Ljava/util/Set;
@@ -427,7 +437,7 @@
 .end method
 
 .method public static isInstalledGoogleService(I)Z
-    .locals 2
+    .registers 3
 
     .line 147
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
@@ -444,12 +454,12 @@
 .end method
 
 .method public static isSupportGms()Z
-    .locals 3
+    .registers 3
 
     const/4 v0, 0x0
 
     .line 138
-    :try_start_0
+    :try_start_1
     invoke-static {}, Lio/vanta/VantaCore;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v1
@@ -462,15 +472,15 @@
     move-result-object v1
 
     iget-boolean v0, v1, Landroid/content/pm/ApplicationInfo;->enabled:Z
-    :try_end_0
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_1 .. :try_end_d} :catch_d
 
-    :catch_0
+    :catch_d
     return v0
 .end method
 
 .method public static remove(Ljava/lang/String;)V
-    .locals 1
+    .registers 2
 
     .line 131
     sget-object v0, Lio/vanta/core/GmsCore;->GOOGLE_SERVICE:Ljava/util/Set;
@@ -485,8 +495,71 @@
     return-void
 .end method
 
+.method private static seedMicrogCheckin(I)V
+    .registers 7
+
+    :try_start_0
+    const-string v0, "com.google.android.gms"
+
+    invoke-static {v0, p0}, Lio/vanta/core/env/BEnvironment;->getDataDir(Ljava/lang/String;I)Ljava/io/File;
+
+    move-result-object v0
+
+    new-instance v1, Ljava/io/File;
+
+    const-string v2, "shared_prefs"
+
+    invoke-direct {v1, v0, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+
+    invoke-virtual {v1}, Ljava/io/File;->mkdirs()Z
+
+    new-instance v2, Ljava/io/File;
+
+    const-string v3, "com.google.android.gms_preferences.xml"
+
+    invoke-direct {v2, v1, v3}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
+
+    invoke-virtual {v2}, Ljava/io/File;->exists()Z
+
+    move-result v3
+
+    if-nez v3, :cond_31
+
+    new-instance v3, Ljava/io/FileOutputStream;
+
+    invoke-direct {v3, v2}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
+
+    const-string v4, "<?xml version=\'1.0\' encoding=\'utf-8\' standalone=\'yes\' ?>\n<map>\n    <boolean name=\"checkin_enable_service\" value=\"true\" />\n</map>\n"
+
+    invoke-virtual {v4}, Ljava/lang/String;->getBytes()[B
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Ljava/io/FileOutputStream;->write([B)V
+
+    invoke-virtual {v3}, Ljava/io/FileOutputStream;->flush()V
+
+    invoke-virtual {v3}, Ljava/io/FileOutputStream;->close()V
+
+    :cond_31
+    const-string v0, "GmsCore"
+
+    const-string v1, "XJ: seeded microG checkin_enable_service=true"
+
+    invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+    :try_end_38
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_38} :catch_39
+
+    return-void
+
+    :catch_39
+    move-exception v0
+
+    return-void
+.end method
+
 .method public static uninstallGApps(I)V
-    .locals 1
+    .registers 2
 
     .line 126
     sget-object v0, Lio/vanta/core/GmsCore;->GOOGLE_SERVICE:Ljava/util/Set;
@@ -502,7 +575,7 @@
 .end method
 
 .method private static uninstallPackages(Ljava/util/Set;I)V
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -522,12 +595,12 @@
 
     move-result-object p0
 
-    :goto_0
+    :goto_8
     invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_18
 
     invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -538,8 +611,8 @@
     .line 105
     invoke-virtual {v0, v1, p1}, Lio/vanta/VantaCore;->uninstallPackageAsUser(Ljava/lang/String;I)V
 
-    goto :goto_0
+    goto :goto_8
 
-    :cond_0
+    :cond_18
     return-void
 .end method

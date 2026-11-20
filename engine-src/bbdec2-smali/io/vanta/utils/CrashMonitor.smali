@@ -31,7 +31,7 @@
     .end annotation
 .end field
 
-.field private static sIsInitialized:Z = false
+.field private static sIsInitialized:Z
 
 .field private static sIsMonitoring:Z
 
@@ -59,7 +59,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$sfgetsMainHandler()Landroid/os/Handler;
-    .locals 1
+    .registers 1
 
     sget-object v0, Lio/vanta/utils/CrashMonitor;->sMainHandler:Landroid/os/Handler;
 
@@ -67,7 +67,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$smanalyzeCrashPatterns()V
-    .locals 0
+    .registers 0
 
     invoke-static {}, Lio/vanta/utils/CrashMonitor;->analyzeCrashPatterns()V
 
@@ -75,7 +75,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$smperformHealthCheck()V
-    .locals 0
+    .registers 0
 
     invoke-static {}, Lio/vanta/utils/CrashMonitor;->performHealthCheck()V
 
@@ -83,7 +83,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 32
     new-instance v0, Ljava/util/concurrent/atomic/AtomicInteger;
@@ -136,7 +136,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -145,24 +145,24 @@
 .end method
 
 .method private static analyzeCrashPatterns()V
-    .locals 9
+    .registers 9
 
     .line 418
     const-string v0, "CrashMonitor"
 
-    :try_start_0
+    :try_start_2
     sget-object v1, Lio/vanta/utils/CrashMonitor;->sCrashHistory:Ljava/util/Map;
 
     invoke-interface {v1}, Ljava/util/Map;->isEmpty()Z
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_c
 
-    goto/16 :goto_2
+    goto/16 :goto_e5
 
     .line 422
-    :cond_0
+    :cond_c
     const-string v2, "Analyzing crash patterns..."
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -186,12 +186,12 @@
 
     move-result-object v1
 
-    :goto_0
+    :goto_23
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_67
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -259,10 +259,10 @@
     .line 434
     invoke-interface {v3, v5, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_0
+    goto :goto_23
 
     .line 439
-    :cond_1
+    :cond_67
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -313,13 +313,13 @@
 
     move-result-object v1
 
-    :cond_2
-    :goto_1
+    :cond_9b
+    :goto_9b
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_e5
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -340,7 +340,7 @@
 
     const/4 v4, 0x5
 
-    if-le v3, v4, :cond_2
+    if-le v3, v4, :cond_9b
 
     .line 445
     new-instance v3, Ljava/lang/StringBuilder;
@@ -390,16 +390,16 @@
 
     .line 445
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e4
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_e4} :catch_e6
 
-    goto :goto_1
+    goto :goto_9b
 
-    :cond_3
-    :goto_2
+    :cond_e5
+    :goto_e5
     return-void
 
-    :catch_0
+    :catch_e6
     move-exception v1
 
     .line 451
@@ -427,7 +427,7 @@
 .end method
 
 .method private static attemptCrashRecovery(Lio/vanta/utils/CrashMonitor$CrashInfo;)Z
-    .locals 6
+    .registers 7
 
     .line 319
     const-string v0, "CrashMonitor"
@@ -438,7 +438,7 @@
     const/4 v2, 0x0
 
     .line 319
-    :try_start_0
+    :try_start_5
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -466,13 +466,13 @@
 
     move-result-object v1
 
-    :cond_0
-    :goto_0
+    :cond_21
+    :goto_21
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_8e
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -489,7 +489,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_21
 
     .line 324
     new-instance v4, Ljava/lang/StringBuilder;
@@ -521,7 +521,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_73
 
     .line 327
     new-instance p0, Ljava/lang/StringBuilder;
@@ -553,7 +553,7 @@
     return p0
 
     .line 330
-    :cond_1
+    :cond_73
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -578,19 +578,19 @@
 
     invoke-static {v0, v3}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_0
+    goto :goto_21
 
     .line 335
-    :cond_2
+    :cond_8e
     const-string p0, "No recovery strategy could handle this crash"
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_93
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_93} :catch_94
 
     return v2
 
-    :catch_0
+    :catch_94
     move-exception p0
 
     .line 339
@@ -618,7 +618,7 @@
 .end method
 
 .method public static clearCrashHistory()V
-    .locals 2
+    .registers 2
 
     .line 482
     sget-object v0, Lio/vanta/utils/CrashMonitor;->sCrashHistory:Ljava/util/Map;
@@ -658,42 +658,42 @@
 .end method
 
 .method private static createCrashInfo(Ljava/lang/String;Ljava/lang/Thread;Ljava/lang/Throwable;)Lio/vanta/utils/CrashMonitor$CrashInfo;
-    .locals 7
+    .registers 10
 
     .line 273
     :try_start_0
     invoke-static {}, Lio/vanta/utils/CrashMonitor;->getCurrentPackageName()Ljava/lang/String;
 
     move-result-object v2
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    :try_end_4
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_4} :catch_20
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_f
 
     .line 274
-    :try_start_1
+    :try_start_6
     invoke-virtual {p2}, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
 
     move-result-object p1
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_a
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_a} :catch_b
 
-    goto :goto_0
+    goto :goto_11
 
-    :catch_0
+    :catch_b
     move-exception v0
 
     move-object p1, v0
 
     move-object v1, p0
 
-    goto :goto_2
+    goto :goto_23
 
-    :cond_0
-    :try_start_2
+    :cond_f
+    :try_start_f
     const-string p1, "Unknown error"
 
-    :goto_0
+    :goto_11
     move-object v3, p1
 
     .line 275
@@ -703,35 +703,35 @@
 
     .line 277
     new-instance v0, Lio/vanta/utils/CrashMonitor$CrashInfo;
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+    :try_end_18
+    .catch Ljava/lang/Exception; {:try_start_f .. :try_end_18} :catch_20
 
     const/4 v5, 0x0
 
     move-object v1, p0
 
-    :try_start_3
+    :try_start_1a
     invoke-direct/range {v0 .. v5}, Lio/vanta/utils/CrashMonitor$CrashInfo;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_1
+    :try_end_1d
+    .catch Ljava/lang/Exception; {:try_start_1a .. :try_end_1d} :catch_1e
 
     return-object v0
 
-    :catch_1
+    :catch_1e
     move-exception v0
 
-    goto :goto_1
+    goto :goto_22
 
-    :catch_2
+    :catch_20
     move-exception v0
 
     move-object v1, p0
 
-    :goto_1
+    :goto_22
     move-object p1, v0
 
     .line 280
-    :goto_2
+    :goto_23
     new-instance p0, Ljava/lang/StringBuilder;
 
     const-string p2, "Error creating crash info: "
@@ -773,7 +773,7 @@
 .end method
 
 .method public static getCrashStats()Ljava/lang/String;
-    .locals 6
+    .registers 6
 
     .line 457
     new-instance v0, Ljava/lang/StringBuilder;
@@ -855,7 +855,7 @@
 
     move-result v3
 
-    if-lez v3, :cond_0
+    if-lez v3, :cond_5c
 
     .line 464
     invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
@@ -876,13 +876,13 @@
 
     mul-double/2addr v2, v4
 
-    goto :goto_0
+    goto :goto_5e
 
-    :cond_0
+    :cond_5c
     const-wide/16 v2, 0x0
 
     .line 463
-    :goto_0
+    :goto_5e
     invoke-static {v2, v3}, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
 
     move-result-object v1
@@ -910,48 +910,48 @@
 .end method
 
 .method private static getCurrentPackageName()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 288
     :try_start_0
     invoke-static {}, Lio/vanta/app/BActivityThread;->getAppPackageName()Ljava/lang/String;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 291
-    :catch_0
-    :try_start_1
+    :catch_5
+    :try_start_5
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_10
 
     .line 293
     invoke-virtual {v0}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     move-result-object v0
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_f
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_f} :catch_10
 
     return-object v0
 
     .line 298
-    :catch_1
-    :cond_0
+    :catch_10
+    :cond_10
     const-string v0, "unknown"
 
     return-object v0
 .end method
 
 .method private static getStackTrace(Ljava/lang/Throwable;)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_5
 
     .line 304
     const-string p0, ""
@@ -959,8 +959,8 @@
     return-object p0
 
     .line 307
-    :cond_0
-    :try_start_0
+    :cond_5
+    :try_start_5
     new-instance v0, Ljava/io/StringWriter;
 
     invoke-direct {v0}, Ljava/io/StringWriter;-><init>()V
@@ -977,12 +977,12 @@
     invoke-virtual {v0}, Ljava/io/StringWriter;->toString()Ljava/lang/String;
 
     move-result-object p0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_16} :catch_17
 
     return-object p0
 
-    :catch_0
+    :catch_17
     move-exception p0
 
     .line 312
@@ -1008,7 +1008,7 @@
 .end method
 
 .method public static getStatus()Ljava/lang/String;
-    .locals 3
+    .registers 3
 
     .line 469
     new-instance v0, Ljava/lang/StringBuilder;
@@ -1085,7 +1085,7 @@
 .end method
 
 .method public static handleCrash(Ljava/lang/String;Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    .locals 8
+    .registers 11
 
     .line 230
     const-string v1, "CrashMonitor"
@@ -1094,7 +1094,7 @@
     const-string v0, "Crash detected: "
 
     .line 230
-    :try_start_0
+    :try_start_4
     sget-object v2, Lio/vanta/utils/CrashMonitor;->sTotalCrashes:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicInteger;->incrementAndGet()I
@@ -1106,24 +1106,24 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_17
 
     .line 234
     sget-object v2, Lio/vanta/utils/CrashMonitor;->sJavaCrashes:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicInteger;->incrementAndGet()I
 
-    goto :goto_0
+    goto :goto_24
 
     .line 235
-    :cond_0
+    :cond_17
     const-string v2, "NativeCrash"
 
     invoke-virtual {p0, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_24
 
     .line 236
     sget-object v2, Lio/vanta/utils/CrashMonitor;->sNativeCrashes:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -1131,8 +1131,8 @@
     invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicInteger;->incrementAndGet()I
 
     .line 240
-    :cond_1
-    :goto_0
+    :cond_24
+    :goto_24
     invoke-static {p0, p1, p2}, Lio/vanta/utils/CrashMonitor;->createCrashInfo(Ljava/lang/String;Ljava/lang/Thread;Ljava/lang/Throwable;)Lio/vanta/utils/CrashMonitor$CrashInfo;
 
     move-result-object p1
@@ -1189,7 +1189,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_7b
 
     .line 253
     sget-object v0, Lio/vanta/utils/CrashMonitor;->sRecoveredCrashes:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -1221,23 +1221,23 @@
 
     move-object p1, v2
 
-    goto :goto_1
+    goto :goto_80
 
     .line 259
-    :cond_2
+    :cond_7b
     const-string p0, "Crash recovery failed"
 
     invoke-static {v1, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 263
-    :goto_1
+    :goto_80
     invoke-static {p1}, Lio/vanta/utils/CrashMonitor;->writeCrashLog(Lio/vanta/utils/CrashMonitor$CrashInfo;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_83
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_83} :catch_84
 
     return-void
 
-    :catch_0
+    :catch_84
     move-exception v0
 
     move-object p0, v0
@@ -1267,20 +1267,20 @@
 .end method
 
 .method public static initialize()V
-    .locals 4
+    .registers 4
 
     .line 84
     const-string v0, "CrashMonitor"
 
     sget-boolean v1, Lio/vanta/utils/CrashMonitor;->sIsInitialized:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_7
 
     return-void
 
     .line 89
-    :cond_0
-    :try_start_0
+    :cond_7
+    :try_start_7
     const-string v1, "Initializing comprehensive crash monitoring system..."
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -1314,12 +1314,12 @@
     const-string v1, "Crash monitoring system initialized successfully"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_28
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_28} :catch_29
 
     return-void
 
-    :catch_0
+    :catch_29
     move-exception v1
 
     .line 107
@@ -1347,12 +1347,12 @@
 .end method
 
 .method private static installGlobalCrashHandlers()V
-    .locals 4
+    .registers 4
 
     .line 140
     const-string v0, "CrashMonitor"
 
-    :try_start_0
+    :try_start_2
     invoke-static {}, Ljava/lang/Thread;->getDefaultUncaughtExceptionHandler()Ljava/lang/Thread$UncaughtExceptionHandler;
 
     move-result-object v1
@@ -1371,12 +1371,12 @@
     const-string v1, "Global crash handlers installed"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_16} :catch_17
 
     return-void
 
-    :catch_0
+    :catch_17
     move-exception v1
 
     .line 163
@@ -1404,21 +1404,21 @@
 .end method
 
 .method private static installSystemErrorHandler()V
-    .locals 4
+    .registers 4
 
     .line 171
     const-string v0, "CrashMonitor"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "System error handler prepared"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_7} :catch_8
 
     return-void
 
-    :catch_0
+    :catch_8
     move-exception v1
 
     .line 173
@@ -1446,14 +1446,14 @@
 .end method
 
 .method private static performHealthCheck()V
-    .locals 9
+    .registers 9
 
     .line 380
     const-string v0, "CrashMonitor"
 
     const-string v1, "High memory usage detected: "
 
-    :try_start_0
+    :try_start_4
     const-string v2, "Performing periodic health check..."
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -1477,8 +1477,8 @@
     invoke-virtual {v2}, Ljava/lang/Runtime;->freeMemory()J
 
     move-result-wide v7
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_19
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_19} :catch_a5
 
     sub-long/2addr v5, v7
 
@@ -1499,10 +1499,10 @@
     .line 391
     const-string v3, "%.1f%%"
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_47
 
     .line 392
-    :try_start_1
+    :try_start_28
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -1533,7 +1533,7 @@
     invoke-static {}, Ljava/lang/System;->gc()V
 
     .line 397
-    :cond_0
+    :cond_47
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
     move-result-object v1
@@ -1543,29 +1543,29 @@
     move-result-object v1
 
     .line 398
-    :goto_0
+    :goto_4f
     invoke-virtual {v1}, Ljava/lang/ThreadGroup;->getParent()Ljava/lang/ThreadGroup;
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_5a
 
     .line 399
     invoke-virtual {v1}, Ljava/lang/ThreadGroup;->getParent()Ljava/lang/ThreadGroup;
 
     move-result-object v1
 
-    goto :goto_0
+    goto :goto_4f
 
     .line 402
-    :cond_1
+    :cond_5a
     invoke-virtual {v1}, Ljava/lang/ThreadGroup;->activeCount()I
 
     move-result v1
 
     const/16 v2, 0x64
 
-    if-le v1, v2, :cond_2
+    if-le v1, v2, :cond_78
 
     .line 404
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1589,7 +1589,7 @@
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 407
-    :cond_2
+    :cond_78
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -1631,12 +1631,12 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_a4
+    .catch Ljava/lang/Exception; {:try_start_28 .. :try_end_a4} :catch_a5
 
     return-void
 
-    :catch_0
+    :catch_a5
     move-exception v1
 
     .line 411
@@ -1664,14 +1664,14 @@
 .end method
 
 .method private static registerRecoveryStrategies()V
-    .locals 6
+    .registers 6
 
     .line 115
     const-string v0, "CrashMonitor"
 
     const-string v1, "Registered "
 
-    :try_start_0
+    :try_start_4
     sget-object v2, Lio/vanta/utils/CrashMonitor;->sRecoveryStrategies:Ljava/util/Map;
 
     const-string v3, "JavaException"
@@ -1744,12 +1744,12 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_53
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_53} :catch_54
 
     return-void
 
-    :catch_0
+    :catch_54
     move-exception v1
 
     .line 132
@@ -1777,12 +1777,12 @@
 .end method
 
 .method private static startCrashPatternAnalysis()V
-    .locals 4
+    .registers 4
 
     .line 215
     sget-object v0, Lio/vanta/utils/CrashMonitor;->sMainHandler:Landroid/os/Handler;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     .line 216
     new-instance v1, Lio/vanta/utils/CrashMonitor$3;
@@ -1793,27 +1793,27 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    :cond_0
+    :cond_f
     return-void
 .end method
 
 .method private static startMonitoring()V
-    .locals 4
+    .registers 4
 
     .line 179
     const-string v0, "CrashMonitor"
 
     sget-boolean v1, Lio/vanta/utils/CrashMonitor;->sIsMonitoring:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_7
 
     return-void
 
-    :cond_0
+    :cond_7
     const/4 v1, 0x1
 
     .line 184
-    :try_start_0
+    :try_start_8
     sput-boolean v1, Lio/vanta/utils/CrashMonitor;->sIsMonitoring:Z
 
     .line 187
@@ -1826,12 +1826,12 @@
     const-string v1, "Crash monitoring started"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_15
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_15} :catch_16
 
     return-void
 
-    :catch_0
+    :catch_16
     move-exception v1
 
     .line 195
@@ -1859,12 +1859,12 @@
 .end method
 
 .method private static startPeriodicHealthChecks()V
-    .locals 4
+    .registers 4
 
     .line 201
     sget-object v0, Lio/vanta/utils/CrashMonitor;->sMainHandler:Landroid/os/Handler;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_e
 
     .line 202
     new-instance v1, Lio/vanta/utils/CrashMonitor$2;
@@ -1875,12 +1875,12 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    :cond_0
+    :cond_e
     return-void
 .end method
 
 .method private static writeCrashLog(Lio/vanta/utils/CrashMonitor$CrashInfo;)V
-    .locals 13
+    .registers 14
 
     .line 347
     const-string v0, "CrashMonitor"
@@ -1901,17 +1901,17 @@
     const-string v7, "crash_"
 
     .line 347
-    :try_start_0
+    :try_start_10
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v8
 
-    if-nez v8, :cond_0
+    if-nez v8, :cond_17
 
     return-void
 
     .line 350
-    :cond_0
+    :cond_17
     new-instance v9, Ljava/io/File;
 
     invoke-virtual {v8}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
@@ -1927,13 +1927,13 @@
 
     move-result v8
 
-    if-nez v8, :cond_1
+    if-nez v8, :cond_2b
 
     .line 352
     invoke-virtual {v9}, Ljava/io/File;->mkdirs()Z
 
     .line 355
-    :cond_1
+    :cond_2b
     new-instance v8, Ljava/text/SimpleDateFormat;
 
     const-string v10, "yyyyMMdd_HHmmss"
@@ -1981,11 +1981,11 @@
     invoke-direct {v8, v10}, Ljava/io/FileWriter;-><init>(Ljava/io/File;)V
 
     invoke-direct {v7, v8}, Ljava/io/PrintWriter;-><init>(Ljava/io/Writer;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_5f
+    .catch Ljava/lang/Exception; {:try_start_10 .. :try_end_5f} :catch_f4
 
     .line 359
-    :try_start_1
+    :try_start_5f
     const-string v8, "=== CRASH LOG ==="
 
     invoke-virtual {v7, v8}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
@@ -2093,11 +2093,11 @@
     const-string p0, "=== END ==="
 
     invoke-virtual {v7, p0}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_d2
+    .catchall {:try_start_5f .. :try_end_d2} :catchall_ea
 
     .line 368
-    :try_start_2
+    :try_start_d2
     invoke-virtual {v7}, Ljava/io/PrintWriter;->close()V
 
     .line 370
@@ -2118,34 +2118,34 @@
     move-result-object p0
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
+    :try_end_e9
+    .catch Ljava/lang/Exception; {:try_start_d2 .. :try_end_e9} :catch_f4
 
     return-void
 
-    :catchall_0
+    :catchall_ea
     move-exception p0
 
     .line 358
-    :try_start_3
+    :try_start_eb
     invoke-virtual {v7}, Ljava/io/PrintWriter;->close()V
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+    :try_end_ee
+    .catchall {:try_start_eb .. :try_end_ee} :catchall_ef
 
-    goto :goto_0
+    goto :goto_f3
 
-    :catchall_1
+    :catchall_ef
     move-exception v1
 
-    :try_start_4
+    :try_start_f0
     invoke-virtual {p0, v1}, Ljava/lang/Throwable;->addSuppressed(Ljava/lang/Throwable;)V
 
-    :goto_0
+    :goto_f3
     throw p0
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_0
+    :try_end_f4
+    .catch Ljava/lang/Exception; {:try_start_f0 .. :try_end_f4} :catch_f4
 
-    :catch_0
+    :catch_f4
     move-exception p0
 
     .line 373

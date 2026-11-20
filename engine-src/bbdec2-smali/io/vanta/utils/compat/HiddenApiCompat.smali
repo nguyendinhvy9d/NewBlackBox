@@ -6,18 +6,18 @@
 # static fields
 .field private static final TAG:Ljava/lang/String; = "HiddenApiCompat"
 
-.field private static volatile sExempted:Z = false
+.field private static volatile sExempted:Z
 
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 0
+    .registers 0
 
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 17
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -26,7 +26,7 @@
 .end method
 
 .method public static bypassHiddenApi(Landroid/content/Context;)Z
-    .locals 7
+    .registers 8
 
     .line 22
     const-string v0, "HiddenApiCompat"
@@ -35,28 +35,28 @@
 
     const/4 v2, 0x1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_8
 
     return v2
 
     .line 26
-    :cond_0
+    :cond_8
     sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v3, 0x1c
 
-    if-ge v1, v3, :cond_1
+    if-ge v1, v3, :cond_11
 
     .line 27
     sput-boolean v2, Lio/vanta/utils/compat/HiddenApiCompat;->sExempted:Z
 
     return v2
 
-    :cond_1
+    :cond_11
     const/4 v1, 0x0
 
     .line 35
-    :try_start_0
+    :try_start_12
     new-array v3, v2, [Ljava/lang/String;
 
     const-string v4, "L"
@@ -67,18 +67,18 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_3b
 
     .line 37
     const-string v3, "HiddenApiBypass successfully added exemptions (\'L\')"
 
     invoke-static {v0, v3}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_12 .. :try_end_23} :catchall_24
 
-    goto :goto_0
+    goto :goto_3b
 
-    :catchall_0
+    :catchall_24
     move-exception v3
 
     .line 40
@@ -103,37 +103,37 @@
     invoke-static {v0, v3}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 45
-    :cond_2
-    :goto_0
-    :try_start_1
+    :cond_3b
+    :goto_3b
+    :try_start_3b
     invoke-static {}, Lio/vanta/core/NativeCore;->disableHiddenApi()Z
 
     move-result v3
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_2
+    :try_end_3f
+    .catchall {:try_start_3b .. :try_end_3f} :catchall_4b
 
-    if-eqz v3, :cond_3
+    if-eqz v3, :cond_66
 
     .line 47
-    :try_start_2
+    :try_start_41
     const-string v1, "NativeCore.disableHiddenApi succeeded"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_46
+    .catchall {:try_start_41 .. :try_end_46} :catchall_48
 
     move v1, v2
 
-    goto :goto_2
+    goto :goto_66
 
-    :catchall_1
+    :catchall_48
     move-exception v1
 
     move v3, v2
 
-    goto :goto_1
+    goto :goto_4f
 
-    :catchall_2
+    :catchall_4b
     move-exception v3
 
     move-object v6, v3
@@ -143,7 +143,7 @@
     move-object v1, v6
 
     .line 50
-    :goto_1
+    :goto_4f
     new-instance v4, Ljava/lang/StringBuilder;
 
     const-string v5, "NativeCore.disableHiddenApi failed: "
@@ -166,42 +166,42 @@
 
     move v1, v3
 
-    :cond_3
-    :goto_2
-    if-nez v1, :cond_4
+    :cond_66
+    :goto_66
+    if-nez v1, :cond_8e
 
-    if-eqz p0, :cond_4
+    if-eqz p0, :cond_8e
 
     .line 56
-    :try_start_3
+    :try_start_6a
     invoke-static {p0}, Lme/weishu/reflection/Reflection;->unseal(Landroid/content/Context;)I
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_4
+    :try_end_6d
+    .catchall {:try_start_6a .. :try_end_6d} :catchall_77
 
     .line 58
-    :try_start_4
+    :try_start_6d
     const-string p0, "FreeReflection unseal succeeded"
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_3
+    :try_end_72
+    .catchall {:try_start_6d .. :try_end_72} :catchall_74
 
     move v1, v2
 
-    goto :goto_4
+    goto :goto_8e
 
-    :catchall_3
+    :catchall_74
     move-exception p0
 
     move v1, v2
 
-    goto :goto_3
+    goto :goto_78
 
-    :catchall_4
+    :catchall_77
     move-exception p0
 
     .line 60
-    :goto_3
+    :goto_78
     new-instance v3, Ljava/lang/StringBuilder;
 
     const-string v4, "Reflection.unseal failed: "
@@ -222,13 +222,13 @@
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_4
-    :goto_4
-    if-eqz v1, :cond_5
+    :cond_8e
+    :goto_8e
+    if-eqz v1, :cond_92
 
     .line 65
     sput-boolean v2, Lio/vanta/utils/compat/HiddenApiCompat;->sExempted:Z
 
-    :cond_5
+    :cond_92
     return v1
 .end method

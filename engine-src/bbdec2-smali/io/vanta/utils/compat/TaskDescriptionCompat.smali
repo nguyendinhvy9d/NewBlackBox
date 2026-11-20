@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 15
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static fix(Landroid/app/ActivityManager$TaskDescription;)Landroid/app/ActivityManager$TaskDescription;
-    .locals 3
+    .registers 4
 
     .line 17
     invoke-virtual {p0}, Landroid/app/ActivityManager$TaskDescription;->getLabel()Ljava/lang/String;
@@ -26,14 +26,14 @@
 
     move-result-object v1
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_d
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_d
 
     return-object p0
 
     .line 23
-    :cond_0
+    :cond_d
     invoke-static {}, Lio/vanta/VantaCore;->getUserId()I
 
     move-result v0
@@ -61,7 +61,7 @@
 .end method
 
 .method private static getApplicationIcon()Landroid/graphics/drawable/Drawable;
-    .locals 1
+    .registers 1
 
     const/4 v0, 0x0
 
@@ -69,7 +69,7 @@
 .end method
 
 .method private static getApplicationLabel()Ljava/lang/CharSequence;
-    .locals 3
+    .registers 3
 
     .line 42
     :try_start_0
@@ -91,21 +91,21 @@
     invoke-virtual {v0, v1}, Landroid/content/pm/PackageManager;->getApplicationLabel(Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
 
     move-result-object v0
-    :try_end_0
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_11
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_11} :catch_12
 
     return-object v0
 
-    :catch_0
+    :catch_12
     const/4 v0, 0x0
 
     return-object v0
 .end method
 
 .method public static getTaskDescriptionLabel(ILjava/lang/CharSequence;)Ljava/lang/String;
-    .locals 0
+    .registers 2
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_7
 
     .line 37
     invoke-virtual {p1}, Ljava/lang/Object;->toString()Ljava/lang/String;
@@ -114,7 +114,7 @@
 
     return-object p0
 
-    :cond_0
+    :cond_7
     const-string p0, ""
 
     return-object p0

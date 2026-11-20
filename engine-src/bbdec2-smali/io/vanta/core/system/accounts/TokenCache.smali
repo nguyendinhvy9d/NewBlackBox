@@ -19,7 +19,7 @@
 
 # direct methods
 .method public constructor <init>(ILandroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;)V
-    .locals 0
+    .registers 5
 
     .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -45,7 +45,7 @@
 .end method
 
 .method public constructor <init>(ILandroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
-    .locals 0
+    .registers 8
 
     .line 20
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -74,26 +74,26 @@
 
 # virtual methods
 .method public equals(Ljava/lang/Object;)Z
-    .locals 7
+    .registers 9
 
     const/4 v0, 0x1
 
-    if-ne p0, p1, :cond_0
+    if-ne p0, p1, :cond_4
 
     return v0
 
     .line 40
-    :cond_0
+    :cond_4
     instance-of v1, p1, Lio/vanta/core/system/accounts/TokenCache;
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_a
 
     return v2
 
     .line 41
-    :cond_1
+    :cond_a
     check-cast p1, Lio/vanta/core/system/accounts/TokenCache;
 
     .line 42
@@ -101,7 +101,7 @@
 
     iget v3, p1, Lio/vanta/core/system/accounts/TokenCache;->userId:I
 
-    if-ne v1, v3, :cond_2
+    if-ne v1, v3, :cond_43
 
     iget-wide v3, p0, Lio/vanta/core/system/accounts/TokenCache;->expiryEpochMillis:J
 
@@ -109,7 +109,7 @@
 
     cmp-long v1, v3, v5
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_43
 
     iget-object v1, p0, Lio/vanta/core/system/accounts/TokenCache;->account:Landroid/accounts/Account;
 
@@ -120,7 +120,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_43
 
     iget-object v1, p0, Lio/vanta/core/system/accounts/TokenCache;->authToken:Ljava/lang/String;
 
@@ -131,7 +131,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_43
 
     iget-object v1, p0, Lio/vanta/core/system/accounts/TokenCache;->authTokenType:Ljava/lang/String;
 
@@ -142,7 +142,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_43
 
     iget-object v1, p0, Lio/vanta/core/system/accounts/TokenCache;->packageName:Ljava/lang/String;
 
@@ -153,16 +153,16 @@
 
     move-result p1
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_43
 
     return v0
 
-    :cond_2
+    :cond_43
     return v2
 .end method
 
 .method public hashCode()I
-    .locals 7
+    .registers 8
 
     .line 52
     iget v0, p0, Lio/vanta/core/system/accounts/TokenCache;->userId:I

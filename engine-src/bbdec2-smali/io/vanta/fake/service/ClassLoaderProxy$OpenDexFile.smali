@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 235
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 6
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -54,7 +54,7 @@
 
     const-string v4, "ClassLoaderProxy"
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_54
 
     .line 242
     new-instance v2, Ljava/lang/StringBuilder;
@@ -84,7 +84,7 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_41
 
     .line 247
     aput-object v2, p3, v0
@@ -106,10 +106,10 @@
 
     invoke-static {v4, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_0
+    goto :goto_54
 
     .line 250
-    :cond_0
+    :cond_41
     new-instance p1, Ljava/lang/StringBuilder;
 
     const-string p2, "DexFile: Could not recover DEX file: "
@@ -129,18 +129,18 @@
     return-object v3
 
     .line 256
-    :cond_1
-    :goto_0
-    :try_start_0
+    :cond_54
+    :goto_54
+    :try_start_54
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_58
+    .catch Ljava/lang/Exception; {:try_start_54 .. :try_end_58} :catch_59
 
     return-object p1
 
-    :catch_0
+    :catch_59
     move-exception p1
 
     .line 258

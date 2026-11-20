@@ -29,7 +29,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/pm/ApplicationInfo;Ljava/lang/String;)V
-    .locals 1
+    .registers 4
 
     .line 29
     invoke-direct {p0}, Landroid/os/Binder;-><init>()V
@@ -53,7 +53,7 @@
 
 # virtual methods
 .method public getCallingBUid()I
-    .locals 1
+    .registers 2
 
     .line 35
     iget v0, p0, Lio/vanta/core/system/ProcessRecord;->callingBUid:I
@@ -62,7 +62,7 @@
 .end method
 
 .method public getClientConfig()Lio/vanta/entity/AppConfig;
-    .locals 2
+    .registers 4
 
     .line 48
     new-instance v0, Lio/vanta/entity/AppConfig;
@@ -89,6 +89,19 @@
     .line 52
     iget v1, p0, Lio/vanta/core/system/ProcessRecord;->buid:I
 
+    iget-object v2, v0, Lio/vanta/entity/AppConfig;->packageName:Ljava/lang/String;
+
+    invoke-static {v2}, Lio/vanta/core/GmsCore;->isGoogleAppOrService(Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_21
+
+    invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
+
+    move-result v1
+
+    :cond_21
     iput v1, v0, Lio/vanta/entity/AppConfig;->buid:I
 
     .line 53
@@ -113,7 +126,7 @@
 .end method
 
 .method public getPackageName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 71
     iget-object v0, p0, Lio/vanta/core/system/ProcessRecord;->info:Landroid/content/pm/ApplicationInfo;
@@ -124,7 +137,7 @@
 .end method
 
 .method public getProviderAuthority()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 44
     iget v0, p0, Lio/vanta/core/system/ProcessRecord;->bpid:I
@@ -137,7 +150,7 @@
 .end method
 
 .method public hashCode()I
-    .locals 7
+    .registers 8
 
     .line 40
     iget-object v0, p0, Lio/vanta/core/system/ProcessRecord;->processName:Ljava/lang/String;
@@ -190,27 +203,27 @@
 .end method
 
 .method public kill()V
-    .locals 1
+    .registers 2
 
     .line 61
     iget v0, p0, Lio/vanta/core/system/ProcessRecord;->pid:I
 
-    if-lez v0, :cond_0
+    if-lez v0, :cond_c
 
     .line 63
-    :try_start_0
+    :try_start_4
     invoke-static {v0}, Landroid/os/Process;->killProcess(I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_7
+    .catchall {:try_start_4 .. :try_end_7} :catchall_8
 
     return-void
 
-    :catchall_0
+    :catchall_8
     move-exception v0
 
     .line 65
     invoke-virtual {v0}, Ljava/lang/Throwable;->printStackTrace()V
 
-    :cond_0
+    :cond_c
     return-void
 .end method

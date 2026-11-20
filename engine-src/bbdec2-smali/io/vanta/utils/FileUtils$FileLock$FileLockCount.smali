@@ -28,7 +28,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/utils/FileUtils$FileLock;Ljava/nio/channels/FileLock;ILjava/io/RandomAccessFile;Ljava/nio/channels/FileChannel;)V
-    .locals 0
+    .registers 6
 
     .line 462
     iput-object p1, p0, Lio/vanta/utils/FileUtils$FileLock$FileLockCount;->this$0:Lio/vanta/utils/FileUtils$FileLock;

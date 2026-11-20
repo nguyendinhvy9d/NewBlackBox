@@ -48,7 +48,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 47
     new-instance v0, Lio/vanta/entity/location/BLocationConfig$1;
@@ -61,7 +61,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -70,7 +70,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .locals 0
+    .registers 2
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -84,7 +84,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -92,7 +92,7 @@
 .end method
 
 .method public refresh(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 30
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
@@ -153,7 +153,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 1
+    .registers 4
 
     .line 40
     iget v0, p0, Lio/vanta/entity/location/BLocationConfig;->pattern:I

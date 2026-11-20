@@ -63,7 +63,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 87
     invoke-direct {p0}, Landroid/os/Binder;-><init>()V
@@ -77,28 +77,28 @@
 .end method
 
 .method public static asInterface(Landroid/os/IBinder;)Lio/vanta/core/system/location/IBLocationManagerService;
-    .locals 2
+    .registers 3
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     const/4 p0, 0x0
 
     return-object p0
 
     .line 99
-    :cond_0
+    :cond_4
     const-string v0, "io.vanta.core.system.location.IBLocationManagerService"
 
     invoke-interface {p0, v0}, Landroid/os/IBinder;->queryLocalInterface(Ljava/lang/String;)Landroid/os/IInterface;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_13
 
     .line 100
     instance-of v1, v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_13
 
     .line 101
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
@@ -106,7 +106,7 @@
     return-object v0
 
     .line 103
-    :cond_1
+    :cond_13
     new-instance v0, Lio/vanta/core/system/location/IBLocationManagerService$Stub$Proxy;
 
     invoke-direct {v0, p0}, Lio/vanta/core/system/location/IBLocationManagerService$Stub$Proxy;-><init>(Landroid/os/IBinder;)V
@@ -117,13 +117,13 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 0
+    .registers 1
 
     return-object p0
 .end method
 
 .method public onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    .locals 2
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -132,19 +132,19 @@
 
     const/4 v0, 0x1
 
-    if-lt p1, v0, :cond_0
+    if-lt p1, v0, :cond_d
 
     const v1, 0xffffff
 
-    if-gt p1, v1, :cond_0
+    if-gt p1, v1, :cond_d
 
     .line 112
     const-string v1, "io.vanta.core.system.location.IBLocationManagerService"
 
     invoke-virtual {p2, v1}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    :cond_0
-    packed-switch p1, :pswitch_data_0
+    :cond_d
+    packed-switch p1, :pswitch_data_158
 
     .line 299
     invoke-super {p0, p1, p2, p3, p4}, Landroid/os/Binder;->onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
@@ -154,7 +154,7 @@
     return p1
 
     .line 292
-    :pswitch_0
+    :pswitch_15
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -165,10 +165,10 @@
     .line 294
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 280
-    :pswitch_1
+    :pswitch_21
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -189,10 +189,10 @@
     .line 286
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 272
-    :pswitch_2
+    :pswitch_35
     invoke-virtual {p0}, Lio/vanta/core/system/location/IBLocationManagerService$Stub;->getGlobalLocation()Lio/vanta/entity/location/BLocation;
 
     move-result-object p1
@@ -203,10 +203,10 @@
     .line 274
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/location/IBLocationManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 265
-    :pswitch_3
+    :pswitch_41
     sget-object p1, Lio/vanta/entity/location/BLocation;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/location/IBLocationManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -221,10 +221,10 @@
     .line 267
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 254
-    :pswitch_4
+    :pswitch_51
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -245,10 +245,10 @@
     .line 259
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/location/IBLocationManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 242
-    :pswitch_5
+    :pswitch_65
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -273,10 +273,10 @@
     .line 248
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 231
-    :pswitch_6
+    :pswitch_7d
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -297,10 +297,10 @@
     .line 236
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/location/IBLocationManagerService$_Parcel;->-$$Nest$smwriteTypedList(Landroid/os/Parcel;Ljava/util/List;I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 220
-    :pswitch_7
+    :pswitch_91
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -321,10 +321,10 @@
     .line 225
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/location/IBLocationManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 212
-    :pswitch_8
+    :pswitch_a5
     invoke-virtual {p0}, Lio/vanta/core/system/location/IBLocationManagerService$Stub;->getGlobalNeighboringCell()Ljava/util/List;
 
     move-result-object p1
@@ -335,10 +335,10 @@
     .line 214
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/location/IBLocationManagerService$_Parcel;->-$$Nest$smwriteTypedList(Landroid/os/Parcel;Ljava/util/List;I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 205
-    :pswitch_9
+    :pswitch_b1
     sget-object p1, Lio/vanta/entity/location/BCell;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-virtual {p2, p1}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
@@ -351,10 +351,10 @@
     .line 207
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 197
-    :pswitch_a
+    :pswitch_bf
     sget-object p1, Lio/vanta/entity/location/BCell;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-virtual {p2, p1}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
@@ -367,10 +367,10 @@
     .line 199
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 189
-    :pswitch_b
+    :pswitch_cd
     sget-object p1, Lio/vanta/entity/location/BCell;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/location/IBLocationManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -385,10 +385,10 @@
     .line 191
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_156
 
     .line 178
-    :pswitch_c
+    :pswitch_dd
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -409,10 +409,10 @@
     .line 183
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/location/IBLocationManagerService$_Parcel;->-$$Nest$smwriteTypedList(Landroid/os/Parcel;Ljava/util/List;I)V
 
-    goto :goto_0
+    goto :goto_156
 
     .line 166
-    :pswitch_d
+    :pswitch_f0
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -435,10 +435,10 @@
     .line 172
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto :goto_0
+    goto :goto_156
 
     .line 154
-    :pswitch_e
+    :pswitch_105
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -461,10 +461,10 @@
     .line 160
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto :goto_0
+    goto :goto_156
 
     .line 142
-    :pswitch_f
+    :pswitch_11a
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -489,10 +489,10 @@
     .line 148
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto :goto_0
+    goto :goto_156
 
     .line 130
-    :pswitch_10
+    :pswitch_131
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -513,10 +513,10 @@
     .line 136
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto :goto_0
+    goto :goto_156
 
     .line 119
-    :pswitch_11
+    :pswitch_144
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -537,30 +537,30 @@
     .line 124
     invoke-virtual {p3, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    :goto_0
+    :goto_156
     return v0
 
     nop
 
-    :pswitch_data_0
+    :pswitch_data_158
     .packed-switch 0x1
-        :pswitch_11
-        :pswitch_10
-        :pswitch_f
-        :pswitch_e
-        :pswitch_d
-        :pswitch_c
-        :pswitch_b
-        :pswitch_a
-        :pswitch_9
-        :pswitch_8
-        :pswitch_7
-        :pswitch_6
-        :pswitch_5
-        :pswitch_4
-        :pswitch_3
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
+        :pswitch_144
+        :pswitch_131
+        :pswitch_11a
+        :pswitch_105
+        :pswitch_f0
+        :pswitch_dd
+        :pswitch_cd
+        :pswitch_bf
+        :pswitch_b1
+        :pswitch_a5
+        :pswitch_91
+        :pswitch_7d
+        :pswitch_65
+        :pswitch_51
+        :pswitch_41
+        :pswitch_35
+        :pswitch_21
+        :pswitch_15
     .end packed-switch
 .end method

@@ -44,7 +44,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/pm/PackageParser$Component;)V
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -70,7 +70,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 552
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -101,20 +101,20 @@
 
 # virtual methods
 .method public getComponentName()Landroid/content/ComponentName;
-    .locals 3
+    .registers 4
 
     .line 563
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$Component;->componentName:Landroid/content/ComponentName;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
     return-object v0
 
     .line 566
-    :cond_0
+    :cond_5
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$Component;->className:Ljava/lang/String;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_16
 
     .line 567
     new-instance v0, Landroid/content/ComponentName;
@@ -130,7 +130,7 @@
     iput-object v0, p0, Lio/vanta/core/system/pm/BPackage$Component;->componentName:Landroid/content/ComponentName;
 
     .line 570
-    :cond_1
+    :cond_16
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$Component;->componentName:Landroid/content/ComponentName;
 
     return-object v0

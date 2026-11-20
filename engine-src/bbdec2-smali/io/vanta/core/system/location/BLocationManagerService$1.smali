@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/location/BLocationManagerService;Landroid/os/IBinder;)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method public binderDied()V
-    .locals 2
+    .registers 3
 
     .line 216
     iget-object v0, p0, Lio/vanta/core/system/location/BLocationManagerService$1;->val$listener:Landroid/os/IBinder;

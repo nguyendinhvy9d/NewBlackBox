@@ -68,7 +68,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 19
     invoke-direct {p0}, Landroid/app/Activity;-><init>()V
@@ -79,11 +79,11 @@
 
 # virtual methods
 .method protected onActivityResult(IILandroid/content/Intent;)V
-    .locals 1
+    .registers 5
 
     const v0, 0x4e6d64
 
-    if-ne p1, v0, :cond_0
+    if-ne p1, v0, :cond_c
 
     .line 52
     invoke-virtual {p0, p2, p3}, Lio/vanta/proxy/ProxyActivity;->setResult(ILandroid/content/Intent;)V
@@ -94,14 +94,14 @@
     return-void
 
     .line 56
-    :cond_0
+    :cond_c
     invoke-super {p0, p1, p2, p3}, Landroid/app/Activity;->onActivityResult(IILandroid/content/Intent;)V
 
     return-void
 .end method
 
 .method protected onCreate(Landroid/os/Bundle;)V
-    .locals 3
+    .registers 5
 
     .line 26
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
@@ -131,20 +131,20 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_54
 
     .line 32
     iget-object v1, p1, Lio/vanta/proxy/record/ProxyActivityRecord;->mTarget:Landroid/content/Intent;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_54
 
     .line 34
-    :try_start_0
+    :try_start_21
     invoke-static {}, Lio/vanta/VantaCore;->getApplication()Landroid/app/Application;
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_34
 
     .line 35
     iget-object v1, p1, Lio/vanta/proxy/record/ProxyActivityRecord;->mTarget:Landroid/content/Intent;
@@ -160,18 +160,18 @@
     invoke-virtual {v1, v2}, Landroid/content/Intent;->setExtrasClassLoader(Ljava/lang/ClassLoader;)V
 
     .line 39
-    :cond_0
+    :cond_34
     iget-object p1, p1, Lio/vanta/proxy/record/ProxyActivityRecord;->mTarget:Landroid/content/Intent;
 
     const v1, 0x4e6d64
 
     invoke-virtual {p0, p1, v1}, Lio/vanta/proxy/ProxyActivity;->startActivityForResult(Landroid/content/Intent;I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_3c
+    .catchall {:try_start_21 .. :try_end_3c} :catchall_3d
 
     return-void
 
-    :catchall_0
+    :catchall_3d
     move-exception p1
 
     .line 42
@@ -196,7 +196,7 @@
     invoke-static {v0, v1, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 45
-    :cond_1
+    :cond_54
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyActivity;->finish()V
 
     return-void

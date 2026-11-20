@@ -28,7 +28,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/accounts/BAccountManagerService;Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 0
+    .registers 6
 
     .line 311
     iput-object p1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$1;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -49,7 +49,7 @@
 
 # virtual methods
 .method public onError(ILjava/lang/String;)V
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -65,46 +65,46 @@
 .end method
 
 .method public onResult(Landroid/os/Bundle;)V
-    .locals 8
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
         }
     .end annotation
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     const/4 p1, 0x0
 
-    goto :goto_0
+    goto :goto_a
 
     .line 316
-    :cond_0
+    :cond_4
     const-string v0, "accounts"
 
     invoke-virtual {p1, v0}, Landroid/os/Bundle;->getParcelableArray(Ljava/lang/String;)[Landroid/os/Parcelable;
 
     move-result-object p1
 
-    :goto_0
+    :goto_a
     const/4 v0, 0x0
 
-    if-nez p1, :cond_1
+    if-nez p1, :cond_f
 
     .line 318
     new-array p1, v0, [Landroid/os/Parcelable;
 
     .line 320
-    :cond_1
+    :cond_f
     array-length v1, p1
 
     new-array v4, v1, [Landroid/accounts/Account;
 
     .line 321
-    :goto_1
+    :goto_12
     array-length v1, p1
 
-    if-ge v0, v1, :cond_2
+    if-ge v0, v1, :cond_1e
 
     .line 322
     aget-object v1, p1, v0
@@ -115,10 +115,10 @@
 
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_12
 
     .line 324
-    :cond_2
+    :cond_1e
     iget-object v2, p0, Lio/vanta/core/system/accounts/BAccountManagerService$1;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
 
     iget-object v3, p0, Lio/vanta/core/system/accounts/BAccountManagerService$1;->val$response:Landroid/accounts/IAccountManagerResponse;

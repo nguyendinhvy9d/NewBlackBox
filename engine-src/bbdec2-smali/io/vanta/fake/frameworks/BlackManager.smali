@@ -46,7 +46,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$fputmService(Lio/vanta/fake/frameworks/BlackManager;Landroid/os/IInterface;)V
-    .locals 0
+    .registers 2
 
     iput-object p1, p0, Lio/vanta/fake/frameworks/BlackManager;->mService:Landroid/os/IInterface;
 
@@ -54,7 +54,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 26
     new-instance v0, Ljava/util/concurrent/atomic/AtomicInteger;
@@ -74,7 +74,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 15
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -100,7 +100,7 @@
 .end method
 
 .method private getTClass()Ljava/lang/Class;
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -134,7 +134,7 @@
 .end method
 
 .method private markServiceCreationFailed()V
-    .locals 2
+    .registers 3
 
     .line 130
     iget-object v0, p0, Lio/vanta/fake/frameworks/BlackManager;->mServiceCreationFailed:Ljava/util/concurrent/atomic/AtomicBoolean;
@@ -156,7 +156,7 @@
 
 # virtual methods
 .method public clearServiceCache()V
-    .locals 2
+    .registers 3
 
     const/4 v0, 0x0
 
@@ -190,7 +190,7 @@
 .end method
 
 .method public getService()Landroid/os/IInterface;
-    .locals 18
+    .registers 19
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()TService;"
@@ -224,7 +224,7 @@
 
     const-string v12, "BlackManager"
 
-    if-eqz v9, :cond_1
+    if-eqz v9, :cond_4e
 
     .line 35
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -242,7 +242,7 @@
 
     cmp-long v10, v13, v10
 
-    if-gez v10, :cond_0
+    if-gez v10, :cond_47
 
     .line 37
     new-instance v0, Ljava/lang/StringBuilder;
@@ -274,23 +274,23 @@
     return-object v15
 
     .line 41
-    :cond_0
+    :cond_47
     iget-object v10, v1, Lio/vanta/fake/frameworks/BlackManager;->mServiceCreationFailed:Ljava/util/concurrent/atomic/AtomicBoolean;
 
     const/4 v9, 0x0
 
     invoke-virtual {v10, v9}, Ljava/util/concurrent/atomic/AtomicBoolean;->set(Z)V
 
-    goto :goto_0
+    goto :goto_4f
 
-    :cond_1
+    :cond_4e
     const/4 v15, 0x0
 
     .line 44
-    :goto_0
+    :goto_4f
     iget-object v10, v1, Lio/vanta/fake/frameworks/BlackManager;->mService:Landroid/os/IInterface;
 
-    if-eqz v10, :cond_2
+    if-eqz v10, :cond_60
 
     invoke-interface {v10}, Landroid/os/IInterface;->asBinder()Landroid/os/IBinder;
 
@@ -300,7 +300,7 @@
 
     move-result v10
 
-    if-eqz v10, :cond_2
+    if-eqz v10, :cond_60
 
     .line 45
     iget-object v0, v1, Lio/vanta/fake/frameworks/BlackManager;->mService:Landroid/os/IInterface;
@@ -308,7 +308,7 @@
     return-object v0
 
     .line 49
-    :cond_2
+    :cond_60
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v10
@@ -322,7 +322,7 @@
 
     cmp-long v13, v13, v16
 
-    if-gez v13, :cond_3
+    if-gez v13, :cond_87
 
     .line 51
     new-instance v0, Ljava/lang/StringBuilder;
@@ -351,8 +351,8 @@
     return-object v0
 
     .line 56
-    :cond_3
-    :try_start_0
+    :cond_87
+    :try_start_87
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v13
@@ -365,7 +365,7 @@
 
     move-result-object v13
 
-    if-nez v13, :cond_4
+    if-nez v13, :cond_ad
 
     .line 58
     new-instance v0, Ljava/lang/StringBuilder;
@@ -392,12 +392,12 @@
     return-object v15
 
     .line 64
-    :cond_4
+    :cond_ad
     invoke-interface {v13}, Landroid/os/IBinder;->isBinderAlive()Z
 
     move-result v8
 
-    if-nez v8, :cond_5
+    if-nez v8, :cond_cb
 
     .line 65
     new-instance v0, Ljava/lang/StringBuilder;
@@ -424,7 +424,7 @@
     return-object v15
 
     .line 70
-    :cond_5
+    :cond_cb
     new-instance v7, Ljava/lang/StringBuilder;
 
     invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
@@ -499,13 +499,13 @@
     check-cast v6, Landroid/os/IInterface;
 
     iput-object v6, v1, Lio/vanta/fake/frameworks/BlackManager;->mService:Landroid/os/IInterface;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_114
+    .catchall {:try_start_87 .. :try_end_114} :catchall_1b2
 
-    if-eqz v6, :cond_7
+    if-eqz v6, :cond_198
 
     .line 79
-    :try_start_1
+    :try_start_116
     invoke-interface {v6}, Landroid/os/IInterface;->asBinder()Landroid/os/IBinder;
 
     move-result-object v5
@@ -514,7 +514,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_6
+    if-nez v5, :cond_13a
 
     .line 80
     new-instance v2, Ljava/lang/StringBuilder;
@@ -540,21 +540,21 @@
 
     .line 82
     invoke-direct {v1}, Lio/vanta/fake/frameworks/BlackManager;->markServiceCreationFailed()V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_139
+    .catch Ljava/lang/Exception; {:try_start_116 .. :try_end_139} :catch_17c
+    .catchall {:try_start_116 .. :try_end_139} :catchall_1b2
 
     return-object v15
 
     .line 92
-    :cond_6
-    :try_start_2
+    :cond_13a
+    :try_start_13a
     iget-object v0, v1, Lio/vanta/fake/frameworks/BlackManager;->mService:Landroid/os/IInterface;
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_13c
+    .catchall {:try_start_13a .. :try_end_13c} :catchall_1b2
 
     .line 94
-    :try_start_3
+    :try_start_13c
     invoke-interface {v0}, Landroid/os/IInterface;->asBinder()Landroid/os/IBinder;
 
     move-result-object v4
@@ -566,17 +566,17 @@
     const/4 v9, 0x0
 
     invoke-interface {v4, v5, v9}, Landroid/os/IBinder;->linkToDeath(Landroid/os/IBinder$DeathRecipient;I)V
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_0
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+    :try_end_149
+    .catch Ljava/lang/Exception; {:try_start_13c .. :try_end_149} :catch_14a
+    .catchall {:try_start_13c .. :try_end_149} :catchall_1b2
 
-    goto :goto_1
+    goto :goto_15f
 
-    :catch_0
+    :catch_14a
     move-exception v0
 
     .line 109
-    :try_start_4
+    :try_start_14b
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4, v3}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -596,7 +596,7 @@
     invoke-static {v12, v3, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 113
-    :goto_1
+    :goto_15f
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -625,9 +625,9 @@
     .line 115
     iput-wide v10, v1, Lio/vanta/fake/frameworks/BlackManager;->mLastServiceCreationTime:J
 
-    goto :goto_2
+    goto :goto_1af
 
-    :catch_1
+    :catch_17c
     move-exception v0
 
     .line 86
@@ -660,7 +660,7 @@
     return-object v15
 
     .line 117
-    :cond_7
+    :cond_198
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0, v5}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -683,14 +683,14 @@
     invoke-direct {v1}, Lio/vanta/fake/frameworks/BlackManager;->markServiceCreationFailed()V
 
     .line 121
-    :goto_2
+    :goto_1af
     iget-object v0, v1, Lio/vanta/fake/frameworks/BlackManager;->mService:Landroid/os/IInterface;
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_0
+    :try_end_1b1
+    .catchall {:try_start_14b .. :try_end_1b1} :catchall_1b2
 
     return-object v0
 
-    :catchall_0
+    :catchall_1b2
     move-exception v0
 
     .line 123
@@ -726,20 +726,20 @@
 .end method
 
 .method public isServiceHealthy()Z
-    .locals 4
+    .registers 5
 
     .line 142
     iget-object v0, p0, Lio/vanta/fake/frameworks/BlackManager;->mService:Landroid/os/IInterface;
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     return v1
 
     .line 146
-    :cond_0
-    :try_start_0
+    :cond_6
+    :try_start_6
     invoke-interface {v0}, Landroid/os/IInterface;->asBinder()Landroid/os/IBinder;
 
     move-result-object v0
@@ -747,12 +747,12 @@
     invoke-interface {v0}, Landroid/os/IBinder;->isBinderAlive()Z
 
     move-result v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_e
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_e} :catch_f
 
     return v0
 
-    :catch_0
+    :catch_f
     move-exception v0
 
     .line 148

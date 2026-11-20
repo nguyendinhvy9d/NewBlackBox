@@ -23,7 +23,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 8
+    .registers 8
 
     const/4 v0, 0x5
 
@@ -126,7 +126,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -135,7 +135,7 @@
 .end method
 
 .method private static checkXiaomiSystemProperties()Z
-    .locals 3
+    .registers 3
 
     .line 292
     :try_start_0
@@ -152,12 +152,12 @@
 
     const/4 v1, 0x1
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_e
 
     return v1
 
     .line 297
-    :cond_0
+    :cond_e
     const-string v0, "ro.miui.version.code"
 
     invoke-static {v0}, Lio/vanta/util/XiaomiDeviceDetector;->getSystemProperty(Ljava/lang/String;)Ljava/lang/String;
@@ -169,12 +169,12 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_1b
 
     return v1
 
     .line 302
-    :cond_1
+    :cond_1b
     const-string v0, "ro.miui.build.version"
 
     invoke-static {v0}, Lio/vanta/util/XiaomiDeviceDetector;->getSystemProperty(Ljava/lang/String;)Ljava/lang/String;
@@ -185,14 +185,14 @@
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_25
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_25} :catch_28
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_41
 
     return v1
 
-    :catch_0
+    :catch_28
     move-exception v0
 
     .line 308
@@ -218,14 +218,14 @@
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_2
+    :cond_41
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method private static containsMiuiVersion(Ljava/lang/String;)Z
-    .locals 5
+    .registers 6
 
     .line 315
     invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
@@ -234,12 +234,12 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     return v1
 
     .line 319
-    :cond_0
+    :cond_8
     invoke-virtual {p0}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
 
     move-result-object p0
@@ -251,8 +251,8 @@
 
     move v3, v1
 
-    :goto_0
-    if-ge v3, v2, :cond_2
+    :goto_10
+    if-ge v3, v2, :cond_23
 
     aget-object v4, v0, v3
 
@@ -265,37 +265,37 @@
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_20
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_1
+    :cond_20
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_2
+    :cond_23
     return v1
 .end method
 
 .method private static extractMiuiVersion(Ljava/lang/String;)Ljava/lang/String;
-    .locals 5
+    .registers 6
 
     .line 330
     invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     const/4 p0, 0x0
 
     return-object p0
 
     .line 335
-    :cond_0
+    :cond_8
     const-string v0, " "
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
@@ -305,12 +305,12 @@
     const/4 v2, 0x0
 
     .line 336
-    :goto_0
+    :goto_f
     array-length v3, v1
 
     add-int/lit8 v3, v3, -0x1
 
-    if-ge v2, v3, :cond_3
+    if-ge v2, v3, :cond_47
 
     .line 337
     aget-object v3, v1, v2
@@ -321,7 +321,7 @@
 
     move-result v3
 
-    if-nez v3, :cond_2
+    if-nez v3, :cond_2c
 
     aget-object v3, v1, v2
 
@@ -331,18 +331,18 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_29
 
-    goto :goto_1
+    goto :goto_2c
 
-    :cond_1
+    :cond_29
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_f
 
     .line 338
-    :cond_2
-    :goto_1
+    :cond_2c
+    :goto_2c
     new-instance p0, Ljava/lang/StringBuilder;
 
     invoke-direct {p0}, Ljava/lang/StringBuilder;-><init>()V
@@ -369,12 +369,12 @@
 
     move-result-object p0
 
-    :cond_3
+    :cond_47
     return-object p0
 .end method
 
 .method private static extractVersionNumber(Ljava/lang/String;)Ljava/lang/String;
-    .locals 3
+    .registers 4
 
     .line 346
     invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
@@ -383,12 +383,12 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     return-object v1
 
     .line 351
-    :cond_0
+    :cond_8
     const-string v0, " "
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
@@ -400,7 +400,7 @@
 
     const/4 v2, 0x1
 
-    if-le v0, v2, :cond_1
+    if-le v0, v2, :cond_21
 
     .line 353
     aget-object p0, p0, v2
@@ -415,7 +415,7 @@
     .line 355
     array-length v0, p0
 
-    if-lez v0, :cond_1
+    if-lez v0, :cond_21
 
     const/4 v0, 0x0
 
@@ -424,22 +424,22 @@
 
     return-object p0
 
-    :cond_1
+    :cond_21
     return-object v1
 .end method
 
 .method public static getAndroidVersion()I
-    .locals 1
+    .registers 1
 
     .line 155
     sget v0, Lio/vanta/util/XiaomiDeviceDetector;->sAndroidVersion:I
 
-    if-lez v0, :cond_0
+    if-lez v0, :cond_5
 
     return v0
 
     .line 159
-    :cond_0
+    :cond_5
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     sput v0, Lio/vanta/util/XiaomiDeviceDetector;->sAndroidVersion:I
@@ -448,7 +448,7 @@
 .end method
 
 .method public static getDeviceInfo()Ljava/lang/String;
-    .locals 4
+    .registers 4
 
     .line 229
     new-instance v0, Ljava/lang/StringBuilder;
@@ -521,7 +521,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_80
 
     .line 235
     const-string v1, "MIUI Version: "
@@ -580,7 +580,7 @@
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 241
-    :cond_0
+    :cond_80
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v0
@@ -589,17 +589,17 @@
 .end method
 
 .method public static getDeviceModel()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 145
     sget-object v0, Lio/vanta/util/XiaomiDeviceDetector;->sDeviceModel:Ljava/lang/String;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
     return-object v0
 
     .line 149
-    :cond_0
+    :cond_5
     sget-object v0, Landroid/os/Build;->MODEL:Ljava/lang/String;
 
     sput-object v0, Lio/vanta/util/XiaomiDeviceDetector;->sDeviceModel:Ljava/lang/String;
@@ -608,7 +608,7 @@
 .end method
 
 .method public static getMiuiVersion()Ljava/lang/String;
-    .locals 5
+    .registers 5
 
     .line 104
     const-string v0, "XiaomiDeviceDetector"
@@ -621,25 +621,25 @@
 
     sget-object v4, Lio/vanta/util/XiaomiDeviceDetector;->sMiuiVersion:Ljava/lang/String;
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_d
 
     return-object v4
 
     .line 108
-    :cond_0
+    :cond_d
     invoke-static {}, Lio/vanta/util/XiaomiDeviceDetector;->isXiaomiDevice()Z
 
     move-result v4
 
-    if-nez v4, :cond_1
+    if-nez v4, :cond_15
 
     const/4 v0, 0x0
 
     return-object v0
 
     .line 114
-    :cond_1
-    :try_start_0
+    :cond_15
+    :try_start_15
     const-string v4, "ro.miui.ui.version.name"
 
     invoke-static {v4}, Lio/vanta/util/XiaomiDeviceDetector;->getSystemProperty(Ljava/lang/String;)Ljava/lang/String;
@@ -653,7 +653,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_2
+    if-nez v4, :cond_38
 
     .line 116
     new-instance v1, Ljava/lang/StringBuilder;
@@ -678,7 +678,7 @@
     return-object v0
 
     .line 121
-    :cond_2
+    :cond_38
     const-string v3, "ro.miui.version.code"
 
     invoke-static {v3}, Lio/vanta/util/XiaomiDeviceDetector;->getSystemProperty(Ljava/lang/String;)Ljava/lang/String;
@@ -692,7 +692,7 @@
 
     move-result v3
 
-    if-nez v3, :cond_3
+    if-nez v3, :cond_5b
 
     .line 123
     new-instance v1, Ljava/lang/StringBuilder;
@@ -717,7 +717,7 @@
     return-object v0
 
     .line 128
-    :cond_3
+    :cond_5b
     sget-object v2, Landroid/os/Build;->DISPLAY:Ljava/lang/String;
 
     .line 129
@@ -725,13 +725,13 @@
 
     move-result v3
 
-    if-nez v3, :cond_4
+    if-nez v3, :cond_9b
 
     invoke-static {v2}, Lio/vanta/util/XiaomiDeviceDetector;->containsMiuiVersion(Ljava/lang/String;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_9b
 
     .line 130
     invoke-static {v2}, Lio/vanta/util/XiaomiDeviceDetector;->extractMiuiVersion(Ljava/lang/String;)Ljava/lang/String;
@@ -759,12 +759,12 @@
 
     .line 132
     sget-object v0, Lio/vanta/util/XiaomiDeviceDetector;->sMiuiVersion:Ljava/lang/String;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_83
+    .catch Ljava/lang/Exception; {:try_start_15 .. :try_end_83} :catch_84
 
     return-object v0
 
-    :catch_0
+    :catch_84
     move-exception v1
 
     .line 136
@@ -789,7 +789,7 @@
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 139
-    :cond_4
+    :cond_9b
     const-string v0, "Unknown"
 
     sput-object v0, Lio/vanta/util/XiaomiDeviceDetector;->sMiuiVersion:Ljava/lang/String;
@@ -798,12 +798,12 @@
 .end method
 
 .method private static getSystemProperty(Ljava/lang/String;)Ljava/lang/String;
-    .locals 6
+    .registers 7
 
     const/4 v0, 0x0
 
     .line 366
-    :try_start_0
+    :try_start_1
     const-string v1, "android.os.SystemProperties"
 
     invoke-static {v1}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -837,12 +837,12 @@
     move-result-object v1
 
     check-cast v1, Ljava/lang/String;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1f
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1f} :catch_20
 
     return-object v1
 
-    :catch_0
+    :catch_20
     move-exception v1
 
     .line 370
@@ -882,7 +882,7 @@
 .end method
 
 .method public static isHyperOS()Z
-    .locals 3
+    .registers 3
 
     .line 215
     invoke-static {}, Lio/vanta/util/XiaomiDeviceDetector;->isXiaomiDevice()Z
@@ -891,12 +891,12 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_8
 
     return v1
 
     .line 219
-    :cond_0
+    :cond_8
     invoke-static {}, Lio/vanta/util/XiaomiDeviceDetector;->getMiuiVersion()Ljava/lang/String;
 
     move-result-object v0
@@ -906,7 +906,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_4
+    if-nez v2, :cond_2f
 
     const-string v2, "Unknown"
 
@@ -914,19 +914,19 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_1b
 
-    goto :goto_1
+    goto :goto_2f
 
     .line 224
-    :cond_1
+    :cond_1b
     const-string v2, "HyperOS"
 
     invoke-virtual {v0, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v2
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_2d
 
     const-string v2, "OS1."
 
@@ -934,26 +934,26 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_2c
 
-    goto :goto_0
+    goto :goto_2d
 
-    :cond_2
+    :cond_2c
     return v1
 
-    :cond_3
-    :goto_0
+    :cond_2d
+    :goto_2d
     const/4 v0, 0x1
 
     return v0
 
-    :cond_4
-    :goto_1
+    :cond_2f
+    :goto_2f
     return v1
 .end method
 
 .method public static isMiui12OrHigher()Z
-    .locals 4
+    .registers 4
 
     .line 165
     invoke-static {}, Lio/vanta/util/XiaomiDeviceDetector;->isXiaomiDevice()Z
@@ -962,12 +962,12 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_8
 
     return v1
 
     .line 169
-    :cond_0
+    :cond_8
     invoke-static {}, Lio/vanta/util/XiaomiDeviceDetector;->getMiuiVersion()Ljava/lang/String;
 
     move-result-object v0
@@ -977,7 +977,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_49
 
     const-string v2, "Unknown"
 
@@ -985,13 +985,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_1b
 
-    goto :goto_0
+    goto :goto_49
 
     .line 176
-    :cond_1
-    :try_start_0
+    :cond_1b
+    :try_start_1b
     invoke-static {v0}, Lio/vanta/util/XiaomiDeviceDetector;->extractVersionNumber(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
@@ -1001,27 +1001,27 @@
 
     move-result v2
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_49
 
     .line 178
     invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
 
     move-result v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_29
+    .catch Ljava/lang/Exception; {:try_start_1b .. :try_end_29} :catch_30
 
     const/16 v2, 0xc
 
-    if-lt v0, v2, :cond_2
+    if-lt v0, v2, :cond_2f
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_2
+    :cond_2f
     return v1
 
-    :catch_0
+    :catch_30
     move-exception v0
 
     .line 182
@@ -1047,13 +1047,13 @@
 
     invoke-static {v2, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_3
-    :goto_0
+    :cond_49
+    :goto_49
     return v1
 .end method
 
 .method public static isMiui13OrHigher()Z
-    .locals 4
+    .registers 4
 
     .line 190
     invoke-static {}, Lio/vanta/util/XiaomiDeviceDetector;->isXiaomiDevice()Z
@@ -1062,12 +1062,12 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_8
 
     return v1
 
     .line 194
-    :cond_0
+    :cond_8
     invoke-static {}, Lio/vanta/util/XiaomiDeviceDetector;->getMiuiVersion()Ljava/lang/String;
 
     move-result-object v0
@@ -1077,7 +1077,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_49
 
     const-string v2, "Unknown"
 
@@ -1085,13 +1085,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_1b
 
-    goto :goto_0
+    goto :goto_49
 
     .line 201
-    :cond_1
-    :try_start_0
+    :cond_1b
+    :try_start_1b
     invoke-static {v0}, Lio/vanta/util/XiaomiDeviceDetector;->extractVersionNumber(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
@@ -1101,27 +1101,27 @@
 
     move-result v2
 
-    if-nez v2, :cond_3
+    if-nez v2, :cond_49
 
     .line 203
     invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
 
     move-result v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_29
+    .catch Ljava/lang/Exception; {:try_start_1b .. :try_end_29} :catch_30
 
     const/16 v2, 0xd
 
-    if-lt v0, v2, :cond_2
+    if-lt v0, v2, :cond_2f
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_2
+    :cond_2f
     return v1
 
-    :catch_0
+    :catch_30
     move-exception v0
 
     .line 207
@@ -1147,13 +1147,13 @@
 
     invoke-static {v2, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_3
-    :goto_0
+    :cond_49
+    :goto_49
     return v1
 .end method
 
 .method public static isXiaomiDevice()Z
-    .locals 10
+    .registers 10
 
     .line 34
     const-string v0, "XiaomiDeviceDetector"
@@ -1174,13 +1174,13 @@
 
     const/4 v8, 0x1
 
-    if-eqz v7, :cond_0
+    if-eqz v7, :cond_14
 
     return v8
 
     .line 40
-    :cond_0
-    :try_start_0
+    :cond_14
+    :try_start_14
     sget-object v7, Landroid/os/Build;->MANUFACTURER:Ljava/lang/String;
 
     .line 41
@@ -1188,7 +1188,7 @@
 
     move-result v9
 
-    if-eqz v9, :cond_1
+    if-eqz v9, :cond_2f
 
     .line 42
     sput-boolean v8, Lio/vanta/util/XiaomiDeviceDetector;->sIsXiaomiDevice:Z
@@ -1211,7 +1211,7 @@
     return v8
 
     .line 48
-    :cond_1
+    :cond_2f
     sget-object v6, Landroid/os/Build;->BRAND:Ljava/lang/String;
 
     .line 49
@@ -1219,7 +1219,7 @@
 
     move-result v7
 
-    if-eqz v7, :cond_2
+    if-eqz v7, :cond_4a
 
     .line 50
     sput-boolean v8, Lio/vanta/util/XiaomiDeviceDetector;->sIsXiaomiDevice:Z
@@ -1242,7 +1242,7 @@
     return v8
 
     .line 56
-    :cond_2
+    :cond_4a
     sget-object v5, Landroid/os/Build;->MODEL:Ljava/lang/String;
 
     .line 57
@@ -1250,7 +1250,7 @@
 
     move-result v6
 
-    if-eqz v6, :cond_3
+    if-eqz v6, :cond_65
 
     .line 58
     sput-boolean v8, Lio/vanta/util/XiaomiDeviceDetector;->sIsXiaomiDevice:Z
@@ -1273,7 +1273,7 @@
     return v8
 
     .line 64
-    :cond_3
+    :cond_65
     sget-object v4, Landroid/os/Build;->PRODUCT:Ljava/lang/String;
 
     .line 65
@@ -1281,7 +1281,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_4
+    if-eqz v5, :cond_80
 
     .line 66
     sput-boolean v8, Lio/vanta/util/XiaomiDeviceDetector;->sIsXiaomiDevice:Z
@@ -1304,7 +1304,7 @@
     return v8
 
     .line 72
-    :cond_4
+    :cond_80
     sget-object v3, Landroid/os/Build;->DEVICE:Ljava/lang/String;
 
     .line 73
@@ -1312,7 +1312,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_5
+    if-eqz v4, :cond_9b
 
     .line 74
     sput-boolean v8, Lio/vanta/util/XiaomiDeviceDetector;->sIsXiaomiDevice:Z
@@ -1335,7 +1335,7 @@
     return v8
 
     .line 80
-    :cond_5
+    :cond_9b
     sget-object v2, Landroid/os/Build;->FINGERPRINT:Ljava/lang/String;
 
     .line 81
@@ -1343,7 +1343,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_b6
 
     .line 82
     sput-boolean v8, Lio/vanta/util/XiaomiDeviceDetector;->sIsXiaomiDevice:Z
@@ -1366,12 +1366,12 @@
     return v8
 
     .line 88
-    :cond_6
+    :cond_b6
     invoke-static {}, Lio/vanta/util/XiaomiDeviceDetector;->checkXiaomiSystemProperties()Z
 
     move-result v1
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_db
 
     .line 89
     sput-boolean v8, Lio/vanta/util/XiaomiDeviceDetector;->sIsXiaomiDevice:Z
@@ -1380,12 +1380,12 @@
     const-string v1, "Detected Xiaomi device by system properties"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_c3
+    .catch Ljava/lang/Exception; {:try_start_14 .. :try_end_c3} :catch_c4
 
     return v8
 
-    :catch_0
+    :catch_c4
     move-exception v1
 
     .line 95
@@ -1409,7 +1409,7 @@
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_7
+    :cond_db
     const/4 v0, 0x0
 
     .line 98
@@ -1419,7 +1419,7 @@
 .end method
 
 .method private static isXiaomiFingerprint(Ljava/lang/String;)Z
-    .locals 2
+    .registers 3
 
     .line 277
     invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
@@ -1428,12 +1428,12 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     return v1
 
     .line 281
-    :cond_0
+    :cond_8
     invoke-virtual {p0}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
 
     move-result-object p0
@@ -1445,7 +1445,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_36
 
     const-string v0, "redmi"
 
@@ -1454,7 +1454,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_36
 
     const-string v0, "poco"
 
@@ -1463,7 +1463,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_36
 
     const-string v0, "blackshark"
 
@@ -1472,7 +1472,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_36
 
     const-string v0, "mi "
 
@@ -1481,22 +1481,22 @@
 
     move-result p0
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_35
 
-    goto :goto_0
+    goto :goto_36
 
-    :cond_1
+    :cond_35
     return v1
 
-    :cond_2
-    :goto_0
+    :cond_36
+    :goto_36
     const/4 p0, 0x1
 
     return p0
 .end method
 
 .method private static isXiaomiManufacturer(Ljava/lang/String;)Z
-    .locals 5
+    .registers 6
 
     .line 247
     invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
@@ -1505,12 +1505,12 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     return v1
 
     .line 251
-    :cond_0
+    :cond_8
     invoke-virtual {p0}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
 
     move-result-object p0
@@ -1522,8 +1522,8 @@
 
     move v3, v1
 
-    :goto_0
-    if-ge v3, v2, :cond_2
+    :goto_10
+    if-ge v3, v2, :cond_23
 
     aget-object v4, v0, v3
 
@@ -1536,23 +1536,23 @@
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_20
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_1
+    :cond_20
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_2
+    :cond_23
     return v1
 .end method
 
 .method private static isXiaomiModel(Ljava/lang/String;)Z
-    .locals 5
+    .registers 6
 
     .line 262
     invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
@@ -1561,12 +1561,12 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     return v1
 
     .line 266
-    :cond_0
+    :cond_8
     invoke-virtual {p0}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
 
     move-result-object p0
@@ -1578,8 +1578,8 @@
 
     move v3, v1
 
-    :goto_0
-    if-ge v3, v2, :cond_2
+    :goto_10
+    if-ge v3, v2, :cond_23
 
     aget-object v4, v0, v3
 
@@ -1592,17 +1592,17 @@
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_20
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_1
+    :cond_20
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_10
 
-    :cond_2
+    :cond_23
     return v1
 .end method

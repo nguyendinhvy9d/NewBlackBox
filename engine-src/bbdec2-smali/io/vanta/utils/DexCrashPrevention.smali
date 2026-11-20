@@ -16,7 +16,7 @@
 
 .field private static final TAG:Ljava/lang/String; = "DexCrashPrevention"
 
-.field private static sIsInitialized:Z = false
+.field private static sIsInitialized:Z
 
 .field private static final sPreventionCache:Ljava/util/Map;
     .annotation system Ldalvik/annotation/Signature;
@@ -32,7 +32,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 25
     new-instance v0, Ljava/util/HashMap;
@@ -70,7 +70,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 20
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -79,7 +79,7 @@
 .end method
 
 .method private static attemptCorruptionRecovery(Ljava/lang/String;)Lio/vanta/utils/DexCrashPrevention$PreventionResult;
-    .locals 7
+    .registers 8
 
     .line 330
     const-string v0, "Corruption Recovery"
@@ -94,7 +94,7 @@
     const/4 v4, 0x0
 
     .line 330
-    :try_start_0
+    :try_start_9
     const-string v5, "DexCrashPrevention"
 
     new-instance v6, Ljava/lang/StringBuilder;
@@ -119,7 +119,7 @@
     .line 335
     iget-boolean v3, p0, Lio/vanta/utils/DexFileRecovery$RecoveryResult;->success:Z
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_39
 
     .line 336
     new-instance v2, Lio/vanta/utils/DexCrashPrevention$PreventionResult;
@@ -145,7 +145,7 @@
     return-object v2
 
     .line 339
-    :cond_0
+    :cond_39
     new-instance v1, Lio/vanta/utils/DexCrashPrevention$PreventionResult;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -163,12 +163,12 @@
     move-result-object p0
 
     invoke-direct {v1, v0, v4, p0}, Lio/vanta/utils/DexCrashPrevention$PreventionResult;-><init>(Ljava/lang/String;ZLjava/lang/String;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4d
+    .catch Ljava/lang/Exception; {:try_start_9 .. :try_end_4d} :catch_4e
 
     return-object v1
 
-    :catch_0
+    :catch_4e
     move-exception p0
 
     .line 344
@@ -199,7 +199,7 @@
 .end method
 
 .method public static clearCache()V
-    .locals 2
+    .registers 2
 
     .line 391
     sget-object v0, Lio/vanta/utils/DexCrashPrevention;->sPreventionCache:Ljava/util/Map;
@@ -217,7 +217,7 @@
 .end method
 
 .method private static findBaseApkPath(Ljava/io/File;)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 309
     :try_start_0
@@ -225,14 +225,14 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_3b
 
     .line 310
     invoke-virtual {p0}, Ljava/io/File;->exists()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_3b
 
     .line 311
     new-instance v0, Lio/vanta/utils/DexCrashPrevention$$ExternalSyntheticLambda1;
@@ -243,12 +243,12 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_3b
 
     .line 315
     array-length v0, p0
 
-    if-lez v0, :cond_0
+    if-lez v0, :cond_3b
 
     const/4 v0, 0x0
 
@@ -258,12 +258,12 @@
     invoke-virtual {p0}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
 
     move-result-object p0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_21
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_21} :catch_22
 
     return-object p0
 
-    :catch_0
+    :catch_22
     move-exception p0
 
     .line 321
@@ -289,14 +289,14 @@
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_3b
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method public static forcePrevention(Ljava/lang/String;)Lio/vanta/utils/DexCrashPrevention$PreventionResult;
-    .locals 1
+    .registers 2
 
     .line 415
     sget-object v0, Lio/vanta/utils/DexCrashPrevention;->sPreventionCache:Ljava/util/Map;
@@ -312,7 +312,7 @@
 .end method
 
 .method public static getPreventionStats()Ljava/lang/String;
-    .locals 4
+    .registers 4
 
     .line 400
     sget-object v0, Lio/vanta/utils/DexCrashPrevention;->sPreventionCache:Ljava/util/Map;
@@ -329,12 +329,12 @@
 
     move v2, v1
 
-    :goto_0
+    :goto_c
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_22
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -345,19 +345,19 @@
     .line 401
     iget-boolean v3, v3, Lio/vanta/utils/DexCrashPrevention$PreventionResult;->success:Z
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_1f
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_c
 
-    :cond_0
+    :cond_1f
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_c
 
     .line 408
-    :cond_1
+    :cond_22
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v3, "Prevention Stats - Successful: "
@@ -403,7 +403,7 @@
 .end method
 
 .method public static getStatus()Ljava/lang/String;
-    .locals 3
+    .registers 3
 
     .line 421
     new-instance v0, Ljava/lang/StringBuilder;
@@ -473,7 +473,7 @@
 .end method
 
 .method private static getVirtualAppApkFiles()[Ljava/lang/String;
-    .locals 4
+    .registers 4
 
     .line 369
     :try_start_0
@@ -481,7 +481,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_4e
 
     .line 371
     new-instance v1, Ljava/io/File;
@@ -493,13 +493,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_4e
 
     invoke-virtual {v1}, Ljava/io/File;->isDirectory()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_4e
 
     .line 373
     new-instance v0, Lio/vanta/utils/DexCrashPrevention$$ExternalSyntheticLambda0;
@@ -510,7 +510,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_4e
 
     .line 375
     array-length v1, v0
@@ -520,10 +520,10 @@
     const/4 v2, 0x0
 
     .line 376
-    :goto_0
+    :goto_26
     array-length v3, v0
 
-    if-ge v2, v3, :cond_0
+    if-ge v2, v3, :cond_34
 
     .line 377
     aget-object v3, v0, v2
@@ -533,17 +533,17 @@
     move-result-object v3
 
     aput-object v3, v1, v2
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_31
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_31} :catch_35
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_26
 
-    :cond_0
+    :cond_34
     return-object v1
 
-    :catch_0
+    :catch_35
     move-exception v0
 
     .line 384
@@ -569,14 +569,14 @@
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
+    :cond_4e
     const/4 v0, 0x0
 
     return-object v0
 .end method
 
 .method private static getVirtualAppDirectory()Ljava/lang/String;
-    .locals 3
+    .registers 3
 
     .line 352
     :try_start_0
@@ -584,19 +584,19 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_35
 
     .line 354
     invoke-virtual {v0}, Landroid/content/Context;->getApplicationInfo()Landroid/content/pm/ApplicationInfo;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_35
 
     .line 355
     iget-object v1, v0, Landroid/content/pm/ApplicationInfo;->sourceDir:Ljava/lang/String;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_35
 
     .line 356
     new-instance v1, Ljava/io/File;
@@ -609,12 +609,12 @@
     invoke-virtual {v1}, Ljava/io/File;->getParent()Ljava/lang/String;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1b
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_1b} :catch_1c
 
     return-object v0
 
-    :catch_0
+    :catch_1c
     move-exception v0
 
     .line 361
@@ -640,14 +640,14 @@
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_35
     const/4 v0, 0x0
 
     return-object v0
 .end method
 
 .method private static handleProblematicSplitApk(Ljava/io/File;)Lio/vanta/utils/DexCrashPrevention$PreventionResult;
-    .locals 10
+    .registers 11
 
     .line 277
     const-string v0, "Split APK Handling"
@@ -668,7 +668,7 @@
     const/4 v7, 0x0
 
     .line 277
-    :try_start_0
+    :try_start_f
     new-instance v8, Ljava/lang/StringBuilder;
 
     invoke-direct {v8, v6}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -694,7 +694,7 @@
 
     const/4 v8, 0x1
 
-    if-eqz v6, :cond_0
+    if-eqz v6, :cond_58
 
     .line 283
     new-instance v9, Ljava/io/File;
@@ -705,7 +705,7 @@
 
     move-result v9
 
-    if-eqz v9, :cond_0
+    if-eqz v9, :cond_58
 
     .line 284
     new-instance p0, Ljava/lang/StringBuilder;
@@ -742,7 +742,7 @@
     return-object p0
 
     .line 291
-    :cond_0
+    :cond_58
     invoke-virtual {p0}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
 
     move-result-object p0
@@ -753,15 +753,15 @@
 
     .line 292
     iget-boolean v1, p0, Lio/vanta/utils/DexFileRecovery$RecoveryResult;->success:Z
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_62
+    .catch Ljava/lang/Exception; {:try_start_f .. :try_end_62} :catch_90
 
     const-string v2, "Split APK Recovery"
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_7b
 
     .line 293
-    :try_start_1
+    :try_start_66
     new-instance v1, Lio/vanta/utils/DexCrashPrevention$PreventionResult;
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -783,7 +783,7 @@
     return-object v1
 
     .line 296
-    :cond_1
+    :cond_7b
     new-instance v1, Lio/vanta/utils/DexCrashPrevention$PreventionResult;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -801,12 +801,12 @@
     move-result-object p0
 
     invoke-direct {v1, v2, v7, p0}, Lio/vanta/utils/DexCrashPrevention$PreventionResult;-><init>(Ljava/lang/String;ZLjava/lang/String;)V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_8f
+    .catch Ljava/lang/Exception; {:try_start_66 .. :try_end_8f} :catch_90
 
     return-object v1
 
-    :catch_0
+    :catch_90
     move-exception p0
 
     .line 301
@@ -837,21 +837,21 @@
 .end method
 
 .method private static hookDexFileValidation()V
-    .locals 4
+    .registers 4
 
     .line 158
     const-string v0, "DexCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "DEX file validation hooks prepared"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_7} :catch_8
 
     return-void
 
-    :catch_0
+    :catch_8
     move-exception v1
 
     .line 160
@@ -879,20 +879,20 @@
 .end method
 
 .method public static initialize()V
-    .locals 4
+    .registers 4
 
     .line 57
     const-string v0, "DexCrashPrevention"
 
     sget-boolean v1, Lio/vanta/utils/DexCrashPrevention;->sIsInitialized:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_7
 
     return-void
 
     .line 62
-    :cond_0
-    :try_start_0
+    :cond_7
+    :try_start_7
     const-string v1, "Initializing DEX crash prevention..."
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -918,12 +918,12 @@
     const-string v1, "DEX crash prevention initialized successfully"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_20
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_20} :catch_21
 
     return-void
 
-    :catch_0
+    :catch_21
     move-exception v1
 
     .line 80
@@ -951,24 +951,24 @@
 .end method
 
 .method private static installApkIntegrityChecks()V
-    .locals 4
+    .registers 4
 
     .line 194
     const-string v0, "DexCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Installing APK integrity checks"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 197
     invoke-static {}, Lio/vanta/utils/DexCrashPrevention;->setupPeriodicIntegrityChecks()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_a} :catch_b
 
     return-void
 
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 200
@@ -996,24 +996,24 @@
 .end method
 
 .method private static installClassLoaderMonitoring()V
-    .locals 4
+    .registers 4
 
     .line 167
     const-string v0, "DexCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Installing ClassLoader monitoring"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 170
     invoke-static {}, Lio/vanta/utils/DexCrashPrevention;->setupClassLoaderMonitoring()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_a} :catch_b
 
     return-void
 
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 173
@@ -1041,24 +1041,24 @@
 .end method
 
 .method private static installDexFileValidation()V
-    .locals 4
+    .registers 4
 
     .line 143
     const-string v0, "DexCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Installing DEX file validation"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 146
     invoke-static {}, Lio/vanta/utils/DexCrashPrevention;->hookDexFileValidation()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_a} :catch_b
 
     return-void
 
-    :catch_0
+    :catch_b
     move-exception v1
 
     .line 149
@@ -1086,12 +1086,12 @@
 .end method
 
 .method private static installProactivePrevention()V
-    .locals 4
+    .registers 4
 
     .line 88
     const-string v0, "DexCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Installing proactive DEX corruption prevention"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -1101,12 +1101,12 @@
 
     .line 94
     invoke-static {}, Lio/vanta/utils/DexCrashPrevention;->prevalidateCriticalApkFiles()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_d
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_d} :catch_e
 
     return-void
 
-    :catch_0
+    :catch_e
     move-exception v1
 
     .line 97
@@ -1134,24 +1134,24 @@
 .end method
 
 .method private static isProblematicSplitApk(Ljava/lang/String;)Z
-    .locals 5
+    .registers 6
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return v0
 
     .line 265
-    :cond_0
+    :cond_4
     sget-object v1, Lio/vanta/utils/DexCrashPrevention;->PROBLEMATIC_APK_PATTERNS:[Ljava/lang/String;
 
     array-length v2, v1
 
     move v3, v0
 
-    :goto_0
-    if-ge v3, v2, :cond_2
+    :goto_8
+    if-ge v3, v2, :cond_17
 
     aget-object v4, v1, v3
 
@@ -1160,23 +1160,23 @@
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_14
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_1
+    :cond_14
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_8
 
-    :cond_2
+    :cond_17
     return v0
 .end method
 
 .method static synthetic lambda$findBaseApkPath$0(Ljava/io/File;Ljava/lang/String;)Z
-    .locals 0
+    .registers 2
 
     .line 312
     const-string p0, ".apk"
@@ -1185,7 +1185,7 @@
 
     move-result p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_12
 
     const-string p0, "split_config"
 
@@ -1193,20 +1193,20 @@
 
     move-result p0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_12
 
     const/4 p0, 0x1
 
     return p0
 
-    :cond_0
+    :cond_12
     const/4 p0, 0x0
 
     return p0
 .end method
 
 .method static synthetic lambda$getVirtualAppApkFiles$1(Ljava/io/File;Ljava/lang/String;)Z
-    .locals 0
+    .registers 2
 
     .line 373
     const-string p0, ".apk"
@@ -1219,29 +1219,29 @@
 .end method
 
 .method private static prevalidateCriticalApkFiles()V
-    .locals 9
+    .registers 9
 
     .line 122
     const-string v0, "DexCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     invoke-static {}, Lio/vanta/utils/DexCrashPrevention;->getVirtualAppApkFiles()[Ljava/lang/String;
 
     move-result-object v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_5a
 
     .line 124
     array-length v2, v1
 
     const/4 v3, 0x0
 
-    :goto_0
-    if-ge v3, v2, :cond_2
+    :goto_a
+    if-ge v3, v2, :cond_5a
 
     aget-object v4, v1, v3
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_57
 
     .line 126
     invoke-static {v4}, Lio/vanta/utils/DexCrashPrevention;->validateAndPreventCorruption(Ljava/lang/String;)Lio/vanta/utils/DexCrashPrevention$PreventionResult;
@@ -1250,15 +1250,15 @@
 
     .line 127
     iget-boolean v6, v5, Lio/vanta/utils/DexCrashPrevention$PreventionResult;->success:Z
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_16} :catch_5b
 
     const-string v7, " - "
 
-    if-eqz v6, :cond_0
+    if-eqz v6, :cond_39
 
     .line 128
-    :try_start_1
+    :try_start_1a
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
@@ -1287,10 +1287,10 @@
 
     invoke-static {v0, v4}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_1
+    goto :goto_57
 
     .line 130
-    :cond_0
+    :cond_39
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
@@ -1318,19 +1318,19 @@
     move-result-object v4
 
     invoke-static {v0, v4}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_57
+    .catch Ljava/lang/Exception; {:try_start_1a .. :try_end_57} :catch_5b
 
-    :cond_1
-    :goto_1
+    :cond_57
+    :goto_57
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_a
 
-    :cond_2
+    :cond_5a
     return-void
 
-    :catch_0
+    :catch_5b
     move-exception v1
 
     .line 136
@@ -1358,19 +1358,19 @@
 .end method
 
 .method private static setupApkFileMonitoring()V
-    .locals 5
+    .registers 5
 
     .line 105
     const-string v0, "DexCrashPrevention"
 
     const-string v1, "Setting up APK file monitoring for: "
 
-    :try_start_0
+    :try_start_4
     invoke-static {}, Lio/vanta/utils/DexCrashPrevention;->getVirtualAppDirectory()Ljava/lang/String;
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_2b
 
     .line 107
     new-instance v3, Ljava/io/File;
@@ -1382,13 +1382,13 @@
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_2b
 
     invoke-virtual {v3}, Ljava/io/File;->isDirectory()Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_2b
 
     .line 109
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1404,13 +1404,13 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2b
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_2b} :catch_2c
 
-    :cond_0
+    :cond_2b
     return-void
 
-    :catch_0
+    :catch_2c
     move-exception v1
 
     .line 114
@@ -1438,21 +1438,21 @@
 .end method
 
 .method private static setupClassLoaderMonitoring()V
-    .locals 4
+    .registers 4
 
     .line 181
     const-string v0, "DexCrashPrevention"
 
     const-string v1, "Monitoring ClassLoader: "
 
-    :try_start_0
+    :try_start_4
     const-class v2, Lio/vanta/utils/DexCrashPrevention;
 
     invoke-virtual {v2}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_24
 
     .line 183
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1476,13 +1476,13 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_24
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_24} :catch_25
 
-    :cond_0
+    :cond_24
     return-void
 
-    :catch_0
+    :catch_25
     move-exception v1
 
     .line 187
@@ -1510,21 +1510,21 @@
 .end method
 
 .method private static setupPeriodicIntegrityChecks()V
-    .locals 4
+    .registers 4
 
     .line 208
     const-string v0, "DexCrashPrevention"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Periodic APK integrity checks prepared"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_7} :catch_8
 
     return-void
 
-    :catch_0
+    :catch_8
     move-exception v1
 
     .line 210
@@ -1552,7 +1552,7 @@
 .end method
 
 .method public static validateAndPreventCorruption(Ljava/lang/String;)Lio/vanta/utils/DexCrashPrevention$PreventionResult;
-    .locals 8
+    .registers 9
 
     const-string v0, "APK file is corrupted: "
 
@@ -1563,7 +1563,7 @@
     .line 216
     const-string v3, "Validation"
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_11
 
     .line 217
     new-instance p0, Lio/vanta/utils/DexCrashPrevention$PreventionResult;
@@ -1575,14 +1575,14 @@
     return-object p0
 
     .line 221
-    :cond_0
+    :cond_11
     sget-object v4, Lio/vanta/utils/DexCrashPrevention;->sPreventionCache:Ljava/util/Map;
 
     invoke-interface {v4, p0}, Ljava/util/Map;->containsKey(Ljava/lang/Object;)Z
 
     move-result v5
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_20
 
     .line 222
     invoke-interface {v4, p0}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -1594,8 +1594,8 @@
     return-object p0
 
     .line 226
-    :cond_1
-    :try_start_0
+    :cond_20
+    :try_start_20
     new-instance v5, Ljava/io/File;
 
     invoke-direct {v5, p0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
@@ -1605,7 +1605,7 @@
 
     move-result v6
 
-    if-nez v6, :cond_2
+    if-nez v6, :cond_36
 
     .line 228
     new-instance v0, Lio/vanta/utils/DexCrashPrevention$PreventionResult;
@@ -1620,7 +1620,7 @@
     return-object v0
 
     .line 234
-    :cond_2
+    :cond_36
     invoke-virtual {v5}, Ljava/io/File;->getName()Ljava/lang/String;
 
     move-result-object v6
@@ -1628,15 +1628,15 @@
     invoke-static {v6}, Lio/vanta/utils/DexCrashPrevention;->isProblematicSplitApk(Ljava/lang/String;)Z
 
     move-result v6
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3e
+    .catch Ljava/lang/Exception; {:try_start_20 .. :try_end_3e} :catch_88
 
     const-string v7, "DexCrashPrevention"
 
-    if-eqz v6, :cond_3
+    if-eqz v6, :cond_5e
 
     .line 235
-    :try_start_1
+    :try_start_42
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -1666,12 +1666,12 @@
     return-object v0
 
     .line 242
-    :cond_3
+    :cond_5e
     invoke-static {v5}, Lio/vanta/utils/DexFileRecovery;->isValidApkFile(Ljava/io/File;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_70
 
     .line 243
     new-instance v0, Lio/vanta/utils/DexCrashPrevention$PreventionResult;
@@ -1688,7 +1688,7 @@
     return-object v0
 
     .line 248
-    :cond_4
+    :cond_70
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1, v0}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -1710,12 +1710,12 @@
 
     .line 250
     invoke-interface {v4, p0, v0}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_87
+    .catch Ljava/lang/Exception; {:try_start_42 .. :try_end_87} :catch_88
 
     return-object v0
 
-    :catch_0
+    :catch_88
     move-exception v0
 
     .line 255

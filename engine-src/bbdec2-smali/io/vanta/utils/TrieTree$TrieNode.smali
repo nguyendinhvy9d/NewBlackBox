@@ -34,7 +34,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 18
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -55,7 +55,7 @@
 .end method
 
 .method public constructor <init>(CLjava/lang/String;)V
-    .locals 1
+    .registers 4
 
     .line 20
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -84,14 +84,14 @@
 
 # virtual methods
 .method public equals(Ljava/lang/Object;)Z
-    .locals 2
+    .registers 4
 
     .line 28
     instance-of v0, p1, Lio/vanta/utils/TrieTree$TrieNode;
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     .line 29
     check-cast p1, Lio/vanta/utils/TrieTree$TrieNode;
@@ -100,18 +100,18 @@
 
     iget-char v0, p0, Lio/vanta/utils/TrieTree$TrieNode;->content:C
 
-    if-ne p1, v0, :cond_0
+    if-ne p1, v0, :cond_f
 
     const/4 p1, 0x1
 
     return p1
 
-    :cond_0
+    :cond_f
     return v1
 .end method
 
 .method public nextNode(C)Lio/vanta/utils/TrieTree$TrieNode;
-    .locals 3
+    .registers 5
 
     .line 35
     iget-object v0, p0, Lio/vanta/utils/TrieTree$TrieNode;->children:Ljava/util/List;
@@ -120,12 +120,12 @@
 
     move-result-object v0
 
-    :cond_0
+    :cond_6
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_17
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -136,11 +136,11 @@
     .line 36
     iget-char v2, v1, Lio/vanta/utils/TrieTree$TrieNode;->content:C
 
-    if-ne v2, p1, :cond_0
+    if-ne v2, p1, :cond_6
 
     return-object v1
 
-    :cond_1
+    :cond_17
     const/4 p1, 0x0
 
     return-object p1

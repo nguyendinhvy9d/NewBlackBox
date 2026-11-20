@@ -27,7 +27,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$sfgetNOTIFY_ID()I
-    .locals 1
+    .registers 1
 
     sget v0, Lio/vanta/core/system/DaemonService;->NOTIFY_ID:I
 
@@ -35,7 +35,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 21
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -59,7 +59,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 19
     invoke-direct {p0}, Landroid/app/Service;-><init>()V
@@ -68,7 +68,7 @@
 .end method
 
 .method private createNotification()Landroid/app/Notification;
-    .locals 3
+    .registers 4
 
     .line 127
     :try_start_0
@@ -124,12 +124,12 @@
     invoke-virtual {v0}, Landroidx/core/app/NotificationCompat$Builder;->build()Landroid/app/Notification;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2d
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_2d} :catch_2e
 
     return-object v0
 
-    :catch_0
+    :catch_2e
     move-exception v0
 
     .line 137
@@ -161,17 +161,17 @@
 .end method
 
 .method private createNotificationChannel()V
-    .locals 5
+    .registers 6
 
     .line 80
     const-string v0, "DaemonService"
 
-    :try_start_0
+    :try_start_2
     sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v2, 0x1a
 
-    if-lt v1, v2, :cond_0
+    if-lt v1, v2, :cond_34
 
     .line 81
     new-instance v1, Landroid/app/NotificationChannel;
@@ -211,7 +211,7 @@
 
     check-cast v2, Landroid/app/NotificationManager;
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_34
 
     .line 93
     invoke-virtual {v2, v1}, Landroid/app/NotificationManager;->createNotificationChannel(Landroid/app/NotificationChannel;)V
@@ -220,13 +220,13 @@
     const-string v1, "Notification channel created successfully"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_34
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_34} :catch_35
 
-    :cond_0
+    :cond_34
     return-void
 
-    :catch_0
+    :catch_35
     move-exception v1
 
     .line 98
@@ -254,26 +254,26 @@
 .end method
 
 .method private startForegroundService()Z
-    .locals 5
+    .registers 6
 
     .line 105
     const-string v0, "DaemonService"
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_3
     invoke-direct {p0}, Lio/vanta/core/system/DaemonService;->createNotification()Landroid/app/Notification;
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_23
 
     .line 107
     sget v3, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v4, 0x22
 
-    if-lt v3, v4, :cond_0
+    if-lt v3, v4, :cond_17
 
     .line 108
     sget v3, Lio/vanta/core/system/DaemonService;->NOTIFY_ID:I
@@ -282,16 +282,16 @@
 
     invoke-virtual {p0, v3, v2, v4}, Lio/vanta/core/system/DaemonService;->startForeground(ILandroid/app/Notification;I)V
 
-    goto :goto_0
+    goto :goto_1c
 
     .line 110
-    :cond_0
+    :cond_17
     sget v3, Lio/vanta/core/system/DaemonService;->NOTIFY_ID:I
 
     invoke-virtual {p0, v3, v2}, Lio/vanta/core/system/DaemonService;->startForeground(ILandroid/app/Notification;)V
 
     .line 112
-    :goto_0
+    :goto_1c
     const-string v2, "Foreground service started successfully"
 
     invoke-static {v0, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -301,16 +301,16 @@
     return v0
 
     .line 115
-    :cond_1
+    :cond_23
     const-string v2, "Failed to create notification"
 
     invoke-static {v0, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_28
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_28} :catch_29
 
     return v1
 
-    :catch_0
+    :catch_29
     move-exception v2
 
     .line 119
@@ -340,7 +340,7 @@
 
 # virtual methods
 .method public onBind(Landroid/content/Intent;)Landroid/os/IBinder;
-    .locals 0
+    .registers 2
 
     .line 30
     sget-object p1, Lio/vanta/core/system/DaemonService;->sBinder:Landroid/os/IBinder;
@@ -349,7 +349,7 @@
 .end method
 
 .method public onCreate()V
-    .locals 2
+    .registers 3
 
     .line 35
     invoke-super {p0}, Landroid/app/Service;->onCreate()V
@@ -366,17 +366,17 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_13
 
     .line 40
     invoke-direct {p0}, Lio/vanta/core/system/DaemonService;->createNotificationChannel()V
 
-    :cond_0
+    :cond_13
     return-void
 .end method
 
 .method public onDestroy()V
-    .locals 2
+    .registers 3
 
     .line 73
     const-string v0, "DaemonService"
@@ -392,7 +392,7 @@
 .end method
 
 .method public onStartCommand(Landroid/content/Intent;II)I
-    .locals 2
+    .registers 6
 
     .line 46
     const-string p1, "DaemonService onStartCommand"
@@ -404,12 +404,12 @@
     const/4 p1, 0x1
 
     .line 49
-    :try_start_0
+    :try_start_8
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result p3
 
-    if-nez p3, :cond_0
+    if-nez p3, :cond_18
 
     .line 50
     new-instance p3, Landroid/content/Intent;
@@ -422,19 +422,19 @@
     invoke-virtual {p0, p3}, Lio/vanta/core/system/DaemonService;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
     .line 54
-    :cond_0
+    :cond_18
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result p3
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_2a
 
     .line 55
     invoke-direct {p0}, Lio/vanta/core/system/DaemonService;->startForegroundService()Z
 
     move-result p3
 
-    if-nez p3, :cond_1
+    if-nez p3, :cond_2a
 
     .line 56
     const-string p3, "Failed to start foreground service, falling back to regular service"
@@ -444,16 +444,16 @@
     return p1
 
     .line 61
-    :cond_1
+    :cond_2a
     const-string p3, "DaemonService started successfully"
 
     invoke-static {p2, p3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2f
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_2f} :catch_30
 
     return p1
 
-    :catch_0
+    :catch_30
     move-exception p3
 
     .line 65

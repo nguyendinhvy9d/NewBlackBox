@@ -23,7 +23,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 16
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
@@ -34,7 +34,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -42,7 +42,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 28
     const-string p1, "IContentProviderProxy"
@@ -55,7 +55,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

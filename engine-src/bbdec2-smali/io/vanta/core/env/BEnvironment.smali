@@ -15,7 +15,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 12
     new-instance v0, Ljava/io/File;
@@ -79,7 +79,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 11
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -88,7 +88,7 @@
 .end method
 
 .method public static getAccountsConf()Ljava/io/File;
-    .locals 3
+    .registers 3
 
     .line 51
     new-instance v0, Ljava/io/File;
@@ -105,7 +105,7 @@
 .end method
 
 .method public static getAppDir(Ljava/lang/String;)Ljava/io/File;
-    .locals 4
+    .registers 5
 
     .line 135
     new-instance v0, Ljava/io/File;
@@ -132,7 +132,7 @@
 .end method
 
 .method public static getAppLibDir(Ljava/lang/String;)Ljava/io/File;
-    .locals 2
+    .registers 3
 
     .line 147
     new-instance v0, Ljava/io/File;
@@ -149,7 +149,7 @@
 .end method
 
 .method public static getAppRootDir()Ljava/io/File;
-    .locals 1
+    .registers 1
 
     .line 131
     const-string v0, ""
@@ -162,7 +162,7 @@
 .end method
 
 .method public static getBaseApkDir(Ljava/lang/String;)Ljava/io/File;
-    .locals 4
+    .registers 5
 
     .line 139
     new-instance v0, Ljava/io/File;
@@ -195,7 +195,7 @@
 .end method
 
 .method public static getCacheDir()Ljava/io/File;
-    .locals 3
+    .registers 3
 
     .line 43
     new-instance v0, Ljava/io/File;
@@ -210,7 +210,7 @@
 .end method
 
 .method public static getDataCacheDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 1
+    .registers 3
 
     .line 119
     new-instance v0, Ljava/io/File;
@@ -227,7 +227,7 @@
 .end method
 
 .method public static getDataDatabasesDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 1
+    .registers 3
 
     .line 127
     new-instance v0, Ljava/io/File;
@@ -244,7 +244,7 @@
 .end method
 
 .method public static getDataDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 3
+    .registers 5
 
     .line 97
     new-instance v0, Ljava/io/File;
@@ -273,7 +273,7 @@
 .end method
 
 .method public static getDataFilesDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 1
+    .registers 3
 
     .line 111
     new-instance v0, Ljava/io/File;
@@ -290,7 +290,7 @@
 .end method
 
 .method public static getDataLibDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 1
+    .registers 3
 
     .line 123
     new-instance v0, Ljava/io/File;
@@ -307,7 +307,7 @@
 .end method
 
 .method public static getDeDataDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 3
+    .registers 5
 
     .line 88
     new-instance v0, Ljava/io/File;
@@ -336,7 +336,7 @@
 .end method
 
 .method public static getExternalDataCacheDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 1
+    .registers 3
 
     .line 115
     new-instance v0, Ljava/io/File;
@@ -353,7 +353,7 @@
 .end method
 
 .method public static getExternalDataDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 3
+    .registers 5
 
     .line 92
     new-instance v0, Ljava/io/File;
@@ -380,7 +380,7 @@
 .end method
 
 .method public static getExternalDataFilesDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 1
+    .registers 3
 
     .line 107
     new-instance v0, Ljava/io/File;
@@ -397,7 +397,7 @@
 .end method
 
 .method public static getExternalObbDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 3
+    .registers 5
 
     .line 83
     new-instance v0, Ljava/io/File;
@@ -424,7 +424,7 @@
 .end method
 
 .method public static getExternalUserDir(I)Ljava/io/File;
-    .locals 4
+    .registers 5
 
     .line 75
     new-instance v0, Ljava/io/File;
@@ -453,7 +453,7 @@
 .end method
 
 .method public static getExternalVirtualRoot()Ljava/io/File;
-    .locals 1
+    .registers 1
 
     .line 31
     sget-object v0, Lio/vanta/core/env/BEnvironment;->sExternalVirtualRoot:Ljava/io/File;
@@ -462,7 +462,7 @@
 .end method
 
 .method public static getFakeLocationConf()Ljava/io/File;
-    .locals 3
+    .registers 3
 
     .line 67
     new-instance v0, Ljava/io/File;
@@ -479,7 +479,7 @@
 .end method
 
 .method public static getPackageConf(Ljava/lang/String;)Ljava/io/File;
-    .locals 2
+    .registers 3
 
     .line 71
     new-instance v0, Ljava/io/File;
@@ -496,7 +496,7 @@
 .end method
 
 .method public static getProcDir()Ljava/io/File;
-    .locals 3
+    .registers 3
 
     .line 39
     new-instance v0, Ljava/io/File;
@@ -511,7 +511,7 @@
 .end method
 
 .method public static getProcDir(I)Ljava/io/File;
-    .locals 4
+    .registers 5
 
     .line 101
     new-instance v0, Ljava/io/File;
@@ -545,7 +545,7 @@
 .end method
 
 .method public static getSharedUserConf()Ljava/io/File;
-    .locals 3
+    .registers 3
 
     .line 59
     new-instance v0, Ljava/io/File;
@@ -562,7 +562,7 @@
 .end method
 
 .method public static getSplitApkDir(Ljava/lang/String;I)Ljava/io/File;
-    .locals 4
+    .registers 6
 
     .line 143
     new-instance v0, Ljava/io/File;
@@ -605,7 +605,7 @@
 .end method
 
 .method public static getSystemDir()Ljava/io/File;
-    .locals 3
+    .registers 3
 
     .line 35
     new-instance v0, Ljava/io/File;
@@ -620,7 +620,7 @@
 .end method
 
 .method public static getUidConf()Ljava/io/File;
-    .locals 3
+    .registers 3
 
     .line 55
     new-instance v0, Ljava/io/File;
@@ -637,7 +637,7 @@
 .end method
 
 .method public static getUserDir(I)Ljava/io/File;
-    .locals 4
+    .registers 5
 
     .line 79
     new-instance v0, Ljava/io/File;
@@ -666,7 +666,7 @@
 .end method
 
 .method public static getUserInfoConf()Ljava/io/File;
-    .locals 3
+    .registers 3
 
     .line 47
     new-instance v0, Ljava/io/File;
@@ -683,7 +683,7 @@
 .end method
 
 .method public static getVirtualRoot()Ljava/io/File;
-    .locals 1
+    .registers 1
 
     .line 27
     sget-object v0, Lio/vanta/core/env/BEnvironment;->sVirtualRoot:Ljava/io/File;
@@ -692,7 +692,7 @@
 .end method
 
 .method public static getXPModuleConf()Ljava/io/File;
-    .locals 3
+    .registers 3
 
     .line 63
     new-instance v0, Ljava/io/File;
@@ -709,7 +709,7 @@
 .end method
 
 .method public static getXSharedPreferences(Ljava/lang/String;Ljava/lang/String;)Ljava/io/File;
-    .locals 3
+    .registers 5
 
     .line 151
     new-instance v0, Ljava/io/File;
@@ -748,7 +748,7 @@
 .end method
 
 .method public static load()V
-    .locals 1
+    .registers 1
 
     .line 19
     sget-object v0, Lio/vanta/core/env/BEnvironment;->sVirtualRoot:Ljava/io/File;

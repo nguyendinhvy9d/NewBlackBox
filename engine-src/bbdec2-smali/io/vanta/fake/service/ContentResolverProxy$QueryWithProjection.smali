@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 67
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,21 +31,21 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_5c
 
     .line 70
     array-length v0, p3
 
     const/4 v1, 0x1
 
-    if-le v0, v1, :cond_1
+    if-le v0, v1, :cond_5c
 
     const/4 v0, 0x0
 
@@ -53,7 +53,7 @@
 
     instance-of v1, v0, Landroid/net/Uri;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_5c
 
     .line 71
     check-cast v0, Landroid/net/Uri;
@@ -70,7 +70,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_43
 
     const-string v1, "media"
 
@@ -78,7 +78,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_43
 
     const-string v1, "content://media/external/audio"
 
@@ -87,7 +87,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_43
 
     const-string v1, "content://media/internal/audio"
 
@@ -96,7 +96,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_43
 
     const-string v1, "content://media/external/file"
 
@@ -105,7 +105,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_43
 
     const-string v1, "content://media/internal/file"
 
@@ -114,10 +114,10 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_5c
 
     .line 81
-    :cond_0
+    :cond_43
     new-instance v1, Ljava/lang/StringBuilder;
 
     const-string v2, "ContentResolver: Allowing audio query with projection: "
@@ -144,7 +144,7 @@
     return-object p1
 
     .line 89
-    :cond_1
+    :cond_5c
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

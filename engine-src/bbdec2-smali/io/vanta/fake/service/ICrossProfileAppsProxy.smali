@@ -25,7 +25,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 22
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -44,7 +44,7 @@
 .end method
 
 .method private constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 26
     invoke-direct {p0, p1}, Lio/vanta/fake/hook/BinderInvocationStub;-><init>(Landroid/os/IBinder;)V
@@ -58,20 +58,20 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 6
+    .registers 7
 
     .line 32
     iget-object v0, p0, Lio/vanta/fake/service/ICrossProfileAppsProxy;->mRawBinder:Landroid/os/IBinder;
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     return-object v1
 
     .line 34
-    :cond_0
-    :try_start_0
+    :cond_6
+    :try_start_6
     const-string v0, "android.content.pm.ICrossProfileApps$Stub"
 
     invoke-static {v0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -105,12 +105,12 @@
     invoke-virtual {v0, v1, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_24
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_24} :catch_25
 
     return-object v0
 
-    :catch_0
+    :catch_25
     move-exception v0
 
     .line 38
@@ -140,7 +140,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 45
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -153,7 +153,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_16
 
     .line 46
     invoke-virtual {p0, p2}, Lio/vanta/fake/service/ICrossProfileAppsProxy;->replaceSystemService(Ljava/lang/String;)V
@@ -165,12 +165,12 @@
 
     invoke-static {p1, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_16
     return-void
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -182,12 +182,12 @@
     invoke-super {p0, p1, p2, p3}, Lio/vanta/fake/hook/BinderInvocationStub;->invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_4
+    .catchall {:try_start_0 .. :try_end_4} :catchall_5
 
     return-object p1
 
-    :catchall_0
+    :catchall_5
     move-exception p1
 
     .line 86
@@ -235,19 +235,19 @@
     .line 88
     sget-object p2, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_2
+    if-eq p1, p2, :cond_44
 
     const-class p2, Ljava/lang/Boolean;
 
-    if-ne p1, p2, :cond_0
+    if-ne p1, p2, :cond_39
 
-    goto :goto_0
+    goto :goto_44
 
     .line 90
-    :cond_0
+    :cond_39
     const-class p2, Ljava/util/List;
 
-    if-ne p1, p2, :cond_1
+    if-ne p1, p2, :cond_42
 
     .line 91
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
@@ -256,13 +256,13 @@
 
     return-object p1
 
-    :cond_1
+    :cond_42
     const/4 p1, 0x0
 
     return-object p1
 
-    :cond_2
-    :goto_0
+    :cond_44
+    :goto_44
     const/4 p1, 0x0
 
     .line 89
@@ -274,7 +274,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 2
+    .registers 3
 
     .line 53
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -287,15 +287,15 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_10
 
-    if-eq v0, p0, :cond_0
+    if-eq v0, p0, :cond_10
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_10
     const/4 v0, 0x0
 
     return v0

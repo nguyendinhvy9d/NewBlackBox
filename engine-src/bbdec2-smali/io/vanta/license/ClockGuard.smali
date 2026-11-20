@@ -17,7 +17,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 4
+    .registers 4
 
     .line 25
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -43,7 +43,7 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -52,7 +52,7 @@
 .end method
 
 .method public static recordServerTime(Landroid/content/Context;J)V
-    .locals 5
+    .registers 8
 
     .line 35
     const-string v0, "clk_high_water"
@@ -61,15 +61,15 @@
 
     cmp-long v3, p1, v1
 
-    if-lez v3, :cond_1
+    if-lez v3, :cond_3f
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_b
 
-    goto :goto_0
+    goto :goto_3f
 
     .line 37
-    :cond_0
-    :try_start_0
+    :cond_b
+    :try_start_b
     const-string v3, "bcore_clock_vault"
 
     const/4 v4, 0x0
@@ -85,7 +85,7 @@
 
     cmp-long v1, p1, v1
 
-    if-lez v1, :cond_1
+    if-lez v1, :cond_3f
 
     .line 40
     invoke-interface {p0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
@@ -97,12 +97,12 @@
     move-result-object p0
 
     invoke-interface {p0}, Landroid/content/SharedPreferences$Editor;->apply()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_b .. :try_end_25} :catchall_26
 
     return-void
 
-    :catchall_0
+    :catchall_26
     move-exception p0
 
     .line 43
@@ -128,13 +128,13 @@
 
     invoke-static {p1, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
-    :goto_0
+    :cond_3f
+    :goto_3f
     return-void
 .end method
 
 .method public static validate(Landroid/content/Context;J)Z
-    .locals 10
+    .registers 13
 
     .line 52
     const-string v0, "clk_high_water"
@@ -148,18 +148,18 @@
 
     const/4 v5, 0x0
 
-    if-gtz v4, :cond_0
+    if-gtz v4, :cond_c
 
     return v5
 
     .line 55
-    :cond_0
+    :cond_c
     const-string v4, "BcoreClockGuard"
 
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_6e
 
     .line 57
-    :try_start_0
+    :try_start_10
     const-string v6, "bcore_clock_vault"
 
     invoke-virtual {p0, v6, v5}, Landroid/content/Context;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
@@ -173,7 +173,7 @@
 
     cmp-long v8, v6, v2
 
-    if-lez v8, :cond_1
+    if-lez v8, :cond_47
 
     const-wide/16 v8, 0x3c
 
@@ -181,7 +181,7 @@
 
     cmp-long v8, p1, v8
 
-    if-gez v8, :cond_1
+    if-gez v8, :cond_47
 
     .line 61
     new-instance p0, Ljava/lang/StringBuilder;
@@ -216,10 +216,10 @@
 
     return v5
 
-    :cond_1
+    :cond_47
     cmp-long v1, p1, v6
 
-    if-lez v1, :cond_2
+    if-lez v1, :cond_6e
 
     .line 67
     invoke-interface {p0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
@@ -231,12 +231,12 @@
     move-result-object p0
 
     invoke-interface {p0}, Landroid/content/SharedPreferences$Editor;->apply()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_56
+    .catchall {:try_start_10 .. :try_end_56} :catchall_57
 
-    goto :goto_0
+    goto :goto_6e
 
-    :catchall_0
+    :catchall_57
     move-exception p0
 
     .line 70
@@ -261,8 +261,8 @@
     invoke-static {v4, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 75
-    :cond_2
-    :goto_0
+    :cond_6e
+    :goto_6e
     invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
 
     move-result-wide v0
@@ -283,13 +283,13 @@
 
     cmp-long p0, v0, v2
 
-    if-lez p0, :cond_3
+    if-lez p0, :cond_a8
 
     const-wide/16 v2, -0x78
 
     cmp-long p0, p1, v2
 
-    if-gez p0, :cond_3
+    if-gez p0, :cond_a8
 
     .line 81
     new-instance p0, Ljava/lang/StringBuilder;
@@ -326,7 +326,7 @@
 
     return v5
 
-    :cond_3
+    :cond_a8
     const/4 p0, 0x1
 
     return p0

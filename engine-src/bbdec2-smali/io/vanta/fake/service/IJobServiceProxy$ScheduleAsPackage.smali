@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 111
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -40,23 +40,23 @@
 
     const/4 v0, 0x0
 
-    if-eqz p3, :cond_2
+    if-eqz p3, :cond_39
 
     move v1, v0
 
     .line 116
-    :goto_0
-    :try_start_0
+    :goto_4
+    :try_start_4
     array-length v2, p3
 
-    if-ge v1, v2, :cond_2
+    if-ge v1, v2, :cond_39
 
     .line 117
     aget-object v2, p3, v1
 
     instance-of v3, v2, Landroid/app/job/JobInfo;
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_1c
 
     .line 118
     check-cast v2, Landroid/app/job/JobInfo;
@@ -70,18 +70,18 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_36
 
     .line 121
     aput-object v2, p3, v1
 
-    goto :goto_1
+    goto :goto_36
 
     .line 123
-    :cond_0
+    :cond_1c
     instance-of v3, v2, Ljava/lang/String;
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_36
 
     .line 124
     check-cast v2, Ljava/lang/String;
@@ -99,7 +99,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_36
 
     .line 126
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -108,23 +108,23 @@
 
     aput-object v2, p3, v1
 
-    :cond_1
-    :goto_1
+    :cond_36
+    :goto_36
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_4
 
     .line 131
-    :cond_2
+    :cond_39
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3d
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_3d} :catch_3e
 
     return-object p1
 
-    :catch_0
+    :catch_3e
     move-exception p1
 
     .line 133

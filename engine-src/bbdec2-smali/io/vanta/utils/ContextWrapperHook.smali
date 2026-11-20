@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 12
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -18,12 +18,12 @@
 .end method
 
 .method public static ensureContextWrapperBase(Landroid/content/ContextWrapper;)V
-    .locals 3
+    .registers 4
 
     .line 83
     const-string v0, "ContextWrapperHook"
 
-    :try_start_0
+    :try_start_2
     const-class v1, Landroid/content/ContextWrapper;
 
     const-string v2, "mBase"
@@ -44,14 +44,14 @@
 
     check-cast v2, Landroid/content/Context;
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_24
 
     .line 91
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_24
 
     .line 93
     invoke-virtual {v1, p0, v2}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
@@ -60,13 +60,13 @@
     const-string p0, "Replaced null base context with fallback context"
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_24
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_24} :catch_25
 
-    :cond_0
+    :cond_24
     return-void
 
-    :catch_0
+    :catch_25
     move-exception p0
 
     .line 98
@@ -94,12 +94,12 @@
 .end method
 
 .method private static hookContextWrapperGetResources()V
-    .locals 7
+    .registers 7
 
     .line 33
     const-string v0, "ContextWrapperHook"
 
-    :try_start_0
+    :try_start_2
     const-class v1, Landroid/content/ContextWrapper;
 
     .line 36
@@ -140,12 +140,12 @@
     const-string v1, "ContextWrapper.getResources() method hooked successfully"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_27
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_27} :catch_28
 
     return-void
 
-    :catch_0
+    :catch_28
     move-exception v1
 
     .line 48
@@ -173,12 +173,12 @@
 .end method
 
 .method public static installHook()V
-    .locals 4
+    .registers 4
 
     .line 18
     const-string v0, "ContextWrapperHook"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Installing ContextWrapper hook..."
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -190,12 +190,12 @@
     const-string v1, "ContextWrapper hook installed successfully"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_f
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_f} :catch_10
 
     return-void
 
-    :catch_0
+    :catch_10
     move-exception v1
 
     .line 25
@@ -223,28 +223,28 @@
 .end method
 
 .method public static safeGetResources(Landroid/content/ContextWrapper;)Landroid/content/res/Resources;
-    .locals 3
+    .registers 4
 
     .line 56
     const-string v0, "ContextWrapperHook"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Landroid/content/ContextWrapper;->getBaseContext()Landroid/content/Context;
 
     move-result-object p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_24
 
     .line 58
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object p0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_c
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_c} :catch_d
 
     return-object p0
 
-    :catch_0
+    :catch_d
     move-exception p0
 
     .line 61
@@ -269,24 +269,24 @@
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 66
-    :cond_0
-    :try_start_1
+    :cond_24
+    :try_start_24
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object p0
 
-    if-eqz p0, :cond_1
+    if-eqz p0, :cond_46
 
     .line 68
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object p0
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_2e
+    .catch Ljava/lang/Exception; {:try_start_24 .. :try_end_2e} :catch_2f
 
     return-object p0
 
-    :catch_1
+    :catch_2f
     move-exception p0
 
     .line 71
@@ -311,7 +311,7 @@
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 75
-    :cond_1
+    :cond_46
     const-string p0, "All resource fallbacks failed, returning null"
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I

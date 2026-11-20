@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 61
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,19 +31,19 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_3
+    if-eqz p3, :cond_50
 
     .line 64
     array-length v0, p3
 
-    if-lez v0, :cond_3
+    if-lez v0, :cond_50
 
     const/4 v0, 0x0
 
@@ -51,7 +51,7 @@
 
     instance-of v1, v0, Ljava/lang/String;
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_50
 
     .line 65
     check-cast v0, Ljava/lang/String;
@@ -84,7 +84,7 @@
 
     const/4 v3, 0x0
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_4a
 
     const-string v1, "c++_shared"
 
@@ -92,19 +92,19 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_34
 
-    goto :goto_0
+    goto :goto_4a
 
     .line 74
-    :cond_0
+    :cond_34
     const-string v1, "flutter"
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_44
 
     const-string v1, "meemo"
 
@@ -112,10 +112,10 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_50
 
     .line 75
-    :cond_1
+    :cond_44
     const-string p1, "System: Intercepting Flutter/Meemo library load, returning success"
 
     invoke-static {v2, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -123,8 +123,8 @@
     return-object v3
 
     .line 70
-    :cond_2
-    :goto_0
+    :cond_4a
+    :goto_4a
     const-string p1, "System: Intercepting libc++_shared.so load, returning success"
 
     invoke-static {v2, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -132,7 +132,7 @@
     return-object v3
 
     .line 81
-    :cond_3
+    :cond_50
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

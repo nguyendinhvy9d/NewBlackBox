@@ -32,23 +32,11 @@ SO="$NBB/dist/native-src/libxjhook.so"                  # native hook lib
 WORK="$ESRC/_build"                                      # ephemeral (gitignored)
 OUT="$NBB/dist/XJangJu-arm64.apk"
 
-# Engine patch files to overlay from bbdec2 onto fresh decode (engine logic only, NO R refs).
-# inner-class files contain a literal '$' - single quotes, NO eval.
-PATCH_FILES=(
-  'io/vanta/app/BActivityThread.smali'
-  'io/vanta/fake/service/IActivityManagerProxy$checkPermission.smali'
-  'io/vanta/fake/service/IPermissionManagerProxy.smali'
-  'io/vanta/fake/service/IActivityManagerProxy$RegisterReceiver.smali'
-  'io/vanta/fake/service/IActivityManagerProxy$RegisterReceiverWithFeature.smali'
-  'io/vanta/fake/service/context/providers/SystemProviderStub.smali'
-  'io/vanta/fake/service/IPackageManagerProxy$GetPackagesForUid.smali'
-  'io/vanta/fake/service/IPackageManagerProxy.smali'
-)
-ADD_FILES=(
-  'io/vanta/fake/XJProfile.smali'
-  'io/vanta/fake/service/GmsCallerFix.smali'
-  'io/vanta/fake/service/IPackageManagerProxy$GetNameForUid.smali'
-)
+# Engine overlay: bbdec2-smali/io/vanta là engine ĐẦY ĐỦ known-good (lấy từ bản khách
+# v4.2.0 đã chạy thật TikTok). Gồm mọi class engine + các vá custom Xj* (XjBootKicker,
+# XjCrashGuard, XjGmsBinderProxy, XjGservicesStub, XjAddAccount*, RefContentProvider...).
+# KHÔNG chứa R*/R$* (giữ R-id của base mới). Pipeline overlay TOÀN BỘ cây này lên newsmali.
+# (Trước đây chỉ overlay 11 file -> thiếu Xj* -> app trong ô treo splash. Đừng quay lại.)
 
 [ -d "$NEWSMALI" ] || { echo "ERR: $NEWSMALI missing - run decode_newbase.sh first"; exit 1; }
 [ -f "$ORIG" ]     || { echo "ERR: base APK missing: $ORIG"; exit 1; }
@@ -61,19 +49,14 @@ SMALI="$WORK/smali"
 echo "[0] copy newsmali-stock -> work (giữ stock nguyên vẹn)"
 cp -r "$NEWSMALI" "$SMALI"
 
-echo "[1] overlay engine patch files from bbdec2 -> work copy"
-for f in "${PATCH_FILES[@]}"; do
-  [ -f "$BB/$f" ] || { echo "  MISSING patch src: $BB/$f"; exit 2; }
-  [ -f "$SMALI/$f" ] || { echo "  WARN: target absent (stock lacks it): $f"; }
-  cp "$BB/$f" "$SMALI/$f"
-  echo "  patched: $f"
+echo "[1] overlay COMPLETE engine (io/vanta) from bbdec2 -> work copy (giữ R* của newsmali)"
+[ -f "$BB/io/vanta/fake/service/XjBootKicker.smali" ] || { echo "  ERR: bbdec2 thiếu XjBootKicker — engine bbdec2 không đầy đủ, dừng (sẽ treo splash)"; exit 2; }
+( cd "$BB/io/vanta" && find . -name '*.smali' -print0 ) | while IFS= read -r -d '' f; do
+  rel="${f#./}"
+  mkdir -p "$SMALI/io/vanta/$(dirname "$rel")"
+  cp "$BB/io/vanta/$rel" "$SMALI/io/vanta/$rel"
 done
-for f in "${ADD_FILES[@]}"; do
-  [ -f "$BB/$f" ] || { echo "  MISSING add src: $BB/$f"; exit 2; }
-  mkdir -p "$SMALI/$(dirname "$f")"
-  cp "$BB/$f" "$SMALI/$f"
-  echo "  added:   $f"
-done
+echo "  overlaid $(find "$BB/io/vanta" -name '*.smali' | wc -l) engine files (Xj* included)"
 
 echo "[2] assemble patched work copy -> classes.dex"
 "$JAVA" -cp "$(W "$ED")" org.jf.smali.Main assemble "$(W "$SMALI")" -o "$(W "$WORK/classes.dex")" --api 31

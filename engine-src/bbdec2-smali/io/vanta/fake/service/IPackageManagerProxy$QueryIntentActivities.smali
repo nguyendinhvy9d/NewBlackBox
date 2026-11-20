@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 143
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 6
+    .registers 12
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -46,6 +46,8 @@
     move-result-object v0
 
     check-cast v0, Landroid/content/Intent;
+
+    move-object v6, v0
 
     .line 147
     const-class v1, Ljava/lang/String;
@@ -65,7 +67,7 @@
 
     check-cast v2, Ljava/lang/Integer;
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_20
 
     const/4 v2, 0x0
 
@@ -75,14 +77,14 @@
     move-result-object v2
 
     .line 151
-    :cond_0
+    :cond_20
     invoke-static {v0}, Lio/vanta/fake/service/IPackageManagerProxy;->-$$Nest$smisFacebookAppIntent(Landroid/content/Intent;)Z
 
     move-result v3
 
     const-string v4, "PackageManagerStub"
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_43
 
     .line 152
     const-string p1, "queryIntentActivities: Blocking Facebook app query"
@@ -94,7 +96,7 @@
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_3d
 
     new-instance p1, Ljava/util/ArrayList;
 
@@ -107,15 +109,15 @@
     return-object p1
 
     .line 154
-    :cond_1
+    :cond_3d
     new-instance p1, Ljava/util/ArrayList;
 
     invoke-direct {p1}, Ljava/util/ArrayList;-><init>()V
 
     return-object p1
 
-    :cond_2
-    if-eqz v0, :cond_3
+    :cond_43
+    if-eqz v0, :cond_5b
 
     .line 159
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
@@ -134,20 +136,24 @@
 
     move-result-object v0
 
-    goto :goto_0
+    const-string v7, "qIA-cell"
 
-    :cond_3
+    invoke-static {v7, v6, v0}, Lio/vanta/fake/service/XjLineDiag;->xjLineLog(Ljava/lang/String;Landroid/content/Intent;Ljava/lang/Object;)V
+
+    goto :goto_5c
+
+    :cond_5b
     const/4 v0, 0x0
 
-    :goto_0
-    if-eqz v0, :cond_7
+    :goto_5c
+    if-eqz v0, :cond_ac
 
     .line 161
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
 
     move-result v1
 
-    if-nez v1, :cond_7
+    if-nez v1, :cond_ac
 
     .line 162
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -155,13 +161,13 @@
     move-result-object p1
 
     .line 163
-    :cond_4
-    :goto_1
+    :cond_68
+    :goto_68
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result p2
 
-    if-eqz p2, :cond_5
+    if-eqz p2, :cond_a0
 
     .line 164
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -173,7 +179,7 @@
     .line 165
     iget-object p3, p2, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
 
-    if-eqz p3, :cond_4
+    if-eqz p3, :cond_68
 
     invoke-static {}, Lio/vanta/fake/service/IPackageManagerProxy;->-$$Nest$sfgetFACEBOOK_PACKAGES()Ljava/util/Set;
 
@@ -187,7 +193,7 @@
 
     move-result p3
 
-    if-eqz p3, :cond_4
+    if-eqz p3, :cond_68
 
     .line 166
     new-instance p3, Ljava/lang/StringBuilder;
@@ -213,15 +219,15 @@
     .line 167
     invoke-interface {p1}, Ljava/util/Iterator;->remove()V
 
-    goto :goto_1
+    goto :goto_68
 
     .line 170
-    :cond_5
+    :cond_a0
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isN()Z
 
     move-result p1
 
-    if-eqz p1, :cond_6
+    if-eqz p1, :cond_ab
 
     .line 171
     invoke-static {v0}, Lio/vanta/utils/compat/ParceledListSliceCompat;->create(Ljava/util/List;)Ljava/lang/Object;
@@ -230,22 +236,22 @@
 
     return-object p1
 
-    :cond_6
+    :cond_ab
     return-object v0
 
     .line 177
-    :cond_7
-    :try_start_0
+    :cond_ac
+    :try_start_ac
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_b0
+    .catchall {:try_start_ac .. :try_end_b0} :catchall_b1
 
     return-object p1
 
-    :catchall_0
-    if-nez v0, :cond_8
+    :catchall_b1
+    if-nez v0, :cond_b8
 
     .line 180
     new-instance v0, Ljava/util/ArrayList;
@@ -253,12 +259,12 @@
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     .line 182
-    :cond_8
+    :cond_b8
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isN()Z
 
     move-result p1
 
-    if-eqz p1, :cond_9
+    if-eqz p1, :cond_c3
 
     .line 183
     invoke-static {v0}, Lio/vanta/utils/compat/ParceledListSliceCompat;->create(Ljava/util/List;)Ljava/lang/Object;
@@ -267,6 +273,6 @@
 
     return-object p1
 
-    :cond_9
+    :cond_c3
     return-object v0
 .end method

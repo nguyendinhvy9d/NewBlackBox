@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 483
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,18 +45,18 @@
 
     move-result-object v1
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_25
 
     .line 486
     array-length v2, p3
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_25
 
     aget-object v2, p3, v0
 
     instance-of v3, v2, Landroid/content/ComponentName;
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_25
 
     .line 487
     check-cast v2, Landroid/content/ComponentName;
@@ -79,21 +79,21 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_25
 
     return-object v1
 
     .line 495
-    :cond_0
-    :try_start_0
+    :cond_25
+    :try_start_25
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_29
+    .catchall {:try_start_25 .. :try_end_29} :catchall_2a
 
     return-object p1
 
-    :catchall_0
+    :catchall_2a
     return-object v1
 .end method

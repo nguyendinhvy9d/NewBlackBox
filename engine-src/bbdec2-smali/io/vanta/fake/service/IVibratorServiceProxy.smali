@@ -9,14 +9,14 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 19
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isS()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_b
 
     .line 20
     const-string v0, "vibrator_manager"
@@ -26,7 +26,7 @@
     return-void
 
     .line 22
-    :cond_0
+    :cond_b
     const-string v0, "vibrator"
 
     sput-object v0, Lio/vanta/fake/service/IVibratorServiceProxy;->NAME:Ljava/lang/String;
@@ -35,7 +35,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 27
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -56,7 +56,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 2
+    .registers 3
 
     .line 32
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -74,7 +74,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_19
 
     .line 34
     invoke-static {}, Lvanta/android/os/BRIVibratorManagerServiceStub;->get()Lvanta/android/os/IVibratorManagerServiceStubStatic;
@@ -88,7 +88,7 @@
     return-object v0
 
     .line 36
-    :cond_0
+    :cond_19
     invoke-static {}, Lvanta/com/android/internal/os/BRIVibratorServiceStub;->get()Lvanta/com/android/internal/os/IVibratorServiceStubStatic;
 
     move-result-object v1
@@ -101,7 +101,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 41
     sget-object p1, Lio/vanta/fake/service/IVibratorServiceProxy;->NAME:Ljava/lang/String;
@@ -112,7 +112,7 @@
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -134,7 +134,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

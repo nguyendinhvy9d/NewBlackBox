@@ -34,7 +34,7 @@
 
 # direct methods
 .method private static synthetic $values()[Lio/vanta/VantaCore$ProcessType;
-    .locals 3
+    .registers 3
 
     .line 1268
     sget-object v0, Lio/vanta/VantaCore$ProcessType;->Server:Lio/vanta/VantaCore$ProcessType;
@@ -51,7 +51,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 1270
     new-instance v0, Lio/vanta/VantaCore$ProcessType;
@@ -97,7 +97,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;I)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -111,7 +111,7 @@
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Lio/vanta/VantaCore$ProcessType;
-    .locals 1
+    .registers 2
 
     .line 1268
     const-class v0, Lio/vanta/VantaCore$ProcessType;
@@ -126,7 +126,7 @@
 .end method
 
 .method public static values()[Lio/vanta/VantaCore$ProcessType;
-    .locals 1
+    .registers 1
 
     .line 1268
     sget-object v0, Lio/vanta/VantaCore$ProcessType;->$VALUES:[Lio/vanta/VantaCore$ProcessType;

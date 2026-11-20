@@ -25,7 +25,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 17
     new-instance v0, Lio/vanta/fake/frameworks/BLocationManager;
@@ -38,7 +38,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 16
     invoke-direct {p0}, Lio/vanta/fake/frameworks/BlackManager;-><init>()V
@@ -47,7 +47,7 @@
 .end method
 
 .method public static disableFakeLocation(ILjava/lang/String;)V
-    .locals 2
+    .registers 4
 
     .line 37
     invoke-static {}, Lio/vanta/fake/frameworks/BLocationManager;->get()Lio/vanta/fake/frameworks/BLocationManager;
@@ -62,7 +62,7 @@
 .end method
 
 .method public static get()Lio/vanta/fake/frameworks/BLocationManager;
-    .locals 1
+    .registers 1
 
     .line 24
     sget-object v0, Lio/vanta/fake/frameworks/BLocationManager;->sLocationManager:Lio/vanta/fake/frameworks/BLocationManager;
@@ -71,7 +71,7 @@
 .end method
 
 .method public static isFakeLocationEnable()Z
-    .locals 3
+    .registers 3
 
     .line 33
     invoke-static {}, Lio/vanta/fake/frameworks/BLocationManager;->get()Lio/vanta/fake/frameworks/BLocationManager;
@@ -90,13 +90,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_14
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_14
     const/4 v0, 0x0
 
     return v0
@@ -105,7 +105,7 @@
 
 # virtual methods
 .method public getAllCell(ILjava/lang/String;)Ljava/util/List;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
@@ -128,12 +128,12 @@
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/location/IBLocationManagerService;->getAllCell(ILjava/lang/String;)Ljava/util/List;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object p1
 
-    :catch_0
+    :catch_b
     move-exception p1
 
     .line 136
@@ -148,7 +148,7 @@
 .end method
 
 .method public getCell(ILjava/lang/String;)Lio/vanta/entity/location/BCell;
-    .locals 1
+    .registers 4
 
     .line 125
     :try_start_0
@@ -161,12 +161,12 @@
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/location/IBLocationManagerService;->getCell(ILjava/lang/String;)Lio/vanta/entity/location/BCell;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object p1
 
-    :catch_0
+    :catch_b
     move-exception p1
 
     .line 127
@@ -178,7 +178,7 @@
 .end method
 
 .method public getGlobalLocation()Lio/vanta/entity/location/BLocation;
-    .locals 1
+    .registers 2
 
     .line 168
     :try_start_0
@@ -191,12 +191,12 @@
     invoke-interface {v0}, Lio/vanta/core/system/location/IBLocationManagerService;->getGlobalLocation()Lio/vanta/entity/location/BLocation;
 
     move-result-object v0
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object v0
 
-    :catch_0
+    :catch_b
     move-exception v0
 
     .line 170
@@ -208,7 +208,7 @@
 .end method
 
 .method public getGlobalNeighboringCell()Ljava/util/List;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -229,12 +229,12 @@
     invoke-interface {v0}, Lio/vanta/core/system/location/IBLocationManagerService;->getGlobalNeighboringCell()Ljava/util/List;
 
     move-result-object v0
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object v0
 
-    :catch_0
+    :catch_b
     move-exception v0
 
     .line 86
@@ -246,7 +246,7 @@
 .end method
 
 .method public getLocation(ILjava/lang/String;)Lio/vanta/entity/location/BLocation;
-    .locals 1
+    .registers 4
 
     .line 151
     :try_start_0
@@ -259,12 +259,12 @@
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/location/IBLocationManagerService;->getLocation(ILjava/lang/String;)Lio/vanta/entity/location/BLocation;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object p1
 
-    :catch_0
+    :catch_b
     move-exception p1
 
     .line 153
@@ -276,7 +276,7 @@
 .end method
 
 .method public getNeighboringCell(ILjava/lang/String;)Ljava/util/List;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
@@ -299,12 +299,12 @@
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/location/IBLocationManagerService;->getNeighboringCell(ILjava/lang/String;)Ljava/util/List;
 
     move-result-object p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object p1
 
-    :catch_0
+    :catch_b
     move-exception p1
 
     .line 77
@@ -316,7 +316,7 @@
 .end method
 
 .method public getPattern(ILjava/lang/String;)I
-    .locals 1
+    .registers 4
 
     .line 50
     :try_start_0
@@ -329,12 +329,12 @@
     invoke-interface {v0, p1, p2}, Lio/vanta/core/system/location/IBLocationManagerService;->getPattern(ILjava/lang/String;)I
 
     move-result p1
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_a} :catch_b
 
     return p1
 
-    :catch_0
+    :catch_b
     move-exception p1
 
     .line 52
@@ -346,7 +346,7 @@
 .end method
 
 .method protected getServiceName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 29
     const-string v0, "location_manager"
@@ -355,7 +355,7 @@
 .end method
 
 .method public removeUpdates(Landroid/os/IBinder;)V
-    .locals 1
+    .registers 3
 
     .line 185
     :try_start_0
@@ -366,12 +366,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1}, Lio/vanta/core/system/location/IBLocationManagerService;->removeUpdates(Landroid/os/IBinder;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 187
@@ -381,7 +381,7 @@
 .end method
 
 .method public requestLocationUpdates(Landroid/os/IBinder;)V
-    .locals 3
+    .registers 5
 
     .line 177
     :try_start_0
@@ -400,12 +400,12 @@
     move-result v2
 
     invoke-interface {v0, p1, v1, v2}, Lio/vanta/core/system/location/IBLocationManagerService;->requestLocationUpdates(Landroid/os/IBinder;Ljava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_11
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_11} :catch_12
 
     return-void
 
-    :catch_0
+    :catch_12
     move-exception p1
 
     .line 179
@@ -415,7 +415,7 @@
 .end method
 
 .method public setAllCell(ILjava/lang/String;Ljava/util/List;)V
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
@@ -435,12 +435,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1, p2, p3}, Lio/vanta/core/system/location/IBLocationManagerService;->setAllCell(ILjava/lang/String;Ljava/util/List;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 69
@@ -450,7 +450,7 @@
 .end method
 
 .method public setCell(ILjava/lang/String;Lio/vanta/entity/location/BCell;)V
-    .locals 1
+    .registers 5
 
     .line 59
     :try_start_0
@@ -461,12 +461,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1, p2, p3}, Lio/vanta/core/system/location/IBLocationManagerService;->setCell(ILjava/lang/String;Lio/vanta/entity/location/BCell;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 61
@@ -476,7 +476,7 @@
 .end method
 
 .method public setGlobalAllCell(Ljava/util/List;)V
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -495,12 +495,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1}, Lio/vanta/core/system/location/IBLocationManagerService;->setGlobalAllCell(Ljava/util/List;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 111
@@ -510,7 +510,7 @@
 .end method
 
 .method public setGlobalCell(Lio/vanta/entity/location/BCell;)V
-    .locals 1
+    .registers 3
 
     .line 101
     :try_start_0
@@ -521,12 +521,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1}, Lio/vanta/core/system/location/IBLocationManagerService;->setGlobalCell(Lio/vanta/entity/location/BCell;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 103
@@ -536,7 +536,7 @@
 .end method
 
 .method public setGlobalLocation(Lio/vanta/entity/location/BLocation;)V
-    .locals 1
+    .registers 3
 
     .line 160
     :try_start_0
@@ -547,12 +547,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1}, Lio/vanta/core/system/location/IBLocationManagerService;->setGlobalLocation(Lio/vanta/entity/location/BLocation;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 162
@@ -562,7 +562,7 @@
 .end method
 
 .method public setGlobalNeighboringCell(Ljava/util/List;)V
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -581,12 +581,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1}, Lio/vanta/core/system/location/IBLocationManagerService;->setGlobalNeighboringCell(Ljava/util/List;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 119
@@ -596,7 +596,7 @@
 .end method
 
 .method public setLocation(ILjava/lang/String;Lio/vanta/entity/location/BLocation;)V
-    .locals 1
+    .registers 5
 
     .line 143
     :try_start_0
@@ -607,12 +607,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1, p2, p3}, Lio/vanta/core/system/location/IBLocationManagerService;->setLocation(ILjava/lang/String;Lio/vanta/entity/location/BLocation;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 145
@@ -622,7 +622,7 @@
 .end method
 
 .method public setNeighboringCell(ILjava/lang/String;Ljava/util/List;)V
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
@@ -642,12 +642,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1, p2, p3}, Lio/vanta/core/system/location/IBLocationManagerService;->setNeighboringCell(ILjava/lang/String;Ljava/util/List;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 95
@@ -657,7 +657,7 @@
 .end method
 
 .method public setPattern(ILjava/lang/String;I)V
-    .locals 1
+    .registers 5
 
     .line 42
     :try_start_0
@@ -668,12 +668,12 @@
     check-cast v0, Lio/vanta/core/system/location/IBLocationManagerService;
 
     invoke-interface {v0, p1, p2, p3}, Lio/vanta/core/system/location/IBLocationManagerService;->setPattern(ILjava/lang/String;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 44

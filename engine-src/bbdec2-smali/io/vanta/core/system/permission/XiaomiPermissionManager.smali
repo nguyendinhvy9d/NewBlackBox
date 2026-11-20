@@ -27,7 +27,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 25
     new-instance v0, Lio/vanta/core/system/permission/XiaomiPermissionManager;
@@ -40,7 +40,7 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 45
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -49,19 +49,19 @@
 .end method
 
 .method private createNotificationChannels()V
-    .locals 6
+    .registers 7
 
     .line 230
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x1a
 
-    if-ge v0, v1, :cond_0
+    if-ge v0, v1, :cond_7
 
     return-void
 
     .line 234
-    :cond_0
+    :cond_7
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -78,7 +78,7 @@
     .line 237
     const-string v1, "XiaomiPermissionManager"
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_1d
 
     .line 238
     const-string v0, "NotificationManager not available"
@@ -88,8 +88,8 @@
     return-void
 
     .line 244
-    :cond_1
-    :try_start_0
+    :cond_1d
+    :try_start_1d
     new-instance v2, Landroid/app/NotificationChannel;
 
     const-string v3, "nomad_main"
@@ -158,12 +158,12 @@
     const-string v0, "Created background notification channel"
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_5f
+    .catch Ljava/lang/Exception; {:try_start_1d .. :try_end_5f} :catch_60
 
     return-void
 
-    :catch_0
+    :catch_60
     move-exception v0
 
     .line 272
@@ -191,7 +191,7 @@
 .end method
 
 .method private disableBatteryOptimization()V
-    .locals 9
+    .registers 10
 
     .line 278
     const-string v0, "XiaomiPermissionManager"
@@ -205,7 +205,7 @@
     move-result-object v2
 
     .line 285
-    :try_start_0
+    :try_start_8
     const-string v3, "power"
 
     invoke-virtual {v2, v3}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -214,12 +214,12 @@
 
     check-cast v3, Landroid/os/PowerManager;
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_13
 
-    goto :goto_0
+    goto :goto_7b
 
     .line 290
-    :cond_0
+    :cond_13
     invoke-virtual {v2}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     move-result-object v2
@@ -229,17 +229,17 @@
 
     move-result v4
 
-    if-nez v4, :cond_1
+    if-nez v4, :cond_5e
 
     .line 294
     const-string v4, "App is not ignoring battery optimizations, attempting to disable"
 
     invoke-static {v0, v4}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_22
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_22} :catch_64
 
     .line 298
-    :try_start_1
+    :try_start_22
     const-class v4, Landroid/os/PowerManager;
 
     const-string v5, "setIgnoreBatteryOptimizations"
@@ -279,16 +279,16 @@
     const-string v2, "Successfully disabled battery optimization through reflection"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_47
+    .catch Ljava/lang/Exception; {:try_start_22 .. :try_end_47} :catch_48
 
-    goto :goto_0
+    goto :goto_7b
 
-    :catch_0
+    :catch_48
     move-exception v2
 
     .line 304
-    :try_start_2
+    :try_start_49
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -307,19 +307,19 @@
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_0
+    goto :goto_7b
 
     .line 307
-    :cond_1
+    :cond_5e
     const-string v1, "App is already ignoring battery optimizations"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_63
+    .catch Ljava/lang/Exception; {:try_start_49 .. :try_end_63} :catch_64
 
-    goto :goto_0
+    goto :goto_7b
 
-    :catch_1
+    :catch_64
     move-exception v1
 
     .line 311
@@ -343,12 +343,12 @@
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :goto_0
+    :goto_7b
     return-void
 .end method
 
 .method public static get()Lio/vanta/core/system/permission/XiaomiPermissionManager;
-    .locals 1
+    .registers 1
 
     .line 42
     sget-object v0, Lio/vanta/core/system/permission/XiaomiPermissionManager;->sInstance:Lio/vanta/core/system/permission/XiaomiPermissionManager;
@@ -357,7 +357,7 @@
 .end method
 
 .method private grantPermissionThroughReflection(Ljava/lang/String;)V
-    .locals 9
+    .registers 11
 
     .line 318
     const-string v0, "XiaomiPermissionManager"
@@ -366,7 +366,7 @@
     const-string v1, "Successfully granted permission: "
 
     .line 318
-    :try_start_0
+    :try_start_4
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v2
@@ -446,12 +446,12 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4d
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4d} :catch_4e
 
     return-void
 
-    :catch_0
+    :catch_4e
     move-exception v1
 
     .line 335
@@ -491,7 +491,7 @@
 
 # virtual methods
 .method public areAllPermissionsGranted()Z
-    .locals 4
+    .registers 5
 
     .line 341
     invoke-virtual {p0}, Lio/vanta/core/system/permission/XiaomiPermissionManager;->isNotificationPermissionGranted()Z
@@ -532,22 +532,22 @@
 
     invoke-static {v3, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_2c
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_2c
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_2c
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public getPermissionStatusSummary()Ljava/lang/String;
-    .locals 6
+    .registers 7
 
     .line 351
     new-instance v0, Ljava/lang/StringBuilder;
@@ -567,7 +567,7 @@
 
     const-string v5, "DENIED"
 
-    if-lt v1, v2, :cond_1
+    if-lt v1, v2, :cond_2a
 
     .line 356
     const-string v1, "\u2022 POST_NOTIFICATIONS: "
@@ -580,37 +580,37 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_21
 
     move-object v2, v4
 
-    goto :goto_0
+    goto :goto_22
 
-    :cond_0
+    :cond_21
     move-object v2, v5
 
-    :goto_0
+    :goto_22
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v1
 
     invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto :goto_1
+    goto :goto_2f
 
     .line 358
-    :cond_1
+    :cond_2a
     const-string v1, "\u2022 POST_NOTIFICATIONS: NOT_REQUIRED (Android < 12)\n"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 362
-    :goto_1
+    :goto_2f
     invoke-virtual {p0}, Lio/vanta/core/system/permission/XiaomiPermissionManager;->isXiaomiDevice()Z
 
     move-result v1
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_73
 
     .line 363
     const-string v1, "\u2022 Xiaomi Autostart: "
@@ -623,14 +623,14 @@
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_42
 
-    goto :goto_2
+    goto :goto_43
 
-    :cond_2
+    :cond_42
     move-object v4, v5
 
-    :goto_2
+    :goto_43
     invoke-virtual {v1, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v1
@@ -644,16 +644,16 @@
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_55
 
     const-string v1, "DISABLED"
 
-    goto :goto_3
+    goto :goto_57
 
-    :cond_3
+    :cond_55
     const-string v1, "ENABLED"
 
-    :goto_3
+    :goto_57
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v1
@@ -667,32 +667,32 @@
 
     move-result v1
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_69
 
     const-string v1, "ALLOWED"
 
-    goto :goto_4
+    goto :goto_6b
 
-    :cond_4
+    :cond_69
     const-string v1, "RESTRICTED"
 
-    :goto_4
+    :goto_6b
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v1
 
     invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto :goto_5
+    goto :goto_78
 
     .line 367
-    :cond_5
+    :cond_73
     const-string v1, "\u2022 Xiaomi Permissions: NOT_APPLICABLE\n"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     .line 370
-    :goto_5
+    :goto_78
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v0
@@ -701,7 +701,7 @@
 .end method
 
 .method public grantAllRequiredPermissions()V
-    .locals 2
+    .registers 3
 
     .line 160
     const-string v0, "Granting all required permissions for optimal functionality"
@@ -728,7 +728,7 @@
 .end method
 
 .method public grantNotificationPermission()V
-    .locals 4
+    .registers 5
 
     .line 109
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -737,7 +737,7 @@
 
     const-string v2, "XiaomiPermissionManager"
 
-    if-ge v0, v1, :cond_0
+    if-ge v0, v1, :cond_1d
 
     .line 110
     new-instance v0, Ljava/lang/StringBuilder;
@@ -761,12 +761,12 @@
     return-void
 
     .line 114
-    :cond_0
+    :cond_1d
     invoke-virtual {p0}, Lio/vanta/core/system/permission/XiaomiPermissionManager;->isNotificationPermissionGranted()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_29
 
     .line 115
     const-string v0, "Notification permission already granted"
@@ -776,22 +776,22 @@
     return-void
 
     .line 119
-    :cond_1
+    :cond_29
     const-string v0, "Attempting to grant notification permission automatically"
 
     invoke-static {v2, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 123
-    :try_start_0
+    :try_start_2e
     const-string v0, "android.permission.POST_NOTIFICATIONS"
 
     invoke-direct {p0, v0}, Lio/vanta/core/system/permission/XiaomiPermissionManager;->grantPermissionThroughReflection(Ljava/lang/String;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_33
+    .catch Ljava/lang/Exception; {:try_start_2e .. :try_end_33} :catch_34
 
     return-void
 
-    :catch_0
+    :catch_34
     move-exception v0
 
     .line 125
@@ -819,7 +819,7 @@
 .end method
 
 .method public grantXiaomiBackgroundPermissions()V
-    .locals 4
+    .registers 5
 
     .line 131
     invoke-virtual {p0}, Lio/vanta/core/system/permission/XiaomiPermissionManager;->isXiaomiDevice()Z
@@ -828,7 +828,7 @@
 
     const-string v1, "XiaomiPermissionManager"
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_e
 
     .line 132
     const-string v0, "Not a Xiaomi device, skipping background permission grant"
@@ -838,12 +838,12 @@
     return-void
 
     .line 136
-    :cond_0
+    :cond_e
     invoke-virtual {p0}, Lio/vanta/core/system/permission/XiaomiPermissionManager;->isXiaomiBackgroundPermissionGranted()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1a
 
     .line 137
     const-string v0, "Xiaomi background permissions already granted"
@@ -853,13 +853,13 @@
     return-void
 
     .line 141
-    :cond_1
+    :cond_1a
     const-string v0, "Attempting to grant Xiaomi background permissions automatically"
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 145
-    :try_start_0
+    :try_start_1f
     const-string v0, "miui.permission.USE_INTERNAL_GENERAL_API"
 
     invoke-direct {p0, v0}, Lio/vanta/core/system/permission/XiaomiPermissionManager;->grantPermissionThroughReflection(Ljava/lang/String;)V
@@ -881,12 +881,12 @@
 
     .line 151
     invoke-direct {p0}, Lio/vanta/core/system/permission/XiaomiPermissionManager;->disableBatteryOptimization()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_36
+    .catch Ljava/lang/Exception; {:try_start_1f .. :try_end_36} :catch_37
 
     return-void
 
-    :catch_0
+    :catch_37
     move-exception v0
 
     .line 154
@@ -914,7 +914,7 @@
 .end method
 
 .method public isNotificationPermissionGranted()Z
-    .locals 3
+    .registers 4
 
     .line 57
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -923,12 +923,12 @@
 
     const/4 v2, 0x1
 
-    if-ge v0, v1, :cond_0
+    if-ge v0, v1, :cond_8
 
     return v2
 
     .line 62
-    :cond_0
+    :cond_8
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -940,18 +940,18 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_15
 
     return v2
 
-    :cond_1
+    :cond_15
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public isXiaomiBackgroundPermissionGranted()Z
-    .locals 5
+    .registers 6
 
     .line 68
     const-string v0, "XiaomiPermissionManager"
@@ -962,12 +962,12 @@
 
     const/4 v2, 0x1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_a
 
     return v2
 
     .line 72
-    :cond_0
+    :cond_a
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -975,14 +975,14 @@
     const/4 v3, 0x0
 
     .line 77
-    :try_start_0
+    :try_start_f
     const-string v4, "miui.permission.USE_INTERNAL_GENERAL_API"
 
     invoke-static {v1, v4}, Landroidx/core/content/ContextCompat;->checkSelfPermission(Landroid/content/Context;Ljava/lang/String;)I
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_1d
 
     .line 78
     const-string v1, "Xiaomi autostart permission not granted"
@@ -992,14 +992,14 @@
     return v3
 
     .line 83
-    :cond_1
+    :cond_1d
     const-string v4, "miui.permission.OPTIMIZE_POWER"
 
     invoke-static {v1, v4}, Landroidx/core/content/ContextCompat;->checkSelfPermission(Landroid/content/Context;Ljava/lang/String;)I
 
     move-result v4
 
-    if-eqz v4, :cond_2
+    if-eqz v4, :cond_2b
 
     .line 84
     const-string v1, "Xiaomi battery optimization permission not granted"
@@ -1009,14 +1009,14 @@
     return v3
 
     .line 89
-    :cond_2
+    :cond_2b
     const-string v4, "miui.permission.RUN_IN_BACKGROUND"
 
     invoke-static {v1, v4}, Landroidx/core/content/ContextCompat;->checkSelfPermission(Landroid/content/Context;Ljava/lang/String;)I
 
     move-result v4
 
-    if-eqz v4, :cond_3
+    if-eqz v4, :cond_39
 
     .line 90
     const-string v1, "Xiaomi background running permission not granted"
@@ -1026,28 +1026,28 @@
     return v3
 
     .line 95
-    :cond_3
+    :cond_39
     const-string v4, "miui.permission.POST_NOTIFICATIONS"
 
     invoke-static {v1, v4}, Landroidx/core/content/ContextCompat;->checkSelfPermission(Landroid/content/Context;Ljava/lang/String;)I
 
     move-result v1
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_47
 
     .line 96
     const-string v1, "Xiaomi notification permission not granted"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_46
+    .catch Ljava/lang/Exception; {:try_start_f .. :try_end_46} :catch_48
 
     return v3
 
-    :cond_4
+    :cond_47
     return v2
 
-    :catch_0
+    :catch_48
     move-exception v1
 
     .line 102
@@ -1075,14 +1075,14 @@
 .end method
 
 .method public isXiaomiDevice()Z
-    .locals 2
+    .registers 3
 
     .line 49
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isMIUI()Z
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_31
 
     sget-object v0, Landroid/os/Build;->MANUFACTURER:Ljava/lang/String;
 
@@ -1097,7 +1097,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_31
 
     sget-object v0, Landroid/os/Build;->BRAND:Ljava/lang/String;
 
@@ -1110,7 +1110,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_31
 
     sget-object v0, Landroid/os/Build;->DISPLAY:Ljava/lang/String;
 
@@ -1125,24 +1125,24 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_2f
 
-    goto :goto_0
+    goto :goto_31
 
-    :cond_0
+    :cond_2f
     const/4 v0, 0x0
 
     return v0
 
-    :cond_1
-    :goto_0
+    :cond_31
+    :goto_31
     const/4 v0, 0x1
 
     return v0
 .end method
 
 .method public openNotificationSettings()V
-    .locals 6
+    .registers 7
 
     .line 208
     const-string v0, "XiaomiPermissionManager"
@@ -1152,7 +1152,7 @@
     move-result-object v1
 
     .line 211
-    :try_start_0
+    :try_start_6
     new-instance v2, Landroid/content/Intent;
 
     invoke-direct {v2}, Landroid/content/Intent;-><init>()V
@@ -1162,7 +1162,7 @@
 
     const/16 v4, 0x1a
 
-    if-lt v3, v4, :cond_0
+    if-lt v3, v4, :cond_20
 
     .line 213
     const-string v3, "android.settings.APP_NOTIFICATION_SETTINGS"
@@ -1178,10 +1178,10 @@
 
     invoke-virtual {v2, v3, v4}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    goto :goto_0
+    goto :goto_33
 
     .line 216
-    :cond_0
+    :cond_20
     const-string v3, "android.settings.APPLICATION_DETAILS_SETTINGS"
 
     invoke-virtual {v2, v3}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
@@ -1202,7 +1202,7 @@
     .line 218
     invoke-virtual {v2, v3}, Landroid/content/Intent;->setData(Landroid/net/Uri;)Landroid/content/Intent;
 
-    :goto_0
+    :goto_33
     const/high16 v3, 0x10000000
 
     .line 220
@@ -1215,12 +1215,12 @@
     const-string v1, "Opened notification settings"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_40
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_40} :catch_41
 
     return-void
 
-    :catch_0
+    :catch_41
     move-exception v1
 
     .line 224
@@ -1248,7 +1248,7 @@
 .end method
 
 .method public openXiaomiPermissionSettings()V
-    .locals 7
+    .registers 8
 
     .line 176
     invoke-virtual {p0}, Lio/vanta/core/system/permission/XiaomiPermissionManager;->isXiaomiDevice()Z
@@ -1257,7 +1257,7 @@
 
     const-string v1, "XiaomiPermissionManager"
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_e
 
     .line 177
     const-string v0, "Not a Xiaomi device, cannot open Xiaomi settings"
@@ -1267,7 +1267,7 @@
     return-void
 
     .line 181
-    :cond_0
+    :cond_e
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -1275,7 +1275,7 @@
     const/high16 v2, 0x10000000
 
     .line 185
-    :try_start_0
+    :try_start_14
     new-instance v3, Landroid/content/Intent;
 
     const-string v4, "miui.intent.action.OP_AUTO_START"
@@ -1292,12 +1292,12 @@
     const-string v3, "Opened Xiaomi autostart settings"
 
     invoke-static {v1, v3}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_26
+    .catch Ljava/lang/Exception; {:try_start_14 .. :try_end_26} :catch_27
 
     return-void
 
-    :catch_0
+    :catch_27
     move-exception v3
 
     .line 190
@@ -1322,7 +1322,7 @@
     invoke-static {v1, v3}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 194
-    :try_start_1
+    :try_start_3e
     new-instance v3, Landroid/content/Intent;
 
     const-string v4, "android.settings.APPLICATION_DETAILS_SETTINGS"
@@ -1355,12 +1355,12 @@
     const-string v0, "Opened general app settings as fallback"
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_5e
+    .catch Ljava/lang/Exception; {:try_start_3e .. :try_end_5e} :catch_5f
 
-    goto :goto_0
+    goto :goto_76
 
-    :catch_1
+    :catch_5f
     move-exception v0
 
     .line 201
@@ -1384,6 +1384,6 @@
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    :goto_0
+    :goto_76
     return-void
 .end method

@@ -23,7 +23,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 3
+    .registers 4
 
     .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -59,7 +59,7 @@
 
 # virtual methods
 .method public getFailureCount()I
-    .locals 1
+    .registers 2
 
     .line 79
     iget-object v0, p0, Lio/vanta/utils/TransactionThrottler;->failureCount:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -72,7 +72,7 @@
 .end method
 
 .method public recordFailure()V
-    .locals 6
+    .registers 7
 
     .line 50
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -90,21 +90,21 @@
 
     cmp-long v4, v2, v4
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_15
 
     .line 55
     iget-object v4, p0, Lio/vanta/utils/TransactionThrottler;->windowStartTime:Ljava/util/concurrent/atomic/AtomicLong;
 
     invoke-virtual {v4, v0, v1}, Ljava/util/concurrent/atomic/AtomicLong;->set(J)V
 
-    :cond_0
+    :cond_15
     sub-long v2, v0, v2
 
     const-wide/16 v4, 0x3a98
 
     cmp-long v2, v2, v4
 
-    if-lez v2, :cond_1
+    if-lez v2, :cond_29
 
     .line 60
     iget-object v2, p0, Lio/vanta/utils/TransactionThrottler;->failureCount:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -118,16 +118,16 @@
 
     invoke-virtual {v2, v0, v1}, Ljava/util/concurrent/atomic/AtomicLong;->set(J)V
 
-    goto :goto_0
+    goto :goto_2e
 
     .line 63
-    :cond_1
+    :cond_29
     iget-object v0, p0, Lio/vanta/utils/TransactionThrottler;->failureCount:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->incrementAndGet()I
 
     .line 66
-    :goto_0
+    :goto_2e
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v1, "Recorded transaction failure, count: "
@@ -156,7 +156,7 @@
 .end method
 
 .method public reset()V
-    .locals 3
+    .registers 4
 
     .line 71
     iget-object v0, p0, Lio/vanta/utils/TransactionThrottler;->failureCount:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -188,7 +188,7 @@
 .end method
 
 .method public shouldThrottle()Z
-    .locals 8
+    .registers 9
 
     .line 22
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -210,7 +210,7 @@
 
     const/4 v3, 0x0
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_1e
 
     .line 27
     iget-object v2, p0, Lio/vanta/utils/TransactionThrottler;->failureCount:Ljava/util/concurrent/atomic/AtomicInteger;
@@ -225,7 +225,7 @@
     return v3
 
     .line 33
-    :cond_0
+    :cond_1e
     iget-object v2, p0, Lio/vanta/utils/TransactionThrottler;->lastThrottleTime:Ljava/util/concurrent/atomic/AtomicLong;
 
     invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicLong;->get()J
@@ -240,12 +240,12 @@
 
     const/4 v4, 0x1
 
-    if-gez v2, :cond_1
+    if-gez v2, :cond_2e
 
     return v4
 
     .line 39
-    :cond_1
+    :cond_2e
     iget-object v2, p0, Lio/vanta/utils/TransactionThrottler;->failureCount:Ljava/util/concurrent/atomic/AtomicInteger;
 
     invoke-virtual {v2}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
@@ -254,7 +254,7 @@
 
     const/16 v5, 0x32
 
-    if-lt v2, v5, :cond_2
+    if-lt v2, v5, :cond_5e
 
     .line 40
     iget-object v2, p0, Lio/vanta/utils/TransactionThrottler;->lastThrottleTime:Ljava/util/concurrent/atomic/AtomicLong;
@@ -294,6 +294,6 @@
 
     return v4
 
-    :cond_2
+    :cond_5e
     return v3
 .end method

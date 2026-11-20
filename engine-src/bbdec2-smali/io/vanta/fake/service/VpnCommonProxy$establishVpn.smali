@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 38
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,7 +29,7 @@
 .end method
 
 .method private handlePackage(Ljava/util/List;)V
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -39,12 +39,12 @@
         }
     .end annotation
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_3
 
-    goto :goto_0
+    goto :goto_14
 
     .line 53
-    :cond_0
+    :cond_3
     invoke-static {}, Lio/vanta/app/BActivityThread;->getAppPackageName()Ljava/lang/String;
 
     move-result-object v0
@@ -53,7 +53,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_14
 
     .line 54
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -62,15 +62,15 @@
 
     invoke-interface {p1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    :cond_1
-    :goto_0
+    :cond_14
+    :goto_14
     return-void
 .end method
 
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;

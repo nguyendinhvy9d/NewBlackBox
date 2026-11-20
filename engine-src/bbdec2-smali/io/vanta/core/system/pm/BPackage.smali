@@ -191,7 +191,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 731
     new-instance v0, Lio/vanta/core/system/pm/BPackage$1;
@@ -204,7 +204,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/pm/PackageParser$Package;)V
-    .locals 4
+    .registers 6
 
     .line 59
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -295,12 +295,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_54
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_82
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -320,12 +320,12 @@
 
     move-result-object v1
 
-    :goto_1
+    :goto_6b
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_7a
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -336,10 +336,10 @@
     .line 64
     iput-object v2, v3, Lio/vanta/core/system/pm/BPackage$ActivityIntentInfo;->activity:Lio/vanta/core/system/pm/BPackage$Activity;
 
-    goto :goto_1
+    goto :goto_6b
 
     .line 66
-    :cond_0
+    :cond_7a
     iput-object p0, v2, Lio/vanta/core/system/pm/BPackage$Activity;->owner:Lio/vanta/core/system/pm/BPackage;
 
     .line 67
@@ -347,10 +347,10 @@
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_54
 
     .line 70
-    :cond_1
+    :cond_82
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object v1, p1, Landroid/content/pm/PackageParser$Package;->receivers:Ljava/util/ArrayList;
@@ -370,12 +370,12 @@
 
     move-result-object v0
 
-    :goto_2
+    :goto_95
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_c3
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -395,12 +395,12 @@
 
     move-result-object v1
 
-    :goto_3
+    :goto_ac
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_bb
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -411,10 +411,10 @@
     .line 74
     iput-object v2, v3, Lio/vanta/core/system/pm/BPackage$ActivityIntentInfo;->activity:Lio/vanta/core/system/pm/BPackage$Activity;
 
-    goto :goto_3
+    goto :goto_ac
 
     .line 76
-    :cond_2
+    :cond_bb
     iput-object p0, v2, Lio/vanta/core/system/pm/BPackage$Activity;->owner:Lio/vanta/core/system/pm/BPackage;
 
     .line 77
@@ -422,10 +422,10 @@
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_2
+    goto :goto_95
 
     .line 80
-    :cond_3
+    :cond_c3
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object v1, p1, Landroid/content/pm/PackageParser$Package;->providers:Ljava/util/ArrayList;
@@ -445,12 +445,12 @@
 
     move-result-object v0
 
-    :goto_4
+    :goto_d6
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_104
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -470,12 +470,12 @@
 
     move-result-object v1
 
-    :goto_5
+    :goto_ed
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_fc
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -486,10 +486,10 @@
     .line 84
     iput-object v2, v3, Lio/vanta/core/system/pm/BPackage$ProviderIntentInfo;->provider:Lio/vanta/core/system/pm/BPackage$Provider;
 
-    goto :goto_5
+    goto :goto_ed
 
     .line 86
-    :cond_4
+    :cond_fc
     iput-object p0, v2, Lio/vanta/core/system/pm/BPackage$Provider;->owner:Lio/vanta/core/system/pm/BPackage;
 
     .line 87
@@ -497,10 +497,10 @@
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_4
+    goto :goto_d6
 
     .line 90
-    :cond_5
+    :cond_104
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object v1, p1, Landroid/content/pm/PackageParser$Package;->services:Ljava/util/ArrayList;
@@ -520,12 +520,12 @@
 
     move-result-object v0
 
-    :goto_6
+    :goto_117
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_145
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -545,12 +545,12 @@
 
     move-result-object v1
 
-    :goto_7
+    :goto_12e
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_13d
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -561,10 +561,10 @@
     .line 94
     iput-object v2, v3, Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;->service:Lio/vanta/core/system/pm/BPackage$Service;
 
-    goto :goto_7
+    goto :goto_12e
 
     .line 96
-    :cond_6
+    :cond_13d
     iput-object p0, v2, Lio/vanta/core/system/pm/BPackage$Service;->owner:Lio/vanta/core/system/pm/BPackage;
 
     .line 97
@@ -572,10 +572,10 @@
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_6
+    goto :goto_117
 
     .line 100
-    :cond_7
+    :cond_145
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object v1, p1, Landroid/content/pm/PackageParser$Package;->instrumentation:Ljava/util/ArrayList;
@@ -595,12 +595,12 @@
 
     move-result-object v0
 
-    :goto_8
+    :goto_158
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_8
+    if-eqz v1, :cond_171
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -621,10 +621,10 @@
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_8
+    goto :goto_158
 
     .line 107
-    :cond_8
+    :cond_171
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object v1, p1, Landroid/content/pm/PackageParser$Package;->permissions:Ljava/util/ArrayList;
@@ -644,12 +644,12 @@
 
     move-result-object v0
 
-    :goto_9
+    :goto_184
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_9
+    if-eqz v1, :cond_19d
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -670,10 +670,10 @@
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_9
+    goto :goto_184
 
     .line 114
-    :cond_9
+    :cond_19d
     new-instance v0, Ljava/util/ArrayList;
 
     iget-object v1, p1, Landroid/content/pm/PackageParser$Package;->permissionGroups:Ljava/util/ArrayList;
@@ -693,12 +693,12 @@
 
     move-result-object v0
 
-    :goto_a
+    :goto_1b0
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_a
+    if-eqz v1, :cond_1c9
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -719,10 +719,10 @@
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_a
+    goto :goto_1b0
 
     .line 121
-    :cond_a
+    :cond_1c9
     iget-object v0, p1, Landroid/content/pm/PackageParser$Package;->requestedPermissions:Ljava/util/ArrayList;
 
     iput-object v0, p0, Lio/vanta/core/system/pm/BPackage;->requestedPermissions:Ljava/util/ArrayList;
@@ -732,7 +732,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_1e1
 
     .line 123
     new-instance v0, Lio/vanta/core/system/pm/BPackage$SigningDetails;
@@ -748,16 +748,16 @@
 
     iput-object v0, p0, Lio/vanta/core/system/pm/BPackage;->mSignatures:[Landroid/content/pm/Signature;
 
-    goto :goto_b
+    goto :goto_1e5
 
     .line 126
-    :cond_b
+    :cond_1e1
     iget-object v0, p1, Landroid/content/pm/PackageParser$Package;->mSignatures:[Landroid/content/pm/Signature;
 
     iput-object v0, p0, Lio/vanta/core/system/pm/BPackage;->mSignatures:[Landroid/content/pm/Signature;
 
     .line 128
-    :goto_b
+    :goto_1e5
     iget-object v0, p1, Landroid/content/pm/PackageParser$Package;->mAppMetaData:Landroid/os/Bundle;
 
     iput-object v0, p0, Lio/vanta/core/system/pm/BPackage;->mAppMetaData:Landroid/os/Bundle;
@@ -836,7 +836,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 4
+    .registers 6
 
     .line 146
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -919,10 +919,10 @@
 
     iput-object v1, p0, Lio/vanta/core/system/pm/BPackage;->activities:Ljava/util/ArrayList;
 
-    :goto_0
+    :goto_4c
     add-int/lit8 v1, v0, -0x1
 
-    if-lez v0, :cond_1
+    if-lez v0, :cond_73
 
     .line 150
     new-instance v0, Lio/vanta/core/system/pm/BPackage$Activity;
@@ -936,12 +936,12 @@
 
     move-result-object v2
 
-    :goto_1
+    :goto_5b
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_6a
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -952,10 +952,10 @@
     .line 152
     iput-object v0, v3, Lio/vanta/core/system/pm/BPackage$ActivityIntentInfo;->activity:Lio/vanta/core/system/pm/BPackage$Activity;
 
-    goto :goto_1
+    goto :goto_5b
 
     .line 154
-    :cond_0
+    :cond_6a
     iput-object p0, v0, Lio/vanta/core/system/pm/BPackage$Activity;->owner:Lio/vanta/core/system/pm/BPackage;
 
     .line 155
@@ -965,10 +965,10 @@
 
     move v0, v1
 
-    goto :goto_0
+    goto :goto_4c
 
     .line 158
-    :cond_1
+    :cond_73
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -980,10 +980,10 @@
 
     iput-object v1, p0, Lio/vanta/core/system/pm/BPackage;->receivers:Ljava/util/ArrayList;
 
-    :goto_2
+    :goto_7e
     add-int/lit8 v1, v0, -0x1
 
-    if-lez v0, :cond_3
+    if-lez v0, :cond_a5
 
     .line 161
     new-instance v0, Lio/vanta/core/system/pm/BPackage$Activity;
@@ -997,12 +997,12 @@
 
     move-result-object v2
 
-    :goto_3
+    :goto_8d
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_9c
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1013,10 +1013,10 @@
     .line 163
     iput-object v0, v3, Lio/vanta/core/system/pm/BPackage$ActivityIntentInfo;->activity:Lio/vanta/core/system/pm/BPackage$Activity;
 
-    goto :goto_3
+    goto :goto_8d
 
     .line 165
-    :cond_2
+    :cond_9c
     iput-object p0, v0, Lio/vanta/core/system/pm/BPackage$Activity;->owner:Lio/vanta/core/system/pm/BPackage;
 
     .line 166
@@ -1026,10 +1026,10 @@
 
     move v0, v1
 
-    goto :goto_2
+    goto :goto_7e
 
     .line 169
-    :cond_3
+    :cond_a5
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -1041,10 +1041,10 @@
 
     iput-object v1, p0, Lio/vanta/core/system/pm/BPackage;->providers:Ljava/util/ArrayList;
 
-    :goto_4
+    :goto_b0
     add-int/lit8 v1, v0, -0x1
 
-    if-lez v0, :cond_5
+    if-lez v0, :cond_d7
 
     .line 172
     new-instance v0, Lio/vanta/core/system/pm/BPackage$Provider;
@@ -1058,12 +1058,12 @@
 
     move-result-object v2
 
-    :goto_5
+    :goto_bf
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_ce
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1074,10 +1074,10 @@
     .line 174
     iput-object v0, v3, Lio/vanta/core/system/pm/BPackage$ProviderIntentInfo;->provider:Lio/vanta/core/system/pm/BPackage$Provider;
 
-    goto :goto_5
+    goto :goto_bf
 
     .line 176
-    :cond_4
+    :cond_ce
     iput-object p0, v0, Lio/vanta/core/system/pm/BPackage$Provider;->owner:Lio/vanta/core/system/pm/BPackage;
 
     .line 177
@@ -1087,10 +1087,10 @@
 
     move v0, v1
 
-    goto :goto_4
+    goto :goto_b0
 
     .line 180
-    :cond_5
+    :cond_d7
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -1102,10 +1102,10 @@
 
     iput-object v1, p0, Lio/vanta/core/system/pm/BPackage;->services:Ljava/util/ArrayList;
 
-    :goto_6
+    :goto_e2
     add-int/lit8 v1, v0, -0x1
 
-    if-lez v0, :cond_7
+    if-lez v0, :cond_109
 
     .line 183
     new-instance v0, Lio/vanta/core/system/pm/BPackage$Service;
@@ -1119,12 +1119,12 @@
 
     move-result-object v2
 
-    :goto_7
+    :goto_f1
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_100
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1135,10 +1135,10 @@
     .line 185
     iput-object v0, v3, Lio/vanta/core/system/pm/BPackage$ServiceIntentInfo;->service:Lio/vanta/core/system/pm/BPackage$Service;
 
-    goto :goto_7
+    goto :goto_f1
 
     .line 187
-    :cond_6
+    :cond_100
     iput-object p0, v0, Lio/vanta/core/system/pm/BPackage$Service;->owner:Lio/vanta/core/system/pm/BPackage;
 
     .line 188
@@ -1148,10 +1148,10 @@
 
     move v0, v1
 
-    goto :goto_6
+    goto :goto_e2
 
     .line 191
-    :cond_7
+    :cond_109
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -1163,10 +1163,10 @@
 
     iput-object v1, p0, Lio/vanta/core/system/pm/BPackage;->instrumentation:Ljava/util/ArrayList;
 
-    :goto_8
+    :goto_114
     add-int/lit8 v1, v0, -0x1
 
-    if-lez v0, :cond_8
+    if-lez v0, :cond_126
 
     .line 194
     new-instance v0, Lio/vanta/core/system/pm/BPackage$Instrumentation;
@@ -1183,10 +1183,10 @@
 
     move v0, v1
 
-    goto :goto_8
+    goto :goto_114
 
     .line 199
-    :cond_8
+    :cond_126
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -1198,10 +1198,10 @@
 
     iput-object v1, p0, Lio/vanta/core/system/pm/BPackage;->permissions:Ljava/util/ArrayList;
 
-    :goto_9
+    :goto_131
     add-int/lit8 v1, v0, -0x1
 
-    if-lez v0, :cond_9
+    if-lez v0, :cond_143
 
     .line 202
     new-instance v0, Lio/vanta/core/system/pm/BPackage$Permission;
@@ -1218,10 +1218,10 @@
 
     move v0, v1
 
-    goto :goto_9
+    goto :goto_131
 
     .line 207
-    :cond_9
+    :cond_143
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
@@ -1233,10 +1233,10 @@
 
     iput-object v1, p0, Lio/vanta/core/system/pm/BPackage;->permissionGroups:Ljava/util/ArrayList;
 
-    :goto_a
+    :goto_14e
     add-int/lit8 v1, v0, -0x1
 
-    if-lez v0, :cond_a
+    if-lez v0, :cond_160
 
     .line 210
     new-instance v0, Lio/vanta/core/system/pm/BPackage$PermissionGroup;
@@ -1253,10 +1253,10 @@
 
     move v0, v1
 
-    goto :goto_a
+    goto :goto_14e
 
     .line 215
-    :cond_a
+    :cond_160
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->requestedPermissions:Ljava/util/ArrayList;
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->readStringList(Ljava/util/List;)V
@@ -1266,7 +1266,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_179
 
     .line 217
     const-class v0, Lio/vanta/core/system/pm/BPackage$SigningDetails;
@@ -1284,7 +1284,7 @@
     iput-object v0, p0, Lio/vanta/core/system/pm/BPackage;->mSigningDetails:Lio/vanta/core/system/pm/BPackage$SigningDetails;
 
     .line 219
-    :cond_b
+    :cond_179
     sget-object v0, Landroid/content/pm/Signature;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->createTypedArray(Landroid/os/Parcelable$Creator;)[Ljava/lang/Object;
@@ -1439,7 +1439,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -1447,7 +1447,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 5
+    .registers 8
 
     .line 581
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->activities:Ljava/util/ArrayList;
@@ -1466,15 +1466,15 @@
 
     move-result-object v0
 
-    :cond_0
-    :goto_0
+    :cond_f
+    :goto_f
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
     const/4 v2, 0x0
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_4d
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1500,7 +1500,7 @@
     .line 588
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Activity;->intents:Ljava/util/ArrayList;
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_49
 
     .line 589
     iget-object v2, v1, Lio/vanta/core/system/pm/BPackage$Activity;->intents:Ljava/util/ArrayList;
@@ -1512,10 +1512,10 @@
     .line 590
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    :goto_1
+    :goto_38
     add-int/lit8 v3, v2, -0x1
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_f
 
     .line 592
     iget-object v2, v1, Lio/vanta/core/system/pm/BPackage$Activity;->intents:Ljava/util/ArrayList;
@@ -1530,16 +1530,16 @@
 
     move v2, v3
 
-    goto :goto_1
+    goto :goto_38
 
     .line 595
-    :cond_1
+    :cond_49
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto :goto_0
+    goto :goto_f
 
     .line 599
-    :cond_2
+    :cond_4d
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->receivers:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -1556,13 +1556,13 @@
 
     move-result-object v0
 
-    :cond_3
-    :goto_2
+    :cond_5c
+    :goto_5c
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_99
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1588,7 +1588,7 @@
     .line 606
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Activity;->intents:Ljava/util/ArrayList;
 
-    if-eqz v3, :cond_4
+    if-eqz v3, :cond_95
 
     .line 607
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Activity;->intents:Ljava/util/ArrayList;
@@ -1600,10 +1600,10 @@
     .line 608
     invoke-virtual {p1, v3}, Landroid/os/Parcel;->writeInt(I)V
 
-    :goto_3
+    :goto_84
     add-int/lit8 v4, v3, -0x1
 
-    if-lez v3, :cond_3
+    if-lez v3, :cond_5c
 
     .line 610
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Activity;->intents:Ljava/util/ArrayList;
@@ -1618,16 +1618,16 @@
 
     move v3, v4
 
-    goto :goto_3
+    goto :goto_84
 
     .line 613
-    :cond_4
+    :cond_95
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto :goto_2
+    goto :goto_5c
 
     .line 617
-    :cond_5
+    :cond_99
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->providers:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -1644,13 +1644,13 @@
 
     move-result-object v0
 
-    :cond_6
-    :goto_4
+    :cond_a8
+    :goto_a8
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_8
+    if-eqz v1, :cond_e5
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1676,7 +1676,7 @@
     .line 624
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Provider;->intents:Ljava/util/ArrayList;
 
-    if-eqz v3, :cond_7
+    if-eqz v3, :cond_e1
 
     .line 625
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Provider;->intents:Ljava/util/ArrayList;
@@ -1688,10 +1688,10 @@
     .line 626
     invoke-virtual {p1, v3}, Landroid/os/Parcel;->writeInt(I)V
 
-    :goto_5
+    :goto_d0
     add-int/lit8 v4, v3, -0x1
 
-    if-lez v3, :cond_6
+    if-lez v3, :cond_a8
 
     .line 628
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Provider;->intents:Ljava/util/ArrayList;
@@ -1706,16 +1706,16 @@
 
     move v3, v4
 
-    goto :goto_5
+    goto :goto_d0
 
     .line 631
-    :cond_7
+    :cond_e1
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto :goto_4
+    goto :goto_a8
 
     .line 635
-    :cond_8
+    :cond_e5
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->services:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -1732,13 +1732,13 @@
 
     move-result-object v0
 
-    :cond_9
-    :goto_6
+    :cond_f4
+    :goto_f4
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_b
+    if-eqz v1, :cond_131
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1764,7 +1764,7 @@
     .line 642
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Service;->intents:Ljava/util/ArrayList;
 
-    if-eqz v3, :cond_a
+    if-eqz v3, :cond_12d
 
     .line 643
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Service;->intents:Ljava/util/ArrayList;
@@ -1776,10 +1776,10 @@
     .line 644
     invoke-virtual {p1, v3}, Landroid/os/Parcel;->writeInt(I)V
 
-    :goto_7
+    :goto_11c
     add-int/lit8 v4, v3, -0x1
 
-    if-lez v3, :cond_9
+    if-lez v3, :cond_f4
 
     .line 646
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Service;->intents:Ljava/util/ArrayList;
@@ -1794,16 +1794,16 @@
 
     move v3, v4
 
-    goto :goto_7
+    goto :goto_11c
 
     .line 649
-    :cond_a
+    :cond_12d
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto :goto_6
+    goto :goto_f4
 
     .line 653
-    :cond_b
+    :cond_131
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->instrumentation:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -1820,13 +1820,13 @@
 
     move-result-object v0
 
-    :cond_c
-    :goto_8
+    :cond_140
+    :goto_140
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_e
+    if-eqz v1, :cond_17d
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1852,7 +1852,7 @@
     .line 660
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Instrumentation;->intents:Ljava/util/ArrayList;
 
-    if-eqz v3, :cond_d
+    if-eqz v3, :cond_179
 
     .line 661
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Instrumentation;->intents:Ljava/util/ArrayList;
@@ -1864,10 +1864,10 @@
     .line 662
     invoke-virtual {p1, v3}, Landroid/os/Parcel;->writeInt(I)V
 
-    :goto_9
+    :goto_168
     add-int/lit8 v4, v3, -0x1
 
-    if-lez v3, :cond_c
+    if-lez v3, :cond_140
 
     .line 664
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Instrumentation;->intents:Ljava/util/ArrayList;
@@ -1882,16 +1882,16 @@
 
     move v3, v4
 
-    goto :goto_9
+    goto :goto_168
 
     .line 667
-    :cond_d
+    :cond_179
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto :goto_8
+    goto :goto_140
 
     .line 671
-    :cond_e
+    :cond_17d
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->permissions:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -1908,13 +1908,13 @@
 
     move-result-object v0
 
-    :cond_f
-    :goto_a
+    :cond_18c
+    :goto_18c
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_11
+    if-eqz v1, :cond_1c9
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1940,7 +1940,7 @@
     .line 678
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Permission;->intents:Ljava/util/ArrayList;
 
-    if-eqz v3, :cond_10
+    if-eqz v3, :cond_1c5
 
     .line 679
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Permission;->intents:Ljava/util/ArrayList;
@@ -1952,10 +1952,10 @@
     .line 680
     invoke-virtual {p1, v3}, Landroid/os/Parcel;->writeInt(I)V
 
-    :goto_b
+    :goto_1b4
     add-int/lit8 v4, v3, -0x1
 
-    if-lez v3, :cond_f
+    if-lez v3, :cond_18c
 
     .line 682
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$Permission;->intents:Ljava/util/ArrayList;
@@ -1970,16 +1970,16 @@
 
     move v3, v4
 
-    goto :goto_b
+    goto :goto_1b4
 
     .line 685
-    :cond_10
+    :cond_1c5
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto :goto_a
+    goto :goto_18c
 
     .line 689
-    :cond_11
+    :cond_1c9
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->permissionGroups:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -1996,13 +1996,13 @@
 
     move-result-object v0
 
-    :cond_12
-    :goto_c
+    :cond_1d8
+    :goto_1d8
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_14
+    if-eqz v1, :cond_215
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -2028,7 +2028,7 @@
     .line 696
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$PermissionGroup;->intents:Ljava/util/ArrayList;
 
-    if-eqz v3, :cond_13
+    if-eqz v3, :cond_211
 
     .line 697
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$PermissionGroup;->intents:Ljava/util/ArrayList;
@@ -2040,10 +2040,10 @@
     .line 698
     invoke-virtual {p1, v3}, Landroid/os/Parcel;->writeInt(I)V
 
-    :goto_d
+    :goto_200
     add-int/lit8 v4, v3, -0x1
 
-    if-lez v3, :cond_12
+    if-lez v3, :cond_1d8
 
     .line 700
     iget-object v3, v1, Lio/vanta/core/system/pm/BPackage$PermissionGroup;->intents:Ljava/util/ArrayList;
@@ -2058,16 +2058,16 @@
 
     move v3, v4
 
-    goto :goto_d
+    goto :goto_200
 
     .line 703
-    :cond_13
+    :cond_211
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto :goto_c
+    goto :goto_1d8
 
     .line 707
-    :cond_14
+    :cond_215
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->requestedPermissions:Ljava/util/ArrayList;
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeStringList(Ljava/util/List;)V
@@ -2077,7 +2077,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_15
+    if-eqz v0, :cond_225
 
     .line 709
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->mSigningDetails:Lio/vanta/core/system/pm/BPackage$SigningDetails;
@@ -2085,7 +2085,7 @@
     invoke-virtual {p1, v0, p2}, Landroid/os/Parcel;->writeParcelable(Landroid/os/Parcelable;I)V
 
     .line 711
-    :cond_15
+    :cond_225
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage;->mSignatures:[Landroid/content/pm/Signature;
 
     invoke-virtual {p1, v0, p2}, Landroid/os/Parcel;->writeTypedArray([Landroid/os/Parcelable;I)V

@@ -25,7 +25,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 30
     invoke-static {}, Lvanta/android/app/BRNotificationManager;->get()Lvanta/android/app/NotificationManagerStatic;
@@ -48,7 +48,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 35
     invoke-static {}, Lvanta/android/app/BRNotificationManager;->get()Lvanta/android/app/NotificationManagerStatic;
@@ -63,7 +63,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 40
     invoke-static {}, Lvanta/android/app/BRNotificationManager;->get()Lvanta/android/app/NotificationManagerStatic;
@@ -85,7 +85,7 @@
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -104,7 +104,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

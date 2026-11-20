@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 8
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static get(Ljava/lang/String;)Ljava/lang/String;
-    .locals 5
+    .registers 6
 
     .line 23
     :try_start_0
@@ -51,12 +51,12 @@
     move-result-object p0
 
     check-cast p0, Ljava/lang/String;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1e
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_1e} :catch_1f
 
     return-object p0
 
-    :catch_0
+    :catch_1f
     move-exception p0
 
     .line 27
@@ -68,7 +68,7 @@
 .end method
 
 .method public static get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-    .locals 5
+    .registers 7
 
     .line 12
     :try_start_0
@@ -111,12 +111,12 @@
     move-result-object p0
 
     check-cast p0, Ljava/lang/String;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_23
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_23} :catch_24
 
     return-object p0
 
-    :catch_0
+    :catch_24
     move-exception p0
 
     .line 16
@@ -126,7 +126,7 @@
 .end method
 
 .method public static getInt(Ljava/lang/String;I)I
-    .locals 5
+    .registers 7
 
     .line 38
     :try_start_0
@@ -178,12 +178,12 @@
     invoke-virtual {p0}, Ljava/lang/Integer;->intValue()I
 
     move-result p0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2b
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_2b} :catch_2c
 
     return p0
 
-    :catch_0
+    :catch_2c
     move-exception p0
 
     .line 42
@@ -193,7 +193,7 @@
 .end method
 
 .method public static isExist(Ljava/lang/String;)Z
-    .locals 0
+    .registers 1
 
     .line 33
     invoke-static {p0}, Lio/vanta/utils/compat/SystemPropertiesCompat;->get(Ljava/lang/String;)Ljava/lang/String;

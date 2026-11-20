@@ -22,7 +22,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$fgetmIntent(Lio/vanta/core/system/am/ActiveServices$ConnectedServiceRecord;)Landroid/content/Intent;
-    .locals 0
+    .registers 1
 
     iget-object p0, p0, Lio/vanta/core/system/am/ActiveServices$ConnectedServiceRecord;->mIntent:Landroid/content/Intent;
 
@@ -30,7 +30,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$fputmIBinder(Lio/vanta/core/system/am/ActiveServices$ConnectedServiceRecord;Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     iput-object p1, p0, Lio/vanta/core/system/am/ActiveServices$ConnectedServiceRecord;->mIBinder:Landroid/os/IBinder;
 
@@ -38,7 +38,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$fputmIntent(Lio/vanta/core/system/am/ActiveServices$ConnectedServiceRecord;Landroid/content/Intent;)V
-    .locals 0
+    .registers 2
 
     iput-object p1, p0, Lio/vanta/core/system/am/ActiveServices$ConnectedServiceRecord;->mIntent:Landroid/content/Intent;
 
@@ -46,7 +46,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 379
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V

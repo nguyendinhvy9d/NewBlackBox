@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 6
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -22,26 +22,26 @@
 
 # virtual methods
 .method public equals(Ljava/lang/Object;)Z
-    .locals 4
+    .registers 6
 
     const/4 v0, 0x1
 
-    if-ne p0, p1, :cond_0
+    if-ne p0, p1, :cond_4
 
     return v0
 
     .line 13
-    :cond_0
+    :cond_4
     instance-of v1, p1, Lio/vanta/core/system/am/PendingIntentRecord;
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_a
 
     return v2
 
     .line 14
-    :cond_1
+    :cond_a
     check-cast p1, Lio/vanta/core/system/am/PendingIntentRecord;
 
     .line 15
@@ -49,7 +49,7 @@
 
     iget v3, p1, Lio/vanta/core/system/am/PendingIntentRecord;->uid:I
 
-    if-ne v1, v3, :cond_2
+    if-ne v1, v3, :cond_1d
 
     iget-object v1, p0, Lio/vanta/core/system/am/PendingIntentRecord;->packageName:Ljava/lang/String;
 
@@ -60,16 +60,16 @@
 
     move-result p1
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_1d
 
     return v0
 
-    :cond_2
+    :cond_1d
     return v2
 .end method
 
 .method public hashCode()I
-    .locals 2
+    .registers 3
 
     .line 21
     iget v0, p0, Lio/vanta/core/system/am/PendingIntentRecord;->uid:I

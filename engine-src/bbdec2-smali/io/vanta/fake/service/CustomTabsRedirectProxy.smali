@@ -19,7 +19,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     const/16 v0, 0xa
 
@@ -92,7 +92,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -101,28 +101,28 @@
 .end method
 
 .method public static convertToRegularBrowserIntent(Landroid/content/Intent;)Landroid/content/Intent;
-    .locals 6
+    .registers 7
 
     const-string v0, "Set browser component: "
 
     const/4 v1, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_6
 
     return-object v1
 
     .line 103
-    :cond_0
+    :cond_6
     invoke-virtual {p0}, Landroid/content/Intent;->getData()Landroid/net/Uri;
 
     move-result-object p0
 
-    if-nez p0, :cond_1
+    if-nez p0, :cond_d
 
     return-object v1
 
     .line 108
-    :cond_1
+    :cond_d
     new-instance v2, Ljava/lang/StringBuilder;
 
     const-string v3, "Converting Custom Tabs intent to regular browser intent: "
@@ -146,7 +146,7 @@
 
     move-result-object v2
 
-    if-nez v2, :cond_2
+    if-nez v2, :cond_2d
 
     .line 113
     const-string p0, "No container browser found, cannot convert Custom Tabs intent"
@@ -156,7 +156,7 @@
     return-object v1
 
     .line 125
-    :cond_2
+    :cond_2d
     new-instance v4, Landroid/content/Intent;
 
     const-string v5, "android.intent.action.VIEW"
@@ -176,17 +176,17 @@
 
     const/16 v2, 0x22
 
-    if-lt p0, v2, :cond_3
+    if-lt p0, v2, :cond_5d
 
     .line 135
-    :try_start_0
+    :try_start_42
     invoke-virtual {v4}, Landroid/content/Intent;->getExtras()Landroid/os/Bundle;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_45
+    .catch Ljava/lang/Exception; {:try_start_42 .. :try_end_45} :catch_46
 
-    goto :goto_0
+    goto :goto_5d
 
-    :catch_0
+    :catch_46
     move-exception p0
 
     .line 137
@@ -211,9 +211,9 @@
     invoke-static {v3, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 143
-    :cond_3
-    :goto_0
-    :try_start_1
+    :cond_5d
+    :goto_5d
+    :try_start_5d
     invoke-static {}, Lio/vanta/app/BActivityThread;->getUserId()I
 
     move-result p0
@@ -230,14 +230,14 @@
 
     move-result-object p0
 
-    if-eqz p0, :cond_4
+    if-eqz p0, :cond_b8
 
     .line 147
     invoke-interface {p0}, Ljava/util/List;->isEmpty()Z
 
     move-result v1
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_b8
 
     .line 148
     invoke-interface {p0, v5}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -249,7 +249,7 @@
     .line 149
     iget-object v1, p0, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_b8
 
     .line 150
     new-instance v1, Landroid/content/ComponentName;
@@ -284,12 +284,12 @@
     move-result-object p0
 
     invoke-static {v3, p0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_a0
+    .catch Ljava/lang/Exception; {:try_start_5d .. :try_end_a0} :catch_a1
 
-    goto :goto_1
+    goto :goto_b8
 
-    :catch_1
+    :catch_a1
     move-exception p0
 
     .line 157
@@ -314,8 +314,8 @@
     invoke-static {v3, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 160
-    :cond_4
-    :goto_1
+    :cond_b8
+    :goto_b8
     new-instance p0, Ljava/lang/StringBuilder;
 
     const-string v0, "Converted Custom Tabs to regular browser intent: "
@@ -336,16 +336,16 @@
 .end method
 
 .method public static isCustomTabsIntent(Landroid/content/Intent;)Z
-    .locals 7
+    .registers 8
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return v0
 
     .line 57
-    :cond_0
+    :cond_4
     const-string v1, "android.intent.action.VIEW"
 
     invoke-virtual {p0}, Landroid/content/Intent;->getAction()Ljava/lang/String;
@@ -356,19 +356,19 @@
 
     move-result v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_11
 
     return v0
 
     .line 61
-    :cond_1
+    :cond_11
     invoke-virtual {p0}, Landroid/content/Intent;->getExtras()Landroid/os/Bundle;
 
     move-result-object v1
 
     const/4 v2, 0x1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_31
 
     .line 64
     const-string v3, "android.support.customtabs.extra.SESSION"
@@ -377,7 +377,7 @@
 
     move-result v3
 
-    if-nez v3, :cond_2
+    if-nez v3, :cond_30
 
     const-string v3, "androidx.browser.customtabs.extra.SESSION"
 
@@ -386,7 +386,7 @@
 
     move-result v3
 
-    if-nez v3, :cond_2
+    if-nez v3, :cond_30
 
     const-string v3, "android.support.customtabs.extra.TOOLBAR_COLOR"
 
@@ -395,18 +395,18 @@
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_31
 
-    :cond_2
+    :cond_30
     return v2
 
     .line 72
-    :cond_3
+    :cond_31
     invoke-virtual {p0}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
     move-result-object v1
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_49
 
     .line 74
     sget-object v3, Lio/vanta/fake/service/CustomTabsRedirectProxy;->CUSTOM_TABS_BROWSERS:[Ljava/lang/String;
@@ -415,8 +415,8 @@
 
     move v5, v0
 
-    :goto_0
-    if-ge v5, v4, :cond_5
+    :goto_3b
+    if-ge v5, v4, :cond_49
 
     aget-object v6, v3, v5
 
@@ -425,22 +425,22 @@
 
     move-result v6
 
-    if-eqz v6, :cond_4
+    if-eqz v6, :cond_46
 
     return v2
 
-    :cond_4
+    :cond_46
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_0
+    goto :goto_3b
 
     .line 81
-    :cond_5
+    :cond_49
     invoke-virtual {p0}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object p0
 
-    if-eqz p0, :cond_7
+    if-eqz p0, :cond_65
 
     .line 83
     invoke-virtual {p0}, Landroid/content/ComponentName;->getPackageName()Ljava/lang/String;
@@ -454,8 +454,8 @@
 
     move v4, v0
 
-    :goto_1
-    if-ge v4, v3, :cond_7
+    :goto_57
+    if-ge v4, v3, :cond_65
 
     aget-object v5, v1, v4
 
@@ -464,38 +464,38 @@
 
     move-result v5
 
-    if-eqz v5, :cond_6
+    if-eqz v5, :cond_62
 
     return v2
 
-    :cond_6
+    :cond_62
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_1
+    goto :goto_57
 
-    :cond_7
+    :cond_65
     return v0
 .end method
 
 .method public static processIntent(Landroid/content/Intent;)Landroid/content/Intent;
-    .locals 1
+    .registers 2
 
     .line 169
     invoke-static {p0}, Lio/vanta/fake/service/CustomTabsRedirectProxy;->isCustomTabsIntent(Landroid/content/Intent;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_d
 
     .line 170
     invoke-static {p0}, Lio/vanta/fake/service/CustomTabsRedirectProxy;->convertToRegularBrowserIntent(Landroid/content/Intent;)Landroid/content/Intent;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_d
 
     return-object v0
 
-    :cond_0
+    :cond_d
     return-object p0
 .end method

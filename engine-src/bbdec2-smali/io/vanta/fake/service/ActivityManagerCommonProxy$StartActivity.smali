@@ -24,7 +24,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 31
     const-class v0, Lio/vanta/fake/service/ActivityManagerCommonProxy;
@@ -33,7 +33,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 32
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -42,29 +42,29 @@
 .end method
 
 .method private getIntent([Ljava/lang/Object;)Landroid/content/Intent;
-    .locals 4
+    .registers 6
 
     .line 232
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isR()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     const/4 v0, 0x3
 
-    goto :goto_0
+    goto :goto_9
 
-    :cond_0
+    :cond_8
     const/4 v0, 0x2
 
     .line 237
-    :goto_0
+    :goto_9
     aget-object v0, p1, v0
 
     instance-of v1, v0, Landroid/content/Intent;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_12
 
     .line 238
     check-cast v0, Landroid/content/Intent;
@@ -72,32 +72,32 @@
     return-object v0
 
     .line 240
-    :cond_1
+    :cond_12
     array-length v0, p1
 
     const/4 v1, 0x0
 
-    :goto_1
-    if-ge v1, v0, :cond_3
+    :goto_14
+    if-ge v1, v0, :cond_22
 
     aget-object v2, p1, v1
 
     .line 241
     instance-of v3, v2, Landroid/content/Intent;
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_1f
 
     .line 242
     check-cast v2, Landroid/content/Intent;
 
     return-object v2
 
-    :cond_2
+    :cond_1f
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_1
+    goto :goto_14
 
-    :cond_3
+    :cond_22
     const/4 p1, 0x0
 
     return-object p1
@@ -106,7 +106,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 25
+    .registers 29
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -131,7 +131,24 @@
 
     move-result-object v8
 
+    invoke-static {v8}, Lio/vanta/fake/service/GmsCallerFix;->redirectAddAccountToCell(Landroid/content/Intent;)V
+
+    invoke-static {v8}, Lio/vanta/fake/service/GmsCallerFix;->shouldSkipGoogleServices(Landroid/content/Intent;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_20
+
+    const/4 v0, 0x0
+
+    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v0
+
+    return-object v0
+
     .line 37
+    :cond_20
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v6, "Hook in : "
@@ -155,7 +172,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_51
 
     invoke-virtual {v8}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
@@ -173,7 +190,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_51
 
     .line 42
     invoke-virtual {v2, v1, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -183,13 +200,13 @@
     return-object v0
 
     .line 46
-    :cond_0
-    :try_start_0
+    :cond_51
+    :try_start_51
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_62
 
     .line 47
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
@@ -203,27 +220,27 @@
     invoke-virtual {v8, v0}, Landroid/content/Intent;->setExtrasClassLoader(Ljava/lang/ClassLoader;)V
 
     .line 49
-    :cond_1
+    :cond_62
     const-string v0, "_B_|_target_"
 
     invoke-virtual {v8, v0}, Landroid/content/Intent;->hasExtra(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_6f
 
     .line 50
     invoke-virtual {v2, v1, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_6e
+    .catchall {:try_start_51 .. :try_end_6e} :catchall_6f
 
     return-object v0
 
     .line 60
-    :catchall_0
-    :cond_2
+    :catchall_6f
+    :cond_6f
     invoke-static {v8}, Lio/vanta/fake/service/CustomTabsRedirectProxy;->isCustomTabsIntent(Landroid/content/Intent;)Z
 
     move-result v0
@@ -236,7 +253,7 @@
 
     const/4 v15, 0x0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_13c
 
     .line 61
     new-instance v0, Ljava/lang/StringBuilder;
@@ -264,7 +281,7 @@
 
     move-result-object v11
 
-    if-eqz v11, :cond_4
+    if-eqz v11, :cond_13c
 
     .line 64
     new-instance v0, Ljava/lang/StringBuilder;
@@ -290,17 +307,17 @@
     .line 66
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
-    if-lt v0, v9, :cond_3
+    if-lt v0, v9, :cond_cb
 
     .line 68
-    :try_start_1
+    :try_start_b2
     invoke-virtual {v11}, Landroid/content/Intent;->getExtras()Landroid/os/Bundle;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_b5
+    .catch Ljava/lang/Exception; {:try_start_b2 .. :try_end_b5} :catch_b6
 
-    goto :goto_0
+    goto :goto_cb
 
-    :catch_0
+    :catch_b6
     move-exception v0
 
     .line 70
@@ -323,8 +340,8 @@
     invoke-static {v6, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 74
-    :cond_3
-    :goto_0
+    :cond_cb
+    :goto_cb
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v0
@@ -344,12 +361,12 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_13c
 
     .line 80
     iget-object v12, v0, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
 
-    if-eqz v12, :cond_4
+    if-eqz v12, :cond_13c
 
     .line 81
     new-instance v2, Ljava/lang/StringBuilder;
@@ -450,12 +467,12 @@
     return-object v0
 
     .line 99
-    :cond_4
+    :cond_13c
     invoke-static {v8}, Lio/vanta/fake/service/BrowserRedirectProxy;->isBrowserIntent(Landroid/content/Intent;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_9
+    if-eqz v0, :cond_240
 
     .line 100
     new-instance v0, Ljava/lang/StringBuilder;
@@ -485,7 +502,7 @@
 
     const/4 v11, 0x1
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_166
 
     .line 105
     const-string v0, "Intent targets system browser, will redirect"
@@ -494,33 +511,33 @@
 
     move v0, v11
 
-    goto :goto_1
+    goto :goto_167
 
-    :cond_5
+    :cond_166
     move v0, v15
 
-    :goto_1
-    if-nez v0, :cond_6
+    :goto_167
+    if-nez v0, :cond_18e
 
     .line 109
     invoke-virtual {v8}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
     move-result-object v12
 
-    if-nez v12, :cond_6
+    if-nez v12, :cond_18e
 
     invoke-virtual {v8}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v12
 
-    if-nez v12, :cond_6
+    if-nez v12, :cond_18e
 
     .line 110
     invoke-static {}, Lio/vanta/fake/service/BrowserRedirectProxy;->findContainerBrowser()Ljava/lang/String;
 
     move-result-object v12
 
-    if-eqz v12, :cond_6
+    if-eqz v12, :cond_18e
 
     .line 112
     new-instance v0, Ljava/lang/StringBuilder;
@@ -539,20 +556,20 @@
 
     invoke-static {v6, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_2
+    goto :goto_18f
 
-    :cond_6
+    :cond_18e
     move v11, v0
 
-    :goto_2
-    if-eqz v11, :cond_9
+    :goto_18f
+    if-eqz v11, :cond_240
 
     .line 118
     invoke-static {v8}, Lio/vanta/fake/service/BrowserRedirectProxy;->redirectToContainerBrowser(Landroid/content/Intent;)Landroid/content/Intent;
 
     move-result-object v11
 
-    if-eqz v11, :cond_9
+    if-eqz v11, :cond_240
 
     .line 120
     new-instance v0, Ljava/lang/StringBuilder;
@@ -578,17 +595,17 @@
     .line 122
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
-    if-lt v0, v9, :cond_7
+    if-lt v0, v9, :cond_1ca
 
     .line 124
-    :try_start_2
+    :try_start_1b1
     invoke-virtual {v11}, Landroid/content/Intent;->getExtras()Landroid/os/Bundle;
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_1b4
+    .catch Ljava/lang/Exception; {:try_start_1b1 .. :try_end_1b4} :catch_1b5
 
-    goto :goto_3
+    goto :goto_1ca
 
-    :catch_1
+    :catch_1b5
     move-exception v0
 
     .line 126
@@ -611,8 +628,8 @@
     invoke-static {v6, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 130
-    :cond_7
-    :goto_3
+    :cond_1ca
+    :goto_1ca
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v0
@@ -632,12 +649,12 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_23b
 
     .line 136
     iget-object v7, v0, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
 
-    if-eqz v7, :cond_8
+    if-eqz v7, :cond_23b
 
     .line 137
     new-instance v2, Ljava/lang/StringBuilder;
@@ -738,18 +755,18 @@
     return-object v0
 
     .line 152
-    :cond_8
+    :cond_23b
     const-string v0, "Could not resolve browser in container, falling back"
 
     invoke-static {v6, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 159
-    :cond_9
+    :cond_240
     invoke-static {v8}, Lio/vanta/utils/ComponentUtils;->isRequestInstall(Landroid/content/Intent;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_2c7
 
     .line 160
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
@@ -764,17 +781,17 @@
 
     move-result-object v7
 
-    if-eqz v7, :cond_a
+    if-eqz v7, :cond_2a0
 
     .line 163
     invoke-virtual {v7}, Ljava/io/File;->exists()Z
 
     move-result v0
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_2a0
 
     .line 165
-    :try_start_3
+    :try_start_25a
     invoke-static {}, Lio/vanta/VantaCore;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v0
@@ -787,7 +804,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_2a0
 
     .line 167
     iget-object v0, v0, Landroid/content/pm/PackageInfo;->packageName:Ljava/lang/String;
@@ -802,7 +819,7 @@
 
     move-result v9
 
-    if-eqz v9, :cond_a
+    if-eqz v9, :cond_2a0
 
     .line 170
     new-instance v9, Ljava/lang/StringBuilder;
@@ -823,12 +840,12 @@
     invoke-static {v15}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v0
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+    :try_end_288
+    .catch Ljava/lang/Exception; {:try_start_25a .. :try_end_288} :catch_289
 
     return-object v0
 
-    :catch_2
+    :catch_289
     move-exception v0
 
     .line 176
@@ -853,7 +870,7 @@
     invoke-static {v6, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 180
-    :cond_a
+    :cond_2a0
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v0
@@ -866,7 +883,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_2b3
 
     .line 181
     invoke-static {v15}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -876,7 +893,7 @@
     return-object v0
 
     .line 183
-    :cond_b
+    :cond_2b3
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
 
     move-result-object v0
@@ -899,12 +916,12 @@
     return-object v0
 
     .line 186
-    :cond_c
+    :cond_2c7
     invoke-virtual {v8}, Landroid/content/Intent;->getDataString()Ljava/lang/String;
 
     move-result-object v0
 
-    if-eqz v0, :cond_d
+    if-eqz v0, :cond_2fe
 
     .line 187
     new-instance v4, Ljava/lang/StringBuilder;
@@ -929,7 +946,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_d
+    if-eqz v0, :cond_2fe
 
     .line 188
     new-instance v0, Ljava/lang/StringBuilder;
@@ -955,7 +972,7 @@
     invoke-virtual {v8, v0}, Landroid/content/Intent;->setData(Landroid/net/Uri;)Landroid/content/Intent;
 
     .line 191
-    :cond_d
+    :cond_2fe
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v0
@@ -975,7 +992,7 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_10
+    if-nez v0, :cond_347
 
     .line 197
     invoke-virtual {v8}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
@@ -987,13 +1004,13 @@
 
     move-result-object v4
 
-    if-nez v4, :cond_e
+    if-nez v4, :cond_328
 
     invoke-virtual {v8}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object v4
 
-    if-nez v4, :cond_e
+    if-nez v4, :cond_328
 
     .line 199
     invoke-static {}, Lio/vanta/app/BActivityThread;->getAppPackageName()Ljava/lang/String;
@@ -1002,16 +1019,16 @@
 
     invoke-virtual {v8, v4}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
 
-    goto :goto_4
+    goto :goto_32c
 
     .line 201
-    :cond_e
+    :cond_328
     invoke-virtual {v8}, Landroid/content/Intent;->getPackage()Ljava/lang/String;
 
     move-result-object v0
 
     .line 203
-    :goto_4
+    :goto_32c
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v4
@@ -1031,7 +1048,7 @@
 
     move-result-object v4
 
-    if-nez v4, :cond_f
+    if-nez v4, :cond_346
 
     .line 209
     invoke-virtual {v8, v0}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
@@ -1043,16 +1060,16 @@
 
     return-object v0
 
-    :cond_f
+    :cond_346
     move-object v0, v4
 
     .line 215
-    :cond_10
+    :cond_347
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
 
     move-result-object v1
 
-    if-eqz v1, :cond_11
+    if-eqz v1, :cond_358
 
     .line 216
     invoke-static {}, Lio/vanta/app/BActivityThread;->getApplication()Landroid/app/Application;
@@ -1066,7 +1083,7 @@
     invoke-virtual {v8, v1}, Landroid/content/Intent;->setExtrasClassLoader(Ljava/lang/ClassLoader;)V
 
     .line 218
-    :cond_11
+    :cond_358
     new-instance v1, Landroid/content/ComponentName;
 
     iget-object v2, v0, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 261
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 9
+    .registers 13
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -41,27 +41,27 @@
     .line 266
     const-string v0, "getActiveNetwork"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 269
     invoke-static {v1}, Ljava/lang/reflect/Array;->getLength(Ljava/lang/Object;)I
 
     move-result v2
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_c
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_c} :catch_f
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_f
 
     return-object v1
 
     .line 277
-    :catch_0
-    :cond_0
+    :catch_f
+    :cond_f
     const-string v1, "Creating fallback Network[] for getAllNetworks"
 
     const-string v2, "IConnectivityManagerProxy"
@@ -73,7 +73,7 @@
     const/4 v3, 0x0
 
     .line 284
-    :try_start_1
+    :try_start_18
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v4
@@ -83,20 +83,20 @@
     invoke-virtual {v4, v0, v5}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v0
-    :try_end_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_1} :catch_2
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_22
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_18 .. :try_end_22} :catch_25
+    .catch Ljava/lang/Exception; {:try_start_18 .. :try_end_22} :catch_23
 
-    goto :goto_1
+    goto :goto_43
 
-    :catch_1
+    :catch_23
     move-exception v0
 
-    goto :goto_2
+    goto :goto_6f
 
     .line 287
-    :catch_2
-    :try_start_2
+    :catch_25
+    :try_start_25
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v4
@@ -109,8 +109,8 @@
 
     move v6, v3
 
-    :goto_0
-    if-ge v6, v5, :cond_2
+    :goto_2f
+    if-ge v6, v5, :cond_42
 
     aget-object v7, v4, v6
 
@@ -123,22 +123,22 @@
 
     move-result v8
 
-    if-eqz v8, :cond_1
+    if-eqz v8, :cond_3f
 
     move-object v0, v7
 
-    goto :goto_1
+    goto :goto_43
 
-    :cond_1
+    :cond_3f
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_0
+    goto :goto_2f
 
-    :cond_2
+    :cond_42
     const/4 v0, 0x0
 
-    :goto_1
-    if-eqz v0, :cond_3
+    :goto_43
+    if-eqz v0, :cond_85
 
     .line 296
     new-array v4, v3, [Ljava/lang/Object;
@@ -147,7 +147,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_85
 
     .line 298
     invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -182,13 +182,13 @@
     move-result-object v0
 
     invoke-static {v2, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_6e
+    .catch Ljava/lang/Exception; {:try_start_25 .. :try_end_6e} :catch_23
 
     return-object v4
 
     .line 306
-    :goto_2
+    :goto_6f
     new-instance v4, Ljava/lang/StringBuilder;
 
     const-string v5, "Failed to use Active Network for fallback: "
@@ -210,8 +210,8 @@
     invoke-static {v2, v0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 311
-    :cond_3
-    :try_start_3
+    :cond_85
+    :try_start_85
     const-string v0, "android.net.Network"
 
     invoke-static {v0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -249,12 +249,12 @@
 
     .line 319
     invoke-static {v4, v3, v0}, Ljava/lang/reflect/Array;->set(Ljava/lang/Object;ILjava/lang/Object;)V
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_3
+    :try_end_a8
+    .catch Ljava/lang/Exception; {:try_start_85 .. :try_end_a8} :catch_a9
 
     return-object v4
 
-    :catch_3
+    :catch_a9
     move-exception v0
 
     .line 322

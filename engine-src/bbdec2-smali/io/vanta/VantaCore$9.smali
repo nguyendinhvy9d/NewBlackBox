@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/VantaCore;Landroid/content/Intent;)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -45,12 +45,12 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .registers 5
 
     .line 2061
     const-string v0, "VantaCore"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Executing delayed server retry for DaemonService"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -60,7 +60,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_17
 
     .line 2063
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -71,10 +71,10 @@
 
     invoke-virtual {v1, v2}, Landroid/content/Context;->startForegroundService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    goto :goto_0
+    goto :goto_20
 
     .line 2065
-    :cond_0
+    :cond_17
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -84,16 +84,16 @@
     invoke-virtual {v1, v2}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
     .line 2067
-    :goto_0
+    :goto_20
     const-string v1, "Delayed server retry successful"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_25
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_25} :catch_26
 
     return-void
 
-    :catch_0
+    :catch_26
     move-exception v1
 
     .line 2069

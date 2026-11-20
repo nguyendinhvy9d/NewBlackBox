@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 78
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,20 +31,20 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_1b
 
     .line 82
-    :try_start_0
+    :try_start_2
     array-length p1, p3
 
-    if-lez p1, :cond_0
+    if-lez p1, :cond_1b
 
     const/4 p1, 0x0
 
@@ -52,7 +52,7 @@
 
     instance-of p2, p1, Ljava/lang/String;
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_1b
 
     .line 83
     check-cast p1, Ljava/lang/String;
@@ -67,16 +67,16 @@
     move-result-object p1
 
     check-cast p1, Landroid/os/LocaleList;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_18
+    .catchall {:try_start_2 .. :try_end_18} :catchall_1b
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_1b
 
     return-object p1
 
     .line 90
-    :catchall_0
-    :cond_0
+    :catchall_1b
+    :cond_1b
     invoke-static {}, Landroid/os/LocaleList;->getEmptyLocaleList()Landroid/os/LocaleList;
 
     move-result-object p1

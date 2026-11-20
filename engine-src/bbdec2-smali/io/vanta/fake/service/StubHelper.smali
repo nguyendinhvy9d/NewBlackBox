@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 11
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -18,7 +18,7 @@
 .end method
 
 .method public static getServiceInterface(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
-    .locals 11
+    .registers 14
 
     .line 18
     const-string v0, "StubHelper"
@@ -31,7 +31,7 @@
 
     const/4 v4, 0x0
 
-    :try_start_0
+    :try_start_7
     invoke-static {p1}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v5
@@ -51,11 +51,11 @@
     invoke-virtual {v6, v2, v7}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v6
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    :try_end_19
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_19} :catch_79
 
     .line 26
-    :try_start_1
+    :try_start_19
     new-array v7, v3, [Ljava/lang/Class;
 
     const-class v8, Landroid/os/IBinder;
@@ -65,15 +65,15 @@
     invoke-virtual {v5, v1, v7}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v5
-    :try_end_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_1} :catch_0
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_2
+    :try_end_23
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_19 .. :try_end_23} :catch_24
+    .catch Ljava/lang/Exception; {:try_start_19 .. :try_end_23} :catch_79
 
-    goto :goto_1
+    goto :goto_4f
 
     .line 30
-    :catch_0
-    :try_start_2
+    :catch_24
+    :try_start_24
     new-array v7, v3, [Ljava/lang/Class;
 
     const-class v8, Ljava/lang/Object;
@@ -83,15 +83,15 @@
     invoke-virtual {v5, v1, v7}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v5
-    :try_end_2
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_2 .. :try_end_2} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+    :try_end_2e
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_24 .. :try_end_2e} :catch_2f
+    .catch Ljava/lang/Exception; {:try_start_24 .. :try_end_2e} :catch_79
 
-    goto :goto_1
+    goto :goto_4f
 
     .line 33
-    :catch_1
-    :try_start_3
+    :catch_2f
+    :try_start_2f
     invoke-virtual {v5}, Ljava/lang/Class;->getMethods()[Ljava/lang/reflect/Method;
 
     move-result-object v5
@@ -101,8 +101,8 @@
 
     move v8, v4
 
-    :goto_0
-    if-ge v8, v7, :cond_1
+    :goto_35
+    if-ge v8, v7, :cond_4e
 
     aget-object v9, v5, v8
 
@@ -115,28 +115,28 @@
 
     move-result v10
 
-    if-eqz v10, :cond_0
+    if-eqz v10, :cond_4b
 
     invoke-static {v9}, Lkotlin/UByte$$ExternalSyntheticBackport0;->m(Ljava/lang/reflect/Method;)I
 
     move-result v10
 
-    if-ne v10, v3, :cond_0
+    if-ne v10, v3, :cond_4b
 
     move-object v5, v9
 
-    goto :goto_1
+    goto :goto_4f
 
-    :cond_0
+    :cond_4b
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_0
+    goto :goto_35
 
-    :cond_1
+    :cond_4e
     move-object v5, v2
 
-    :goto_1
-    if-eqz v5, :cond_2
+    :goto_4f
+    if-eqz v5, :cond_62
 
     .line 44
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -159,7 +159,7 @@
     return-object p0
 
     .line 47
-    :cond_2
+    :cond_62
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
@@ -179,12 +179,12 @@
     move-result-object v5
 
     invoke-static {v0, v5}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+    :try_end_78
+    .catch Ljava/lang/Exception; {:try_start_2f .. :try_end_78} :catch_79
 
-    goto :goto_2
+    goto :goto_8c
 
-    :catch_2
+    :catch_79
     move-exception v5
 
     .line 50
@@ -205,8 +205,8 @@
     invoke-static {v0, p1, v5}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 55
-    :goto_2
-    :try_start_4
+    :goto_8c
+    :try_start_8c
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
 
     move-result-object p1
@@ -239,12 +239,12 @@
     invoke-virtual {p2, v2, p1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p0
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_3
+    :try_end_aa
+    .catch Ljava/lang/Exception; {:try_start_8c .. :try_end_aa} :catch_ab
 
     return-object p0
 
-    :catch_3
+    :catch_ab
     move-exception p1
 
     .line 60
@@ -268,7 +268,7 @@
 .end method
 
 .method public static getServiceInterface(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/os/IBinder;)Ljava/lang/Object;
-    .locals 11
+    .registers 15
 
     .line 69
     const-string v0, "StubHelper"
@@ -281,7 +281,7 @@
 
     const/4 v4, 0x0
 
-    :try_start_0
+    :try_start_7
     invoke-static {p1}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v5
@@ -301,11 +301,11 @@
     invoke-virtual {v6, v2, v7}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v6
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    :try_end_19
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_19} :catch_7d
 
     .line 77
-    :try_start_1
+    :try_start_19
     new-array v7, v3, [Ljava/lang/Class;
 
     const-class v8, Landroid/os/IBinder;
@@ -315,15 +315,15 @@
     invoke-virtual {v5, v1, v7}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v5
-    :try_end_1
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_1 .. :try_end_1} :catch_0
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_2
+    :try_end_23
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_19 .. :try_end_23} :catch_24
+    .catch Ljava/lang/Exception; {:try_start_19 .. :try_end_23} :catch_7d
 
-    goto :goto_1
+    goto :goto_4f
 
     .line 81
-    :catch_0
-    :try_start_2
+    :catch_24
+    :try_start_24
     new-array v7, v3, [Ljava/lang/Class;
 
     const-class v8, Ljava/lang/Object;
@@ -333,15 +333,15 @@
     invoke-virtual {v5, v1, v7}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v5
-    :try_end_2
-    .catch Ljava/lang/NoSuchMethodException; {:try_start_2 .. :try_end_2} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+    :try_end_2e
+    .catch Ljava/lang/NoSuchMethodException; {:try_start_24 .. :try_end_2e} :catch_2f
+    .catch Ljava/lang/Exception; {:try_start_24 .. :try_end_2e} :catch_7d
 
-    goto :goto_1
+    goto :goto_4f
 
     .line 84
-    :catch_1
-    :try_start_3
+    :catch_2f
+    :try_start_2f
     invoke-virtual {v5}, Ljava/lang/Class;->getMethods()[Ljava/lang/reflect/Method;
 
     move-result-object v5
@@ -351,8 +351,8 @@
 
     move v8, v4
 
-    :goto_0
-    if-ge v8, v7, :cond_1
+    :goto_35
+    if-ge v8, v7, :cond_4e
 
     aget-object v9, v5, v8
 
@@ -365,37 +365,37 @@
 
     move-result v10
 
-    if-eqz v10, :cond_0
+    if-eqz v10, :cond_4b
 
     invoke-static {v9}, Lkotlin/UByte$$ExternalSyntheticBackport0;->m(Ljava/lang/reflect/Method;)I
 
     move-result v10
 
-    if-ne v10, v3, :cond_0
+    if-ne v10, v3, :cond_4b
 
     move-object v5, v9
 
-    goto :goto_1
+    goto :goto_4f
 
-    :cond_0
+    :cond_4b
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_0
+    goto :goto_35
 
-    :cond_1
+    :cond_4e
     move-object v5, v2
 
-    :goto_1
-    if-eqz v5, :cond_3
+    :goto_4f
+    if-eqz v5, :cond_66
 
-    if-eqz p3, :cond_2
+    if-eqz p3, :cond_55
 
     move-object v7, p3
 
-    goto :goto_2
+    goto :goto_5d
 
     .line 95
-    :cond_2
+    :cond_55
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
 
     move-result-object v7
@@ -405,7 +405,7 @@
     move-result-object v7
 
     .line 96
-    :goto_2
+    :goto_5d
     filled-new-array {v7}, [Ljava/lang/Object;
 
     move-result-object v7
@@ -417,7 +417,7 @@
     return-object p0
 
     .line 98
-    :cond_3
+    :cond_66
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
@@ -437,12 +437,12 @@
     move-result-object v5
 
     invoke-static {v0, v5}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_2
+    :try_end_7c
+    .catch Ljava/lang/Exception; {:try_start_2f .. :try_end_7c} :catch_7d
 
-    goto :goto_3
+    goto :goto_90
 
-    :catch_2
+    :catch_7d
     move-exception v5
 
     .line 101
@@ -462,14 +462,14 @@
 
     invoke-static {v0, p1, v5}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :goto_3
-    if-eqz p3, :cond_4
+    :goto_90
+    if-eqz p3, :cond_93
 
-    goto :goto_4
+    goto :goto_9b
 
     .line 106
-    :cond_4
-    :try_start_4
+    :cond_93
+    :try_start_93
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
 
     move-result-object p1
@@ -479,7 +479,7 @@
     move-result-object p3
 
     .line 107
-    :goto_4
+    :goto_9b
     invoke-static {p2}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object p1
@@ -503,12 +503,12 @@
     invoke-virtual {p1, v2, p2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p0
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_3
+    :try_end_b1
+    .catch Ljava/lang/Exception; {:try_start_93 .. :try_end_b1} :catch_b2
 
     return-object p0
 
-    :catch_3
+    :catch_b2
     move-exception p1
 
     .line 111

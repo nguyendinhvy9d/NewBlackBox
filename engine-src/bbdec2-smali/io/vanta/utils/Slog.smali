@@ -9,7 +9,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 11
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -18,7 +18,7 @@
 .end method
 
 .method public static d(Ljava/lang/String;Ljava/lang/String;)I
-    .locals 1
+    .registers 3
 
     const/4 v0, 0x3
 
@@ -31,7 +31,7 @@
 .end method
 
 .method public static d(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    .locals 1
+    .registers 4
 
     .line 30
     new-instance v0, Ljava/lang/StringBuilder;
@@ -72,7 +72,7 @@
 .end method
 
 .method public static e(Ljava/lang/String;Ljava/lang/String;)I
-    .locals 1
+    .registers 3
 
     const/4 v0, 0x6
 
@@ -85,7 +85,7 @@
 .end method
 
 .method public static e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    .locals 1
+    .registers 4
 
     .line 66
     new-instance v0, Ljava/lang/StringBuilder;
@@ -126,7 +126,7 @@
 .end method
 
 .method public static i(Ljava/lang/String;Ljava/lang/String;)I
-    .locals 1
+    .registers 3
 
     const/4 v0, 0x4
 
@@ -139,7 +139,7 @@
 .end method
 
 .method public static i(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    .locals 1
+    .registers 4
 
     .line 40
     new-instance v0, Ljava/lang/StringBuilder;
@@ -180,7 +180,7 @@
 .end method
 
 .method public static println(ILjava/lang/String;Ljava/lang/String;)I
-    .locals 0
+    .registers 3
 
     .line 71
     invoke-static {p0, p1, p2}, Landroid/util/Log;->println(ILjava/lang/String;Ljava/lang/String;)I
@@ -191,7 +191,7 @@
 .end method
 
 .method public static v(Ljava/lang/String;Ljava/lang/String;)I
-    .locals 1
+    .registers 3
 
     const/4 v0, 0x2
 
@@ -204,7 +204,7 @@
 .end method
 
 .method public static v(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    .locals 1
+    .registers 4
 
     .line 19
     new-instance v0, Ljava/lang/StringBuilder;
@@ -245,7 +245,7 @@
 .end method
 
 .method public static w(Ljava/lang/String;Ljava/lang/String;)I
-    .locals 1
+    .registers 3
 
     const/4 v0, 0x5
 
@@ -258,7 +258,7 @@
 .end method
 
 .method public static w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-    .locals 1
+    .registers 4
 
     .line 51
     new-instance v0, Ljava/lang/StringBuilder;
@@ -299,7 +299,7 @@
 .end method
 
 .method public static w(Ljava/lang/String;Ljava/lang/Throwable;)I
-    .locals 1
+    .registers 3
 
     const/4 v0, 0x5
 

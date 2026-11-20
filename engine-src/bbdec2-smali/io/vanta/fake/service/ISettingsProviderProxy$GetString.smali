@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 66
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 7
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,12 +45,12 @@
 
     const-string v2, "ISettingsProviderProxy"
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_31
 
-    :try_start_0
+    :try_start_8
     array-length v3, p3
 
-    if-lez v3, :cond_0
+    if-lez v3, :cond_31
 
     const/4 v3, 0x0
 
@@ -59,55 +59,8 @@
 
     check-cast v3, Ljava/lang/String;
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_31
 
-    const-string v4, "android_id"
-
-    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    if-eqz v4, :xj_not_aid
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    const-string v6, "_aid_"
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    invoke-static {}, Lio/vanta/VantaCore;->getUserId()I
-
-    move-result v6
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v5}, Lio/vanta/utils/Md5Utils;->md5(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v5
-
-    const/4 v6, 0x0
-
-    const/16 v4, 0x10
-
-    invoke-virtual {v5, v6, v4}, Ljava/lang/String;->substring(II)Ljava/lang/String;
-
-    move-result-object v5
-
-    return-object v5
-
-    :xj_not_aid
     .line 73
     const-string v4, "feature_flag"
 
@@ -115,7 +68,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_31
 
     .line 74
     new-instance p1, Ljava/lang/StringBuilder;
@@ -141,16 +94,16 @@
     return-object v1
 
     .line 80
-    :cond_0
+    :cond_31
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_35
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_35} :catch_36
 
     return-object p1
 
-    :catch_0
+    :catch_36
     move-exception p1
 
     .line 82
@@ -158,7 +111,7 @@
 
     move-result-object p2
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_60
 
     .line 83
     const-string p3, "Calling uid"
@@ -167,7 +120,7 @@
 
     move-result p3
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_60
 
     const-string p3, "doesn\'t match source uid"
 
@@ -175,7 +128,7 @@
 
     move-result p3
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_60
 
     .line 84
     new-instance p1, Ljava/lang/StringBuilder;
@@ -197,6 +150,6 @@
     return-object v1
 
     .line 87
-    :cond_1
+    :cond_60
     throw p1
 .end method

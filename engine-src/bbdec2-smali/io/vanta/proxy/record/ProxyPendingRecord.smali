@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Intent;I)V
-    .locals 1
+    .registers 4
 
     const/4 v0, 0x0
 
@@ -24,7 +24,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Intent;ILjava/lang/String;)V
-    .locals 0
+    .registers 4
 
     .line 15
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -42,7 +42,7 @@
 .end method
 
 .method public static create(Landroid/content/Intent;)Lio/vanta/proxy/record/ProxyPendingRecord;
-    .locals 3
+    .registers 4
 
     .line 34
     const-string v0, "_B_|_P_user_id_"
@@ -78,7 +78,7 @@
 .end method
 
 .method public static saveStub(Landroid/content/Intent;Landroid/content/Intent;I)V
-    .locals 1
+    .registers 4
 
     const/4 v0, 0x0
 
@@ -89,7 +89,7 @@
 .end method
 
 .method public static saveStub(Landroid/content/Intent;Landroid/content/Intent;ILjava/lang/String;)V
-    .locals 1
+    .registers 5
 
     .line 26
     const-string v0, "_B_|_P_user_id_"
@@ -101,21 +101,21 @@
 
     invoke-virtual {p0, p2, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_11
 
     .line 29
     const-string p1, "_B_|_P_creator_pkg_"
 
     invoke-virtual {p0, p1, p3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    :cond_0
+    :cond_11
     return-void
 .end method
 
 
 # virtual methods
 .method public toString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 42
     new-instance v0, Ljava/lang/StringBuilder;

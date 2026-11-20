@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 474
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -49,7 +49,7 @@
     const/4 v1, 0x1
 
     .line 478
-    :try_start_0
+    :try_start_6
     aget-object v0, p3, v0
 
     check-cast v0, Landroid/content/ComponentName;
@@ -59,7 +59,7 @@
 
     check-cast p3, Landroid/os/IBinder;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_43
 
     .line 483
     invoke-virtual {v0}, Landroid/content/ComponentName;->getPackageName()Ljava/lang/String;
@@ -76,7 +76,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_43
 
     .line 488
     new-instance p3, Ljava/lang/StringBuilder;
@@ -117,7 +117,7 @@
     return-object p1
 
     .line 494
-    :cond_0
+    :cond_43
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
     move-result-object p2
@@ -132,13 +132,13 @@
     invoke-static {v1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_52
+    .catch Ljava/lang/SecurityException; {:try_start_6 .. :try_end_52} :catch_5e
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_52} :catch_53
 
     return-object p1
 
-    :catch_0
+    :catch_53
     move-exception p2
 
     .line 500
@@ -153,7 +153,7 @@
 
     return-object p1
 
-    :catch_1
+    :catch_5e
     move-exception p2
 
     .line 497

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 95
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,19 +31,19 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_36
 
     .line 98
     array-length v0, p3
 
-    if-lez v0, :cond_1
+    if-lez v0, :cond_36
 
     const/4 v0, 0x0
 
@@ -51,7 +51,7 @@
 
     instance-of v1, v0, Landroid/net/Uri;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_36
 
     .line 99
     check-cast v0, Landroid/net/Uri;
@@ -68,7 +68,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_22
 
     const-string v1, "media"
 
@@ -76,10 +76,10 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_36
 
     .line 103
-    :cond_0
+    :cond_22
     new-instance v1, Ljava/lang/StringBuilder;
 
     const-string v2, "ContentResolver: insert called for audio URI: "
@@ -99,7 +99,7 @@
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 107
-    :cond_1
+    :cond_36
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

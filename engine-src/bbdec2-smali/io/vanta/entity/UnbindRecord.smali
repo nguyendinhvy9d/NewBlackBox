@@ -28,7 +28,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 62
     new-instance v0, Lio/vanta/entity/UnbindRecord$1;
@@ -41,7 +41,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 41
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -50,7 +50,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 56
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -88,7 +88,7 @@
 .end method
 
 .method public static getCREATOR()Landroid/os/Parcelable$Creator;
-    .locals 1
+    .registers 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -107,7 +107,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -115,7 +115,7 @@
 .end method
 
 .method public getBindCount()I
-    .locals 1
+    .registers 2
 
     .line 22
     iget v0, p0, Lio/vanta/entity/UnbindRecord;->mBindCount:I
@@ -124,7 +124,7 @@
 .end method
 
 .method public getComponentName()Landroid/content/ComponentName;
-    .locals 1
+    .registers 2
 
     .line 30
     iget-object v0, p0, Lio/vanta/entity/UnbindRecord;->mComponentName:Landroid/content/ComponentName;
@@ -133,7 +133,7 @@
 .end method
 
 .method public getStartId()I
-    .locals 1
+    .registers 2
 
     .line 14
     iget v0, p0, Lio/vanta/entity/UnbindRecord;->mStartId:I
@@ -142,7 +142,7 @@
 .end method
 
 .method public setBindCount(I)V
-    .locals 0
+    .registers 2
 
     .line 26
     iput p1, p0, Lio/vanta/entity/UnbindRecord;->mBindCount:I
@@ -151,7 +151,7 @@
 .end method
 
 .method public setComponentName(Landroid/content/ComponentName;)V
-    .locals 0
+    .registers 2
 
     .line 34
     iput-object p1, p0, Lio/vanta/entity/UnbindRecord;->mComponentName:Landroid/content/ComponentName;
@@ -160,7 +160,7 @@
 .end method
 
 .method public setStartId(I)V
-    .locals 0
+    .registers 2
 
     .line 18
     iput p1, p0, Lio/vanta/entity/UnbindRecord;->mStartId:I
@@ -169,7 +169,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 1
+    .registers 4
 
     .line 51
     iget v0, p0, Lio/vanta/entity/UnbindRecord;->mBindCount:I

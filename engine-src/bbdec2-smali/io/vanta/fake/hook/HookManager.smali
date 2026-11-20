@@ -37,7 +37,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 33
     new-instance v0, Lio/vanta/fake/hook/HookManager;
@@ -50,7 +50,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 30
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -80,7 +80,7 @@
 .end method
 
 .method public static get()Lio/vanta/fake/hook/HookManager;
-    .locals 1
+    .registers 1
 
     .line 44
     sget-object v0, Lio/vanta/fake/hook/HookManager;->sHookManager:Lio/vanta/fake/hook/HookManager;
@@ -89,7 +89,7 @@
 .end method
 
 .method private handleHookError(Lio/vanta/fake/hook/IInjectHook;Ljava/lang/Exception;)V
-    .locals 3
+    .registers 6
 
     .line 202
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -140,7 +140,7 @@
 
     move-result p2
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_42
 
     const-string p2, "PackageManager"
 
@@ -149,7 +149,7 @@
 
     move-result p2
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_42
 
     const-string p2, "ContentProvider"
 
@@ -158,26 +158,26 @@
 
     move-result p2
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_4b
 
     .line 209
-    :cond_0
-    :try_start_0
+    :cond_42
+    :try_start_42
     invoke-interface {p1}, Lio/vanta/fake/hook/IInjectHook;->isBadEnv()Z
 
     move-result p2
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_4b
 
     invoke-interface {p1}, Lio/vanta/fake/hook/IInjectHook;->injectHook()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4b
+    .catch Ljava/lang/Exception; {:try_start_42 .. :try_end_4b} :catch_4c
 
-    :cond_1
+    :cond_4b
     return-void
 
     .line 211
-    :catch_0
+    :catch_4c
     new-instance p1, Ljava/lang/StringBuilder;
 
     const-string p2, "Hook recovery failed: "
@@ -200,7 +200,7 @@
 
 # virtual methods
 .method addInjector(Lio/vanta/fake/hook/IInjectHook;)V
-    .locals 2
+    .registers 4
 
     .line 175
     iget-object v0, p0, Lio/vanta/fake/hook/HookManager;->mInjectorList:Ljava/util/List;
@@ -220,7 +220,7 @@
 .end method
 
 .method public areCriticalHooksInstalled()Z
-    .locals 2
+    .registers 3
 
     .line 217
     iget-object v0, p0, Lio/vanta/fake/hook/HookManager;->mInjectorMap:Ljava/util/Map;
@@ -231,7 +231,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_20
 
     iget-object v0, p0, Lio/vanta/fake/hook/HookManager;->mInjectorMap:Ljava/util/Map;
 
@@ -242,7 +242,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_20
 
     iget-object v0, p0, Lio/vanta/fake/hook/HookManager;->mInjectorMap:Ljava/util/Map;
 
@@ -253,20 +253,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_20
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_20
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public checkAll()V
-    .locals 5
+    .registers 6
 
     .line 164
     iget-object v0, p0, Lio/vanta/fake/hook/HookManager;->mInjectorList:Ljava/util/List;
@@ -277,8 +277,8 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_1
+    :goto_7
+    if-ge v1, v0, :cond_3f
 
     .line 166
     iget-object v2, p0, Lio/vanta/fake/hook/HookManager;->mInjectorList:Ljava/util/List;
@@ -294,7 +294,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_3c
 
     .line 168
     new-instance v3, Ljava/lang/StringBuilder;
@@ -332,17 +332,17 @@
     .line 169
     invoke-interface {v2}, Lio/vanta/fake/hook/IInjectHook;->injectHook()V
 
-    :cond_0
+    :cond_3c
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_7
 
-    :cond_1
+    :cond_3f
     return-void
 .end method
 
 .method public checkEnv(Ljava/lang/Class;)V
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -360,14 +360,14 @@
 
     check-cast v0, Lio/vanta/fake/hook/IInjectHook;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_31
 
     .line 156
     invoke-interface {v0}, Lio/vanta/fake/hook/IInjectHook;->isBadEnv()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_31
 
     .line 157
     new-instance v1, Ljava/lang/StringBuilder;
@@ -401,30 +401,30 @@
     .line 158
     invoke-interface {v0}, Lio/vanta/fake/hook/IInjectHook;->injectHook()V
 
-    :cond_0
+    :cond_31
     return-void
 .end method
 
 .method public declared-synchronized init()V
-    .locals 2
+    .registers 3
 
     monitor-enter p0
 
     .line 50
-    :try_start_0
+    :try_start_1
     iget-boolean v0, p0, Lio/vanta/fake/hook/HookManager;->mInitialized:Z
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_3
+    .catchall {:try_start_1 .. :try_end_3} :catchall_2ef
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_7
 
     monitor-exit p0
 
     return-void
 
     .line 52
-    :cond_0
-    :try_start_1
+    :cond_7
+    :try_start_7
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v0
@@ -433,7 +433,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_1b
 
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
@@ -443,13 +443,19 @@
 
     move-result v0
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_2e7
 
     .line 53
-    :cond_1
+    :cond_1b
     new-instance v0, Lio/vanta/fake/service/IDisplayManagerProxy;
 
     invoke-direct {v0}, Lio/vanta/fake/service/IDisplayManagerProxy;-><init>()V
+
+    invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
+
+    new-instance v0, Lio/vanta/fake/service/XjStatsStub;
+
+    invoke-direct {v0}, Lio/vanta/fake/service/XjStatsStub;-><init>()V
 
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
@@ -892,7 +898,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_230
 
     .line 118
     new-instance v0, Lio/vanta/fake/service/ILocaleManagerProxy;
@@ -909,12 +915,12 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 121
-    :cond_2
+    :cond_230
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isS()Z
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_24f
 
     .line 122
     new-instance v0, Lio/vanta/fake/service/IActivityClientProxy;
@@ -940,12 +946,12 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 126
-    :cond_3
+    :cond_24f
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isR()Z
 
     move-result v0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_25d
 
     new-instance v0, Lio/vanta/fake/service/IPermissionManagerProxy;
 
@@ -954,12 +960,12 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 127
-    :cond_4
+    :cond_25d
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isQ()Z
 
     move-result v0
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_273
 
     .line 128
     new-instance v0, Lio/vanta/fake/service/IActivityTaskManagerProxy;
@@ -976,12 +982,12 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 131
-    :cond_5
+    :cond_273
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isPie()Z
 
     move-result v0
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_289
 
     .line 132
     new-instance v0, Lio/vanta/fake/service/ISystemUpdateProxy;
@@ -998,12 +1004,12 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 135
-    :cond_6
+    :cond_289
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result v0
 
-    if-eqz v0, :cond_7
+    if-eqz v0, :cond_2a7
 
     .line 136
     new-instance v0, Lio/vanta/fake/service/IAutofillManagerProxy;
@@ -1027,12 +1033,12 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 140
-    :cond_7
+    :cond_2a7
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isN_MR1()Z
 
     move-result v0
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_2b5
 
     new-instance v0, Lio/vanta/fake/service/IShortcutManagerProxy;
 
@@ -1041,12 +1047,12 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 141
-    :cond_8
+    :cond_2b5
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isN()Z
 
     move-result v0
 
-    if-eqz v0, :cond_9
+    if-eqz v0, :cond_2c3
 
     new-instance v0, Lio/vanta/fake/service/INetworkManagementServiceProxy;
 
@@ -1055,12 +1061,12 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 142
-    :cond_9
+    :cond_2c3
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isM()Z
 
     move-result v0
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_2d9
 
     .line 143
     new-instance v0, Lio/vanta/fake/service/IFingerprintManagerProxy;
@@ -1077,12 +1083,12 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 146
-    :cond_a
+    :cond_2d9
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isL()Z
 
     move-result v0
 
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_2e7
 
     new-instance v0, Lio/vanta/fake/service/IJobServiceProxy;
 
@@ -1091,34 +1097,34 @@
     invoke-virtual {p0, v0}, Lio/vanta/fake/hook/HookManager;->addInjector(Lio/vanta/fake/hook/IInjectHook;)V
 
     .line 149
-    :cond_b
+    :cond_2e7
     invoke-virtual {p0}, Lio/vanta/fake/hook/HookManager;->injectAll()V
 
     const/4 v0, 0x1
 
     .line 150
     iput-boolean v0, p0, Lio/vanta/fake/hook/HookManager;->mInitialized:Z
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_2ed
+    .catchall {:try_start_7 .. :try_end_2ed} :catchall_2ef
 
     .line 151
     monitor-exit p0
 
     return-void
 
-    :catchall_0
+    :catchall_2ef
     move-exception v0
 
-    :try_start_2
+    :try_start_2f0
     monitor-exit p0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_2f1
+    .catchall {:try_start_2f0 .. :try_end_2f1} :catchall_2ef
 
     throw v0
 .end method
 
 .method injectAll()V
-    .locals 5
+    .registers 6
 
     .line 182
     iget-object v0, p0, Lio/vanta/fake/hook/HookManager;->mInjectorList:Ljava/util/List;
@@ -1131,8 +1137,8 @@
 
     move v2, v1
 
-    :goto_0
-    if-ge v1, v0, :cond_0
+    :goto_8
+    if-ge v1, v0, :cond_1f
 
     .line 185
     iget-object v3, p0, Lio/vanta/fake/hook/HookManager;->mInjectorList:Ljava/util/List;
@@ -1144,14 +1150,14 @@
     check-cast v3, Lio/vanta/fake/hook/IInjectHook;
 
     .line 187
-    :try_start_0
+    :try_start_12
     invoke-interface {v3}, Lio/vanta/fake/hook/IInjectHook;->injectHook()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_15
+    .catch Ljava/lang/Exception; {:try_start_12 .. :try_end_15} :catch_16
 
-    goto :goto_1
+    goto :goto_1c
 
-    :catch_0
+    :catch_16
     move-exception v4
 
     add-int/lit8 v2, v2, 0x1
@@ -1159,16 +1165,16 @@
     .line 190
     invoke-direct {p0, v3, v4}, Lio/vanta/fake/hook/HookManager;->handleHookError(Lio/vanta/fake/hook/IInjectHook;Ljava/lang/Exception;)V
 
-    :goto_1
+    :goto_1c
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 193
-    :cond_0
+    :cond_1f
     const-string v1, "HookManager"
 
-    if-lez v2, :cond_1
+    if-lez v2, :cond_52
 
     .line 194
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1215,10 +1221,10 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_2
+    goto :goto_6a
 
     .line 197
-    :cond_1
+    :cond_52
     new-instance v2, Ljava/lang/StringBuilder;
 
     const-string v3, "injectAll: all "
@@ -1241,17 +1247,17 @@
 
     invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    :goto_2
+    :goto_6a
     return-void
 .end method
 
 .method public declared-synchronized reinitializeHooks()V
-    .locals 2
+    .registers 3
 
     monitor-enter p0
 
     .line 224
-    :try_start_0
+    :try_start_1
     const-string v0, "HookManager"
 
     const-string v1, "reinitializeHooks: forced restart"
@@ -1275,21 +1281,21 @@
 
     .line 228
     invoke-virtual {p0}, Lio/vanta/fake/hook/HookManager;->init()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_18
+    .catchall {:try_start_1 .. :try_end_18} :catchall_1a
 
     .line 229
     monitor-exit p0
 
     return-void
 
-    :catchall_0
+    :catchall_1a
     move-exception v0
 
-    :try_start_1
+    :try_start_1b
     monitor-exit p0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_1c
+    .catchall {:try_start_1b .. :try_end_1c} :catchall_1a
 
     throw v0
 .end method

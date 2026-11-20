@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/proxy/ProxyVpnService;)V
-    .locals 0
+    .registers 2
 
     .line 48
     iput-object p1, p0, Lio/vanta/proxy/ProxyVpnService$1;->this$0:Lio/vanta/proxy/ProxyVpnService;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public run()V
-    .locals 1
+    .registers 2
 
     .line 51
     iget-object v0, p0, Lio/vanta/proxy/ProxyVpnService$1;->this$0:Lio/vanta/proxy/ProxyVpnService;

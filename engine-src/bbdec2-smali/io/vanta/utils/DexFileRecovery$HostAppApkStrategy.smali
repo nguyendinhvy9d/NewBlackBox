@@ -19,7 +19,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 178
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method synthetic constructor <init>(Lio/vanta/utils/DexFileRecovery-IA;)V
-    .locals 0
+    .registers 2
 
     invoke-direct {p0}, Lio/vanta/utils/DexFileRecovery$HostAppApkStrategy;-><init>()V
 
@@ -38,29 +38,29 @@
 
 # virtual methods
 .method public attemptRecovery(Ljava/lang/String;)Lio/vanta/utils/DexFileRecovery$RecoveryResult;
-    .locals 3
+    .registers 5
 
     const-string p1, "Using host app APK as fallback: "
 
     .line 192
-    :try_start_0
+    :try_start_2
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_45
 
     .line 194
     invoke-virtual {v0}, Landroid/content/Context;->getApplicationInfo()Landroid/content/pm/ApplicationInfo;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_45
 
     .line 195
     iget-object v1, v0, Landroid/content/pm/ApplicationInfo;->sourceDir:Ljava/lang/String;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_45
 
     .line 196
     new-instance v1, Ljava/io/File;
@@ -74,13 +74,13 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_45
 
     invoke-static {v1}, Lio/vanta/utils/DexFileRecovery;->isValidApkFile(Ljava/io/File;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_45
 
     .line 198
     const-string v1, "DexFileRecovery"
@@ -115,18 +115,18 @@
     return-object p1
 
     .line 204
-    :cond_0
+    :cond_45
     new-instance p1, Lio/vanta/utils/DexFileRecovery$RecoveryResult;
 
     const-string v0, "Host app APK not available or invalid"
 
     invoke-direct {p1, v0}, Lio/vanta/utils/DexFileRecovery$RecoveryResult;-><init>(Ljava/lang/String;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4c
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_4c} :catch_4d
 
     return-object p1
 
-    :catch_0
+    :catch_4d
     move-exception p1
 
     .line 206
@@ -156,7 +156,7 @@
 .end method
 
 .method public getName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 181
     const-string v0, "Host App APK"
@@ -165,7 +165,7 @@
 .end method
 
 .method public getPriority()I
-    .locals 1
+    .registers 2
 
     const/16 v0, 0x50
 

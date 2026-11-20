@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 13
     invoke-direct {p0}, Lio/vanta/app/configuration/AppLifecycleCallback;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public afterMainActivityOnCreate(Landroid/app/Activity;)V
-    .locals 5
+    .registers 7
 
     .line 34
     const-string v0, "Lib Injection"
@@ -37,7 +37,7 @@
 
     const-string v2, "Injected native lib before Application created: "
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_6f
 
     .line 34
     invoke-virtual {p1}, Landroid/app/Activity;->getPackageName()Ljava/lang/String;
@@ -50,7 +50,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_6f
 
     .line 35
     invoke-virtual {p1}, Landroid/app/Activity;->getFilesDir()Ljava/io/File;
@@ -81,7 +81,7 @@
     move-result-object p1
 
     .line 38
-    :try_start_0
+    :try_start_2f
     new-instance v3, Ljava/io/File;
 
     invoke-direct {v3, p1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
@@ -91,7 +91,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_52
 
     .line 40
     invoke-static {p1}, Ljava/lang/System;->load(Ljava/lang/String;)V
@@ -118,16 +118,16 @@
     return-void
 
     .line 43
-    :cond_0
+    :cond_52
     const-string v2, "Failed to inject because lib not found"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_57
+    .catchall {:try_start_2f .. :try_end_57} :catchall_58
 
     return-void
 
-    :catchall_0
+    :catchall_58
     move-exception v2
 
     .line 46
@@ -151,12 +151,12 @@
 
     invoke-static {v0, p1, v2}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_1
+    :cond_6f
     return-void
 .end method
 
 .method public beforeMainApplicationAttach(Landroid/app/Application;Landroid/content/Context;)V
-    .locals 4
+    .registers 7
 
     .line 16
     const-string p2, "Lib Injection"
@@ -166,7 +166,7 @@
 
     const-string v1, "Injected native lib before Application created: "
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_6f
 
     .line 16
     invoke-virtual {p1}, Landroid/app/Application;->getPackageName()Ljava/lang/String;
@@ -179,7 +179,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_6f
 
     .line 17
     invoke-virtual {p1}, Landroid/app/Application;->getFilesDir()Ljava/io/File;
@@ -210,7 +210,7 @@
     move-result-object p1
 
     .line 20
-    :try_start_0
+    :try_start_2f
     new-instance v2, Ljava/io/File;
 
     invoke-direct {v2, p1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
@@ -220,7 +220,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_52
 
     .line 22
     invoke-static {p1}, Ljava/lang/System;->load(Ljava/lang/String;)V
@@ -247,16 +247,16 @@
     return-void
 
     .line 25
-    :cond_0
+    :cond_52
     const-string v1, "Failed to inject because lib not found"
 
     invoke-static {p2, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_57
+    .catchall {:try_start_2f .. :try_end_57} :catchall_58
 
     return-void
 
-    :catchall_0
+    :catchall_58
     move-exception v1
 
     .line 28
@@ -280,6 +280,6 @@
 
     invoke-static {p2, p1, v1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_1
+    :cond_6f
     return-void
 .end method

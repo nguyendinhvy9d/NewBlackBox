@@ -25,7 +25,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 5
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -34,7 +34,7 @@
 .end method
 
 .method public static disableAccountCaches()V
-    .locals 5
+    .registers 5
 
     .line 49
     :try_start_0
@@ -80,22 +80,22 @@
     move-result-object v1
 
     invoke-virtual {v0, v2, v1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_27
+    .catchall {:try_start_0 .. :try_end_27} :catchall_27
 
-    :catchall_0
+    :catchall_27
     return-void
 .end method
 
 .method public static invalidateAccountCaches()V
-    .locals 6
+    .registers 6
 
     const/4 v0, 0x0
 
     const/4 v1, 0x0
 
     .line 29
-    :try_start_0
+    :try_start_2
     const-string v2, "android.app.PropertyInvalidatedCache"
 
     invoke-static {v2}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -134,12 +134,12 @@
     move-result-object v3
 
     invoke-virtual {v2, v0, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_27
+    .catchall {:try_start_2 .. :try_end_27} :catchall_27
 
     .line 36
-    :catchall_0
-    :try_start_1
+    :catchall_27
+    :try_start_27
     const-class v2, Landroid/accounts/AccountManager;
 
     const-string v3, "invalidateLocalAccountsDataCaches"
@@ -154,12 +154,12 @@
     new-array v3, v1, [Ljava/lang/Object;
 
     invoke-virtual {v2, v0, v3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_36
+    .catchall {:try_start_27 .. :try_end_36} :catchall_36
 
     .line 41
-    :catchall_1
-    :try_start_2
+    :catchall_36
+    :try_start_36
     const-class v2, Landroid/accounts/AccountManager;
 
     const-string v3, "invalidateLocalAccountUserDataCaches"
@@ -174,9 +174,9 @@
     new-array v1, v1, [Ljava/lang/Object;
 
     invoke-virtual {v2, v0, v1}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
+    :try_end_45
+    .catchall {:try_start_36 .. :try_end_45} :catchall_45
 
-    :catchall_2
+    :catchall_45
     return-void
 .end method

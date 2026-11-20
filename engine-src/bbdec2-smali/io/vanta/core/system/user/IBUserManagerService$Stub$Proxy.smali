@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 127
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 132
     iget-object v0, p0, Lio/vanta/core/system/user/IBUserManagerService$Stub$Proxy;->mRemote:Landroid/os/IBinder;
@@ -46,7 +46,7 @@
 .end method
 
 .method public createUser(I)Lio/vanta/core/system/user/BUserInfo;
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -64,7 +64,7 @@
     move-result-object v1
 
     .line 180
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.user.IBUserManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -92,8 +92,8 @@
     move-result-object p1
 
     check-cast p1, Lio/vanta/core/system/user/BUserInfo;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_29
 
     .line 187
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -103,7 +103,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_29
     move-exception p1
 
     .line 187
@@ -117,7 +117,7 @@
 .end method
 
 .method public deleteUser(I)V
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -135,7 +135,7 @@
     move-result-object v1
 
     .line 214
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.user.IBUserManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -154,8 +154,8 @@
 
     .line 217
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1a
+    .catchall {:try_start_8 .. :try_end_1a} :catchall_21
 
     .line 220
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -165,7 +165,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_21
     move-exception p1
 
     .line 220
@@ -179,7 +179,7 @@
 .end method
 
 .method public exists(I)Z
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -197,7 +197,7 @@
     move-result-object v1
 
     .line 162
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.user.IBUserManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -221,15 +221,15 @@
     invoke-virtual {v1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_8 .. :try_end_1e} :catchall_28
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_21
 
     const/4 v3, 0x1
 
     .line 169
-    :cond_0
+    :cond_21
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 170
@@ -237,7 +237,7 @@
 
     return v3
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 169
@@ -251,7 +251,7 @@
 .end method
 
 .method public final getInterfaceDescriptor()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 136
     const-string v0, "io.vanta.core.system.user.IBUserManagerService"
@@ -260,7 +260,7 @@
 .end method
 
 .method public getUserInfo(I)Lio/vanta/core/system/user/BUserInfo;
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -278,7 +278,7 @@
     move-result-object v1
 
     .line 144
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.user.IBUserManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -306,8 +306,8 @@
     move-result-object p1
 
     check-cast p1, Lio/vanta/core/system/user/BUserInfo;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_22
+    .catchall {:try_start_8 .. :try_end_22} :catchall_29
 
     .line 151
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -317,7 +317,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_29
     move-exception p1
 
     .line 151
@@ -331,7 +331,7 @@
 .end method
 
 .method public getUsers()Ljava/util/List;
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -358,7 +358,7 @@
     move-result-object v1
 
     .line 198
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.user.IBUserManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -381,8 +381,8 @@
     invoke-virtual {v1, v2}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
 
     move-result-object v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catchall {:try_start_8 .. :try_end_1d} :catchall_24
 
     .line 204
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -392,7 +392,7 @@
 
     return-object v2
 
-    :catchall_0
+    :catchall_24
     move-exception v2
 
     .line 204

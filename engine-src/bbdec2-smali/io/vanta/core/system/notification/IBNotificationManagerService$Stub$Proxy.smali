@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 195
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     .line 200
     iget-object v0, p0, Lio/vanta/core/system/notification/IBNotificationManagerService$Stub$Proxy;->mRemote:Landroid/os/IBinder;
@@ -46,7 +46,7 @@
 .end method
 
 .method public cancelNotificationWithTag(ILjava/lang/String;I)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -64,7 +64,7 @@
     move-result-object v1
 
     .line 350
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.notification.IBNotificationManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -89,8 +89,8 @@
 
     .line 355
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_21
+    .catchall {:try_start_8 .. :try_end_21} :catchall_28
 
     .line 358
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -100,7 +100,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 358
@@ -114,7 +114,7 @@
 .end method
 
 .method public createNotificationChannel(Landroid/app/NotificationChannel;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -132,7 +132,7 @@
     move-result-object v1
 
     .line 268
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.notification.IBNotificationManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -154,8 +154,8 @@
 
     .line 272
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catchall {:try_start_8 .. :try_end_1d} :catchall_24
 
     .line 275
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -165,7 +165,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_24
     move-exception p1
 
     .line 275
@@ -179,7 +179,7 @@
 .end method
 
 .method public createNotificationChannelGroup(Landroid/app/NotificationChannelGroup;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -197,7 +197,7 @@
     move-result-object v1
 
     .line 300
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.notification.IBNotificationManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -219,8 +219,8 @@
 
     .line 304
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catchall {:try_start_8 .. :try_end_1d} :catchall_24
 
     .line 307
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -230,7 +230,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_24
     move-exception p1
 
     .line 307
@@ -244,7 +244,7 @@
 .end method
 
 .method public deleteNotificationChannel(Ljava/lang/String;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -262,7 +262,7 @@
     move-result-object v1
 
     .line 284
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.notification.IBNotificationManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -284,8 +284,8 @@
 
     .line 288
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catchall {:try_start_8 .. :try_end_1d} :catchall_24
 
     .line 291
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -295,7 +295,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_24
     move-exception p1
 
     .line 291
@@ -309,7 +309,7 @@
 .end method
 
 .method public deleteNotificationChannelGroup(Ljava/lang/String;I)V
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -327,7 +327,7 @@
     move-result-object v1
 
     .line 316
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.notification.IBNotificationManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -349,8 +349,8 @@
 
     .line 320
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catchall {:try_start_8 .. :try_end_1d} :catchall_24
 
     .line 323
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -360,7 +360,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_24
     move-exception p1
 
     .line 323
@@ -374,7 +374,7 @@
 .end method
 
 .method public enqueueNotificationWithTag(ILjava/lang/String;Landroid/app/Notification;I)V
-    .locals 3
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -392,7 +392,7 @@
     move-result-object v1
 
     .line 332
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.notification.IBNotificationManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -420,8 +420,8 @@
 
     .line 338
     invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_24
+    .catchall {:try_start_8 .. :try_end_24} :catchall_2b
 
     .line 341
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -431,7 +431,7 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2b
     move-exception p1
 
     .line 341
@@ -445,7 +445,7 @@
 .end method
 
 .method public final getInterfaceDescriptor()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 204
     const-string v0, "io.vanta.core.system.notification.IBNotificationManagerService"
@@ -454,7 +454,7 @@
 .end method
 
 .method public getNotificationChannel(Ljava/lang/String;I)Landroid/app/NotificationChannel;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -472,7 +472,7 @@
     move-result-object v1
 
     .line 212
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.notification.IBNotificationManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -503,8 +503,8 @@
     move-result-object p1
 
     check-cast p1, Landroid/app/NotificationChannel;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_8 .. :try_end_25} :catchall_2c
 
     .line 220
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -514,7 +514,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2c
     move-exception p1
 
     .line 220
@@ -528,7 +528,7 @@
 .end method
 
 .method public getNotificationChannelGroups(Ljava/lang/String;I)Ljava/util/List;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -557,7 +557,7 @@
     move-result-object v1
 
     .line 250
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.notification.IBNotificationManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -586,8 +586,8 @@
     invoke-virtual {v1, p1}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_8 .. :try_end_23} :catchall_2a
 
     .line 258
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -597,7 +597,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2a
     move-exception p1
 
     .line 258
@@ -611,7 +611,7 @@
 .end method
 
 .method public getNotificationChannels(Ljava/lang/String;I)Ljava/util/List;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -640,7 +640,7 @@
     move-result-object v1
 
     .line 231
-    :try_start_0
+    :try_start_8
     const-string v2, "io.vanta.core.system.notification.IBNotificationManagerService"
 
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
@@ -669,8 +669,8 @@
     invoke-virtual {v1, p1}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_8 .. :try_end_23} :catchall_2a
 
     .line 239
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
@@ -680,7 +680,7 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2a
     move-exception p1
 
     .line 239

@@ -64,7 +64,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$smcreateLinkProperties()Ljava/lang/Object;
-    .locals 1
+    .registers 1
 
     invoke-static {}, Lio/vanta/fake/service/IConnectivityManagerProxy;->createLinkProperties()Ljava/lang/Object;
 
@@ -74,7 +74,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$smcreateNetworkCapabilities()Ljava/lang/Object;
-    .locals 1
+    .registers 1
 
     invoke-static {}, Lio/vanta/fake/service/IConnectivityManagerProxy;->createNetworkCapabilities()Ljava/lang/Object;
 
@@ -84,7 +84,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$smcreateNetworkInfo(IILjava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
-    .locals 0
+    .registers 4
 
     invoke-static {p0, p1, p2, p3}, Lio/vanta/fake/service/IConnectivityManagerProxy;->createNetworkInfo(IILjava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
 
@@ -94,7 +94,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$smcreateNetworkInfoArray()Ljava/lang/Object;
-    .locals 1
+    .registers 1
 
     invoke-static {}, Lio/vanta/fake/service/IConnectivityManagerProxy;->createNetworkInfoArray()Ljava/lang/Object;
 
@@ -104,7 +104,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 30
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -123,14 +123,14 @@
 .end method
 
 .method private static createLinkProperties()Ljava/lang/Object;
-    .locals 9
+    .registers 9
 
     .line 168
     const-string v0, "IConnectivityManagerProxy"
 
     const-string v1, "Could not set DNS servers: "
 
-    :try_start_0
+    :try_start_4
     const-string v2, "android.net.LinkProperties"
 
     invoke-static {v2}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -162,11 +162,11 @@
     new-instance v5, Ljava/util/ArrayList;
 
     invoke-direct {v5}, Ljava/util/ArrayList;-><init>()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_20
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_20} :catch_60
 
     .line 176
-    :try_start_1
+    :try_start_20
     const-string v6, "8.8.8.8"
 
     invoke-static {v6}, Ljava/net/InetAddress;->getByName(Ljava/lang/String;)Ljava/net/InetAddress;
@@ -207,16 +207,16 @@
     move-result-object v4
 
     invoke-virtual {v3, v2, v4}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_49
+    .catch Ljava/lang/Exception; {:try_start_20 .. :try_end_49} :catch_4a
 
     return-object v2
 
-    :catch_0
+    :catch_4a
     move-exception v3
 
     .line 183
-    :try_start_2
+    :try_start_4b
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -234,12 +234,12 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_5f
+    .catch Ljava/lang/Exception; {:try_start_4b .. :try_end_5f} :catch_60
 
     return-object v2
 
-    :catch_1
+    :catch_60
     move-exception v1
 
     .line 188
@@ -269,7 +269,7 @@
 .end method
 
 .method private static createNetworkCapabilities()Ljava/lang/Object;
-    .locals 10
+    .registers 10
 
     .line 130
     const-string v0, "IConnectivityManagerProxy"
@@ -278,7 +278,7 @@
 
     const-string v2, "Could not add transport types: "
 
-    :try_start_0
+    :try_start_6
     const-string v3, "android.net.NetworkCapabilities"
 
     invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -305,11 +305,11 @@
     invoke-virtual {v3, v6}, Ljava/lang/reflect/Constructor;->newInstance([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v3
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    :try_end_1d
+    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_1d} :catch_ce
 
     .line 137
-    :try_start_1
+    :try_start_1d
     invoke-virtual {v3}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v6
@@ -347,16 +347,16 @@
     move-result-object v7
 
     invoke-virtual {v6, v3, v7}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_43
+    .catch Ljava/lang/Exception; {:try_start_1d .. :try_end_43} :catch_44
 
-    goto :goto_0
+    goto :goto_59
 
-    :catch_0
+    :catch_44
     move-exception v6
 
     .line 141
-    :try_start_2
+    :try_start_45
     new-instance v7, Ljava/lang/StringBuilder;
 
     invoke-direct {v7, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -374,12 +374,12 @@
     move-result-object v2
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+    :try_end_59
+    .catch Ljava/lang/Exception; {:try_start_45 .. :try_end_59} :catch_ce
 
     .line 146
-    :goto_0
-    :try_start_3
+    :goto_59
+    :try_start_59
     invoke-virtual {v3}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v2
@@ -473,16 +473,16 @@
     move-result-object v4
 
     invoke-virtual {v2, v3, v4}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_1
+    :try_end_b7
+    .catch Ljava/lang/Exception; {:try_start_59 .. :try_end_b7} :catch_b8
 
-    goto :goto_1
+    goto :goto_cd
 
-    :catch_1
+    :catch_b8
     move-exception v2
 
     .line 154
-    :try_start_4
+    :try_start_b9
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -500,13 +500,13 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_2
+    :try_end_cd
+    .catch Ljava/lang/Exception; {:try_start_b9 .. :try_end_cd} :catch_ce
 
-    :goto_1
+    :goto_cd
     return-object v3
 
-    :catch_2
+    :catch_ce
     move-exception v1
 
     .line 159
@@ -536,7 +536,7 @@
 .end method
 
 .method private static createNetworkInfo(IILjava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
-    .locals 10
+    .registers 14
 
     .line 51
     const-string v0, "IConnectivityManagerProxy"
@@ -547,12 +547,12 @@
     const/4 v2, 0x0
 
     .line 51
-    :try_start_0
+    :try_start_5
     sget v3, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v4, 0x1e
 
-    if-lt v3, v4, :cond_0
+    if-lt v3, v4, :cond_16
 
     .line 53
     new-instance v1, Landroid/net/NetworkInfo;
@@ -563,14 +563,14 @@
     sget-object p0, Landroid/net/NetworkInfo$DetailedState;->CONNECTED:Landroid/net/NetworkInfo$DetailedState;
 
     invoke-virtual {v1, p0, v2, v2}, Landroid/net/NetworkInfo;->setDetailedState(Landroid/net/NetworkInfo$DetailedState;Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_15
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_15} :catch_7e
 
     return-object v1
 
     .line 59
-    :cond_0
-    :try_start_1
+    :cond_16
+    :try_start_16
     const-string v3, "android.net.NetworkInfo"
 
     invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -659,16 +659,16 @@
     move-result-object p2
 
     invoke-virtual {p1, p0, p2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_67
+    .catch Ljava/lang/Exception; {:try_start_16 .. :try_end_67} :catch_68
 
     return-object p0
 
-    :catch_0
+    :catch_68
     move-exception p0
 
     .line 72
-    :try_start_2
+    :try_start_69
     new-instance p1, Ljava/lang/StringBuilder;
 
     invoke-direct {p1, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -686,12 +686,12 @@
     move-result-object p0
 
     invoke-static {v0, p0}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_7d
+    .catch Ljava/lang/Exception; {:try_start_69 .. :try_end_7d} :catch_7e
 
     return-object v2
 
-    :catch_1
+    :catch_7e
     move-exception p0
 
     .line 77
@@ -719,7 +719,7 @@
 .end method
 
 .method private static createNetworkInfoArray()Ljava/lang/Object;
-    .locals 14
+    .registers 14
 
     .line 85
     const-string v0, "IConnectivityManagerProxy"
@@ -728,10 +728,10 @@
 
     const/4 v2, 0x0
 
-    :try_start_0
+    :try_start_5
     sget v3, Landroid/os/Build$VERSION;->SDK_INT:I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_7
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_7} :catch_bb
 
     const/16 v4, 0x1e
 
@@ -747,10 +747,10 @@
 
     const/4 v10, 0x0
 
-    if-lt v3, v4, :cond_0
+    if-lt v3, v4, :cond_2f
 
     .line 87
-    :try_start_1
+    :try_start_14
     new-instance v1, Landroid/net/NetworkInfo;
 
     invoke-direct {v1, v9, v2, v6, v8}, Landroid/net/NetworkInfo;-><init>(IILjava/lang/String;Ljava/lang/String;)V
@@ -776,14 +776,14 @@
     aput-object v1, v4, v2
 
     aput-object v3, v4, v9
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_2e
+    .catch Ljava/lang/Exception; {:try_start_14 .. :try_end_2e} :catch_bb
 
     return-object v4
 
     .line 95
-    :cond_0
-    :try_start_2
+    :cond_2f
+    :try_start_2f
     const-string v3, "android.net.NetworkInfo"
 
     invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -905,16 +905,16 @@
 
     .line 112
     invoke-static {v3, v9, v4}, Ljava/lang/reflect/Array;->set(Ljava/lang/Object;ILjava/lang/Object;)V
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
+    :try_end_a2
+    .catch Ljava/lang/Exception; {:try_start_2f .. :try_end_a2} :catch_a3
 
     return-object v3
 
-    :catch_0
+    :catch_a3
     move-exception v3
 
     .line 116
-    :try_start_3
+    :try_start_a4
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -935,12 +935,12 @@
 
     .line 117
     new-array v0, v2, [Ljava/lang/Object;
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_1
+    :try_end_ba
+    .catch Ljava/lang/Exception; {:try_start_a4 .. :try_end_ba} :catch_bb
 
     return-object v0
 
-    :catch_1
+    :catch_bb
     move-exception v1
 
     .line 121
@@ -973,7 +973,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 35
     invoke-static {}, Lvanta/android/net/BRIConnectivityManagerStub;->get()Lvanta/android/net/IConnectivityManagerStubStatic;
@@ -998,7 +998,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 40
     const-string p1, "connectivity"
@@ -1009,7 +1009,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

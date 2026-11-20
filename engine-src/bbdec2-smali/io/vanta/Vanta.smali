@@ -16,20 +16,20 @@
 
 .field private static final TAG:Ljava/lang/String; = "VantaSDK"
 
-.field private static sContext:Landroid/content/Context; = null
+.field private static sContext:Landroid/content/Context;
 
-.field private static volatile sInitialized:Z = false
+.field private static volatile sInitialized:Z
 
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 0
+    .registers 0
 
     return-void
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 31
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .end method
 
 .method public static addLicenseListener(Lio/vanta/license/LicenseManager$LicenseStateListener;)V
-    .locals 0
+    .registers 1
 
     .line 156
     invoke-static {p0}, Lio/vanta/license/LicenseManager;->addListener(Lio/vanta/license/LicenseManager$LicenseStateListener;)V
@@ -47,7 +47,7 @@
 .end method
 
 .method public static addLifecycleCallback(Lio/vanta/app/configuration/AppLifecycleCallback;)V
-    .locals 1
+    .registers 2
 
     .line 203
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
@@ -60,7 +60,7 @@
 .end method
 
 .method public static addServiceAvailableCallback(Ljava/lang/Runnable;)V
-    .locals 1
+    .registers 2
 
     .line 207
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
@@ -73,7 +73,7 @@
 .end method
 
 .method public static attachBaseContext(Landroid/app/Application;Landroid/content/Context;)V
-    .locals 1
+    .registers 3
 
     .line 35
     new-instance v0, Lio/vanta/Vanta$1;
@@ -86,7 +86,7 @@
 .end method
 
 .method public static attachBaseContext(Landroid/app/Application;Landroid/content/Context;Lio/vanta/app/configuration/ClientConfiguration;)V
-    .locals 4
+    .registers 7
 
     .line 45
     const-string v0, "VantaSDK"
@@ -94,18 +94,18 @@
     sput-object p1, Lio/vanta/Vanta;->sContext:Landroid/content/Context;
 
     .line 47
-    :try_start_0
+    :try_start_4
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v1
 
     invoke-virtual {v1}, Lio/vanta/VantaCore;->closeCodeInit()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_b
+    .catchall {:try_start_4 .. :try_end_b} :catchall_c
 
-    goto :goto_0
+    goto :goto_23
 
-    :catchall_0
+    :catchall_c
     move-exception v1
 
     .line 50
@@ -130,19 +130,19 @@
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 53
-    :goto_0
-    :try_start_1
+    :goto_23
+    :try_start_23
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v1
 
     invoke-virtual {v1, p0, p1}, Lio/vanta/VantaCore;->onBeforeMainApplicationAttach(Landroid/app/Application;Landroid/content/Context;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_2a
+    .catchall {:try_start_23 .. :try_end_2a} :catchall_2b
 
-    goto :goto_1
+    goto :goto_42
 
-    :catchall_1
+    :catchall_2b
     move-exception v1
 
     .line 56
@@ -167,19 +167,19 @@
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 59
-    :goto_1
-    :try_start_2
+    :goto_42
+    :try_start_42
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v1
 
     invoke-virtual {v1, p1, p2}, Lio/vanta/VantaCore;->doAttachBaseContext(Landroid/content/Context;Lio/vanta/app/configuration/ClientConfiguration;)V
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_2
+    :try_end_49
+    .catchall {:try_start_42 .. :try_end_49} :catchall_4a
 
-    goto :goto_2
+    goto :goto_61
 
-    :catchall_2
+    :catchall_4a
     move-exception p2
 
     .line 62
@@ -204,19 +204,19 @@
     invoke-static {v0, v1, p2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 65
-    :goto_2
-    :try_start_3
+    :goto_61
+    :try_start_61
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object p2
 
     invoke-virtual {p2, p0, p1}, Lio/vanta/VantaCore;->onAfterMainApplicationAttach(Landroid/app/Application;Landroid/content/Context;)V
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_3
+    :try_end_68
+    .catchall {:try_start_61 .. :try_end_68} :catchall_69
 
-    goto :goto_3
+    goto :goto_80
 
-    :catchall_3
+    :catchall_69
     move-exception p0
 
     .line 68
@@ -240,18 +240,18 @@
 
     invoke-static {v0, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :goto_3
+    :goto_80
     return-void
 .end method
 
 .method private static checkLicenseEnforcement()V
-    .locals 0
+    .registers 0
 
     return-void
 .end method
 
 .method public static clearPackage(Ljava/lang/String;I)V
-    .locals 1
+    .registers 3
 
     .line 164
     invoke-static {}, Lio/vanta/Vanta;->checkLicenseEnforcement()V
@@ -267,7 +267,7 @@
 .end method
 
 .method public static getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
-    .locals 1
+    .registers 1
 
     .line 219
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
@@ -278,7 +278,7 @@
 .end method
 
 .method public static getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
-    .locals 1
+    .registers 1
 
     .line 215
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
@@ -289,7 +289,7 @@
 .end method
 
 .method public static getEngine()Lio/vanta/VantaCore;
-    .locals 1
+    .registers 1
 
     .line 223
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
@@ -300,7 +300,7 @@
 .end method
 
 .method public static getInstalledApplications(II)Ljava/util/List;
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(II)",
@@ -323,7 +323,7 @@
 .end method
 
 .method public static getInstalledPackages(II)Ljava/util/List;
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(II)",
@@ -346,7 +346,7 @@
 .end method
 
 .method public static getLicenseExpirationFormatted()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 114
     const-string v0, "Lifetime"
@@ -355,7 +355,7 @@
 .end method
 
 .method public static getLicenseExpiresAt()J
-    .locals 2
+    .registers 2
 
     const-wide v0, 0x7fffffffffffffffL
 
@@ -363,7 +363,7 @@
 .end method
 
 .method public static getLicenseMessage()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 102
     const-string v0, "License active"
@@ -372,7 +372,7 @@
 .end method
 
 .method public static getPackageManager()Landroid/content/pm/PackageManager;
-    .locals 1
+    .registers 1
 
     .line 211
     invoke-static {}, Lio/vanta/VantaCore;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -383,7 +383,7 @@
 .end method
 
 .method public static getUsers()Ljava/util/List;
-    .locals 1
+    .registers 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -406,7 +406,7 @@
 .end method
 
 .method public static getVersion()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 106
     const-string v0, "4.0.0"
@@ -415,9 +415,9 @@
 .end method
 
 .method public static initialize(Landroid/content/Context;Ljava/lang/String;Lio/vanta/Vanta$InitCallback;)V
-    .locals 1
+    .registers 4
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_8
 
     .line 84
     invoke-virtual {p0}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
@@ -426,7 +426,7 @@
 
     sput-object p0, Lio/vanta/Vanta;->sContext:Landroid/content/Context;
 
-    :cond_0
+    :cond_8
     const/4 p0, 0x1
 
     .line 86
@@ -439,19 +439,19 @@
 
     invoke-static {p1, v0}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_19
 
     .line 89
     const-string p1, "License active"
 
     invoke-interface {p2, p0, p1}, Lio/vanta/Vanta$InitCallback;->onResult(ZLjava/lang/String;)V
 
-    :cond_1
+    :cond_19
     return-void
 .end method
 
 .method public static installExistingPackage(Ljava/lang/String;I)Lio/vanta/entity/pm/InstallResult;
-    .locals 1
+    .registers 3
 
     .line 126
     invoke-static {}, Lio/vanta/Vanta;->checkLicenseEnforcement()V
@@ -469,7 +469,7 @@
 .end method
 
 .method public static installGms(I)Lio/vanta/entity/pm/InstallResult;
-    .locals 1
+    .registers 2
 
     .line 189
     invoke-static {}, Lio/vanta/Vanta;->checkLicenseEnforcement()V
@@ -487,7 +487,7 @@
 .end method
 
 .method public static installPackage(Ljava/io/File;I)Lio/vanta/entity/pm/InstallResult;
-    .locals 1
+    .registers 3
 
     .line 121
     invoke-static {}, Lio/vanta/Vanta;->checkLicenseEnforcement()V
@@ -505,7 +505,7 @@
 .end method
 
 .method public static isGmsInstalled(I)Z
-    .locals 1
+    .registers 2
 
     .line 185
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
@@ -520,7 +520,7 @@
 .end method
 
 .method public static isGmsSupported()Z
-    .locals 1
+    .registers 1
 
     .line 181
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
@@ -535,7 +535,7 @@
 .end method
 
 .method public static isInitialized()Z
-    .locals 1
+    .registers 1
 
     const/4 v0, 0x1
 
@@ -543,7 +543,7 @@
 .end method
 
 .method public static isLicenseValid()Z
-    .locals 1
+    .registers 1
 
     const/4 v0, 0x1
 
@@ -551,7 +551,7 @@
 .end method
 
 .method public static isPackageInstalled(Ljava/lang/String;I)Z
-    .locals 1
+    .registers 3
 
     .line 169
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
@@ -566,7 +566,7 @@
 .end method
 
 .method public static launchPackage(Ljava/lang/String;I)Z
-    .locals 1
+    .registers 3
 
     .line 137
     invoke-static {}, Lio/vanta/Vanta;->checkLicenseEnforcement()V
@@ -584,7 +584,7 @@
 .end method
 
 .method public static onCreate(Landroid/app/Application;)V
-    .locals 3
+    .registers 4
 
     .line 73
     invoke-virtual {p0}, Landroid/app/Application;->getApplicationContext()Landroid/content/Context;
@@ -594,18 +594,18 @@
     sput-object p0, Lio/vanta/Vanta;->sContext:Landroid/content/Context;
 
     .line 75
-    :try_start_0
+    :try_start_6
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object p0
 
     invoke-virtual {p0}, Lio/vanta/VantaCore;->doCreate()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_d
+    .catchall {:try_start_6 .. :try_end_d} :catchall_e
 
     return-void
 
-    :catchall_0
+    :catchall_e
     move-exception p0
 
     .line 78
@@ -635,7 +635,7 @@
 .end method
 
 .method public static removeLicenseListener(Lio/vanta/license/LicenseManager$LicenseStateListener;)V
-    .locals 0
+    .registers 1
 
     .line 160
     invoke-static {p0}, Lio/vanta/license/LicenseManager;->removeListener(Lio/vanta/license/LicenseManager$LicenseStateListener;)V
@@ -644,7 +644,7 @@
 .end method
 
 .method public static stopAll()V
-    .locals 1
+    .registers 1
 
     .line 148
     :try_start_0
@@ -653,15 +653,15 @@
     move-result-object v0
 
     invoke-virtual {v0}, Lio/vanta/core/system/BProcessManagerService;->killAll()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_7
+    .catchall {:try_start_0 .. :try_end_7} :catchall_7
 
-    :catchall_0
+    :catchall_7
     return-void
 .end method
 
 .method public static stopPackage(Ljava/lang/String;I)V
-    .locals 1
+    .registers 3
 
     .line 142
     invoke-static {}, Lio/vanta/Vanta;->checkLicenseEnforcement()V
@@ -677,7 +677,7 @@
 .end method
 
 .method public static uninstallGms(I)Z
-    .locals 1
+    .registers 2
 
     .line 194
     invoke-static {}, Lio/vanta/Vanta;->checkLicenseEnforcement()V
@@ -695,7 +695,7 @@
 .end method
 
 .method public static uninstallPackage(Ljava/lang/String;I)Z
-    .locals 1
+    .registers 3
 
     .line 131
     invoke-static {}, Lio/vanta/Vanta;->checkLicenseEnforcement()V

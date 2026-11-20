@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/content/Context;)V
-    .locals 0
+    .registers 2
 
     .line 35
     iput-object p1, p0, Lio/vanta/Vanta$1;->val$base:Landroid/content/Context;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public getHostPackageName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 39
     iget-object v0, p0, Lio/vanta/Vanta$1;->val$base:Landroid/content/Context;

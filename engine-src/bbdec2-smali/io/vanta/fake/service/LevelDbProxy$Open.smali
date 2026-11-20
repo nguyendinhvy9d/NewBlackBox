@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 35
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -43,12 +43,12 @@
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object p1
 
-    :catch_0
+    :catch_5
     move-exception p1
 
     .line 41
@@ -61,7 +61,7 @@
     .line 42
     const-string v0, "LevelDbProxy"
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_32
 
     const-string v1, "lock"
 
@@ -69,7 +69,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_32
 
     const-string v1, "Try again"
 
@@ -77,7 +77,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_32
 
     .line 43
     new-instance p1, Ljava/lang/StringBuilder;
@@ -98,8 +98,8 @@
 
     return-object p3
 
-    :cond_0
-    if-eqz p2, :cond_1
+    :cond_32
+    if-eqz p2, :cond_4f
 
     .line 46
     const-string v1, "IO error"
@@ -108,7 +108,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_4f
 
     .line 47
     new-instance p1, Ljava/lang/StringBuilder;
@@ -130,6 +130,6 @@
     return-object p3
 
     .line 51
-    :cond_1
+    :cond_4f
     throw p1
 .end method

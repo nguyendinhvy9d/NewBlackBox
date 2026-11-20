@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 8
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -20,7 +20,7 @@
 .end method
 
 .method public static getInitialPackageName()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 18
     sget-object v0, Lio/vanta/core/env/VirtualRuntime;->sInitialPackageName:Ljava/lang/String;
@@ -29,7 +29,7 @@
 .end method
 
 .method public static getProcessName()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 14
     sget-object v0, Lio/vanta/core/env/VirtualRuntime;->sProcessName:Ljava/lang/String;
@@ -38,17 +38,17 @@
 .end method
 
 .method public static setupRuntime(Ljava/lang/String;Landroid/content/pm/ApplicationInfo;)V
-    .locals 1
+    .registers 3
 
     .line 22
     sget-object v0, Lio/vanta/core/env/VirtualRuntime;->sProcessName:Ljava/lang/String;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
     return-void
 
     .line 25
-    :cond_0
+    :cond_5
     iget-object p1, p1, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
 
     sput-object p1, Lio/vanta/core/env/VirtualRuntime;->sInitialPackageName:Ljava/lang/String;

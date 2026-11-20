@@ -32,7 +32,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 70
     new-instance v0, Lio/vanta/entity/pm/InstallOption$1;
@@ -45,7 +45,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 62
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -64,7 +64,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 65
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -97,7 +97,7 @@
 .end method
 
 .method public static installByStorage()Lio/vanta/entity/pm/InstallOption;
-    .locals 2
+    .registers 2
 
     .line 25
     new-instance v0, Lio/vanta/entity/pm/InstallOption;
@@ -115,7 +115,7 @@
 .end method
 
 .method public static installBySystem()Lio/vanta/entity/pm/InstallOption;
-    .locals 2
+    .registers 2
 
     .line 19
     new-instance v0, Lio/vanta/entity/pm/InstallOption;
@@ -135,7 +135,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -143,49 +143,49 @@
 .end method
 
 .method public hasSplits()Z
-    .locals 1
+    .registers 2
 
     .line 44
     iget-object v0, p0, Lio/vanta/entity/pm/InstallOption;->splitCodePaths:[Ljava/lang/String;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_9
 
     array-length v0, v0
 
-    if-lez v0, :cond_0
+    if-lez v0, :cond_9
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_9
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public isFlag(I)Z
-    .locals 1
+    .registers 3
 
     .line 48
     iget v0, p0, Lio/vanta/entity/pm/InstallOption;->flags:I
 
     and-int/2addr p1, v0
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_7
 
     const/4 p1, 0x1
 
     return p1
 
-    :cond_0
+    :cond_7
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method public makeUriFile()Lio/vanta/entity/pm/InstallOption;
-    .locals 1
+    .registers 2
 
     .line 33
     iget v0, p0, Lio/vanta/entity/pm/InstallOption;->flags:I
@@ -198,7 +198,7 @@
 .end method
 
 .method public withSplitCodePaths([Ljava/lang/String;)Lio/vanta/entity/pm/InstallOption;
-    .locals 0
+    .registers 2
 
     .line 39
     iput-object p1, p0, Lio/vanta/entity/pm/InstallOption;->splitCodePaths:[Ljava/lang/String;
@@ -207,7 +207,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 0
+    .registers 3
 
     .line 58
     iget p2, p0, Lio/vanta/entity/pm/InstallOption;->flags:I

@@ -22,7 +22,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/app/BActivityThread;Ljava/lang/String;)V
-    .locals 0
+    .registers 3
 
     .line 1609
     iput-object p1, p0, Lio/vanta/app/BActivityThread$7;->this$0:Lio/vanta/app/BActivityThread;
@@ -37,13 +37,13 @@
 
 # virtual methods
 .method public getApplicationContext()Landroid/content/Context;
-    .locals 0
+    .registers 1
 
     return-object p0
 .end method
 
 .method public getPackageName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 1618
     iget-object v0, p0, Lio/vanta/app/BActivityThread$7;->val$packageName:Ljava/lang/String;
@@ -52,7 +52,7 @@
 .end method
 
 .method public onCreate()V
-    .locals 2
+    .registers 3
 
     .line 1612
     invoke-super {p0}, Landroid/app/Application;->onCreate()V

@@ -54,18 +54,18 @@
 
     move-result v2
 
-    if-ne v1, v2, :cond_20
+    if-ne v1, v2, :cond_27
 
     invoke-static {}, Lio/vanta/fake/service/GmsCallerFix;->uidPkgs()[Ljava/lang/String;
 
     move-result-object v3
 
-    if-eqz v3, :xj_skip_0
+    if-eqz v3, :cond_16
 
     return-object v3
 
-    :xj_skip_0
     .line 448
+    :cond_16
     invoke-static {}, Lio/vanta/app/BActivityThread;->getBUid()I
 
     move-result v1
@@ -86,7 +86,7 @@
     move-result v1
 
     .line 451
-    :cond_20
+    :cond_27
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v2
@@ -142,35 +142,35 @@
 
     invoke-static {v3, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    if-eqz v1, :cond_5e
+    if-eqz v1, :cond_65
 
     .line 453
     array-length v2, v1
 
-    if-lez v2, :cond_5e
+    if-lez v2, :cond_65
 
     return-object v1
 
     .line 457
-    :cond_5e
-    :try_start_5e
+    :cond_65
+    :try_start_65
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_62
-    .catchall {:try_start_5e .. :try_end_62} :catchall_63
+    :try_end_69
+    .catchall {:try_start_65 .. :try_end_69} :catchall_6a
 
     return-object p1
 
-    :catchall_63
-    if-eqz v1, :cond_66
+    :catchall_6a
+    if-eqz v1, :cond_6d
 
-    goto :goto_68
+    goto :goto_6f
 
     .line 459
-    :cond_66
+    :cond_6d
     new-array v1, v0, [Ljava/lang/String;
 
-    :goto_68
+    :goto_6f
     return-object v1
 .end method

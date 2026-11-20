@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/lang/Thread$UncaughtExceptionHandler;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -41,7 +41,7 @@
 
 # virtual methods
 .method public uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    .locals 5
+    .registers 8
 
     const-string v0, "FATAL CRASH (Uncaught): "
 
@@ -56,7 +56,7 @@
 
     const-string v4, "SimpleCrashFix"
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_3e
 
     .line 49
     new-instance p1, Ljava/lang/StringBuilder;
@@ -107,12 +107,12 @@
     return-void
 
     .line 55
-    :cond_0
+    :cond_3e
     invoke-static {p2}, Lio/vanta/utils/SimpleCrashFix;->-$$Nest$smisGooglePlayServicesCrash(Ljava/lang/Throwable;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_88
 
     .line 56
     new-instance v0, Ljava/lang/StringBuilder;
@@ -139,7 +139,7 @@
     invoke-virtual {p2}, Ljava/lang/Throwable;->printStackTrace()V
 
     .line 59
-    :try_start_0
+    :try_start_5d
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v0
@@ -161,11 +161,11 @@
     move-result-object v1
 
     invoke-virtual {v0, v1, v3}, Lio/vanta/VantaCore;->sendLogs(Ljava/lang/String;Z)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_75
+    .catchall {:try_start_5d .. :try_end_75} :catchall_75
 
     .line 62
-    :catchall_0
+    :catchall_75
     invoke-static {}, Landroid/os/Looper;->myLooper()Landroid/os/Looper;
 
     move-result-object v0
@@ -174,25 +174,25 @@
 
     move-result-object v1
 
-    if-ne v0, v1, :cond_5
+    if-ne v0, v1, :cond_16a
 
     .line 63
     iget-object v0, p0, Lio/vanta/utils/SimpleCrashFix$1;->val$currentHandler:Ljava/lang/Thread$UncaughtExceptionHandler;
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_16a
 
     .line 64
     invoke-interface {v0, p1, p2}, Ljava/lang/Thread$UncaughtExceptionHandler;->uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
 
-    goto/16 :goto_1
+    goto/16 :goto_16a
 
     .line 71
-    :cond_1
+    :cond_88
     invoke-static {p2}, Lio/vanta/utils/SimpleCrashFix;->-$$Nest$smisWebViewCrash(Ljava/lang/Throwable;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_bf
 
     .line 72
     new-instance p1, Ljava/lang/StringBuilder;
@@ -243,12 +243,12 @@
     return-void
 
     .line 78
-    :cond_2
+    :cond_bf
     invoke-static {p2}, Lio/vanta/utils/SimpleCrashFix;->-$$Nest$smisAttributionSourceCrash(Ljava/lang/Throwable;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_f6
 
     .line 79
     new-instance p1, Ljava/lang/StringBuilder;
@@ -299,12 +299,12 @@
     return-void
 
     .line 85
-    :cond_3
+    :cond_f6
     invoke-static {p2}, Lio/vanta/utils/SimpleCrashFix;->-$$Nest$smisSocialMediaAppCrash(Ljava/lang/Throwable;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_12d
 
     .line 86
     new-instance p1, Ljava/lang/StringBuilder;
@@ -355,13 +355,13 @@
     return-void
 
     .line 92
-    :cond_4
+    :cond_12d
     const-string v1, "Fatal crash detected, attempting to report before death..."
 
     invoke-static {v4, v1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 94
-    :try_start_1
+    :try_start_132
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;
 
     move-result-object v1
@@ -385,12 +385,12 @@
     const/4 v2, 0x0
 
     invoke-virtual {v1, v0, v2}, Lio/vanta/VantaCore;->sendLogs(Ljava/lang/String;Z)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_14b
+    .catchall {:try_start_132 .. :try_end_14b} :catchall_14c
 
-    goto :goto_0
+    goto :goto_163
 
-    :catchall_1
+    :catchall_14c
     move-exception v0
 
     .line 96
@@ -415,15 +415,15 @@
     invoke-static {v4, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 100
-    :goto_0
+    :goto_163
     iget-object v0, p0, Lio/vanta/utils/SimpleCrashFix$1;->val$currentHandler:Ljava/lang/Thread$UncaughtExceptionHandler;
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_16a
 
     .line 101
     invoke-interface {v0, p1, p2}, Ljava/lang/Thread$UncaughtExceptionHandler;->uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
 
-    :cond_5
-    :goto_1
+    :cond_16a
+    :goto_16a
     return-void
 .end method

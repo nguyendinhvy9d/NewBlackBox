@@ -22,7 +22,7 @@
 
 # direct methods
 .method public constructor <init>(Lio/vanta/core/system/accounts/BAccountManagerService;Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/IAccountManagerResponse;Landroid/accounts/Account;Z)V
-    .locals 9
+    .registers 15
 
     .line 1358
     iput-object p1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$RemoveAccountSession;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -57,9 +57,9 @@
 
 # virtual methods
 .method public onResult(Landroid/os/Bundle;)V
-    .locals 4
+    .registers 6
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_5c
 
     .line 1378
     const-string v0, "booleanResult"
@@ -68,7 +68,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_5c
 
     const-string v1, "intent"
 
@@ -77,14 +77,14 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_5c
 
     .line 1380
     invoke-virtual {p1, v0}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_21
 
     .line 1382
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$RemoveAccountSession;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -96,12 +96,12 @@
     invoke-static {v0, v1, v2}, Lio/vanta/core/system/accounts/BAccountManagerService;->-$$Nest$mremoveAccountInternal(Lio/vanta/core/system/accounts/BAccountManagerService;Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/Account;)Z
 
     .line 1384
-    :cond_0
+    :cond_21
     invoke-virtual {p0}, Lio/vanta/core/system/accounts/BAccountManagerService$RemoveAccountSession;->getResponseAndClose()Landroid/accounts/IAccountManagerResponse;
 
     move-result-object v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_5c
 
     const/4 v1, 0x2
 
@@ -112,7 +112,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_52
 
     .line 1387
     new-instance v1, Ljava/lang/StringBuilder;
@@ -148,15 +148,15 @@
     invoke-static {v2, v1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 1391
-    :cond_1
-    :try_start_0
+    :cond_52
+    :try_start_52
     invoke-interface {v0, p1}, Landroid/accounts/IAccountManagerResponse;->onResult(Landroid/os/Bundle;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_55
+    .catch Landroid/os/RemoteException; {:try_start_52 .. :try_end_55} :catch_56
 
-    goto :goto_0
+    goto :goto_5c
 
-    :catch_0
+    :catch_56
     move-exception v0
 
     .line 1393
@@ -165,15 +165,15 @@
     invoke-static {v2, v1, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 1397
-    :cond_2
-    :goto_0
+    :cond_5c
+    :goto_5c
     invoke-super {p0, p1}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->onResult(Landroid/os/Bundle;)V
 
     return-void
 .end method
 
 .method public run()V
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -191,7 +191,7 @@
 .end method
 
 .method protected toDebugString(J)Ljava/lang/String;
-    .locals 1
+    .registers 4
 
     .line 1367
     new-instance v0, Ljava/lang/StringBuilder;

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 140
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,30 +31,30 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_2a
 
     const/4 v0, 0x0
 
     .line 145
-    :goto_0
-    :try_start_0
+    :goto_3
+    :try_start_3
     array-length v1, p3
 
-    if-ge v0, v1, :cond_1
+    if-ge v0, v1, :cond_2a
 
     .line 146
     aget-object v1, p3, v0
 
     instance-of v2, v1, Ljava/lang/Integer;
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_27
 
     .line 147
     check-cast v1, Ljava/lang/Integer;
@@ -86,25 +86,25 @@
 
     aput-object v1, p3, v0
 
-    goto :goto_1
+    goto :goto_2a
 
-    :cond_0
+    :cond_27
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_3
 
     .line 154
-    :cond_1
-    :goto_1
+    :cond_2a
+    :goto_2a
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2e
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_2e} :catch_2f
 
     return-object p1
 
-    :catch_0
+    :catch_2f
     move-exception v0
 
     .line 156

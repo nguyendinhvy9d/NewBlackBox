@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -41,7 +41,7 @@
 
 # virtual methods
 .method public binderDied()V
-    .locals 2
+    .registers 3
 
     .line 52
     invoke-static {}, Lio/vanta/fake/delegate/InnerReceiverDelegate;->-$$Nest$sfgetsInnerReceiverDelegate()Ljava/util/Map;

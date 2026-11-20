@@ -48,7 +48,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/pm/IntentResolver;Ljava/util/Iterator;)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -71,7 +71,7 @@
 
 # virtual methods
 .method public hasNext()Z
-    .locals 1
+    .registers 2
 
     .line 238
     iget-object v0, p0, Lio/vanta/core/system/pm/IntentResolver$IteratorWrapper;->mI:Ljava/util/Iterator;
@@ -84,7 +84,7 @@
 .end method
 
 .method public next()Lio/vanta/core/system/pm/BPackage$IntentInfo;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()TF;"
@@ -106,7 +106,7 @@
 .end method
 
 .method public bridge synthetic next()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 229
     invoke-virtual {p0}, Lio/vanta/core/system/pm/IntentResolver$IteratorWrapper;->next()Lio/vanta/core/system/pm/BPackage$IntentInfo;
@@ -117,12 +117,12 @@
 .end method
 
 .method public remove()V
-    .locals 2
+    .registers 3
 
     .line 246
     iget-object v0, p0, Lio/vanta/core/system/pm/IntentResolver$IteratorWrapper;->mCur:Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_9
 
     .line 247
     iget-object v1, p0, Lio/vanta/core/system/pm/IntentResolver$IteratorWrapper;->this$0:Lio/vanta/core/system/pm/IntentResolver;
@@ -130,7 +130,7 @@
     invoke-virtual {v1, v0}, Lio/vanta/core/system/pm/IntentResolver;->removeFilterInternal(Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
 
     .line 249
-    :cond_0
+    :cond_9
     iget-object v0, p0, Lio/vanta/core/system/pm/IntentResolver$IteratorWrapper;->mI:Ljava/util/Iterator;
 
     invoke-interface {v0}, Ljava/util/Iterator;->remove()V

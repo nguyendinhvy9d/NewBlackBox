@@ -34,7 +34,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 68
     new-instance v0, Lio/vanta/entity/location/BLocation$1;
@@ -47,7 +47,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 47
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -78,7 +78,7 @@
 .end method
 
 .method public constructor <init>(DD)V
-    .locals 2
+    .registers 7
 
     .line 50
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -109,7 +109,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .locals 2
+    .registers 4
 
     .line 55
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -184,7 +184,7 @@
 
 # virtual methods
 .method public convert2SystemLocation()Landroid/location/Location;
-    .locals 4
+    .registers 5
 
     .line 93
     new-instance v0, Landroid/location/Location;
@@ -249,7 +249,7 @@
 .end method
 
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -257,7 +257,7 @@
 .end method
 
 .method public getLatitude()D
-    .locals 2
+    .registers 3
 
     .line 40
     iget-wide v0, p0, Lio/vanta/entity/location/BLocation;->mLatitude:D
@@ -266,7 +266,7 @@
 .end method
 
 .method public getLongitude()D
-    .locals 2
+    .registers 3
 
     .line 44
     iget-wide v0, p0, Lio/vanta/entity/location/BLocation;->mLongitude:D
@@ -275,7 +275,7 @@
 .end method
 
 .method public isEmpty()Z
-    .locals 4
+    .registers 5
 
     .line 65
     iget-wide v0, p0, Lio/vanta/entity/location/BLocation;->mLatitude:D
@@ -284,26 +284,26 @@
 
     cmpl-double v0, v0, v2
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_10
 
     iget-wide v0, p0, Lio/vanta/entity/location/BLocation;->mLongitude:D
 
     cmpl-double v0, v0, v2
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_10
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_10
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 3
+    .registers 4
 
     .line 82
     new-instance v0, Ljava/lang/StringBuilder;
@@ -392,7 +392,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 2
+    .registers 5
 
     .line 31
     iget-wide v0, p0, Lio/vanta/entity/location/BLocation;->mLatitude:D

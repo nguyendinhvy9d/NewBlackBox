@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 145
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,23 +29,23 @@
 .end method
 
 .method private isKnownWebViewPackage(Ljava/lang/String;)Z
-    .locals 2
+    .registers 4
 
     const/4 v0, 0x0
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     return v0
 
     .line 171
-    :cond_0
+    :cond_4
     const-string v1, "com.google.android.webview"
 
     invoke-virtual {p1, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_46
 
     const-string v1, "com.google.android.webview.dev"
 
@@ -54,7 +54,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_46
 
     const-string v1, "com.google.android.webview.beta"
 
@@ -63,7 +63,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_46
 
     const-string v1, "com.google.android.webview.canary"
 
@@ -72,7 +72,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_46
 
     const-string v1, "com.android.webview"
 
@@ -81,7 +81,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_46
 
     const-string v1, "com.huawei.webview"
 
@@ -90,7 +90,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_46
 
     const-string v1, "com.samsung.android.webview"
 
@@ -99,7 +99,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_46
 
     const-string v1, "com.oneplus.webview"
 
@@ -108,15 +108,15 @@
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_45
 
-    goto :goto_0
+    goto :goto_46
 
-    :cond_1
+    :cond_45
     return v0
 
-    :cond_2
-    :goto_0
+    :cond_46
+    :goto_46
     const/4 p1, 0x1
 
     return p1
@@ -125,7 +125,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -137,11 +137,11 @@
     .line 148
     const-string v1, "IWebViewUpdateServiceProxy"
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_42
 
     array-length v2, p3
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_42
 
     .line 149
     aget-object v2, p3, v0
@@ -170,7 +170,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_42
 
     .line 154
     new-instance p1, Ljava/lang/StringBuilder;
@@ -205,17 +205,17 @@
     return-object p1
 
     .line 160
-    :cond_0
-    :try_start_0
+    :cond_42
+    :try_start_42
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_46
+    .catch Ljava/lang/Exception; {:try_start_42 .. :try_end_46} :catch_47
 
     return-object p1
 
-    :catch_0
+    :catch_47
     move-exception p1
 
     .line 162

@@ -35,7 +35,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 12
     new-instance v0, Landroid/os/Handler;
@@ -69,7 +69,7 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 17
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -78,9 +78,9 @@
 .end method
 
 .method public static addListener(Lio/vanta/license/LicenseManager$LicenseStateListener;)V
-    .locals 2
+    .registers 3
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_d
 
     .line 21
     sget-object v0, Lio/vanta/license/LicenseManager;->sListeners:Ljava/util/List;
@@ -89,29 +89,29 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_d
 
     .line 22
     invoke-interface {v0, p0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    :cond_0
+    :cond_d
     return-void
 .end method
 
 .method public static assertAuthorized(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 0
+    .registers 2
 
     return-void
 .end method
 
 .method public static clearAuthorization(Landroid/content/Context;)V
-    .locals 0
+    .registers 1
 
     return-void
 .end method
 
 .method public static forceVerifyOnline(Landroid/content/Context;Ljava/lang/String;)Lio/vanta/license/LicenseManager$Result;
-    .locals 6
+    .registers 8
 
     const/4 p0, 0x1
 
@@ -137,7 +137,7 @@
 .end method
 
 .method public static getActiveToken()Lio/vanta/license/LicenseToken;
-    .locals 1
+    .registers 1
 
     .line 70
     sget-object v0, Lio/vanta/license/LicenseManager;->sActiveToken:Lio/vanta/license/LicenseToken;
@@ -146,7 +146,7 @@
 .end method
 
 .method public static getLicenseExpirationFormatted(Landroid/content/Context;)Ljava/lang/String;
-    .locals 0
+    .registers 1
 
     .line 94
     const-string p0, "Lifetime"
@@ -155,7 +155,7 @@
 .end method
 
 .method public static getLicenseExpiresAt(Landroid/content/Context;)J
-    .locals 2
+    .registers 3
 
     const-wide v0, 0x7fffffffffffffffL
 
@@ -163,7 +163,7 @@
 .end method
 
 .method public static getLicenseMessage()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 74
     const-string v0, "License active"
@@ -172,7 +172,7 @@
 .end method
 
 .method public static getSavedLicenseKey(Landroid/content/Context;)Ljava/lang/String;
-    .locals 0
+    .registers 1
 
     .line 78
     const-string p0, "UNLIMITED"
@@ -181,7 +181,7 @@
 .end method
 
 .method public static isLicenseValid(Landroid/content/Context;)Z
-    .locals 0
+    .registers 1
 
     const/4 p0, 0x1
 
@@ -189,7 +189,7 @@
 .end method
 
 .method static synthetic lambda$notifyListeners$0(ZLjava/lang/String;)V
-    .locals 2
+    .registers 4
 
     .line 34
     sget-object v0, Lio/vanta/license/LicenseManager;->sListeners:Ljava/util/List;
@@ -198,13 +198,13 @@
 
     move-result-object v0
 
-    :catchall_0
-    :goto_0
+    :catchall_6
+    :goto_6
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_16
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -213,19 +213,19 @@
     check-cast v1, Lio/vanta/license/LicenseManager$LicenseStateListener;
 
     .line 36
-    :try_start_0
+    :try_start_12
     invoke-interface {v1, p0, p1}, Lio/vanta/license/LicenseManager$LicenseStateListener;->onLicenseStateChanged(ZLjava/lang/String;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_15
+    .catchall {:try_start_12 .. :try_end_15} :catchall_6
 
-    goto :goto_0
+    goto :goto_6
 
-    :cond_0
+    :cond_16
     return-void
 .end method
 
 .method static synthetic lambda$verifyLicense$1(Lio/vanta/license/LicenseManager$Callback;Lio/vanta/license/LicenseManager$Result;)V
-    .locals 0
+    .registers 2
 
     .line 47
     invoke-interface {p0, p1}, Lio/vanta/license/LicenseManager$Callback;->onResult(Lio/vanta/license/LicenseManager$Result;)V
@@ -234,7 +234,7 @@
 .end method
 
 .method private static notifyListeners(ZLjava/lang/String;)V
-    .locals 2
+    .registers 4
 
     .line 33
     sget-object v0, Lio/vanta/license/LicenseManager;->MAIN_HANDLER:Landroid/os/Handler;
@@ -249,21 +249,21 @@
 .end method
 
 .method public static removeListener(Lio/vanta/license/LicenseManager$LicenseStateListener;)V
-    .locals 1
+    .registers 2
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_7
 
     .line 28
     sget-object v0, Lio/vanta/license/LicenseManager;->sListeners:Ljava/util/List;
 
     invoke-interface {v0, p0}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
 
-    :cond_0
+    :cond_7
     return-void
 .end method
 
 .method public static declared-synchronized startWatchdog(Landroid/content/Context;Ljava/lang/String;)V
-    .locals 0
+    .registers 2
 
     const-class p0, Lio/vanta/license/LicenseManager;
 
@@ -276,7 +276,7 @@
 .end method
 
 .method public static declared-synchronized stopWatchdog()V
-    .locals 1
+    .registers 1
 
     const-class v0, Lio/vanta/license/LicenseManager;
 
@@ -289,7 +289,7 @@
 .end method
 
 .method public static verifyLicense(Landroid/content/Context;Ljava/lang/String;Lio/vanta/license/LicenseManager$Callback;)V
-    .locals 6
+    .registers 9
 
     .line 44
     new-instance v0, Lio/vanta/license/LicenseManager$Result;
@@ -311,7 +311,7 @@
 
     invoke-static {p0, p1}, Lio/vanta/license/LicenseManager;->notifyListeners(ZLjava/lang/String;)V
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_20
 
     .line 47
     sget-object p0, Lio/vanta/license/LicenseManager;->MAIN_HANDLER:Landroid/os/Handler;
@@ -322,12 +322,12 @@
 
     invoke-virtual {p0, p1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    :cond_0
+    :cond_20
     return-void
 .end method
 
 .method public static verifyLicenseBlocking(Landroid/content/Context;Ljava/lang/String;)Lio/vanta/license/LicenseManager$Result;
-    .locals 6
+    .registers 8
 
     const/4 p0, 0x1
 

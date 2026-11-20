@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 217
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,7 +45,7 @@
     const-string v1, "WebView: Returning unique data directory: "
 
     .line 221
-    :try_start_0
+    :try_start_4
     const-string v2, "WebView: getDataDirectory called, returning unique directory"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -55,7 +55,7 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_64
 
     .line 226
     invoke-virtual {v2}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
@@ -122,13 +122,13 @@
 
     move-result p3
 
-    if-nez p3, :cond_0
+    if-nez p3, :cond_53
 
     .line 233
     invoke-virtual {p2}, Ljava/io/File;->mkdirs()Z
 
     .line 236
-    :cond_0
+    :cond_53
     new-instance p2, Ljava/lang/StringBuilder;
 
     invoke-direct {p2, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -146,16 +146,16 @@
     return-object p1
 
     .line 240
-    :cond_1
+    :cond_64
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_68
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_68} :catch_69
 
     return-object p1
 
-    :catch_0
+    :catch_69
     move-exception p1
 
     .line 242

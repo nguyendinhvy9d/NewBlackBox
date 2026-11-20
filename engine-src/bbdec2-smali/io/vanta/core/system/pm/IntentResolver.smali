@@ -27,9 +27,9 @@
 
 .field private static final TAG:Ljava/lang/String; = "IntentResolver"
 
-.field private static final localLOGV:Z = false
+.field private static final localLOGV:Z
 
-.field private static final localVerificationLOGV:Z = false
+.field private static final localVerificationLOGV:Z
 
 .field private static final mResolvePrioritySorter:Ljava/util/Comparator;
 
@@ -107,7 +107,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 657
     new-instance v0, Lio/vanta/core/system/pm/IntentResolver$1;
@@ -120,7 +120,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -178,7 +178,7 @@
 .end method
 
 .method private final addFilter(Landroid/util/ArrayMap;Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
-    .locals 6
+    .registers 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -201,7 +201,7 @@
 
     const/4 v2, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_14
 
     .line 428
     invoke-virtual {p0, v1}, Lio/vanta/core/system/pm/IntentResolver;->newArray(I)[Lio/vanta/core/system/pm/BPackage$IntentInfo;
@@ -217,34 +217,34 @@
     return-void
 
     .line 432
-    :cond_0
+    :cond_14
     array-length v3, v0
 
     move v4, v3
 
-    :goto_0
-    if-lez v4, :cond_1
+    :goto_16
+    if-lez v4, :cond_21
 
     add-int/lit8 v5, v4, -0x1
 
     .line 434
     aget-object v5, v0, v5
 
-    if-nez v5, :cond_1
+    if-nez v5, :cond_21
 
     add-int/lit8 v4, v4, -0x1
 
-    goto :goto_0
+    goto :goto_16
 
-    :cond_1
-    if-ge v4, v3, :cond_2
+    :cond_21
+    if-ge v4, v3, :cond_26
 
     .line 438
     aput-object p3, v0, v4
 
     return-void
 
-    :cond_2
+    :cond_26
     mul-int/lit8 v4, v3, 0x3
 
     .line 440
@@ -267,7 +267,7 @@
 .end method
 
 .method private buildResolveList(Landroid/content/Intent;Lio/vanta/core/system/pm/FastImmutableArraySet;ZZLjava/lang/String;Ljava/lang/String;[Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/List;I)V
-    .locals 16
+    .registers 26
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -306,34 +306,34 @@
 
     const/4 v3, 0x0
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_18
 
     .line 586
     array-length v5, v1
 
     move v11, v5
 
-    goto :goto_0
+    goto :goto_19
 
-    :cond_0
+    :cond_18
     move v11, v3
 
-    :goto_0
+    :goto_19
     move v12, v3
 
     move v13, v12
 
     .line 590
-    :goto_1
+    :goto_1b
     const-string v15, "IntentResolver"
 
-    if-ge v12, v11, :cond_f
+    if-ge v12, v11, :cond_101
 
     aget-object v3, v1, v12
 
-    if-eqz v3, :cond_f
+    if-eqz v3, :cond_101
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_37
 
     .line 592
     new-instance v5, Ljava/lang/StringBuilder;
@@ -352,17 +352,17 @@
 
     invoke-static {v15, v5}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
-    if-eqz v10, :cond_2
+    :cond_37
+    if-eqz v10, :cond_5a
 
     .line 602
     invoke-virtual {v0, v10, v3}, Lio/vanta/core/system/pm/IntentResolver;->isPackageForFilter(Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)Z
 
     move-result v5
 
-    if-nez v5, :cond_2
+    if-nez v5, :cond_5a
 
-    if-eqz p3, :cond_3
+    if-eqz p3, :cond_67
 
     .line 604
     new-instance v3, Ljava/lang/StringBuilder;
@@ -387,30 +387,30 @@
 
     invoke-static {v15, v3}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_2
+    goto :goto_67
 
     .line 610
-    :cond_2
+    :cond_5a
     invoke-virtual {v0, v3, v2}, Lio/vanta/core/system/pm/IntentResolver;->allowFilterResult(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/List;)Z
 
     move-result v5
 
-    if-nez v5, :cond_4
+    if-nez v5, :cond_6b
 
-    if-eqz p3, :cond_3
+    if-eqz p3, :cond_67
 
     .line 612
     const-string v3, "  Filter\'s target already added"
 
     invoke-static {v15, v3}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_3
-    :goto_2
+    :cond_67
+    :goto_67
     move/from16 v5, p9
 
-    goto/16 :goto_5
+    goto/16 :goto_fd
 
-    :cond_4
+    :cond_6b
     move-object v5, v3
 
     .line 617
@@ -430,12 +430,12 @@
 
     move-result v3
 
-    if-ltz v3, :cond_9
+    if-ltz v3, :cond_d6
 
     .line 619
     const-string v5, "android.intent.category.DEFAULT"
 
-    if-eqz p3, :cond_5
+    if-eqz p3, :cond_a7
 
     new-instance v6, Ljava/lang/StringBuilder;
 
@@ -476,8 +476,8 @@
     .line 619
     invoke-static {v15, v6}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_5
-    if-eqz p4, :cond_7
+    :cond_a7
+    if-eqz p4, :cond_b6
 
     .line 622
     iget-object v6, v14, Lio/vanta/core/system/pm/BPackage$IntentInfo;->intentFilter:Landroid/content/IntentFilter;
@@ -486,19 +486,19 @@
 
     move-result v5
 
-    if-eqz v5, :cond_6
+    if-eqz v5, :cond_b2
 
-    goto :goto_3
+    goto :goto_b6
 
-    :cond_6
+    :cond_b2
     move/from16 v5, p9
 
     const/4 v13, 0x1
 
-    goto :goto_5
+    goto :goto_fd
 
-    :cond_7
-    :goto_3
+    :cond_b6
+    :goto_b6
     move/from16 v5, p9
 
     .line 623
@@ -506,7 +506,7 @@
 
     move-result-object v3
 
-    if-eqz p3, :cond_8
+    if-eqz p3, :cond_d0
 
     .line 624
     new-instance v6, Ljava/lang/StringBuilder;
@@ -525,64 +525,64 @@
 
     invoke-static {v15, v6}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_8
-    if-eqz v3, :cond_e
+    :cond_d0
+    if-eqz v3, :cond_fd
 
     .line 626
     invoke-interface {v2, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_5
+    goto :goto_fd
 
-    :cond_9
+    :cond_d6
     move/from16 v5, p9
 
-    if-eqz p3, :cond_e
+    if-eqz p3, :cond_fd
 
     const/4 v6, -0x4
 
-    if-eq v3, v6, :cond_d
+    if-eq v3, v6, :cond_f2
 
     const/4 v6, -0x3
 
-    if-eq v3, v6, :cond_c
+    if-eq v3, v6, :cond_ef
 
     const/4 v6, -0x2
 
-    if-eq v3, v6, :cond_b
+    if-eq v3, v6, :cond_ec
 
     const/4 v6, -0x1
 
-    if-eq v3, v6, :cond_a
+    if-eq v3, v6, :cond_e9
 
     .line 639
     const-string v3, "unknown reason"
 
-    goto :goto_4
+    goto :goto_f4
 
     .line 638
-    :cond_a
+    :cond_e9
     const-string v3, "type"
 
-    goto :goto_4
+    goto :goto_f4
 
     .line 637
-    :cond_b
+    :cond_ec
     const-string v3, "data"
 
-    goto :goto_4
+    goto :goto_f4
 
     .line 635
-    :cond_c
+    :cond_ef
     const-string v3, "action"
 
-    goto :goto_4
+    goto :goto_f4
 
     .line 636
-    :cond_d
+    :cond_f2
     const-string v3, "category"
 
     .line 641
-    :goto_4
+    :goto_f4
     const-string v6, "  Filter did not match: "
 
     invoke-virtual {v6, v3}, Ljava/lang/String;->concat(Ljava/lang/String;)Ljava/lang/String;
@@ -591,23 +591,23 @@
 
     invoke-static {v15, v3}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_e
-    :goto_5
+    :cond_fd
+    :goto_fd
     add-int/lit8 v12, v12, 0x1
 
-    goto/16 :goto_1
+    goto/16 :goto_1b
 
-    :cond_f
-    if-eqz p3, :cond_11
+    :cond_101
+    if-eqz p3, :cond_11d
 
-    if-eqz v13, :cond_11
+    if-eqz v13, :cond_11d
 
     .line 647
     invoke-interface {v2}, Ljava/util/List;->size()I
 
     move-result v1
 
-    if-nez v1, :cond_10
+    if-nez v1, :cond_111
 
     .line 648
     const-string v1, "resolveIntent failed: found match, but none with CATEGORY_DEFAULT"
@@ -617,26 +617,26 @@
     return-void
 
     .line 649
-    :cond_10
+    :cond_111
     invoke-interface {v2}, Ljava/util/List;->size()I
 
     move-result v1
 
     const/4 v2, 0x1
 
-    if-le v1, v2, :cond_11
+    if-le v1, v2, :cond_11d
 
     .line 650
     const-string v1, "resolveIntent: multiple matches, only some with CATEGORY_DEFAULT"
 
     invoke-static {v15, v1}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_11
+    :cond_11d
     return-void
 .end method
 
 .method private collectFilters([Lio/vanta/core/system/pm/BPackage$IntentInfo;Landroid/content/IntentFilter;)Ljava/util/ArrayList;
-    .locals 4
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([TF;",
@@ -649,34 +649,34 @@
 
     const/4 v0, 0x0
 
-    if-eqz p1, :cond_3
+    if-eqz p1, :cond_21
 
     const/4 v1, 0x0
 
     .line 97
-    :goto_0
+    :goto_4
     array-length v2, p1
 
-    if-ge v1, v2, :cond_3
+    if-ge v1, v2, :cond_21
 
     .line 98
     aget-object v2, p1, v1
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_c
 
-    goto :goto_1
+    goto :goto_21
 
     .line 102
-    :cond_0
+    :cond_c
     iget-object v3, v2, Lio/vanta/core/system/pm/BPackage$IntentInfo;->intentFilter:Landroid/content/IntentFilter;
 
     invoke-static {v3, p2}, Lio/vanta/core/system/pm/IntentResolver;->filterEquals(Landroid/content/IntentFilter;Landroid/content/IntentFilter;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_1e
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_1b
 
     .line 104
     new-instance v0, Ljava/util/ArrayList;
@@ -684,21 +684,21 @@
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
     .line 106
-    :cond_1
+    :cond_1b
     invoke-virtual {v0, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    :cond_2
+    :cond_1e
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_4
 
-    :cond_3
-    :goto_1
+    :cond_21
+    :goto_21
     return-object v0
 .end method
 
 .method public static filterEquals(Landroid/content/IntentFilter;Landroid/content/IntentFilter;)Z
-    .locals 4
+    .registers 6
 
     .line 56
     invoke-virtual {p0}, Landroid/content/IntentFilter;->countActions()I
@@ -712,15 +712,15 @@
 
     const/4 v2, 0x0
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_c
 
     return v2
 
-    :cond_0
+    :cond_c
     move v1, v2
 
-    :goto_0
-    if-ge v1, v0, :cond_2
+    :goto_d
+    if-ge v1, v0, :cond_1d
 
     .line 62
     invoke-virtual {p0, v1}, Landroid/content/IntentFilter;->getAction(I)Ljava/lang/String;
@@ -731,17 +731,17 @@
 
     move-result v3
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_1a
 
     return v2
 
-    :cond_1
+    :cond_1a
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_d
 
     .line 66
-    :cond_2
+    :cond_1d
     invoke-virtual {p0}, Landroid/content/IntentFilter;->countCategories()I
 
     move-result v0
@@ -751,15 +751,15 @@
 
     move-result v1
 
-    if-eq v0, v1, :cond_3
+    if-eq v0, v1, :cond_28
 
     return v2
 
-    :cond_3
+    :cond_28
     move v1, v2
 
-    :goto_1
-    if-ge v1, v0, :cond_5
+    :goto_29
+    if-ge v1, v0, :cond_39
 
     .line 72
     invoke-virtual {p0, v1}, Landroid/content/IntentFilter;->getCategory(I)Ljava/lang/String;
@@ -770,17 +770,17 @@
 
     move-result v3
 
-    if-nez v3, :cond_4
+    if-nez v3, :cond_36
 
     return v2
 
-    :cond_4
+    :cond_36
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_1
+    goto :goto_29
 
     .line 76
-    :cond_5
+    :cond_39
     invoke-virtual {p0}, Landroid/content/IntentFilter;->countDataSchemes()I
 
     move-result v0
@@ -790,15 +790,15 @@
 
     move-result v1
 
-    if-eq v0, v1, :cond_6
+    if-eq v0, v1, :cond_44
 
     return v2
 
-    :cond_6
+    :cond_44
     move v1, v2
 
-    :goto_2
-    if-ge v1, v0, :cond_8
+    :goto_45
+    if-ge v1, v0, :cond_55
 
     .line 82
     invoke-virtual {p0, v1}, Landroid/content/IntentFilter;->getDataScheme(I)Ljava/lang/String;
@@ -809,17 +809,17 @@
 
     move-result v3
 
-    if-nez v3, :cond_7
+    if-nez v3, :cond_52
 
     return v2
 
-    :cond_7
+    :cond_52
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_2
+    goto :goto_45
 
     .line 86
-    :cond_8
+    :cond_55
     invoke-virtual {p0}, Landroid/content/IntentFilter;->countDataSchemeSpecificParts()I
 
     move-result p0
@@ -829,18 +829,18 @@
 
     move-result p1
 
-    if-eq p0, p1, :cond_9
+    if-eq p0, p1, :cond_60
 
     return v2
 
-    :cond_9
+    :cond_60
     const/4 p0, 0x1
 
     return p0
 .end method
 
 .method private static getFastIntentCategories(Landroid/content/Intent;)Lio/vanta/core/system/pm/FastImmutableArraySet;
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -857,14 +857,14 @@
 
     move-result-object p0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_8
 
     const/4 p0, 0x0
 
     return-object p0
 
     .line 574
-    :cond_0
+    :cond_8
     new-instance v0, Lio/vanta/core/system/pm/FastImmutableArraySet;
 
     invoke-interface {p0}, Ljava/util/Set;->size()I
@@ -885,7 +885,7 @@
 .end method
 
 .method private final register_intent_filter(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/Iterator;Landroid/util/ArrayMap;Ljava/lang/String;)I
-    .locals 1
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;",
@@ -902,18 +902,18 @@
 
     const/4 p4, 0x0
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_4
 
     return p4
 
     .line 516
-    :cond_0
-    :goto_0
+    :cond_4
+    :goto_4
     invoke-interface {p2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_16
 
     .line 517
     invoke-interface {p2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -927,14 +927,14 @@
     .line 520
     invoke-direct {p0, p3, v0, p1}, Lio/vanta/core/system/pm/IntentResolver;->addFilter(Landroid/util/ArrayMap;Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
 
-    goto :goto_0
+    goto :goto_4
 
-    :cond_1
+    :cond_16
     return p4
 .end method
 
 .method private final register_mime_types(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/lang/String;)I
-    .locals 7
+    .registers 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;",
@@ -952,20 +952,20 @@
 
     const/4 v0, 0x0
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_a
 
     return v0
 
-    :cond_0
+    :cond_a
     move v1, v0
 
     .line 455
-    :goto_0
+    :goto_b
     invoke-interface {p2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_53
 
     .line 456
     invoke-interface {p2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -983,7 +983,7 @@
 
     move-result v3
 
-    if-lez v3, :cond_1
+    if-lez v3, :cond_2a
 
     .line 462
     invoke-virtual {v2, v0, v3}, Ljava/lang/String;->substring(II)Ljava/lang/String;
@@ -994,10 +994,10 @@
 
     move-result-object v4
 
-    goto :goto_1
+    goto :goto_40
 
     .line 464
-    :cond_1
+    :cond_2a
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -1023,34 +1023,34 @@
     move-object v2, v6
 
     .line 467
-    :goto_1
+    :goto_40
     iget-object v5, p0, Lio/vanta/core/system/pm/IntentResolver;->mTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-direct {p0, v5, v2, p1}, Lio/vanta/core/system/pm/IntentResolver;->addFilter(Landroid/util/ArrayMap;Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
 
-    if-lez v3, :cond_2
+    if-lez v3, :cond_4d
 
     .line 470
     iget-object v2, p0, Lio/vanta/core/system/pm/IntentResolver;->mBaseTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-direct {p0, v2, v4, p1}, Lio/vanta/core/system/pm/IntentResolver;->addFilter(Landroid/util/ArrayMap;Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
 
-    goto :goto_0
+    goto :goto_b
 
     .line 472
-    :cond_2
+    :cond_4d
     iget-object v2, p0, Lio/vanta/core/system/pm/IntentResolver;->mWildTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-direct {p0, v2, v4, p1}, Lio/vanta/core/system/pm/IntentResolver;->addFilter(Landroid/util/ArrayMap;Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
 
-    goto :goto_0
+    goto :goto_b
 
-    :cond_3
+    :cond_53
     return v1
 .end method
 
 .method private final remove_all_objects(Landroid/util/ArrayMap;Ljava/lang/String;Ljava/lang/Object;)V
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1070,46 +1070,46 @@
 
     check-cast v0, [Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_46
 
     .line 545
     array-length v1, v0
 
     add-int/lit8 v1, v1, -0x1
 
-    :goto_0
-    if-ltz v1, :cond_0
+    :goto_b
+    if-ltz v1, :cond_14
 
     .line 546
     aget-object v2, v0, v1
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_14
 
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_0
+    goto :goto_b
 
-    :cond_0
+    :cond_14
     move v2, v1
 
-    :goto_1
-    if-ltz v1, :cond_3
+    :goto_15
+    if-ltz v1, :cond_2c
 
     .line 550
     aget-object v3, v0, v1
 
-    if-ne v3, p3, :cond_2
+    if-ne v3, p3, :cond_29
 
     sub-int v3, v2, v1
 
-    if-lez v3, :cond_1
+    if-lez v3, :cond_24
 
     add-int/lit8 v4, v1, 0x1
 
     .line 553
     invoke-static {v0, v4, v0, v1, v3}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
 
-    :cond_1
+    :cond_24
     const/4 v3, 0x0
 
     .line 555
@@ -1117,13 +1117,13 @@
 
     add-int/lit8 v2, v2, -0x1
 
-    :cond_2
+    :cond_29
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_1
+    goto :goto_15
 
-    :cond_3
-    if-gez v2, :cond_4
+    :cond_2c
+    if-gez v2, :cond_32
 
     .line 560
     invoke-virtual {p1, p2}, Landroid/util/ArrayMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
@@ -1131,12 +1131,12 @@
     return-void
 
     .line 561
-    :cond_4
+    :cond_32
     array-length p3, v0
 
     div-int/lit8 p3, p3, 0x2
 
-    if-ge v2, p3, :cond_5
+    if-ge v2, p3, :cond_46
 
     add-int/lit8 p3, v2, 0x2
 
@@ -1155,12 +1155,12 @@
     .line 564
     invoke-virtual {p1, p2, p3}, Landroid/util/ArrayMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_5
+    :cond_46
     return-void
 .end method
 
 .method private final unregister_intent_filter(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/Iterator;Landroid/util/ArrayMap;Ljava/lang/String;)I
-    .locals 1
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;",
@@ -1177,18 +1177,18 @@
 
     const/4 p4, 0x0
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_4
 
     return p4
 
     .line 532
-    :cond_0
-    :goto_0
+    :cond_4
+    :goto_4
     invoke-interface {p2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_16
 
     .line 533
     invoke-interface {p2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -1202,14 +1202,14 @@
     .line 536
     invoke-direct {p0, p3, v0, p1}, Lio/vanta/core/system/pm/IntentResolver;->remove_all_objects(Landroid/util/ArrayMap;Ljava/lang/String;Ljava/lang/Object;)V
 
-    goto :goto_0
+    goto :goto_4
 
-    :cond_1
+    :cond_16
     return p4
 .end method
 
 .method private final unregister_mime_types(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/lang/String;)I
-    .locals 7
+    .registers 10
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;",
@@ -1227,20 +1227,20 @@
 
     const/4 v0, 0x0
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_a
 
     return v0
 
-    :cond_0
+    :cond_a
     move v1, v0
 
     .line 486
-    :goto_0
+    :goto_b
     invoke-interface {p2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_53
 
     .line 487
     invoke-interface {p2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
@@ -1258,7 +1258,7 @@
 
     move-result v3
 
-    if-lez v3, :cond_1
+    if-lez v3, :cond_2a
 
     .line 493
     invoke-virtual {v2, v0, v3}, Ljava/lang/String;->substring(II)Ljava/lang/String;
@@ -1269,10 +1269,10 @@
 
     move-result-object v4
 
-    goto :goto_1
+    goto :goto_40
 
     .line 495
-    :cond_1
+    :cond_2a
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -1298,36 +1298,36 @@
     move-object v2, v6
 
     .line 498
-    :goto_1
+    :goto_40
     iget-object v5, p0, Lio/vanta/core/system/pm/IntentResolver;->mTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-direct {p0, v5, v2, p1}, Lio/vanta/core/system/pm/IntentResolver;->remove_all_objects(Landroid/util/ArrayMap;Ljava/lang/String;Ljava/lang/Object;)V
 
-    if-lez v3, :cond_2
+    if-lez v3, :cond_4d
 
     .line 501
     iget-object v2, p0, Lio/vanta/core/system/pm/IntentResolver;->mBaseTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-direct {p0, v2, v4, p1}, Lio/vanta/core/system/pm/IntentResolver;->remove_all_objects(Landroid/util/ArrayMap;Ljava/lang/String;Ljava/lang/Object;)V
 
-    goto :goto_0
+    goto :goto_b
 
     .line 503
-    :cond_2
+    :cond_4d
     iget-object v2, p0, Lio/vanta/core/system/pm/IntentResolver;->mWildTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-direct {p0, v2, v4, p1}, Lio/vanta/core/system/pm/IntentResolver;->remove_all_objects(Landroid/util/ArrayMap;Ljava/lang/String;Ljava/lang/Object;)V
 
-    goto :goto_0
+    goto :goto_b
 
-    :cond_3
+    :cond_53
     return v1
 .end method
 
 
 # virtual methods
 .method public addFilter(Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;)V"
@@ -1361,9 +1361,9 @@
 
     move-result v1
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_2a
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_2a
 
     .line 46
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage$IntentInfo;->intentFilter:Landroid/content/IntentFilter;
@@ -1378,8 +1378,8 @@
 
     invoke-direct {p0, p1, v0, v2, v3}, Lio/vanta/core/system/pm/IntentResolver;->register_intent_filter(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/Iterator;Landroid/util/ArrayMap;Ljava/lang/String;)I
 
-    :cond_0
-    if-eqz v1, :cond_1
+    :cond_2a
+    if-eqz v1, :cond_39
 
     .line 50
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage$IntentInfo;->intentFilter:Landroid/content/IntentFilter;
@@ -1394,12 +1394,12 @@
 
     invoke-direct {p0, p1, v0, v1, v2}, Lio/vanta/core/system/pm/IntentResolver;->register_intent_filter(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/Iterator;Landroid/util/ArrayMap;Ljava/lang/String;)I
 
-    :cond_1
+    :cond_39
     return-void
 .end method
 
 .method protected allowFilterResult(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/List;)Z
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;",
@@ -1414,7 +1414,7 @@
 .end method
 
 .method protected dumpFilter(Ljava/io/PrintWriter;Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1433,7 +1433,7 @@
 .end method
 
 .method protected dumpFilterLabel(Ljava/io/PrintWriter;Ljava/lang/String;Ljava/lang/Object;I)V
-    .locals 0
+    .registers 5
 
     .line 422
     invoke-virtual {p1, p2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
@@ -1450,7 +1450,7 @@
 .end method
 
 .method dumpMap(Ljava/io/PrintWriter;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/util/ArrayMap;Ljava/lang/String;ZZ)Z
-    .locals 19
+    .registers 28
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1528,12 +1528,12 @@
     const/4 v13, 0x0
 
     .line 171
-    :goto_0
+    :goto_3a
     invoke-virtual {v3}, Landroid/util/ArrayMap;->size()I
 
     move-result v14
 
-    if-ge v11, v14, :cond_d
+    if-ge v11, v14, :cond_140
 
     .line 172
     invoke-virtual {v3, v11}, Landroid/util/ArrayMap;->valueAt(I)Ljava/lang/Object;
@@ -1548,33 +1548,33 @@
     .line 176
     const-string v8, ":"
 
-    if-eqz p8, :cond_6
+    if-eqz p8, :cond_da
 
-    if-nez p7, :cond_6
+    if-nez p7, :cond_da
 
     .line 177
     invoke-virtual {v7}, Landroid/util/ArrayMap;->clear()V
 
     const/4 v9, 0x0
 
-    :goto_1
-    if-ge v9, v15, :cond_2
+    :goto_51
+    if-ge v9, v15, :cond_94
 
     move/from16 v16, v9
 
     .line 178
     aget-object v9, v14, v16
 
-    if-eqz v9, :cond_2
+    if-eqz v9, :cond_94
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_67
 
     .line 179
     invoke-virtual {v0, v4, v9}, Lio/vanta/core/system/pm/IntentResolver;->isPackageForFilter(Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)Z
 
     move-result v17
 
-    if-nez v17, :cond_0
+    if-nez v17, :cond_67
 
     move-object/from16 v17, v10
 
@@ -1582,10 +1582,10 @@
 
     const/4 v12, 0x1
 
-    goto :goto_2
+    goto :goto_8d
 
     .line 182
-    :cond_0
+    :cond_67
     invoke-virtual {v0, v9}, Lio/vanta/core/system/pm/IntentResolver;->filterToLabel(Lio/vanta/core/system/pm/BPackage$IntentInfo;)Ljava/lang/Object;
 
     move-result-object v9
@@ -1597,7 +1597,7 @@
 
     move-result v10
 
-    if-gez v10, :cond_1
+    if-gez v10, :cond_7f
 
     .line 185
     new-instance v10, Landroid/util/MutableInt;
@@ -1610,9 +1610,9 @@
 
     invoke-virtual {v7, v9, v10}, Landroid/util/ArrayMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_2
+    goto :goto_8d
 
-    :cond_1
+    :cond_7f
     move/from16 v18, v12
 
     const/4 v12, 0x1
@@ -1630,16 +1630,16 @@
 
     iput v10, v9, Landroid/util/MutableInt;->value:I
 
-    :goto_2
+    :goto_8d
     add-int/lit8 v9, v16, 0x1
 
     move-object/from16 v10, v17
 
     move/from16 v12, v18
 
-    goto :goto_1
+    goto :goto_51
 
-    :cond_2
+    :cond_94
     move-object/from16 v17, v10
 
     move/from16 v18, v12
@@ -1653,14 +1653,14 @@
     const/4 v14, 0x0
 
     .line 190
-    :goto_3
+    :goto_9d
     invoke-virtual {v7}, Landroid/util/ArrayMap;->size()I
 
     move-result v15
 
-    if-ge v9, v15, :cond_5
+    if-ge v9, v15, :cond_d5
 
-    if-eqz v10, :cond_3
+    if-eqz v10, :cond_ac
 
     .line 192
     invoke-virtual/range {p1 .. p2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
@@ -1669,8 +1669,8 @@
 
     const/4 v10, 0x0
 
-    :cond_3
-    if-nez v14, :cond_4
+    :cond_ac
+    if-nez v14, :cond_be
 
     .line 196
     invoke-virtual {v1, v5}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
@@ -1688,7 +1688,7 @@
     move v14, v12
 
     .line 200
-    :cond_4
+    :cond_be
     invoke-virtual {v7, v9}, Landroid/util/ArrayMap;->keyAt(I)Ljava/lang/Object;
 
     move-result-object v15
@@ -1711,16 +1711,16 @@
 
     const/16 v18, 0x1
 
-    goto :goto_3
+    goto :goto_9d
 
-    :cond_5
+    :cond_d5
     move-object/from16 v17, v7
 
     move/from16 v12, v18
 
-    goto :goto_6
+    goto :goto_13a
 
-    :cond_6
+    :cond_da
     move-object/from16 v17, v10
 
     move/from16 v18, v12
@@ -1733,29 +1733,29 @@
 
     const/16 v16, 0x0
 
-    :goto_4
+    :goto_e5
     move-object/from16 v17, v7
 
-    if-ge v9, v15, :cond_c
+    if-ge v9, v15, :cond_13a
 
     .line 203
     aget-object v7, v14, v9
 
-    if-eqz v7, :cond_c
+    if-eqz v7, :cond_13a
 
-    if-eqz v4, :cond_7
+    if-eqz v4, :cond_f6
 
     .line 204
     invoke-virtual {v0, v4, v7}, Lio/vanta/core/system/pm/IntentResolver;->isPackageForFilter(Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)Z
 
     move-result v18
 
-    if-nez v18, :cond_7
+    if-nez v18, :cond_f6
 
-    goto :goto_5
+    goto :goto_135
 
-    :cond_7
-    if-eqz v10, :cond_8
+    :cond_f6
+    if-eqz v10, :cond_ff
 
     .line 208
     invoke-virtual/range {p1 .. p2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
@@ -1764,8 +1764,8 @@
 
     const/4 v10, 0x0
 
-    :cond_8
-    if-nez v16, :cond_9
+    :cond_ff
+    if-nez v16, :cond_112
 
     .line 212
     invoke-virtual {v1, v5}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
@@ -1783,12 +1783,12 @@
     const/16 v16, 0x1
 
     .line 216
-    :cond_9
+    :cond_112
     invoke-virtual {v0, v1, v2, v7}, Lio/vanta/core/system/pm/IntentResolver;->dumpFilter(Ljava/io/PrintWriter;Ljava/lang/String;Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
 
-    if-eqz p7, :cond_b
+    if-eqz p7, :cond_134
 
-    if-nez v13, :cond_a
+    if-nez v13, :cond_11e
 
     .line 219
     new-instance v13, Landroid/util/PrintWriterPrinter;
@@ -1796,7 +1796,7 @@
     invoke-direct {v13, v1}, Landroid/util/PrintWriterPrinter;-><init>(Ljava/io/PrintWriter;)V
 
     .line 221
-    :cond_a
+    :cond_11e
     iget-object v7, v7, Lio/vanta/core/system/pm/BPackage$IntentInfo;->intentFilter:Landroid/content/IntentFilter;
 
     new-instance v12, Ljava/lang/StringBuilder;
@@ -1817,32 +1817,32 @@
 
     invoke-virtual {v7, v13, v12}, Landroid/content/IntentFilter;->dump(Landroid/util/Printer;Ljava/lang/String;)V
 
-    :cond_b
+    :cond_134
     const/4 v12, 0x1
 
-    :goto_5
+    :goto_135
     add-int/lit8 v9, v9, 0x1
 
     move-object/from16 v7, v17
 
-    goto :goto_4
+    goto :goto_e5
 
-    :cond_c
-    :goto_6
+    :cond_13a
+    :goto_13a
     add-int/lit8 v11, v11, 0x1
 
     move-object/from16 v7, v17
 
-    goto/16 :goto_0
+    goto/16 :goto_3a
 
-    :cond_d
+    :cond_140
     move/from16 v18, v12
 
     return v18
 .end method
 
 .method public filterIterator()Ljava/util/Iterator;
-    .locals 2
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -1866,7 +1866,7 @@
 .end method
 
 .method protected filterResults(Ljava/util/List;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1879,7 +1879,7 @@
 .end method
 
 .method public filterSet()Ljava/util/Set;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -1899,7 +1899,7 @@
 .end method
 
 .method protected filterToLabel(Lio/vanta/core/system/pm/BPackage$IntentInfo;)Ljava/lang/Object;
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;)",
@@ -1914,7 +1914,7 @@
 .end method
 
 .method public findFilters(Landroid/content/IntentFilter;)Ljava/util/ArrayList;
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1934,7 +1934,7 @@
 
     const/4 v2, 0x1
 
-    if-ne v0, v2, :cond_0
+    if-ne v0, v2, :cond_19
 
     .line 116
     iget-object v0, p0, Lio/vanta/core/system/pm/IntentResolver;->mSchemeToFilter:Landroid/util/ArrayMap;
@@ -1956,18 +1956,18 @@
     return-object p1
 
     .line 117
-    :cond_0
+    :cond_19
     invoke-virtual {p1}, Landroid/content/IntentFilter;->countDataTypes()I
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_36
 
     invoke-virtual {p1}, Landroid/content/IntentFilter;->countActions()I
 
     move-result v0
 
-    if-ne v0, v2, :cond_1
+    if-ne v0, v2, :cond_36
 
     .line 119
     iget-object v0, p0, Lio/vanta/core/system/pm/IntentResolver;->mTypedActionToFilter:Landroid/util/ArrayMap;
@@ -1989,25 +1989,25 @@
     return-object p1
 
     .line 120
-    :cond_1
+    :cond_36
     invoke-virtual {p1}, Landroid/content/IntentFilter;->countDataTypes()I
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_59
 
     invoke-virtual {p1}, Landroid/content/IntentFilter;->countDataSchemes()I
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_59
 
     .line 121
     invoke-virtual {p1}, Landroid/content/IntentFilter;->countActions()I
 
     move-result v0
 
-    if-ne v0, v2, :cond_2
+    if-ne v0, v2, :cond_59
 
     .line 123
     iget-object v0, p0, Lio/vanta/core/system/pm/IntentResolver;->mActionToFilter:Landroid/util/ArrayMap;
@@ -2029,7 +2029,7 @@
     return-object p1
 
     .line 126
-    :cond_2
+    :cond_59
     iget-object v0, p0, Lio/vanta/core/system/pm/IntentResolver;->mFilters:Ljava/util/HashSet;
 
     invoke-virtual {v0}, Ljava/util/HashSet;->iterator()Ljava/util/Iterator;
@@ -2038,13 +2038,13 @@
 
     const/4 v1, 0x0
 
-    :cond_3
-    :goto_0
+    :cond_60
+    :goto_60
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_5
+    if-eqz v2, :cond_7f
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -2059,9 +2059,9 @@
 
     move-result v3
 
-    if-eqz v3, :cond_3
+    if-eqz v3, :cond_60
 
-    if-nez v1, :cond_4
+    if-nez v1, :cond_7b
 
     .line 129
     new-instance v1, Ljava/util/ArrayList;
@@ -2069,17 +2069,17 @@
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     .line 131
-    :cond_4
+    :cond_7b
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_60
 
-    :cond_5
+    :cond_7f
     return-object v1
 .end method
 
 .method protected isFilterStopped(Lio/vanta/core/system/pm/BPackage$IntentInfo;I)Z
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;I)Z"
@@ -2110,7 +2110,7 @@
 .end method
 
 .method protected newResult(Lio/vanta/core/system/pm/BPackage$IntentInfo;II)Ljava/lang/Object;
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;II)TR;"
@@ -2121,7 +2121,7 @@
 .end method
 
 .method public queryIntent(Landroid/content/Intent;Ljava/lang/String;ZI)Ljava/util/List;
-    .locals 19
+    .registers 24
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2156,20 +2156,20 @@
 
     const/4 v10, 0x0
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_18
 
     const/4 v3, 0x1
 
-    goto :goto_0
+    goto :goto_19
 
-    :cond_0
+    :cond_18
     move v3, v10
 
     .line 292
-    :goto_0
+    :goto_19
     const-string v11, "IntentResolver"
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_5e
 
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -2233,17 +2233,17 @@
 
     invoke-static {v11, v1}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_1
+    goto :goto_64
 
-    :cond_1
+    :cond_5e
     move-object/from16 v7, p1
 
     move/from16 v4, p3
 
     move/from16 v9, p4
 
-    :goto_1
-    if-eqz v5, :cond_9
+    :goto_64
+    if-eqz v5, :cond_15a
 
     const/16 v12, 0x2f
 
@@ -2252,7 +2252,7 @@
 
     move-result v12
 
-    if-lez v12, :cond_9
+    if-lez v12, :cond_15a
 
     .line 306
     invoke-virtual {v5, v10, v12}, Ljava/lang/String;->substring(II)Ljava/lang/String;
@@ -2266,7 +2266,7 @@
 
     move-result v15
 
-    if-nez v15, :cond_8
+    if-nez v15, :cond_12f
 
     .line 308
     invoke-virtual {v5}, Ljava/lang/String;->length()I
@@ -2281,7 +2281,7 @@
 
     const-string v10, "First type cut: "
 
-    if-ne v15, v1, :cond_4
+    if-ne v15, v1, :cond_d0
 
     add-int/lit8 v12, v12, 0x1
 
@@ -2292,12 +2292,12 @@
 
     const/16 v12, 0x2a
 
-    if-eq v1, v12, :cond_2
+    if-eq v1, v12, :cond_93
 
-    goto :goto_2
+    goto :goto_d0
 
     .line 319
-    :cond_2
+    :cond_93
     iget-object v1, v0, Lio/vanta/core/system/pm/IntentResolver;->mBaseTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-virtual {v1, v13}, Landroid/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -2306,7 +2306,7 @@
 
     check-cast v1, [Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v3, :cond_3
+    if-eqz v3, :cond_b1
 
     .line 320
     new-instance v12, Ljava/lang/StringBuilder;
@@ -2328,7 +2328,7 @@
     invoke-static {v11, v10}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 321
-    :cond_3
+    :cond_b1
     iget-object v10, v0, Lio/vanta/core/system/pm/IntentResolver;->mWildTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-virtual {v10, v13}, Landroid/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -2337,7 +2337,7 @@
 
     check-cast v10, [Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_10c
 
     .line 322
     new-instance v12, Ljava/lang/StringBuilder;
@@ -2360,11 +2360,11 @@
     .line 322
     invoke-static {v11, v2}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_3
+    goto :goto_10c
 
     .line 312
-    :cond_4
-    :goto_2
+    :cond_d0
+    :goto_d0
     iget-object v1, v0, Lio/vanta/core/system/pm/IntentResolver;->mTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-virtual {v1, v5}, Landroid/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -2373,7 +2373,7 @@
 
     check-cast v1, [Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v3, :cond_5
+    if-eqz v3, :cond_ee
 
     .line 313
     new-instance v12, Ljava/lang/StringBuilder;
@@ -2395,7 +2395,7 @@
     invoke-static {v11, v10}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 314
-    :cond_5
+    :cond_ee
     iget-object v10, v0, Lio/vanta/core/system/pm/IntentResolver;->mWildTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-virtual {v10, v13}, Landroid/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -2404,7 +2404,7 @@
 
     check-cast v10, [Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_10c
 
     .line 315
     new-instance v12, Ljava/lang/StringBuilder;
@@ -2428,8 +2428,8 @@
     invoke-static {v11, v2}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 327
-    :cond_6
-    :goto_3
+    :cond_10c
+    :goto_10c
     iget-object v2, v0, Lio/vanta/core/system/pm/IntentResolver;->mWildTypeToFilter:Landroid/util/ArrayMap;
 
     invoke-virtual {v2, v14}, Landroid/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -2438,7 +2438,7 @@
 
     check-cast v2, [Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v3, :cond_7
+    if-eqz v3, :cond_12c
 
     .line 328
     new-instance v12, Ljava/lang/StringBuilder;
@@ -2461,20 +2461,20 @@
 
     invoke-static {v11, v12}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_7
+    :cond_12c
     move-object v12, v10
 
     move-object v10, v2
 
-    goto :goto_5
+    goto :goto_15d
 
     .line 329
-    :cond_8
+    :cond_12f
     invoke-virtual {v7}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v1
 
-    if-eqz v1, :cond_9
+    if-eqz v1, :cond_15a
 
     .line 333
     iget-object v1, v0, Lio/vanta/core/system/pm/IntentResolver;->mTypedActionToFilter:Landroid/util/ArrayMap;
@@ -2489,7 +2489,7 @@
 
     check-cast v1, [Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v3, :cond_a
+    if-eqz v3, :cond_15b
 
     .line 334
     new-instance v2, Ljava/lang/StringBuilder;
@@ -2512,19 +2512,19 @@
 
     invoke-static {v11, v2}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_4
+    goto :goto_15b
 
-    :cond_9
+    :cond_15a
     const/4 v1, 0x0
 
-    :cond_a
-    :goto_4
+    :cond_15b
+    :goto_15b
     const/4 v10, 0x0
 
     const/4 v12, 0x0
 
-    :goto_5
-    if-eqz v6, :cond_c
+    :goto_15d
+    if-eqz v6, :cond_182
 
     .line 343
     iget-object v2, v0, Lio/vanta/core/system/pm/IntentResolver;->mSchemeToFilter:Landroid/util/ArrayMap;
@@ -2535,7 +2535,7 @@
 
     check-cast v2, [Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v3, :cond_b
+    if-eqz v3, :cond_17f
 
     .line 344
     new-instance v13, Ljava/lang/StringBuilder;
@@ -2558,25 +2558,25 @@
 
     invoke-static {v11, v13}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_b
+    :cond_17f
     move-object/from16 v16, v2
 
-    goto :goto_6
+    goto :goto_184
 
-    :cond_c
+    :cond_182
     const/16 v16, 0x0
 
-    :goto_6
-    if-nez v5, :cond_d
+    :goto_184
+    if-nez v5, :cond_1b2
 
-    if-nez v6, :cond_d
+    if-nez v6, :cond_1b2
 
     .line 350
     invoke-virtual {v7}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v2
 
-    if-eqz v2, :cond_d
+    if-eqz v2, :cond_1b2
 
     .line 351
     iget-object v1, v0, Lio/vanta/core/system/pm/IntentResolver;->mActionToFilter:Landroid/util/ArrayMap;
@@ -2591,7 +2591,7 @@
 
     check-cast v1, [Lio/vanta/core/system/pm/BPackage$IntentInfo;
 
-    if-eqz v3, :cond_d
+    if-eqz v3, :cond_1b2
 
     .line 352
     new-instance v2, Ljava/lang/StringBuilder;
@@ -2615,12 +2615,12 @@
     invoke-static {v11, v2}, Lio/vanta/utils/Slog;->v(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 355
-    :cond_d
+    :cond_1b2
     invoke-static {v7}, Lio/vanta/core/system/pm/IntentResolver;->getFastIntentCategories(Landroid/content/Intent;)Lio/vanta/core/system/pm/FastImmutableArraySet;
 
     move-result-object v2
 
-    if-eqz v1, :cond_e
+    if-eqz v1, :cond_1c0
 
     move-object/from16 v18, v7
 
@@ -2631,8 +2631,8 @@
     .line 357
     invoke-direct/range {v0 .. v9}, Lio/vanta/core/system/pm/IntentResolver;->buildResolveList(Landroid/content/Intent;Lio/vanta/core/system/pm/FastImmutableArraySet;ZZLjava/lang/String;Ljava/lang/String;[Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/List;I)V
 
-    :cond_e
-    if-eqz v12, :cond_f
+    :cond_1c0
+    if-eqz v12, :cond_1d0
 
     move-object/from16 v0, p0
 
@@ -2649,8 +2649,8 @@
     .line 361
     invoke-direct/range {v0 .. v9}, Lio/vanta/core/system/pm/IntentResolver;->buildResolveList(Landroid/content/Intent;Lio/vanta/core/system/pm/FastImmutableArraySet;ZZLjava/lang/String;Ljava/lang/String;[Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/List;I)V
 
-    :cond_f
-    if-eqz v10, :cond_10
+    :cond_1d0
+    if-eqz v10, :cond_1e0
 
     move-object/from16 v0, p0
 
@@ -2667,10 +2667,10 @@
     .line 365
     invoke-direct/range {v0 .. v9}, Lio/vanta/core/system/pm/IntentResolver;->buildResolveList(Landroid/content/Intent;Lio/vanta/core/system/pm/FastImmutableArraySet;ZZLjava/lang/String;Ljava/lang/String;[Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/List;I)V
 
-    :cond_10
+    :cond_1e0
     move-object/from16 v0, p0
 
-    if-eqz v16, :cond_11
+    if-eqz v16, :cond_1f1
 
     move-object/from16 v1, p1
 
@@ -2686,10 +2686,10 @@
     invoke-direct/range {v0 .. v9}, Lio/vanta/core/system/pm/IntentResolver;->buildResolveList(Landroid/content/Intent;Lio/vanta/core/system/pm/FastImmutableArraySet;ZZLjava/lang/String;Ljava/lang/String;[Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/List;I)V
 
     .line 372
-    :cond_11
+    :cond_1f1
     invoke-virtual {v0, v8}, Lio/vanta/core/system/pm/IntentResolver;->filterResults(Ljava/util/List;)V
 
-    if-eqz v3, :cond_12
+    if-eqz v3, :cond_21b
 
     .line 376
     const-string v1, "Final result list:"
@@ -2699,12 +2699,12 @@
     const/4 v10, 0x0
 
     .line 377
-    :goto_7
+    :goto_1fc
     invoke-virtual {v8}, Ljava/util/ArrayList;->size()I
 
     move-result v1
 
-    if-ge v10, v1, :cond_12
+    if-ge v10, v1, :cond_21b
 
     .line 378
     new-instance v1, Ljava/lang/StringBuilder;
@@ -2729,14 +2729,14 @@
 
     add-int/lit8 v10, v10, 0x1
 
-    goto :goto_7
+    goto :goto_1fc
 
-    :cond_12
+    :cond_21b
     return-object v8
 .end method
 
 .method public queryIntentFromList(Landroid/content/Intent;Ljava/lang/String;ZLjava/util/ArrayList;I)Ljava/util/List;
-    .locals 13
+    .registers 19
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -2764,19 +2764,19 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_11
 
     const/4 v0, 0x1
 
     move v3, v0
 
-    goto :goto_0
+    goto :goto_12
 
-    :cond_0
+    :cond_11
     move v3, v1
 
     .line 271
-    :goto_0
+    :goto_12
     invoke-static {p1}, Lio/vanta/core/system/pm/IntentResolver;->getFastIntentCategories(Landroid/content/Intent;)Lio/vanta/core/system/pm/FastImmutableArraySet;
 
     move-result-object v2
@@ -2793,8 +2793,8 @@
 
     move v11, v1
 
-    :goto_1
-    if-ge v11, v10, :cond_1
+    :goto_1f
+    if-ge v11, v10, :cond_37
 
     move-object/from16 v12, p4
 
@@ -2822,17 +2822,17 @@
 
     add-int/lit8 v11, v11, 0x1
 
-    goto :goto_1
+    goto :goto_1f
 
     .line 278
-    :cond_1
+    :cond_37
     invoke-virtual {p0, v8}, Lio/vanta/core/system/pm/IntentResolver;->filterResults(Ljava/util/List;)V
 
     return-object v8
 .end method
 
 .method public removeFilter(Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;)V"
@@ -2851,7 +2851,7 @@
 .end method
 
 .method removeFilterInternal(Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TF;)V"
@@ -2880,9 +2880,9 @@
 
     move-result v1
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_25
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_25
 
     .line 154
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage$IntentInfo;->intentFilter:Landroid/content/IntentFilter;
@@ -2897,8 +2897,8 @@
 
     invoke-direct {p0, p1, v0, v2, v3}, Lio/vanta/core/system/pm/IntentResolver;->unregister_intent_filter(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/Iterator;Landroid/util/ArrayMap;Ljava/lang/String;)I
 
-    :cond_0
-    if-eqz v1, :cond_1
+    :cond_25
+    if-eqz v1, :cond_34
 
     .line 158
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage$IntentInfo;->intentFilter:Landroid/content/IntentFilter;
@@ -2913,12 +2913,12 @@
 
     invoke-direct {p0, p1, v0, v1, v2}, Lio/vanta/core/system/pm/IntentResolver;->unregister_intent_filter(Lio/vanta/core/system/pm/BPackage$IntentInfo;Ljava/util/Iterator;Landroid/util/ArrayMap;Ljava/lang/String;)I
 
-    :cond_1
+    :cond_34
     return-void
 .end method
 
 .method protected sortResults(Ljava/util/List;)V
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",

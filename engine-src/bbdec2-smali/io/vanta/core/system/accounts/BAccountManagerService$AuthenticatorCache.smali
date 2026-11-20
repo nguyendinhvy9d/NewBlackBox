@@ -29,7 +29,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 1517
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -45,7 +45,7 @@
 .end method
 
 .method synthetic constructor <init>(Lio/vanta/core/system/accounts/BAccountManagerService-IA;)V
-    .locals 0
+    .registers 2
 
     invoke-direct {p0}, Lio/vanta/core/system/accounts/BAccountManagerService$AuthenticatorCache;-><init>()V
 

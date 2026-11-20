@@ -21,7 +21,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$fgetmIsEstablished(Lio/vanta/proxy/ProxyVpnService;)Z
-    .locals 0
+    .registers 1
 
     iget-boolean p0, p0, Lio/vanta/proxy/ProxyVpnService;->mIsEstablished:Z
 
@@ -29,7 +29,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$fgetmVpnInterface(Lio/vanta/proxy/ProxyVpnService;)Landroid/os/ParcelFileDescriptor;
-    .locals 0
+    .registers 1
 
     iget-object p0, p0, Lio/vanta/proxy/ProxyVpnService;->mVpnInterface:Landroid/os/ParcelFileDescriptor;
 
@@ -37,7 +37,7 @@
 .end method
 
 .method static bridge synthetic -$$Nest$mreestablishVpn(Lio/vanta/proxy/ProxyVpnService;)V
-    .locals 0
+    .registers 1
 
     invoke-direct {p0}, Lio/vanta/proxy/ProxyVpnService;->reestablishVpn()V
 
@@ -45,7 +45,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 15
     invoke-direct {p0}, Landroid/net/VpnService;-><init>()V
@@ -67,14 +67,14 @@
 .end method
 
 .method private createNotification()Landroid/app/Notification;
-    .locals 2
+    .registers 3
 
     .line 94
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x1a
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 95
     new-instance v0, Landroid/app/Notification$Builder;
@@ -83,16 +83,16 @@
 
     invoke-direct {v0, p0, v1}, Landroid/app/Notification$Builder;-><init>(Landroid/content/Context;Ljava/lang/String;)V
 
-    goto :goto_0
+    goto :goto_13
 
     .line 97
-    :cond_0
+    :cond_e
     new-instance v0, Landroid/app/Notification$Builder;
 
     invoke-direct {v0, p0}, Landroid/app/Notification$Builder;-><init>(Landroid/content/Context;)V
 
     .line 100
-    :goto_0
+    :goto_13
     const-string v1, "VantaCore VPN Active"
 
     .line 101
@@ -137,14 +137,14 @@
 .end method
 
 .method private createNotificationChannel()V
-    .locals 4
+    .registers 5
 
     .line 74
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x1a
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_26
 
     .line 75
     new-instance v0, Landroid/app/NotificationChannel;
@@ -176,22 +176,22 @@
 
     check-cast v1, Landroid/app/NotificationManager;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_26
 
     .line 85
     invoke-virtual {v1, v0}, Landroid/app/NotificationManager;->createNotificationChannel(Landroid/app/NotificationChannel;)V
 
-    :cond_0
+    :cond_26
     return-void
 .end method
 
 .method private reestablishVpn()V
-    .locals 4
+    .registers 5
 
     .line 222
     const-string v0, "ProxyVpnService"
 
-    :try_start_0
+    :try_start_2
     const-string v1, "Attempting to re-establish VPN connection"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -206,12 +206,12 @@
 
     .line 225
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyVpnService;->establishVpn()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_12
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_12} :catch_13
 
     return-void
 
-    :catch_0
+    :catch_13
     move-exception v1
 
     .line 227
@@ -239,18 +239,18 @@
 .end method
 
 .method private startNetworkHandling()V
-    .locals 3
+    .registers 4
 
     .line 180
     iget-object v0, p0, Lio/vanta/proxy/ProxyVpnService;->mNetworkThread:Ljava/lang/Thread;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     invoke-virtual {v0}, Ljava/lang/Thread;->isAlive()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     .line 181
     iget-object v0, p0, Lio/vanta/proxy/ProxyVpnService;->mNetworkThread:Ljava/lang/Thread;
@@ -258,7 +258,7 @@
     invoke-virtual {v0}, Ljava/lang/Thread;->interrupt()V
 
     .line 184
-    :cond_0
+    :cond_f
     new-instance v0, Ljava/lang/Thread;
 
     new-instance v1, Lio/vanta/proxy/ProxyVpnService$2;
@@ -285,7 +285,7 @@
 .end method
 
 .method private stopVpn()V
-    .locals 4
+    .registers 5
 
     .line 233
     const-string v0, "ProxyVpnService"
@@ -299,7 +299,7 @@
 
     const/4 v2, 0x0
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 236
     invoke-virtual {v1}, Ljava/lang/Thread;->interrupt()V
@@ -308,13 +308,13 @@
     iput-object v2, p0, Lio/vanta/proxy/ProxyVpnService;->mNetworkThread:Ljava/lang/Thread;
 
     .line 240
-    :cond_0
+    :cond_f
     iget-object v1, p0, Lio/vanta/proxy/ProxyVpnService;->mVpnInterface:Landroid/os/ParcelFileDescriptor;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_35
 
     .line 242
-    :try_start_0
+    :try_start_13
     invoke-virtual {v1}, Landroid/os/ParcelFileDescriptor;->close()V
 
     .line 243
@@ -324,12 +324,12 @@
     const-string v1, "VPN interface closed"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1d
+    .catch Ljava/lang/Exception; {:try_start_13 .. :try_end_1d} :catch_1e
 
     return-void
 
-    :catch_0
+    :catch_1e
     move-exception v1
 
     .line 246
@@ -353,14 +353,14 @@
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
+    :cond_35
     return-void
 .end method
 
 
 # virtual methods
 .method protected establishVpn()V
-    .locals 9
+    .registers 10
 
     .line 112
     const-string v0, "ProxyVpnService"
@@ -375,7 +375,7 @@
     const-wide/16 v4, 0x1388
 
     .line 116
-    :try_start_0
+    :try_start_9
     const-string v6, "Starting VPN establishment..."
 
     invoke-static {v0, v6}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -389,7 +389,7 @@
 
     cmp-long v6, v6, v4
 
-    if-lez v6, :cond_0
+    if-lez v6, :cond_1d
 
     .line 120
     const-string v6, "VPN establishment timeout, aborting"
@@ -399,7 +399,7 @@
     return-void
 
     .line 124
-    :cond_0
+    :cond_1d
     new-instance v6, Landroid/net/VpnService$Builder;
 
     invoke-direct {v6, p0}, Landroid/net/VpnService$Builder;-><init>(Landroid/net/VpnService;)V
@@ -457,7 +457,7 @@
 
     cmp-long v7, v7, v4
 
-    if-lez v7, :cond_1
+    if-lez v7, :cond_5d
 
     .line 149
     const-string v6, "VPN establishment timeout before establish(), aborting"
@@ -467,14 +467,14 @@
     return-void
 
     .line 154
-    :cond_1
+    :cond_5d
     invoke-virtual {v6}, Landroid/net/VpnService$Builder;->establish()Landroid/os/ParcelFileDescriptor;
 
     move-result-object v6
 
     iput-object v6, p0, Lio/vanta/proxy/ProxyVpnService;->mVpnInterface:Landroid/os/ParcelFileDescriptor;
 
-    if-eqz v6, :cond_2
+    if-eqz v6, :cond_71
 
     const/4 v6, 0x1
 
@@ -489,19 +489,19 @@
     .line 160
     invoke-direct {p0}, Lio/vanta/proxy/ProxyVpnService;->startNetworkHandling()V
 
-    goto :goto_0
+    goto :goto_93
 
     .line 162
-    :cond_2
+    :cond_71
     const-string v6, "Failed to establish VPN interface - builder.establish() returned null"
 
     invoke-static {v0, v6}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_76
+    .catch Ljava/lang/Exception; {:try_start_9 .. :try_end_76} :catch_77
 
-    goto :goto_0
+    goto :goto_93
 
-    :catch_0
+    :catch_77
     move-exception v6
 
     .line 166
@@ -532,7 +532,7 @@
     iput-boolean v3, p0, Lio/vanta/proxy/ProxyVpnService;->mIsEstablished:Z
 
     .line 173
-    :goto_0
+    :goto_93
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v6
@@ -541,7 +541,7 @@
 
     cmp-long v3, v6, v4
 
-    if-lez v3, :cond_3
+    if-lez v3, :cond_b9
 
     .line 174
     new-instance v3, Ljava/lang/StringBuilder;
@@ -572,12 +572,12 @@
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_3
+    :cond_b9
     return-void
 .end method
 
 .method public getVpnInterface()Landroid/os/ParcelFileDescriptor;
-    .locals 1
+    .registers 2
 
     .line 258
     iget-object v0, p0, Lio/vanta/proxy/ProxyVpnService;->mVpnInterface:Landroid/os/ParcelFileDescriptor;
@@ -586,29 +586,29 @@
 .end method
 
 .method public isEstablished()Z
-    .locals 1
+    .registers 2
 
     .line 253
     iget-boolean v0, p0, Lio/vanta/proxy/ProxyVpnService;->mIsEstablished:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_a
 
     iget-object v0, p0, Lio/vanta/proxy/ProxyVpnService;->mVpnInterface:Landroid/os/ParcelFileDescriptor;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_a
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_a
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public onCreate()V
-    .locals 2
+    .registers 3
 
     .line 26
     invoke-super {p0}, Landroid/net/VpnService;->onCreate()V
@@ -627,7 +627,7 @@
 .end method
 
 .method public onDestroy()V
-    .locals 2
+    .registers 3
 
     .line 67
     invoke-super {p0}, Landroid/net/VpnService;->onDestroy()V
@@ -646,7 +646,7 @@
 .end method
 
 .method public onRevoke()V
-    .locals 2
+    .registers 3
 
     .line 263
     invoke-super {p0}, Landroid/net/VpnService;->onRevoke()V
@@ -665,7 +665,7 @@
 .end method
 
 .method public onStartCommand(Landroid/content/Intent;II)I
-    .locals 1
+    .registers 5
 
     .line 33
     const-string p1, "ProxyVpnService started"
@@ -675,14 +675,14 @@
     invoke-static {p2, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 37
-    :try_start_0
+    :try_start_7
     sget p1, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 p3, 0x22
 
     const/16 v0, 0x3e9
 
-    if-lt p1, p3, :cond_0
+    if-lt p1, p3, :cond_19
 
     .line 39
     invoke-direct {p0}, Lio/vanta/proxy/ProxyVpnService;->createNotification()Landroid/app/Notification;
@@ -693,10 +693,10 @@
 
     invoke-virtual {p0, v0, p1, p3}, Lio/vanta/proxy/ProxyVpnService;->startForeground(ILandroid/app/Notification;I)V
 
-    goto :goto_0
+    goto :goto_20
 
     .line 42
-    :cond_0
+    :cond_19
     invoke-direct {p0}, Lio/vanta/proxy/ProxyVpnService;->createNotification()Landroid/app/Notification;
 
     move-result-object p1
@@ -704,7 +704,7 @@
     invoke-virtual {p0, v0, p1}, Lio/vanta/proxy/ProxyVpnService;->startForeground(ILandroid/app/Notification;)V
 
     .line 45
-    :goto_0
+    :goto_20
     const-string p1, "Foreground service started successfully"
 
     invoke-static {p2, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -722,14 +722,14 @@
 
     .line 53
     invoke-virtual {p1}, Ljava/lang/Thread;->start()V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_34
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_34} :catch_36
 
     const/4 p1, 0x1
 
     return p1
 
-    :catch_0
+    :catch_36
     move-exception p1
 
     .line 56
@@ -762,14 +762,14 @@
 .end method
 
 .method public onTrimMemory(I)V
-    .locals 1
+    .registers 3
 
     .line 270
     invoke-super {p0, p1}, Landroid/net/VpnService;->onTrimMemory(I)V
 
     const/16 v0, 0x3c
 
-    if-lt p1, v0, :cond_0
+    if-lt p1, v0, :cond_e
 
     .line 272
     const-string p1, "ProxyVpnService"
@@ -778,6 +778,6 @@
 
     invoke-static {p1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_e
     return-void
 .end method

@@ -41,7 +41,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 20
     new-instance v0, Ljava/util/HashMap;
@@ -61,7 +61,7 @@
 .end method
 
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 33
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -70,7 +70,7 @@
 .end method
 
 .method constructor <init>(Ljava/lang/String;)V
-    .locals 0
+    .registers 2
 
     .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -82,7 +82,7 @@
 .end method
 
 .method public static loadSharedUsers()V
-    .locals 4
+    .registers 4
 
     .line 62
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
@@ -90,7 +90,7 @@
     move-result-object v0
 
     .line 64
-    :try_start_0
+    :try_start_4
     invoke-static {}, Lio/vanta/core/env/BEnvironment;->getSharedUserConf()Ljava/io/File;
 
     move-result-object v1
@@ -99,22 +99,22 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_56
 
     .line 65
     array-length v2, v1
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_12
 
-    goto :goto_0
+    goto :goto_56
 
     .line 72
-    :cond_0
+    :cond_12
     array-length v2, v1
 
     const/16 v3, 0x64
 
-    if-ge v2, v3, :cond_1
+    if-ge v2, v3, :cond_33
 
     .line 73
     const-string v1, "SharedUserSetting"
@@ -134,38 +134,38 @@
     sget-object v1, Lio/vanta/core/system/pm/SharedUserSetting;->sSharedUsers:Ljava/util/Map;
 
     monitor-enter v1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_2
+    :try_end_28
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_28} :catch_5c
+    .catchall {:try_start_4 .. :try_end_28} :catchall_5a
 
     .line 76
-    :try_start_1
+    :try_start_28
     invoke-interface {v1}, Ljava/util/Map;->clear()V
 
     .line 77
     monitor-exit v1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_2c
+    .catchall {:try_start_28 .. :try_end_2c} :catchall_30
 
     .line 103
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_0
+    :catchall_30
     move-exception v2
 
     .line 77
-    :try_start_2
+    :try_start_31
     monitor-exit v1
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_32
+    .catchall {:try_start_31 .. :try_end_32} :catchall_30
 
-    :try_start_3
+    :try_start_32
     throw v2
 
     .line 81
-    :cond_1
+    :cond_33
     array-length v2, v1
 
     const/4 v3, 0x0
@@ -190,12 +190,12 @@
     sget-object v2, Lio/vanta/core/system/pm/SharedUserSetting;->sSharedUsers:Ljava/util/Map;
 
     monitor-enter v2
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_0
-    .catchall {:try_start_3 .. :try_end_3} :catchall_2
+    :try_end_48
+    .catch Ljava/lang/Exception; {:try_start_32 .. :try_end_48} :catch_5c
+    .catchall {:try_start_32 .. :try_end_48} :catchall_5a
 
     .line 86
-    :try_start_4
+    :try_start_48
     invoke-interface {v2}, Ljava/util/Map;->clear()V
 
     .line 87
@@ -203,92 +203,92 @@
 
     .line 88
     monitor-exit v2
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_4f
+    .catchall {:try_start_48 .. :try_end_4f} :catchall_53
 
     .line 103
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_1
+    :catchall_53
     move-exception v1
 
     .line 88
-    :try_start_5
+    :try_start_54
     monitor-exit v2
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
+    :try_end_55
+    .catchall {:try_start_54 .. :try_end_55} :catchall_53
 
-    :try_start_6
+    :try_start_55
     throw v1
-    :try_end_6
-    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_0
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_56
+    .catch Ljava/lang/Exception; {:try_start_55 .. :try_end_56} :catch_5c
+    .catchall {:try_start_55 .. :try_end_56} :catchall_5a
 
     .line 103
-    :cond_2
-    :goto_0
+    :cond_56
+    :goto_56
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_2
+    :catchall_5a
     move-exception v1
 
-    goto :goto_1
+    goto :goto_71
 
     .line 93
-    :catch_0
-    :try_start_7
+    :catch_5c
+    :try_start_5c
     invoke-static {}, Lio/vanta/core/env/BEnvironment;->getSharedUserConf()Ljava/io/File;
 
     move-result-object v1
 
     invoke-virtual {v1}, Ljava/io/File;->delete()Z
-    :try_end_7
-    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_7} :catch_1
-    .catchall {:try_start_7 .. :try_end_7} :catchall_2
+    :try_end_63
+    .catch Ljava/lang/Exception; {:try_start_5c .. :try_end_63} :catch_63
+    .catchall {:try_start_5c .. :try_end_63} :catchall_5a
 
     .line 99
-    :catch_1
-    :try_start_8
+    :catch_63
+    :try_start_63
     sget-object v1, Lio/vanta/core/system/pm/SharedUserSetting;->sSharedUsers:Ljava/util/Map;
 
     monitor-enter v1
-    :try_end_8
-    .catchall {:try_start_8 .. :try_end_8} :catchall_2
+    :try_end_66
+    .catchall {:try_start_63 .. :try_end_66} :catchall_5a
 
     .line 100
-    :try_start_9
+    :try_start_66
     invoke-interface {v1}, Ljava/util/Map;->clear()V
 
     .line 101
     monitor-exit v1
-    :try_end_9
-    .catchall {:try_start_9 .. :try_end_9} :catchall_3
+    :try_end_6a
+    .catchall {:try_start_66 .. :try_end_6a} :catchall_6e
 
     .line 103
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_3
+    :catchall_6e
     move-exception v2
 
     .line 101
-    :try_start_a
+    :try_start_6f
     monitor-exit v1
-    :try_end_a
-    .catchall {:try_start_a .. :try_end_a} :catchall_3
+    :try_end_70
+    .catchall {:try_start_6f .. :try_end_70} :catchall_6e
 
-    :try_start_b
+    :try_start_70
     throw v2
-    :try_end_b
-    .catchall {:try_start_b .. :try_end_b} :catchall_2
+    :try_end_71
+    .catchall {:try_start_70 .. :try_end_71} :catchall_5a
 
     .line 103
-    :goto_1
+    :goto_71
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     .line 104
@@ -296,7 +296,7 @@
 .end method
 
 .method public static saveSharedUsers()V
-    .locals 4
+    .registers 4
 
     .line 44
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
@@ -315,7 +315,7 @@
     const/4 v2, 0x0
 
     .line 48
-    :try_start_0
+    :try_start_e
     sget-object v3, Lio/vanta/core/system/pm/SharedUserSetting;->sSharedUsers:Ljava/util/Map;
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeMap(Ljava/util/Map;)V
@@ -330,38 +330,38 @@
 
     .line 52
     invoke-virtual {v1, v2}, Landroid/util/AtomicFile;->finishWrite(Ljava/io/FileOutputStream;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catch Ljava/lang/Exception; {:try_start_e .. :try_end_1d} :catch_23
+    .catchall {:try_start_e .. :try_end_1d} :catchall_21
 
     .line 57
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_0
+    :catchall_21
     move-exception v1
 
-    goto :goto_0
+    goto :goto_2e
 
-    :catch_0
+    :catch_23
     move-exception v3
 
     .line 54
-    :try_start_1
+    :try_start_24
     invoke-virtual {v3}, Ljava/lang/Exception;->printStackTrace()V
 
     .line 55
     invoke-virtual {v1, v2}, Landroid/util/AtomicFile;->failWrite(Ljava/io/FileOutputStream;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_2a
+    .catchall {:try_start_24 .. :try_end_2a} :catchall_21
 
     .line 57
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :goto_0
+    :goto_2e
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     .line 58
@@ -371,7 +371,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -379,7 +379,7 @@
 .end method
 
 .method public readFromParcel(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 120
     invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
@@ -406,7 +406,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 39
     new-instance v0, Ljava/lang/StringBuilder;
@@ -465,7 +465,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 0
+    .registers 3
 
     .line 114
     iget-object p2, p0, Lio/vanta/core/system/pm/SharedUserSetting;->name:Ljava/lang/String;

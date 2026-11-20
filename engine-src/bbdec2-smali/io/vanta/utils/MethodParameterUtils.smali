@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getAllInterface(Ljava/lang/Class;)[Ljava/lang/Class;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -47,7 +47,7 @@
 .end method
 
 .method public static getAllInterfaces(Ljava/lang/Class;Ljava/util/HashSet;)V
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -66,7 +66,7 @@
     .line 139
     array-length v1, v0
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_e
 
     .line 140
     invoke-static {v0}, Ljava/util/Arrays;->asList([Ljava/lang/Object;)Ljava/util/List;
@@ -76,14 +76,14 @@
     invoke-virtual {p1, v0}, Ljava/util/HashSet;->addAll(Ljava/util/Collection;)Z
 
     .line 142
-    :cond_0
+    :cond_e
     invoke-virtual {p0}, Ljava/lang/Class;->getSuperclass()Ljava/lang/Class;
 
     move-result-object v0
 
     const-class v1, Ljava/lang/Object;
 
-    if-eq v0, v1, :cond_1
+    if-eq v0, v1, :cond_1d
 
     .line 143
     invoke-virtual {p0}, Ljava/lang/Class;->getSuperclass()Ljava/lang/Class;
@@ -92,12 +92,12 @@
 
     invoke-static {p0, p1}, Lio/vanta/utils/MethodParameterUtils;->getAllInterfaces(Ljava/lang/Class;Ljava/util/HashSet;)V
 
-    :cond_1
+    :cond_1d
     return-void
 .end method
 
 .method public static getFirstParam([Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -111,31 +111,31 @@
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return-object v0
 
     .line 15
-    :cond_0
+    :cond_4
     invoke-static {p0, p1}, Lio/vanta/utils/ArrayUtils;->indexOfFirst([Ljava/lang/Object;Ljava/lang/Class;)I
 
     move-result p1
 
     const/4 v1, -0x1
 
-    if-eq p1, v1, :cond_1
+    if-eq p1, v1, :cond_e
 
     .line 17
     aget-object p0, p0, p1
 
     return-object p0
 
-    :cond_1
+    :cond_e
     return-object v0
 .end method
 
 .method public static getIndex([Ljava/lang/Object;Ljava/lang/Class;)I
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([",
@@ -156,7 +156,7 @@
 .end method
 
 .method public static getIndex([Ljava/lang/Object;Ljava/lang/Class;I)I
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([",
@@ -170,46 +170,46 @@
     :goto_0
     array-length v0, p0
 
-    if-ge p2, v0, :cond_2
+    if-ge p2, v0, :cond_18
 
     .line 117
     aget-object v0, p0, p2
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_e
 
     .line 118
     invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v1
 
-    if-ne v1, p1, :cond_0
+    if-ne v1, p1, :cond_e
 
-    goto :goto_1
+    goto :goto_14
 
     .line 121
-    :cond_0
+    :cond_e
     invoke-virtual {p1, v0}, Ljava/lang/Class;->isInstance(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_15
 
-    :goto_1
+    :goto_14
     return p2
 
-    :cond_1
+    :cond_15
     add-int/lit8 p2, p2, 0x1
 
     goto :goto_0
 
-    :cond_2
+    :cond_18
     const/4 p0, -0x1
 
     return p0
 .end method
 
 .method public static getParamsIndex([Ljava/lang/Class;Ljava/lang/Class;)I
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([",
@@ -222,10 +222,10 @@
     const/4 v0, 0x0
 
     .line 102
-    :goto_0
+    :goto_1
     array-length v1, p0
 
-    if-ge v0, v1, :cond_1
+    if-ge v0, v1, :cond_10
 
     .line 103
     aget-object v1, p0, v0
@@ -235,49 +235,49 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_d
 
     return v0
 
-    :cond_0
+    :cond_d
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_1
 
-    :cond_1
+    :cond_10
     const/4 p0, -0x1
 
     return p0
 .end method
 
 .method public static replaceAllAppPkg([Ljava/lang/Object;)V
-    .locals 4
+    .registers 5
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_3
 
-    goto :goto_2
+    goto :goto_29
 
-    :cond_0
+    :cond_3
     const/4 v0, 0x0
 
     .line 42
-    :goto_0
+    :goto_4
     array-length v1, p0
 
-    if-ge v0, v1, :cond_3
+    if-ge v0, v1, :cond_29
 
     .line 43
     aget-object v1, p0, v0
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_c
 
-    goto :goto_1
+    goto :goto_26
 
     .line 45
-    :cond_1
+    :cond_c
     instance-of v2, v1, Ljava/lang/String;
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_26
 
     .line 46
     check-cast v1, Ljava/lang/String;
@@ -295,7 +295,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_26
 
     .line 48
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -304,41 +304,41 @@
 
     aput-object v1, p0, v0
 
-    :cond_2
-    :goto_1
+    :cond_26
+    :goto_26
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_4
 
-    :cond_3
-    :goto_2
+    :cond_29
+    :goto_29
     return-void
 .end method
 
 .method public static replaceFirstAppPkg([Ljava/lang/Object;)Ljava/lang/String;
-    .locals 5
+    .registers 6
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return-object v0
 
-    :cond_0
+    :cond_4
     const/4 v1, 0x0
 
     .line 26
-    :goto_0
+    :goto_5
     array-length v2, p0
 
-    if-ge v1, v2, :cond_2
+    if-ge v1, v2, :cond_28
 
     .line 27
     aget-object v2, p0, v1
 
     instance-of v3, v2, Ljava/lang/String;
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_25
 
     .line 28
     check-cast v2, Ljava/lang/String;
@@ -356,7 +356,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_25
 
     .line 30
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -367,37 +367,37 @@
 
     return-object v2
 
-    :cond_1
+    :cond_25
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_5
 
-    :cond_2
+    :cond_28
     return-object v0
 .end method
 
 .method public static replaceFirstUid([Ljava/lang/Object;)V
-    .locals 3
+    .registers 4
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_3
 
-    goto :goto_1
+    goto :goto_26
 
-    :cond_0
+    :cond_3
     const/4 v0, 0x0
 
     .line 57
-    :goto_0
+    :goto_4
     array-length v1, p0
 
-    if-ge v0, v1, :cond_2
+    if-ge v0, v1, :cond_26
 
     .line 58
     aget-object v1, p0, v0
 
     instance-of v2, v1, Ljava/lang/Integer;
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_23
 
     .line 59
     check-cast v1, Ljava/lang/Integer;
@@ -411,7 +411,7 @@
 
     move-result v2
 
-    if-ne v1, v2, :cond_1
+    if-ne v1, v2, :cond_23
 
     .line 61
     invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
@@ -424,18 +424,18 @@
 
     aput-object v1, p0, v0
 
-    :cond_1
+    :cond_23
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_4
 
-    :cond_2
-    :goto_1
+    :cond_26
+    :goto_26
     return-void
 .end method
 
 .method public static replaceLastAppPkg([Ljava/lang/Object;)Ljava/lang/String;
-    .locals 4
+    .registers 5
 
     .line 78
     const-class v0, Ljava/lang/String;
@@ -446,7 +446,7 @@
 
     const/4 v1, -0x1
 
-    if-eq v0, v1, :cond_1
+    if-eq v0, v1, :cond_22
 
     .line 80
     aget-object v1, p0, v0
@@ -466,7 +466,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_21
 
     .line 82
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -475,17 +475,17 @@
 
     aput-object v2, p0, v0
 
-    :cond_0
+    :cond_21
     return-object v1
 
-    :cond_1
+    :cond_22
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method public static replaceLastUid([Ljava/lang/Object;)V
-    .locals 3
+    .registers 4
 
     .line 68
     const-class v0, Ljava/lang/Integer;
@@ -496,7 +496,7 @@
 
     const/4 v1, -0x1
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_21
 
     .line 70
     aget-object v1, p0, v0
@@ -512,7 +512,7 @@
 
     move-result v2
 
-    if-ne v1, v2, :cond_0
+    if-ne v1, v2, :cond_21
 
     .line 72
     invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
@@ -525,12 +525,12 @@
 
     aput-object v1, p0, v0
 
-    :cond_0
+    :cond_21
     return-void
 .end method
 
 .method public static replaceSequenceAppPkg([Ljava/lang/Object;I)Ljava/lang/String;
-    .locals 3
+    .registers 5
 
     .line 90
     const-class v0, Ljava/lang/String;
@@ -541,7 +541,7 @@
 
     const/4 v0, -0x1
 
-    if-eq p1, v0, :cond_1
+    if-eq p1, v0, :cond_22
 
     .line 92
     aget-object v0, p0, p1
@@ -561,7 +561,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_21
 
     .line 94
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -570,22 +570,22 @@
 
     aput-object v1, p0, p1
 
-    :cond_0
+    :cond_21
     return-object v0
 
-    :cond_1
+    :cond_22
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method public static toInt(Ljava/lang/Object;)I
-    .locals 1
+    .registers 2
 
     .line 148
     instance-of v0, p0, Ljava/lang/Long;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_b
 
     .line 149
     check-cast p0, Ljava/lang/Long;
@@ -597,7 +597,7 @@
     return p0
 
     .line 151
-    :cond_0
+    :cond_b
     check-cast p0, Ljava/lang/Integer;
 
     invoke-virtual {p0}, Ljava/lang/Integer;->intValue()I

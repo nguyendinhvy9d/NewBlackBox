@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 96
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V
-    .locals 0
+    .registers 3
 
     .line 99
     invoke-static {p1, p2}, Lio/vanta/utils/NativeCrashPrevention;->-$$Nest$smhandleNativeCrash(Ljava/lang/Thread;Ljava/lang/Throwable;)V

@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 10
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,14 +14,14 @@
 .end method
 
 .method public static getBinder(Landroid/content/Intent;Ljava/lang/String;)Landroid/os/IBinder;
-    .locals 0
+    .registers 2
 
     .line 34
     invoke-virtual {p0, p1}, Landroid/content/Intent;->getBundleExtra(Ljava/lang/String;)Landroid/os/Bundle;
 
     move-result-object p0
 
-    if-eqz p0, :cond_0
+    if-eqz p0, :cond_d
 
     .line 36
     const-string p1, "binder"
@@ -32,14 +32,14 @@
 
     return-object p0
 
-    :cond_0
+    :cond_d
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method public static getBinder(Landroid/os/Bundle;Ljava/lang/String;)Landroid/os/IBinder;
-    .locals 0
+    .registers 2
 
     .line 13
     invoke-virtual {p0, p1}, Landroid/os/Bundle;->getBinder(Ljava/lang/String;)Landroid/os/IBinder;
@@ -50,7 +50,7 @@
 .end method
 
 .method public static putBinder(Landroid/content/Intent;Ljava/lang/String;Landroid/os/IBinder;)V
-    .locals 2
+    .registers 5
 
     .line 28
     new-instance v0, Landroid/os/Bundle;
@@ -69,7 +69,7 @@
 .end method
 
 .method public static putBinder(Landroid/os/Bundle;Ljava/lang/String;Landroid/os/IBinder;)V
-    .locals 0
+    .registers 3
 
     .line 21
     invoke-virtual {p0, p1, p2}, Landroid/os/Bundle;->putBinder(Ljava/lang/String;Landroid/os/IBinder;)V

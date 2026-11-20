@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 190
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 7
+    .registers 11
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -49,12 +49,12 @@
     .line 194
     const-string v3, "WebViewProxy"
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_66
 
-    :try_start_0
+    :try_start_a
     array-length v4, p3
 
-    if-lez v4, :cond_1
+    if-lez v4, :cond_66
 
     const/4 v4, 0x0
 
@@ -83,13 +83,13 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_2b
 
     .line 200
     invoke-virtual {v2}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     .line 201
-    :cond_0
+    :cond_2b
     invoke-static {}, Lio/vanta/app/BActivityThread;->getUserId()I
 
     move-result v2
@@ -150,16 +150,16 @@
     invoke-static {v3, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 207
-    :cond_1
+    :cond_66
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6a
+    .catch Ljava/lang/Exception; {:try_start_a .. :try_end_6a} :catch_6b
 
     return-object p1
 
-    :catch_0
+    :catch_6b
     move-exception p1
 
     .line 209

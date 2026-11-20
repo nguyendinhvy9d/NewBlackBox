@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 46
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,7 +45,7 @@
 
     check-cast v0, Ljava/lang/String;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_45
 
     .line 52
     const-string v1, "resource-cache"
@@ -54,7 +54,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_2f
 
     const-string v1, "@idmap"
 
@@ -63,7 +63,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_2f
 
     const-string v1, ".frro"
 
@@ -72,7 +72,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_2f
 
     const-string v1, "systemui"
 
@@ -81,7 +81,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_2f
 
     const-string v1, "data@resource-cache@"
 
@@ -90,10 +90,10 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_45
 
     .line 57
-    :cond_0
+    :cond_2f
     new-instance p1, Ljava/lang/StringBuilder;
 
     const-string p2, "Blocking problematic ApkAssets load: "
@@ -117,7 +117,7 @@
     return-object p1
 
     .line 63
-    :cond_1
+    :cond_45
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

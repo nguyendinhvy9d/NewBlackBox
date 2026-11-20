@@ -50,7 +50,7 @@
 
 # direct methods
 .method public constructor <init>(Lio/vanta/core/system/accounts/BAccountManagerService;Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;ZZLjava/lang/String;Z)V
-    .locals 10
+    .registers 19
 
     const/4 v9, 0x0
 
@@ -79,7 +79,7 @@
 .end method
 
 .method public constructor <init>(Lio/vanta/core/system/accounts/BAccountManagerService;Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;ZZLjava/lang/String;ZZ)V
-    .locals 2
+    .registers 12
 
     .line 1660
     iput-object p1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -103,7 +103,7 @@
     .line 1646
     iput-object v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAuthenticator:Landroid/accounts/IAccountAuthenticator;
 
-    if-eqz p4, :cond_1
+    if-eqz p4, :cond_4b
 
     .line 1664
     iput-object p2, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAccounts:Lio/vanta/core/system/accounts/BUserAccounts;
@@ -144,7 +144,7 @@
     monitor-enter p2
 
     .line 1675
-    :try_start_0
+    :try_start_2c
     invoke-static {p1}, Lio/vanta/core/system/accounts/BAccountManagerService;->-$$Nest$fgetmSessions(Lio/vanta/core/system/accounts/BAccountManagerService;)Ljava/util/LinkedHashMap;
 
     move-result-object p1
@@ -157,46 +157,46 @@
 
     .line 1676
     monitor-exit p2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_38
+    .catchall {:try_start_2c .. :try_end_38} :catchall_48
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_47
 
     .line 1679
-    :try_start_1
+    :try_start_3a
     invoke-interface {p3}, Landroid/accounts/IAccountManagerResponse;->asBinder()Landroid/os/IBinder;
 
     move-result-object p1
 
     invoke-interface {p1, p0, v0}, Landroid/os/IBinder;->linkToDeath(Landroid/os/IBinder$DeathRecipient;I)V
-    :try_end_1
-    .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_41
+    .catch Landroid/os/RemoteException; {:try_start_3a .. :try_end_41} :catch_42
 
     return-void
 
     .line 1681
-    :catch_0
+    :catch_42
     iput-object v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mResponse:Landroid/accounts/IAccountManagerResponse;
 
     .line 1682
     invoke-virtual {p0}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->binderDied()V
 
-    :cond_0
+    :cond_47
     return-void
 
-    :catchall_0
+    :catchall_48
     move-exception p1
 
     .line 1676
-    :try_start_2
+    :try_start_49
     monitor-exit p2
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_4a
+    .catchall {:try_start_49 .. :try_end_4a} :catchall_48
 
     throw p1
 
     .line 1663
-    :cond_1
+    :cond_4b
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
     const-string p2, "accountType is null"
@@ -207,7 +207,7 @@
 .end method
 
 .method private bindToAuthenticator(Ljava/lang/String;)Z
-    .locals 9
+    .registers 11
 
     .line 1965
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -226,7 +226,7 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_24
 
     .line 1967
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -248,7 +248,7 @@
 
     check-cast v0, Lio/vanta/core/system/accounts/BAccountManagerService$AuthenticatorInfo;
 
-    :cond_0
+    :cond_24
     const/4 v2, 0x0
 
     const/4 v3, 0x2
@@ -256,14 +256,14 @@
     .line 1970
     const-string v4, "AccountManagerService"
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_49
 
     .line 1971
     invoke-static {v4, v3}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_48
 
     .line 1972
     new-instance v0, Ljava/lang/StringBuilder;
@@ -288,11 +288,11 @@
 
     invoke-static {v4, p1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
+    :cond_48
     return v2
 
     .line 1985
-    :cond_2
+    :cond_49
     new-instance p1, Landroid/content/Intent;
 
     invoke-direct {p1}, Landroid/content/Intent;-><init>()V
@@ -332,7 +332,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_84
 
     .line 1993
     new-instance v0, Ljava/lang/StringBuilder;
@@ -351,11 +351,11 @@
 
     invoke-static {v4, v0}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_3
+    :cond_84
     const/4 v0, 0x1
 
     .line 2000
-    :try_start_0
+    :try_start_85
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
     move-result-object v6
@@ -372,7 +372,7 @@
 
     move-result-object v1
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_b9
 
     .line 2002
     iget-object v6, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -384,12 +384,12 @@
     invoke-virtual {v6, v1, p0, v0}, Landroid/content/Context;->bindService(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z
 
     move-result p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_a1
+    .catchall {:try_start_85 .. :try_end_a1} :catchall_a2
 
     return p1
 
-    :catchall_0
+    :catchall_a2
     move-exception v1
 
     .line 2005
@@ -414,7 +414,7 @@
     invoke-static {v4, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 2008
-    :cond_4
+    :cond_b9
     iget-object v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
 
     invoke-static {v1}, Lio/vanta/core/system/accounts/BAccountManagerService;->-$$Nest$fgetmContext(Lio/vanta/core/system/accounts/BAccountManagerService;)Landroid/content/Context;
@@ -425,14 +425,14 @@
 
     move-result p1
 
-    if-nez p1, :cond_6
+    if-nez p1, :cond_e4
 
     .line 2009
     invoke-static {v4, v3}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result p1
 
-    if-eqz p1, :cond_5
+    if-eqz p1, :cond_e3
 
     .line 2010
     new-instance p1, Ljava/lang/StringBuilder;
@@ -457,15 +457,15 @@
 
     invoke-static {v4, p1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_5
+    :cond_e3
     return v2
 
-    :cond_6
+    :cond_e4
     return v0
 .end method
 
 .method private close()V
-    .locals 3
+    .registers 4
 
     .line 1719
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -477,7 +477,7 @@
     monitor-enter v0
 
     .line 1720
-    :try_start_0
+    :try_start_7
     iget-object v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
 
     invoke-static {v1}, Lio/vanta/core/system/accounts/BAccountManagerService;->-$$Nest$fgetmSessions(Lio/vanta/core/system/accounts/BAccountManagerService;)Ljava/util/LinkedHashMap;
@@ -492,7 +492,7 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_19
 
     .line 1722
     monitor-exit v0
@@ -500,15 +500,15 @@
     return-void
 
     .line 1724
-    :cond_0
+    :cond_19
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1a
+    .catchall {:try_start_7 .. :try_end_1a} :catchall_30
 
     .line 1725
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mResponse:Landroid/accounts/IAccountManagerResponse;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_29
 
     .line 1727
     invoke-interface {v0}, Landroid/accounts/IAccountManagerResponse;->asBinder()Landroid/os/IBinder;
@@ -525,7 +525,7 @@
     iput-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mResponse:Landroid/accounts/IAccountManagerResponse;
 
     .line 1732
-    :cond_1
+    :cond_29
     invoke-virtual {p0}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->cancelTimeout()V
 
     .line 1733
@@ -533,25 +533,25 @@
 
     return-void
 
-    :catchall_0
+    :catchall_30
     move-exception v1
 
     .line 1724
-    :try_start_1
+    :try_start_31
     monitor-exit v0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_32
+    .catchall {:try_start_31 .. :try_end_32} :catchall_30
 
     throw v1
 .end method
 
 .method private unbind()V
-    .locals 3
+    .registers 4
 
     .line 1765
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAuthenticator:Landroid/accounts/IAccountAuthenticator;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1f
 
     const/4 v0, 0x0
 
@@ -559,7 +559,7 @@
     iput-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAuthenticator:Landroid/accounts/IAccountAuthenticator;
 
     .line 1768
-    :try_start_0
+    :try_start_7
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
     move-result-object v0
@@ -573,12 +573,12 @@
     iget v2, v2, Lio/vanta/core/system/accounts/BUserAccounts;->userId:I
 
     invoke-virtual {v0, v1, v2}, Lio/vanta/fake/frameworks/BActivityManager;->unbindService(Landroid/os/IBinder;I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_16
+    .catchall {:try_start_7 .. :try_end_16} :catchall_16
 
     .line 1772
-    :catchall_0
-    :try_start_1
+    :catchall_16
+    :try_start_16
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
 
     invoke-static {v0}, Lio/vanta/core/system/accounts/BAccountManagerService;->-$$Nest$fgetmContext(Lio/vanta/core/system/accounts/BAccountManagerService;)Landroid/content/Context;
@@ -586,18 +586,18 @@
     move-result-object v0
 
     invoke-virtual {v0, p0}, Landroid/content/Context;->unbindService(Landroid/content/ServiceConnection;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_1f
+    .catchall {:try_start_16 .. :try_end_1f} :catchall_1f
 
-    :catchall_1
-    :cond_0
+    :catchall_1f
+    :cond_1f
     return-void
 .end method
 
 
 # virtual methods
 .method bind()V
-    .locals 3
+    .registers 4
 
     .line 1755
     new-instance v0, Ljava/lang/StringBuilder;
@@ -627,7 +627,7 @@
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_39
 
     .line 1757
     new-instance v0, Ljava/lang/StringBuilder;
@@ -658,7 +658,7 @@
     return-void
 
     .line 1760
-    :cond_0
+    :cond_39
     new-instance v0, Ljava/lang/StringBuilder;
 
     const-string v2, "Session.bind: bindToAuthenticator succeeded for type="
@@ -681,7 +681,7 @@
 .end method
 
 .method public binderDied()V
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -695,7 +695,7 @@
 .end method
 
 .method public cancelTimeout()V
-    .locals 2
+    .registers 3
 
     .line 1779
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -712,23 +712,23 @@
 .end method
 
 .method protected checkKeyIntent(ILandroid/content/Intent;)Z
-    .locals 5
+    .registers 8
 
     const/4 p1, 0x0
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_4
 
     return p1
 
     .line 1700
-    :cond_0
+    :cond_4
     invoke-virtual {p2}, Landroid/content/Intent;->getClipData()Landroid/content/ClipData;
 
     move-result-object v0
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_12
 
     .line 1701
     invoke-static {v1, v1}, Landroid/content/ClipData;->newPlainText(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Landroid/content/ClipData;
@@ -738,13 +738,13 @@
     invoke-virtual {p2, v0}, Landroid/content/Intent;->setClipData(Landroid/content/ClipData;)V
 
     .line 1703
-    :cond_1
+    :cond_12
     invoke-static {}, Landroid/os/Binder;->clearCallingIdentity()J
 
     move-result-wide v2
 
     .line 1705
-    :try_start_0
+    :try_start_16
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
 
     invoke-static {v0}, Lio/vanta/core/system/accounts/BAccountManagerService;->-$$Nest$fgetmPms(Lio/vanta/core/system/accounts/BAccountManagerService;)Lio/vanta/core/system/pm/BPackageManagerService;
@@ -758,13 +758,13 @@
     invoke-virtual {v0, p2, p1, v1, v4}, Lio/vanta/core/system/pm/BPackageManagerService;->resolveActivity(Landroid/content/Intent;ILjava/lang/String;I)Landroid/content/pm/ResolveInfo;
 
     move-result-object v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_24
+    .catchall {:try_start_16 .. :try_end_24} :catchall_3b
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_34
 
     .line 1708
-    :try_start_1
+    :try_start_26
     iget-object v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
 
     invoke-static {v1}, Lio/vanta/core/system/accounts/BAccountManagerService;->-$$Nest$fgetmContext(Lio/vanta/core/system/accounts/BAccountManagerService;)Landroid/content/Context;
@@ -778,22 +778,22 @@
     invoke-virtual {v1, p2, p1}, Landroid/content/pm/PackageManager;->resolveActivity(Landroid/content/Intent;I)Landroid/content/pm/ResolveInfo;
 
     move-result-object v0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_34
+    .catchall {:try_start_26 .. :try_end_34} :catchall_34
 
-    :catchall_0
-    :cond_2
-    if-eqz v0, :cond_3
+    :catchall_34
+    :cond_34
+    if-eqz v0, :cond_37
 
     const/4 p1, 0x1
 
     .line 1714
-    :cond_3
+    :cond_37
     invoke-static {v2, v3}, Landroid/os/Binder;->restoreCallingIdentity(J)V
 
     return p1
 
-    :catchall_1
+    :catchall_3b
     move-exception p1
 
     invoke-static {v2, v3}, Landroid/os/Binder;->restoreCallingIdentity(J)V
@@ -803,26 +803,26 @@
 .end method
 
 .method getResponseAndClose()Landroid/accounts/IAccountManagerResponse;
-    .locals 1
+    .registers 2
 
     .line 1688
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mResponse:Landroid/accounts/IAccountManagerResponse;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     const/4 v0, 0x0
 
     return-object v0
 
     .line 1693
-    :cond_0
+    :cond_6
     invoke-direct {p0}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->close()V
 
     return-object v0
 .end method
 
 .method public onError(ILjava/lang/String;)V
-    .locals 5
+    .registers 8
 
     .line 1942
     iget v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mNumErrors:I
@@ -841,14 +841,14 @@
     .line 1944
     const-string v2, "AccountManagerService"
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_48
 
     .line 1945
     invoke-static {v2, v1}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_37
 
     .line 1946
     new-instance v3, Ljava/lang/StringBuilder;
@@ -884,15 +884,15 @@
     invoke-static {v2, v3}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 1950
-    :cond_0
-    :try_start_0
+    :cond_37
+    :try_start_37
     invoke-interface {v0, p1, p2}, Landroid/accounts/IAccountManagerResponse;->onError(ILjava/lang/String;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3a
+    .catch Landroid/os/RemoteException; {:try_start_37 .. :try_end_3a} :catch_3b
 
     return-void
 
-    :catch_0
+    :catch_3b
     move-exception p1
 
     .line 1952
@@ -900,35 +900,35 @@
 
     move-result p2
 
-    if-eqz p2, :cond_2
+    if-eqz p2, :cond_53
 
     .line 1953
     const-string p2, "Session.onError: caught RemoteException while responding"
 
     invoke-static {v2, p2, p1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    goto :goto_0
+    goto :goto_53
 
     .line 1957
-    :cond_1
+    :cond_48
     invoke-static {v2, v1}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result p1
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_53
 
     .line 1958
     const-string p1, "Session.onError: already closed"
 
     invoke-static {v2, p1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_2
-    :goto_0
+    :cond_53
+    :goto_53
     return-void
 .end method
 
 .method public onRequestContinued()V
-    .locals 1
+    .registers 2
 
     .line 1937
     iget v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mNumRequestContinued:I
@@ -941,7 +941,7 @@
 .end method
 
 .method public onResult(Landroid/os/Bundle;)V
-    .locals 10
+    .registers 12
 
     .line 1835
     const-string v0, "errorCode"
@@ -959,10 +959,10 @@
 
     const-string v3, "authAccount"
 
-    if-eqz p1, :cond_8
+    if-eqz p1, :cond_98
 
     .line 1839
-    :try_start_0
+    :try_start_e
     iget-object v4, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
 
     invoke-static {v4}, Lio/vanta/core/system/accounts/BAccountManagerService;->-$$Nest$fgetmContext(Lio/vanta/core/system/accounts/BAccountManagerService;)Landroid/content/Context;
@@ -974,11 +974,11 @@
     move-result-object v4
 
     invoke-virtual {p1, v4}, Landroid/os/Bundle;->setClassLoader(Ljava/lang/ClassLoader;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_e .. :try_end_1b} :catchall_1b
 
     .line 1842
-    :catchall_0
+    :catchall_1b
     const-string v4, "booleanResult"
 
     const/4 v5, 0x0
@@ -992,24 +992,24 @@
 
     move-result v6
 
-    if-eqz v6, :cond_0
+    if-eqz v6, :cond_30
 
     .line 1846
     invoke-virtual {p1, v1}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
 
     move-result v6
 
-    if-eqz v6, :cond_0
+    if-eqz v6, :cond_30
 
     move v6, v2
 
-    goto :goto_0
+    goto :goto_31
 
-    :cond_0
+    :cond_30
     move v6, v5
 
     .line 1848
-    :goto_0
+    :goto_31
     invoke-virtual {p1, v3}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v7
@@ -1019,13 +1019,13 @@
 
     move-result v8
 
-    if-eqz v8, :cond_1
+    if-eqz v8, :cond_3d
 
     .line 1850
     iget-object v7, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAccountName:Ljava/lang/String;
 
     .line 1852
-    :cond_1
+    :cond_3d
     invoke-virtual {p1, v1}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v8
@@ -1035,47 +1035,47 @@
 
     move-result v9
 
-    if-eqz v9, :cond_2
+    if-eqz v9, :cond_49
 
     .line 1854
     iget-object v8, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAccountType:Ljava/lang/String;
 
     .line 1857
-    :cond_2
+    :cond_49
     iget-boolean v9, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mUpdateLastAuthenticatedTime:Z
 
-    if-eqz v9, :cond_3
+    if-eqz v9, :cond_52
 
-    if-nez v4, :cond_4
+    if-nez v4, :cond_53
 
-    if-eqz v6, :cond_3
+    if-eqz v6, :cond_52
 
-    goto :goto_1
+    goto :goto_53
 
-    :cond_3
+    :cond_52
     move v2, v5
 
-    :cond_4
-    :goto_1
-    if-nez v2, :cond_5
+    :cond_53
+    :goto_53
+    if-nez v2, :cond_59
 
     .line 1859
     iget-boolean v4, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAuthDetailsRequired:Z
 
-    if-eqz v4, :cond_8
+    if-eqz v4, :cond_98
 
-    :cond_5
+    :cond_59
     invoke-static {v7}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v4
 
-    if-nez v4, :cond_8
+    if-nez v4, :cond_98
 
     invoke-static {v8}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v4
 
-    if-nez v4, :cond_8
+    if-nez v4, :cond_98
 
     .line 1860
     iget-object v4, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -1088,9 +1088,9 @@
 
     move-result v4
 
-    if-eqz v2, :cond_6
+    if-eqz v2, :cond_7f
 
-    if-eqz v4, :cond_6
+    if-eqz v4, :cond_7f
 
     .line 1862
     iget-object v2, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -1104,12 +1104,12 @@
     invoke-static {v2, v5, v6}, Lio/vanta/core/system/accounts/BAccountManagerService;->-$$Nest$mupdateLastAuthenticatedTime(Lio/vanta/core/system/accounts/BAccountManagerService;Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/Account;)Z
 
     .line 1864
-    :cond_6
+    :cond_7f
     iget-boolean v2, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAuthDetailsRequired:Z
 
-    if-eqz v2, :cond_8
+    if-eqz v2, :cond_98
 
-    if-eqz v4, :cond_7
+    if-eqz v4, :cond_91
 
     .line 1867
     iget-object v2, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAccounts:Lio/vanta/core/system/accounts/BUserAccounts;
@@ -1123,24 +1123,24 @@
 
     move-result-wide v4
 
-    goto :goto_2
+    goto :goto_93
 
-    :cond_7
+    :cond_91
     const-wide/16 v4, -0x1
 
     .line 1871
-    :goto_2
+    :goto_93
     const-string v2, "lastAuthenticatedTime"
 
     invoke-virtual {p1, v2, v4, v5}, Landroid/os/Bundle;->putLong(Ljava/lang/String;J)V
 
     .line 1876
-    :cond_8
+    :cond_98
     const-string v2, "intent"
 
     const-string v4, "AccountManagerService"
 
-    if-eqz p1, :cond_9
+    if-eqz p1, :cond_d5
 
     .line 1877
     invoke-virtual {p1, v2}, Landroid/os/Bundle;->getParcelable(Ljava/lang/String;)Landroid/os/Parcelable;
@@ -1149,7 +1149,7 @@
 
     check-cast v5, Landroid/content/Intent;
 
-    if-eqz v5, :cond_a
+    if-eqz v5, :cond_d6
 
     const/high16 v6, 0x10000000
 
@@ -1196,17 +1196,17 @@
 
     invoke-virtual {p0, v6, v5}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->checkKeyIntent(ILandroid/content/Intent;)Z
 
-    goto :goto_3
+    goto :goto_d6
 
-    :cond_9
+    :cond_d5
     const/4 v5, 0x0
 
     .line 1883
-    :cond_a
-    :goto_3
+    :cond_d6
+    :goto_d6
     const-string v6, "authtoken"
 
-    if-eqz p1, :cond_b
+    if-eqz p1, :cond_fd
 
     .line 1884
     invoke-virtual {p1, v6}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
@@ -1217,7 +1217,7 @@
 
     move-result v7
 
-    if-nez v7, :cond_b
+    if-nez v7, :cond_fd
 
     .line 1885
     invoke-virtual {p1, v3}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
@@ -1234,13 +1234,13 @@
 
     move-result v7
 
-    if-nez v7, :cond_b
+    if-nez v7, :cond_fd
 
     invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v7
 
-    if-nez v7, :cond_b
+    if-nez v7, :cond_fd
 
     .line 1888
     new-instance v7, Landroid/accounts/Account;
@@ -1248,45 +1248,45 @@
     invoke-direct {v7, v3, v1}, Landroid/accounts/Account;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 1894
-    :cond_b
+    :cond_fd
     iget-boolean v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mExpectActivityLaunch:Z
 
-    if-eqz v1, :cond_c
+    if-eqz v1, :cond_10c
 
-    if-eqz p1, :cond_c
+    if-eqz p1, :cond_10c
 
     .line 1895
     invoke-virtual {p1, v2}, Landroid/os/Bundle;->containsKey(Ljava/lang/String;)Z
 
     move-result v1
 
-    if-eqz v1, :cond_c
+    if-eqz v1, :cond_10c
 
     .line 1896
     iget-object v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mResponse:Landroid/accounts/IAccountManagerResponse;
 
-    goto :goto_4
+    goto :goto_110
 
     .line 1898
-    :cond_c
+    :cond_10c
     invoke-virtual {p0}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->getResponseAndClose()Landroid/accounts/IAccountManagerResponse;
 
     move-result-object v1
 
-    :goto_4
-    if-eqz v1, :cond_12
+    :goto_110
+    if-eqz v1, :cond_19a
 
     const/4 v2, 0x2
 
-    if-nez p1, :cond_e
+    if-nez p1, :cond_144
 
     .line 1903
-    :try_start_1
+    :try_start_115
     invoke-static {v4, v2}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result p1
 
-    if-eqz p1, :cond_d
+    if-eqz p1, :cond_13d
 
     .line 1904
     new-instance p1, Ljava/lang/StringBuilder;
@@ -1322,31 +1322,31 @@
     invoke-static {v4, p1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 1907
-    :cond_d
+    :cond_13d
     const-string p1, "null bundle returned"
 
     const/4 v0, 0x5
 
     invoke-interface {v1, v0, p1}, Landroid/accounts/IAccountManagerResponse;->onError(ILjava/lang/String;)V
 
-    goto :goto_5
+    goto :goto_19a
 
     .line 1910
-    :cond_e
+    :cond_144
     iget-boolean v3, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mStripAuthTokenFromResult:Z
 
-    if-eqz v3, :cond_f
+    if-eqz v3, :cond_14b
 
     .line 1911
     invoke-virtual {p1, v6}, Landroid/os/Bundle;->remove(Ljava/lang/String;)V
 
     .line 1913
-    :cond_f
+    :cond_14b
     invoke-static {v4, v2}, Landroid/util/Log;->isLoggable(Ljava/lang/String;I)Z
 
     move-result v3
 
-    if-eqz v3, :cond_10
+    if-eqz v3, :cond_173
 
     .line 1914
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1381,7 +1381,7 @@
 
     invoke-static {v4, v3}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_10
+    :cond_173
     const/4 v3, -0x1
 
     .line 1917
@@ -1389,9 +1389,9 @@
 
     move-result v3
 
-    if-lez v3, :cond_11
+    if-lez v3, :cond_18a
 
-    if-nez v5, :cond_11
+    if-nez v5, :cond_18a
 
     .line 1920
     invoke-virtual {p1, v0}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
@@ -1408,17 +1408,17 @@
     .line 1920
     invoke-interface {v1, v0, p1}, Landroid/accounts/IAccountManagerResponse;->onError(ILjava/lang/String;)V
 
-    goto :goto_5
+    goto :goto_19a
 
     .line 1923
-    :cond_11
+    :cond_18a
     invoke-interface {v1, p1}, Landroid/accounts/IAccountManagerResponse;->onResult(Landroid/os/Bundle;)V
-    :try_end_1
-    .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_18d
+    .catch Landroid/os/RemoteException; {:try_start_115 .. :try_end_18d} :catch_18e
 
-    goto :goto_5
+    goto :goto_19a
 
-    :catch_0
+    :catch_18e
     move-exception p1
 
     .line 1928
@@ -1426,20 +1426,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_12
+    if-eqz v0, :cond_19a
 
     .line 1929
     const-string v0, "failure while notifying response"
 
     invoke-static {v4, v0, p1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_12
-    :goto_5
+    :cond_19a
+    :goto_19a
     return-void
 .end method
 
 .method public onServiceConnected(Landroid/content/ComponentName;Landroid/os/IBinder;)V
-    .locals 3
+    .registers 6
 
     .line 1784
     invoke-static {p2}, Landroid/accounts/IAccountAuthenticator$Stub;->asInterface(Landroid/os/IBinder;)Landroid/accounts/IAccountAuthenticator;
@@ -1482,15 +1482,15 @@
     const/4 p1, 0x1
 
     .line 1787
-    :try_start_0
+    :try_start_27
     invoke-virtual {p0}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->run()V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2a
+    .catch Landroid/os/RemoteException; {:try_start_27 .. :try_end_2a} :catch_65
+    .catch Ljava/lang/SecurityException; {:try_start_27 .. :try_end_2a} :catch_2b
 
     return-void
 
-    :catch_0
+    :catch_2b
     move-exception v0
 
     .line 1793
@@ -1549,9 +1549,9 @@
     .line 1794
     invoke-virtual {p0, p1, p2}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->onError(ILjava/lang/String;)V
 
-    goto :goto_0
+    goto :goto_7f
 
-    :catch_1
+    :catch_65
     move-exception v0
 
     .line 1789
@@ -1578,12 +1578,12 @@
 
     invoke-virtual {p0, p1, p2}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->onError(ILjava/lang/String;)V
 
-    :goto_0
+    :goto_7f
     return-void
 .end method
 
 .method public onServiceDisconnected(Landroid/content/ComponentName;)V
-    .locals 2
+    .registers 4
 
     const/4 p1, 0x0
 
@@ -1595,21 +1595,21 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_1f
 
     .line 1805
-    :try_start_0
+    :try_start_9
     const-string v0, "disconnected"
 
     const/4 v1, 0x1
 
     invoke-interface {p1, v1, v0}, Landroid/accounts/IAccountManagerResponse;->onError(ILjava/lang/String;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_f
+    .catch Landroid/os/RemoteException; {:try_start_9 .. :try_end_f} :catch_10
 
     return-void
 
-    :catch_0
+    :catch_10
     move-exception p1
 
     const/4 v0, 0x2
@@ -1621,40 +1621,40 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1f
 
     .line 1809
     const-string v0, "Session.onServiceDisconnected: caught RemoteException while responding"
 
     invoke-static {v1, v0, p1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_0
+    :cond_1f
     return-void
 .end method
 
 .method public onTimedOut()V
-    .locals 3
+    .registers 4
 
     .line 1819
     invoke-virtual {p0}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->getResponseAndClose()Landroid/accounts/IAccountManagerResponse;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1c
 
     .line 1822
-    :try_start_0
+    :try_start_6
     const-string v1, "timeout"
 
     const/4 v2, 0x1
 
     invoke-interface {v0, v2, v1}, Landroid/accounts/IAccountManagerResponse;->onError(ILjava/lang/String;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_c
+    .catch Landroid/os/RemoteException; {:try_start_6 .. :try_end_c} :catch_d
 
     return-void
 
-    :catch_0
+    :catch_d
     move-exception v0
 
     const/4 v1, 0x2
@@ -1666,14 +1666,14 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1c
 
     .line 1826
     const-string v1, "Session.onTimedOut: caught RemoteException while responding"
 
     invoke-static {v2, v1, v0}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_0
+    :cond_1c
     return-void
 .end method
 
@@ -1686,7 +1686,7 @@
 .end method
 
 .method protected toDebugString()Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     .line 1743
     invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
@@ -1701,7 +1701,7 @@
 .end method
 
 .method protected toDebugString(J)Ljava/lang/String;
-    .locals 3
+    .registers 6
 
     .line 1747
     new-instance v0, Ljava/lang/StringBuilder;
@@ -1724,16 +1724,16 @@
 
     iget-object v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->mAuthenticator:Landroid/accounts/IAccountAuthenticator;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_19
 
     const/4 v1, 0x1
 
-    goto :goto_0
+    goto :goto_1a
 
-    :cond_0
+    :cond_19
     const/4 v1, 0x0
 
-    :goto_0
+    :goto_1a
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
     move-result-object v0

@@ -11,7 +11,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 6
     invoke-static {}, Lvanta/android/os/BRStrictMode;->get()Lvanta/android/os/StrictModeStatic;
@@ -22,14 +22,14 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_d
 
     const/16 v0, 0x2000
 
-    goto :goto_0
+    goto :goto_19
 
     .line 7
-    :cond_0
+    :cond_d
     invoke-static {}, Lvanta/android/os/BRStrictMode;->get()Lvanta/android/os/StrictModeStatic;
 
     move-result-object v0
@@ -42,7 +42,7 @@
 
     move-result v0
 
-    :goto_0
+    :goto_19
     sput v0, Lio/vanta/utils/compat/StrictModeCompat;->DETECT_VM_FILE_URI_EXPOSURE:I
 
     .line 9
@@ -54,14 +54,14 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_28
 
     const/high16 v0, 0x4000000
 
-    goto :goto_1
+    goto :goto_34
 
     .line 10
-    :cond_1
+    :cond_28
     invoke-static {}, Lvanta/android/os/BRStrictMode;->get()Lvanta/android/os/StrictModeStatic;
 
     move-result-object v0
@@ -74,14 +74,14 @@
 
     move-result v0
 
-    :goto_1
+    :goto_34
     sput v0, Lio/vanta/utils/compat/StrictModeCompat;->PENALTY_DEATH_ON_FILE_URI_EXPOSURE:I
 
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 5
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -90,25 +90,25 @@
 .end method
 
 .method public static disableDeathOnFileUriExposure()Z
-    .locals 4
+    .registers 4
 
     const/4 v0, 0x1
 
     .line 14
-    :try_start_0
+    :try_start_1
     invoke-static {}, Lvanta/android/os/BRStrictMode;->get()Lvanta/android/os/StrictModeStatic;
 
     move-result-object v1
 
     invoke-interface {v1}, Lvanta/android/os/StrictModeStatic;->disableDeathOnFileUriExposure()Ljava/lang/Void;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_8
+    .catchall {:try_start_1 .. :try_end_8} :catchall_9
 
     return v0
 
     .line 18
-    :catchall_0
-    :try_start_1
+    :catchall_9
+    :try_start_9
     invoke-static {}, Lvanta/android/os/BRStrictMode;->get()Lvanta/android/os/StrictModeStatic;
 
     move-result-object v1
@@ -142,12 +142,12 @@
     move-result-object v1
 
     invoke-interface {v2, v1}, Lvanta/android/os/StrictModeStatic;->_set_sVmPolicyMask(Ljava/lang/Object;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_27
+    .catchall {:try_start_9 .. :try_end_27} :catchall_28
 
     return v0
 
-    :catchall_1
+    :catchall_28
     move-exception v0
 
     .line 23

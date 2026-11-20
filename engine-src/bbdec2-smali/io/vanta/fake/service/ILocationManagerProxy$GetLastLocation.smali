@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 79
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -43,7 +43,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1b
 
     .line 84
     invoke-static {}, Lio/vanta/fake/frameworks/BLocationManager;->get()Lio/vanta/fake/frameworks/BLocationManager;
@@ -69,17 +69,17 @@
     return-object p1
 
     .line 89
-    :cond_0
-    :try_start_0
+    :cond_1b
+    :try_start_1b
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1f
+    .catch Ljava/lang/Exception; {:try_start_1b .. :try_end_1f} :catch_20
 
     return-object p1
 
-    :catch_0
+    :catch_20
     move-exception p1
 
     .line 91
@@ -89,7 +89,7 @@
 
     instance-of p2, p2, Ljava/lang/SecurityException;
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_32
 
     .line 92
     const-string p1, "ILocationManagerProxy"
@@ -103,6 +103,6 @@
     return-object p1
 
     .line 95
-    :cond_1
+    :cond_32
     throw p1
 .end method

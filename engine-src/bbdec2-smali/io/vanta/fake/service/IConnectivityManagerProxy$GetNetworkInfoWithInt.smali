@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 836
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -29,7 +29,7 @@
 .end method
 
 .method private createBasicNetworkInfo()Ljava/lang/Object;
-    .locals 4
+    .registers 5
 
     .line 869
     :try_start_0
@@ -44,12 +44,12 @@
     invoke-static {v2, v3, v0, v1}, Lio/vanta/fake/service/IConnectivityManagerProxy;->-$$Nest$smcreateNetworkInfo(IILjava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_a
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_a} :catch_b
 
     return-object v0
 
-    :catch_0
+    :catch_b
     move-exception v0
 
     .line 871
@@ -83,7 +83,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -98,17 +98,17 @@
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 842
-    :try_start_0
+    :try_start_7
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_b
+    .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_b} :catch_41
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_37
 
     .line 846
-    :try_start_1
+    :try_start_d
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object p2
@@ -154,15 +154,15 @@
     move-result-object p3
 
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_36
+    .catch Ljava/lang/Exception; {:try_start_d .. :try_end_36} :catch_36
 
-    :catch_0
+    :catch_36
     return-object p1
 
     .line 857
-    :cond_0
-    :try_start_2
+    :cond_37
+    :try_start_37
     const-string p1, "Creating fallback NetworkInfo for int parameter"
 
     invoke-static {v1, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -171,12 +171,12 @@
     invoke-direct {p0}, Lio/vanta/fake/service/IConnectivityManagerProxy$GetNetworkInfoWithInt;->createBasicNetworkInfo()Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_40
+    .catch Ljava/lang/Exception; {:try_start_37 .. :try_end_40} :catch_41
 
     return-object p1
 
-    :catch_1
+    :catch_41
     move-exception p1
 
     .line 861

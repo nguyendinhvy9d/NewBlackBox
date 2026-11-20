@@ -23,7 +23,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/os/IInterface;)V
-    .locals 1
+    .registers 3
 
     .line 21
     invoke-interface {p1}, Landroid/os/IInterface;->asBinder()Landroid/os/IBinder;
@@ -41,7 +41,7 @@
 
 # virtual methods
 .method public getProxyInvocation()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 42
     invoke-super {p0}, Lio/vanta/fake/hook/BinderInvocationStub;->getProxyInvocation()Ljava/lang/Object;
@@ -52,7 +52,7 @@
 .end method
 
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 27
     iget-object v0, p0, Lio/vanta/fake/service/IWindowSessionProxy;->mSession:Landroid/os/IInterface;
@@ -61,13 +61,13 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     return-void
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

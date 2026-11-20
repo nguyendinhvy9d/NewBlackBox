@@ -24,7 +24,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/app/BActivityThread;Landroid/content/pm/ApplicationInfo;Landroid/content/pm/PackageInfo;)V
-    .locals 0
+    .registers 4
 
     .line 583
     iput-object p1, p0, Lio/vanta/app/BActivityThread$2;->this$0:Lio/vanta/app/BActivityThread;
@@ -41,7 +41,7 @@
 
 # virtual methods
 .method public getInfo()Landroid/content/pm/ApplicationInfo;
-    .locals 1
+    .registers 2
 
     .line 584
     iget-object v0, p0, Lio/vanta/app/BActivityThread$2;->val$applicationInfo:Landroid/content/pm/ApplicationInfo;
@@ -50,7 +50,7 @@
 .end method
 
 .method public getProviders()Ljava/util/List;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -65,7 +65,7 @@
 
     iget-object v0, v0, Landroid/content/pm/PackageInfo;->providers:[Landroid/content/pm/ProviderInfo;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     iget-object v0, p0, Lio/vanta/app/BActivityThread$2;->val$packageInfo:Landroid/content/pm/PackageInfo;
 
@@ -77,7 +77,7 @@
 
     return-object v0
 
-    :cond_0
+    :cond_f
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V

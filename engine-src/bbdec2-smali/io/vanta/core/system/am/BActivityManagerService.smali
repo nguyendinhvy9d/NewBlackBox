@@ -31,7 +31,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 36
     new-instance v0, Lio/vanta/core/system/am/BActivityManagerService;
@@ -44,7 +44,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 45
     invoke-direct {p0}, Lio/vanta/core/system/am/IBActivityManagerService$Stub;-><init>()V
@@ -74,7 +74,7 @@
 .end method
 
 .method public static get()Lio/vanta/core/system/am/BActivityManagerService;
-    .locals 1
+    .registers 1
 
     .line 42
     sget-object v0, Lio/vanta/core/system/am/BActivityManagerService;->sService:Lio/vanta/core/system/am/BActivityManagerService;
@@ -83,7 +83,7 @@
 .end method
 
 .method private getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
-    .locals 3
+    .registers 5
 
     .line 366
     iget-object v0, p0, Lio/vanta/core/system/am/BActivityManagerService;->mUserSpace:Ljava/util/Map;
@@ -91,7 +91,7 @@
     monitor-enter v0
 
     .line 367
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/am/BActivityManagerService;->mUserSpace:Ljava/util/Map;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -104,7 +104,7 @@
 
     check-cast v1, Lio/vanta/core/system/am/UserSpace;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_13
 
     .line 369
     monitor-exit v0
@@ -112,7 +112,7 @@
     return-object v1
 
     .line 370
-    :cond_0
+    :cond_13
     new-instance v1, Lio/vanta/core/system/am/UserSpace;
 
     invoke-direct {v1}, Lio/vanta/core/system/am/UserSpace;-><init>()V
@@ -131,13 +131,13 @@
 
     return-object v1
 
-    :catchall_0
+    :catchall_23
     move-exception p1
 
     .line 373
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_3 .. :try_end_25} :catchall_23
 
     throw p1
 .end method
@@ -145,7 +145,7 @@
 
 # virtual methods
 .method public acquireContentProviderClient(Landroid/content/pm/ProviderInfo;)Landroid/os/IBinder;
-    .locals 7
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -187,21 +187,21 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_2d
 
     .line 70
-    :try_start_0
+    :try_start_1f
     iget-object v0, v0, Lio/vanta/core/system/ProcessRecord;->bActivityThread:Lio/vanta/core/IBActivityThread;
 
     invoke-interface {v0, p1}, Lio/vanta/core/IBActivityThread;->acquireContentProviderClient(Landroid/content/pm/ProviderInfo;)Landroid/os/IBinder;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_1f .. :try_end_25} :catchall_26
 
     return-object p1
 
-    :catchall_0
+    :catchall_26
     move-exception v0
 
     move-object p1, v0
@@ -214,7 +214,7 @@
     return-object p1
 
     .line 67
-    :cond_0
+    :cond_2d
     new-instance v0, Ljava/lang/RuntimeException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -239,7 +239,7 @@
 .end method
 
 .method public bindService(Landroid/content/Intent;Landroid/os/IBinder;Ljava/lang/String;I)Landroid/content/Intent;
-    .locals 2
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -257,7 +257,7 @@
     monitor-enter v1
 
     .line 302
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mActiveServices:Lio/vanta/core/system/am/ActiveServices;
 
     invoke-virtual {v0, p1, p2, p3, p4}, Lio/vanta/core/system/am/ActiveServices;->bindService(Landroid/content/Intent;Landroid/os/IBinder;Ljava/lang/String;I)Landroid/content/Intent;
@@ -268,19 +268,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_f
     move-exception p1
 
     .line 303
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_11
+    .catchall {:try_start_7 .. :try_end_11} :catchall_f
 
     throw p1
 .end method
 
 .method public finishBroadcast(Lio/vanta/entity/am/PendingResultData;)V
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -296,7 +296,7 @@
 .end method
 
 .method public getCallingActivity(Landroid/os/IBinder;I)Landroid/content/ComponentName;
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -314,7 +314,7 @@
     monitor-enter v1
 
     .line 227
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mStack:Lio/vanta/core/system/am/ActivityStack;
 
     invoke-virtual {v0, p1, p2}, Lio/vanta/core/system/am/ActivityStack;->getCallingActivity(Landroid/os/IBinder;I)Landroid/content/ComponentName;
@@ -325,19 +325,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_f
     move-exception p1
 
     .line 228
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_11
+    .catchall {:try_start_7 .. :try_end_11} :catchall_f
 
     throw p1
 .end method
 
 .method public getCallingPackage(Landroid/os/IBinder;I)Ljava/lang/String;
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -355,7 +355,7 @@
     monitor-enter v1
 
     .line 219
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mStack:Lio/vanta/core/system/am/ActivityStack;
 
     invoke-virtual {v0, p1, p2}, Lio/vanta/core/system/am/ActivityStack;->getCallingPackage(Landroid/os/IBinder;I)Ljava/lang/String;
@@ -366,19 +366,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_f
     move-exception p1
 
     .line 220
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_11
+    .catchall {:try_start_7 .. :try_end_11} :catchall_f
 
     throw p1
 .end method
 
 .method public getIntentSender(Landroid/os/IBinder;Ljava/lang/String;II)V
-    .locals 2
+    .registers 7
 
     .line 233
     invoke-direct {p0, p4}, Lio/vanta/core/system/am/BActivityManagerService;->getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
@@ -391,7 +391,7 @@
     monitor-enter v0
 
     .line 235
-    :try_start_0
+    :try_start_7
     new-instance v1, Lio/vanta/core/system/am/PendingIntentRecord;
 
     invoke-direct {v1}, Lio/vanta/core/system/am/PendingIntentRecord;-><init>()V
@@ -412,18 +412,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_17
     move-exception p1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_19
+    .catchall {:try_start_7 .. :try_end_19} :catchall_17
 
     throw p1
 .end method
 
 .method public getPackageForIntentSender(Landroid/os/IBinder;I)Ljava/lang/String;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -441,7 +441,7 @@
     monitor-enter v0
 
     .line 246
-    :try_start_0
+    :try_start_7
     iget-object p2, p2, Lio/vanta/core/system/am/UserSpace;->mIntentSenderRecords:Ljava/util/Map;
 
     invoke-interface {p2, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -450,7 +450,7 @@
 
     check-cast p1, Lio/vanta/core/system/am/PendingIntentRecord;
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_15
 
     .line 248
     iget-object p1, p1, Lio/vanta/core/system/am/PendingIntentRecord;->packageName:Ljava/lang/String;
@@ -460,25 +460,25 @@
     return-object p1
 
     .line 250
-    :cond_0
+    :cond_15
     monitor-exit v0
 
     const/4 p1, 0x0
 
     return-object p1
 
-    :catchall_0
+    :catchall_18
     move-exception p1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1a
+    .catchall {:try_start_7 .. :try_end_1a} :catchall_18
 
     throw p1
 .end method
 
 .method public getRunningAppProcesses(Ljava/lang/String;I)Lio/vanta/entity/am/RunningAppProcessInfo;
-    .locals 4
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -513,12 +513,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_19
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_2f
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -535,10 +535,10 @@
 
     invoke-interface {v1, v3, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_0
+    goto :goto_19
 
     .line 169
-    :cond_0
+    :cond_2f
     invoke-static {}, Lio/vanta/core/system/BProcessManagerService;->get()Lio/vanta/core/system/BProcessManagerService;
 
     move-result-object v0
@@ -557,13 +557,13 @@
 
     move-result-object p1
 
-    :cond_1
-    :goto_1
+    :cond_40
+    :goto_40
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_64
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -584,7 +584,7 @@
 
     check-cast v2, Landroid/app/ActivityManager$RunningAppProcessInfo;
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_40
 
     .line 175
     iget-object v0, v0, Lio/vanta/core/system/ProcessRecord;->processName:Ljava/lang/String;
@@ -596,14 +596,14 @@
 
     invoke-interface {v0, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    goto :goto_1
+    goto :goto_40
 
-    :cond_2
+    :cond_64
     return-object p2
 .end method
 
 .method public getRunningServices(Ljava/lang/String;I)Lio/vanta/entity/am/RunningServiceInfo;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -626,7 +626,7 @@
 .end method
 
 .method public getUidForIntentSender(Landroid/os/IBinder;I)I
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -644,7 +644,7 @@
     monitor-enter v0
 
     .line 258
-    :try_start_0
+    :try_start_7
     iget-object p2, p2, Lio/vanta/core/system/am/UserSpace;->mIntentSenderRecords:Ljava/util/Map;
 
     invoke-interface {p2, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -653,7 +653,7 @@
 
     check-cast p1, Lio/vanta/core/system/am/PendingIntentRecord;
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_15
 
     .line 260
     iget p1, p1, Lio/vanta/core/system/am/PendingIntentRecord;->uid:I
@@ -663,25 +663,25 @@
     return p1
 
     .line 262
-    :cond_0
+    :cond_15
     monitor-exit v0
 
     const/4 p1, -0x1
 
     return p1
 
-    :catchall_0
+    :catchall_18
     move-exception p1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1a
+    .catchall {:try_start_7 .. :try_end_1a} :catchall_18
 
     throw p1
 .end method
 
 .method public initProcess(Ljava/lang/String;Ljava/lang/String;I)Lio/vanta/entity/AppConfig;
-    .locals 6
+    .registers 10
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -709,14 +709,14 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_14
 
     const/4 p1, 0x0
 
     return-object p1
 
     .line 327
-    :cond_0
+    :cond_14
     invoke-virtual {p1}, Lio/vanta/core/system/ProcessRecord;->getClientConfig()Lio/vanta/entity/AppConfig;
 
     move-result-object p1
@@ -725,7 +725,7 @@
 .end method
 
 .method public onActivityCreated(ILandroid/os/IBinder;Landroid/os/IBinder;)V
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -746,12 +746,12 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_f
 
     return-void
 
     .line 114
-    :cond_0
+    :cond_f
     check-cast p3, Lio/vanta/core/system/am/ActivityRecord;
 
     .line 115
@@ -767,7 +767,7 @@
     monitor-enter v2
 
     .line 117
-    :try_start_0
+    :try_start_1a
     iget-object v1, v1, Lio/vanta/core/system/am/UserSpace;->mStack:Lio/vanta/core/system/am/ActivityStack;
 
     invoke-virtual {v1, v0, p1, p2, p3}, Lio/vanta/core/system/am/ActivityStack;->onActivityCreated(Lio/vanta/core/system/ProcessRecord;ILandroid/os/IBinder;Lio/vanta/core/system/am/ActivityRecord;)V
@@ -777,18 +777,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_21
     move-exception p1
 
     monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_1a .. :try_end_23} :catchall_21
 
     throw p1
 .end method
 
 .method public onActivityDestroyed(Landroid/os/IBinder;)V
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -809,12 +809,12 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_f
 
     return-void
 
     .line 141
-    :cond_0
+    :cond_f
     iget v1, v0, Lio/vanta/core/system/ProcessRecord;->userId:I
 
     invoke-direct {p0, v1}, Lio/vanta/core/system/am/BActivityManagerService;->getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
@@ -827,7 +827,7 @@
     monitor-enter v2
 
     .line 143
-    :try_start_0
+    :try_start_18
     iget-object v1, v1, Lio/vanta/core/system/am/UserSpace;->mStack:Lio/vanta/core/system/am/ActivityStack;
 
     iget v0, v0, Lio/vanta/core/system/ProcessRecord;->userId:I
@@ -839,18 +839,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_21
     move-exception p1
 
     monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_18 .. :try_end_23} :catchall_21
 
     throw p1
 .end method
 
 .method public onActivityResumed(Landroid/os/IBinder;)V
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -871,12 +871,12 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_f
 
     return-void
 
     .line 128
-    :cond_0
+    :cond_f
     iget v1, v0, Lio/vanta/core/system/ProcessRecord;->userId:I
 
     invoke-direct {p0, v1}, Lio/vanta/core/system/am/BActivityManagerService;->getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
@@ -889,7 +889,7 @@
     monitor-enter v2
 
     .line 130
-    :try_start_0
+    :try_start_18
     iget-object v1, v1, Lio/vanta/core/system/am/UserSpace;->mStack:Lio/vanta/core/system/am/ActivityStack;
 
     iget v0, v0, Lio/vanta/core/system/ProcessRecord;->userId:I
@@ -901,18 +901,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_21
     move-exception p1
 
     monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_18 .. :try_end_23} :catchall_21
 
     throw p1
 .end method
 
 .method public onFinishActivity(Landroid/os/IBinder;)V
-    .locals 3
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -933,12 +933,12 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_f
 
     return-void
 
     .line 154
-    :cond_0
+    :cond_f
     iget v1, v0, Lio/vanta/core/system/ProcessRecord;->userId:I
 
     invoke-direct {p0, v1}, Lio/vanta/core/system/am/BActivityManagerService;->getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
@@ -951,7 +951,7 @@
     monitor-enter v2
 
     .line 156
-    :try_start_0
+    :try_start_18
     iget-object v1, v1, Lio/vanta/core/system/am/UserSpace;->mStack:Lio/vanta/core/system/am/ActivityStack;
 
     iget v0, v0, Lio/vanta/core/system/ProcessRecord;->userId:I
@@ -963,18 +963,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_21
     move-exception p1
 
     monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_18 .. :try_end_23} :catchall_21
 
     throw p1
 .end method
 
 .method public onServiceDestroy(Landroid/content/Intent;I)V
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -992,7 +992,7 @@
     monitor-enter v1
 
     .line 286
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mActiveServices:Lio/vanta/core/system/am/ActiveServices;
 
     invoke-virtual {v0, p1, p2}, Lio/vanta/core/system/am/ActiveServices;->onServiceDestroy(Landroid/content/Intent;I)V
@@ -1002,18 +1002,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_e
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_10
+    .catchall {:try_start_7 .. :try_end_10} :catchall_e
 
     throw p1
 .end method
 
 .method public onServiceUnbind(Landroid/content/Intent;I)Lio/vanta/entity/UnbindRecord;
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1031,7 +1031,7 @@
     monitor-enter v1
 
     .line 278
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mActiveServices:Lio/vanta/core/system/am/ActiveServices;
 
     invoke-virtual {v0, p1, p2}, Lio/vanta/core/system/am/ActiveServices;->onServiceUnbind(Landroid/content/Intent;I)Lio/vanta/entity/UnbindRecord;
@@ -1042,19 +1042,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_f
     move-exception p1
 
     .line 279
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_11
+    .catchall {:try_start_7 .. :try_end_11} :catchall_f
 
     throw p1
 .end method
 
 .method public onStartCommand(Landroid/content/Intent;I)V
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1072,7 +1072,7 @@
     monitor-enter v1
 
     .line 270
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mActiveServices:Lio/vanta/core/system/am/ActiveServices;
 
     invoke-virtual {v0, p1, p2}, Lio/vanta/core/system/am/ActiveServices;->onStartCommand(Landroid/content/Intent;I)V
@@ -1082,18 +1082,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_e
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_10
+    .catchall {:try_start_7 .. :try_end_10} :catchall_e
 
     throw p1
 .end method
 
 .method public peekService(Landroid/content/Intent;Ljava/lang/String;I)Landroid/os/IBinder;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1111,7 +1111,7 @@
     monitor-enter v1
 
     .line 103
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mActiveServices:Lio/vanta/core/system/am/ActiveServices;
 
     invoke-virtual {v0, p1, p2, p3}, Lio/vanta/core/system/am/ActiveServices;->peekService(Landroid/content/Intent;Ljava/lang/String;I)Landroid/os/IBinder;
@@ -1122,19 +1122,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_f
     move-exception p1
 
     .line 104
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_11
+    .catchall {:try_start_7 .. :try_end_11} :catchall_f
 
     throw p1
 .end method
 
 .method public restartProcess(Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1152,7 +1152,7 @@
 .end method
 
 .method public scheduleBroadcastReceiver(Landroid/content/Intent;Lio/vanta/entity/am/PendingResultData;I)V
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1177,7 +1177,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_20
 
     .line 193
     invoke-virtual {p2}, Lio/vanta/entity/am/PendingResultData;->build()Landroid/content/BroadcastReceiver$PendingResult;
@@ -1196,7 +1196,7 @@
     return-void
 
     .line 197
-    :cond_0
+    :cond_20
     iget-object v1, p0, Lio/vanta/core/system/am/BActivityManagerService;->mBroadcastManager:Lio/vanta/core/system/am/BroadcastManager;
 
     invoke-virtual {v1, p2}, Lio/vanta/core/system/am/BroadcastManager;->sendBroadcast(Lio/vanta/entity/am/PendingResultData;)V
@@ -1206,13 +1206,13 @@
 
     move-result-object v0
 
-    :cond_1
-    :goto_0
+    :cond_29
+    :goto_29
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_5a
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1237,7 +1237,7 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_29
 
     .line 201
     new-instance v3, Lio/vanta/entity/am/ReceiverData;
@@ -1260,14 +1260,14 @@
 
     invoke-interface {v1, v3}, Lio/vanta/core/IBActivityThread;->scheduleReceiver(Lio/vanta/entity/am/ReceiverData;)V
 
-    goto :goto_0
+    goto :goto_29
 
-    :cond_2
+    :cond_5a
     return-void
 .end method
 
 .method public sendBroadcast(Landroid/content/Intent;Ljava/lang/String;I)Landroid/content/Intent;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1290,12 +1290,12 @@
 
     move-result-object p2
 
-    :goto_0
+    :goto_e
     invoke-interface {p2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_38
 
     invoke-interface {p2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1320,31 +1320,31 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_2d
 
-    goto :goto_0
+    goto :goto_e
 
     .line 87
-    :cond_0
-    :try_start_0
+    :cond_2d
+    :try_start_2d
     iget-object v0, v0, Lio/vanta/core/system/ProcessRecord;->bActivityThread:Lio/vanta/core/IBActivityThread;
 
     invoke-interface {v0}, Lio/vanta/core/IBActivityThread;->bindApplication()V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_32
+    .catch Landroid/os/RemoteException; {:try_start_2d .. :try_end_32} :catch_33
 
-    goto :goto_0
+    goto :goto_e
 
-    :catch_0
+    :catch_33
     move-exception v0
 
     .line 89
     invoke-virtual {v0}, Landroid/os/RemoteException;->printStackTrace()V
 
-    goto :goto_0
+    goto :goto_e
 
     .line 92
-    :cond_1
+    :cond_38
     new-instance p2, Landroid/content/Intent;
 
     invoke-direct {p2}, Landroid/content/Intent;-><init>()V
@@ -1372,7 +1372,7 @@
 .end method
 
 .method public startActivities(I[Landroid/content/Intent;[Ljava/lang/String;Landroid/os/IBinder;Landroid/os/Bundle;)I
-    .locals 8
+    .registers 14
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1388,14 +1388,14 @@
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_c
 
     const/4 p1, -0x1
 
     return p1
 
     .line 359
-    :cond_0
+    :cond_c
     invoke-direct {p0, p1}, Lio/vanta/core/system/am/BActivityManagerService;->getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
 
     move-result-object v0
@@ -1406,7 +1406,7 @@
     monitor-enter v1
 
     .line 361
-    :try_start_0
+    :try_start_13
     iget-object v2, v0, Lio/vanta/core/system/am/UserSpace;->mStack:Lio/vanta/core/system/am/ActivityStack;
 
     move v3, p1
@@ -1427,21 +1427,21 @@
 
     return p1
 
-    :catchall_0
+    :catchall_20
     move-exception v0
 
     move-object p1, v0
 
     .line 362
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_13 .. :try_end_23} :catchall_20
 
     throw p1
 .end method
 
 .method public startActivity(Landroid/content/Intent;I)V
-    .locals 11
+    .registers 14
 
     .line 337
     invoke-direct {p0, p2}, Lio/vanta/core/system/am/BActivityManagerService;->getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
@@ -1454,7 +1454,7 @@
     monitor-enter v1
 
     .line 339
-    :try_start_0
+    :try_start_7
     iget-object v2, v0, Lio/vanta/core/system/am/UserSpace;->mStack:Lio/vanta/core/system/am/ActivityStack;
 
     const/4 v9, -0x1
@@ -1480,20 +1480,20 @@
 
     return-void
 
-    :catchall_0
+    :catchall_16
     move-exception v0
 
     move-object p1, v0
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_19
+    .catchall {:try_start_7 .. :try_end_19} :catchall_16
 
     throw p1
 .end method
 
 .method public startActivityAms(ILandroid/content/Intent;Ljava/lang/String;Landroid/os/IBinder;Ljava/lang/String;IILandroid/os/Bundle;)I
-    .locals 11
+    .registers 20
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1509,14 +1509,27 @@
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_c
 
     const/4 p1, -0x1
 
     return p1
 
     .line 348
-    :cond_0
+    :cond_c
+    if-eqz p2, :cond_19
+
+    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/Class;->getClassLoader()Ljava/lang/ClassLoader;
+
+    move-result-object v0
+
+    invoke-virtual {p2, v0}, Landroid/content/Intent;->setExtrasClassLoader(Ljava/lang/ClassLoader;)V
+
+    :cond_19
     invoke-direct/range {p0 .. p1}, Lio/vanta/core/system/am/BActivityManagerService;->getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
 
     move-result-object v0
@@ -1527,7 +1540,7 @@
     monitor-enter v1
 
     .line 350
-    :try_start_0
+    :try_start_20
     iget-object v2, v0, Lio/vanta/core/system/am/UserSpace;->mStack:Lio/vanta/core/system/am/ActivityStack;
 
     move v3, p1
@@ -1554,21 +1567,21 @@
 
     return p1
 
-    :catchall_0
+    :catchall_34
     move-exception v0
 
     move-object p1, v0
 
     .line 351
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_37
+    .catchall {:try_start_20 .. :try_end_37} :catchall_34
 
     throw p1
 .end method
 
 .method public startService(Landroid/content/Intent;Ljava/lang/String;ZI)Landroid/content/ComponentName;
-    .locals 2
+    .registers 7
 
     .line 51
     invoke-direct {p0, p4}, Lio/vanta/core/system/am/BActivityManagerService;->getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
@@ -1581,7 +1594,7 @@
     monitor-enter v1
 
     .line 53
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mActiveServices:Lio/vanta/core/system/am/ActiveServices;
 
     invoke-virtual {v0, p1, p2, p3, p4}, Lio/vanta/core/system/am/ActiveServices;->startService(Landroid/content/Intent;Ljava/lang/String;ZI)V
@@ -1593,18 +1606,18 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_f
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_11
+    .catchall {:try_start_7 .. :try_end_11} :catchall_f
 
     throw p1
 .end method
 
 .method public stopService(Landroid/content/Intent;Ljava/lang/String;I)I
-    .locals 2
+    .registers 6
 
     .line 292
     invoke-direct {p0, p3}, Lio/vanta/core/system/am/BActivityManagerService;->getOrCreateSpaceLocked(I)Lio/vanta/core/system/am/UserSpace;
@@ -1617,7 +1630,7 @@
     monitor-enter v1
 
     .line 294
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mActiveServices:Lio/vanta/core/system/am/ActiveServices;
 
     invoke-virtual {v0, p1, p2, p3}, Lio/vanta/core/system/am/ActiveServices;->stopService(Landroid/content/Intent;Ljava/lang/String;I)I
@@ -1628,19 +1641,19 @@
 
     return p1
 
-    :catchall_0
+    :catchall_f
     move-exception p1
 
     .line 295
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_11
+    .catchall {:try_start_7 .. :try_end_11} :catchall_f
 
     throw p1
 .end method
 
 .method public stopServiceToken(Landroid/content/ComponentName;Landroid/os/IBinder;I)V
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1658,7 +1671,7 @@
     monitor-enter v1
 
     .line 318
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mActiveServices:Lio/vanta/core/system/am/ActiveServices;
 
     invoke-virtual {v0, p1, p2, p3}, Lio/vanta/core/system/am/ActiveServices;->stopServiceToken(Landroid/content/ComponentName;Landroid/os/IBinder;I)V
@@ -1668,18 +1681,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_e
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_10
+    .catchall {:try_start_7 .. :try_end_10} :catchall_e
 
     throw p1
 .end method
 
 .method public systemReady()V
-    .locals 1
+    .registers 2
 
     .line 378
     iget-object v0, p0, Lio/vanta/core/system/am/BActivityManagerService;->mBroadcastManager:Lio/vanta/core/system/am/BroadcastManager;
@@ -1690,7 +1703,7 @@
 .end method
 
 .method public unbindService(Landroid/os/IBinder;I)V
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -1708,7 +1721,7 @@
     monitor-enter v1
 
     .line 310
-    :try_start_0
+    :try_start_7
     iget-object v0, v0, Lio/vanta/core/system/am/UserSpace;->mActiveServices:Lio/vanta/core/system/am/ActiveServices;
 
     invoke-virtual {v0, p1, p2}, Lio/vanta/core/system/am/ActiveServices;->unbindService(Landroid/os/IBinder;I)V
@@ -1718,12 +1731,12 @@
 
     return-void
 
-    :catchall_0
+    :catchall_e
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_10
+    .catchall {:try_start_7 .. :try_end_10} :catchall_e
 
     throw p1
 .end method

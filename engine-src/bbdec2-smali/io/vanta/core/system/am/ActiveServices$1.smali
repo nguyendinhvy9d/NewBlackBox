@@ -27,7 +27,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/am/ActiveServices;Landroid/content/Intent;Z)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()V"
@@ -49,12 +49,12 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .registers 5
 
     .line 72
     const-string v0, "ActiveServices"
 
-    :try_start_0
+    :try_start_2
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -67,25 +67,25 @@
     const-string v1, "startService: dispatched stub service intent successfully"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_10
+    .catchall {:try_start_2 .. :try_end_10} :catchall_11
 
     return-void
 
-    :catchall_0
+    :catchall_11
     move-exception v1
 
     .line 76
-    :try_start_1
+    :try_start_12
     iget-boolean v2, p0, Lio/vanta/core/system/am/ActiveServices$1;->val$reqForeground:Z
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_33
 
     sget v2, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v3, 0x1a
 
-    if-lt v2, v3, :cond_0
+    if-lt v2, v3, :cond_33
 
     .line 77
     iget-object v1, p0, Lio/vanta/core/system/am/ActiveServices$1;->val$stubServiceIntent:Landroid/content/Intent;
@@ -113,12 +113,12 @@
     return-void
 
     .line 82
-    :cond_0
+    :cond_33
     throw v1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_34
+    .catchall {:try_start_12 .. :try_end_34} :catchall_34
 
-    :catchall_1
+    :catchall_34
     move-exception v1
 
     .line 85

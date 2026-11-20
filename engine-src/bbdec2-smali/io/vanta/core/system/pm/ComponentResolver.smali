@@ -42,7 +42,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 38
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -95,7 +95,7 @@
 .end method
 
 .method private addActivitiesLocked(Lio/vanta/core/system/pm/BPackage;Ljava/util/List;)V
-    .locals 6
+    .registers 9
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -115,8 +115,8 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_0
+    :goto_7
+    if-ge v1, v0, :cond_2b
 
     .line 107
     iget-object v2, p1, Lio/vanta/core/system/pm/BPackage;->activities:Ljava/util/ArrayList;
@@ -154,14 +154,14 @@
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_7
 
-    :cond_0
+    :cond_2b
     return-void
 .end method
 
 .method private addProvidersLocked(Lio/vanta/core/system/pm/BPackage;)V
-    .locals 13
+    .registers 15
 
     .line 115
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage;->providers:Ljava/util/ArrayList;
@@ -174,8 +174,8 @@
 
     move v2, v1
 
-    :goto_0
-    if-ge v2, v0, :cond_5
+    :goto_8
+    if-ge v2, v0, :cond_cb
 
     .line 117
     iget-object v3, p1, Lio/vanta/core/system/pm/BPackage;->providers:Ljava/util/ArrayList;
@@ -213,7 +213,7 @@
 
     iget-object v4, v4, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
 
-    if-eqz v4, :cond_4
+    if-eqz v4, :cond_c7
 
     .line 122
     iget-object v4, v3, Lio/vanta/core/system/pm/BPackage$Provider;->info:Landroid/content/pm/ProviderInfo;
@@ -238,8 +238,8 @@
 
     move v8, v1
 
-    :goto_1
-    if-ge v8, v6, :cond_4
+    :goto_3e
+    if-ge v8, v6, :cond_c7
 
     aget-object v9, v4, v8
 
@@ -250,7 +250,7 @@
 
     move-result v10
 
-    if-nez v10, :cond_1
+    if-nez v10, :cond_78
 
     .line 126
     iget-object v10, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProvidersByAuthority:Landroid/util/ArrayMap;
@@ -262,17 +262,17 @@
 
     iget-object v10, v10, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
 
-    if-nez v10, :cond_0
+    if-nez v10, :cond_5a
 
     .line 128
     iget-object v10, v3, Lio/vanta/core/system/pm/BPackage$Provider;->info:Landroid/content/pm/ProviderInfo;
 
     iput-object v9, v10, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
 
-    goto :goto_4
+    goto :goto_c3
 
     .line 130
-    :cond_0
+    :cond_5a
     iget-object v10, v3, Lio/vanta/core/system/pm/BPackage$Provider;->info:Landroid/content/pm/ProviderInfo;
 
     new-instance v11, Ljava/lang/StringBuilder;
@@ -301,10 +301,10 @@
 
     iput-object v9, v10, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
 
-    goto :goto_4
+    goto :goto_c3
 
     .line 133
-    :cond_1
+    :cond_78
     iget-object v10, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProvidersByAuthority:Landroid/util/ArrayMap;
 
     .line 134
@@ -314,40 +314,40 @@
 
     check-cast v10, Lio/vanta/core/system/pm/BPackage$Provider;
 
-    if-eqz v10, :cond_2
+    if-eqz v10, :cond_8d
 
     .line 136
     invoke-virtual {v10}, Lio/vanta/core/system/pm/BPackage$Provider;->getComponentName()Landroid/content/ComponentName;
 
     move-result-object v11
 
-    if-eqz v11, :cond_2
+    if-eqz v11, :cond_8d
 
     .line 137
     invoke-virtual {v10}, Lio/vanta/core/system/pm/BPackage$Provider;->getComponentName()Landroid/content/ComponentName;
 
     move-result-object v10
 
-    goto :goto_2
+    goto :goto_8e
 
-    :cond_2
+    :cond_8d
     move-object v10, v7
 
-    :goto_2
-    if-eqz v10, :cond_3
+    :goto_8e
+    if-eqz v10, :cond_95
 
     .line 139
     invoke-virtual {v10}, Landroid/content/ComponentName;->getPackageName()Ljava/lang/String;
 
     move-result-object v10
 
-    goto :goto_3
+    goto :goto_97
 
-    :cond_3
+    :cond_95
     const-string v10, "?"
 
     .line 140
-    :goto_3
+    :goto_97
     new-instance v11, Ljava/lang/StringBuilder;
 
     const-string v12, "Skipping provider name "
@@ -390,22 +390,22 @@
 
     invoke-static {v10, v9}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    :goto_4
+    :goto_c3
     add-int/lit8 v8, v8, 0x1
 
-    goto/16 :goto_1
+    goto/16 :goto_3e
 
-    :cond_4
+    :cond_c7
     add-int/lit8 v2, v2, 0x1
 
-    goto/16 :goto_0
+    goto/16 :goto_8
 
-    :cond_5
+    :cond_cb
     return-void
 .end method
 
 .method private addReceiversLocked(Lio/vanta/core/system/pm/BPackage;)V
-    .locals 6
+    .registers 8
 
     .line 150
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage;->receivers:Ljava/util/ArrayList;
@@ -416,8 +416,8 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_0
+    :goto_7
+    if-ge v1, v0, :cond_2c
 
     .line 152
     iget-object v2, p1, Lio/vanta/core/system/pm/BPackage;->receivers:Ljava/util/ArrayList;
@@ -456,14 +456,14 @@
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_7
 
-    :cond_0
+    :cond_2c
     return-void
 .end method
 
 .method private addServicesLocked(Lio/vanta/core/system/pm/BPackage;)V
-    .locals 6
+    .registers 8
 
     .line 160
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage;->services:Ljava/util/ArrayList;
@@ -474,8 +474,8 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_0
+    :goto_7
+    if-ge v1, v0, :cond_29
 
     .line 162
     iget-object v2, p1, Lio/vanta/core/system/pm/BPackage;->services:Ljava/util/ArrayList;
@@ -510,14 +510,14 @@
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_7
 
-    :cond_0
+    :cond_29
     return-void
 .end method
 
 .method private removeAllComponentsLocked(Lio/vanta/core/system/pm/BPackage;)V
-    .locals 8
+    .registers 10
 
     .line 62
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage;->activities:Ljava/util/ArrayList;
@@ -530,8 +530,8 @@
 
     move v2, v1
 
-    :goto_0
-    if-ge v2, v0, :cond_0
+    :goto_8
+    if-ge v2, v0, :cond_1c
 
     .line 65
     iget-object v3, p1, Lio/vanta/core/system/pm/BPackage;->activities:Ljava/util/ArrayList;
@@ -551,10 +551,10 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 68
-    :cond_0
+    :cond_1c
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage;->providers:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -563,8 +563,8 @@
 
     move v2, v1
 
-    :goto_1
-    if-ge v2, v0, :cond_4
+    :goto_23
+    if-ge v2, v0, :cond_67
 
     .line 71
     iget-object v3, p1, Lio/vanta/core/system/pm/BPackage;->providers:Ljava/util/ArrayList;
@@ -585,12 +585,12 @@
 
     iget-object v4, v4, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
 
-    if-nez v4, :cond_1
+    if-nez v4, :cond_39
 
-    goto :goto_3
+    goto :goto_64
 
     .line 79
-    :cond_1
+    :cond_39
     iget-object v4, v3, Lio/vanta/core/system/pm/BPackage$Provider;->info:Landroid/content/pm/ProviderInfo;
 
     iget-object v4, v4, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
@@ -604,10 +604,10 @@
     move v5, v1
 
     .line 80
-    :goto_2
+    :goto_44
     array-length v6, v4
 
-    if-ge v5, v6, :cond_3
+    if-ge v5, v6, :cond_5b
 
     .line 81
     iget-object v6, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProvidersByAuthority:Landroid/util/ArrayMap;
@@ -618,7 +618,7 @@
 
     move-result-object v6
 
-    if-ne v6, v3, :cond_2
+    if-ne v6, v3, :cond_58
 
     .line 82
     iget-object v6, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProvidersByAuthority:Landroid/util/ArrayMap;
@@ -627,13 +627,13 @@
 
     invoke-virtual {v6, v7}, Landroid/util/ArrayMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_2
+    :cond_58
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_2
+    goto :goto_44
 
     .line 85
-    :cond_3
+    :cond_5b
     iget-object v4, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProvidersByAuthority:Landroid/util/ArrayMap;
 
     iget-object v3, v3, Lio/vanta/core/system/pm/BPackage$Provider;->info:Landroid/content/pm/ProviderInfo;
@@ -642,13 +642,13 @@
 
     invoke-virtual {v4, v3}, Landroid/util/ArrayMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    :goto_3
+    :goto_64
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_1
+    goto :goto_23
 
     .line 88
-    :cond_4
+    :cond_67
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage;->receivers:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
@@ -657,8 +657,8 @@
 
     move v2, v1
 
-    :goto_4
-    if-ge v2, v0, :cond_5
+    :goto_6e
+    if-ge v2, v0, :cond_82
 
     .line 91
     iget-object v3, p1, Lio/vanta/core/system/pm/BPackage;->receivers:Ljava/util/ArrayList;
@@ -678,18 +678,18 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_4
+    goto :goto_6e
 
     .line 95
-    :cond_5
+    :cond_82
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage;->services:Ljava/util/ArrayList;
 
     invoke-virtual {v0}, Ljava/util/ArrayList;->size()I
 
     move-result v0
 
-    :goto_5
-    if-ge v1, v0, :cond_6
+    :goto_88
+    if-ge v1, v0, :cond_9a
 
     .line 98
     iget-object v2, p1, Lio/vanta/core/system/pm/BPackage;->services:Ljava/util/ArrayList;
@@ -707,16 +707,16 @@
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_5
+    goto :goto_88
 
-    :cond_6
+    :cond_9a
     return-void
 .end method
 
 
 # virtual methods
 .method addAllComponents(Lio/vanta/core/system/pm/BPackage;)V
-    .locals 2
+    .registers 4
 
     .line 42
     new-instance v0, Ljava/util/ArrayList;
@@ -729,7 +729,7 @@
     monitor-enter v1
 
     .line 44
-    :try_start_0
+    :try_start_8
     invoke-direct {p0, p1, v0}, Lio/vanta/core/system/pm/ComponentResolver;->addActivitiesLocked(Lio/vanta/core/system/pm/BPackage;Ljava/util/List;)V
 
     .line 45
@@ -746,18 +746,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_16
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_18
+    .catchall {:try_start_8 .. :try_end_18} :catchall_16
 
     throw p1
 .end method
 
 .method getActivity(Landroid/content/ComponentName;)Lio/vanta/core/system/pm/BPackage$Activity;
-    .locals 2
+    .registers 4
 
     .line 172
     iget-object v0, p0, Lio/vanta/core/system/pm/ComponentResolver;->mLock:Ljava/lang/Object;
@@ -765,7 +765,7 @@
     monitor-enter v0
 
     .line 173
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/pm/ComponentResolver;->mActivities:Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;
 
     invoke-static {v1}, Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;->-$$Nest$fgetmActivities(Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;)Landroid/util/ArrayMap;
@@ -782,19 +782,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_11
     move-exception p1
 
     .line 174
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_3 .. :try_end_13} :catchall_11
 
     throw p1
 .end method
 
 .method getProvider(Landroid/content/ComponentName;)Lio/vanta/core/system/pm/BPackage$Provider;
-    .locals 2
+    .registers 4
 
     .line 179
     iget-object v0, p0, Lio/vanta/core/system/pm/ComponentResolver;->mLock:Ljava/lang/Object;
@@ -802,7 +802,7 @@
     monitor-enter v0
 
     .line 180
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProviders:Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;
 
     invoke-static {v1}, Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;->-$$Nest$fgetmProviders(Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;)Landroid/util/ArrayMap;
@@ -819,19 +819,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_11
     move-exception p1
 
     .line 181
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_3 .. :try_end_13} :catchall_11
 
     throw p1
 .end method
 
 .method getReceiver(Landroid/content/ComponentName;)Lio/vanta/core/system/pm/BPackage$Activity;
-    .locals 2
+    .registers 4
 
     .line 186
     iget-object v0, p0, Lio/vanta/core/system/pm/ComponentResolver;->mLock:Ljava/lang/Object;
@@ -839,7 +839,7 @@
     monitor-enter v0
 
     .line 187
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/pm/ComponentResolver;->mReceivers:Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;
 
     invoke-static {v1}, Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;->-$$Nest$fgetmActivities(Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;)Landroid/util/ArrayMap;
@@ -856,19 +856,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_11
     move-exception p1
 
     .line 188
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_3 .. :try_end_13} :catchall_11
 
     throw p1
 .end method
 
 .method getService(Landroid/content/ComponentName;)Lio/vanta/core/system/pm/BPackage$Service;
-    .locals 2
+    .registers 4
 
     .line 193
     iget-object v0, p0, Lio/vanta/core/system/pm/ComponentResolver;->mLock:Ljava/lang/Object;
@@ -876,7 +876,7 @@
     monitor-enter v0
 
     .line 194
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/pm/ComponentResolver;->mServices:Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;
 
     invoke-static {v1}, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;->-$$Nest$fgetmServices(Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;)Landroid/util/ArrayMap;
@@ -893,19 +893,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_11
     move-exception p1
 
     .line 195
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_3 .. :try_end_13} :catchall_11
 
     throw p1
 .end method
 
 .method queryActivities(Landroid/content/Intent;Ljava/lang/String;II)Ljava/util/List;
-    .locals 2
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -924,7 +924,7 @@
     monitor-enter v0
 
     .line 200
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/pm/ComponentResolver;->mActivities:Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;
 
     invoke-virtual {v1, p1, p2, p3, p4}, Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;->queryIntent(Landroid/content/Intent;Ljava/lang/String;II)Ljava/util/List;
@@ -935,19 +935,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_b
     move-exception p1
 
     .line 201
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_d
+    .catchall {:try_start_3 .. :try_end_d} :catchall_b
 
     throw p1
 .end method
 
 .method queryActivities(Landroid/content/Intent;Ljava/lang/String;ILjava/util/List;I)Ljava/util/List;
-    .locals 8
+    .registers 14
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -969,7 +969,7 @@
     monitor-enter v1
 
     .line 207
-    :try_start_0
+    :try_start_3
     iget-object v2, p0, Lio/vanta/core/system/pm/ComponentResolver;->mActivities:Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;
 
     move-object v3, p1
@@ -990,21 +990,21 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_10
     move-exception v0
 
     move-object p1, v0
 
     .line 209
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_3 .. :try_end_13} :catchall_10
 
     throw p1
 .end method
 
 .method queryProvider(Ljava/lang/String;II)Landroid/content/pm/ProviderInfo;
-    .locals 2
+    .registers 6
 
     .line 260
     iget-object v0, p0, Lio/vanta/core/system/pm/ComponentResolver;->mLock:Ljava/lang/Object;
@@ -1012,7 +1012,7 @@
     monitor-enter v0
 
     .line 261
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProvidersByAuthority:Landroid/util/ArrayMap;
 
     invoke-virtual {v1, p1}, Landroid/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -1021,7 +1021,7 @@
 
     check-cast p1, Lio/vanta/core/system/pm/BPackage$Provider;
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_10
 
     const/4 p1, 0x0
 
@@ -1031,7 +1031,7 @@
     return-object p1
 
     .line 265
-    :cond_0
+    :cond_10
     iget-object v1, p1, Lio/vanta/core/system/pm/BPackage$Provider;->owner:Lio/vanta/core/system/pm/BPackage;
 
     iget-object v1, v1, Lio/vanta/core/system/pm/BPackage;->mExtras:Lio/vanta/core/system/pm/BPackageSettings;
@@ -1049,19 +1049,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_1e
     move-exception p1
 
     .line 267
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_20
+    .catchall {:try_start_3 .. :try_end_20} :catchall_1e
 
     throw p1
 .end method
 
 .method queryProviders(Landroid/content/Intent;Ljava/lang/String;II)Ljava/util/List;
-    .locals 2
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1080,7 +1080,7 @@
     monitor-enter v0
 
     .line 214
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProviders:Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;
 
     invoke-virtual {v1, p1, p2, p3, p4}, Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;->queryIntent(Landroid/content/Intent;Ljava/lang/String;II)Ljava/util/List;
@@ -1091,19 +1091,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_b
     move-exception p1
 
     .line 215
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_d
+    .catchall {:try_start_3 .. :try_end_d} :catchall_b
 
     throw p1
 .end method
 
 .method queryProviders(Landroid/content/Intent;Ljava/lang/String;ILjava/util/List;I)Ljava/util/List;
-    .locals 8
+    .registers 14
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1125,7 +1125,7 @@
     monitor-enter v1
 
     .line 221
-    :try_start_0
+    :try_start_3
     iget-object v2, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProviders:Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;
 
     move-object v3, p1
@@ -1146,21 +1146,21 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_10
     move-exception v0
 
     move-object p1, v0
 
     .line 222
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_3 .. :try_end_13} :catchall_10
 
     throw p1
 .end method
 
 .method queryProviders(Ljava/lang/String;Ljava/lang/String;II)Ljava/util/List;
-    .locals 6
+    .registers 11
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1184,7 +1184,7 @@
     monitor-enter v1
 
     .line 229
-    :try_start_0
+    :try_start_8
     iget-object v2, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProviders:Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;
 
     invoke-static {v2}, Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;->-$$Nest$fgetmProviders(Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;)Landroid/util/ArrayMap;
@@ -1197,8 +1197,8 @@
 
     add-int/lit8 v2, v2, -0x1
 
-    :goto_0
-    if-ltz v2, :cond_6
+    :goto_14
+    if-ltz v2, :cond_5d
 
     .line 230
     iget-object v3, p0, Lio/vanta/core/system/pm/ComponentResolver;->mProviders:Lio/vanta/core/system/pm/ComponentResolver$ProviderIntentResolver;
@@ -1218,22 +1218,22 @@
 
     iget-object v4, v4, Lio/vanta/core/system/pm/BPackage;->mExtras:Lio/vanta/core/system/pm/BPackageSettings;
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_29
 
-    goto :goto_1
+    goto :goto_5a
 
     .line 235
-    :cond_0
+    :cond_29
     iget-object v5, v3, Lio/vanta/core/system/pm/BPackage$Provider;->info:Landroid/content/pm/ProviderInfo;
 
     iget-object v5, v5, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
 
-    if-nez v5, :cond_1
+    if-nez v5, :cond_30
 
-    goto :goto_1
+    goto :goto_5a
 
-    :cond_1
-    if-eqz p1, :cond_2
+    :cond_30
+    if-eqz p1, :cond_3d
 
     .line 238
     iget-object v5, v3, Lio/vanta/core/system/pm/BPackage$Provider;->info:Landroid/content/pm/ProviderInfo;
@@ -1244,17 +1244,17 @@
 
     move-result v5
 
-    if-nez v5, :cond_2
+    if-nez v5, :cond_3d
 
-    goto :goto_1
+    goto :goto_5a
 
-    :cond_2
-    if-eqz p2, :cond_3
+    :cond_3d
+    if-eqz p2, :cond_4c
 
     .line 242
     iget-object v5, v3, Lio/vanta/core/system/pm/BPackage$Provider;->metaData:Landroid/os/Bundle;
 
-    if-eqz v5, :cond_5
+    if-eqz v5, :cond_5a
 
     iget-object v5, v3, Lio/vanta/core/system/pm/BPackage$Provider;->metaData:Landroid/os/Bundle;
 
@@ -1263,12 +1263,12 @@
 
     move-result v5
 
-    if-nez v5, :cond_3
+    if-nez v5, :cond_4c
 
-    goto :goto_1
+    goto :goto_5a
 
     .line 246
-    :cond_3
+    :cond_4c
     invoke-virtual {v4, p4}, Lio/vanta/core/system/pm/BPackageSettings;->readUserState(I)Lio/vanta/core/system/pm/BPackageUserState;
 
     move-result-object v4
@@ -1277,38 +1277,38 @@
 
     move-result-object v3
 
-    if-nez v3, :cond_4
+    if-nez v3, :cond_57
 
-    goto :goto_1
+    goto :goto_5a
 
     .line 253
-    :cond_4
+    :cond_57
     invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    :cond_5
-    :goto_1
+    :cond_5a
+    :goto_5a
     add-int/lit8 v2, v2, -0x1
 
-    goto :goto_0
+    goto :goto_14
 
     .line 255
-    :cond_6
+    :cond_5d
     monitor-exit v1
 
     return-object v0
 
-    :catchall_0
+    :catchall_5f
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_61
+    .catchall {:try_start_8 .. :try_end_61} :catchall_5f
 
     throw p1
 .end method
 
 .method queryReceivers(Landroid/content/Intent;Ljava/lang/String;II)Ljava/util/List;
-    .locals 2
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1327,7 +1327,7 @@
     monitor-enter v0
 
     .line 272
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/pm/ComponentResolver;->mReceivers:Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;
 
     invoke-virtual {v1, p1, p2, p3, p4}, Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;->queryIntent(Landroid/content/Intent;Ljava/lang/String;II)Ljava/util/List;
@@ -1338,19 +1338,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_b
     move-exception p1
 
     .line 273
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_d
+    .catchall {:try_start_3 .. :try_end_d} :catchall_b
 
     throw p1
 .end method
 
 .method queryReceivers(Landroid/content/Intent;Ljava/lang/String;ILjava/util/List;I)Ljava/util/List;
-    .locals 8
+    .registers 14
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1372,7 +1372,7 @@
     monitor-enter v1
 
     .line 279
-    :try_start_0
+    :try_start_3
     iget-object v2, p0, Lio/vanta/core/system/pm/ComponentResolver;->mReceivers:Lio/vanta/core/system/pm/ComponentResolver$ActivityIntentResolver;
 
     move-object v3, p1
@@ -1393,21 +1393,21 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_10
     move-exception v0
 
     move-object p1, v0
 
     .line 280
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_3 .. :try_end_13} :catchall_10
 
     throw p1
 .end method
 
 .method queryServices(Landroid/content/Intent;Ljava/lang/String;II)Ljava/util/List;
-    .locals 2
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1426,7 +1426,7 @@
     monitor-enter v0
 
     .line 285
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/pm/ComponentResolver;->mServices:Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;
 
     invoke-virtual {v1, p1, p2, p3, p4}, Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;->queryIntent(Landroid/content/Intent;Ljava/lang/String;II)Ljava/util/List;
@@ -1437,19 +1437,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_b
     move-exception p1
 
     .line 286
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_d
+    .catchall {:try_start_3 .. :try_end_d} :catchall_b
 
     throw p1
 .end method
 
 .method queryServices(Landroid/content/Intent;Ljava/lang/String;ILjava/util/List;I)Ljava/util/List;
-    .locals 8
+    .registers 14
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -1471,7 +1471,7 @@
     monitor-enter v1
 
     .line 292
-    :try_start_0
+    :try_start_3
     iget-object v2, p0, Lio/vanta/core/system/pm/ComponentResolver;->mServices:Lio/vanta/core/system/pm/ComponentResolver$ServiceIntentResolver;
 
     move-object v3, p1
@@ -1492,21 +1492,21 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_10
     move-exception v0
 
     move-object p1, v0
 
     .line 293
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_3 .. :try_end_13} :catchall_10
 
     throw p1
 .end method
 
 .method removeAllComponents(Lio/vanta/core/system/pm/BPackage;)V
-    .locals 1
+    .registers 3
 
     .line 52
     iget-object v0, p0, Lio/vanta/core/system/pm/ComponentResolver;->mLock:Ljava/lang/Object;
@@ -1514,7 +1514,7 @@
     monitor-enter v0
 
     .line 53
-    :try_start_0
+    :try_start_3
     invoke-direct {p0, p1}, Lio/vanta/core/system/pm/ComponentResolver;->removeAllComponentsLocked(Lio/vanta/core/system/pm/BPackage;)V
 
     .line 54
@@ -1522,12 +1522,12 @@
 
     return-void
 
-    :catchall_0
+    :catchall_8
     move-exception p1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_a
+    .catchall {:try_start_3 .. :try_end_a} :catchall_8
 
     throw p1
 .end method

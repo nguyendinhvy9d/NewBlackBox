@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 107
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -43,12 +43,12 @@
 
     move-result p1
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_16
 
     .line 111
     array-length p2, p3
 
-    if-lez p2, :cond_0
+    if-lez p2, :cond_16
 
     const/4 p2, 0x0
 
@@ -56,7 +56,7 @@
 
     instance-of p3, p2, Ljava/lang/Integer;
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_16
 
     .line 112
     check-cast p2, Ljava/lang/Integer;
@@ -66,7 +66,7 @@
     move-result p1
 
     .line 114
-    :cond_0
+    :cond_16
     new-instance p2, Ljava/util/ArrayList;
 
     invoke-direct {p2}, Ljava/util/ArrayList;-><init>()V

@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 38
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,17 +45,17 @@
     const-string v1, "Process.start() called with args count: "
 
     .line 43
-    :try_start_0
+    :try_start_4
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_1e
 
     .line 46
     array-length p2, p3
 
-    if-lez p2, :cond_0
+    if-lez p2, :cond_1e
 
     .line 47
     new-instance p2, Ljava/lang/StringBuilder;
@@ -73,13 +73,13 @@
     move-result-object p2
 
     invoke-static {v0, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1e
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_1e} :catch_1f
 
-    :cond_0
+    :cond_1e
     return-object p1
 
-    :catch_0
+    :catch_1f
     move-exception p1
 
     .line 52

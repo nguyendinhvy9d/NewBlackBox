@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 82
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,7 +45,7 @@
     const-string v1, "FileSystem: isDirectory called for Helium crash path: "
 
     .line 86
-    :try_start_0
+    :try_start_4
     move-object v2, p1
 
     check-cast v2, Ljava/io/File;
@@ -62,7 +62,7 @@
 
     move-result v3
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_21
 
     const-string v3, "HeliumCrashReporter"
 
@@ -70,12 +70,12 @@
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_1c
 
-    goto :goto_0
+    goto :goto_21
 
     .line 95
-    :cond_0
+    :cond_1c
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
@@ -83,8 +83,8 @@
     return-object p1
 
     .line 91
-    :cond_1
-    :goto_0
+    :cond_21
+    :goto_21
     new-instance p1, Ljava/lang/StringBuilder;
 
     invoke-direct {p1, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -111,12 +111,12 @@
     invoke-static {p1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_3c
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_3c} :catch_3d
 
     return-object p1
 
-    :catch_0
+    :catch_3d
     move-exception p1
 
     .line 97

@@ -9,7 +9,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 21
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 7
+    .registers 8
 
     .line 26
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -45,13 +45,13 @@
 
     const/4 v1, 0x0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_e
 
     return-object v1
 
     .line 31
-    :cond_0
-    :try_start_0
+    :cond_e
+    :try_start_e
     const-string v2, "android.hardware.biometrics.IAuthService$Stub"
 
     invoke-static {v2}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -83,12 +83,12 @@
     invoke-virtual {v2, v1, v0}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2a
+    .catchall {:try_start_e .. :try_end_2a} :catchall_2b
 
     return-object v0
 
-    :catchall_0
+    :catchall_2b
     move-exception v0
 
     .line 35
@@ -118,7 +118,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 42
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -131,7 +131,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_16
 
     .line 43
     invoke-virtual {p0, p2}, Lio/vanta/fake/service/IAuthServiceProxy;->replaceSystemService(Ljava/lang/String;)V
@@ -143,12 +143,12 @@
 
     invoke-static {p1, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_0
+    :cond_16
     return-void
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -165,38 +165,38 @@
     invoke-static {p3}, Lio/vanta/utils/AttributionSourceUtils;->fixAttributionSourceInArgs([Ljava/lang/Object;)V
 
     .line 60
-    :try_start_0
+    :try_start_9
     invoke-super {p0, p1, p2, p3}, Lio/vanta/fake/hook/BinderInvocationStub;->invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_d
+    .catchall {:try_start_9 .. :try_end_d} :catchall_e
 
     return-object p1
 
-    :catchall_0
+    :catchall_e
     move-exception p1
 
     .line 62
     instance-of p3, p1, Ljava/lang/reflect/InvocationTargetException;
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_1d
 
     invoke-virtual {p1}, Ljava/lang/Throwable;->getCause()Ljava/lang/Throwable;
 
     move-result-object p3
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_1d
 
     invoke-virtual {p1}, Ljava/lang/Throwable;->getCause()Ljava/lang/Throwable;
 
     move-result-object p1
 
     .line 63
-    :cond_0
+    :cond_1d
     instance-of p3, p1, Ljava/lang/SecurityException;
 
-    if-eqz p3, :cond_9
+    if-eqz p3, :cond_8b
 
     .line 64
     new-instance p3, Ljava/lang/StringBuilder;
@@ -243,45 +243,45 @@
     .line 66
     sget-object p2, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_8
+    if-eq p1, p2, :cond_85
 
     const-class p2, Ljava/lang/Integer;
 
-    if-ne p1, p2, :cond_1
+    if-ne p1, p2, :cond_54
 
-    goto :goto_2
+    goto :goto_85
 
     .line 68
-    :cond_1
+    :cond_54
     sget-object p2, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
 
     const/4 p3, 0x0
 
-    if-eq p1, p2, :cond_7
+    if-eq p1, p2, :cond_80
 
     const-class p2, Ljava/lang/Boolean;
 
-    if-ne p1, p2, :cond_2
+    if-ne p1, p2, :cond_5e
 
-    goto :goto_1
+    goto :goto_80
 
     .line 70
-    :cond_2
+    :cond_5e
     sget-object p2, Ljava/lang/Long;->TYPE:Ljava/lang/Class;
 
-    if-eq p1, p2, :cond_6
+    if-eq p1, p2, :cond_79
 
     const-class p2, Ljava/lang/Long;
 
-    if-ne p1, p2, :cond_3
+    if-ne p1, p2, :cond_67
 
-    goto :goto_0
+    goto :goto_79
 
     .line 72
-    :cond_3
+    :cond_67
     const-class p2, [J
 
-    if-ne p1, p2, :cond_4
+    if-ne p1, p2, :cond_6e
 
     .line 73
     new-array p1, p3, [J
@@ -289,10 +289,10 @@
     return-object p1
 
     .line 74
-    :cond_4
+    :cond_6e
     const-class p2, Ljava/util/List;
 
-    if-ne p1, p2, :cond_5
+    if-ne p1, p2, :cond_77
 
     .line 75
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
@@ -301,13 +301,13 @@
 
     return-object p1
 
-    :cond_5
+    :cond_77
     const/4 p1, 0x0
 
     return-object p1
 
-    :cond_6
-    :goto_0
+    :cond_79
+    :goto_79
     const-wide/16 p1, 0x0
 
     .line 71
@@ -318,16 +318,16 @@
     return-object p1
 
     .line 69
-    :cond_7
-    :goto_1
+    :cond_80
+    :goto_80
     invoke-static {p3}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object p1
 
     return-object p1
 
-    :cond_8
-    :goto_2
+    :cond_85
+    :goto_85
     const/4 p1, -0x1
 
     .line 67
@@ -338,12 +338,12 @@
     return-object p1
 
     .line 79
-    :cond_9
+    :cond_8b
     throw p1
 .end method
 
 .method public isBadEnv()Z
-    .locals 2
+    .registers 3
 
     .line 50
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -356,15 +356,15 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_10
 
-    if-eq v0, p0, :cond_0
+    if-eq v0, p0, :cond_10
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_10
     const/4 v0, 0x0
 
     return v0

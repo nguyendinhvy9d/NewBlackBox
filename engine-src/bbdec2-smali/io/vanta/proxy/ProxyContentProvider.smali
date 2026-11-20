@@ -66,13 +66,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 0
+    .registers 0
 
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 19
     invoke-direct {p0}, Landroid/content/ContentProvider;-><init>()V
@@ -81,7 +81,7 @@
 .end method
 
 .method private fixAuthorities()V
-    .locals 2
+    .registers 3
 
     .line 33
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyContentProvider;->getContext()Landroid/content/Context;
@@ -96,7 +96,7 @@
 .end method
 
 .method private fixAuthorities(Landroid/content/Context;Landroid/content/pm/ProviderInfo;)V
-    .locals 6
+    .registers 9
 
     .line 38
     :try_start_0
@@ -106,12 +106,12 @@
 
     const/4 v1, 0x0
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_2e
 
     .line 41
     iget-object v2, p2, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_2e
 
     .line 42
     iget-object p2, p2, Landroid/content/pm/ProviderInfo;->authority:Ljava/lang/String;
@@ -127,8 +127,8 @@
 
     move v3, v1
 
-    :goto_0
-    if-ge v3, v2, :cond_1
+    :goto_16
+    if-ge v3, v2, :cond_2e
 
     aget-object v4, p2, v3
 
@@ -141,7 +141,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_0
+    if-nez v5, :cond_2b
 
     .line 45
     invoke-virtual {v4}, Ljava/lang/String;->trim()Ljava/lang/String;
@@ -150,50 +150,50 @@
 
     invoke-interface {v0, v4}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    :cond_0
+    :cond_2b
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_16
 
     .line 51
-    :cond_1
+    :cond_2e
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
 
     move-result-object p2
 
-    if-eqz p2, :cond_2
+    if-eqz p2, :cond_3a
 
     .line 52
     invoke-virtual {p2}, Ljava/lang/String;->isEmpty()Z
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_40
 
-    :cond_2
-    if-eqz p1, :cond_3
+    :cond_3a
+    if-eqz p1, :cond_40
 
     .line 53
     invoke-virtual {p1}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
 
     move-result-object p2
 
-    :cond_3
+    :cond_40
     const/16 p1, 0x32
 
-    if-eqz p2, :cond_4
+    if-eqz p2, :cond_6a
 
     .line 55
     invoke-virtual {p2}, Ljava/lang/String;->isEmpty()Z
 
     move-result v2
 
-    if-nez v2, :cond_4
+    if-nez v2, :cond_6a
 
     move v2, v1
 
-    :goto_1
-    if-ge v2, p1, :cond_4
+    :goto_4b
+    if-ge v2, p1, :cond_6a
 
     .line 57
     new-instance v3, Ljava/lang/StringBuilder;
@@ -222,13 +222,13 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_1
+    goto :goto_4b
 
-    :cond_4
+    :cond_6a
     move p2, v1
 
-    :goto_2
-    if-ge p2, p1, :cond_5
+    :goto_6b
+    if-ge p2, p1, :cond_86
 
     .line 63
     new-instance v2, Ljava/lang/StringBuilder;
@@ -253,16 +253,32 @@
 
     add-int/lit8 p2, p2, 0x1
 
-    goto :goto_2
+    goto :goto_6b
 
     .line 66
-    :cond_5
+    :cond_86
     const-string p1, "com.google.android.gsf.gservices"
 
     invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     .line 67
     const-string p1, "gservices"
+
+    invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    const-string p1, "com.google.android.gms.chimera"
+
+    invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    const-string p1, "com.google.android.gms.phenotype"
+
+    invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    const-string p1, "com.google.android.gms.fonts"
+
+    invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
+
+    const-string p1, "com.google.settings"
 
     invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
@@ -305,12 +321,12 @@
     move-result-object p2
 
     invoke-virtual {p1, p0, p2}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_c8
+    .catchall {:try_start_0 .. :try_end_c8} :catchall_c9
 
     return-void
 
-    :catchall_0
+    :catchall_c9
     move-exception p1
 
     .line 77
@@ -342,7 +358,7 @@
 
 # virtual methods
 .method public attachInfo(Landroid/content/Context;Landroid/content/pm/ProviderInfo;)V
-    .locals 0
+    .registers 3
 
     .line 28
     invoke-super {p0, p1, p2}, Landroid/content/ContentProvider;->attachInfo(Landroid/content/Context;Landroid/content/pm/ProviderInfo;)V
@@ -354,7 +370,7 @@
 .end method
 
 .method public call(Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;)Landroid/os/Bundle;
-    .locals 4
+    .registers 8
 
     .line 84
     const-string v0, "_Black_|_init_process_"
@@ -363,7 +379,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_2f
 
     .line 86
     const-class p1, Lio/vanta/entity/AppConfig;
@@ -407,14 +423,14 @@
     return-object p1
 
     .line 94
-    :cond_0
+    :cond_2f
     const-string v0, "get_string"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_53
 
     .line 95
     invoke-static {}, Lio/vanta/fake/service/context/providers/SystemProviderStub;->getGServicesDefaults()Ljava/util/Map;
@@ -428,7 +444,7 @@
 
     check-cast p1, Ljava/lang/String;
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_51
 
     .line 98
     new-instance p3, Landroid/os/Bundle;
@@ -445,20 +461,20 @@
 
     return-object p3
 
-    :cond_1
+    :cond_51
     const/4 p1, 0x0
 
     return-object p1
 
     .line 104
-    :cond_2
+    :cond_53
     const-string v0, "get_values"
 
     invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_aa
 
     .line 105
     invoke-static {}, Lio/vanta/fake/service/context/providers/SystemProviderStub;->getGServicesDefaults()Ljava/util/Map;
@@ -470,7 +486,7 @@
 
     invoke-direct {p2}, Landroid/os/Bundle;-><init>()V
 
-    if-eqz p3, :cond_4
+    if-eqz p3, :cond_85
 
     .line 108
     const-string v0, "keys"
@@ -479,20 +495,20 @@
 
     move-result-object p3
 
-    if-eqz p3, :cond_4
+    if-eqz p3, :cond_85
 
     .line 109
     array-length v0, p3
 
-    if-lez v0, :cond_4
+    if-lez v0, :cond_85
 
     .line 110
     array-length v0, p3
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_5
+    :goto_73
+    if-ge v1, v0, :cond_a9
 
     aget-object v2, p3, v1
 
@@ -503,18 +519,18 @@
 
     check-cast v3, Ljava/lang/String;
 
-    if-eqz v3, :cond_3
+    if-eqz v3, :cond_82
 
     .line 113
     invoke-virtual {p2, v2, v3}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
 
-    :cond_3
+    :cond_82
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_73
 
     .line 119
-    :cond_4
+    :cond_85
     invoke-interface {p1}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
     move-result-object p1
@@ -523,12 +539,12 @@
 
     move-result-object p1
 
-    :goto_1
+    :goto_8d
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result p3
 
-    if-eqz p3, :cond_5
+    if-eqz p3, :cond_a9
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -551,13 +567,13 @@
 
     invoke-virtual {p2, v0, p3}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_1
+    goto :goto_8d
 
-    :cond_5
+    :cond_a9
     return-object p2
 
     .line 124
-    :cond_6
+    :cond_aa
     invoke-super {p0, p1, p2, p3}, Landroid/content/ContentProvider;->call(Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;)Landroid/os/Bundle;
 
     move-result-object p1
@@ -566,7 +582,7 @@
 .end method
 
 .method public delete(Landroid/net/Uri;Ljava/lang/String;[Ljava/lang/String;)I
-    .locals 0
+    .registers 4
 
     const/4 p1, 0x0
 
@@ -574,7 +590,7 @@
 .end method
 
 .method public getType(Landroid/net/Uri;)Ljava/lang/String;
-    .locals 0
+    .registers 2
 
     const/4 p1, 0x0
 
@@ -582,7 +598,7 @@
 .end method
 
 .method public insert(Landroid/net/Uri;Landroid/content/ContentValues;)Landroid/net/Uri;
-    .locals 0
+    .registers 3
 
     const/4 p1, 0x0
 
@@ -590,7 +606,7 @@
 .end method
 
 .method public onCreate()Z
-    .locals 2
+    .registers 3
 
     .line 22
     invoke-virtual {p0}, Lio/vanta/proxy/ProxyContentProvider;->getContext()Landroid/content/Context;
@@ -607,7 +623,7 @@
 .end method
 
 .method public query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
-    .locals 4
+    .registers 10
 
     .line 138
     invoke-virtual {p1}, Landroid/net/Uri;->getAuthority()Ljava/lang/String;
@@ -621,7 +637,7 @@
 
     move-result p3
 
-    if-nez p3, :cond_1
+    if-nez p3, :cond_17
 
     const-string p3, "gservices"
 
@@ -629,18 +645,18 @@
 
     move-result p2
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_15
 
-    goto :goto_0
+    goto :goto_17
 
-    :cond_0
+    :cond_15
     const/4 p1, 0x0
 
     return-object p1
 
     .line 140
-    :cond_1
-    :goto_0
+    :cond_17
+    :goto_17
     new-instance p2, Ljava/util/HashSet;
 
     invoke-direct {p2}, Ljava/util/HashSet;-><init>()V
@@ -654,14 +670,14 @@
 
     const/4 p5, 0x1
 
-    if-eqz p1, :cond_5
+    if-eqz p1, :cond_70
 
     .line 143
     invoke-interface {p1}, Ljava/util/List;->isEmpty()Z
 
     move-result v0
 
-    if-nez v0, :cond_5
+    if-nez v0, :cond_70
 
     .line 144
     invoke-interface {p1, p3}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -676,14 +692,14 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_49
 
     .line 146
     invoke-interface {p1}, Ljava/util/List;->size()I
 
     move-result v0
 
-    if-le v0, p5, :cond_2
+    if-le v0, p5, :cond_47
 
     .line 147
     invoke-interface {p1, p5}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -694,13 +710,13 @@
 
     invoke-interface {p2, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    :cond_2
+    :cond_47
     move p1, p5
 
-    goto :goto_2
+    goto :goto_71
 
     .line 149
-    :cond_3
+    :cond_49
     invoke-interface {p1, p3}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object v0
@@ -713,14 +729,14 @@
 
     move-result v0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_67
 
     .line 150
     invoke-interface {p1}, Ljava/util/List;->size()I
 
     move-result v0
 
-    if-le v0, p5, :cond_5
+    if-le v0, p5, :cond_70
 
     .line 151
     invoke-interface {p1, p5}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -731,10 +747,10 @@
 
     invoke-interface {p2, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    goto :goto_1
+    goto :goto_70
 
     .line 154
-    :cond_4
+    :cond_67
     invoke-interface {p1, p3}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
     move-result-object p1
@@ -743,47 +759,47 @@
 
     invoke-interface {p2, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    :cond_5
-    :goto_1
+    :cond_70
+    :goto_70
     move p1, p3
 
-    :goto_2
-    if-eqz p4, :cond_7
+    :goto_71
+    if-eqz p4, :cond_8a
 
     .line 157
     array-length v0, p4
 
-    if-lez v0, :cond_7
+    if-lez v0, :cond_8a
 
     .line 158
     array-length v0, p4
 
     move v1, p3
 
-    :goto_3
-    if-ge v1, v0, :cond_7
+    :goto_78
+    if-ge v1, v0, :cond_8a
 
     aget-object v2, p4, v1
 
-    if-eqz v2, :cond_6
+    if-eqz v2, :cond_87
 
     .line 159
     invoke-virtual {v2}, Ljava/lang/String;->isEmpty()Z
 
     move-result v3
 
-    if-nez v3, :cond_6
+    if-nez v3, :cond_87
 
     .line 160
     invoke-interface {p2, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    :cond_6
+    :cond_87
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_3
+    goto :goto_78
 
     .line 164
-    :cond_7
+    :cond_8a
     invoke-static {}, Lio/vanta/fake/service/context/providers/SystemProviderStub;->getGServicesDefaults()Ljava/util/Map;
 
     move-result-object p4
@@ -805,7 +821,7 @@
 
     invoke-direct {v0, v1}, Landroid/database/MatrixCursor;-><init>([Ljava/lang/String;)V
 
-    if-eqz p1, :cond_b
+    if-eqz p1, :cond_f6
 
     .line 167
     invoke-interface {p4}, Ljava/util/Map;->entrySet()Ljava/util/Set;
@@ -816,13 +832,13 @@
 
     move-result-object p1
 
-    :cond_8
-    :goto_4
+    :cond_a8
+    :goto_a8
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result p3
 
-    if-eqz p3, :cond_e
+    if-eqz p3, :cond_140
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -835,7 +851,7 @@
 
     move-result p4
 
-    if-eqz p4, :cond_9
+    if-eqz p4, :cond_ca
 
     .line 169
     invoke-interface {p3}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
@@ -852,20 +868,20 @@
 
     invoke-virtual {v0, p3}, Landroid/database/MatrixCursor;->addRow([Ljava/lang/Object;)V
 
-    goto :goto_4
+    goto :goto_a8
 
     .line 171
-    :cond_9
+    :cond_ca
     invoke-interface {p2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object p4
 
-    :cond_a
+    :cond_ce
     invoke-interface {p4}, Ljava/util/Iterator;->hasNext()Z
 
     move-result p5
 
-    if-eqz p5, :cond_8
+    if-eqz p5, :cond_a8
 
     invoke-interface {p4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -884,7 +900,7 @@
 
     move-result p5
 
-    if-eqz p5, :cond_a
+    if-eqz p5, :cond_ce
 
     .line 173
     invoke-interface {p3}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
@@ -901,28 +917,28 @@
 
     invoke-virtual {v0, p3}, Landroid/database/MatrixCursor;->addRow([Ljava/lang/Object;)V
 
-    goto :goto_4
+    goto :goto_a8
 
     .line 179
-    :cond_b
+    :cond_f6
     invoke-interface {p2}, Ljava/util/Set;->isEmpty()Z
 
     move-result p1
 
-    if-nez p1, :cond_d
+    if-nez p1, :cond_11c
 
     .line 180
     invoke-interface {p2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
 
-    :cond_c
-    :goto_5
+    :cond_100
+    :goto_100
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result p2
 
-    if-eqz p2, :cond_e
+    if-eqz p2, :cond_140
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -937,7 +953,7 @@
 
     check-cast p3, Ljava/lang/String;
 
-    if-eqz p3, :cond_c
+    if-eqz p3, :cond_100
 
     .line 183
     filled-new-array {p2, p3}, [Ljava/lang/Object;
@@ -946,10 +962,10 @@
 
     invoke-virtual {v0, p2}, Landroid/database/MatrixCursor;->addRow([Ljava/lang/Object;)V
 
-    goto :goto_5
+    goto :goto_100
 
     .line 187
-    :cond_d
+    :cond_11c
     invoke-interface {p4}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
     move-result-object p1
@@ -958,12 +974,12 @@
 
     move-result-object p1
 
-    :goto_6
+    :goto_124
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result p2
 
-    if-eqz p2, :cond_e
+    if-eqz p2, :cond_140
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -986,14 +1002,14 @@
 
     invoke-virtual {v0, p2}, Landroid/database/MatrixCursor;->addRow([Ljava/lang/Object;)V
 
-    goto :goto_6
+    goto :goto_124
 
-    :cond_e
+    :cond_140
     return-object v0
 .end method
 
 .method public update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
-    .locals 0
+    .registers 5
 
     const/4 p1, 0x0
 
@@ -1001,7 +1017,7 @@
 .end method
 
 .method public validateIncomingAuthority(Ljava/lang/String;)Z
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/SecurityException;
@@ -1014,7 +1030,7 @@
 .end method
 
 .method public validateIncomingUri(Landroid/net/Uri;)Z
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/SecurityException;

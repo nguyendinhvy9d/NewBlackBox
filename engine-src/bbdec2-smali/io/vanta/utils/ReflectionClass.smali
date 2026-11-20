@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static print(Ljava/lang/String;)V
-    .locals 4
+    .registers 5
 
     .line 14
     :try_start_0
@@ -46,7 +46,7 @@
 
     move-result v3
 
-    if-lez v3, :cond_0
+    if-lez v3, :cond_1f
 
     .line 19
     sget-object v3, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -54,12 +54,12 @@
     invoke-virtual {v3, v2}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 23
-    :cond_0
+    :cond_1f
     invoke-virtual {p0}, Ljava/lang/Class;->isInterface()Z
 
     move-result v2
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_2c
 
     .line 24
     sget-object v2, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -69,15 +69,15 @@
     invoke-virtual {v2, v3}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 27
-    :cond_1
+    :cond_2c
     invoke-static {p0}, Lio/vanta/utils/ReflectionClass;->printType(Ljava/lang/Class;)V
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_3f
 
     .line 29
     const-class v2, Ljava/lang/Object;
 
-    if-eq v0, v2, :cond_2
+    if-eq v0, v2, :cond_3f
 
     .line 30
     sget-object v2, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -90,10 +90,10 @@
     invoke-static {v0}, Lio/vanta/utils/ReflectionClass;->printType(Ljava/lang/Class;)V
 
     .line 34
-    :cond_2
+    :cond_3f
     array-length v0, v1
 
-    if-lez v0, :cond_4
+    if-lez v0, :cond_5e
 
     .line 35
     sget-object v0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -105,12 +105,12 @@
     const/4 v0, 0x0
 
     .line 37
-    :goto_0
+    :goto_4a
     array-length v2, v1
 
-    if-ge v0, v2, :cond_4
+    if-ge v0, v2, :cond_5e
 
-    if-lez v0, :cond_3
+    if-lez v0, :cond_56
 
     .line 39
     sget-object v2, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -120,17 +120,17 @@
     invoke-virtual {v2, v3}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 41
-    :cond_3
+    :cond_56
     aget-object v2, v1, v0
 
     invoke-static {v2}, Lio/vanta/utils/ReflectionClass;->printType(Ljava/lang/Class;)V
 
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_4a
 
     .line 45
-    :cond_4
+    :cond_5e
     sget-object v0, Ljava/lang/System;->out:Ljava/io/PrintStream;
 
     const-string v1, " {\n"
@@ -165,12 +165,12 @@
 
     .line 54
     invoke-static {p0}, Lio/vanta/utils/ReflectionClass;->printExtendsChain(Ljava/lang/Class;)V
-    :try_end_0
-    .catch Ljava/lang/ClassNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_82
+    .catch Ljava/lang/ClassNotFoundException; {:try_start_0 .. :try_end_82} :catch_83
 
     return-void
 
-    :catch_0
+    :catch_83
     move-exception p0
 
     .line 56
@@ -180,7 +180,7 @@
 .end method
 
 .method private static printConstructors(Ljava/lang/Class;)V
-    .locals 8
+    .registers 9
 
     .line 63
     invoke-virtual {p0}, Ljava/lang/Class;->getDeclaredConstructors()[Ljava/lang/reflect/Constructor;
@@ -194,8 +194,8 @@
 
     move v2, v1
 
-    :goto_0
-    if-ge v2, v0, :cond_5
+    :goto_7
+    if-ge v2, v0, :cond_ac
 
     aget-object v3, p0, v2
 
@@ -225,7 +225,7 @@
 
     move-result v6
 
-    if-lez v6, :cond_0
+    if-lez v6, :cond_3c
 
     .line 71
     sget-object v6, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -251,7 +251,7 @@
     invoke-virtual {v6, v5}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 75
-    :cond_0
+    :cond_3c
     sget-object v5, Ljava/lang/System;->out:Ljava/io/PrintStream;
 
     new-instance v6, Ljava/lang/StringBuilder;
@@ -294,14 +294,14 @@
     move v5, v1
 
     .line 77
-    :goto_1
+    :goto_65
     array-length v6, v4
 
     const-string v7, ", "
 
-    if-ge v5, v6, :cond_2
+    if-ge v5, v6, :cond_79
 
-    if-lez v5, :cond_1
+    if-lez v5, :cond_71
 
     .line 79
     sget-object v6, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -309,17 +309,17 @@
     invoke-virtual {v6, v7}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 81
-    :cond_1
+    :cond_71
     aget-object v6, v4, v5
 
     invoke-static {v6}, Lio/vanta/utils/ReflectionClass;->printType(Ljava/lang/Class;)V
 
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_1
+    goto :goto_65
 
     .line 83
-    :cond_2
+    :cond_79
     sget-object v4, Ljava/lang/System;->out:Ljava/io/PrintStream;
 
     const-string v5, ")"
@@ -334,7 +334,7 @@
     .line 87
     array-length v4, v3
 
-    if-lez v4, :cond_4
+    if-lez v4, :cond_a1
 
     .line 88
     sget-object v4, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -346,12 +346,12 @@
     move v4, v1
 
     .line 89
-    :goto_2
+    :goto_8f
     array-length v5, v3
 
-    if-ge v4, v5, :cond_4
+    if-ge v4, v5, :cond_a1
 
-    if-lez v4, :cond_3
+    if-lez v4, :cond_99
 
     .line 91
     sget-object v5, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -359,17 +359,17 @@
     invoke-virtual {v5, v7}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 93
-    :cond_3
+    :cond_99
     aget-object v5, v3, v4
 
     invoke-static {v5}, Lio/vanta/utils/ReflectionClass;->printType(Ljava/lang/Class;)V
 
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_2
+    goto :goto_8f
 
     .line 97
-    :cond_4
+    :cond_a1
     sget-object v3, Ljava/lang/System;->out:Ljava/io/PrintStream;
 
     const-string v4, ";"
@@ -378,14 +378,14 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto/16 :goto_0
+    goto/16 :goto_7
 
-    :cond_5
+    :cond_ac
     return-void
 .end method
 
 .method public static printExtendsChain(Ljava/lang/Class;)V
-    .locals 2
+    .registers 3
 
     .line 196
     sget-object v0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -403,12 +403,12 @@
     move-result-object p0
 
     .line 199
-    :goto_0
+    :goto_e
     const-class v0, Ljava/lang/Object;
 
     const-string v1, " --> "
 
-    if-eq p0, v0, :cond_0
+    if-eq p0, v0, :cond_21
 
     .line 200
     sget-object v0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -423,10 +423,10 @@
 
     move-result-object p0
 
-    goto :goto_0
+    goto :goto_e
 
     .line 204
-    :cond_0
+    :cond_21
     sget-object v0, Ljava/lang/System;->out:Ljava/io/PrintStream;
 
     invoke-virtual {v0, v1}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
@@ -438,7 +438,7 @@
 .end method
 
 .method private static printFields(Ljava/lang/Class;)V
-    .locals 8
+    .registers 9
 
     .line 148
     invoke-virtual {p0}, Ljava/lang/Class;->getDeclaredFields()[Ljava/lang/reflect/Field;
@@ -450,8 +450,8 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_1
+    :goto_6
+    if-ge v1, v0, :cond_5d
 
     aget-object v2, p0, v1
 
@@ -488,7 +488,7 @@
 
     const-string v6, " "
 
-    if-lez v5, :cond_0
+    if-lez v5, :cond_3f
 
     .line 156
     sget-object v5, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -512,7 +512,7 @@
     invoke-virtual {v5, v2}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 158
-    :cond_0
+    :cond_3f
     invoke-static {v3}, Lio/vanta/utils/ReflectionClass;->printType(Ljava/lang/Class;)V
 
     .line 159
@@ -540,14 +540,14 @@
 
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_6
 
-    :cond_1
+    :cond_5d
     return-void
 .end method
 
 .method private static printMethods(Ljava/lang/Class;)V
-    .locals 10
+    .registers 11
 
     .line 104
     invoke-virtual {p0}, Ljava/lang/Class;->getDeclaredMethods()[Ljava/lang/reflect/Method;
@@ -561,8 +561,8 @@
 
     move v2, v1
 
-    :goto_0
-    if-ge v2, v0, :cond_5
+    :goto_7
+    if-ge v2, v0, :cond_a7
 
     aget-object v3, p0, v2
 
@@ -599,7 +599,7 @@
 
     const-string v8, " "
 
-    if-lez v7, :cond_0
+    if-lez v7, :cond_40
 
     .line 113
     sget-object v7, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -623,7 +623,7 @@
     invoke-virtual {v7, v6}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 115
-    :cond_0
+    :cond_40
     invoke-static {v4}, Lio/vanta/utils/ReflectionClass;->printType(Ljava/lang/Class;)V
 
     .line 116
@@ -657,14 +657,14 @@
     move v5, v1
 
     .line 120
-    :goto_1
+    :goto_60
     array-length v6, v4
 
     const-string v7, ", "
 
-    if-ge v5, v6, :cond_2
+    if-ge v5, v6, :cond_74
 
-    if-lez v5, :cond_1
+    if-lez v5, :cond_6c
 
     .line 122
     sget-object v6, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -672,17 +672,17 @@
     invoke-virtual {v6, v7}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 124
-    :cond_1
+    :cond_6c
     aget-object v6, v4, v5
 
     invoke-static {v6}, Lio/vanta/utils/ReflectionClass;->printType(Ljava/lang/Class;)V
 
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_1
+    goto :goto_60
 
     .line 127
-    :cond_2
+    :cond_74
     sget-object v4, Ljava/lang/System;->out:Ljava/io/PrintStream;
 
     const-string v5, ")"
@@ -697,7 +697,7 @@
     .line 131
     array-length v4, v3
 
-    if-lez v4, :cond_4
+    if-lez v4, :cond_9c
 
     .line 132
     sget-object v4, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -709,12 +709,12 @@
     move v4, v1
 
     .line 133
-    :goto_2
+    :goto_8a
     array-length v5, v3
 
-    if-ge v4, v5, :cond_4
+    if-ge v4, v5, :cond_9c
 
-    if-lez v4, :cond_3
+    if-lez v4, :cond_94
 
     .line 135
     sget-object v5, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -722,17 +722,17 @@
     invoke-virtual {v5, v7}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
     .line 137
-    :cond_3
+    :cond_94
     aget-object v5, v3, v4
 
     invoke-static {v5}, Lio/vanta/utils/ReflectionClass;->printType(Ljava/lang/Class;)V
 
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_2
+    goto :goto_8a
 
     .line 141
-    :cond_4
+    :cond_9c
     sget-object v3, Ljava/lang/System;->out:Ljava/io/PrintStream;
 
     const-string v4, ";"
@@ -741,14 +741,14 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto/16 :goto_0
+    goto/16 :goto_7
 
-    :cond_5
+    :cond_a7
     return-void
 .end method
 
 .method private static printType(Ljava/lang/Class;)V
-    .locals 4
+    .registers 5
 
     .line 166
     invoke-virtual {p0}, Ljava/lang/Class;->getName()Ljava/lang/String;
@@ -764,7 +764,7 @@
 
     const-string v1, "."
 
-    if-eqz v0, :cond_9
+    if-eqz v0, :cond_bf
 
     .line 168
     const-string v0, "[C"
@@ -773,7 +773,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1e
 
     .line 169
     sget-object p0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -785,14 +785,14 @@
     return-void
 
     .line 170
-    :cond_0
+    :cond_1e
     const-string v0, "[B"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_2e
 
     .line 171
     sget-object p0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -804,14 +804,14 @@
     return-void
 
     .line 172
-    :cond_1
+    :cond_2e
     const-string v0, "[S"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_3e
 
     .line 173
     sget-object p0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -823,14 +823,14 @@
     return-void
 
     .line 174
-    :cond_2
+    :cond_3e
     const-string v0, "[I"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_4e
 
     .line 175
     sget-object p0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -842,14 +842,14 @@
     return-void
 
     .line 176
-    :cond_3
+    :cond_4e
     const-string v0, "[J"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_5e
 
     .line 177
     sget-object p0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -861,14 +861,14 @@
     return-void
 
     .line 178
-    :cond_4
+    :cond_5e
     const-string v0, "[F"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_5
+    if-eqz v0, :cond_6e
 
     .line 179
     sget-object p0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -880,14 +880,14 @@
     return-void
 
     .line 180
-    :cond_5
+    :cond_6e
     const-string v0, "[D"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_7e
 
     .line 181
     sget-object p0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -899,14 +899,14 @@
     return-void
 
     .line 182
-    :cond_6
+    :cond_7e
     const-string v0, "[Z"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_7
+    if-eqz v0, :cond_8e
 
     .line 183
     sget-object p0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -918,14 +918,14 @@
     return-void
 
     .line 184
-    :cond_7
+    :cond_8e
     const-string v0, "[L"
 
     invoke-virtual {p0, v0}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_8
+    if-eqz v0, :cond_be
 
     .line 185
     sget-object v0, Ljava/lang/System;->out:Ljava/io/PrintStream;
@@ -966,11 +966,11 @@
 
     invoke-virtual {v0, p0}, Ljava/io/PrintStream;->print(Ljava/lang/String;)V
 
-    :cond_8
+    :cond_be
     return-void
 
     .line 189
-    :cond_9
+    :cond_bf
     sget-object v0, Ljava/lang/System;->out:Ljava/io/PrintStream;
 
     invoke-virtual {p0, v1}, Ljava/lang/String;->lastIndexOf(Ljava/lang/String;)I

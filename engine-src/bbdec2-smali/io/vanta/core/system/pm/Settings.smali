@@ -46,7 +46,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -79,7 +79,7 @@
     monitor-enter v0
 
     .line 38
-    :try_start_0
+    :try_start_19
     invoke-direct {p0}, Lio/vanta/core/system/pm/Settings;->loadUidLP()V
 
     .line 39
@@ -90,18 +90,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_21
     move-exception v1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_23
+    .catchall {:try_start_19 .. :try_end_23} :catchall_21
 
     throw v1
 .end method
 
 .method private acquireAndRegisterNewAppIdLPw(Lio/vanta/core/system/pm/BPackageSettings;)I
-    .locals 2
+    .registers 4
 
     .line 102
     iget-object v0, p0, Lio/vanta/core/system/pm/Settings;->mAppIds:Ljava/util/Map;
@@ -116,7 +116,7 @@
 
     check-cast v0, Ljava/lang/Integer;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_13
 
     .line 104
     invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
@@ -126,18 +126,18 @@
     return p1
 
     .line 106
-    :cond_0
+    :cond_13
     iget v0, p0, Lio/vanta/core/system/pm/Settings;->mCurrUid:I
 
     const/16 v1, 0x4e1f
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_1b
 
     const/4 p1, -0x1
 
     return p1
 
-    :cond_1
+    :cond_1b
     add-int/lit8 v0, v0, 0x1
 
     .line 109
@@ -167,7 +167,7 @@
 .end method
 
 .method private loadUidLP()V
-    .locals 5
+    .registers 6
 
     .line 140
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
@@ -177,7 +177,7 @@
     const/4 v1, 0x0
 
     .line 142
-    :try_start_0
+    :try_start_5
     invoke-static {}, Lio/vanta/core/env/BEnvironment;->getUidConf()Ljava/io/File;
 
     move-result-object v2
@@ -186,17 +186,17 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_3f
 
     .line 143
     array-length v3, v2
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_13
 
-    goto :goto_0
+    goto :goto_3f
 
     .line 148
-    :cond_0
+    :cond_13
     array-length v3, v2
 
     invoke-virtual {v0, v2, v1, v3}, Landroid/os/Parcel;->unmarshall([BII)V
@@ -226,12 +226,12 @@
     iget-object v3, p0, Lio/vanta/core/system/pm/Settings;->mAppIds:Ljava/util/Map;
 
     monitor-enter v3
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_2d
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_2d} :catch_45
+    .catchall {:try_start_5 .. :try_end_2d} :catchall_43
 
     .line 154
-    :try_start_1
+    :try_start_2d
     iget-object v4, p0, Lio/vanta/core/system/pm/Settings;->mAppIds:Ljava/util/Map;
 
     invoke-interface {v4}, Ljava/util/Map;->clear()V
@@ -243,97 +243,97 @@
 
     .line 156
     monitor-exit v3
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_38
+    .catchall {:try_start_2d .. :try_end_38} :catchall_3c
 
     .line 172
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_0
+    :catchall_3c
     move-exception v2
 
     .line 156
-    :try_start_2
+    :try_start_3d
     monitor-exit v3
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_3e
+    .catchall {:try_start_3d .. :try_end_3e} :catchall_3c
 
-    :try_start_3
+    :try_start_3e
     throw v2
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_0
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+    :try_end_3f
+    .catch Ljava/lang/Exception; {:try_start_3e .. :try_end_3f} :catch_45
+    .catchall {:try_start_3e .. :try_end_3f} :catchall_43
 
     .line 172
-    :cond_1
-    :goto_0
+    :cond_3f
+    :goto_3f
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_1
+    :catchall_43
     move-exception v1
 
-    goto :goto_1
+    goto :goto_5e
 
     .line 161
-    :catch_0
-    :try_start_4
+    :catch_45
+    :try_start_45
     invoke-static {}, Lio/vanta/core/env/BEnvironment;->getUidConf()Ljava/io/File;
 
     move-result-object v2
 
     invoke-virtual {v2}, Ljava/io/File;->delete()Z
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_1
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_4c
+    .catch Ljava/lang/Exception; {:try_start_45 .. :try_end_4c} :catch_4c
+    .catchall {:try_start_45 .. :try_end_4c} :catchall_43
 
     .line 167
-    :catch_1
-    :try_start_5
+    :catch_4c
+    :try_start_4c
     iput v1, p0, Lio/vanta/core/system/pm/Settings;->mCurrUid:I
 
     .line 168
     iget-object v1, p0, Lio/vanta/core/system/pm/Settings;->mAppIds:Ljava/util/Map;
 
     monitor-enter v1
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
+    :try_end_51
+    .catchall {:try_start_4c .. :try_end_51} :catchall_43
 
     .line 169
-    :try_start_6
+    :try_start_51
     iget-object v2, p0, Lio/vanta/core/system/pm/Settings;->mAppIds:Ljava/util/Map;
 
     invoke-interface {v2}, Ljava/util/Map;->clear()V
 
     .line 170
     monitor-exit v1
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_57
+    .catchall {:try_start_51 .. :try_end_57} :catchall_5b
 
     .line 172
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_2
+    :catchall_5b
     move-exception v2
 
     .line 170
-    :try_start_7
+    :try_start_5c
     monitor-exit v1
-    :try_end_7
-    .catchall {:try_start_7 .. :try_end_7} :catchall_2
+    :try_end_5d
+    .catchall {:try_start_5c .. :try_end_5d} :catchall_5b
 
-    :try_start_8
+    :try_start_5d
     throw v2
-    :try_end_8
-    .catchall {:try_start_8 .. :try_end_8} :catchall_1
+    :try_end_5e
+    .catchall {:try_start_5d .. :try_end_5e} :catchall_43
 
     .line 172
-    :goto_1
+    :goto_5e
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     .line 173
@@ -341,7 +341,7 @@
 .end method
 
 .method private parserApk(Ljava/lang/String;)Landroid/content/pm/PackageParser$Package;
-    .locals 2
+    .registers 4
 
     .line 252
     :try_start_0
@@ -366,12 +366,12 @@
 
     .line 254
     invoke-static {v0, v1, p1}, Lio/vanta/utils/compat/PackageParserCompat;->collectCertificates(Landroid/content/pm/PackageParser;Landroid/content/pm/PackageParser$Package;I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_16
+    .catchall {:try_start_0 .. :try_end_16} :catchall_17
 
     return-object v1
 
-    :catchall_0
+    :catchall_17
     move-exception p1
 
     .line 257
@@ -383,7 +383,7 @@
 .end method
 
 .method private reInstallBySystem(Landroid/content/pm/PackageInfo;Lio/vanta/entity/pm/InstallOption;)Lio/vanta/core/system/pm/BPackageSettings;
-    .locals 3
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Exception;
@@ -420,7 +420,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_36
 
     .line 242
     invoke-static {}, Lio/vanta/VantaCore;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -449,7 +449,7 @@
     return-object p1
 
     .line 240
-    :cond_0
+    :cond_36
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "parser apk error."
@@ -460,7 +460,7 @@
 .end method
 
 .method private saveUidLP()V
-    .locals 7
+    .registers 8
 
     .line 115
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
@@ -479,7 +479,7 @@
     const/4 v2, 0x0
 
     .line 119
-    :try_start_0
+    :try_start_e
     iget-object v3, p0, Lio/vanta/core/system/pm/Settings;->mPackages:Landroid/util/ArrayMap;
 
     invoke-virtual {v3}, Landroid/util/ArrayMap;->keySet()Ljava/util/Set;
@@ -501,13 +501,13 @@
 
     move-result-object v4
 
-    :cond_0
-    :goto_0
+    :cond_23
+    :goto_23
     invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v5
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_3b
 
     invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -520,17 +520,17 @@
 
     move-result v6
 
-    if-nez v6, :cond_0
+    if-nez v6, :cond_23
 
     .line 122
     iget-object v6, p0, Lio/vanta/core/system/pm/Settings;->mAppIds:Ljava/util/Map;
 
     invoke-interface {v6, v5}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_0
+    goto :goto_23
 
     .line 125
-    :cond_1
+    :cond_3b
     iget v3, p0, Lio/vanta/core/system/pm/Settings;->mCurrUid:I
 
     invoke-virtual {v0, v3}, Landroid/os/Parcel;->writeInt(I)V
@@ -550,38 +550,38 @@
 
     .line 130
     invoke-virtual {v1, v2}, Landroid/util/AtomicFile;->finishWrite(Ljava/io/FileOutputStream;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_4f
+    .catch Ljava/lang/Exception; {:try_start_e .. :try_end_4f} :catch_55
+    .catchall {:try_start_e .. :try_end_4f} :catchall_53
 
     .line 135
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_0
+    :catchall_53
     move-exception v1
 
-    goto :goto_1
+    goto :goto_60
 
-    :catch_0
+    :catch_55
     move-exception v3
 
     .line 132
-    :try_start_1
+    :try_start_56
     invoke-virtual {v3}, Ljava/lang/Exception;->printStackTrace()V
 
     .line 133
     invoke-virtual {v1, v2}, Landroid/util/AtomicFile;->failWrite(Ljava/io/FileOutputStream;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_5c
+    .catchall {:try_start_56 .. :try_end_5c} :catchall_53
 
     .line 135
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :goto_1
+    :goto_60
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     .line 136
@@ -589,7 +589,7 @@
 .end method
 
 .method private updatePackageLP(Ljava/io/File;)V
-    .locals 11
+    .registers 13
 
     .line 197
     const-string v0, "Settings"
@@ -617,7 +617,7 @@
     const/4 v6, 0x1
 
     .line 201
-    :try_start_0
+    :try_start_13
     invoke-static {v5}, Lio/vanta/utils/FileUtils;->toByteArray(Ljava/io/File;)[B
 
     move-result-object v5
@@ -649,7 +649,7 @@
 
     move-result v7
 
-    if-eqz v7, :cond_0
+    if-eqz v7, :cond_5e
 
     .line 209
     invoke-static {}, Lio/vanta/VantaCore;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -676,7 +676,7 @@
 
     move-result v8
 
-    if-nez v8, :cond_1
+    if-nez v8, :cond_6c
 
     .line 213
     invoke-static {}, Lio/vanta/core/system/BProcessManagerService;->get()Lio/vanta/core/system/BProcessManagerService;
@@ -701,10 +701,10 @@
 
     iput-object v7, v5, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
 
-    goto :goto_0
+    goto :goto_6c
 
     .line 218
-    :cond_0
+    :cond_5e
     iget-object v7, v5, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
 
     iget-object v9, v5, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
@@ -720,8 +720,8 @@
     iput-object v8, v7, Lio/vanta/core/system/pm/BPackage;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
     .line 220
-    :cond_1
-    :goto_0
+    :cond_6c
+    :goto_6c
     invoke-virtual {v5}, Lio/vanta/core/system/pm/BPackageSettings;->save()Z
 
     .line 221
@@ -747,19 +747,19 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_88
+    .catchall {:try_start_13 .. :try_end_88} :catchall_8c
 
     .line 232
     invoke-virtual {v4}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_0
+    :catchall_8c
     move-exception v1
 
     .line 224
-    :try_start_1
+    :try_start_8d
     invoke-virtual {v1}, Ljava/lang/Throwable;->printStackTrace()V
 
     .line 226
@@ -798,15 +798,15 @@
     move-result-object p1
 
     invoke-static {v0, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_b5
+    .catchall {:try_start_8d .. :try_end_b5} :catchall_b9
 
     .line 232
     invoke-virtual {v4}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
-    :catchall_1
+    :catchall_b9
     move-exception p1
 
     invoke-virtual {v4}, Landroid/os/Parcel;->recycle()V
@@ -818,7 +818,7 @@
 
 # virtual methods
 .method getPackageLPw(Ljava/lang/String;Landroid/content/pm/PackageParser$Package;Lio/vanta/entity/pm/InstallOption;)Lio/vanta/core/system/pm/BPackageSettings;
-    .locals 3
+    .registers 7
 
     .line 45
     new-instance v0, Lio/vanta/core/system/pm/BPackageSettings;
@@ -868,7 +868,7 @@
     monitor-enter p2
 
     .line 52
-    :try_start_0
+    :try_start_28
     iget-object p3, p0, Lio/vanta/core/system/pm/Settings;->mPackages:Landroid/util/ArrayMap;
 
     invoke-virtual {p3, p1}, Landroid/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -877,7 +877,7 @@
 
     check-cast p1, Lio/vanta/core/system/pm/BPackageSettings;
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_3b
 
     .line 54
     iget p3, p1, Lio/vanta/core/system/pm/BPackageSettings;->appId:I
@@ -889,24 +889,24 @@
 
     iput-object p1, v0, Lio/vanta/core/system/pm/BPackageSettings;->userState:Ljava/util/Map;
 
-    goto :goto_0
+    goto :goto_41
 
     .line 57
-    :cond_0
+    :cond_3b
     invoke-virtual {p0, v0}, Lio/vanta/core/system/pm/Settings;->registerAppIdLPw(Lio/vanta/core/system/pm/BPackageSettings;)Z
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_43
 
     .line 62
-    :goto_0
+    :goto_41
     monitor-exit p2
 
     return-object v0
 
     .line 59
-    :cond_1
+    :cond_43
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p3, "registerAppIdLPw err."
@@ -915,26 +915,26 @@
 
     throw p1
 
-    :catchall_0
+    :catchall_4b
     move-exception p1
 
     .line 62
     monitor-exit p2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_4d
+    .catchall {:try_start_28 .. :try_end_4d} :catchall_4b
 
     throw p1
 .end method
 
 .method registerAppIdLPw(Lio/vanta/core/system/pm/BPackageSettings;)Z
-    .locals 3
+    .registers 5
 
     .line 68
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackageSettings;->pkg:Lio/vanta/core/system/pm/BPackage;
 
     iget-object v0, v0, Lio/vanta/core/system/pm/BPackage;->mSharedUserId:Ljava/lang/String;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_21
 
     .line 71
     iget-object v1, p0, Lio/vanta/core/system/pm/Settings;->mSharedUsers:Ljava/util/Map;
@@ -945,7 +945,7 @@
 
     check-cast v1, Lio/vanta/core/system/pm/SharedUserSetting;
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_22
 
     .line 73
     new-instance v1, Lio/vanta/core/system/pm/SharedUserSetting;
@@ -964,14 +964,14 @@
 
     invoke-interface {v2, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_0
+    goto :goto_22
 
-    :cond_0
+    :cond_21
     const/4 v1, 0x0
 
-    :cond_1
-    :goto_0
-    if-eqz v1, :cond_2
+    :cond_22
+    :goto_22
+    if-eqz v1, :cond_54
 
     .line 79
     iget v1, v1, Lio/vanta/core/system/pm/SharedUserSetting;->userId:I
@@ -1022,10 +1022,10 @@
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 82
-    :cond_2
+    :cond_54
     iget v0, p1, Lio/vanta/core/system/pm/BPackageSettings;->appId:I
 
-    if-nez v0, :cond_3
+    if-nez v0, :cond_5e
 
     .line 84
     invoke-direct {p0, p1}, Lio/vanta/core/system/pm/Settings;->acquireAndRegisterNewAppIdLPw(Lio/vanta/core/system/pm/BPackageSettings;)I
@@ -1035,20 +1035,20 @@
     iput v0, p1, Lio/vanta/core/system/pm/BPackageSettings;->appId:I
 
     .line 86
-    :cond_3
+    :cond_5e
     iget p1, p1, Lio/vanta/core/system/pm/BPackageSettings;->appId:I
 
-    if-gez p1, :cond_4
+    if-gez p1, :cond_64
 
     const/4 p1, 0x0
 
-    goto :goto_1
+    goto :goto_65
 
-    :cond_4
+    :cond_64
     const/4 p1, 0x1
 
     .line 95
-    :goto_1
+    :goto_65
     invoke-direct {p0}, Lio/vanta/core/system/pm/Settings;->saveUidLP()V
 
     .line 96
@@ -1058,7 +1058,7 @@
 .end method
 
 .method public removePackage(Ljava/lang/String;)V
-    .locals 1
+    .registers 3
 
     .line 247
     iget-object v0, p0, Lio/vanta/core/system/pm/Settings;->mPackages:Landroid/util/ArrayMap;
@@ -1069,7 +1069,7 @@
 .end method
 
 .method public scanPackage()V
-    .locals 6
+    .registers 7
 
     .line 177
     iget-object v0, p0, Lio/vanta/core/system/pm/Settings;->mPackages:Landroid/util/ArrayMap;
@@ -1077,7 +1077,7 @@
     monitor-enter v0
 
     .line 178
-    :try_start_0
+    :try_start_3
     invoke-static {}, Lio/vanta/core/env/BEnvironment;->getAppRootDir()Ljava/io/File;
 
     move-result-object v1
@@ -1095,8 +1095,8 @@
 
     const/4 v3, 0x0
 
-    :goto_0
-    if-ge v3, v2, :cond_1
+    :goto_10
+    if-ge v3, v2, :cond_25
 
     aget-object v4, v1, v3
 
@@ -1105,41 +1105,41 @@
 
     move-result v5
 
-    if-nez v5, :cond_0
+    if-nez v5, :cond_1b
 
-    goto :goto_1
+    goto :goto_22
 
     .line 185
-    :cond_0
+    :cond_1b
     invoke-virtual {v4}, Ljava/io/File;->getName()Ljava/lang/String;
 
     move-result-object v4
 
     invoke-virtual {p0, v4}, Lio/vanta/core/system/pm/Settings;->scanPackage(Ljava/lang/String;)V
 
-    :goto_1
+    :goto_22
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_10
 
     .line 187
-    :cond_1
+    :cond_25
     monitor-exit v0
 
     return-void
 
-    :catchall_0
+    :catchall_27
     move-exception v1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_29
+    .catchall {:try_start_3 .. :try_end_29} :catchall_27
 
     throw v1
 .end method
 
 .method public scanPackage(Ljava/lang/String;)V
-    .locals 1
+    .registers 3
 
     .line 191
     iget-object v0, p0, Lio/vanta/core/system/pm/Settings;->mPackages:Landroid/util/ArrayMap;
@@ -1147,7 +1147,7 @@
     monitor-enter v0
 
     .line 192
-    :try_start_0
+    :try_start_3
     invoke-static {p1}, Lio/vanta/core/env/BEnvironment;->getAppDir(Ljava/lang/String;)Ljava/io/File;
 
     move-result-object p1
@@ -1159,12 +1159,12 @@
 
     return-void
 
-    :catchall_0
+    :catchall_c
     move-exception p1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_e
+    .catchall {:try_start_3 .. :try_end_e} :catchall_c
 
     throw p1
 .end method

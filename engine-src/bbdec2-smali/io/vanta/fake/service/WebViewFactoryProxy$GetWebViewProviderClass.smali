@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 41
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 3
+    .registers 7
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -48,23 +48,23 @@
     invoke-static {v2, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 48
-    :try_start_0
+    :try_start_9
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_1b
 
     .line 50
     const-string p2, "WebViewFactory: Successfully got WebView provider class"
 
     invoke-static {v2, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_14
+    .catch Ljava/lang/Exception; {:try_start_9 .. :try_end_14} :catch_15
 
     return-object p1
 
-    :catch_0
+    :catch_15
     move-exception p1
 
     .line 54
@@ -73,8 +73,8 @@
     invoke-static {v2, p2, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 59
-    :cond_0
-    :try_start_1
+    :cond_1b
+    :try_start_1b
     const-class p1, Landroid/webkit/WebView;
 
     .line 60
@@ -95,12 +95,12 @@
     move-result-object p2
 
     invoke-static {v2, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_31
+    .catch Ljava/lang/Exception; {:try_start_1b .. :try_end_31} :catch_32
 
     return-object p1
 
-    :catch_1
+    :catch_32
     move-exception p1
 
     .line 63

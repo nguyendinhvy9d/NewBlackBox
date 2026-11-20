@@ -30,7 +30,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 37
     new-instance v0, Lio/vanta/core/system/user/BUserInfo$1;
@@ -43,7 +43,7 @@
 .end method
 
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 13
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -52,7 +52,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 2
+    .registers 4
 
     .line 29
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -71,21 +71,21 @@
 
     const/4 v1, -0x1
 
-    if-ne v0, v1, :cond_0
+    if-ne v0, v1, :cond_12
 
     const/4 v0, 0x0
 
-    goto :goto_0
+    goto :goto_18
 
     .line 32
-    :cond_0
+    :cond_12
     invoke-static {}, Lio/vanta/core/system/user/BUserStatus;->values()[Lio/vanta/core/system/user/BUserStatus;
 
     move-result-object v1
 
     aget-object v0, v1, v0
 
-    :goto_0
+    :goto_18
     iput-object v0, p0, Lio/vanta/core/system/user/BUserInfo;->status:Lio/vanta/core/system/user/BUserStatus;
 
     .line 33
@@ -108,7 +108,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -116,7 +116,7 @@
 .end method
 
 .method public toString()Ljava/lang/String;
-    .locals 3
+    .registers 4
 
     .line 51
     new-instance v0, Ljava/lang/StringBuilder;
@@ -181,7 +181,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 2
+    .registers 5
 
     .line 23
     iget p2, p0, Lio/vanta/core/system/user/BUserInfo;->id:I
@@ -191,18 +191,18 @@
     .line 24
     iget-object p2, p0, Lio/vanta/core/system/user/BUserInfo;->status:Lio/vanta/core/system/user/BUserStatus;
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_b
 
     const/4 p2, -0x1
 
-    goto :goto_0
+    goto :goto_f
 
-    :cond_0
+    :cond_b
     invoke-virtual {p2}, Lio/vanta/core/system/user/BUserStatus;->ordinal()I
 
     move-result p2
 
-    :goto_0
+    :goto_f
     invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 25

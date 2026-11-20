@@ -21,7 +21,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 18
     new-instance v0, Lio/vanta/fake/frameworks/BUserManager;
@@ -34,7 +34,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 16
     invoke-direct {p0}, Lio/vanta/fake/frameworks/BlackManager;-><init>()V
@@ -43,7 +43,7 @@
 .end method
 
 .method public static get()Lio/vanta/fake/frameworks/BUserManager;
-    .locals 1
+    .registers 1
 
     .line 21
     sget-object v0, Lio/vanta/fake/frameworks/BUserManager;->sUserManager:Lio/vanta/fake/frameworks/BUserManager;
@@ -54,19 +54,19 @@
 
 # virtual methods
 .method public createUser(I)Lio/vanta/core/system/user/BUserInfo;
-    .locals 3
+    .registers 5
 
     .line 31
     const-string v0, "BUserManager"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BUserManager;->getService()Landroid/os/IInterface;
 
     move-result-object v1
 
     check-cast v1, Lio/vanta/core/system/user/IBUserManagerService;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 33
     invoke-interface {v1, p1}, Lio/vanta/core/system/user/IBUserManagerService;->createUser(I)Lio/vanta/core/system/user/BUserInfo;
@@ -76,18 +76,18 @@
     return-object p1
 
     .line 35
-    :cond_0
+    :cond_f
     const-string v1, "UserManager service is null, cannot create user"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_14
+    .catch Landroid/os/DeadObjectException; {:try_start_2 .. :try_end_14} :catch_23
+    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_14} :catch_1c
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_14} :catch_15
 
-    goto :goto_0
+    goto :goto_44
 
-    :catch_0
+    :catch_15
     move-exception p1
 
     .line 52
@@ -95,9 +95,9 @@
 
     invoke-static {v0, v1, p1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    goto :goto_0
+    goto :goto_44
 
-    :catch_1
+    :catch_1c
     move-exception p1
 
     .line 50
@@ -105,9 +105,9 @@
 
     invoke-static {v0, v1, p1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    goto :goto_0
+    goto :goto_44
 
-    :catch_2
+    :catch_23
     move-exception v1
 
     .line 38
@@ -121,7 +121,7 @@
     const-wide/16 v1, 0x64
 
     .line 41
-    :try_start_1
+    :try_start_2e
     invoke-static {v1, v2}, Ljava/lang/Thread;->sleep(J)V
 
     .line 42
@@ -131,18 +131,18 @@
 
     check-cast v1, Lio/vanta/core/system/user/IBUserManagerService;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_44
 
     .line 44
     invoke-interface {v1, p1}, Lio/vanta/core/system/user/IBUserManagerService;->createUser(I)Lio/vanta/core/system/user/BUserInfo;
 
     move-result-object p1
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    :try_end_3d
+    .catch Ljava/lang/Exception; {:try_start_2e .. :try_end_3d} :catch_3e
 
     return-object p1
 
-    :catch_3
+    :catch_3e
     move-exception p1
 
     .line 47
@@ -150,27 +150,27 @@
 
     invoke-static {v0, v1, p1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_1
-    :goto_0
+    :cond_44
+    :goto_44
     const/4 p1, 0x0
 
     return-object p1
 .end method
 
 .method public deleteUser(I)V
-    .locals 3
+    .registers 5
 
     .line 59
     const-string v0, "BUserManager"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BUserManager;->getService()Landroid/os/IInterface;
 
     move-result-object v1
 
     check-cast v1, Lio/vanta/core/system/user/IBUserManagerService;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_e
 
     .line 61
     invoke-interface {v1, p1}, Lio/vanta/core/system/user/IBUserManagerService;->deleteUser(I)V
@@ -178,18 +178,18 @@
     return-void
 
     .line 63
-    :cond_0
+    :cond_e
     const-string v1, "UserManager service is null, cannot delete user"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_13
+    .catch Landroid/os/DeadObjectException; {:try_start_2 .. :try_end_13} :catch_22
+    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_13} :catch_1b
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_13} :catch_14
 
     return-void
 
-    :catch_0
+    :catch_14
     move-exception p1
 
     .line 80
@@ -197,9 +197,9 @@
 
     invoke-static {v0, v1, p1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    goto :goto_0
+    goto :goto_42
 
-    :catch_1
+    :catch_1b
     move-exception p1
 
     .line 78
@@ -207,9 +207,9 @@
 
     invoke-static {v0, v1, p1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    goto :goto_0
+    goto :goto_42
 
-    :catch_2
+    :catch_22
     move-exception v1
 
     .line 66
@@ -223,7 +223,7 @@
     const-wide/16 v1, 0x64
 
     .line 69
-    :try_start_1
+    :try_start_2d
     invoke-static {v1, v2}, Ljava/lang/Thread;->sleep(J)V
 
     .line 70
@@ -233,16 +233,16 @@
 
     check-cast v1, Lio/vanta/core/system/user/IBUserManagerService;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_42
 
     .line 72
     invoke-interface {v1, p1}, Lio/vanta/core/system/user/IBUserManagerService;->deleteUser(I)V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    :try_end_3b
+    .catch Ljava/lang/Exception; {:try_start_2d .. :try_end_3b} :catch_3c
 
-    goto :goto_0
+    goto :goto_42
 
-    :catch_3
+    :catch_3c
     move-exception p1
 
     .line 75
@@ -250,13 +250,13 @@
 
     invoke-static {v0, v1, p1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_1
-    :goto_0
+    :cond_42
+    :goto_42
     return-void
 .end method
 
 .method protected getServiceName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 26
     const-string v0, "user_manager"
@@ -265,7 +265,7 @@
 .end method
 
 .method public getUsers()Ljava/util/List;
-    .locals 3
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -278,14 +278,14 @@
     .line 86
     const-string v0, "BUserManager"
 
-    :try_start_0
+    :try_start_2
     invoke-virtual {p0}, Lio/vanta/fake/frameworks/BUserManager;->getService()Landroid/os/IInterface;
 
     move-result-object v1
 
     check-cast v1, Lio/vanta/core/system/user/IBUserManagerService;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 88
     invoke-interface {v1}, Lio/vanta/core/system/user/IBUserManagerService;->getUsers()Ljava/util/List;
@@ -295,18 +295,18 @@
     return-object v0
 
     .line 90
-    :cond_0
+    :cond_f
     const-string v1, "UserManager service is null, returning empty list"
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Landroid/os/DeadObjectException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_14
+    .catch Landroid/os/DeadObjectException; {:try_start_2 .. :try_end_14} :catch_23
+    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_14} :catch_1c
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_14} :catch_15
 
-    goto :goto_0
+    goto :goto_44
 
-    :catch_0
+    :catch_15
     move-exception v1
 
     .line 107
@@ -314,9 +314,9 @@
 
     invoke-static {v0, v2, v1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    goto :goto_0
+    goto :goto_44
 
-    :catch_1
+    :catch_1c
     move-exception v1
 
     .line 105
@@ -324,9 +324,9 @@
 
     invoke-static {v0, v2, v1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    goto :goto_0
+    goto :goto_44
 
-    :catch_2
+    :catch_23
     move-exception v1
 
     .line 93
@@ -340,7 +340,7 @@
     const-wide/16 v1, 0x64
 
     .line 96
-    :try_start_1
+    :try_start_2e
     invoke-static {v1, v2}, Ljava/lang/Thread;->sleep(J)V
 
     .line 97
@@ -350,18 +350,18 @@
 
     check-cast v1, Lio/vanta/core/system/user/IBUserManagerService;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_44
 
     .line 99
     invoke-interface {v1}, Lio/vanta/core/system/user/IBUserManagerService;->getUsers()Ljava/util/List;
 
     move-result-object v0
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_3
+    :try_end_3d
+    .catch Ljava/lang/Exception; {:try_start_2e .. :try_end_3d} :catch_3e
 
     return-object v0
 
-    :catch_3
+    :catch_3e
     move-exception v1
 
     .line 102
@@ -370,8 +370,8 @@
     invoke-static {v0, v2, v1}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 109
-    :cond_1
-    :goto_0
+    :cond_44
+    :goto_44
     invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 
     move-result-object v0

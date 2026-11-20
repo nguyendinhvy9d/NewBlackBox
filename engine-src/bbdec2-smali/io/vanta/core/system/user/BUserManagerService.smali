@@ -27,7 +27,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 25
     new-instance v0, Lio/vanta/core/system/user/BUserManagerService;
@@ -40,7 +40,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 24
     invoke-direct {p0}, Lio/vanta/core/system/user/IBUserManagerService$Stub;-><init>()V
@@ -63,7 +63,7 @@
 .end method
 
 .method private createUserLocked(I)Lio/vanta/core/system/user/BUserInfo;
-    .locals 2
+    .registers 4
 
     .line 96
     new-instance v0, Lio/vanta/core/system/user/BUserInfo;
@@ -93,7 +93,7 @@
     monitor-enter p1
 
     .line 101
-    :try_start_0
+    :try_start_17
     invoke-direct {p0}, Lio/vanta/core/system/user/BUserManagerService;->saveUserInfoLocked()V
 
     .line 102
@@ -101,18 +101,18 @@
 
     return-object v0
 
-    :catchall_0
+    :catchall_1c
     move-exception v0
 
     monitor-exit p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1e
+    .catchall {:try_start_17 .. :try_end_1e} :catchall_1c
 
     throw v0
 .end method
 
 .method public static get()Lio/vanta/core/system/user/BUserManagerService;
-    .locals 1
+    .registers 1
 
     .line 30
     sget-object v0, Lio/vanta/core/system/user/BUserManagerService;->sService:Lio/vanta/core/system/user/BUserManagerService;
@@ -121,7 +121,7 @@
 .end method
 
 .method private saveUserInfoLocked()V
-    .locals 6
+    .registers 7
 
     .line 107
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
@@ -138,7 +138,7 @@
     invoke-direct {v1, v2}, Landroidx/core/util/AtomicFile;-><init>(Ljava/io/File;)V
 
     .line 111
-    :try_start_0
+    :try_start_d
     new-instance v2, Ljava/util/ArrayList;
 
     iget-object v3, p0, Lio/vanta/core/system/user/BUserManagerService;->mUsers:Ljava/util/HashMap;
@@ -151,8 +151,8 @@
 
     .line 112
     invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeTypedList(Ljava/util/List;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_1b
+    .catchall {:try_start_d .. :try_end_1b} :catchall_4c
 
     const/4 v2, 0x0
 
@@ -161,7 +161,7 @@
     const/4 v4, 0x0
 
     .line 114
-    :try_start_1
+    :try_start_1e
     invoke-virtual {v1}, Landroidx/core/util/AtomicFile;->startWrite()Ljava/io/FileOutputStream;
 
     move-result-object v4
@@ -171,58 +171,58 @@
 
     .line 116
     invoke-virtual {v1, v4}, Landroidx/core/util/AtomicFile;->finishWrite(Ljava/io/FileOutputStream;)V
-    :try_end_1
-    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_0
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_28
+    .catch Ljava/io/IOException; {:try_start_1e .. :try_end_28} :catch_32
+    .catchall {:try_start_1e .. :try_end_28} :catchall_30
 
     .line 121
-    :try_start_2
+    :try_start_28
     new-array v1, v3, [Ljava/io/Closeable;
 
     aput-object v4, v1, v2
 
     invoke-static {v1}, Lio/vanta/utils/CloseUtils;->close([Ljava/io/Closeable;)V
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_2f
+    .catchall {:try_start_28 .. :try_end_2f} :catchall_4c
 
-    goto :goto_0
+    goto :goto_40
 
-    :catchall_0
+    :catchall_30
     move-exception v1
 
-    goto :goto_1
+    goto :goto_44
 
-    :catch_0
+    :catch_32
     move-exception v5
 
     .line 118
-    :try_start_3
+    :try_start_33
     invoke-virtual {v5}, Ljava/io/IOException;->printStackTrace()V
 
     .line 119
     invoke-virtual {v1, v4}, Landroidx/core/util/AtomicFile;->failWrite(Ljava/io/FileOutputStream;)V
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+    :try_end_39
+    .catchall {:try_start_33 .. :try_end_39} :catchall_30
 
     .line 121
-    :try_start_4
+    :try_start_39
     new-array v1, v3, [Ljava/io/Closeable;
 
     aput-object v4, v1, v2
 
     invoke-static {v1}, Lio/vanta/utils/CloseUtils;->close([Ljava/io/Closeable;)V
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_40
+    .catchall {:try_start_39 .. :try_end_40} :catchall_4c
 
     .line 124
-    :goto_0
+    :goto_40
     invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
 
     return-void
 
     .line 121
-    :goto_1
-    :try_start_5
+    :goto_44
+    :try_start_44
     new-array v3, v3, [Ljava/io/Closeable;
 
     aput-object v4, v3, v2
@@ -231,10 +231,10 @@
 
     .line 122
     throw v1
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
+    :try_end_4c
+    .catchall {:try_start_44 .. :try_end_4c} :catchall_4c
 
-    :catchall_1
+    :catchall_4c
     move-exception v1
 
     .line 124
@@ -245,7 +245,7 @@
 .end method
 
 .method private scanUserL()V
-    .locals 11
+    .registers 12
 
     .line 129
     iget-object v0, p0, Lio/vanta/core/system/user/BUserManagerService;->mUserLock:Ljava/lang/Object;
@@ -253,12 +253,12 @@
     monitor-enter v0
 
     .line 130
-    :try_start_0
+    :try_start_3
     invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
 
     move-result-object v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_3
+    :try_end_7
+    .catchall {:try_start_3 .. :try_end_7} :catchall_a0
 
     const/4 v2, 0x1
 
@@ -267,7 +267,7 @@
     const/4 v4, 0x0
 
     .line 133
-    :try_start_1
+    :try_start_a
     invoke-static {}, Lio/vanta/core/env/BEnvironment;->getUserInfoConf()Ljava/io/File;
 
     move-result-object v5
@@ -276,14 +276,14 @@
     invoke-virtual {v5}, Ljava/io/File;->exists()Z
 
     move-result v5
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_12
+    .catch Ljava/lang/Exception; {:try_start_a .. :try_end_12} :catch_81
+    .catchall {:try_start_a .. :try_end_12} :catchall_7c
 
-    if-nez v5, :cond_0
+    if-nez v5, :cond_20
 
     .line 154
-    :try_start_2
+    :try_start_14
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 155
@@ -293,16 +293,16 @@
 
     invoke-static {v1}, Lio/vanta/utils/CloseUtils;->close([Ljava/io/Closeable;)V
 
-    :goto_0
+    :goto_1e
     monitor-exit v0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_3
+    :try_end_1f
+    .catchall {:try_start_14 .. :try_end_1f} :catchall_a0
 
     return-void
 
     .line 137
-    :cond_0
-    :try_start_3
+    :cond_20
+    :try_start_20
     new-instance v5, Ljava/io/FileInputStream;
 
     invoke-static {}, Lio/vanta/core/env/BEnvironment;->getUserInfoConf()Ljava/io/File;
@@ -310,12 +310,12 @@
     move-result-object v6
 
     invoke-direct {v5, v6}, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_1
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+    :try_end_29
+    .catch Ljava/lang/Exception; {:try_start_20 .. :try_end_29} :catch_81
+    .catchall {:try_start_20 .. :try_end_29} :catchall_7c
 
     .line 138
-    :try_start_4
+    :try_start_29
     invoke-static {v5}, Lio/vanta/utils/FileUtils;->toByteArray(Ljava/io/InputStream;)[B
 
     move-result-object v4
@@ -334,14 +334,14 @@
     invoke-virtual {v1, v4}, Landroid/os/Parcel;->createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
 
     move-result-object v4
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_0
-    .catchall {:try_start_4 .. :try_end_4} :catchall_2
+    :try_end_3a
+    .catch Ljava/lang/Exception; {:try_start_29 .. :try_end_3a} :catch_7a
+    .catchall {:try_start_29 .. :try_end_3a} :catchall_94
 
-    if-nez v4, :cond_1
+    if-nez v4, :cond_47
 
     .line 154
-    :try_start_5
+    :try_start_3c
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 155
@@ -350,23 +350,23 @@
     aput-object v5, v1, v3
 
     invoke-static {v1}, Lio/vanta/utils/CloseUtils;->close([Ljava/io/Closeable;)V
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_3
+    :try_end_46
+    .catchall {:try_start_3c .. :try_end_46} :catchall_a0
 
-    goto :goto_0
+    goto :goto_1e
 
     .line 145
-    :cond_1
-    :try_start_6
+    :cond_47
+    :try_start_47
     iget-object v6, p0, Lio/vanta/core/system/user/BUserManagerService;->mUsers:Ljava/util/HashMap;
 
     monitor-enter v6
-    :try_end_6
-    .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_0
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_4a
+    .catch Ljava/lang/Exception; {:try_start_47 .. :try_end_4a} :catch_7a
+    .catchall {:try_start_47 .. :try_end_4a} :catchall_94
 
     .line 146
-    :try_start_7
+    :try_start_4a
     iget-object v7, p0, Lio/vanta/core/system/user/BUserManagerService;->mUsers:Ljava/util/HashMap;
 
     invoke-virtual {v7}, Ljava/util/HashMap;->clear()V
@@ -376,12 +376,12 @@
 
     move-result-object v4
 
-    :goto_1
+    :goto_53
     invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v7
 
-    if-eqz v7, :cond_2
+    if-eqz v7, :cond_6b
 
     invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -400,16 +400,16 @@
 
     invoke-virtual {v8, v9, v7}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_1
+    goto :goto_53
 
     .line 150
-    :cond_2
+    :cond_6b
     monitor-exit v6
-    :try_end_7
-    .catchall {:try_start_7 .. :try_end_7} :catchall_0
+    :try_end_6c
+    .catchall {:try_start_4a .. :try_end_6c} :catchall_77
 
     .line 154
-    :try_start_8
+    :try_start_6c
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 155
@@ -418,32 +418,32 @@
     aput-object v5, v1, v3
 
     invoke-static {v1}, Lio/vanta/utils/CloseUtils;->close([Ljava/io/Closeable;)V
-    :try_end_8
-    .catchall {:try_start_8 .. :try_end_8} :catchall_3
+    :try_end_76
+    .catchall {:try_start_6c .. :try_end_76} :catchall_a0
 
-    goto :goto_3
+    goto :goto_92
 
-    :catchall_0
+    :catchall_77
     move-exception v4
 
     .line 150
-    :try_start_9
+    :try_start_78
     monitor-exit v6
-    :try_end_9
-    .catchall {:try_start_9 .. :try_end_9} :catchall_0
+    :try_end_79
+    .catchall {:try_start_78 .. :try_end_79} :catchall_77
 
-    :try_start_a
+    :try_start_79
     throw v4
-    :try_end_a
-    .catch Ljava/lang/Exception; {:try_start_a .. :try_end_a} :catch_0
-    .catchall {:try_start_a .. :try_end_a} :catchall_2
+    :try_end_7a
+    .catch Ljava/lang/Exception; {:try_start_79 .. :try_end_7a} :catch_7a
+    .catchall {:try_start_79 .. :try_end_7a} :catchall_94
 
-    :catch_0
+    :catch_7a
     move-exception v4
 
-    goto :goto_2
+    goto :goto_85
 
-    :catchall_1
+    :catchall_7c
     move-exception v5
 
     move-object v10, v5
@@ -452,9 +452,9 @@
 
     move-object v4, v10
 
-    goto :goto_4
+    goto :goto_95
 
-    :catch_1
+    :catch_81
     move-exception v5
 
     move-object v10, v5
@@ -464,14 +464,14 @@
     move-object v4, v10
 
     .line 152
-    :goto_2
-    :try_start_b
+    :goto_85
+    :try_start_85
     invoke-virtual {v4}, Ljava/lang/Exception;->printStackTrace()V
-    :try_end_b
-    .catchall {:try_start_b .. :try_end_b} :catchall_2
+    :try_end_88
+    .catchall {:try_start_85 .. :try_end_88} :catchall_94
 
     .line 154
-    :try_start_c
+    :try_start_88
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 155
@@ -482,16 +482,16 @@
     invoke-static {v1}, Lio/vanta/utils/CloseUtils;->close([Ljava/io/Closeable;)V
 
     .line 157
-    :goto_3
+    :goto_92
     monitor-exit v0
 
     return-void
 
-    :catchall_2
+    :catchall_94
     move-exception v4
 
     .line 154
-    :goto_4
+    :goto_95
     invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
 
     .line 155
@@ -504,13 +504,13 @@
     .line 156
     throw v4
 
-    :catchall_3
+    :catchall_a0
     move-exception v1
 
     .line 157
     monitor-exit v0
-    :try_end_c
-    .catchall {:try_start_c .. :try_end_c} :catchall_3
+    :try_end_a2
+    .catchall {:try_start_88 .. :try_end_a2} :catchall_a0
 
     throw v1
 .end method
@@ -518,7 +518,7 @@
 
 # virtual methods
 .method public createUser(I)Lio/vanta/core/system/user/BUserInfo;
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -531,12 +531,12 @@
     monitor-enter v0
 
     .line 55
-    :try_start_0
+    :try_start_3
     invoke-virtual {p0, p1}, Lio/vanta/core/system/user/BUserManagerService;->exists(I)Z
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 56
     invoke-virtual {p0, p1}, Lio/vanta/core/system/user/BUserManagerService;->getUserInfo(I)Lio/vanta/core/system/user/BUserInfo;
@@ -548,7 +548,7 @@
     return-object p1
 
     .line 58
-    :cond_0
+    :cond_f
     invoke-direct {p0, p1}, Lio/vanta/core/system/user/BUserManagerService;->createUserLocked(I)Lio/vanta/core/system/user/BUserInfo;
 
     move-result-object p1
@@ -557,19 +557,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_15
     move-exception p1
 
     .line 59
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_17
+    .catchall {:try_start_3 .. :try_end_17} :catchall_15
 
     throw p1
 .end method
 
 .method public deleteUser(I)V
-    .locals 4
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -582,15 +582,15 @@
     monitor-enter v0
 
     .line 84
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/user/BUserManagerService;->mUsers:Ljava/util/HashMap;
 
     monitor-enter v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_6
+    .catchall {:try_start_3 .. :try_end_6} :catchall_2d
 
     .line 85
-    :try_start_1
+    :try_start_6
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
 
     move-result-object v2
@@ -625,42 +625,42 @@
 
     .line 91
     monitor-exit v1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_28
+    .catchall {:try_start_6 .. :try_end_28} :catchall_2a
 
     .line 92
-    :try_start_2
+    :try_start_28
     monitor-exit v0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_29
+    .catchall {:try_start_28 .. :try_end_29} :catchall_2d
 
     return-void
 
-    :catchall_0
+    :catchall_2a
     move-exception p1
 
     .line 91
-    :try_start_3
+    :try_start_2b
     monitor-exit v1
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+    :try_end_2c
+    .catchall {:try_start_2b .. :try_end_2c} :catchall_2a
 
-    :try_start_4
+    :try_start_2c
     throw p1
 
-    :catchall_1
+    :catchall_2d
     move-exception p1
 
     .line 92
     monitor-exit v0
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_2f
+    .catchall {:try_start_2c .. :try_end_2f} :catchall_2d
 
     throw p1
 .end method
 
 .method public exists(I)Z
-    .locals 2
+    .registers 4
 
     .line 47
     iget-object v0, p0, Lio/vanta/core/system/user/BUserManagerService;->mUsers:Ljava/util/HashMap;
@@ -668,7 +668,7 @@
     monitor-enter v0
 
     .line 48
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/user/BUserManagerService;->mUsers:Ljava/util/HashMap;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -679,33 +679,33 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_11
 
     const/4 p1, 0x1
 
-    goto :goto_0
+    goto :goto_12
 
-    :cond_0
+    :cond_11
     const/4 p1, 0x0
 
-    :goto_0
+    :goto_12
     monitor-exit v0
 
     return p1
 
-    :catchall_0
+    :catchall_14
     move-exception p1
 
     .line 49
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_16
+    .catchall {:try_start_3 .. :try_end_16} :catchall_14
 
     throw p1
 .end method
 
 .method public getAllUsers()Ljava/util/List;
-    .locals 3
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -721,7 +721,7 @@
     monitor-enter v0
 
     .line 77
-    :try_start_0
+    :try_start_3
     new-instance v1, Ljava/util/ArrayList;
 
     iget-object v2, p0, Lio/vanta/core/system/user/BUserManagerService;->mUsers:Ljava/util/HashMap;
@@ -736,19 +736,19 @@
 
     return-object v1
 
-    :catchall_0
+    :catchall_10
     move-exception v1
 
     .line 78
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_12
+    .catchall {:try_start_3 .. :try_end_12} :catchall_10
 
     throw v1
 .end method
 
 .method public getUserInfo(I)Lio/vanta/core/system/user/BUserInfo;
-    .locals 2
+    .registers 4
 
     .line 40
     iget-object v0, p0, Lio/vanta/core/system/user/BUserManagerService;->mUserLock:Ljava/lang/Object;
@@ -756,7 +756,7 @@
     monitor-enter v0
 
     .line 41
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/user/BUserManagerService;->mUsers:Ljava/util/HashMap;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -773,19 +773,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_11
     move-exception p1
 
     .line 42
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_13
+    .catchall {:try_start_3 .. :try_end_13} :catchall_11
 
     throw p1
 .end method
 
 .method public getUsers()Ljava/util/List;
-    .locals 5
+    .registers 6
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -801,7 +801,7 @@
     monitor-enter v0
 
     .line 65
-    :try_start_0
+    :try_start_3
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
@@ -817,13 +817,13 @@
 
     move-result-object v2
 
-    :cond_0
-    :goto_0
+    :cond_12
+    :goto_12
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_26
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -834,32 +834,32 @@
     .line 67
     iget v4, v3, Lio/vanta/core/system/user/BUserInfo;->id:I
 
-    if-ltz v4, :cond_0
+    if-ltz v4, :cond_12
 
     .line 68
     invoke-virtual {v1, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_12
 
     .line 71
-    :cond_1
+    :cond_26
     monitor-exit v0
 
     return-object v1
 
-    :catchall_0
+    :catchall_28
     move-exception v1
 
     .line 72
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2a
+    .catchall {:try_start_3 .. :try_end_2a} :catchall_28
 
     throw v1
 .end method
 
 .method public systemReady()V
-    .locals 0
+    .registers 1
 
     .line 35
     invoke-direct {p0}, Lio/vanta/core/system/user/BUserManagerService;->scanUserL()V

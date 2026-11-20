@@ -19,7 +19,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 582
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method synthetic constructor <init>(Lio/vanta/utils/CrashMonitor-IA;)V
-    .locals 0
+    .registers 2
 
     invoke-direct {p0}, Lio/vanta/utils/CrashMonitor$WebViewCrashRecovery;-><init>()V
 
@@ -38,7 +38,7 @@
 
 # virtual methods
 .method public attemptRecovery(Lio/vanta/utils/CrashMonitor$CrashInfo;)Z
-    .locals 0
+    .registers 2
 
     const/4 p1, 0x1
 
@@ -46,9 +46,9 @@
 .end method
 
 .method public canHandle(Ljava/lang/String;Ljava/lang/String;)Z
-    .locals 0
+    .registers 3
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_14
 
     .line 590
     const-string p1, "WebView"
@@ -58,7 +58,7 @@
 
     move-result p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_12
 
     const-string p1, "webview"
 
@@ -67,21 +67,21 @@
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_14
 
-    :cond_0
+    :cond_12
     const/4 p1, 0x1
 
     return p1
 
-    :cond_1
+    :cond_14
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method public getName()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 585
     const-string v0, "WebView Crash Recovery"
@@ -90,7 +90,7 @@
 .end method
 
 .method public getPriority()I
-    .locals 1
+    .registers 2
 
     const/16 v0, 0x46
 

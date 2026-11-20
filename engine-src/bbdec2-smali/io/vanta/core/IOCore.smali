@@ -41,7 +41,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 29
     new-instance v0, Lio/vanta/core/IOCore;
@@ -75,7 +75,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -91,7 +91,7 @@
 .end method
 
 .method public static get()Lio/vanta/core/IOCore;
-    .locals 1
+    .registers 1
 
     .line 37
     sget-object v0, Lio/vanta/core/IOCore;->sIOCore:Lio/vanta/core/IOCore;
@@ -102,19 +102,19 @@
 
 # virtual methods
 .method public addBlackRedirect(Ljava/lang/String;)V
-    .locals 1
+    .registers 3
 
     .line 55
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_7
 
     return-void
 
     .line 57
-    :cond_0
+    :cond_7
     sget-object v0, Lio/vanta/core/IOCore;->sBlackTree:Lio/vanta/utils/TrieTree;
 
     invoke-virtual {v0, p1}, Lio/vanta/utils/TrieTree;->add(Ljava/lang/String;)V
@@ -123,20 +123,20 @@
 .end method
 
 .method public addRedirect(Ljava/lang/String;Ljava/lang/String;)V
-    .locals 1
+    .registers 4
 
     .line 42
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_30
 
     invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_30
 
     iget-object v0, p0, Lio/vanta/core/IOCore;->mRedirectMap:Ljava/util/Map;
 
@@ -144,12 +144,12 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_15
 
-    goto :goto_0
+    goto :goto_30
 
     .line 45
-    :cond_0
+    :cond_15
     sget-object v0, Lio/vanta/core/IOCore;->mTrieTree:Lio/vanta/utils/TrieTree;
 
     invoke-virtual {v0, p1}, Lio/vanta/utils/TrieTree;->add(Ljava/lang/String;)V
@@ -169,22 +169,22 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_2d
 
     .line 49
     invoke-static {p2}, Lio/vanta/utils/FileUtils;->mkdirs(Ljava/lang/String;)V
 
     .line 51
-    :cond_1
+    :cond_2d
     invoke-static {p1, p2}, Lio/vanta/core/NativeCore;->addIORule(Ljava/lang/String;Ljava/lang/String;)V
 
-    :cond_2
-    :goto_0
+    :cond_30
+    :goto_30
     return-void
 .end method
 
 .method public enableRedirect(Landroid/content/Context;)V
-    .locals 9
+    .registers 11
 
     .line 107
     new-instance v0, Ljava/util/LinkedHashMap;
@@ -202,7 +202,7 @@
     move-result-object v2
 
     .line 112
-    :try_start_0
+    :try_start_e
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v3
@@ -211,7 +211,7 @@
 
     move-result v4
 
-    const/16 v5, 0x80
+    const/4 v5, 0x0
 
     invoke-virtual {v3, v2, v5, v4}, Lio/vanta/fake/frameworks/BPackageManager;->getApplicationInfo(Ljava/lang/String;II)Landroid/content/pm/ApplicationInfo;
 
@@ -436,13 +436,13 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_13d
 
     invoke-virtual {p1}, Landroid/content/Context;->getExternalCacheDir()Ljava/io/File;
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_13d
 
     .line 134
     invoke-static {}, Lio/vanta/VantaCore;->getUserId()I
@@ -504,20 +504,20 @@
     move-result-object p1
 
     invoke-interface {v1, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_138
+    .catch Ljava/lang/Exception; {:try_start_e .. :try_end_138} :catch_139
 
-    goto :goto_0
+    goto :goto_13d
 
-    :catch_0
+    :catch_139
     move-exception p1
 
     .line 144
     invoke-virtual {p1}, Ljava/lang/Exception;->printStackTrace()V
 
     .line 146
-    :cond_0
-    :goto_0
+    :cond_13d
+    :goto_13d
     invoke-interface {v0}, Ljava/util/Map;->keySet()Ljava/util/Set;
 
     move-result-object p1
@@ -526,12 +526,12 @@
 
     move-result-object p1
 
-    :goto_1
+    :goto_145
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_15f
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -552,20 +552,20 @@
 
     invoke-virtual {v3, v2, v4}, Lio/vanta/core/IOCore;->addRedirect(Ljava/lang/String;Ljava/lang/String;)V
 
-    goto :goto_1
+    goto :goto_145
 
     .line 149
-    :cond_1
+    :cond_15f
     invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
 
-    :goto_2
+    :goto_163
     invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_177
 
     invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -580,26 +580,26 @@
 
     invoke-virtual {v1, v0}, Lio/vanta/core/IOCore;->addBlackRedirect(Ljava/lang/String;)V
 
-    goto :goto_2
+    goto :goto_163
 
     .line 152
-    :cond_2
+    :cond_177
     invoke-static {}, Lio/vanta/core/NativeCore;->enableIO()V
 
     return-void
 .end method
 
 .method public redirectPath(Ljava/io/File;)Ljava/io/File;
-    .locals 1
+    .registers 3
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     const/4 p1, 0x0
 
     return-object p1
 
     .line 81
-    :cond_0
+    :cond_4
     invoke-virtual {p1}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
 
     move-result-object p1
@@ -617,7 +617,7 @@
 .end method
 
 .method public redirectPath(Ljava/io/File;Ljava/util/Map;)Ljava/io/File;
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -630,14 +630,14 @@
         }
     .end annotation
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     const/4 p1, 0x0
 
     return-object p1
 
     .line 100
-    :cond_0
+    :cond_4
     invoke-virtual {p1}, Ljava/io/File;->getAbsolutePath()Ljava/lang/String;
 
     move-result-object p1
@@ -655,31 +655,31 @@
 .end method
 
 .method public redirectPath(Ljava/lang/String;)Ljava/lang/String;
-    .locals 2
+    .registers 4
 
     .line 61
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_7
 
-    goto :goto_0
+    goto :goto_3b
 
     .line 63
-    :cond_0
+    :cond_7
     const-string v0, "/nomad/"
 
     invoke-virtual {p1, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_10
 
-    goto :goto_0
+    goto :goto_3b
 
     .line 66
-    :cond_1
+    :cond_10
     sget-object v0, Lio/vanta/core/IOCore;->sBlackTree:Lio/vanta/utils/TrieTree;
 
     invoke-virtual {v0, p1}, Lio/vanta/utils/TrieTree;->search(Ljava/lang/String;)Ljava/lang/String;
@@ -691,12 +691,12 @@
 
     move-result v1
 
-    if-nez v1, :cond_2
+    if-nez v1, :cond_1d
 
     return-object v0
 
     .line 71
-    :cond_2
+    :cond_1d
     sget-object v0, Lio/vanta/core/IOCore;->mTrieTree:Lio/vanta/utils/TrieTree;
 
     invoke-virtual {v0, p1}, Lio/vanta/utils/TrieTree;->search(Ljava/lang/String;)Ljava/lang/String;
@@ -708,7 +708,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_3
+    if-nez v1, :cond_3b
 
     .line 73
     iget-object v1, p0, Lio/vanta/core/IOCore;->mRedirectMap:Ljava/util/Map;
@@ -729,13 +729,13 @@
 
     move-result-object p1
 
-    :cond_3
-    :goto_0
+    :cond_3b
+    :goto_3b
     return-object p1
 .end method
 
 .method public redirectPath(Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -753,12 +753,12 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_7
 
-    goto :goto_0
+    goto :goto_23
 
     .line 90
-    :cond_0
+    :cond_7
     sget-object v0, Lio/vanta/core/IOCore;->mTrieTree:Lio/vanta/utils/TrieTree;
 
     invoke-virtual {v0, p1}, Lio/vanta/utils/TrieTree;->search(Ljava/lang/String;)Ljava/lang/String;
@@ -770,7 +770,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_23
 
     .line 92
     invoke-interface {p2, v0}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -789,7 +789,7 @@
 
     move-result-object p1
 
-    :cond_1
-    :goto_0
+    :cond_23
+    :goto_23
     return-object p1
 .end method

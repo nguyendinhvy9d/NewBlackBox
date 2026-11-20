@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -20,7 +20,7 @@
 .end method
 
 .method public static attach()V
-    .locals 2
+    .registers 2
 
     .line 13
     invoke-static {}, Lio/vanta/VantaCore;->get()Lio/vanta/VantaCore;

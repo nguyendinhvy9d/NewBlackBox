@@ -41,7 +41,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 8
+    .registers 8
 
     .line 32
     new-instance v0, Lio/vanta/core/system/JarConfig$JarDefinition;
@@ -81,7 +81,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 6
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -90,7 +90,7 @@
 .end method
 
 .method public static getJarDefinition(Ljava/lang/String;)Lio/vanta/core/system/JarConfig$JarDefinition;
-    .locals 5
+    .registers 6
 
     .line 74
     invoke-static {}, Lio/vanta/core/system/JarConfig;->getRequiredJars()[Lio/vanta/core/system/JarConfig$JarDefinition;
@@ -101,8 +101,8 @@
 
     const/4 v2, 0x0
 
-    :goto_0
-    if-ge v2, v1, :cond_1
+    :goto_6
+    if-ge v2, v1, :cond_18
 
     aget-object v3, v0, v2
 
@@ -115,23 +115,23 @@
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_15
 
     return-object v3
 
-    :cond_0
+    :cond_15
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_6
 
-    :cond_1
+    :cond_18
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method public static getOptimalBufferSize()I
-    .locals 4
+    .registers 4
 
     .line 97
     invoke-static {}, Ljava/lang/Runtime;->getRuntime()Ljava/lang/Runtime;
@@ -147,31 +147,31 @@
 
     cmp-long v2, v0, v2
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_13
 
     const v0, 0x8000
 
     return v0
 
-    :cond_0
+    :cond_13
     const-wide/32 v2, 0x10000000
 
     cmp-long v0, v0, v2
 
-    if-lez v0, :cond_1
+    if-lez v0, :cond_1d
 
     const/16 v0, 0x2000
 
     return v0
 
-    :cond_1
+    :cond_1d
     const/16 v0, 0x400
 
     return v0
 .end method
 
 .method public static getRequiredJars()[Lio/vanta/core/system/JarConfig$JarDefinition;
-    .locals 3
+    .registers 3
 
     const/4 v0, 0x2
 
@@ -194,23 +194,23 @@
 .end method
 
 .method public static validateFile(Ljava/io/File;Lio/vanta/core/system/JarConfig$JarDefinition;)Z
-    .locals 3
+    .registers 5
 
     const/4 v0, 0x0
 
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_19
 
     .line 84
     invoke-virtual {p0}, Ljava/io/File;->exists()Z
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_a
 
-    goto :goto_0
+    goto :goto_19
 
     .line 88
-    :cond_0
+    :cond_a
     invoke-virtual {p0}, Ljava/io/File;->length()J
 
     move-result-wide v1
@@ -221,16 +221,16 @@
 
     cmp-long p0, v1, p0
 
-    if-gez p0, :cond_1
+    if-gez p0, :cond_17
 
     return v0
 
-    :cond_1
+    :cond_17
     const/4 p0, 0x1
 
     return p0
 
-    :cond_2
-    :goto_0
+    :cond_19
+    :goto_19
     return v0
 .end method

@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/VantaCore;)V
-    .locals 0
+    .registers 2
 
     .line 2020
     iput-object p1, p0, Lio/vanta/VantaCore$8;->this$0:Lio/vanta/VantaCore;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .registers 5
 
     .line 2023
     const-string v0, "Executing delayed server service start"
@@ -52,7 +52,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_60
 
     iget-object v0, p0, Lio/vanta/VantaCore$8;->this$0:Lio/vanta/VantaCore;
 
@@ -64,10 +64,10 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_60
 
     .line 2027
-    :try_start_0
+    :try_start_1b
     new-instance v0, Landroid/content/Intent;
 
     invoke-direct {v0}, Landroid/content/Intent;-><init>()V
@@ -91,7 +91,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_3c
 
     .line 2032
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -100,10 +100,10 @@
 
     invoke-virtual {v2, v0}, Landroid/content/Context;->startForegroundService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
-    goto :goto_0
+    goto :goto_43
 
     .line 2034
-    :cond_0
+    :cond_3c
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v2
@@ -111,16 +111,16 @@
     invoke-virtual {v2, v0}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
 
     .line 2036
-    :goto_0
+    :goto_43
     const-string v0, "Delayed server service start successful"
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_48
+    .catch Ljava/lang/Exception; {:try_start_1b .. :try_end_48} :catch_49
 
     return-void
 
-    :catch_0
+    :catch_49
     move-exception v0
 
     .line 2038
@@ -144,6 +144,6 @@
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_1
+    :cond_60
     return-void
 .end method

@@ -13,7 +13,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 17
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
@@ -24,7 +24,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 22
     invoke-static {}, Lvanta/android/hardware/display/BRDisplayManagerGlobal;->get()Lvanta/android/hardware/display/DisplayManagerGlobalStatic;
@@ -47,7 +47,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 27
     invoke-static {}, Lvanta/android/hardware/display/BRDisplayManagerGlobal;->get()Lvanta/android/hardware/display/DisplayManagerGlobalStatic;
@@ -73,7 +73,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 2
+    .registers 3
 
     .line 33
     invoke-static {}, Lvanta/android/hardware/display/BRDisplayManagerGlobal;->get()Lvanta/android/hardware/display/DisplayManagerGlobalStatic;
@@ -98,13 +98,13 @@
 
     move-result-object v1
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_18
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_18
     const/4 v0, 0x0
 
     return v0

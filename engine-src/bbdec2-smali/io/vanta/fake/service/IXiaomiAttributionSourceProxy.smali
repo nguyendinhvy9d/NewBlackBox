@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 17
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -39,7 +39,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 1
+    .registers 4
 
     .line 29
     invoke-static {}, Lio/vanta/util/XiaomiDeviceDetector;->isXiaomiDevice()Z
@@ -48,7 +48,7 @@
 
     const-string p2, "IXiaomiAttributionSourceProxy"
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_33
 
     .line 30
     new-instance p1, Ljava/lang/StringBuilder;
@@ -96,7 +96,7 @@
     return-void
 
     .line 33
-    :cond_0
+    :cond_33
     const-string p1, "IXiaomiAttributionSource proxy initialized for MIUI UID mismatch prevention"
 
     invoke-static {p2, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -105,7 +105,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

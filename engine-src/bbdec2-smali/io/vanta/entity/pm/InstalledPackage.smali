@@ -26,7 +26,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 62
     new-instance v0, Lio/vanta/entity/pm/InstalledPackage$1;
@@ -39,7 +39,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -48,7 +48,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 44
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -71,7 +71,7 @@
 .end method
 
 .method public constructor <init>(Ljava/lang/String;)V
-    .locals 0
+    .registers 2
 
     .line 40
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -85,7 +85,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -93,16 +93,16 @@
 .end method
 
 .method public equals(Ljava/lang/Object;)Z
-    .locals 2
+    .registers 4
 
-    if-ne p0, p1, :cond_0
+    if-ne p0, p1, :cond_4
 
     const/4 p1, 0x1
 
     return p1
 
-    :cond_0
-    if-eqz p1, :cond_2
+    :cond_4
+    if-eqz p1, :cond_1c
 
     .line 52
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
@@ -113,12 +113,12 @@
 
     move-result-object v1
 
-    if-eq v0, v1, :cond_1
+    if-eq v0, v1, :cond_11
 
-    goto :goto_0
+    goto :goto_1c
 
     .line 53
-    :cond_1
+    :cond_11
     check-cast p1, Lio/vanta/entity/pm/InstalledPackage;
 
     .line 54
@@ -132,15 +132,15 @@
 
     return p1
 
-    :cond_2
-    :goto_0
+    :cond_1c
+    :goto_1c
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method public getApplication()Landroid/content/pm/ApplicationInfo;
-    .locals 4
+    .registers 5
 
     .line 19
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
@@ -161,7 +161,7 @@
 .end method
 
 .method public getPackageInfo()Landroid/content/pm/PackageInfo;
-    .locals 4
+    .registers 5
 
     .line 23
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
@@ -182,7 +182,7 @@
 .end method
 
 .method public hashCode()I
-    .locals 1
+    .registers 2
 
     .line 59
     iget-object v0, p0, Lio/vanta/entity/pm/InstalledPackage;->packageName:Ljava/lang/String;
@@ -199,7 +199,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 0
+    .registers 3
 
     .line 33
     iget p2, p0, Lio/vanta/entity/pm/InstalledPackage;->userId:I

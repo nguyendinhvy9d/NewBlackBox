@@ -9,20 +9,20 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     const/16 v0, 0x10
 
     .line 16
     new-array v0, v0, [C
 
-    fill-array-data v0, :array_0
+    fill-array-data v0, :array_a
 
     sput-object v0, Lio/vanta/utils/Md5Utils;->hexDigits:[C
 
     return-void
 
-    :array_0
+    :array_a
     .array-data 2
         0x30s
         0x31s
@@ -44,7 +44,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 14
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -53,7 +53,7 @@
 .end method
 
 .method private static byteArrayToHex([B)Ljava/lang/String;
-    .locals 8
+    .registers 9
 
     .line 87
     array-length v0, p0
@@ -69,8 +69,8 @@
 
     move v3, v2
 
-    :goto_0
-    if-ge v2, v1, :cond_0
+    :goto_8
+    if-ge v2, v1, :cond_23
 
     aget-byte v4, p0, v2
 
@@ -98,10 +98,10 @@
 
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 94
-    :cond_0
+    :cond_23
     new-instance p0, Ljava/lang/String;
 
     invoke-direct {p0, v0}, Ljava/lang/String;-><init>([C)V
@@ -110,22 +110,22 @@
 .end method
 
 .method public static md5(Ljava/io/File;)Ljava/lang/String;
-    .locals 2
+    .registers 3
 
     const/4 v0, 0x0
 
     .line 36
-    :try_start_0
+    :try_start_1
     invoke-virtual {p0}, Ljava/io/File;->isFile()Z
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_8
 
     return-object v0
 
     .line 41
-    :cond_0
+    :cond_8
     new-instance v1, Ljava/io/FileInputStream;
 
     invoke-direct {v1, p0}, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
@@ -137,32 +137,32 @@
 
     .line 45
     invoke-virtual {v1}, Ljava/io/FileInputStream;->close()V
-    :try_end_0
-    .catch Ljava/io/FileNotFoundException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_14
+    .catch Ljava/io/FileNotFoundException; {:try_start_1 .. :try_end_14} :catch_1a
+    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_14} :catch_15
 
     return-object p0
 
-    :catch_0
+    :catch_15
     move-exception p0
 
     .line 52
     invoke-virtual {p0}, Ljava/io/IOException;->printStackTrace()V
 
-    goto :goto_0
+    goto :goto_1e
 
-    :catch_1
+    :catch_1a
     move-exception p0
 
     .line 50
     invoke-virtual {p0}, Ljava/io/FileNotFoundException;->printStackTrace()V
 
-    :goto_0
+    :goto_1e
     return-object v0
 .end method
 
 .method public static md5(Ljava/io/InputStream;)Ljava/lang/String;
-    .locals 4
+    .registers 5
 
     .line 61
     :try_start_0
@@ -178,24 +178,24 @@
     new-array v1, v1, [B
 
     .line 65
-    :goto_0
+    :goto_a
     invoke-virtual {p0, v1}, Ljava/io/InputStream;->read([B)I
 
     move-result v2
 
     const/4 v3, -0x1
 
-    if-eq v2, v3, :cond_0
+    if-eq v2, v3, :cond_16
 
     const/4 v3, 0x0
 
     .line 66
     invoke-virtual {v0, v1, v3, v2}, Ljava/security/MessageDigest;->update([BII)V
 
-    goto :goto_0
+    goto :goto_a
 
     .line 69
-    :cond_0
+    :cond_16
     invoke-virtual {p0}, Ljava/io/InputStream;->close()V
 
     .line 71
@@ -206,53 +206,53 @@
     invoke-static {p0}, Lio/vanta/utils/Md5Utils;->byteArrayToHex([B)Ljava/lang/String;
 
     move-result-object p0
-    :try_end_0
-    .catch Ljava/security/NoSuchAlgorithmException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/io/FileNotFoundException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_21
+    .catch Ljava/security/NoSuchAlgorithmException; {:try_start_0 .. :try_end_21} :catch_2c
+    .catch Ljava/io/FileNotFoundException; {:try_start_0 .. :try_end_21} :catch_27
+    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_21} :catch_22
 
     return-object p0
 
-    :catch_0
+    :catch_22
     move-exception p0
 
     .line 79
     invoke-virtual {p0}, Ljava/io/IOException;->printStackTrace()V
 
-    goto :goto_1
+    goto :goto_30
 
-    :catch_1
+    :catch_27
     move-exception p0
 
     .line 77
     invoke-virtual {p0}, Ljava/io/FileNotFoundException;->printStackTrace()V
 
-    goto :goto_1
+    goto :goto_30
 
-    :catch_2
+    :catch_2c
     move-exception p0
 
     .line 75
     invoke-virtual {p0}, Ljava/security/NoSuchAlgorithmException;->printStackTrace()V
 
-    :goto_1
+    :goto_30
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method public static md5(Ljava/lang/String;)Ljava/lang/String;
-    .locals 3
+    .registers 4
 
     const/4 v0, 0x0
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     return-object v0
 
     .line 24
-    :cond_0
-    :try_start_0
+    :cond_4
+    :try_start_4
     const-string v1, "MD5"
 
     invoke-static {v1}, Ljava/security/MessageDigest;->getInstance(Ljava/lang/String;)Ljava/security/MessageDigest;
@@ -278,11 +278,11 @@
     invoke-static {p0}, Lio/vanta/utils/Md5Utils;->byteArrayToHex([B)Ljava/lang/String;
 
     move-result-object p0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1b
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_1b} :catch_1c
 
     return-object p0
 
-    :catch_0
+    :catch_1c
     return-object v0
 .end method

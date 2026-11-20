@@ -41,7 +41,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 40
     new-instance v0, Lio/vanta/core/system/BProcessManagerService;
@@ -54,7 +54,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 37
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -84,14 +84,14 @@
 .end method
 
 .method private attachClientL(Lio/vanta/core/system/ProcessRecord;Landroid/os/IBinder;)V
-    .locals 3
+    .registers 6
 
     .line 170
     invoke-static {p2}, Lio/vanta/core/IBActivityThread$Stub;->asInterface(Landroid/os/IBinder;)Lio/vanta/core/IBActivityThread;
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_a
 
     .line 172
     invoke-virtual {p1}, Lio/vanta/core/system/ProcessRecord;->kill()V
@@ -99,8 +99,8 @@
     return-void
 
     .line 176
-    :cond_0
-    :try_start_0
+    :cond_a
+    :try_start_a
     new-instance v1, Lio/vanta/core/system/BProcessManagerService$1;
 
     invoke-direct {v1, p0, p1, p2}, Lio/vanta/core/system/BProcessManagerService$1;-><init>(Lio/vanta/core/system/BProcessManagerService;Lio/vanta/core/system/ProcessRecord;Landroid/os/IBinder;)V
@@ -108,23 +108,23 @@
     const/4 v2, 0x0
 
     invoke-interface {p2, v1, v2}, Landroid/os/IBinder;->linkToDeath(Landroid/os/IBinder$DeathRecipient;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_13
+    .catch Landroid/os/RemoteException; {:try_start_a .. :try_end_13} :catch_14
 
-    goto :goto_0
+    goto :goto_18
 
-    :catch_0
+    :catch_14
     move-exception p2
 
     .line 185
     invoke-virtual {p2}, Landroid/os/RemoteException;->printStackTrace()V
 
     .line 187
-    :goto_0
+    :goto_18
     iput-object v0, p1, Lio/vanta/core/system/ProcessRecord;->bActivityThread:Lio/vanta/core/IBActivityThread;
 
     .line 189
-    :try_start_1
+    :try_start_1a
     invoke-interface {v0}, Lio/vanta/core/IBActivityThread;->getActivityThread()Landroid/os/IBinder;
 
     move-result-object p2
@@ -134,19 +134,19 @@
     move-result-object p2
 
     iput-object p2, p1, Lio/vanta/core/system/ProcessRecord;->appThread:Landroid/os/IInterface;
-    :try_end_1
-    .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_24
+    .catch Landroid/os/RemoteException; {:try_start_1a .. :try_end_24} :catch_25
 
-    goto :goto_1
+    goto :goto_29
 
-    :catch_1
+    :catch_25
     move-exception p2
 
     .line 191
     invoke-virtual {p2}, Landroid/os/RemoteException;->printStackTrace()V
 
     .line 193
-    :goto_1
+    :goto_29
     iget-object p1, p1, Lio/vanta/core/system/ProcessRecord;->initLock:Landroid/os/ConditionVariable;
 
     invoke-virtual {p1}, Landroid/os/ConditionVariable;->open()V
@@ -155,7 +155,7 @@
 .end method
 
 .method private static createProc(Lio/vanta/core/system/ProcessRecord;)V
-    .locals 3
+    .registers 4
 
     .line 344
     new-instance v0, Ljava/io/File;
@@ -171,7 +171,7 @@
     invoke-direct {v0, v1, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
 
     .line 346
-    :try_start_0
+    :try_start_d
     iget-object p0, p0, Lio/vanta/core/system/ProcessRecord;->processName:Ljava/lang/String;
 
     invoke-virtual {p0}, Ljava/lang/String;->getBytes()[B
@@ -179,15 +179,15 @@
     move-result-object p0
 
     invoke-static {p0, v0}, Lio/vanta/utils/FileUtils;->writeToFile([BLjava/io/File;)V
-    :try_end_0
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_16
+    .catch Ljava/io/IOException; {:try_start_d .. :try_end_16} :catch_16
 
-    :catch_0
+    :catch_16
     return-void
 .end method
 
 .method public static get()Lio/vanta/core/system/BProcessManagerService;
-    .locals 1
+    .registers 1
 
     .line 46
     sget-object v0, Lio/vanta/core/system/BProcessManagerService;->sBProcessManagerService:Lio/vanta/core/system/BProcessManagerService;
@@ -196,7 +196,7 @@
 .end method
 
 .method public static getPid(Landroid/content/Context;Ljava/lang/String;)I
-    .locals 2
+    .registers 4
 
     .line 330
     :try_start_0
@@ -218,12 +218,12 @@
 
     move-result-object p0
 
-    :cond_0
+    :cond_10
     invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_2b
 
     invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -238,29 +238,29 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_10
 
     .line 334
     iget p0, v0, Landroid/app/ActivityManager$RunningAppProcessInfo;->pid:I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_26
+    .catchall {:try_start_0 .. :try_end_26} :catchall_27
 
     return p0
 
-    :catchall_0
+    :catchall_27
     move-exception p0
 
     .line 338
     invoke-virtual {p0}, Ljava/lang/Throwable;->printStackTrace()V
 
-    :cond_1
+    :cond_2b
     const/4 p0, -0x1
 
     return p0
 .end method
 
 .method private static getProcessName(Landroid/content/Context;I)Ljava/lang/String;
-    .locals 2
+    .registers 4
 
     .line 315
     const-string v0, "activity"
@@ -280,12 +280,12 @@
 
     move-result-object p0
 
-    :cond_0
+    :cond_10
     invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_23
 
     invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -296,23 +296,23 @@
     .line 317
     iget v1, v0, Landroid/app/ActivityManager$RunningAppProcessInfo;->pid:I
 
-    if-ne v1, p1, :cond_0
+    if-ne v1, p1, :cond_10
 
     .line 318
     iget-object p0, v0, Landroid/app/ActivityManager$RunningAppProcessInfo;->processName:Ljava/lang/String;
 
-    goto :goto_0
+    goto :goto_24
 
-    :cond_1
+    :cond_23
     const/4 p0, 0x0
 
-    :goto_0
-    if-eqz p0, :cond_2
+    :goto_24
+    if-eqz p0, :cond_27
 
     return-object p0
 
     .line 323
-    :cond_2
+    :cond_27
     new-instance p0, Ljava/lang/RuntimeException;
 
     const-string p1, "processName = null"
@@ -323,7 +323,7 @@
 .end method
 
 .method private getUsingBPidL()I
-    .locals 3
+    .registers 4
 
     .line 107
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -353,12 +353,12 @@
 
     move-result-object v0
 
-    :goto_0
+    :goto_19
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_33
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -380,15 +380,15 @@
 
     invoke-interface {v1, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_19
 
-    :cond_0
+    :cond_33
     const/4 v0, 0x0
 
-    :goto_1
+    :goto_34
     const/16 v2, 0x32
 
-    if-ge v0, v2, :cond_2
+    if-ge v0, v2, :cond_46
 
     .line 115
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -399,23 +399,23 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_45
 
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_34
 
-    :cond_1
+    :cond_45
     return v0
 
-    :cond_2
+    :cond_46
     const/4 v0, -0x1
 
     return v0
 .end method
 
 .method private initAppProcessL(Lio/vanta/core/system/ProcessRecord;)Z
-    .locals 4
+    .registers 6
 
     .line 154
     new-instance v0, Ljava/lang/StringBuilder;
@@ -473,19 +473,19 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_46
 
     .line 160
     invoke-interface {v0}, Landroid/os/IBinder;->isBinderAlive()Z
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_3e
 
-    goto :goto_0
+    goto :goto_46
 
     .line 163
-    :cond_0
+    :cond_3e
     invoke-direct {p0, p1, v0}, Lio/vanta/core/system/BProcessManagerService;->attachClientL(Lio/vanta/core/system/ProcessRecord;Landroid/os/IBinder;)V
 
     .line 165
@@ -495,24 +495,24 @@
 
     return p1
 
-    :cond_1
-    :goto_0
+    :cond_46
+    :goto_46
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method private parseBPid(Ljava/lang/String;)I
-    .locals 3
+    .registers 5
 
     const/4 v0, -0x1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_4
 
     return v0
 
     .line 141
-    :cond_0
+    :cond_4
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -540,10 +540,10 @@
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_2e
 
     .line 145
-    :try_start_0
+    :try_start_21
     invoke-virtual {v1}, Ljava/lang/String;->length()I
 
     move-result v1
@@ -555,18 +555,18 @@
     invoke-static {p1}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
 
     move-result p1
-    :try_end_0
-    .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2d
+    .catch Ljava/lang/NumberFormatException; {:try_start_21 .. :try_end_2d} :catch_2e
 
     return p1
 
-    :catch_0
-    :cond_1
+    :catch_2e
+    :cond_2e
     return v0
 .end method
 
 .method private static removeProc(Lio/vanta/core/system/ProcessRecord;)V
-    .locals 0
+    .registers 1
 
     .line 352
     iget p0, p0, Lio/vanta/core/system/ProcessRecord;->bpid:I
@@ -583,7 +583,7 @@
 
 # virtual methods
 .method public findProcessByPid(I)Lio/vanta/core/system/ProcessRecord;
-    .locals 4
+    .registers 6
 
     .line 304
     iget-object v0, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
@@ -591,19 +591,19 @@
     monitor-enter v0
 
     .line 305
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
 
     invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    :cond_0
+    :cond_9
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_1b
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -614,14 +614,14 @@
     .line 306
     iget v3, v2, Lio/vanta/core/system/ProcessRecord;->pid:I
 
-    if-ne v3, p1, :cond_0
+    if-ne v3, p1, :cond_9
 
     .line 307
     monitor-exit v0
 
     return-object v2
 
-    :cond_1
+    :cond_1b
     const/4 p1, 0x0
 
     .line 309
@@ -629,19 +629,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_1e
     move-exception p1
 
     .line 310
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_20
+    .catchall {:try_start_3 .. :try_end_20} :catchall_1e
 
     throw p1
 .end method
 
 .method public findProcessRecord(Ljava/lang/String;Ljava/lang/String;I)Lio/vanta/core/system/ProcessRecord;
-    .locals 2
+    .registers 6
 
     .line 214
     iget-object v0, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessMap:Ljava/util/Map;
@@ -649,7 +649,7 @@
     monitor-enter v0
 
     .line 215
-    :try_start_0
+    :try_start_3
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
 
     move-result-object v1
@@ -676,7 +676,7 @@
 
     check-cast p1, Ljava/util/Map;
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_20
 
     const/4 p1, 0x0
 
@@ -686,7 +686,7 @@
     return-object p1
 
     .line 220
-    :cond_0
+    :cond_20
     invoke-interface {p1, p2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
@@ -697,26 +697,26 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_28
     move-exception p1
 
     .line 221
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2a
+    .catchall {:try_start_3 .. :try_end_2a} :catchall_28
 
     throw p1
 .end method
 
 .method public getBUidByPidOrPackageName(ILjava/lang/String;)I
-    .locals 0
+    .registers 3
 
     .line 282
     invoke-virtual {p0, p1}, Lio/vanta/core/system/BProcessManagerService;->findProcessByPid(I)Lio/vanta/core/system/ProcessRecord;
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_f
 
     .line 284
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
@@ -730,7 +730,7 @@
     return p1
 
     .line 286
-    :cond_0
+    :cond_f
     iget p1, p1, Lio/vanta/core/system/ProcessRecord;->buid:I
 
     invoke-static {p1}, Lio/vanta/core/system/user/BUserHandle;->getAppId(I)I
@@ -741,7 +741,7 @@
 .end method
 
 .method public getPackageProcessAsUser(Ljava/lang/String;I)Ljava/util/List;
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -759,7 +759,7 @@
     monitor-enter v0
 
     .line 273
-    :try_start_0
+    :try_start_3
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
 
     move-result-object v1
@@ -785,7 +785,7 @@
 
     check-cast p1, Ljava/util/Map;
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_24
 
     .line 276
     new-instance p1, Ljava/util/ArrayList;
@@ -797,7 +797,7 @@
     return-object p1
 
     .line 277
-    :cond_0
+    :cond_24
     new-instance p2, Ljava/util/ArrayList;
 
     invoke-interface {p1}, Ljava/util/Map;->values()Ljava/util/Collection;
@@ -810,19 +810,19 @@
 
     return-object p2
 
-    :catchall_0
+    :catchall_2f
     move-exception p1
 
     .line 278
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_31
+    .catchall {:try_start_3 .. :try_end_31} :catchall_2f
 
     throw p1
 .end method
 
 .method public getProcessRecords()Ljava/util/List;
-    .locals 3
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -838,7 +838,7 @@
     monitor-enter v0
 
     .line 299
-    :try_start_0
+    :try_start_3
     new-instance v1, Ljava/util/ArrayList;
 
     iget-object v2, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
@@ -849,40 +849,40 @@
 
     return-object v1
 
-    :catchall_0
+    :catchall_c
     move-exception v1
 
     .line 300
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_e
+    .catchall {:try_start_3 .. :try_end_e} :catchall_c
 
     throw v1
 .end method
 
 .method public getUserIdByCallingPid(I)I
-    .locals 0
+    .registers 2
 
     .line 290
     invoke-virtual {p0, p1}, Lio/vanta/core/system/BProcessManagerService;->findProcessByPid(I)Lio/vanta/core/system/ProcessRecord;
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_8
 
     const/4 p1, 0x0
 
     return p1
 
     .line 294
-    :cond_0
+    :cond_8
     iget p1, p1, Lio/vanta/core/system/ProcessRecord;->userId:I
 
     return p1
 .end method
 
 .method public killAll()V
-    .locals 4
+    .registers 5
 
     .line 258
     iget-object v0, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessLock:Ljava/lang/Object;
@@ -890,15 +890,15 @@
     monitor-enter v0
 
     .line 259
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
 
     monitor-enter v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_2
+    :try_end_6
+    .catchall {:try_start_3 .. :try_end_6} :catchall_31
 
     .line 260
-    :try_start_1
+    :try_start_6
     new-instance v2, Ljava/util/ArrayList;
 
     iget-object v3, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
@@ -909,33 +909,33 @@
 
     move-result-object v2
 
-    :catchall_0
-    :goto_0
+    :catchall_11
+    :goto_11
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_21
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
 
     check-cast v3, Lio/vanta/core/system/ProcessRecord;
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_1d
+    .catchall {:try_start_6 .. :try_end_1d} :catchall_2e
 
     .line 262
-    :try_start_2
+    :try_start_1d
     invoke-virtual {v3}, Lio/vanta/core/system/ProcessRecord;->kill()V
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_20
+    .catchall {:try_start_1d .. :try_end_20} :catchall_11
 
-    goto :goto_0
+    goto :goto_11
 
     .line 265
-    :cond_0
-    :try_start_3
+    :cond_21
+    :try_start_21
     iget-object v2, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
 
     invoke-interface {v2}, Ljava/util/List;->clear()V
@@ -947,42 +947,42 @@
 
     .line 267
     monitor-exit v1
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+    :try_end_2c
+    .catchall {:try_start_21 .. :try_end_2c} :catchall_2e
 
     .line 268
-    :try_start_4
+    :try_start_2c
     monitor-exit v0
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_2
+    :try_end_2d
+    .catchall {:try_start_2c .. :try_end_2d} :catchall_31
 
     return-void
 
-    :catchall_1
+    :catchall_2e
     move-exception v2
 
     .line 267
-    :try_start_5
+    :try_start_2f
     monitor-exit v1
-    :try_end_5
-    .catchall {:try_start_5 .. :try_end_5} :catchall_1
+    :try_end_30
+    .catchall {:try_start_2f .. :try_end_30} :catchall_2e
 
-    :try_start_6
+    :try_start_30
     throw v2
 
-    :catchall_2
+    :catchall_31
     move-exception v1
 
     .line 268
     monitor-exit v0
-    :try_end_6
-    .catchall {:try_start_6 .. :try_end_6} :catchall_2
+    :try_end_33
+    .catchall {:try_start_30 .. :try_end_33} :catchall_31
 
     throw v1
 .end method
 
 .method public killAllByPackageName(Ljava/lang/String;)V
-    .locals 7
+    .registers 9
 
     .line 225
     iget-object v0, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessLock:Ljava/lang/Object;
@@ -990,15 +990,15 @@
     monitor-enter v0
 
     .line 226
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
 
     monitor-enter v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_6
+    .catchall {:try_start_3 .. :try_end_6} :catchall_51
 
     .line 227
-    :try_start_1
+    :try_start_6
     new-instance v2, Ljava/util/ArrayList;
 
     iget-object v3, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
@@ -1021,13 +1021,13 @@
 
     move-result-object v3
 
-    :cond_0
-    :goto_0
+    :cond_1b
+    :goto_1b
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_41
 
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1042,7 +1042,7 @@
 
     move-result v5
 
-    if-ne p1, v5, :cond_0
+    if-ne p1, v5, :cond_1b
 
     .line 232
     iget-object v5, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessMap:Ljava/util/Map;
@@ -1061,10 +1061,10 @@
     .line 234
     invoke-virtual {v4}, Lio/vanta/core/system/ProcessRecord;->kill()V
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 237
-    :cond_1
+    :cond_41
     iget-object p1, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
 
     invoke-interface {p1}, Ljava/util/List;->clear()V
@@ -1076,42 +1076,42 @@
 
     .line 239
     monitor-exit v1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_4c
+    .catchall {:try_start_6 .. :try_end_4c} :catchall_4e
 
     .line 240
-    :try_start_2
+    :try_start_4c
     monitor-exit v0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_4d
+    .catchall {:try_start_4c .. :try_end_4d} :catchall_51
 
     return-void
 
-    :catchall_0
+    :catchall_4e
     move-exception p1
 
     .line 239
-    :try_start_3
+    :try_start_4f
     monitor-exit v1
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+    :try_end_50
+    .catchall {:try_start_4f .. :try_end_50} :catchall_4e
 
-    :try_start_4
+    :try_start_50
     throw p1
 
-    :catchall_1
+    :catchall_51
     move-exception p1
 
     .line 240
     monitor-exit v0
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_53
+    .catchall {:try_start_50 .. :try_end_53} :catchall_51
 
     throw p1
 .end method
 
 .method public killPackageAsUser(Ljava/lang/String;I)V
-    .locals 3
+    .registers 6
 
     .line 244
     iget-object v0, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessLock:Ljava/lang/Object;
@@ -1119,7 +1119,7 @@
     monitor-enter v0
 
     .line 245
-    :try_start_0
+    :try_start_3
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
 
     move-result-object v1
@@ -1145,7 +1145,7 @@
 
     check-cast p2, Ljava/util/Map;
 
-    if-nez p2, :cond_0
+    if-nez p2, :cond_1f
 
     .line 248
     monitor-exit v0
@@ -1153,7 +1153,7 @@
     return-void
 
     .line 249
-    :cond_0
+    :cond_1f
     invoke-interface {p2}, Ljava/util/Map;->values()Ljava/util/Collection;
 
     move-result-object p2
@@ -1162,12 +1162,12 @@
 
     move-result-object p2
 
-    :goto_0
+    :goto_27
     invoke-interface {p2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_3c
 
     invoke-interface {p2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1183,10 +1183,10 @@
 
     invoke-interface {v2, v1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_27
 
     .line 253
-    :cond_1
+    :cond_3c
     iget-object p2, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessMap:Ljava/util/Map;
 
     invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1200,18 +1200,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_47
     move-exception p1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_49
+    .catchall {:try_start_3 .. :try_end_49} :catchall_47
 
     throw p1
 .end method
 
 .method public onProcessDie(Lio/vanta/core/system/ProcessRecord;)V
-    .locals 3
+    .registers 5
 
     .line 197
     iget-object v0, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessLock:Ljava/lang/Object;
@@ -1219,7 +1219,7 @@
     monitor-enter v0
 
     .line 198
-    :try_start_0
+    :try_start_3
     invoke-virtual {p1}, Lio/vanta/core/system/ProcessRecord;->kill()V
 
     .line 199
@@ -1237,7 +1237,7 @@
 
     check-cast v1, Ljava/util/Map;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_2c
 
     .line 201
     iget-object v2, p1, Lio/vanta/core/system/ProcessRecord;->processName:Ljava/lang/String;
@@ -1249,7 +1249,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_2c
 
     .line 203
     iget-object v1, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessMap:Ljava/util/Map;
@@ -1263,7 +1263,7 @@
     invoke-interface {v1, v2}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 206
-    :cond_0
+    :cond_2c
     iget-object v1, p0, Lio/vanta/core/system/BProcessManagerService;->mPidsSelfLocked:Ljava/util/List;
 
     invoke-interface {v1, p1}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
@@ -1289,18 +1289,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_43
     move-exception p1
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_45
+    .catchall {:try_start_3 .. :try_end_45} :catchall_43
 
     throw p1
 .end method
 
 .method public restartAppProcess(Ljava/lang/String;Ljava/lang/String;I)V
-    .locals 8
+    .registers 12
 
     .line 124
     iget-object v1, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessLock:Ljava/lang/Object;
@@ -1308,7 +1308,7 @@
     monitor-enter v1
 
     .line 125
-    :try_start_0
+    :try_start_3
     invoke-static {}, Landroid/os/Binder;->getCallingUid()I
 
     .line 126
@@ -1321,7 +1321,7 @@
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_23
 
     .line 129
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
@@ -1349,25 +1349,25 @@
     invoke-virtual/range {v2 .. v7}, Lio/vanta/core/system/BProcessManagerService;->startProcessLocked(Ljava/lang/String;Ljava/lang/String;III)Lio/vanta/core/system/ProcessRecord;
 
     .line 133
-    :cond_0
+    :cond_23
     monitor-exit v1
 
     return-void
 
-    :catchall_0
+    :catchall_25
     move-exception v0
 
     move-object p1, v0
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_28
+    .catchall {:try_start_3 .. :try_end_28} :catchall_25
 
     throw p1
 .end method
 
 .method public startProcessLocked(Ljava/lang/String;Ljava/lang/String;III)Lio/vanta/core/system/ProcessRecord;
-    .locals 9
+    .registers 15
 
     const-string v0, "init bUid = "
 
@@ -1382,7 +1382,7 @@
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_15
 
     .line 51
     const-string p1, "BProcessManager"
@@ -1394,7 +1394,7 @@
     return-object v2
 
     .line 54
-    :cond_0
+    :cond_15
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
 
     move-result-object v1
@@ -1405,12 +1405,12 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_21
 
     return-object v2
 
     .line 58
-    :cond_1
+    :cond_21
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
 
     move-result-object v3
@@ -1429,7 +1429,7 @@
     monitor-enter v4
 
     .line 60
-    :try_start_0
+    :try_start_30
     iget-object v5, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessMap:Ljava/util/Map;
 
     invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1442,17 +1442,17 @@
 
     check-cast v5, Ljava/util/Map;
 
-    if-nez v5, :cond_2
+    if-nez v5, :cond_43
 
     .line 63
     new-instance v5, Ljava/util/HashMap;
 
     invoke-direct {v5}, Ljava/util/HashMap;-><init>()V
 
-    :cond_2
+    :cond_43
     const/4 v6, -0x1
 
-    if-ne p4, v6, :cond_5
+    if-ne p4, v6, :cond_7d
 
     .line 66
     invoke-interface {v5, p2}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -1461,12 +1461,12 @@
 
     check-cast p4, Lio/vanta/core/system/ProcessRecord;
 
-    if-eqz p4, :cond_4
+    if-eqz p4, :cond_5d
 
     .line 68
     iget-object v7, p4, Lio/vanta/core/system/ProcessRecord;->initLock:Landroid/os/ConditionVariable;
 
-    if-eqz v7, :cond_3
+    if-eqz v7, :cond_57
 
     .line 69
     iget-object v7, p4, Lio/vanta/core/system/ProcessRecord;->initLock:Landroid/os/ConditionVariable;
@@ -1474,10 +1474,10 @@
     invoke-virtual {v7}, Landroid/os/ConditionVariable;->block()V
 
     .line 71
-    :cond_3
+    :cond_57
     iget-object v7, p4, Lio/vanta/core/system/ProcessRecord;->bActivityThread:Lio/vanta/core/IBActivityThread;
 
-    if-eqz v7, :cond_4
+    if-eqz v7, :cond_5d
 
     .line 72
     monitor-exit v4
@@ -1485,7 +1485,7 @@
     return-object p4
 
     .line 75
-    :cond_4
+    :cond_5d
     invoke-direct {p0}, Lio/vanta/core/system/BProcessManagerService;->getUsingBPidL()I
 
     move-result p4
@@ -1517,8 +1517,8 @@
 
     invoke-static {v7, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    :cond_5
-    if-eq p4, v6, :cond_7
+    :cond_7d
+    if-eq p4, v6, :cond_d8
 
     .line 81
     new-instance v0, Lio/vanta/core/system/ProcessRecord;
@@ -1568,11 +1568,11 @@
     iget-object p1, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessMap:Ljava/util/Map;
 
     monitor-enter p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_a9
+    .catchall {:try_start_30 .. :try_end_a9} :catchall_e0
 
     .line 92
-    :try_start_1
+    :try_start_a9
     iget-object p3, p0, Lio/vanta/core/system/BProcessManagerService;->mProcessMap:Ljava/util/Map;
 
     invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1583,16 +1583,16 @@
 
     .line 93
     monitor-exit p1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_b3
+    .catchall {:try_start_a9 .. :try_end_b3} :catchall_d5
 
     .line 94
-    :try_start_2
+    :try_start_b3
     invoke-direct {p0, v0}, Lio/vanta/core/system/BProcessManagerService;->initAppProcessL(Lio/vanta/core/system/ProcessRecord;)Z
 
     move-result p1
 
-    if-nez p1, :cond_6
+    if-nez p1, :cond_c2
 
     .line 96
     invoke-interface {v5, p2}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
@@ -1602,10 +1602,10 @@
 
     invoke-interface {p1, v0}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
 
-    goto :goto_0
+    goto :goto_d3
 
     .line 100
-    :cond_6
+    :cond_c2
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object p1
@@ -1625,27 +1625,27 @@
     move-object v2, v0
 
     .line 102
-    :goto_0
+    :goto_d3
     monitor-exit v4
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_d4
+    .catchall {:try_start_b3 .. :try_end_d4} :catchall_e0
 
     return-object v2
 
-    :catchall_0
+    :catchall_d5
     move-exception p2
 
     .line 93
-    :try_start_3
+    :try_start_d6
     monitor-exit p1
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_0
+    :try_end_d7
+    .catchall {:try_start_d6 .. :try_end_d7} :catchall_d5
 
-    :try_start_4
+    :try_start_d7
     throw p2
 
     .line 79
-    :cond_7
+    :cond_d8
     new-instance p1, Ljava/lang/RuntimeException;
 
     const-string p2, "No processes available"
@@ -1654,19 +1654,19 @@
 
     throw p1
 
-    :catchall_1
+    :catchall_e0
     move-exception p1
 
     .line 102
     monitor-exit v4
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_1
+    :try_end_e2
+    .catchall {:try_start_d7 .. :try_end_e2} :catchall_e0
 
     throw p1
 .end method
 
 .method public systemReady()V
-    .locals 1
+    .registers 2
 
     .line 357
     invoke-static {}, Lio/vanta/core/env/BEnvironment;->getProcDir()Ljava/io/File;

@@ -17,6 +17,8 @@
 
 
 # instance fields
+.field public mAction:Ljava/lang/String;
+
 .field private final mComponentName:Landroid/content/ComponentName;
 
 .field private final mConn:Landroid/app/IServiceConnection;
@@ -24,7 +26,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$sfgetsServiceConnectDelegate()Ljava/util/Map;
-    .locals 1
+    .registers 1
 
     sget-object v0, Lio/vanta/fake/delegate/ServiceConnectionDelegate;->sServiceConnectDelegate:Ljava/util/Map;
 
@@ -32,7 +34,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 17
     new-instance v0, Ljava/util/HashMap;
@@ -45,7 +47,7 @@
 .end method
 
 .method private constructor <init>(Landroid/app/IServiceConnection;Landroid/content/ComponentName;)V
-    .locals 0
+    .registers 3
 
     .line 21
     invoke-direct {p0}, Landroid/app/IServiceConnection$Stub;-><init>()V
@@ -60,7 +62,7 @@
 .end method
 
 .method public static createProxy(Landroid/app/IServiceConnection;Landroid/content/Intent;)Landroid/app/IServiceConnection;
-    .locals 3
+    .registers 5
 
     .line 31
     invoke-interface {p0}, Landroid/app/IServiceConnection;->asBinder()Landroid/os/IBinder;
@@ -76,10 +78,10 @@
 
     check-cast v1, Lio/vanta/fake/delegate/ServiceConnectionDelegate;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_30
 
     .line 35
-    :try_start_0
+    :try_start_e
     new-instance v1, Lio/vanta/fake/delegate/ServiceConnectionDelegate$1;
 
     invoke-direct {v1, v0}, Lio/vanta/fake/delegate/ServiceConnectionDelegate$1;-><init>(Landroid/os/IBinder;)V
@@ -87,19 +89,23 @@
     const/4 v2, 0x0
 
     invoke-interface {v0, v1, v2}, Landroid/os/IBinder;->linkToDeath(Landroid/os/IBinder$DeathRecipient;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_17
+    .catch Landroid/os/RemoteException; {:try_start_e .. :try_end_17} :catch_18
 
-    goto :goto_0
+    goto :goto_1c
 
-    :catch_0
+    :catch_18
     move-exception v1
 
     .line 43
     invoke-virtual {v1}, Landroid/os/RemoteException;->printStackTrace()V
 
     .line 45
-    :goto_0
+    :goto_1c
+    invoke-virtual {p1}, Landroid/content/Intent;->getAction()Ljava/lang/String;
+
+    move-result-object v2
+
     new-instance v1, Lio/vanta/fake/delegate/ServiceConnectionDelegate;
 
     invoke-virtual {p1}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
@@ -108,17 +114,19 @@
 
     invoke-direct {v1, p0, p1}, Lio/vanta/fake/delegate/ServiceConnectionDelegate;-><init>(Landroid/app/IServiceConnection;Landroid/content/ComponentName;)V
 
+    iput-object v2, v1, Lio/vanta/fake/delegate/ServiceConnectionDelegate;->mAction:Ljava/lang/String;
+
     .line 46
     sget-object p0, Lio/vanta/fake/delegate/ServiceConnectionDelegate;->sServiceConnectDelegate:Ljava/util/Map;
 
     invoke-interface {p0, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_0
+    :cond_30
     return-object v1
 .end method
 
 .method public static getDelegate(Landroid/os/IBinder;)Lio/vanta/fake/delegate/ServiceConnectionDelegate;
-    .locals 1
+    .registers 2
 
     .line 27
     sget-object v0, Lio/vanta/fake/delegate/ServiceConnectionDelegate;->sServiceConnectDelegate:Ljava/util/Map;
@@ -135,7 +143,7 @@
 
 # virtual methods
 .method public connected(Landroid/content/ComponentName;Landroid/os/IBinder;)V
-    .locals 1
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -151,30 +159,43 @@
 .end method
 
 .method public connected(Landroid/content/ComponentName;Landroid/os/IBinder;Z)V
-    .locals 2
+    .registers 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
         }
     .end annotation
 
+    iget-object v0, p0, Lio/vanta/fake/delegate/ServiceConnectionDelegate;->mAction:Ljava/lang/String;
+
+    invoke-static {v0}, Lio/vanta/fake/delegate/XjGservicesStub;->isGmsBoundAction(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_c
+
+    invoke-static {p2}, Lio/vanta/fake/delegate/XjGservicesStub;->maybeStub(Landroid/os/IBinder;)Landroid/os/IBinder;
+
+    move-result-object p2
+
     .line 57
+    :cond_c
     iget-object v0, p0, Lio/vanta/fake/delegate/ServiceConnectionDelegate;->mComponentName:Landroid/content/ComponentName;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_11
 
-    goto :goto_0
+    goto :goto_12
 
-    :cond_0
+    :cond_11
     move-object v0, p1
 
     .line 58
-    :goto_0
+    :goto_12
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_22
 
     .line 59
     iget-object p1, p0, Lio/vanta/fake/delegate/ServiceConnectionDelegate;->mConn:Landroid/app/IServiceConnection;
@@ -188,14 +209,14 @@
     return-void
 
     .line 61
-    :cond_1
+    :cond_22
     iget-object p3, p0, Lio/vanta/fake/delegate/ServiceConnectionDelegate;->mConn:Landroid/app/IServiceConnection;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_27
 
     move-object p1, v0
 
-    :cond_2
+    :cond_27
     invoke-interface {p3, p1, p2}, Landroid/app/IServiceConnection;->connected(Landroid/content/ComponentName;Landroid/os/IBinder;)V
 
     return-void

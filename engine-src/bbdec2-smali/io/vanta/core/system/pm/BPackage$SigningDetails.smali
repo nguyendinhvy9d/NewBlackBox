@@ -37,7 +37,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 464
     new-instance v0, Lio/vanta/core/system/pm/BPackage$SigningDetails$1;
@@ -50,7 +50,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/pm/PackageParser$SigningDetails;)V
-    .locals 1
+    .registers 3
 
     .line 452
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -58,7 +58,7 @@
     .line 453
     iget-object v0, p1, Landroid/content/pm/PackageParser$SigningDetails;->pastSigningCertificates:[Landroid/content/pm/Signature;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_c
 
     .line 454
     iget-object p1, p1, Landroid/content/pm/PackageParser$SigningDetails;->signatures:[Landroid/content/pm/Signature;
@@ -68,7 +68,7 @@
     return-void
 
     .line 456
-    :cond_0
+    :cond_c
     iget-object p1, p1, Landroid/content/pm/PackageParser$SigningDetails;->pastSigningCertificates:[Landroid/content/pm/Signature;
 
     iput-object p1, p0, Lio/vanta/core/system/pm/BPackage$SigningDetails;->signatures:[Landroid/content/pm/Signature;
@@ -77,7 +77,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 460
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -99,7 +99,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -107,7 +107,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 1
+    .registers 4
 
     .line 449
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$SigningDetails;->signatures:[Landroid/content/pm/Signature;

@@ -32,13 +32,13 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 0
+    .registers 0
 
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 15
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -56,7 +56,7 @@
 
 # virtual methods
 .method protected addMethodHook(Lio/vanta/fake/hook/MethodHook;)V
-    .locals 2
+    .registers 4
 
     .line 96
     iget-object v0, p0, Lio/vanta/fake/hook/ClassInvocationStub;->mMethodHookMap:Ljava/util/Map;
@@ -71,7 +71,7 @@
 .end method
 
 .method protected addMethodHook(Ljava/lang/String;Lio/vanta/fake/hook/MethodHook;)V
-    .locals 1
+    .registers 4
 
     .line 100
     iget-object v0, p0, Lio/vanta/fake/hook/ClassInvocationStub;->mMethodHookMap:Ljava/util/Map;
@@ -82,7 +82,7 @@
 .end method
 
 .method protected getBase()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 36
     iget-object v0, p0, Lio/vanta/fake/hook/ClassInvocationStub;->mBase:Ljava/lang/Object;
@@ -91,7 +91,7 @@
 .end method
 
 .method protected getProxyInvocation()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 32
     iget-object v0, p0, Lio/vanta/fake/hook/ClassInvocationStub;->mProxyInvocation:Ljava/lang/Object;
@@ -103,7 +103,7 @@
 .end method
 
 .method protected initAnnotation(Ljava/lang/Class;)V
-    .locals 5
+    .registers 7
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -121,7 +121,7 @@
 
     check-cast v0, Lio/vanta/fake/hook/ProxyMethod;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_22
 
     .line 73
     invoke-interface {v0}, Lio/vanta/fake/hook/ProxyMethod;->value()Ljava/lang/String;
@@ -133,10 +133,10 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_22
 
     .line 76
-    :try_start_0
+    :try_start_14
     invoke-virtual {p1}, Ljava/lang/Class;->newInstance()Ljava/lang/Object;
 
     move-result-object v1
@@ -144,20 +144,20 @@
     check-cast v1, Lio/vanta/fake/hook/MethodHook;
 
     invoke-virtual {p0, v0, v1}, Lio/vanta/fake/hook/ClassInvocationStub;->addMethodHook(Ljava/lang/String;Lio/vanta/fake/hook/MethodHook;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1d
+    .catchall {:try_start_14 .. :try_end_1d} :catchall_1e
 
-    goto :goto_0
+    goto :goto_22
 
-    :catchall_0
+    :catchall_1e
     move-exception v0
 
     .line 78
     invoke-virtual {v0}, Ljava/lang/Throwable;->printStackTrace()V
 
     .line 82
-    :cond_0
-    :goto_0
+    :cond_22
+    :goto_22
     const-class v0, Lio/vanta/fake/hook/ProxyMethods;
 
     invoke-virtual {p1, v0}, Ljava/lang/Class;->getAnnotation(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
@@ -166,7 +166,7 @@
 
     check-cast v0, Lio/vanta/fake/hook/ProxyMethods;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_47
 
     .line 84
     invoke-interface {v0}, Lio/vanta/fake/hook/ProxyMethods;->value()[Ljava/lang/String;
@@ -178,13 +178,13 @@
 
     const/4 v2, 0x0
 
-    :goto_1
-    if-ge v2, v1, :cond_1
+    :goto_32
+    if-ge v2, v1, :cond_47
 
     aget-object v3, v0, v2
 
     .line 87
-    :try_start_1
+    :try_start_36
     invoke-virtual {p1}, Ljava/lang/Class;->newInstance()Ljava/lang/Object;
 
     move-result-object v4
@@ -192,23 +192,23 @@
     check-cast v4, Lio/vanta/fake/hook/MethodHook;
 
     invoke-virtual {p0, v3, v4}, Lio/vanta/fake/hook/ClassInvocationStub;->addMethodHook(Ljava/lang/String;Lio/vanta/fake/hook/MethodHook;)V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_3f
+    .catchall {:try_start_36 .. :try_end_3f} :catchall_40
 
-    goto :goto_2
+    goto :goto_44
 
-    :catchall_1
+    :catchall_40
     move-exception v3
 
     .line 89
     invoke-virtual {v3}, Ljava/lang/Throwable;->printStackTrace()V
 
-    :goto_2
+    :goto_44
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_1
+    goto :goto_32
 
-    :cond_1
+    :cond_47
     return-void
 .end method
 
@@ -216,7 +216,7 @@
 .end method
 
 .method public injectHook()V
-    .locals 8
+    .registers 9
 
     .line 45
     invoke-virtual {p0}, Lio/vanta/fake/hook/ClassInvocationStub;->getWho()Ljava/lang/Object;
@@ -225,12 +225,12 @@
 
     iput-object v0, p0, Lio/vanta/fake/hook/ClassInvocationStub;->mBase:Ljava/lang/Object;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_9
 
-    goto :goto_3
+    goto :goto_6d
 
     .line 50
-    :cond_0
+    :cond_9
     invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v0
@@ -258,7 +258,7 @@
     .line 51
     iget-boolean v1, p0, Lio/vanta/fake/hook/ClassInvocationStub;->onlyProxy:Z
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_2a
 
     .line 52
     iget-object v1, p0, Lio/vanta/fake/hook/ClassInvocationStub;->mBase:Ljava/lang/Object;
@@ -266,7 +266,7 @@
     invoke-virtual {p0, v1, v0}, Lio/vanta/fake/hook/ClassInvocationStub;->inject(Ljava/lang/Object;Ljava/lang/Object;)V
 
     .line 55
-    :cond_1
+    :cond_2a
     invoke-virtual {p0}, Lio/vanta/fake/hook/ClassInvocationStub;->onBindMethod()V
 
     .line 56
@@ -285,8 +285,8 @@
 
     move v3, v2
 
-    :goto_0
-    if-ge v3, v1, :cond_2
+    :goto_38
+    if-ge v3, v1, :cond_42
 
     aget-object v4, v0, v3
 
@@ -295,10 +295,10 @@
 
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_38
 
     .line 60
-    :cond_2
+    :cond_42
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v0
@@ -311,7 +311,7 @@
 
     check-cast v0, Lio/vanta/fake/hook/ScanClass;
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_6d
 
     .line 62
     invoke-interface {v0}, Lio/vanta/fake/hook/ScanClass;->value()[Ljava/lang/Class;
@@ -322,8 +322,8 @@
 
     move v3, v2
 
-    :goto_1
-    if-ge v3, v1, :cond_4
+    :goto_56
+    if-ge v3, v1, :cond_6d
 
     aget-object v4, v0, v3
 
@@ -336,8 +336,8 @@
 
     move v6, v2
 
-    :goto_2
-    if-ge v6, v5, :cond_3
+    :goto_60
+    if-ge v6, v5, :cond_6a
 
     aget-object v7, v4, v6
 
@@ -346,20 +346,20 @@
 
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_2
+    goto :goto_60
 
-    :cond_3
+    :cond_6a
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_1
+    goto :goto_56
 
-    :cond_4
-    :goto_3
+    :cond_6d
+    :goto_6d
     return-void
 .end method
 
 .method public invoke(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -379,31 +379,31 @@
 
     check-cast p1, Lio/vanta/fake/hook/MethodHook;
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_29
 
     .line 106
     invoke-virtual {p1}, Lio/vanta/fake/hook/MethodHook;->isEnable()Z
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_15
 
-    goto :goto_0
+    goto :goto_29
 
     .line 114
-    :cond_0
+    :cond_15
     iget-object v0, p0, Lio/vanta/fake/hook/ClassInvocationStub;->mBase:Ljava/lang/Object;
 
     invoke-virtual {p1, v0, p2, p3}, Lio/vanta/fake/hook/MethodHook;->beforeHook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_1e
 
     return-object v0
 
     .line 118
-    :cond_1
+    :cond_1e
     iget-object v0, p0, Lio/vanta/fake/hook/ClassInvocationStub;->mBase:Ljava/lang/Object;
 
     invoke-virtual {p1, v0, p2, p3}, Lio/vanta/fake/hook/MethodHook;->hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
@@ -418,20 +418,20 @@
     return-object p1
 
     .line 108
-    :cond_2
-    :goto_0
-    :try_start_0
+    :cond_29
+    :goto_29
+    :try_start_29
     iget-object p1, p0, Lio/vanta/fake/hook/ClassInvocationStub;->mBase:Ljava/lang/Object;
 
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2f
+    .catchall {:try_start_29 .. :try_end_2f} :catchall_30
 
     return-object p1
 
-    :catchall_0
+    :catchall_30
     move-exception p1
 
     .line 110
@@ -443,13 +443,13 @@
 .end method
 
 .method protected onBindMethod()V
-    .locals 0
+    .registers 1
 
     return-void
 .end method
 
 .method protected onlyProxy(Z)V
-    .locals 0
+    .registers 2
 
     .line 40
     iput-boolean p1, p0, Lio/vanta/fake/hook/ClassInvocationStub;->onlyProxy:Z

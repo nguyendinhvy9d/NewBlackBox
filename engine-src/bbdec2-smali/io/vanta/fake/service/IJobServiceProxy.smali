@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 24
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -45,7 +45,7 @@
 .end method
 
 .method private constructor <init>(Landroid/os/IBinder;)V
-    .locals 0
+    .registers 2
 
     .line 28
     invoke-direct {p0, p1}, Lio/vanta/fake/hook/BinderInvocationStub;-><init>(Landroid/os/IBinder;)V
@@ -59,19 +59,19 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 2
+    .registers 3
 
     .line 34
     iget-object v0, p0, Lio/vanta/fake/service/IJobServiceProxy;->mRawBinder:Landroid/os/IBinder;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_6
 
     const/4 v0, 0x0
 
     return-object v0
 
     .line 35
-    :cond_0
+    :cond_6
     invoke-static {}, Lvanta/android/app/job/BRIJobSchedulerStub;->get()Lvanta/android/app/job/IJobSchedulerStubStatic;
 
     move-result-object v0
@@ -86,7 +86,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 40
     const-string p1, "jobscheduler"
@@ -97,7 +97,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

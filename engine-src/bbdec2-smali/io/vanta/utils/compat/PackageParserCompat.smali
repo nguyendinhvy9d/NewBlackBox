@@ -13,7 +13,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     const/4 v0, 0x0
 
@@ -31,7 +31,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -40,7 +40,7 @@
 .end method
 
 .method public static collectCertificates(Landroid/content/pm/PackageParser;Landroid/content/pm/PackageParser$Package;I)V
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -52,7 +52,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_f
 
     .line 55
     invoke-static {}, Lvanta/android/content/pm/BRPackageParserPie;->getWithException()Lvanta/android/content/pm/PackageParserPieStatic;
@@ -66,12 +66,12 @@
     return-void
 
     .line 56
-    :cond_0
+    :cond_f
     sget v0, Lio/vanta/utils/compat/PackageParserCompat;->API_LEVEL:I
 
     const/16 v1, 0x18
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_1d
 
     .line 57
     invoke-static {}, Lvanta/android/content/pm/BRPackageParserNougat;->getWithException()Lvanta/android/content/pm/PackageParserNougatStatic;
@@ -82,10 +82,10 @@
 
     return-void
 
-    :cond_1
+    :cond_1d
     const/16 v1, 0x17
 
-    if-lt v0, v1, :cond_2
+    if-lt v0, v1, :cond_29
 
     .line 59
     invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserMarshmallow;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserMarshmallowContext;
@@ -96,10 +96,10 @@
 
     return-void
 
-    :cond_2
+    :cond_29
     const/16 v1, 0x16
 
-    if-lt v0, v1, :cond_3
+    if-lt v0, v1, :cond_35
 
     .line 61
     invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserLollipop22;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserLollipop22Context;
@@ -110,10 +110,10 @@
 
     return-void
 
-    :cond_3
+    :cond_35
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_4
+    if-lt v0, v1, :cond_41
 
     .line 63
     invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserLollipop;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserLollipopContext;
@@ -125,7 +125,7 @@
     return-void
 
     .line 65
-    :cond_4
+    :cond_41
     invoke-static {p0}, Lvanta/android/content/pm/BRPackageParser;->get(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserContext;
 
     move-result-object p0
@@ -136,14 +136,14 @@
 .end method
 
 .method public static createParser(Ljava/io/File;)Landroid/content/pm/PackageParser;
-    .locals 1
+    .registers 2
 
     .line 30
     sget p0, Lio/vanta/utils/compat/PackageParserCompat;->API_LEVEL:I
 
     const/16 v0, 0x17
 
-    if-lt p0, v0, :cond_0
+    if-lt p0, v0, :cond_f
 
     .line 31
     invoke-static {}, Lvanta/android/content/pm/BRPackageParserMarshmallow;->get()Lvanta/android/content/pm/PackageParserMarshmallowStatic;
@@ -156,10 +156,10 @@
 
     return-object p0
 
-    :cond_0
+    :cond_f
     const/16 v0, 0x16
 
-    if-lt p0, v0, :cond_1
+    if-lt p0, v0, :cond_1c
 
     .line 33
     invoke-static {}, Lvanta/android/content/pm/BRPackageParserLollipop22;->get()Lvanta/android/content/pm/PackageParserLollipop22Static;
@@ -172,10 +172,10 @@
 
     return-object p0
 
-    :cond_1
+    :cond_1c
     const/16 v0, 0x15
 
-    if-lt p0, v0, :cond_2
+    if-lt p0, v0, :cond_29
 
     .line 35
     invoke-static {}, Lvanta/android/content/pm/BRPackageParserLollipop;->get()Lvanta/android/content/pm/PackageParserLollipopStatic;
@@ -188,14 +188,14 @@
 
     return-object p0
 
-    :cond_2
+    :cond_29
     const/4 p0, 0x0
 
     return-object p0
 .end method
 
 .method public static parsePackage(Landroid/content/pm/PackageParser;Ljava/io/File;I)Landroid/content/pm/PackageParser$Package;
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -207,7 +207,7 @@
 
     const/16 v1, 0x17
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_f
 
     .line 42
     invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserMarshmallow;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserMarshmallowContext;
@@ -220,10 +220,10 @@
 
     return-object p0
 
-    :cond_0
+    :cond_f
     const/16 v1, 0x16
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_1c
 
     .line 44
     invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserLollipop22;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserLollipop22Context;
@@ -236,10 +236,10 @@
 
     return-object p0
 
-    :cond_1
+    :cond_1c
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_2
+    if-lt v0, v1, :cond_29
 
     .line 46
     invoke-static {p0}, Lvanta/android/content/pm/BRPackageParserLollipop;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserLollipopContext;
@@ -253,7 +253,7 @@
     return-object p0
 
     .line 48
-    :cond_2
+    :cond_29
     invoke-static {p0}, Lvanta/android/content/pm/BRPackageParser;->getWithException(Ljava/lang/Object;)Lvanta/android/content/pm/PackageParserContext;
 
     move-result-object p0

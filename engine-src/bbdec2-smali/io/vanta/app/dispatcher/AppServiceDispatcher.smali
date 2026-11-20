@@ -46,7 +46,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$smfixAuthenticatorContext(Ljava/lang/Object;)V
-    .locals 0
+    .registers 1
 
     invoke-static {p0}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->fixAuthenticatorContext(Ljava/lang/Object;)V
 
@@ -54,7 +54,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 39
     new-instance v0, Lio/vanta/app/dispatcher/AppServiceDispatcher;
@@ -67,7 +67,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 36
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -101,7 +101,7 @@
 .end method
 
 .method private static applyAuthenticatorContextFix(Landroid/accounts/AbstractAccountAuthenticator;)V
-    .locals 5
+    .registers 6
 
     .line 414
     const-string v0, "AppServiceDispatcher"
@@ -110,7 +110,7 @@
     const-string v1, "Successfully injected AuthenticatorContextWrapper into "
 
     .line 414
-    :try_start_0
+    :try_start_4
     const-class v2, Landroid/accounts/AbstractAccountAuthenticator;
 
     const-string v3, "mContext"
@@ -131,12 +131,12 @@
 
     check-cast v3, Landroid/content/Context;
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_3c
 
     .line 417
     instance-of v4, v3, Lio/vanta/app/dispatcher/AppServiceDispatcher$AuthenticatorContextWrapper;
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_3c
 
     .line 418
     new-instance v4, Lio/vanta/app/dispatcher/AppServiceDispatcher$AuthenticatorContextWrapper;
@@ -167,13 +167,13 @@
     move-result-object p0
 
     invoke-static {v0, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_3c
+    .catchall {:try_start_4 .. :try_end_3c} :catchall_3d
 
-    :cond_0
+    :cond_3c
     return-void
 
-    :catchall_0
+    :catchall_3d
     move-exception p0
 
     .line 422
@@ -201,7 +201,7 @@
 .end method
 
 .method private findRecord(Landroid/content/Intent;)Lio/vanta/entity/ServiceRecord;
-    .locals 1
+    .registers 3
 
     const/4 v0, 0x0
 
@@ -214,14 +214,14 @@
 .end method
 
 .method private findRecord(Landroid/content/Intent;Landroid/content/pm/ServiceInfo;)Lio/vanta/entity/ServiceRecord;
-    .locals 1
+    .registers 4
 
     .line 306
     invoke-direct {p0, p1, p2}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->getComponentName(Landroid/content/Intent;Landroid/content/pm/ServiceInfo;)Landroid/content/ComponentName;
 
     move-result-object p2
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_11
 
     .line 308
     iget-object v0, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mServiceByComponent:Ljava/util/Map;
@@ -232,12 +232,12 @@
 
     check-cast p2, Lio/vanta/entity/ServiceRecord;
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_11
 
     return-object p2
 
-    :cond_0
-    if-eqz p1, :cond_1
+    :cond_11
+    if-eqz p1, :cond_21
 
     .line 314
     iget-object p2, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mService:Ljava/util/Map;
@@ -254,33 +254,33 @@
 
     return-object p1
 
-    :cond_1
+    :cond_21
     const/4 p1, 0x0
 
     return-object p1
 .end method
 
 .method private static fixAuthenticatorContext(Ljava/lang/Object;)V
-    .locals 7
+    .registers 8
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_3
 
-    goto :goto_3
+    goto :goto_5d
 
     .line 392
-    :cond_0
-    :try_start_0
+    :cond_3
+    :try_start_3
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v0
 
-    :goto_0
-    if-eqz v0, :cond_5
+    :goto_7
+    if-eqz v0, :cond_5d
 
     .line 393
     const-class v1, Ljava/lang/Object;
 
-    if-eq v0, v1, :cond_5
+    if-eq v0, v1, :cond_5d
 
     .line 394
     invoke-virtual {v0}, Ljava/lang/Class;->getDeclaredFields()[Ljava/lang/reflect/Field;
@@ -291,8 +291,8 @@
 
     const/4 v3, 0x0
 
-    :goto_1
-    if-ge v3, v2, :cond_4
+    :goto_13
+    if-ge v3, v2, :cond_58
 
     aget-object v4, v1, v3
 
@@ -305,7 +305,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_3
+    if-nez v5, :cond_55
 
     invoke-virtual {v4}, Ljava/lang/reflect/Field;->getType()Ljava/lang/Class;
 
@@ -315,11 +315,11 @@
 
     move-result v5
 
-    if-eqz v5, :cond_1
+    if-eqz v5, :cond_2c
 
-    goto :goto_2
+    goto :goto_55
 
-    :cond_1
+    :cond_2c
     const/4 v5, 0x1
 
     .line 396
@@ -333,17 +333,17 @@
     .line 398
     instance-of v6, v5, Landroid/accounts/AbstractAccountAuthenticator;
 
-    if-eqz v6, :cond_2
+    if-eqz v6, :cond_3e
 
     .line 399
     check-cast v5, Landroid/accounts/AbstractAccountAuthenticator;
 
     invoke-static {v5}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->applyAuthenticatorContextFix(Landroid/accounts/AbstractAccountAuthenticator;)V
 
-    goto :goto_2
+    goto :goto_55
 
-    :cond_2
-    if-eqz v5, :cond_3
+    :cond_3e
+    if-eqz v5, :cond_55
 
     .line 400
     invoke-virtual {v4}, Ljava/lang/reflect/Field;->getName()Ljava/lang/String;
@@ -356,42 +356,42 @@
 
     move-result v4
 
-    if-eqz v4, :cond_3
+    if-eqz v4, :cond_55
 
     .line 401
     instance-of v4, v5, Landroid/accounts/AbstractAccountAuthenticator;
 
-    if-eqz v4, :cond_3
+    if-eqz v4, :cond_55
 
     .line 402
     check-cast v5, Landroid/accounts/AbstractAccountAuthenticator;
 
     invoke-static {v5}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->applyAuthenticatorContextFix(Landroid/accounts/AbstractAccountAuthenticator;)V
 
-    :cond_3
-    :goto_2
+    :cond_55
+    :goto_55
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_1
+    goto :goto_13
 
     .line 406
-    :cond_4
+    :cond_58
     invoke-virtual {v0}, Ljava/lang/Class;->getSuperclass()Ljava/lang/Class;
 
     move-result-object v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_5c
+    .catchall {:try_start_3 .. :try_end_5c} :catchall_5d
 
-    goto :goto_0
+    goto :goto_7
 
-    :catchall_0
-    :cond_5
-    :goto_3
+    :catchall_5d
+    :cond_5d
+    :goto_5d
     return-void
 .end method
 
 .method public static get()Lio/vanta/app/dispatcher/AppServiceDispatcher;
-    .locals 1
+    .registers 1
 
     .line 45
     sget-object v0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->sServiceDispatcher:Lio/vanta/app/dispatcher/AppServiceDispatcher;
@@ -400,18 +400,18 @@
 .end method
 
 .method private getComponentName(Landroid/content/Intent;Landroid/content/pm/ServiceInfo;)Landroid/content/ComponentName;
-    .locals 3
+    .registers 6
 
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_14
 
     .line 287
     iget-object v0, p2, Landroid/content/pm/ServiceInfo;->packageName:Ljava/lang/String;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_14
 
     iget-object v0, p2, Landroid/content/pm/ServiceInfo;->name:Ljava/lang/String;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_14
 
     .line 288
     new-instance p1, Landroid/content/ComponentName;
@@ -424,15 +424,15 @@
 
     return-object p1
 
-    :cond_0
-    if-eqz p1, :cond_1
+    :cond_14
+    if-eqz p1, :cond_21
 
     .line 290
     invoke-virtual {p1}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
 
     move-result-object p2
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_21
 
     .line 291
     invoke-virtual {p1}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
@@ -441,13 +441,13 @@
 
     return-object p1
 
-    :cond_1
+    :cond_21
     const/4 p2, 0x0
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_45
 
     .line 295
-    :try_start_0
+    :try_start_24
     invoke-static {}, Lio/vanta/VantaCore;->getBPackageManager()Lio/vanta/fake/frameworks/BPackageManager;
 
     move-result-object v0
@@ -462,12 +462,12 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_2
+    if-eqz p1, :cond_45
 
     .line 296
     iget-object v0, p1, Landroid/content/pm/ResolveInfo;->serviceInfo:Landroid/content/pm/ServiceInfo;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_45
 
     .line 297
     new-instance v0, Landroid/content/ComponentName;
@@ -481,18 +481,18 @@
     iget-object p1, p1, Landroid/content/pm/ServiceInfo;->name:Ljava/lang/String;
 
     invoke-direct {v0, v1, p1}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_44
+    .catchall {:try_start_24 .. :try_end_44} :catchall_45
 
     return-object v0
 
-    :catchall_0
-    :cond_2
+    :catchall_45
+    :cond_45
     return-object p2
 .end method
 
 .method private getOrCreateService(Lio/vanta/proxy/record/ProxyServiceRecord;)Landroid/app/Service;
-    .locals 5
+    .registers 7
 
     .line 324
     iget-object v0, p1, Lio/vanta/proxy/record/ProxyServiceRecord;->mServiceIntent:Landroid/content/Intent;
@@ -513,14 +513,14 @@
 
     move-result-object v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_1b
 
     .line 330
     invoke-virtual {v3}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
 
     move-result-object v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_1b
 
     .line 331
     invoke-virtual {v3}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
@@ -530,7 +530,7 @@
     return-object p1
 
     .line 333
-    :cond_0
+    :cond_1b
     invoke-static {}, Lio/vanta/VantaCore;->currentActivityThread()Lio/vanta/app/BActivityThread;
 
     move-result-object v3
@@ -539,14 +539,14 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_1
+    if-nez p1, :cond_27
 
     const/4 p1, 0x0
 
     return-object p1
 
     .line 336
-    :cond_1
+    :cond_27
     new-instance v1, Lio/vanta/entity/ServiceRecord;
 
     invoke-direct {v1}, Lio/vanta/entity/ServiceRecord;-><init>()V
@@ -554,15 +554,15 @@
     .line 337
     invoke-virtual {v1, p1}, Lio/vanta/entity/ServiceRecord;->setService(Landroid/app/Service;)V
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_36
 
     .line 339
     iget-object v3, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mServiceByComponent:Ljava/util/Map;
 
     invoke-interface {v3, v2, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_2
-    if-eqz v0, :cond_3
+    :cond_36
+    if-eqz v0, :cond_42
 
     .line 342
     iget-object v2, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mService:Ljava/util/Map;
@@ -573,12 +573,12 @@
 
     invoke-interface {v2, v3, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_3
+    :cond_42
     return-object p1
 .end method
 
 .method static synthetic lambda$stopService$0(Lio/vanta/entity/ServiceRecord;)V
-    .locals 0
+    .registers 1
 
     .line 273
     invoke-virtual {p0}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
@@ -593,7 +593,7 @@
 
 # virtual methods
 .method public onBind(Landroid/content/Intent;)Landroid/os/IBinder;
-    .locals 7
+    .registers 9
 
     const-string v0, "onBind: ACTION_AUTHENTICATOR_INTENT bound, wrapping with AuthenticatorBinderProxy for "
 
@@ -610,36 +610,38 @@
 
     const/4 v3, 0x0
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_9e
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_11
 
-    goto/16 :goto_0
+    goto/16 :goto_9e
 
     .line 60
-    :cond_0
+    :cond_11
     invoke-direct {p0, p1}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->getOrCreateService(Lio/vanta/proxy/record/ProxyServiceRecord;)Landroid/app/Service;
 
     move-result-object p1
 
-    if-nez p1, :cond_1
+    if-nez p1, :cond_18
 
     return-object v3
 
     .line 63
-    :cond_1
+    :cond_18
     invoke-virtual {p1}, Landroid/app/Service;->getClassLoader()Ljava/lang/ClassLoader;
 
     move-result-object v4
 
     invoke-virtual {v1, v4}, Landroid/content/Intent;->setExtrasClassLoader(Ljava/lang/ClassLoader;)V
 
+    invoke-static {p1, v3}, Lio/vanta/app/BActivityThread;->fixChimeraServiceIfNeeded(Landroid/app/Service;Landroid/content/Context;)V
+
     .line 65
     invoke-direct {p0, v1, v2}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->findRecord(Landroid/content/Intent;Landroid/content/pm/ServiceInfo;)Lio/vanta/entity/ServiceRecord;
 
     move-result-object v4
 
-    if-nez v4, :cond_3
+    if-nez v4, :cond_47
 
     .line 67
     new-instance v4, Lio/vanta/entity/ServiceRecord;
@@ -654,15 +656,15 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_3b
 
     .line 71
     iget-object v5, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mServiceByComponent:Ljava/util/Map;
 
     invoke-interface {v5, v2, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_2
-    if-eqz v1, :cond_3
+    :cond_3b
+    if-eqz v1, :cond_47
 
     .line 74
     iget-object v2, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mService:Ljava/util/Map;
@@ -674,7 +676,7 @@
     invoke-interface {v2, v5, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 77
-    :cond_3
+    :cond_47
     invoke-virtual {v4, v1}, Lio/vanta/entity/ServiceRecord;->incrementAndGetBindCount(Landroid/content/Intent;)I
 
     .line 78
@@ -682,14 +684,14 @@
 
     move-result v2
 
-    if-eqz v2, :cond_5
+    if-eqz v2, :cond_62
 
     .line 79
     invoke-virtual {v4}, Lio/vanta/entity/ServiceRecord;->isRebind()Z
 
     move-result v0
 
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_5d
 
     .line 80
     invoke-virtual {p1, v1}, Landroid/app/Service;->onRebind(Landroid/content/Intent;)V
@@ -700,7 +702,7 @@
     invoke-virtual {v4, p1}, Lio/vanta/entity/ServiceRecord;->setRebind(Z)V
 
     .line 83
-    :cond_4
+    :cond_5d
     invoke-virtual {v4, v1}, Lio/vanta/entity/ServiceRecord;->getBinder(Landroid/content/Intent;)Landroid/os/IBinder;
 
     move-result-object p1
@@ -708,15 +710,15 @@
     return-object p1
 
     .line 87
-    :cond_5
-    :try_start_0
+    :cond_62
+    :try_start_62
     invoke-virtual {p1, v1}, Landroid/app/Service;->onBind(Landroid/content/Intent;)Landroid/os/IBinder;
 
     move-result-object v2
 
-    if-eqz v2, :cond_6
+    if-eqz v2, :cond_96
 
-    if-eqz v1, :cond_6
+    if-eqz v1, :cond_96
 
     .line 88
     const-string v5, "android.accounts.AccountAuthenticator"
@@ -729,7 +731,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_6
+    if-eqz v5, :cond_96
 
     .line 89
     const-string v5, "AppServiceDispatcher"
@@ -764,26 +766,26 @@
     move-object v2, v0
 
     .line 92
-    :cond_6
+    :cond_96
     invoke-virtual {v4, v1, v2}, Lio/vanta/entity/ServiceRecord;->addBinder(Landroid/content/Intent;Landroid/os/IBinder;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_99
+    .catchall {:try_start_62 .. :try_end_99} :catchall_9a
 
     return-object v2
 
-    :catchall_0
+    :catchall_9a
     move-exception p1
 
     .line 95
     invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
 
-    :cond_7
-    :goto_0
+    :cond_9e
+    :goto_9e
     return-object v3
 .end method
 
 .method public onConfigurationChanged(Landroid/content/res/Configuration;)V
-    .locals 4
+    .registers 6
 
     .line 168
     new-instance v0, Ljava/util/HashSet;
@@ -805,13 +807,13 @@
 
     move-result-object v1
 
-    :cond_0
-    :goto_0
+    :cond_14
+    :goto_14
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_3b
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -819,22 +821,22 @@
 
     check-cast v2, Lio/vanta/entity/ServiceRecord;
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_14
 
     .line 170
     invoke-interface {v0, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_14
 
     .line 172
-    :try_start_0
+    :try_start_28
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
 
     move-result-object v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_14
 
     .line 173
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
@@ -842,25 +844,25 @@
     move-result-object v2
 
     invoke-virtual {v2, p1}, Landroid/app/Service;->onConfigurationChanged(Landroid/content/res/Configuration;)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_35
+    .catchall {:try_start_28 .. :try_end_35} :catchall_36
 
-    goto :goto_0
+    goto :goto_14
 
-    :catchall_0
+    :catchall_36
     move-exception v2
 
     .line 176
     invoke-virtual {v2}, Ljava/lang/Throwable;->printStackTrace()V
 
-    goto :goto_0
+    goto :goto_14
 
-    :cond_1
+    :cond_3b
     return-void
 .end method
 
 .method public onDestroy()V
-    .locals 4
+    .registers 5
 
     .line 140
     new-instance v0, Ljava/util/HashSet;
@@ -882,13 +884,13 @@
 
     move-result-object v1
 
-    :cond_0
-    :goto_0
+    :cond_14
+    :goto_14
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_3b
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -896,22 +898,22 @@
 
     check-cast v2, Lio/vanta/entity/ServiceRecord;
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_14
 
     .line 142
     invoke-interface {v0, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_14
 
     .line 144
-    :try_start_0
+    :try_start_28
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
 
     move-result-object v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_14
 
     .line 145
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
@@ -919,21 +921,21 @@
     move-result-object v2
 
     invoke-virtual {v2}, Landroid/app/Service;->onDestroy()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_35
+    .catchall {:try_start_28 .. :try_end_35} :catchall_36
 
-    goto :goto_0
+    goto :goto_14
 
-    :catchall_0
+    :catchall_36
     move-exception v2
 
     .line 148
     invoke-virtual {v2}, Ljava/lang/Throwable;->printStackTrace()V
 
-    goto :goto_0
+    goto :goto_14
 
     .line 152
-    :cond_1
+    :cond_3b
     new-instance v1, Ljava/util/ArrayList;
 
     iget-object v2, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mService:Ljava/util/Map;
@@ -948,13 +950,13 @@
 
     move-result-object v1
 
-    :cond_2
-    :goto_1
+    :cond_4a
+    :goto_4a
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_71
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -962,22 +964,22 @@
 
     check-cast v2, Lio/vanta/entity/ServiceRecord;
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_4a
 
     .line 153
     invoke-interface {v0, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_4a
 
     .line 155
-    :try_start_1
+    :try_start_5e
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
 
     move-result-object v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_4a
 
     .line 156
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
@@ -985,21 +987,21 @@
     move-result-object v2
 
     invoke-virtual {v2}, Landroid/app/Service;->onDestroy()V
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_6b
+    .catchall {:try_start_5e .. :try_end_6b} :catchall_6c
 
-    goto :goto_1
+    goto :goto_4a
 
-    :catchall_1
+    :catchall_6c
     move-exception v2
 
     .line 159
     invoke-virtual {v2}, Ljava/lang/Throwable;->printStackTrace()V
 
-    goto :goto_1
+    goto :goto_4a
 
     .line 163
-    :cond_3
+    :cond_71
     iget-object v0, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mServiceByComponent:Ljava/util/Map;
 
     invoke-interface {v0}, Ljava/util/Map;->clear()V
@@ -1013,7 +1015,7 @@
 .end method
 
 .method public onLowMemory()V
-    .locals 4
+    .registers 5
 
     .line 183
     new-instance v0, Ljava/util/HashSet;
@@ -1035,13 +1037,13 @@
 
     move-result-object v1
 
-    :cond_0
-    :goto_0
+    :cond_14
+    :goto_14
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_3b
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1049,22 +1051,22 @@
 
     check-cast v2, Lio/vanta/entity/ServiceRecord;
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_14
 
     .line 185
     invoke-interface {v0, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_14
 
     .line 187
-    :try_start_0
+    :try_start_28
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
 
     move-result-object v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_14
 
     .line 188
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
@@ -1072,25 +1074,25 @@
     move-result-object v2
 
     invoke-virtual {v2}, Landroid/app/Service;->onLowMemory()V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_35
+    .catchall {:try_start_28 .. :try_end_35} :catchall_36
 
-    goto :goto_0
+    goto :goto_14
 
-    :catchall_0
+    :catchall_36
     move-exception v2
 
     .line 191
     invoke-virtual {v2}, Ljava/lang/Throwable;->printStackTrace()V
 
-    goto :goto_0
+    goto :goto_14
 
-    :cond_1
+    :cond_3b
     return-void
 .end method
 
 .method public onStartCommand(Landroid/content/Intent;II)I
-    .locals 8
+    .registers 12
 
     const-string p3, "onStartCommand: service.onStartCommand returned "
 
@@ -1106,16 +1108,16 @@
 
     const-string v3, "AppServiceDispatcher"
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_ca
 
     iget-object v1, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mServiceInfo:Landroid/content/pm/ServiceInfo;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_13
 
-    goto/16 :goto_0
+    goto/16 :goto_ca
 
     .line 108
-    :cond_0
+    :cond_13
     new-instance v1, Ljava/lang/StringBuilder;
 
     const-string v4, "onStartCommand: targetIntent="
@@ -1153,12 +1155,12 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_3c
 
     return v2
 
     .line 112
-    :cond_1
+    :cond_3c
     iget-object v4, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mServiceIntent:Landroid/content/Intent;
 
     invoke-virtual {v1}, Landroid/app/Service;->getClassLoader()Ljava/lang/ClassLoader;
@@ -1181,7 +1183,7 @@
 
     move-result-object v4
 
-    if-nez v4, :cond_3
+    if-nez v4, :cond_7a
 
     .line 116
     new-instance v4, Lio/vanta/entity/ServiceRecord;
@@ -1200,7 +1202,7 @@
 
     move-result-object v5
 
-    if-eqz v5, :cond_2
+    if-eqz v5, :cond_6a
 
     .line 120
     iget-object v6, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mServiceByComponent:Ljava/util/Map;
@@ -1208,10 +1210,10 @@
     invoke-interface {v6, v5, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 122
-    :cond_2
+    :cond_6a
     iget-object v5, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mServiceIntent:Landroid/content/Intent;
 
-    if-eqz v5, :cond_3
+    if-eqz v5, :cond_7a
 
     .line 123
     iget-object v5, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mService:Ljava/util/Map;
@@ -1225,13 +1227,13 @@
     invoke-interface {v5, v6, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 126
-    :cond_3
+    :cond_7a
     iget v5, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mStartId:I
 
     invoke-virtual {v4, v5}, Lio/vanta/entity/ServiceRecord;->setStartId(I)V
 
     .line 128
-    :try_start_0
+    :try_start_7f
     iget-object v4, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mServiceIntent:Landroid/content/Intent;
 
     iget v5, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mStartId:I
@@ -1277,12 +1279,12 @@
     iget v1, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mUserId:I
 
     invoke-virtual {p3, p1, v1}, Lio/vanta/fake/frameworks/BActivityManager;->onStartCommand(Landroid/content/Intent;I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_ae
+    .catchall {:try_start_7f .. :try_end_ae} :catchall_af
 
     return p2
 
-    :catchall_0
+    :catchall_af
     move-exception p1
 
     .line 133
@@ -1312,8 +1314,8 @@
     return v2
 
     .line 104
-    :cond_4
-    :goto_0
+    :cond_ca
+    :goto_ca
     const-string p1, "onStartCommand: stubRecord target intent or serviceInfo is null"
 
     invoke-static {v3, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -1322,7 +1324,7 @@
 .end method
 
 .method public onTrimMemory(I)V
-    .locals 4
+    .registers 6
 
     .line 198
     new-instance v0, Ljava/util/HashSet;
@@ -1344,13 +1346,13 @@
 
     move-result-object v1
 
-    :cond_0
-    :goto_0
+    :cond_14
+    :goto_14
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_3b
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -1358,22 +1360,22 @@
 
     check-cast v2, Lio/vanta/entity/ServiceRecord;
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_14
 
     .line 200
     invoke-interface {v0, v2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_14
 
     .line 202
-    :try_start_0
+    :try_start_28
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
 
     move-result-object v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_14
 
     .line 203
     invoke-virtual {v2}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
@@ -1381,25 +1383,25 @@
     move-result-object v2
 
     invoke-virtual {v2, p1}, Landroid/app/Service;->onTrimMemory(I)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_35
+    .catchall {:try_start_28 .. :try_end_35} :catchall_36
 
-    goto :goto_0
+    goto :goto_14
 
-    :catchall_0
+    :catchall_36
     move-exception v2
 
     .line 206
     invoke-virtual {v2}, Ljava/lang/Throwable;->printStackTrace()V
 
-    goto :goto_0
+    goto :goto_14
 
-    :cond_1
+    :cond_3b
     return-void
 .end method
 
 .method public onUnbind(Landroid/content/Intent;)Z
-    .locals 8
+    .registers 10
 
     .line 213
     invoke-static {p1}, Lio/vanta/proxy/record/ProxyServiceRecord;->create(Landroid/content/Intent;)Lio/vanta/proxy/record/ProxyServiceRecord;
@@ -1411,20 +1413,20 @@
 
     const/4 v2, 0x0
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_7e
 
     iget-object v1, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mServiceInfo:Landroid/content/pm/ServiceInfo;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_f
 
-    goto/16 :goto_1
+    goto/16 :goto_7e
 
     .line 217
-    :cond_0
+    :cond_f
     iget-object v1, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mServiceIntent:Landroid/content/Intent;
 
     .line 220
-    :try_start_0
+    :try_start_11
     invoke-static {}, Lio/vanta/VantaCore;->getBActivityManager()Lio/vanta/fake/frameworks/BActivityManager;
 
     move-result-object v3
@@ -1437,22 +1439,22 @@
 
     move-result-object v3
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_20
 
     return v2
 
     .line 224
-    :cond_1
+    :cond_20
     invoke-direct {p0, v0}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->getOrCreateService(Lio/vanta/proxy/record/ProxyServiceRecord;)Landroid/app/Service;
 
     move-result-object v4
 
-    if-nez v4, :cond_2
+    if-nez v4, :cond_27
 
     return v2
 
     .line 228
-    :cond_2
+    :cond_27
     iget-object v5, v0, Lio/vanta/proxy/record/ProxyServiceRecord;->mServiceIntent:Landroid/content/Intent;
 
     invoke-virtual {v4}, Landroid/app/Service;->getClassLoader()Ljava/lang/ClassLoader;
@@ -1475,32 +1477,32 @@
 
     const/4 v6, 0x1
 
-    if-nez v3, :cond_3
+    if-nez v3, :cond_3f
 
     move v3, v6
 
-    goto :goto_0
+    goto :goto_40
 
-    :cond_3
+    :cond_3f
     move v3, v2
 
-    :goto_0
-    if-nez v3, :cond_4
+    :goto_40
+    if-nez v3, :cond_4a
 
-    if-eqz v5, :cond_7
+    if-eqz v5, :cond_7e
 
     .line 233
     invoke-virtual {v5, v1}, Lio/vanta/entity/ServiceRecord;->decreaseConnectionCount(Landroid/content/Intent;)Z
 
     move-result v7
 
-    if-eqz v7, :cond_7
+    if-eqz v7, :cond_7e
 
     .line 234
-    :cond_4
+    :cond_4a
     invoke-virtual {v4, v1}, Landroid/app/Service;->onUnbind(Landroid/content/Intent;)Z
 
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_74
 
     .line 236
     invoke-virtual {v4}, Landroid/app/Service;->onDestroy()V
@@ -1523,7 +1525,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_5
+    if-eqz p1, :cond_6a
 
     .line 240
     iget-object v0, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mServiceByComponent:Ljava/util/Map;
@@ -1531,7 +1533,7 @@
     invoke-interface {v0, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 242
-    :cond_5
+    :cond_6a
     iget-object p1, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mService:Ljava/util/Map;
 
     new-instance v0, Landroid/content/Intent$FilterComparison;
@@ -1540,43 +1542,43 @@
 
     invoke-interface {p1, v0}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_6
-    if-eqz v5, :cond_7
+    :cond_74
+    if-eqz v5, :cond_7e
 
     .line 245
     invoke-virtual {v5, v6}, Lio/vanta/entity/ServiceRecord;->setRebind(Z)V
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_79
+    .catchall {:try_start_11 .. :try_end_79} :catchall_7a
 
-    goto :goto_1
+    goto :goto_7e
 
-    :catchall_0
+    :catchall_7a
     move-exception p1
 
     .line 249
     invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
 
-    :cond_7
-    :goto_1
+    :cond_7e
+    :goto_7e
     return v2
 .end method
 
 .method public peekService(Landroid/content/Intent;)Landroid/os/IBinder;
-    .locals 1
+    .registers 3
 
     .line 255
     invoke-direct {p0, p1}, Lio/vanta/app/dispatcher/AppServiceDispatcher;->findRecord(Landroid/content/Intent;)Lio/vanta/entity/ServiceRecord;
 
     move-result-object v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_8
 
     const/4 p1, 0x0
 
     return-object p1
 
     .line 259
-    :cond_0
+    :cond_8
     invoke-virtual {v0, p1}, Lio/vanta/entity/ServiceRecord;->getBinder(Landroid/content/Intent;)Landroid/os/IBinder;
 
     move-result-object p1
@@ -1585,13 +1587,13 @@
 .end method
 
 .method public stopService(Landroid/content/Intent;)V
-    .locals 4
+    .registers 6
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_3
 
-    goto :goto_0
+    goto :goto_46
 
-    :cond_0
+    :cond_3
     const/4 v0, 0x0
 
     .line 265
@@ -1604,27 +1606,27 @@
 
     move-result-object v1
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_f
 
-    goto :goto_0
+    goto :goto_46
 
     .line 269
-    :cond_1
+    :cond_f
     invoke-virtual {v1}, Lio/vanta/entity/ServiceRecord;->getService()Landroid/app/Service;
 
     move-result-object v2
 
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_46
 
     .line 270
     invoke-virtual {v1}, Lio/vanta/entity/ServiceRecord;->getStartId()I
 
     move-result v2
 
-    if-lez v2, :cond_3
+    if-lez v2, :cond_46
 
     .line 273
-    :try_start_0
+    :try_start_1b
     iget-object v2, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mHandler:Landroid/os/Handler;
 
     new-instance v3, Lio/vanta/app/dispatcher/AppServiceDispatcher$$ExternalSyntheticLambda0;
@@ -1644,7 +1646,7 @@
 
     invoke-virtual {v1, p1, v2}, Lio/vanta/fake/frameworks/BActivityManager;->onServiceDestroy(Landroid/content/Intent;I)V
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_37
 
     .line 276
     iget-object v1, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mServiceByComponent:Ljava/util/Map;
@@ -1652,7 +1654,7 @@
     invoke-interface {v1, v0}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 278
-    :cond_2
+    :cond_37
     iget-object v0, p0, Lio/vanta/app/dispatcher/AppServiceDispatcher;->mService:Ljava/util/Map;
 
     new-instance v1, Landroid/content/Intent$FilterComparison;
@@ -1660,18 +1662,18 @@
     invoke-direct {v1, p1}, Landroid/content/Intent$FilterComparison;-><init>(Landroid/content/Intent;)V
 
     invoke-interface {v0, v1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_41
+    .catchall {:try_start_1b .. :try_end_41} :catchall_42
 
     return-void
 
-    :catchall_0
+    :catchall_42
     move-exception p1
 
     .line 281
     invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
 
-    :cond_3
-    :goto_0
+    :cond_46
+    :goto_46
     return-void
 .end method

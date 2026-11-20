@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/app/BActivityThread;)V
-    .locals 0
+    .registers 2
 
     .line 827
     iput-object p1, p0, Lio/vanta/app/BActivityThread$4;->this$0:Lio/vanta/app/BActivityThread;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public onCreate()V
-    .locals 2
+    .registers 3
 
     .line 830
     invoke-super {p0}, Landroid/app/Application;->onCreate()V

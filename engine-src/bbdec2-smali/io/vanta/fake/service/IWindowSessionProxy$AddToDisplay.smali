@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 46
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -43,20 +43,20 @@
 
     const/4 v1, 0x0
 
-    :goto_0
-    if-ge v1, v0, :cond_2
+    :goto_2
+    if-ge v1, v0, :cond_28
 
     aget-object v2, p3, v1
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_9
 
-    goto :goto_1
+    goto :goto_25
 
     .line 53
-    :cond_0
+    :cond_9
     instance-of v3, v2, Landroid/view/WindowManager$LayoutParams;
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_25
 
     .line 54
     check-cast v2, Landroid/view/WindowManager$LayoutParams;
@@ -77,7 +77,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_25
 
     .line 57
     iget v3, v2, Landroid/view/WindowManager$LayoutParams;->flags:I
@@ -86,14 +86,14 @@
 
     iput v3, v2, Landroid/view/WindowManager$LayoutParams;->flags:I
 
-    :cond_1
-    :goto_1
+    :cond_25
+    :goto_25
     add-int/lit8 v1, v1, 0x1
 
-    goto :goto_0
+    goto :goto_2
 
     .line 61
-    :cond_2
+    :cond_28
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

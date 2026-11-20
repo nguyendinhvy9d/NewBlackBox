@@ -42,7 +42,7 @@
 
 # direct methods
 .method public constructor <init>([Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "([TT;)V"
@@ -61,7 +61,7 @@
 
 # virtual methods
 .method public hasNext()Z
-    .locals 2
+    .registers 3
 
     .line 44
     iget v0, p0, Lio/vanta/core/system/pm/FastImmutableArraySet$FastIterator;->mIndex:I
@@ -70,20 +70,20 @@
 
     array-length v1, v1
 
-    if-eq v0, v1, :cond_0
+    if-eq v0, v1, :cond_9
 
     const/4 v0, 0x1
 
     return v0
 
-    :cond_0
+    :cond_9
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public next()Ljava/lang/Object;
-    .locals 3
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()TT;"
@@ -105,7 +105,7 @@
 .end method
 
 .method public remove()V
-    .locals 1
+    .registers 2
 
     .line 54
     new-instance v0, Ljava/lang/UnsupportedOperationException;

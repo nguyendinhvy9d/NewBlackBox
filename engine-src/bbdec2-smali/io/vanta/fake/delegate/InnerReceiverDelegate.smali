@@ -34,7 +34,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$sfgetsInnerReceiverDelegate()Ljava/util/Map;
-    .locals 1
+    .registers 1
 
     sget-object v0, Lio/vanta/fake/delegate/InnerReceiverDelegate;->sInnerReceiverDelegate:Ljava/util/Map;
 
@@ -42,7 +42,7 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 24
     new-instance v0, Ljava/util/HashMap;
@@ -55,7 +55,7 @@
 .end method
 
 .method private constructor <init>(Landroid/content/IIntentReceiver;Landroid/content/IntentFilter;)V
-    .locals 1
+    .registers 4
 
     .line 28
     invoke-direct {p0}, Landroid/content/IIntentReceiver$Stub;-><init>()V
@@ -74,7 +74,7 @@
 .end method
 
 .method public static createProxy(Landroid/content/IIntentReceiver;)Landroid/content/IIntentReceiver;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -87,17 +87,17 @@
 .end method
 
 .method public static createProxy(Landroid/content/IIntentReceiver;Landroid/content/IntentFilter;)Landroid/content/IIntentReceiver;
-    .locals 3
+    .registers 5
 
     .line 42
     instance-of v0, p0, Lio/vanta/fake/delegate/InnerReceiverDelegate;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_5
 
     return-object p0
 
     .line 45
-    :cond_0
+    :cond_5
     invoke-interface {p0}, Landroid/content/IIntentReceiver;->asBinder()Landroid/os/IBinder;
 
     move-result-object v0
@@ -111,10 +111,10 @@
 
     check-cast v1, Lio/vanta/fake/delegate/InnerReceiverDelegate;
 
-    if-nez v1, :cond_1
+    if-nez v1, :cond_2b
 
     .line 49
-    :try_start_0
+    :try_start_13
     new-instance v1, Lio/vanta/fake/delegate/InnerReceiverDelegate$1;
 
     invoke-direct {v1, v0}, Lio/vanta/fake/delegate/InnerReceiverDelegate$1;-><init>(Landroid/os/IBinder;)V
@@ -122,19 +122,19 @@
     const/4 v2, 0x0
 
     invoke-interface {v0, v1, v2}, Landroid/os/IBinder;->linkToDeath(Landroid/os/IBinder$DeathRecipient;I)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1c
+    .catch Landroid/os/RemoteException; {:try_start_13 .. :try_end_1c} :catch_1d
 
-    goto :goto_0
+    goto :goto_21
 
-    :catch_0
+    :catch_1d
     move-exception v1
 
     .line 57
     invoke-virtual {v1}, Landroid/os/RemoteException;->printStackTrace()V
 
     .line 59
-    :goto_0
+    :goto_21
     new-instance v1, Lio/vanta/fake/delegate/InnerReceiverDelegate;
 
     invoke-direct {v1, p0, p1}, Lio/vanta/fake/delegate/InnerReceiverDelegate;-><init>(Landroid/content/IIntentReceiver;Landroid/content/IntentFilter;)V
@@ -144,25 +144,25 @@
 
     invoke-interface {p0, v0, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_1
+    :cond_2b
     return-object v1
 .end method
 
 .method public static dispatchLocalBroadcast(Landroid/content/Intent;)V
-    .locals 10
+    .registers 11
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_3
 
-    goto :goto_2
+    goto :goto_53
 
     .line 68
-    :cond_0
+    :cond_3
     sget-object v1, Lio/vanta/fake/delegate/InnerReceiverDelegate;->sInnerReceiverDelegate:Ljava/util/Map;
 
     monitor-enter v1
 
     .line 69
-    :try_start_0
+    :try_start_6
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-interface {v1}, Ljava/util/Map;->values()Ljava/util/Collection;
@@ -173,20 +173,20 @@
 
     .line 70
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_2
+    :try_end_10
+    .catchall {:try_start_6 .. :try_end_10} :catchall_54
 
     .line 71
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
 
-    :goto_0
+    :goto_14
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_53
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -197,13 +197,13 @@
     .line 72
     iget-object v2, v1, Lio/vanta/fake/delegate/InnerReceiverDelegate;->mFilter:Landroid/content/IntentFilter;
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_37
 
     invoke-virtual {p0}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_37
 
     .line 73
     iget-object v2, v1, Lio/vanta/fake/delegate/InnerReceiverDelegate;->mFilter:Landroid/content/IntentFilter;
@@ -216,12 +216,12 @@
 
     move-result v2
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_37
 
-    goto :goto_0
+    goto :goto_14
 
     .line 77
-    :cond_1
+    :cond_37
     iget-object v1, v1, Lio/vanta/fake/delegate/InnerReceiverDelegate;->mIntentReceiver:Ljava/lang/ref/WeakReference;
 
     invoke-virtual {v1}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
@@ -230,15 +230,15 @@
 
     check-cast v1, Landroid/content/IIntentReceiver;
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_50
 
     .line 80
-    :try_start_1
+    :try_start_41
     invoke-static {v1}, Lvanta/android/content/BRIIntentReceiver;->get(Ljava/lang/Object;)Lvanta/android/content/IIntentReceiverContext;
 
     move-result-object v2
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_45
+    .catchall {:try_start_41 .. :try_end_45} :catchall_50
 
     const/4 v8, 0x0
 
@@ -254,43 +254,43 @@
 
     move-object v3, p0
 
-    :try_start_2
+    :try_start_4c
     invoke-interface/range {v2 .. v9}, Lvanta/android/content/IIntentReceiverContext;->performReceive(Landroid/content/Intent;ILjava/lang/String;Landroid/os/Bundle;ZZI)Ljava/lang/Void;
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_4f
+    .catchall {:try_start_4c .. :try_end_4f} :catchall_51
 
-    goto :goto_1
+    goto :goto_51
 
-    :catchall_0
-    :cond_2
+    :catchall_50
+    :cond_50
     move-object v3, p0
 
-    :catchall_1
-    :goto_1
+    :catchall_51
+    :goto_51
     move-object p0, v3
 
-    goto :goto_0
+    goto :goto_14
 
-    :cond_3
-    :goto_2
+    :cond_53
+    :goto_53
     return-void
 
-    :catchall_2
+    :catchall_54
     move-exception v0
 
     move-object p0, v0
 
     .line 70
-    :try_start_3
+    :try_start_56
     monitor-exit v1
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_2
+    :try_end_57
+    .catchall {:try_start_56 .. :try_end_57} :catchall_54
 
     throw p0
 .end method
 
 .method public static getDelegate(Landroid/os/IBinder;)Lio/vanta/fake/delegate/InnerReceiverDelegate;
-    .locals 1
+    .registers 2
 
     .line 34
     sget-object v0, Lio/vanta/fake/delegate/InnerReceiverDelegate;->sInnerReceiverDelegate:Ljava/util/Map;
@@ -307,7 +307,7 @@
 
 # virtual methods
 .method public performReceive(Landroid/content/Intent;ILjava/lang/String;Landroid/os/Bundle;ZZI)V
-    .locals 8
+    .registers 16
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -333,7 +333,7 @@
     .line 92
     iget-object v1, v0, Lio/vanta/proxy/record/ProxyBroadcastRecord;->mIntent:Landroid/content/Intent;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_22
 
     .line 93
     iget-object p1, v0, Lio/vanta/proxy/record/ProxyBroadcastRecord;->mIntent:Landroid/content/Intent;
@@ -351,7 +351,7 @@
     .line 94
     iget-object p1, v0, Lio/vanta/proxy/record/ProxyBroadcastRecord;->mIntent:Landroid/content/Intent;
 
-    :cond_0
+    :cond_22
     move-object v1, p1
 
     .line 98
@@ -363,7 +363,7 @@
 
     check-cast p1, Landroid/content/IIntentReceiver;
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_3a
 
     .line 100
     invoke-static {p1}, Lvanta/android/content/BRIIntentReceiver;->get(Ljava/lang/Object;)Lvanta/android/content/IIntentReceiverContext;
@@ -384,6 +384,6 @@
 
     invoke-interface/range {v0 .. v7}, Lvanta/android/content/IIntentReceiverContext;->performReceive(Landroid/content/Intent;ILjava/lang/String;Landroid/os/Bundle;ZZI)Ljava/lang/Void;
 
-    :cond_1
+    :cond_3a
     return-void
 .end method

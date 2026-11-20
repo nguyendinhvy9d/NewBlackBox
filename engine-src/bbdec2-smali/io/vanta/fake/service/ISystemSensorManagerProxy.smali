@@ -18,7 +18,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$smcreateSafeSensorManager()Ljava/lang/Object;
-    .locals 1
+    .registers 1
 
     invoke-static {}, Lio/vanta/fake/service/ISystemSensorManagerProxy;->createSafeSensorManager()Ljava/lang/Object;
 
@@ -28,7 +28,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 16
     invoke-direct {p0}, Lio/vanta/fake/hook/ClassInvocationStub;-><init>()V
@@ -37,7 +37,7 @@
 .end method
 
 .method private static createSafeSensorManager()Ljava/lang/Object;
-    .locals 6
+    .registers 6
 
     .line 86
     const-string v0, "ISystemSensorManagerProxy"
@@ -46,19 +46,19 @@
 
     const/4 v2, 0x0
 
-    :try_start_0
+    :try_start_5
     const-string v3, "android.hardware.SystemSensorManager"
 
     invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v3
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
+    :try_end_b
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_b} :catch_38
 
     const/4 v4, 0x0
 
     .line 93
-    :try_start_1
+    :try_start_c
     new-array v5, v4, [Ljava/lang/Class;
 
     invoke-virtual {v3, v5}, Ljava/lang/Class;->getDeclaredConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
@@ -81,16 +81,16 @@
     const-string v4, "Created safe SystemSensorManager using default constructor"
 
     invoke-static {v0, v4}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_21
+    .catch Ljava/lang/Exception; {:try_start_c .. :try_end_21} :catch_22
 
     return-object v3
 
-    :catch_0
+    :catch_22
     move-exception v3
 
     .line 98
-    :try_start_2
+    :try_start_23
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -108,12 +108,12 @@
     move-result-object v1
 
     invoke-static {v0, v1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_1
+    :try_end_37
+    .catch Ljava/lang/Exception; {:try_start_23 .. :try_end_37} :catch_38
 
     return-object v2
 
-    :catch_1
+    :catch_38
     move-exception v1
 
     .line 104
@@ -143,7 +143,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -151,7 +151,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 28
     const-string p1, "ISystemSensorManagerProxy"
@@ -164,7 +164,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 

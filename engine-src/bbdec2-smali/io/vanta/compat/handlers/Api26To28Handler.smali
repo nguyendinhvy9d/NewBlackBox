@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 6
     invoke-direct {p0}, Lio/vanta/compat/handlers/BaseCompatibilityHandler;-><init>()V
@@ -16,7 +16,7 @@
 
 # virtual methods
 .method public getMaxApi()I
-    .locals 1
+    .registers 2
 
     const/16 v0, 0x1c
 
@@ -24,7 +24,7 @@
 .end method
 
 .method public getMinApi()I
-    .locals 1
+    .registers 2
 
     const/16 v0, 0x1a
 
@@ -32,7 +32,7 @@
 .end method
 
 .method public isBackgroundServiceRestricted()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x1
 

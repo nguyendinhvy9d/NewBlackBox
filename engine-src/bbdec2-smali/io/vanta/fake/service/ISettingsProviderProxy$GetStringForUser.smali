@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 39
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -45,12 +45,12 @@
 
     const-string v2, "ISettingsProviderProxy"
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_31
 
-    :try_start_0
+    :try_start_8
     array-length v3, p3
 
-    if-lez v3, :cond_0
+    if-lez v3, :cond_31
 
     const/4 v3, 0x0
 
@@ -59,7 +59,7 @@
 
     check-cast v3, Ljava/lang/String;
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_31
 
     .line 46
     const-string v4, "feature_flag"
@@ -68,7 +68,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_31
 
     .line 47
     new-instance p1, Ljava/lang/StringBuilder;
@@ -94,16 +94,16 @@
     return-object v1
 
     .line 53
-    :cond_0
+    :cond_31
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_35
+    .catch Ljava/lang/Exception; {:try_start_8 .. :try_end_35} :catch_36
 
     return-object p1
 
-    :catch_0
+    :catch_36
     move-exception p1
 
     .line 55
@@ -111,7 +111,7 @@
 
     move-result-object p2
 
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_60
 
     .line 56
     const-string p3, "Calling uid"
@@ -120,7 +120,7 @@
 
     move-result p3
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_60
 
     const-string p3, "doesn\'t match source uid"
 
@@ -128,7 +128,7 @@
 
     move-result p3
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_60
 
     .line 57
     new-instance p1, Ljava/lang/StringBuilder;
@@ -150,6 +150,6 @@
     return-object v1
 
     .line 60
-    :cond_1
+    :cond_60
     throw p1
 .end method

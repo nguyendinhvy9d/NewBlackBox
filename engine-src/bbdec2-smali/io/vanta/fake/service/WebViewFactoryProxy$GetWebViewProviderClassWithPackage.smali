@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 209
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 5
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -43,11 +43,11 @@
     .line 212
     const-string v1, "WebViewFactoryProxy"
 
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_20
 
     array-length v2, p3
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_20
 
     const/4 v2, 0x0
 
@@ -74,24 +74,24 @@
     invoke-static {v1, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 219
-    :cond_0
-    :try_start_0
+    :cond_20
+    :try_start_20
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_32
 
     .line 221
     const-string p2, "WebViewFactory: Successfully got WebView provider class"
 
     invoke-static {v1, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_2b
+    .catch Ljava/lang/Exception; {:try_start_20 .. :try_end_2b} :catch_2c
 
     return-object p1
 
-    :catch_0
+    :catch_2c
     move-exception p1
 
     .line 225
@@ -100,8 +100,8 @@
     invoke-static {v1, p2, p1}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 230
-    :cond_1
-    :try_start_1
+    :cond_32
+    :try_start_32
     const-class p1, Landroid/webkit/WebView;
 
     .line 231
@@ -122,12 +122,12 @@
     move-result-object p2
 
     invoke-static {v1, p2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_48
+    .catch Ljava/lang/Exception; {:try_start_32 .. :try_end_48} :catch_49
 
     return-object p1
 
-    :catch_1
+    :catch_49
     move-exception p1
 
     .line 234

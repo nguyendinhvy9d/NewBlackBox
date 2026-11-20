@@ -19,7 +19,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 13
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -38,7 +38,7 @@
 .end method
 
 .method public cancelNotificationWithTag(ILjava/lang/String;I)V
-    .locals 0
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -49,7 +49,7 @@
 .end method
 
 .method public createNotificationChannel(Landroid/app/NotificationChannel;I)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -60,7 +60,7 @@
 .end method
 
 .method public createNotificationChannelGroup(Landroid/app/NotificationChannelGroup;I)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -71,7 +71,7 @@
 .end method
 
 .method public deleteNotificationChannel(Ljava/lang/String;I)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -82,7 +82,7 @@
 .end method
 
 .method public deleteNotificationChannelGroup(Ljava/lang/String;I)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -93,7 +93,7 @@
 .end method
 
 .method public enqueueNotificationWithTag(ILjava/lang/String;Landroid/app/Notification;I)V
-    .locals 0
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -104,7 +104,7 @@
 .end method
 
 .method public getNotificationChannel(Ljava/lang/String;I)Landroid/app/NotificationChannel;
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -117,7 +117,7 @@
 .end method
 
 .method public getNotificationChannelGroups(Ljava/lang/String;I)Ljava/util/List;
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -141,7 +141,7 @@
 .end method
 
 .method public getNotificationChannels(Ljava/lang/String;I)Ljava/util/List;
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",

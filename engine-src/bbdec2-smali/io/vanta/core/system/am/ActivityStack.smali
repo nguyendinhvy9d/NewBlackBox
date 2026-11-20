@@ -40,7 +40,7 @@
 
 # direct methods
 .method static bridge synthetic -$$Nest$fgetmLaunchingActivities(Lio/vanta/core/system/am/ActivityStack;)Ljava/util/Set;
-    .locals 0
+    .registers 1
 
     iget-object p0, p0, Lio/vanta/core/system/am/ActivityStack;->mLaunchingActivities:Ljava/util/Set;
 
@@ -48,13 +48,13 @@
 .end method
 
 .method static constructor <clinit>()V
-    .locals 0
+    .registers 0
 
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 73
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -103,7 +103,7 @@
 .end method
 
 .method private deliverNewIntentLocked(Lio/vanta/core/system/am/ActivityRecord;Landroid/content/Intent;)V
-    .locals 1
+    .registers 4
 
     .line 261
     :try_start_0
@@ -114,12 +114,12 @@
     iget-object p1, p1, Lio/vanta/core/system/am/ActivityRecord;->token:Landroid/os/IBinder;
 
     invoke-interface {v0, p1, p2}, Lio/vanta/core/IBActivityThread;->handleNewIntent(Landroid/os/IBinder;Landroid/content/Intent;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_9} :catch_a
 
     return-void
 
-    :catch_0
+    :catch_a
     move-exception p1
 
     .line 263
@@ -129,7 +129,7 @@
 .end method
 
 .method private findActivityRecordByComponentName(ILandroid/content/ComponentName;)Lio/vanta/core/system/am/ActivityRecord;
-    .locals 5
+    .registers 8
 
     .line 408
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -144,13 +144,13 @@
 
     const/4 v1, 0x0
 
-    :cond_0
-    :goto_0
+    :cond_b
+    :goto_b
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_37
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -161,7 +161,7 @@
     .line 409
     iget v3, v2, Lio/vanta/core/system/am/TaskRecord;->userId:I
 
-    if-ne p1, v3, :cond_0
+    if-ne p1, v3, :cond_b
 
     .line 410
     iget-object v2, v2, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -170,12 +170,12 @@
 
     move-result-object v2
 
-    :cond_1
+    :cond_21
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_b
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -190,22 +190,22 @@
 
     move-result v4
 
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_21
 
     move-object v1, v3
 
-    goto :goto_0
+    goto :goto_b
 
-    :cond_2
+    :cond_37
     return-object v1
 .end method
 
 .method private findActivityRecordByToken(ILandroid/os/IBinder;)Lio/vanta/core/system/am/ActivityRecord;
-    .locals 5
+    .registers 8
 
     const/4 v0, 0x0
 
-    if-eqz p2, :cond_2
+    if-eqz p2, :cond_35
 
     .line 424
     iget-object v1, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -218,13 +218,13 @@
 
     move-result-object v1
 
-    :cond_0
-    :goto_0
+    :cond_d
+    :goto_d
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_35
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -235,7 +235,7 @@
     .line 425
     iget v3, v2, Lio/vanta/core/system/am/TaskRecord;->userId:I
 
-    if-ne p1, v3, :cond_0
+    if-ne p1, v3, :cond_d
 
     .line 426
     iget-object v2, v2, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -244,12 +244,12 @@
 
     move-result-object v2
 
-    :cond_1
+    :cond_23
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_d
 
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -260,18 +260,18 @@
     .line 427
     iget-object v4, v3, Lio/vanta/core/system/am/ActivityRecord;->token:Landroid/os/IBinder;
 
-    if-ne v4, p2, :cond_1
+    if-ne v4, p2, :cond_23
 
     move-object v0, v3
 
-    goto :goto_0
+    goto :goto_d
 
-    :cond_2
+    :cond_35
     return-object v0
 .end method
 
 .method private findTaskRecordByTaskAffinityLocked(ILjava/lang/String;)Lio/vanta/core/system/am/TaskRecord;
-    .locals 4
+    .registers 7
 
     .line 439
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -279,7 +279,7 @@
     monitor-enter v0
 
     .line 440
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
 
     invoke-interface {v1}, Ljava/util/Map;->values()Ljava/util/Collection;
@@ -290,12 +290,12 @@
 
     move-result-object v1
 
-    :cond_0
+    :cond_d
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_27
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -306,7 +306,7 @@
     .line 441
     iget v3, v2, Lio/vanta/core/system/am/TaskRecord;->userId:I
 
-    if-ne p1, v3, :cond_0
+    if-ne p1, v3, :cond_d
 
     iget-object v3, v2, Lio/vanta/core/system/am/TaskRecord;->taskAffinity:Ljava/lang/String;
 
@@ -314,14 +314,14 @@
 
     move-result v3
 
-    if-eqz v3, :cond_0
+    if-eqz v3, :cond_d
 
     .line 442
     monitor-exit v0
 
     return-object v2
 
-    :cond_1
+    :cond_27
     const/4 p1, 0x0
 
     .line 444
@@ -329,19 +329,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_2a
     move-exception p1
 
     .line 445
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2c
+    .catchall {:try_start_3 .. :try_end_2c} :catchall_2a
 
     throw p1
 .end method
 
 .method private findTaskRecordByTokenLocked(ILandroid/os/IBinder;)Lio/vanta/core/system/am/TaskRecord;
-    .locals 5
+    .registers 8
 
     .line 449
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -349,7 +349,7 @@
     monitor-enter v0
 
     .line 450
-    :try_start_0
+    :try_start_3
     iget-object v1, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
 
     invoke-interface {v1}, Ljava/util/Map;->values()Ljava/util/Collection;
@@ -360,12 +360,12 @@
 
     move-result-object v1
 
-    :cond_0
+    :cond_d
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_35
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -376,7 +376,7 @@
     .line 451
     iget v3, v2, Lio/vanta/core/system/am/TaskRecord;->userId:I
 
-    if-ne p1, v3, :cond_0
+    if-ne p1, v3, :cond_d
 
     .line 452
     iget-object v3, v2, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -385,12 +385,12 @@
 
     move-result-object v3
 
-    :cond_1
+    :cond_23
     invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v4
 
-    if-eqz v4, :cond_0
+    if-eqz v4, :cond_d
 
     invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -401,14 +401,14 @@
     .line 453
     iget-object v4, v4, Lio/vanta/core/system/am/ActivityRecord;->token:Landroid/os/IBinder;
 
-    if-ne v4, p2, :cond_1
+    if-ne v4, p2, :cond_23
 
     .line 454
     monitor-exit v0
 
     return-object v2
 
-    :cond_2
+    :cond_35
     const/4 p1, 0x0
 
     .line 459
@@ -416,19 +416,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_38
     move-exception p1
 
     .line 460
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_3a
+    .catchall {:try_start_3 .. :try_end_3a} :catchall_38
 
     throw p1
 .end method
 
 .method private finishAllActivity(I)V
-    .locals 4
+    .registers 6
 
     .line 377
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -441,12 +441,12 @@
 
     move-result-object v0
 
-    :cond_0
+    :cond_a
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_3a
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -461,14 +461,14 @@
 
     move-result-object v1
 
-    :catch_0
-    :cond_1
-    :goto_0
+    :catch_1c
+    :cond_1c
+    :goto_1c
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_a
 
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -479,15 +479,15 @@
     .line 379
     iget v3, v2, Lio/vanta/core/system/am/ActivityRecord;->userId:I
 
-    if-ne v3, p1, :cond_1
+    if-ne v3, p1, :cond_1c
 
     .line 380
     iget-boolean v3, v2, Lio/vanta/core/system/am/ActivityRecord;->finished:Z
 
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_1c
 
     .line 382
-    :try_start_0
+    :try_start_30
     iget-object v3, v2, Lio/vanta/core/system/am/ActivityRecord;->processRecord:Lio/vanta/core/system/ProcessRecord;
 
     iget-object v3, v3, Lio/vanta/core/system/ProcessRecord;->bActivityThread:Lio/vanta/core/IBActivityThread;
@@ -495,17 +495,17 @@
     iget-object v2, v2, Lio/vanta/core/system/am/ActivityRecord;->token:Landroid/os/IBinder;
 
     invoke-interface {v3, v2}, Lio/vanta/core/IBActivityThread;->finishActivity(Landroid/os/IBinder;)V
-    :try_end_0
-    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_39
+    .catch Landroid/os/RemoteException; {:try_start_30 .. :try_end_39} :catch_1c
 
-    goto :goto_0
+    goto :goto_1c
 
-    :cond_2
+    :cond_3a
     return-void
 .end method
 
 .method private getStartStubActivityIntentInner(Landroid/content/Intent;IILio/vanta/proxy/record/ProxyActivityRecord;Landroid/content/pm/ActivityInfo;)Landroid/content/Intent;
-    .locals 5
+    .registers 11
 
     .line 345
     new-instance p3, Landroid/content/Intent;
@@ -515,7 +515,7 @@
     const/4 v0, 0x0
 
     .line 348
-    :try_start_0
+    :try_start_6
     invoke-static {}, Lio/vanta/VantaCore;->getContext()Landroid/content/Context;
 
     move-result-object v1
@@ -529,21 +529,21 @@
     .line 350
     iget v2, p5, Landroid/content/pm/ActivityInfo;->theme:I
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_17
 
     .line 351
     iget v2, p5, Landroid/content/pm/ActivityInfo;->theme:I
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 353
-    :cond_0
+    :cond_17
     iget-object v2, p5, Landroid/content/pm/ActivityInfo;->applicationInfo:Landroid/content/pm/ApplicationInfo;
 
     iget v2, v2, Landroid/content/pm/ApplicationInfo;->theme:I
 
     .line 356
-    :goto_0
+    :goto_1b
     invoke-virtual {v1}, Landroid/content/res/Resources;->newTheme()Landroid/content/res/Resources$Theme;
 
     move-result-object v1
@@ -579,7 +579,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_4f
 
     .line 359
     new-instance v2, Landroid/content/ComponentName;
@@ -596,10 +596,10 @@
 
     invoke-virtual {p3, v2}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
-    goto :goto_1
+    goto :goto_5f
 
     .line 361
-    :cond_1
+    :cond_4f
     new-instance v2, Landroid/content/ComponentName;
 
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -615,7 +615,7 @@
     invoke-virtual {p3, v2}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
 
     .line 363
-    :goto_1
+    :goto_5f
     const-string v2, "ActivityStack"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -641,18 +641,18 @@
     move-result-object p5
 
     invoke-static {v2, p5}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_7b
+    .catchall {:try_start_6 .. :try_end_7b} :catchall_7e
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_97
 
-    goto :goto_2
+    goto :goto_94
 
-    :catchall_0
+    :catchall_7e
     move-exception p5
 
     .line 365
-    :try_start_1
+    :try_start_7f
     invoke-virtual {p5}, Ljava/lang/Throwable;->printStackTrace()V
 
     .line 366
@@ -669,17 +669,17 @@
     invoke-direct {p5, v1, p2}, Landroid/content/ComponentName;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
     invoke-virtual {p3, p5}, Landroid/content/Intent;->setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
+    :try_end_92
+    .catchall {:try_start_7f .. :try_end_92} :catchall_a1
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_97
 
     .line 369
-    :goto_2
+    :goto_94
     invoke-virtual {v0}, Landroid/content/res/TypedArray;->recycle()V
 
     .line 372
-    :cond_2
+    :cond_97
     iget-object p2, p4, Lio/vanta/proxy/record/ProxyActivityRecord;->mActivityInfo:Landroid/content/pm/ActivityInfo;
 
     iget-object p5, p4, Lio/vanta/proxy/record/ProxyActivityRecord;->mActivityRecord:Landroid/os/IBinder;
@@ -690,21 +690,21 @@
 
     return-object p3
 
-    :catchall_1
+    :catchall_a1
     move-exception p1
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_a7
 
     .line 369
     invoke-virtual {v0}, Landroid/content/res/TypedArray;->recycle()V
 
     .line 371
-    :cond_3
+    :cond_a7
     throw p1
 .end method
 
 .method private getTopActivityRecord()Lio/vanta/core/system/am/ActivityRecord;
-    .locals 2
+    .registers 3
 
     .line 333
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -712,13 +712,13 @@
     monitor-enter v0
 
     .line 334
-    :try_start_0
+    :try_start_3
     invoke-direct {p0}, Lio/vanta/core/system/am/ActivityStack;->synchronizeTasks()V
 
     .line 335
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_7
+    .catchall {:try_start_3 .. :try_end_7} :catchall_2b
 
     .line 336
     new-instance v0, Ljava/util/LinkedList;
@@ -736,14 +736,14 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_1a
 
     const/4 v0, 0x0
 
     return-object v0
 
     .line 339
-    :cond_0
+    :cond_1a
     invoke-interface {v0}, Ljava/util/List;->size()I
 
     move-result v1
@@ -762,25 +762,25 @@
 
     return-object v0
 
-    :catchall_0
+    :catchall_2b
     move-exception v1
 
     .line 335
-    :try_start_1
+    :try_start_2c
     monitor-exit v0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_2d
+    .catchall {:try_start_2c .. :try_end_2d} :catchall_2b
 
     throw v1
 .end method
 
 .method private realStartActivityLocked(Landroid/os/IInterface;Landroid/content/Intent;Ljava/lang/String;Landroid/os/IBinder;Ljava/lang/String;IILandroid/os/Bundle;)I
-    .locals 11
+    .registers 20
 
     and-int/lit8 v8, p7, -0xf
 
     .line 324
-    :try_start_0
+    :try_start_2
     invoke-static {}, Lvanta/android/app/BRActivityManagerNative;->get()Lvanta/android/app/ActivityManagerNativeStatic;
 
     move-result-object v0
@@ -814,12 +814,12 @@
     move-object/from16 v10, p8
 
     invoke-interface/range {v0 .. v10}, Lvanta/android/app/IActivityManagerContext;->startActivity(Ljava/lang/Object;Ljava/lang/String;Landroid/content/Intent;Ljava/lang/String;Landroid/os/IBinder;Ljava/lang/String;IILjava/lang/Object;Landroid/os/Bundle;)Ljava/lang/Integer;
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_20
+    .catchall {:try_start_2 .. :try_end_20} :catchall_21
 
-    goto :goto_0
+    goto :goto_26
 
-    :catchall_0
+    :catchall_21
     move-exception v0
 
     move-object p1, v0
@@ -827,14 +827,14 @@
     .line 327
     invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
 
-    :goto_0
+    :goto_26
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method private startActivityInNewTaskLocked(ILandroid/content/Intent;Landroid/content/pm/ActivityInfo;Landroid/os/IBinder;I)I
-    .locals 9
+    .registers 15
 
     const/4 v7, 0x0
 
@@ -863,7 +863,7 @@
 .end method
 
 .method private startActivityInNewTaskLocked(ILandroid/content/Intent;Landroid/content/pm/ActivityInfo;Landroid/os/IBinder;IILjava/lang/String;Landroid/os/Bundle;)I
-    .locals 9
+    .registers 18
 
     .line 279
     invoke-virtual {p0, p2, p3, p4, p1}, Lio/vanta/core/system/am/ActivityStack;->newActivityRecord(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;Landroid/os/IBinder;I)Lio/vanta/core/system/am/ActivityRecord;
@@ -875,7 +875,7 @@
 
     move-result-object v2
 
-    if-eqz p4, :cond_0
+    if-eqz p4, :cond_27
 
     .line 283
     invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
@@ -914,7 +914,7 @@
 
     return v1
 
-    :cond_0
+    :cond_27
     const/high16 v0, 0x8000000
 
     .line 288
@@ -946,7 +946,7 @@
 .end method
 
 .method private startActivityInSourceTask(Landroid/content/Intent;Ljava/lang/String;Landroid/os/IBinder;Ljava/lang/String;IILandroid/os/Bundle;ILio/vanta/core/system/am/ActivityRecord;Landroid/content/pm/ActivityInfo;I)I
-    .locals 1
+    .registers 13
 
     .line 306
     invoke-virtual {p0, p1, p10, p3, p8}, Lio/vanta/core/system/am/ActivityStack;->newActivityRecord(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;Landroid/os/IBinder;I)Lio/vanta/core/system/am/ActivityRecord;
@@ -972,7 +972,7 @@
     .line 309
     invoke-virtual {p1, p11}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    if-nez p3, :cond_0
+    if-nez p3, :cond_1d
 
     const/high16 p8, 0x10000000
 
@@ -980,7 +980,7 @@
     invoke-virtual {p1, p8}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
     .line 313
-    :cond_0
+    :cond_1d
     iget-object p8, p9, Lio/vanta/core/system/am/ActivityRecord;->processRecord:Lio/vanta/core/system/ProcessRecord;
 
     iget-object p8, p8, Lio/vanta/core/system/ProcessRecord;->appThread:Landroid/os/IInterface;
@@ -1013,7 +1013,7 @@
 .end method
 
 .method private startActivityProcess(ILandroid/content/Intent;Landroid/content/pm/ActivityInfo;Lio/vanta/core/system/am/ActivityRecord;)Landroid/content/Intent;
-    .locals 11
+    .registers 16
 
     .line 269
     new-instance v4, Lio/vanta/proxy/record/ProxyActivityRecord;
@@ -1043,7 +1043,7 @@
 
     move v3, v8
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_24
 
     .line 274
     iget v2, p1, Lio/vanta/core/system/ProcessRecord;->bpid:I
@@ -1060,7 +1060,7 @@
 
     return-object p1
 
-    :cond_0
+    :cond_24
     move-object v5, p3
 
     .line 272
@@ -1088,7 +1088,7 @@
 .end method
 
 .method private synchronizeTasks()V
-    .locals 6
+    .registers 7
 
     .line 597
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack;->mAms:Landroid/app/ActivityManager;
@@ -1113,8 +1113,8 @@
 
     add-int/lit8 v2, v2, -0x1
 
-    :goto_0
-    if-ltz v2, :cond_1
+    :goto_14
+    if-ltz v2, :cond_39
 
     .line 600
     invoke-interface {v0, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -1138,12 +1138,12 @@
 
     check-cast v4, Lio/vanta/core/system/am/TaskRecord;
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_2d
 
-    goto :goto_1
+    goto :goto_36
 
     .line 604
-    :cond_0
+    :cond_2d
     iget v3, v3, Landroid/app/ActivityManager$RecentTaskInfo;->id:I
 
     invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1152,13 +1152,13 @@
 
     invoke-interface {v1, v3, v4}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :goto_1
+    :goto_36
     add-int/lit8 v2, v2, -0x1
 
-    goto :goto_0
+    goto :goto_14
 
     .line 606
-    :cond_1
+    :cond_39
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
 
     invoke-interface {v0}, Ljava/util/Map;->clear()V
@@ -1174,7 +1174,7 @@
 
 # virtual methods
 .method public containsFlag(Landroid/content/Intent;I)Z
-    .locals 0
+    .registers 3
 
     .line 78
     invoke-virtual {p1}, Landroid/content/Intent;->getFlags()I
@@ -1183,20 +1183,20 @@
 
     and-int/2addr p1, p2
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_9
 
     const/4 p1, 0x1
 
     return p1
 
-    :cond_0
+    :cond_9
     const/4 p1, 0x0
 
     return p1
 .end method
 
 .method public getCallingActivity(Landroid/os/IBinder;I)Landroid/content/ComponentName;
-    .locals 2
+    .registers 5
 
     .line 578
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -1204,7 +1204,7 @@
     monitor-enter v0
 
     .line 579
-    :try_start_0
+    :try_start_3
     invoke-direct {p0}, Lio/vanta/core/system/am/ActivityStack;->synchronizeTasks()V
 
     .line 580
@@ -1217,7 +1217,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_1c
 
     .line 583
     iget-object p1, p1, Lio/vanta/core/system/am/ActivityRecord;->resultTo:Landroid/os/IBinder;
@@ -1226,7 +1226,7 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_1c
 
     .line 585
     iget-object p1, p1, Lio/vanta/core/system/am/ActivityRecord;->component:Landroid/content/ComponentName;
@@ -1235,8 +1235,8 @@
 
     return-object p1
 
-    :cond_0
-    if-eqz v1, :cond_1
+    :cond_1c
+    if-eqz v1, :cond_31
 
     .line 588
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -1247,7 +1247,7 @@
 
     move-result p1
 
-    if-nez p1, :cond_1
+    if-nez p1, :cond_31
 
     .line 589
     new-instance p1, Landroid/content/ComponentName;
@@ -1261,7 +1261,7 @@
     return-object p1
 
     .line 591
-    :cond_1
+    :cond_31
     new-instance p1, Landroid/content/ComponentName;
 
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -1280,19 +1280,19 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_42
     move-exception p1
 
     .line 592
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_44
+    .catchall {:try_start_3 .. :try_end_44} :catchall_42
 
     throw p1
 .end method
 
 .method public getCallingPackage(Landroid/os/IBinder;I)Ljava/lang/String;
-    .locals 8
+    .registers 11
 
     .line 524
     iget-object v0, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -1300,7 +1300,7 @@
     monitor-enter v0
 
     .line 525
-    :try_start_0
+    :try_start_3
     invoke-direct {p0}, Lio/vanta/core/system/am/ActivityStack;->synchronizeTasks()V
 
     .line 526
@@ -1308,12 +1308,12 @@
 
     move-result-object p1
 
-    if-eqz p1, :cond_5
+    if-eqz p1, :cond_c9
 
     .line 528
     iget-object v1, p1, Lio/vanta/core/system/am/ActivityRecord;->callingPackage:Ljava/lang/String;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_2a
 
     iget-object v1, p1, Lio/vanta/core/system/am/ActivityRecord;->callingPackage:Ljava/lang/String;
 
@@ -1326,7 +1326,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_2a
 
     iget-object v1, p1, Lio/vanta/core/system/am/ActivityRecord;->callingPackage:Ljava/lang/String;
 
@@ -1337,7 +1337,7 @@
 
     move-result v1
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_2a
 
     .line 531
     iget-object p1, p1, Lio/vanta/core/system/am/ActivityRecord;->callingPackage:Ljava/lang/String;
@@ -1347,19 +1347,19 @@
     return-object p1
 
     .line 533
-    :cond_0
+    :cond_2a
     iget-object v1, p1, Lio/vanta/core/system/am/ActivityRecord;->resultTo:Landroid/os/IBinder;
 
     invoke-direct {p0, p2, v1}, Lio/vanta/core/system/am/ActivityStack;->findActivityRecordByToken(ILandroid/os/IBinder;)Lio/vanta/core/system/am/ActivityRecord;
 
     move-result-object v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_56
 
     .line 534
     iget-object v2, v1, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_56
 
     iget-object v2, v1, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
@@ -1374,7 +1374,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_56
 
     iget-object v2, v1, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
@@ -1387,7 +1387,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_56
 
     .line 537
     iget-object p1, v1, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
@@ -1399,10 +1399,10 @@
     return-object p1
 
     .line 539
-    :cond_1
+    :cond_56
     iget-object v1, p1, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_c1
 
     iget-object v1, p1, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
@@ -1414,7 +1414,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_c1
 
     .line 540
     new-instance v1, Ljava/util/ArrayList;
@@ -1434,8 +1434,8 @@
 
     add-int/lit8 v2, v2, -0x1
 
-    :goto_0
-    if-ltz v2, :cond_4
+    :goto_77
+    if-ltz v2, :cond_c1
 
     .line 542
     invoke-interface {v1, v2}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -1447,7 +1447,7 @@
     .line 543
     iget v4, v3, Lio/vanta/core/system/am/TaskRecord;->userId:I
 
-    if-ne v4, p2, :cond_3
+    if-ne v4, p2, :cond_be
 
     .line 544
     iget-object v4, v3, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -1458,8 +1458,8 @@
 
     add-int/lit8 v4, v4, -0x1
 
-    :goto_1
-    if-ltz v4, :cond_3
+    :goto_8b
+    if-ltz v4, :cond_be
 
     .line 545
     iget-object v5, v3, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -1470,12 +1470,12 @@
 
     check-cast v5, Lio/vanta/core/system/am/ActivityRecord;
 
-    if-eqz v5, :cond_2
+    if-eqz v5, :cond_bb
 
     .line 546
     iget-object v6, v5, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
-    if-eqz v6, :cond_2
+    if-eqz v6, :cond_bb
 
     iget-object v6, v5, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
@@ -1488,7 +1488,7 @@
 
     move-result v6
 
-    if-nez v6, :cond_2
+    if-nez v6, :cond_bb
 
     iget-object v6, v5, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
@@ -1503,7 +1503,7 @@
 
     move-result v6
 
-    if-nez v6, :cond_2
+    if-nez v6, :cond_bb
 
     .line 549
     iget-object p1, v5, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
@@ -1514,21 +1514,21 @@
 
     return-object p1
 
-    :cond_2
+    :cond_bb
     add-int/lit8 v4, v4, -0x1
 
-    goto :goto_1
+    goto :goto_8b
 
-    :cond_3
+    :cond_be
     add-int/lit8 v2, v2, -0x1
 
-    goto :goto_0
+    goto :goto_77
 
     .line 555
-    :cond_4
+    :cond_c1
     iget-object v1, p1, Lio/vanta/core/system/am/ActivityRecord;->callingPackage:Ljava/lang/String;
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_c9
 
     .line 556
     iget-object p1, p1, Lio/vanta/core/system/am/ActivityRecord;->callingPackage:Ljava/lang/String;
@@ -1538,7 +1538,7 @@
     return-object p1
 
     .line 559
-    :cond_5
+    :cond_c9
     new-instance p1, Ljava/util/ArrayList;
 
     iget-object v1, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -1556,8 +1556,8 @@
 
     add-int/lit8 v1, v1, -0x1
 
-    :goto_2
-    if-ltz v1, :cond_8
+    :goto_da
+    if-ltz v1, :cond_124
 
     .line 561
     invoke-interface {p1, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -1569,7 +1569,7 @@
     .line 562
     iget v3, v2, Lio/vanta/core/system/am/TaskRecord;->userId:I
 
-    if-ne v3, p2, :cond_7
+    if-ne v3, p2, :cond_121
 
     .line 563
     iget-object v3, v2, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -1580,8 +1580,8 @@
 
     add-int/lit8 v3, v3, -0x1
 
-    :goto_3
-    if-ltz v3, :cond_7
+    :goto_ee
+    if-ltz v3, :cond_121
 
     .line 564
     iget-object v4, v2, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -1592,12 +1592,12 @@
 
     check-cast v4, Lio/vanta/core/system/am/ActivityRecord;
 
-    if-eqz v4, :cond_6
+    if-eqz v4, :cond_11e
 
     .line 565
     iget-object v5, v4, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
-    if-eqz v5, :cond_6
+    if-eqz v5, :cond_11e
 
     iget-object v5, v4, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
@@ -1610,7 +1610,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_6
+    if-nez v5, :cond_11e
 
     iget-object v5, v4, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
@@ -1625,7 +1625,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_6
+    if-nez v5, :cond_11e
 
     .line 568
     iget-object p1, v4, Lio/vanta/core/system/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
@@ -1636,18 +1636,18 @@
 
     return-object p1
 
-    :cond_6
+    :cond_11e
     add-int/lit8 v3, v3, -0x1
 
-    goto :goto_3
+    goto :goto_ee
 
-    :cond_7
+    :cond_121
     add-int/lit8 v1, v1, -0x1
 
-    goto :goto_2
+    goto :goto_da
 
     .line 573
-    :cond_8
+    :cond_124
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
 
     move-result-object p1
@@ -1656,53 +1656,67 @@
 
     return-object p1
 
-    :catchall_0
+    :catchall_12a
     move-exception p1
 
     .line 574
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_12c
+    .catchall {:try_start_3 .. :try_end_12c} :catchall_12a
 
     throw p1
 .end method
 
 .method newActivityRecord(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;Landroid/os/IBinder;I)Lio/vanta/core/system/am/ActivityRecord;
-    .locals 2
+    .registers 7
 
     .line 393
     invoke-static {p1, p2, p3, p4}, Lio/vanta/core/system/am/ActivityRecord;->create(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;Landroid/os/IBinder;I)Lio/vanta/core/system/am/ActivityRecord;
 
     move-result-object p2
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_1c
 
     .line 394
-    const-string p3, "_B_|_P_creator_pkg_"
+    invoke-virtual {p1}, Landroid/content/Intent;->getExtras()Landroid/os/Bundle;
 
-    invoke-virtual {p1, p3}, Landroid/content/Intent;->hasExtra(Ljava/lang/String;)Z
+    move-result-object v0
 
-    move-result p3
-
-    if-eqz p3, :cond_0
-
-    .line 395
+    :try_start_a
     const-string p3, "_B_|_P_creator_pkg_"
 
     invoke-virtual {p1, p3}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object p1
+    move-result-object p3
 
-    iput-object p1, p2, Lio/vanta/core/system/am/ActivityRecord;->callingPackage:Ljava/lang/String;
+    if-eqz p3, :cond_14
+
+    iput-object p3, p2, Lio/vanta/core/system/am/ActivityRecord;->callingPackage:Ljava/lang/String;
+    :try_end_14
+    .catch Ljava/lang/Throwable; {:try_start_a .. :try_end_14} :catch_1a
+
+    :cond_14
+    :goto_14
+    if-eqz v0, :cond_1c
+
+    invoke-virtual {p1, v0}, Landroid/content/Intent;->replaceExtras(Landroid/os/Bundle;)Landroid/content/Intent;
+
+    goto :goto_1c
+
+    :catch_1a
+    move-exception p3
+
+    goto :goto_14
 
     .line 397
-    :cond_0
+    :cond_1c
+    :goto_1c
     iget-object p1, p0, Lio/vanta/core/system/am/ActivityStack;->mLaunchingActivities:Ljava/util/Set;
 
     monitor-enter p1
 
     .line 398
-    :try_start_0
+    :try_start_1f
     iget-object p3, p0, Lio/vanta/core/system/am/ActivityStack;->mLaunchingActivities:Ljava/util/Set;
 
     invoke-interface {p3, p2}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
@@ -1728,18 +1742,18 @@
 
     return-object p2
 
-    :catchall_0
+    :catchall_34
     move-exception p2
 
     monitor-exit p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_36
+    .catchall {:try_start_1f .. :try_end_36} :catchall_34
 
     throw p2
 .end method
 
 .method public onActivityCreated(Lio/vanta/core/system/ProcessRecord;ILandroid/os/IBinder;Lio/vanta/core/system/am/ActivityRecord;)V
-    .locals 5
+    .registers 10
 
     const-string v0, "onActivityCreated : "
 
@@ -1749,7 +1763,7 @@
     monitor-enter v1
 
     .line 466
-    :try_start_0
+    :try_start_5
     iget-object v2, p0, Lio/vanta/core/system/am/ActivityStack;->mLaunchingActivities:Ljava/util/Set;
 
     invoke-interface {v2, p4}, Ljava/util/Set;->remove(Ljava/lang/Object;)Z
@@ -1763,8 +1777,8 @@
 
     .line 468
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_11
+    .catchall {:try_start_5 .. :try_end_11} :catchall_65
 
     .line 469
     iget-object v2, p0, Lio/vanta/core/system/am/ActivityStack;->mTasks:Ljava/util/Map;
@@ -1772,7 +1786,7 @@
     monitor-enter v2
 
     .line 470
-    :try_start_1
+    :try_start_14
     invoke-direct {p0}, Lio/vanta/core/system/am/ActivityStack;->synchronizeTasks()V
 
     .line 471
@@ -1788,7 +1802,7 @@
 
     check-cast v1, Lio/vanta/core/system/am/TaskRecord;
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_3f
 
     .line 473
     new-instance v1, Lio/vanta/core/system/am/TaskRecord;
@@ -1818,7 +1832,7 @@
     invoke-interface {v3, p2, v1}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 477
-    :cond_0
+    :cond_3f
     iput-object p3, p4, Lio/vanta/core/system/am/ActivityRecord;->token:Landroid/os/IBinder;
 
     .line 478
@@ -1858,29 +1872,29 @@
 
     return-void
 
-    :catchall_0
+    :catchall_62
     move-exception p1
 
     monitor-exit v2
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_64
+    .catchall {:try_start_14 .. :try_end_64} :catchall_62
 
     throw p1
 
-    :catchall_1
+    :catchall_65
     move-exception p1
 
     .line 468
-    :try_start_2
+    :try_start_66
     monitor-exit v1
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_67
+    .catchall {:try_start_66 .. :try_end_67} :catchall_65
 
     throw p1
 .end method
 
 .method public onActivityDestroyed(ILandroid/os/IBinder;)V
-    .locals 3
+    .registers 6
 
     const-string v0, "onActivityDestroyed : "
 
@@ -1890,7 +1904,7 @@
     monitor-enter v1
 
     .line 500
-    :try_start_0
+    :try_start_5
     invoke-direct {p0}, Lio/vanta/core/system/am/ActivityStack;->synchronizeTasks()V
 
     .line 501
@@ -1898,14 +1912,14 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_10
 
     .line 503
     monitor-exit v1
 
     return-void
 
-    :cond_0
+    :cond_10
     const/4 p2, 0x1
 
     .line 505
@@ -1944,18 +1958,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_32
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_34
+    .catchall {:try_start_5 .. :try_end_34} :catchall_32
 
     throw p1
 .end method
 
 .method public onActivityResumed(ILandroid/os/IBinder;)V
-    .locals 3
+    .registers 6
 
     const-string v0, "onActivityResumed : "
 
@@ -1965,7 +1979,7 @@
     monitor-enter v1
 
     .line 487
-    :try_start_0
+    :try_start_5
     invoke-direct {p0}, Lio/vanta/core/system/am/ActivityStack;->synchronizeTasks()V
 
     .line 488
@@ -1973,7 +1987,7 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_10
 
     .line 490
     monitor-exit v1
@@ -1981,7 +1995,7 @@
     return-void
 
     .line 492
-    :cond_0
+    :cond_10
     const-string p2, "ActivityStack"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -2019,18 +2033,18 @@
 
     return-void
 
-    :catchall_0
+    :catchall_34
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_36
+    .catchall {:try_start_5 .. :try_end_36} :catchall_34
 
     throw p1
 .end method
 
 .method public onFinishActivity(ILandroid/os/IBinder;)V
-    .locals 3
+    .registers 6
 
     const-string v0, "onFinishActivity : "
 
@@ -2040,7 +2054,7 @@
     monitor-enter v1
 
     .line 513
-    :try_start_0
+    :try_start_5
     invoke-direct {p0}, Lio/vanta/core/system/am/ActivityStack;->synchronizeTasks()V
 
     .line 514
@@ -2048,14 +2062,14 @@
 
     move-result-object p1
 
-    if-nez p1, :cond_0
+    if-nez p1, :cond_10
 
     .line 516
     monitor-exit v1
 
     return-void
 
-    :cond_0
+    :cond_10
     const/4 p2, 0x1
 
     .line 518
@@ -2089,43 +2103,43 @@
 
     return-void
 
-    :catchall_0
+    :catchall_2d
     move-exception p1
 
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_2f
+    .catchall {:try_start_5 .. :try_end_2f} :catchall_2d
 
     throw p1
 .end method
 
 .method public startActivitiesLocked(I[Landroid/content/Intent;[Ljava/lang/String;Landroid/os/IBinder;Landroid/os/Bundle;)I
-    .locals 14
+    .registers 20
 
     move-object/from16 v0, p2
 
     move-object/from16 v1, p3
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_35
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_2d
 
     .line 88
     array-length v2, v0
 
     array-length v3, v1
 
-    if-ne v2, v3, :cond_1
+    if-ne v2, v3, :cond_25
 
     const/4 v2, 0x0
 
     move v3, v2
 
     .line 91
-    :goto_0
+    :goto_e
     array-length v4, v0
 
-    if-ge v3, v4, :cond_0
+    if-ge v3, v4, :cond_24
 
     .line 92
     aget-object v7, v0, v3
@@ -2150,13 +2164,13 @@
 
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_e
 
-    :cond_0
+    :cond_24
     return v2
 
     .line 89
-    :cond_1
+    :cond_25
     new-instance p1, Ljava/lang/IllegalArgumentException;
 
     const-string v0, "intents are length different than resolvedTypes"
@@ -2166,7 +2180,7 @@
     throw p1
 
     .line 86
-    :cond_2
+    :cond_2d
     new-instance p1, Ljava/lang/NullPointerException;
 
     const-string v0, "resolvedTypes is null"
@@ -2176,7 +2190,7 @@
     throw p1
 
     .line 83
-    :cond_3
+    :cond_35
     new-instance p1, Ljava/lang/NullPointerException;
 
     const-string v0, "intents is null"
@@ -2187,8 +2201,49 @@
 .end method
 
 .method public startActivityLocked(ILandroid/content/Intent;Ljava/lang/String;Landroid/os/IBinder;Ljava/lang/String;IILandroid/os/Bundle;)I
-    .locals 22
+    .registers 31
 
+    move-object/from16 v12, p2
+
+    invoke-virtual {v12}, Landroid/content/Intent;->getComponent()Landroid/content/ComponentName;
+
+    move-result-object v13
+
+    if-eqz v13, :cond_27
+
+    invoke-virtual {v12}, Landroid/content/Intent;->getFlags()I
+
+    move-result v14
+
+    const/high16 v15, 0x14000000
+
+    and-int/2addr v14, v15
+
+    const/high16 v15, 0x14000000
+
+    if-ne v14, v15, :cond_27
+
+    move-object/from16 v14, p0
+
+    move/from16 v15, p1
+
+    invoke-direct {v14, v15, v13}, Lio/vanta/core/system/am/ActivityStack;->findActivityRecordByComponentName(ILandroid/content/ComponentName;)Lio/vanta/core/system/am/ActivityRecord;
+
+    move-result-object v13
+
+    if-eqz v13, :cond_27
+
+    iget-boolean v15, v13, Lio/vanta/core/system/am/ActivityRecord;->finished:Z
+
+    if-nez v15, :cond_27
+
+    invoke-direct {v14, v13, v12}, Lio/vanta/core/system/am/ActivityStack;->deliverNewIntentLocked(Lio/vanta/core/system/am/ActivityRecord;Landroid/content/Intent;)V
+
+    const/16 v12, 0x0
+
+    return v12
+
+    :cond_27
     move-object/from16 v1, p0
 
     move/from16 v9, p1
@@ -2203,13 +2258,13 @@
     monitor-enter v3
 
     .line 99
-    :try_start_0
+    :try_start_32
     invoke-direct {v1}, Lio/vanta/core/system/am/ActivityStack;->synchronizeTasks()V
 
     .line 100
     monitor-exit v3
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_3
+    :try_end_36
+    .catchall {:try_start_32 .. :try_end_36} :catchall_25a
 
     .line 102
     invoke-static {}, Lio/vanta/core/system/pm/BPackageManagerService;->get()Lio/vanta/core/system/pm/BPackageManagerService;
@@ -2224,17 +2279,17 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1e
+    if-eqz v0, :cond_257
 
     .line 103
     iget-object v6, v0, Landroid/content/pm/ResolveInfo;->activityInfo:Landroid/content/pm/ActivityInfo;
 
-    if-nez v6, :cond_0
+    if-nez v6, :cond_49
 
-    goto/16 :goto_13
+    goto/16 :goto_257
 
     .line 106
-    :cond_0
+    :cond_49
     const-string v6, "ActivityStack"
 
     new-instance v7, Ljava/lang/StringBuilder;
@@ -2263,18 +2318,18 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_6a
 
     .line 112
     iget-object v0, v0, Lio/vanta/core/system/am/ActivityRecord;->task:Lio/vanta/core/system/am/TaskRecord;
 
-    goto :goto_0
+    goto :goto_6b
 
-    :cond_1
+    :cond_6a
     const/4 v0, 0x0
 
     .line 115
-    :goto_0
+    :goto_6b
     invoke-static {v11}, Lio/vanta/utils/ComponentUtils;->getTaskAffinity(Landroid/content/pm/ActivityInfo;)Ljava/lang/String;
 
     move-result-object v7
@@ -2286,24 +2341,24 @@
 
     move-result v10
 
-    if-nez v10, :cond_3
+    if-nez v10, :cond_7e
 
     iget v10, v11, Landroid/content/pm/ActivityInfo;->launchMode:I
 
-    if-ne v10, v3, :cond_2
+    if-ne v10, v3, :cond_7c
 
-    goto :goto_1
+    goto :goto_7e
 
-    :cond_2
+    :cond_7c
     const/4 v10, 0x0
 
-    goto :goto_2
+    goto :goto_7f
 
-    :cond_3
-    :goto_1
+    :cond_7e
+    :goto_7e
     move v10, v3
 
-    :goto_2
+    :goto_7f
     const/high16 v12, 0x10000000
 
     .line 119
@@ -2332,53 +2387,53 @@
 
     const/4 v4, 0x2
 
-    if-eqz v15, :cond_5
+    if-eqz v15, :cond_a6
 
-    if-eq v15, v3, :cond_5
+    if-eq v15, v3, :cond_a6
 
-    if-eq v15, v4, :cond_5
+    if-eq v15, v4, :cond_a6
 
-    if-eq v15, v6, :cond_4
+    if-eq v15, v6, :cond_a1
 
     move v15, v12
 
     const/4 v7, 0x0
 
-    goto :goto_4
+    goto :goto_b0
 
     .line 134
-    :cond_4
+    :cond_a1
     invoke-direct {v1, v9, v7}, Lio/vanta/core/system/am/ActivityStack;->findTaskRecordByTaskAffinityLocked(ILjava/lang/String;)Lio/vanta/core/system/am/TaskRecord;
 
     move-result-object v7
 
-    goto :goto_3
+    goto :goto_af
 
     .line 128
-    :cond_5
+    :cond_a6
     invoke-direct {v1, v9, v7}, Lio/vanta/core/system/am/ActivityStack;->findTaskRecordByTaskAffinityLocked(ILjava/lang/String;)Lio/vanta/core/system/am/TaskRecord;
 
     move-result-object v7
 
-    if-nez v7, :cond_6
+    if-nez v7, :cond_af
 
-    if-nez v12, :cond_6
+    if-nez v12, :cond_af
 
     move-object v7, v0
 
-    :cond_6
-    :goto_3
+    :cond_af
+    :goto_af
     move v15, v12
 
-    :goto_4
-    if-eqz v7, :cond_1d
+    :goto_b0
+    if-eqz v7, :cond_241
 
     .line 139
     invoke-virtual {v7}, Lio/vanta/core/system/am/TaskRecord;->needNewTask()Z
 
     move-result v17
 
-    if-eqz v17, :cond_7
+    if-eqz v17, :cond_c2
 
     move-object v3, v2
 
@@ -2392,10 +2447,10 @@
 
     move-object/from16 v9, p8
 
-    goto/16 :goto_12
+    goto/16 :goto_252
 
     .line 143
-    :cond_7
+    :cond_c2
     iget-object v12, v1, Lio/vanta/core/system/am/ActivityStack;->mAms:Landroid/app/ActivityManager;
 
     iget v6, v7, Lio/vanta/core/system/am/TaskRecord;->id:I
@@ -2404,16 +2459,16 @@
 
     invoke-virtual {v12, v6, v4}, Landroid/app/ActivityManager;->moveTaskToFront(II)V
 
-    if-nez v13, :cond_9
+    if-nez v13, :cond_e8
 
-    if-nez v10, :cond_9
+    if-nez v10, :cond_e8
 
-    if-eqz v14, :cond_8
+    if-eqz v14, :cond_d1
 
-    goto :goto_5
+    goto :goto_e8
 
     .line 150
-    :cond_8
+    :cond_d1
     iget-object v4, v7, Lio/vanta/core/system/am/TaskRecord;->rootIntent:Landroid/content/Intent;
 
     .line 151
@@ -2421,7 +2476,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_9
+    if-eqz v4, :cond_e8
 
     iget-object v4, v7, Lio/vanta/core/system/am/TaskRecord;->rootIntent:Landroid/content/Intent;
 
@@ -2434,14 +2489,14 @@
 
     move-result v6
 
-    if-ne v4, v6, :cond_9
+    if-ne v4, v6, :cond_e8
 
     const/16 v16, 0x0
 
     return v16
 
-    :cond_9
-    :goto_5
+    :cond_e8
+    :goto_e8
     move v4, v10
 
     .line 157
@@ -2458,9 +2513,9 @@
 
     move-result-object v6
 
-    if-eqz v13, :cond_d
+    if-eqz v13, :cond_15e
 
-    if-eqz v6, :cond_d
+    if-eqz v6, :cond_15e
 
     .line 165
     iget-object v12, v6, Lio/vanta/core/system/am/ActivityRecord;->task:Lio/vanta/core/system/am/TaskRecord;
@@ -2472,7 +2527,7 @@
     move/from16 v18, v3
 
     .line 166
-    :try_start_1
+    :try_start_100
     iget-object v3, v6, Lio/vanta/core/system/am/ActivityRecord;->task:Lio/vanta/core/system/am/TaskRecord;
 
     iget-object v3, v3, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -2483,8 +2538,8 @@
 
     add-int/lit8 v3, v3, -0x1
 
-    :goto_6
-    if-ltz v3, :cond_c
+    :goto_10a
+    if-ltz v3, :cond_154
 
     move-object/from16 v19, v0
 
@@ -2499,7 +2554,7 @@
 
     check-cast v0, Lio/vanta/core/system/am/ActivityRecord;
 
-    if-eq v0, v6, :cond_a
+    if-eq v0, v6, :cond_14b
 
     move/from16 v20, v3
 
@@ -2549,57 +2604,57 @@
 
     const/16 v18, 0x1
 
-    goto :goto_6
+    goto :goto_10a
 
-    :cond_a
+    :cond_14b
     move/from16 v21, v4
 
-    if-eqz v21, :cond_b
+    if-eqz v21, :cond_150
 
-    goto :goto_8
+    goto :goto_159
 
-    :cond_b
+    :cond_150
     const/4 v3, 0x1
 
     .line 176
     iput-boolean v3, v6, Lio/vanta/core/system/am/ActivityRecord;->finished:Z
 
-    goto :goto_7
+    goto :goto_158
 
-    :cond_c
+    :cond_154
     move-object/from16 v19, v0
 
     move/from16 v21, v4
 
-    :goto_7
+    :goto_158
     const/4 v6, 0x0
 
     .line 181
-    :goto_8
+    :goto_159
     monitor-exit v12
 
-    goto :goto_9
+    goto :goto_163
 
-    :catchall_0
+    :catchall_15b
     move-exception v0
 
     monitor-exit v12
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_15d
+    .catchall {:try_start_100 .. :try_end_15d} :catchall_15b
 
     throw v0
 
-    :cond_d
+    :cond_15e
     move-object/from16 v19, v0
 
     move/from16 v21, v4
 
     const/4 v6, 0x0
 
-    :goto_9
-    if-eqz v21, :cond_11
+    :goto_163
+    if-eqz v21, :cond_19e
 
-    if-nez v13, :cond_11
+    if-nez v13, :cond_19e
 
     .line 186
     iget-object v0, v10, Lio/vanta/core/system/am/ActivityRecord;->intent:Landroid/content/Intent;
@@ -2608,20 +2663,20 @@
 
     move-result v0
 
-    if-eqz v0, :cond_e
+    if-eqz v0, :cond_171
 
     move-object v6, v10
 
-    goto :goto_b
+    goto :goto_19e
 
     .line 189
-    :cond_e
+    :cond_171
     iget-object v3, v1, Lio/vanta/core/system/am/ActivityStack;->mLaunchingActivities:Ljava/util/Set;
 
     monitor-enter v3
 
     .line 190
-    :try_start_2
+    :try_start_174
     iget-object v0, v1, Lio/vanta/core/system/am/ActivityStack;->mLaunchingActivities:Ljava/util/Set;
 
     invoke-interface {v0}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
@@ -2630,13 +2685,13 @@
 
     const/4 v4, 0x0
 
-    :cond_f
-    :goto_a
+    :cond_17b
+    :goto_17b
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v5
 
-    if-eqz v5, :cond_10
+    if-eqz v5, :cond_199
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -2647,7 +2702,7 @@
     .line 191
     iget-boolean v12, v5, Lio/vanta/core/system/am/ActivityRecord;->finished:Z
 
-    if-nez v12, :cond_f
+    if-nez v12, :cond_17b
 
     iget-object v5, v5, Lio/vanta/core/system/am/ActivityRecord;->component:Landroid/content/ComponentName;
 
@@ -2659,40 +2714,40 @@
 
     move-result v5
 
-    if-eqz v5, :cond_f
+    if-eqz v5, :cond_17b
 
     const/4 v4, 0x1
 
-    goto :goto_a
+    goto :goto_17b
 
     .line 196
-    :cond_10
+    :cond_199
     monitor-exit v3
 
-    goto :goto_c
+    goto :goto_19f
 
-    :catchall_1
+    :catchall_19b
     move-exception v0
 
     monitor-exit v3
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_19d
+    .catchall {:try_start_174 .. :try_end_19d} :catchall_19b
 
     throw v0
 
-    :cond_11
-    :goto_b
+    :cond_19e
+    :goto_19e
     const/4 v4, 0x0
 
     .line 200
-    :goto_c
+    :goto_19f
     iget v0, v11, Landroid/content/pm/ActivityInfo;->launchMode:I
 
     const/4 v3, 0x2
 
-    if-ne v0, v3, :cond_14
+    if-ne v0, v3, :cond_1dd
 
-    if-nez v13, :cond_14
+    if-nez v13, :cond_1dd
 
     .line 201
     iget-object v0, v10, Lio/vanta/core/system/am/ActivityRecord;->intent:Landroid/content/Intent;
@@ -2701,14 +2756,14 @@
 
     move-result v0
 
-    if-eqz v0, :cond_12
+    if-eqz v0, :cond_1b0
 
     move-object v6, v10
 
-    goto :goto_e
+    goto :goto_1dd
 
     .line 204
-    :cond_12
+    :cond_1b0
     invoke-static {v11}, Lio/vanta/utils/ComponentUtils;->toComponentName(Landroid/content/pm/ComponentInfo;)Landroid/content/ComponentName;
 
     move-result-object v0
@@ -2717,7 +2772,7 @@
 
     move-result-object v0
 
-    if-eqz v0, :cond_14
+    if-eqz v0, :cond_1dd
 
     .line 209
     iget-object v3, v7, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -2725,7 +2780,7 @@
     monitor-enter v3
 
     .line 210
-    :try_start_3
+    :try_start_1bd
     iget-object v5, v7, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
 
     invoke-interface {v5}, Ljava/util/List;->size()I
@@ -2736,8 +2791,8 @@
 
     sub-int/2addr v5, v6
 
-    :goto_d
-    if-ltz v5, :cond_13
+    :goto_1c5
+    if-ltz v5, :cond_1d7
 
     .line 211
     iget-object v12, v7, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -2748,7 +2803,7 @@
 
     check-cast v12, Lio/vanta/core/system/am/ActivityRecord;
 
-    if-eq v12, v0, :cond_13
+    if-eq v12, v0, :cond_1d7
 
     .line 213
     iput-boolean v6, v12, Lio/vanta/core/system/am/ActivityRecord;->finished:Z
@@ -2757,40 +2812,40 @@
 
     const/4 v6, 0x1
 
-    goto :goto_d
+    goto :goto_1c5
 
     .line 218
-    :cond_13
+    :cond_1d7
     monitor-exit v3
 
     move-object v6, v0
 
-    goto :goto_e
+    goto :goto_1dd
 
-    :catchall_2
+    :catchall_1da
     move-exception v0
 
     monitor-exit v3
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_2
+    :try_end_1dc
+    .catchall {:try_start_1bd .. :try_end_1dc} :catchall_1da
 
     throw v0
 
     .line 223
-    :cond_14
-    :goto_e
+    :cond_1dd
+    :goto_1dd
     iget v0, v11, Landroid/content/pm/ActivityInfo;->launchMode:I
 
     const/4 v3, 0x3
 
-    if-ne v0, v3, :cond_15
+    if-ne v0, v3, :cond_1e3
 
     move-object v6, v10
 
-    :cond_15
-    if-eqz v14, :cond_17
+    :cond_1e3
+    if-eqz v14, :cond_200
 
-    if-eqz v15, :cond_17
+    if-eqz v15, :cond_200
 
     .line 229
     iget-object v0, v7, Lio/vanta/core/system/am/TaskRecord;->activities:Ljava/util/List;
@@ -2799,12 +2854,12 @@
 
     move-result-object v0
 
-    :goto_f
+    :goto_1ed
     invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
 
     move-result v3
 
-    if-eqz v3, :cond_16
+    if-eqz v3, :cond_1fd
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -2817,14 +2872,16 @@
     .line 230
     iput-boolean v5, v3, Lio/vanta/core/system/am/ActivityRecord;->finished:Z
 
-    goto :goto_f
+    goto :goto_1ed
 
     .line 232
-    :cond_16
+    :cond_1fd
     invoke-direct/range {p0 .. p1}, Lio/vanta/core/system/am/ActivityStack;->finishAllActivity(I)V
 
-    :cond_17
-    if-eqz v6, :cond_18
+    :cond_200
+    invoke-direct/range {p0 .. p1}, Lio/vanta/core/system/am/ActivityStack;->finishAllActivity(I)V
+
+    if-eqz v6, :cond_20b
 
     .line 238
     invoke-direct {v1, v6, v2}, Lio/vanta/core/system/am/ActivityStack;->deliverNewIntentLocked(Lio/vanta/core/system/am/ActivityRecord;Landroid/content/Intent;)V
@@ -2833,32 +2890,32 @@
 
     return v16
 
-    :cond_18
+    :cond_20b
     const/16 v16, 0x0
 
-    if-eqz v4, :cond_19
+    if-eqz v4, :cond_210
 
     return v16
 
-    :cond_19
-    if-nez p4, :cond_1b
+    :cond_210
+    if-nez p4, :cond_225
 
     .line 245
     invoke-virtual {v7}, Lio/vanta/core/system/am/TaskRecord;->getTopActivityRecord()Lio/vanta/core/system/am/ActivityRecord;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1a
+    if-eqz v0, :cond_21b
 
     .line 247
     iget-object v0, v0, Lio/vanta/core/system/am/ActivityRecord;->token:Landroid/os/IBinder;
 
-    goto :goto_10
+    goto :goto_21d
 
-    :cond_1a
+    :cond_21b
     move-object/from16 v0, p4
 
-    :goto_10
+    :goto_21d
     move-object/from16 v5, p5
 
     move/from16 v6, p6
@@ -2867,24 +2924,24 @@
 
     move-object v4, v0
 
-    goto :goto_11
+    goto :goto_238
 
-    :cond_1b
-    if-eqz v19, :cond_1c
+    :cond_225
+    if-eqz v19, :cond_230
 
     .line 250
     invoke-virtual/range {v19 .. v19}, Lio/vanta/core/system/am/TaskRecord;->getTopActivityRecord()Lio/vanta/core/system/am/ActivityRecord;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1c
+    if-eqz v0, :cond_230
 
     .line 252
     iget-object v0, v0, Lio/vanta/core/system/am/ActivityRecord;->token:Landroid/os/IBinder;
 
-    goto :goto_10
+    goto :goto_21d
 
-    :cond_1c
+    :cond_230
     move-object/from16 v4, p4
 
     move-object/from16 v5, p5
@@ -2893,7 +2950,7 @@
 
     move/from16 v7, p7
 
-    :goto_11
+    :goto_238
     move-object v3, v8
 
     const/4 v12, 0x0
@@ -2907,7 +2964,7 @@
 
     return v0
 
-    :cond_1d
+    :cond_241
     const/4 v12, 0x0
 
     move-object/from16 v1, p0
@@ -2929,27 +2986,27 @@
     move-object v4, v11
 
     .line 140
-    :goto_12
+    :goto_252
     invoke-direct/range {v1 .. v9}, Lio/vanta/core/system/am/ActivityStack;->startActivityInNewTaskLocked(ILandroid/content/Intent;Landroid/content/pm/ActivityInfo;Landroid/os/IBinder;IILjava/lang/String;Landroid/os/Bundle;)I
 
     move-result v0
 
     return v0
 
-    :cond_1e
-    :goto_13
+    :cond_257
+    :goto_257
     const/16 v16, 0x0
 
     return v16
 
-    :catchall_3
+    :catchall_25a
     move-exception v0
 
     .line 100
-    :try_start_4
+    :try_start_25b
     monitor-exit v3
-    :try_end_4
-    .catchall {:try_start_4 .. :try_end_4} :catchall_3
+    :try_end_25c
+    .catchall {:try_start_25b .. :try_end_25c} :catchall_25a
 
     throw v0
 .end method

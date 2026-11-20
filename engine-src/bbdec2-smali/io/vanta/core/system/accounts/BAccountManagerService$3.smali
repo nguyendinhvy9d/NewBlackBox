@@ -32,7 +32,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/accounts/BAccountManagerService;Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/IAccountManagerResponse;Ljava/lang/String;ZZLjava/lang/String;ZLandroid/os/Bundle;Landroid/accounts/Account;Ljava/lang/String;ZZLjava/lang/String;)V
-    .locals 0
+    .registers 15
 
     .line 639
     iput-object p1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$3;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -57,9 +57,9 @@
 
 # virtual methods
 .method public onResult(Landroid/os/Bundle;)V
-    .locals 9
+    .registers 11
 
-    if-eqz p1, :cond_4
+    if-eqz p1, :cond_66
 
     .line 660
     const-string v0, "authtoken"
@@ -68,7 +68,7 @@
 
     move-result-object v6
 
-    if-eqz v6, :cond_3
+    if-eqz v6, :cond_5e
 
     .line 662
     const-string v0, "authAccount"
@@ -89,18 +89,18 @@
 
     move-result v2
 
-    if-nez v2, :cond_2
+    if-nez v2, :cond_57
 
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_23
 
-    goto :goto_0
+    goto :goto_57
 
     .line 669
-    :cond_0
+    :cond_23
     new-instance v2, Landroid/accounts/Account;
 
     invoke-direct {v2, v0, v1}, Landroid/accounts/Account;-><init>(Ljava/lang/String;Ljava/lang/String;)V
@@ -108,7 +108,7 @@
     .line 670
     iget-boolean v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$3;->val$customTokens:Z
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_35
 
     .line 671
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$3;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -120,7 +120,7 @@
     invoke-virtual {v0, v1, v2, v3, v6}, Lio/vanta/core/system/accounts/BAccountManagerService;->saveAuthTokenToDatabase(Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;)V
 
     .line 677
-    :cond_1
+    :cond_35
     const-string v0, "android.accounts.expiry"
 
     const-wide/16 v1, 0x0
@@ -132,7 +132,7 @@
     .line 679
     iget-boolean v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$3;->val$customTokens:Z
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_5e
 
     .line 680
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -141,7 +141,7 @@
 
     cmp-long v0, v7, v0
 
-    if-lez v0, :cond_3
+    if-lez v0, :cond_5e
 
     .line 681
     iget-object v1, p0, Lio/vanta/core/system/accounts/BAccountManagerService$3;->this$0:Lio/vanta/core/system/accounts/BAccountManagerService;
@@ -156,10 +156,10 @@
 
     invoke-virtual/range {v1 .. v8}, Lio/vanta/core/system/accounts/BAccountManagerService;->saveCachedToken(Lio/vanta/core/system/accounts/BUserAccounts;Landroid/accounts/Account;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;J)V
 
-    goto :goto_1
+    goto :goto_5e
 
-    :cond_2
-    :goto_0
+    :cond_57
+    :goto_57
     const/4 p1, 0x5
 
     .line 665
@@ -170,8 +170,8 @@
     return-void
 
     .line 691
-    :cond_3
-    :goto_1
+    :cond_5e
+    :goto_5e
     const-string v0, "intent"
 
     invoke-virtual {p1, v0}, Landroid/os/Bundle;->getParcelable(Ljava/lang/String;)Landroid/os/Parcelable;
@@ -181,14 +181,14 @@
     check-cast v0, Landroid/content/Intent;
 
     .line 700
-    :cond_4
+    :cond_66
     invoke-super {p0, p1}, Lio/vanta/core/system/accounts/BAccountManagerService$Session;->onResult(Landroid/os/Bundle;)V
 
     return-void
 .end method
 
 .method public run()V
-    .locals 4
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -210,17 +210,17 @@
 .end method
 
 .method protected toDebugString(J)Ljava/lang/String;
-    .locals 1
+    .registers 4
 
     .line 642
     iget-object v0, p0, Lio/vanta/core/system/accounts/BAccountManagerService$3;->val$options:Landroid/os/Bundle;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_7
 
     invoke-virtual {v0}, Landroid/os/Bundle;->keySet()Ljava/util/Set;
 
     .line 643
-    :cond_0
+    :cond_7
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V

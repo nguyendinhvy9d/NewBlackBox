@@ -20,7 +20,7 @@
 
 # direct methods
 .method constructor <init>(Lio/vanta/core/system/am/BroadcastManager;Landroid/os/Looper;)V
-    .locals 0
+    .registers 3
 
     .line 39
     iput-object p1, p0, Lio/vanta/core/system/am/BroadcastManager$1;->this$0:Lio/vanta/core/system/am/BroadcastManager;
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public handleMessage(Landroid/os/Message;)V
-    .locals 3
+    .registers 5
 
     const-string v0, "Timeout Receiver: "
 
@@ -45,13 +45,13 @@
 
     const/4 v2, 0x1
 
-    if-eq v1, v2, :cond_0
+    if-eq v1, v2, :cond_b
 
-    goto :goto_0
+    goto :goto_28
 
     .line 46
-    :cond_0
-    :try_start_0
+    :cond_b
+    :try_start_b
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 
     check-cast p1, Lio/vanta/entity/am/PendingResultData;
@@ -79,10 +79,10 @@
     move-result-object p1
 
     invoke-static {v1, p1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_28
+    .catchall {:try_start_b .. :try_end_28} :catchall_28
 
-    :catchall_0
-    :goto_0
+    :catchall_28
+    :goto_28
     return-void
 .end method

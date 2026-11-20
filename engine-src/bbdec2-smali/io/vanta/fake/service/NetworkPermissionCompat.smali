@@ -14,7 +14,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 8
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,39 +23,39 @@
 .end method
 
 .method public static install()V
-    .locals 6
+    .registers 6
 
     .line 24
     const-string v0, "install failed: "
 
     sget-boolean v1, Lio/vanta/fake/service/NetworkPermissionCompat;->sInstalled:Z
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_7
 
-    goto :goto_1
+    goto :goto_4b
 
     .line 27
-    :cond_0
+    :cond_7
     const-class v1, Lio/vanta/fake/service/NetworkPermissionCompat;
 
     monitor-enter v1
 
     .line 28
-    :try_start_0
+    :try_start_a
     sget-boolean v2, Lio/vanta/fake/service/NetworkPermissionCompat;->sInstalled:Z
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_10
 
     .line 29
     monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_f
+    .catchall {:try_start_a .. :try_end_f} :catchall_4c
 
     return-void
 
     .line 32
-    :cond_1
-    :try_start_1
+    :cond_10
+    :try_start_10
     const-string v2, "android.permission.PermissionManager"
 
     invoke-static {v2}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
@@ -94,16 +94,16 @@
     const-string v3, "disabled framework permission cache"
 
     invoke-static {v2, v3}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_32
+    .catchall {:try_start_10 .. :try_end_32} :catchall_33
 
-    goto :goto_0
+    goto :goto_4a
 
-    :catchall_0
+    :catchall_33
     move-exception v2
 
     .line 39
-    :try_start_2
+    :try_start_34
     const-string v3, "NetworkPermissionCompat"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -125,18 +125,18 @@
     invoke-static {v3, v0, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 41
-    :goto_0
+    :goto_4a
     monitor-exit v1
 
-    :goto_1
+    :goto_4b
     return-void
 
-    :catchall_1
+    :catchall_4c
     move-exception v0
 
     monitor-exit v1
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+    :try_end_4e
+    .catchall {:try_start_34 .. :try_end_4e} :catchall_4c
 
     throw v0
 .end method
@@ -144,7 +144,7 @@
 
 # virtual methods
 .method public injectHook()V
-    .locals 0
+    .registers 1
 
     .line 15
     invoke-static {}, Lio/vanta/fake/service/NetworkPermissionCompat;->install()V
@@ -153,7 +153,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     .line 20
     sget-boolean v0, Lio/vanta/fake/service/NetworkPermissionCompat;->sInstalled:Z

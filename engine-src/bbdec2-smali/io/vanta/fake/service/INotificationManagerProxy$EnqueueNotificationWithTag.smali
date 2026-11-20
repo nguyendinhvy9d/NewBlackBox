@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 101
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method public getIdIndex()I
-    .locals 1
+    .registers 2
 
     .line 117
     invoke-virtual {p0}, Lio/vanta/fake/service/INotificationManagerProxy$EnqueueNotificationWithTag;->getTagIndex()I
@@ -44,7 +44,7 @@
 .end method
 
 .method public getTagIndex()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x2
 
@@ -52,7 +52,7 @@
 .end method
 
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 1
+    .registers 5
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;

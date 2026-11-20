@@ -47,7 +47,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 532
     new-instance v0, Lio/vanta/core/system/pm/BPackage$IntentInfo$1;
@@ -60,7 +60,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/pm/PackageParser$IntentInfo;)V
-    .locals 1
+    .registers 3
 
     .line 486
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -81,20 +81,20 @@
     .line 490
     iget-object v0, p1, Landroid/content/pm/PackageParser$IntentInfo;->nonLocalizedLabel:Ljava/lang/CharSequence;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_13
 
     const/4 v0, 0x0
 
-    goto :goto_0
+    goto :goto_19
 
-    :cond_0
+    :cond_13
     iget-object v0, p1, Landroid/content/pm/PackageParser$IntentInfo;->nonLocalizedLabel:Ljava/lang/CharSequence;
 
     invoke-virtual {v0}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
     move-result-object v0
 
-    :goto_0
+    :goto_19
     iput-object v0, p0, Lio/vanta/core/system/pm/BPackage$IntentInfo;->nonLocalizedLabel:Ljava/lang/String;
 
     .line 491
@@ -116,7 +116,7 @@
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
 
     .line 522
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -141,16 +141,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_19
 
     const/4 v0, 0x1
 
-    goto :goto_0
+    goto :goto_1a
 
-    :cond_0
+    :cond_19
     const/4 v0, 0x0
 
-    :goto_0
+    :goto_1a
     iput-boolean v0, p0, Lio/vanta/core/system/pm/BPackage$IntentInfo;->hasDefault:Z
 
     .line 525
@@ -192,7 +192,7 @@
 .end method
 
 .method public constructor <init>(Lio/vanta/core/system/pm/BPackage$IntentInfo;)V
-    .locals 1
+    .registers 3
 
     .line 496
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -215,18 +215,18 @@
     .line 500
     iget-object v0, p1, Lio/vanta/core/system/pm/BPackage$IntentInfo;->nonLocalizedLabel:Ljava/lang/String;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_15
 
     const/4 v0, 0x0
 
-    goto :goto_0
+    goto :goto_19
 
-    :cond_0
+    :cond_15
     invoke-virtual {v0}, Ljava/lang/String;->toString()Ljava/lang/String;
 
     move-result-object v0
 
-    :goto_0
+    :goto_19
     iput-object v0, p0, Lio/vanta/core/system/pm/BPackage$IntentInfo;->nonLocalizedLabel:Ljava/lang/String;
 
     .line 501
@@ -250,7 +250,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -258,7 +258,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 1
+    .registers 4
 
     .line 513
     iget-object v0, p0, Lio/vanta/core/system/pm/BPackage$IntentInfo;->intentFilter:Landroid/content/IntentFilter;

@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 2
+    .registers 3
 
     .line 14
     invoke-static {}, Lvanta/android/os/BRServiceManager;->get()Lvanta/android/os/ServiceManagerStatic;
@@ -26,20 +26,20 @@
 .end method
 
 .method private static getServiceName()Ljava/lang/String;
-    .locals 1
+    .registers 1
 
     .line 18
     invoke-static {}, Lio/vanta/utils/compat/BuildCompat;->isOreo()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_9
 
     const-string v0, "contexthub"
 
     return-object v0
 
-    :cond_0
+    :cond_9
     const-string v0, "contexthub_service"
 
     return-object v0
@@ -48,7 +48,7 @@
 
 # virtual methods
 .method protected getWho()Ljava/lang/Object;
-    .locals 3
+    .registers 4
 
     .line 23
     invoke-static {}, Lvanta/android/hardware/location/BRIContextHubServiceStub;->get()Lvanta/android/hardware/location/IContextHubServiceStubStatic;
@@ -75,7 +75,7 @@
 .end method
 
 .method protected inject(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 0
+    .registers 3
 
     .line 28
     invoke-static {}, Lio/vanta/fake/service/IContextHubServiceProxy;->getServiceName()Ljava/lang/String;
@@ -88,7 +88,7 @@
 .end method
 
 .method public isBadEnv()Z
-    .locals 1
+    .registers 2
 
     const/4 v0, 0x0
 
@@ -96,7 +96,7 @@
 .end method
 
 .method protected onBindMethod()V
-    .locals 4
+    .registers 5
 
     .line 33
     invoke-super {p0}, Lio/vanta/fake/hook/BinderInvocationStub;->onBindMethod()V

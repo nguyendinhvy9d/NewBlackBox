@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 54
     invoke-direct {p0}, Lio/vanta/fake/hook/MethodHook;-><init>()V
@@ -31,39 +31,39 @@
 
 # virtual methods
 .method protected hook(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 4
+    .registers 8
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
         }
     .end annotation
 
-    if-eqz p3, :cond_1
+    if-eqz p3, :cond_48
 
     .line 57
     array-length v0, p3
 
-    if-lez v0, :cond_1
+    if-lez v0, :cond_48
 
     const/4 v0, 0x0
 
     .line 59
-    :goto_0
+    :goto_6
     array-length v1, p3
 
-    if-ge v0, v1, :cond_1
+    if-ge v0, v1, :cond_48
 
     .line 60
     aget-object v1, p3, v0
 
     instance-of v2, v1, Ljava/lang/String;
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_45
 
     .line 61
     check-cast v1, Ljava/lang/String;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_45
 
     .line 62
     invoke-static {}, Lio/vanta/VantaCore;->getHostPkg()Ljava/lang/String;
@@ -74,7 +74,7 @@
 
     move-result v2
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_45
 
     .line 63
     new-instance v2, Ljava/lang/StringBuilder;
@@ -116,13 +116,13 @@
 
     aput-object v1, p3, v0
 
-    :cond_0
+    :cond_45
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_6
 
     .line 69
-    :cond_1
+    :cond_48
     invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object p1

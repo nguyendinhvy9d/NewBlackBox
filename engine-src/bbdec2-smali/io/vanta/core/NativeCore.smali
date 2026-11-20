@@ -9,7 +9,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 26
     const-string v0, "vanta"
@@ -20,7 +20,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -32,14 +32,14 @@
 .end method
 
 .method private static createFallbackEmptyDex()[J
-    .locals 7
+    .registers 7
 
     .line 147
     const-string v0, "NativeCore"
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_3
     const-string v2, "Creating fallback empty DEX"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
@@ -82,14 +82,14 @@
 
     move-result-object v2
 
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_87
 
     .line 165
     invoke-interface {v2}, Ljava/util/List;->isEmpty()Z
 
     move-result v3
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_87
 
     .line 166
     invoke-interface {v2}, Ljava/util/List;->size()I
@@ -101,12 +101,12 @@
     move v4, v1
 
     .line 167
-    :goto_0
+    :goto_3a
     invoke-interface {v2}, Ljava/util/List;->size()I
 
     move-result v5
 
-    if-ge v4, v5, :cond_0
+    if-ge v4, v5, :cond_4f
 
     .line 168
     invoke-interface {v2, v4}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -123,10 +123,10 @@
 
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_3a
 
     .line 171
-    :cond_0
+    :cond_4f
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -156,12 +156,12 @@
     move-result-object v2
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_6f
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_6f} :catch_70
 
     return-object v3
 
-    :catch_0
+    :catch_70
     move-exception v2
 
     .line 176
@@ -186,7 +186,7 @@
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 180
-    :cond_1
+    :cond_87
     const-string v2, "Returning empty DEX array as last resort"
 
     invoke-static {v0, v2}, Lio/vanta/utils/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
@@ -198,18 +198,18 @@
 .end method
 
 .method private static createMinimalDexBytes()[B
-    .locals 1
+    .registers 1
 
     const/16 v0, 0x70
 
     .line 191
     new-array v0, v0, [B
 
-    fill-array-data v0, :array_0
+    fill-array-data v0, :array_8
 
     return-object v0
 
-    :array_0
+    :array_8
     .array-data 1
         0x64t
         0x65t
@@ -336,7 +336,7 @@
 .end method
 
 .method public static getCallingUid(I)I
-    .locals 6
+    .registers 8
 
     .line 44
     const-string v0, "NativeCore"
@@ -344,44 +344,103 @@
     .line 0
     const-string v1, "Error getting calling BUid: "
 
-    if-lez p0, :cond_0
+    if-lez p0, :cond_c
 
     const/16 v2, 0x2710
 
-    if-ge p0, v2, :cond_0
+    if-ge p0, v2, :cond_c
 
-    goto/16 :goto_2
+    goto/16 :goto_f8
 
-    :cond_0
+    :cond_c
     const/16 v2, 0x4e1f
 
-    if-le p0, v2, :cond_1
+    if-le p0, v2, :cond_12
 
-    goto/16 :goto_2
+    goto/16 :goto_f8
 
     .line 50
-    :cond_1
-    :try_start_0
+    :cond_12
+    :try_start_12
     invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
 
     move-result v3
 
-    if-ne p0, v3, :cond_9
+    if-ne p0, v3, :cond_f8
 
     .line 52
     invoke-static {}, Lio/vanta/VantaCore;->getAppPackageName()Ljava/lang/String;
 
     move-result-object p0
 
-    if-eqz p0, :cond_2
+    if-eqz p0, :cond_5a
 
     .line 53
     const-string v3, "com.google.android.gms"
 
     invoke-virtual {p0, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    :cond_2
-    if-eqz p0, :cond_3
+    move-result v3
+
+    if-eqz v3, :cond_5a
+
+    invoke-static {}, Lio/vanta/VantaCore;->getCallingBUid()I
+
+    move-result v3
+
+    invoke-static {}, Landroid/os/Process;->myUid()I
+
+    move-result v4
+
+    if-lez v3, :cond_58
+
+    const v5, 0x4e1f
+
+    if-ge v3, v5, :cond_58
+
+    if-eq v3, v4, :cond_58
+
+    invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
+
+    move-result v5
+
+    if-eq v3, v5, :cond_58
+
+    invoke-static {}, Lio/vanta/fake/service/GmsCallerFix;->callerPkg()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v5, v3, v4}, Lio/vanta/fake/service/GmsCallerFix;->logGcu2(Ljava/lang/String;II)V
+
+    if-eqz v5, :cond_58
+
+    const-string v6, "com.google"
+
+    invoke-virtual {v5, v6}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+
+    move-result v6
+
+    if-nez v6, :cond_58
+
+    const-string v6, "com.android.vending"
+
+    invoke-virtual {v6, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v6
+
+    if-nez v6, :cond_58
+
+    move p0, v3
+
+    return p0
+
+    :cond_58
+    move p0, v4
+
+    return p0
+
+    :cond_5a
+    if-eqz p0, :cond_69
 
     .line 59
     const-string v3, "com.google.android.webview"
@@ -390,37 +449,37 @@
 
     move-result p0
 
-    if-eqz p0, :cond_3
+    if-eqz p0, :cond_69
 
     .line 60
     invoke-static {}, Landroid/os/Process;->myUid()I
 
     move-result p0
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2
+    :try_end_68
+    .catch Ljava/lang/Exception; {:try_start_12 .. :try_end_68} :catch_f9
 
     return p0
 
     .line 65
-    :cond_3
-    :try_start_1
+    :cond_69
+    :try_start_69
     invoke-static {}, Lio/vanta/VantaCore;->getCallingBUid()I
 
     move-result p0
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    :try_end_6d
+    .catch Ljava/lang/Exception; {:try_start_69 .. :try_end_6d} :catch_72
 
-    if-lez p0, :cond_4
+    if-lez p0, :cond_87
 
-    if-ge p0, v2, :cond_4
+    if-ge p0, v2, :cond_87
 
     return p0
 
-    :catch_0
+    :catch_72
     move-exception p0
 
     .line 70
-    :try_start_2
+    :try_start_73
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
@@ -438,12 +497,12 @@
     move-result-object p0
 
     invoke-static {v0, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+    :try_end_87
+    .catch Ljava/lang/Exception; {:try_start_73 .. :try_end_87} :catch_f9
 
     .line 75
-    :cond_4
-    :try_start_3
+    :cond_87
+    :try_start_87
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
     move-result-object p0
@@ -457,8 +516,8 @@
 
     const/4 v2, 0x0
 
-    :goto_0
-    if-ge v2, v1, :cond_8
+    :goto_91
+    if-ge v2, v1, :cond_f4
 
     aget-object v3, p0, v2
 
@@ -479,7 +538,7 @@
 
     move-result v5
 
-    if-nez v5, :cond_5
+    if-nez v5, :cond_ad
 
     const-string v5, "FeatureFlag"
 
@@ -487,9 +546,9 @@
 
     move-result v4
 
-    if-eqz v4, :cond_6
+    if-eqz v4, :cond_ce
 
-    :cond_5
+    :cond_ad
     const-string v4, "getString"
 
     .line 82
@@ -497,7 +556,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_7
+    if-nez v4, :cond_d1
 
     const-string v4, "getInt"
 
@@ -505,7 +564,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_7
+    if-nez v4, :cond_d1
 
     const-string v4, "getLong"
 
@@ -514,7 +573,7 @@
 
     move-result v4
 
-    if-nez v4, :cond_7
+    if-nez v4, :cond_d1
 
     const-string v4, "getFloat"
 
@@ -522,33 +581,33 @@
 
     move-result v3
 
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_ce
 
-    goto :goto_1
+    goto :goto_d1
 
-    :cond_6
+    :cond_ce
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_91
 
     .line 85
-    :cond_7
-    :goto_1
+    :cond_d1
+    :goto_d1
     const-string p0, "System settings access detected, using system UID to prevent mismatch"
 
     invoke-static {v0, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_3
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_3} :catch_1
+    :try_end_d6
+    .catch Ljava/lang/Exception; {:try_start_87 .. :try_end_d6} :catch_d9
 
     const/16 p0, 0x3e8
 
     return p0
 
-    :catch_1
+    :catch_d9
     move-exception p0
 
     .line 91
-    :try_start_4
+    :try_start_da
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -574,18 +633,18 @@
     invoke-static {v0, p0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 95
-    :cond_8
+    :cond_f4
     invoke-static {}, Lio/vanta/VantaCore;->getHostUid()I
 
     move-result p0
-    :try_end_4
-    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_2
+    :try_end_f8
+    .catch Ljava/lang/Exception; {:try_start_da .. :try_end_f8} :catch_f9
 
-    :cond_9
-    :goto_2
+    :cond_f8
+    :goto_f8
     return p0
 
-    :catch_2
+    :catch_f9
     move-exception p0
 
     .line 99
@@ -621,14 +680,14 @@
 .end method
 
 .method public static loadEmptyDex()[J
-    .locals 7
+    .registers 7
 
     .line 118
     const-string v0, "NativeCore"
 
     const/4 v1, 0x0
 
-    :try_start_0
+    :try_start_3
     invoke-static {}, Lio/vanta/core/system/JarManager;->getInstance()Lio/vanta/core/system/JarManager;
 
     move-result-object v2
@@ -637,7 +696,7 @@
 
     move-result-object v2
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_21
 
     .line 120
     const-string v2, "Empty JAR not available, attempting sync initialization"
@@ -660,20 +719,20 @@
 
     move-result-object v2
 
-    :cond_0
-    if-eqz v2, :cond_3
+    :cond_21
+    if-eqz v2, :cond_70
 
     .line 125
     invoke-virtual {v2}, Ljava/io/File;->exists()Z
 
     move-result v3
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_2a
 
-    goto :goto_1
+    goto :goto_70
 
     .line 130
-    :cond_1
+    :cond_2a
     new-instance v3, Ldalvik/system/DexFile;
 
     invoke-direct {v3, v2}, Ldalvik/system/DexFile;-><init>(Ljava/io/File;)V
@@ -693,12 +752,12 @@
     move v4, v1
 
     .line 133
-    :goto_0
+    :goto_3a
     invoke-interface {v2}, Ljava/util/List;->size()I
 
     move-result v5
 
-    if-ge v4, v5, :cond_2
+    if-ge v4, v5, :cond_4f
 
     .line 134
     invoke-interface {v2, v4}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -715,10 +774,10 @@
 
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_0
+    goto :goto_3a
 
     .line 136
-    :cond_2
+    :cond_4f
     new-instance v4, Ljava/lang/StringBuilder;
 
     invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
@@ -752,20 +811,20 @@
     return-object v3
 
     .line 126
-    :cond_3
-    :goto_1
+    :cond_70
+    :goto_70
     const-string v2, "Empty JAR file not found or invalid"
 
     invoke-static {v0, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 127
     new-array v0, v1, [J
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_77
+    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_77} :catch_78
 
     return-object v0
 
-    :catch_0
+    :catch_78
     move-exception v2
 
     .line 139
@@ -780,7 +839,7 @@
 .end method
 
 .method public static redirectPath(Ljava/io/File;)Ljava/io/File;
-    .locals 1
+    .registers 2
 
     .line 112
     invoke-static {}, Lio/vanta/core/IOCore;->get()Lio/vanta/core/IOCore;
@@ -795,7 +854,7 @@
 .end method
 
 .method public static redirectPath(Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 107
     invoke-static {}, Lio/vanta/core/IOCore;->get()Lio/vanta/core/IOCore;

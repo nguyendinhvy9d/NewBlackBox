@@ -28,7 +28,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 731
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public createFromParcel(Landroid/os/Parcel;)Lio/vanta/core/system/pm/BPackage;
-    .locals 1
+    .registers 3
 
     .line 734
     new-instance v0, Lio/vanta/core/system/pm/BPackage;
@@ -50,7 +50,7 @@
 .end method
 
 .method public bridge synthetic createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
-    .locals 0
+    .registers 2
 
     .line 731
     invoke-virtual {p0, p1}, Lio/vanta/core/system/pm/BPackage$1;->createFromParcel(Landroid/os/Parcel;)Lio/vanta/core/system/pm/BPackage;
@@ -61,7 +61,7 @@
 .end method
 
 .method public newArray(I)[Lio/vanta/core/system/pm/BPackage;
-    .locals 0
+    .registers 2
 
     .line 739
     new-array p1, p1, [Lio/vanta/core/system/pm/BPackage;
@@ -70,7 +70,7 @@
 .end method
 
 .method public bridge synthetic newArray(I)[Ljava/lang/Object;
-    .locals 0
+    .registers 2
 
     .line 731
     invoke-virtual {p0, p1}, Lio/vanta/core/system/pm/BPackage$1;->newArray(I)[Lio/vanta/core/system/pm/BPackage;

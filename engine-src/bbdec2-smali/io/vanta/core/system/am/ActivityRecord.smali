@@ -27,7 +27,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 13
     invoke-direct {p0}, Landroid/os/Binder;-><init>()V
@@ -36,7 +36,7 @@
 .end method
 
 .method public static create(Landroid/content/Intent;Landroid/content/pm/ActivityInfo;Landroid/os/IBinder;I)Lio/vanta/core/system/am/ActivityRecord;
-    .locals 2
+    .registers 6
 
     .line 26
     new-instance v0, Lio/vanta/core/system/am/ActivityRecord;

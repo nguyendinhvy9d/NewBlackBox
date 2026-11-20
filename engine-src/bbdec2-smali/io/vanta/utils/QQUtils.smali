@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 9
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static hackLog(Landroid/content/Context;)V
-    .locals 2
+    .registers 3
 
     .line 12
     :try_start_0
@@ -57,12 +57,12 @@
     const-string v0, "hackLog: success"
 
     invoke-static {p0, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_25
+    .catchall {:try_start_0 .. :try_end_25} :catchall_26
 
     return-void
 
-    :catchall_0
+    :catchall_26
     move-exception p0
 
     .line 18

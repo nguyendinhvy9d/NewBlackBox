@@ -85,7 +85,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 130
     invoke-direct {p0}, Landroid/os/Binder;-><init>()V
@@ -99,28 +99,28 @@
 .end method
 
 .method public static asInterface(Landroid/os/IBinder;)Lio/vanta/core/system/am/IBActivityManagerService;
-    .locals 2
+    .registers 3
 
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     const/4 p0, 0x0
 
     return-object p0
 
     .line 142
-    :cond_0
+    :cond_4
     const-string v0, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-interface {p0, v0}, Landroid/os/IBinder;->queryLocalInterface(Ljava/lang/String;)Landroid/os/IInterface;
 
     move-result-object v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_13
 
     .line 143
     instance-of v1, v0, Lio/vanta/core/system/am/IBActivityManagerService;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_13
 
     .line 144
     check-cast v0, Lio/vanta/core/system/am/IBActivityManagerService;
@@ -128,7 +128,7 @@
     return-object v0
 
     .line 146
-    :cond_1
+    :cond_13
     new-instance v0, Lio/vanta/core/system/am/IBActivityManagerService$Stub$Proxy;
 
     invoke-direct {v0, p0}, Lio/vanta/core/system/am/IBActivityManagerService$Stub$Proxy;-><init>(Landroid/os/IBinder;)V
@@ -139,13 +139,13 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 0
+    .registers 1
 
     return-object p0
 .end method
 
 .method public onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    .locals 10
+    .registers 15
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Landroid/os/RemoteException;
@@ -154,19 +154,19 @@
 
     const/4 v0, 0x1
 
-    if-lt p1, v0, :cond_0
+    if-lt p1, v0, :cond_d
 
     const v1, 0xffffff
 
-    if-gt p1, v1, :cond_0
+    if-gt p1, v1, :cond_d
 
     .line 155
     const-string v1, "io.vanta.core.system.am.IBActivityManagerService"
 
     invoke-virtual {p2, v1}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    :cond_0
-    packed-switch p1, :pswitch_data_0
+    :cond_d
+    packed-switch p1, :pswitch_data_2bc
 
     move-object v1, p0
 
@@ -178,7 +178,7 @@
     return p1
 
     .line 493
-    :pswitch_0
+    :pswitch_16
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -199,10 +199,10 @@
     .line 498
     invoke-virtual {p3, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 482
-    :pswitch_1
+    :pswitch_2a
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -223,10 +223,10 @@
     .line 487
     invoke-virtual {p3, p1}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 468
-    :pswitch_2
+    :pswitch_3e
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -252,10 +252,10 @@
     .line 476
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 457
-    :pswitch_3
+    :pswitch_56
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -276,10 +276,10 @@
     .line 462
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 446
-    :pswitch_4
+    :pswitch_6a
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -300,10 +300,10 @@
     .line 451
     invoke-virtual {p3, p1}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 438
-    :pswitch_5
+    :pswitch_7e
     sget-object p1, Lio/vanta/entity/am/PendingResultData;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -318,10 +318,10 @@
     .line 440
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 426
-    :pswitch_6
+    :pswitch_8e
     sget-object p1, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -350,10 +350,10 @@
     .line 432
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 415
-    :pswitch_7
+    :pswitch_aa
     invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object p1
@@ -374,10 +374,10 @@
     .line 420
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 404
-    :pswitch_8
+    :pswitch_be
     invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object p1
@@ -398,10 +398,10 @@
     .line 409
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 396
-    :pswitch_9
+    :pswitch_d2
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -412,10 +412,10 @@
     .line 398
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 388
-    :pswitch_a
+    :pswitch_de
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -426,10 +426,10 @@
     .line 390
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 380
-    :pswitch_b
+    :pswitch_ea
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -440,10 +440,10 @@
     .line 382
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 368
-    :pswitch_c
+    :pswitch_f6
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
@@ -464,10 +464,10 @@
     .line 374
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 355
-    :pswitch_d
+    :pswitch_10a
     sget-object p1, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -497,10 +497,10 @@
     .line 362
     invoke-virtual {p3, p1}, Landroid/os/Parcel;->writeStrongBinder(Landroid/os/IBinder;)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 342
-    :pswitch_e
+    :pswitch_126
     sget-object p1, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -530,10 +530,10 @@
     .line 349
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 333
-    :pswitch_f
+    :pswitch_142
     sget-object p1, Landroid/content/pm/ProviderInfo;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -553,10 +553,10 @@
     .line 336
     invoke-virtual {p3, p1}, Landroid/os/Parcel;->writeStrongBinder(Landroid/os/IBinder;)V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 323
-    :pswitch_10
+    :pswitch_156
     sget-object p1, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -576,10 +576,10 @@
     .line 327
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto/16 :goto_0
+    goto/16 :goto_1f3
 
     .line 312
-    :pswitch_11
+    :pswitch_16a
     sget-object p1, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -604,10 +604,10 @@
     .line 317
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto :goto_0
+    goto :goto_1f3
 
     .line 302
-    :pswitch_12
+    :pswitch_181
     sget-object p1, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -627,10 +627,10 @@
     .line 306
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto :goto_0
+    goto :goto_1f3
 
     .line 290
-    :pswitch_13
+    :pswitch_194
     sget-object p1, Landroid/content/ComponentName;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -655,10 +655,10 @@
     .line 296
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto :goto_0
+    goto :goto_1f3
 
     .line 280
-    :pswitch_14
+    :pswitch_1ab
     invoke-virtual {p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
 
     move-result-object p1
@@ -674,10 +674,10 @@
     .line 284
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto :goto_0
+    goto :goto_1f3
 
     .line 265
-    :pswitch_15
+    :pswitch_1ba
     sget-object p1, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -712,10 +712,10 @@
     .line 274
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto :goto_0
+    goto :goto_1f3
 
     .line 252
-    :pswitch_16
+    :pswitch_1d9
     sget-object p1, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -745,13 +745,13 @@
     .line 259
     invoke-virtual {p3, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    :goto_0
+    :goto_1f3
     move-object v1, p0
 
-    goto/16 :goto_2
+    goto/16 :goto_2ba
 
     .line 237
-    :pswitch_17
+    :pswitch_1f6
     sget-object p1, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
 
     invoke-static {p2, p1}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smreadTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable$Creator;)Ljava/lang/Object;
@@ -770,17 +770,17 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_20a
 
     move v1, v0
 
-    goto :goto_1
+    goto :goto_20b
 
-    :cond_1
+    :cond_20a
     const/4 v1, 0x0
 
     .line 243
-    :goto_1
+    :goto_20b
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result p2
@@ -796,10 +796,10 @@
     .line 246
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    goto :goto_0
+    goto :goto_1f3
 
     .line 220
-    :pswitch_18
+    :pswitch_21a
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
@@ -849,10 +849,10 @@
     .line 231
     invoke-virtual {p3, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto/16 :goto_2
+    goto/16 :goto_2ba
 
     .line 197
-    :pswitch_19
+    :pswitch_245
     invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
@@ -917,9 +917,9 @@
     .line 214
     invoke-virtual {p3, p1}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto :goto_2
+    goto :goto_2ba
 
-    :pswitch_1a
+    :pswitch_27b
     move-object v1, p0
 
     .line 187
@@ -942,9 +942,9 @@
     .line 191
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto :goto_2
+    goto :goto_2ba
 
-    :pswitch_1b
+    :pswitch_28f
     move-object v1, p0
 
     .line 175
@@ -968,9 +968,9 @@
     .line 181
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    goto :goto_2
+    goto :goto_2ba
 
-    :pswitch_1c
+    :pswitch_2a3
     move-object v1, p0
 
     .line 162
@@ -999,41 +999,41 @@
     .line 169
     invoke-static {p3, p1, v0}, Lio/vanta/core/system/am/IBActivityManagerService$_Parcel;->-$$Nest$smwriteTypedObject(Landroid/os/Parcel;Landroid/os/Parcelable;I)V
 
-    :goto_2
+    :goto_2ba
     return v0
 
     nop
 
-    :pswitch_data_0
+    :pswitch_data_2bc
     .packed-switch 0x1
-        :pswitch_1c
-        :pswitch_1b
-        :pswitch_1a
-        :pswitch_19
-        :pswitch_18
-        :pswitch_17
+        :pswitch_2a3
+        :pswitch_28f
+        :pswitch_27b
+        :pswitch_245
+        :pswitch_21a
+        :pswitch_1f6
+        :pswitch_1d9
+        :pswitch_1ba
+        :pswitch_1ab
+        :pswitch_194
+        :pswitch_181
+        :pswitch_16a
+        :pswitch_156
+        :pswitch_142
+        :pswitch_126
+        :pswitch_10a
+        :pswitch_f6
+        :pswitch_ea
+        :pswitch_de
+        :pswitch_d2
+        :pswitch_be
+        :pswitch_aa
+        :pswitch_8e
+        :pswitch_7e
+        :pswitch_6a
+        :pswitch_56
+        :pswitch_3e
+        :pswitch_2a
         :pswitch_16
-        :pswitch_15
-        :pswitch_14
-        :pswitch_13
-        :pswitch_12
-        :pswitch_11
-        :pswitch_10
-        :pswitch_f
-        :pswitch_e
-        :pswitch_d
-        :pswitch_c
-        :pswitch_b
-        :pswitch_a
-        :pswitch_9
-        :pswitch_8
-        :pswitch_7
-        :pswitch_6
-        :pswitch_5
-        :pswitch_4
-        :pswitch_3
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
     .end packed-switch
 .end method
