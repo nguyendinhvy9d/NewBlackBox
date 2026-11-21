@@ -12,6 +12,8 @@
 #include <link.h>
 #include <pthread.h>
 #include <sys/syscall.h>
+#include <stdarg.h>
+#include <errno.h>
 
 #define LOG(...) __android_log_print(ANDROID_LOG_ERROR, "XJHOOK", __VA_ARGS__)
 
@@ -385,6 +387,151 @@ static void install() {
     }
 }
 
+// ============================================================================
+// XJ maps-scrub: che /proc/self/maps (+smaps) khoi lo libxjhook.so/libvanta.so +
+// path host com.rekoo.pubgm. Hook openat/open qua GOT trong cac .so app khach.
+// Khi app doc maps -> tra 1 memfd chua ban DA LOC. KHONG dung inline-patch (tranh
+// ABI variadic); GOT-write chi doi con tro (giong getCallingUid da chay on dinh).
+// ============================================================================
+#ifndef __NR_memfd_create
+#define __NR_memfd_create 279
+#endif
+// real = raw syscall (KHONG goi ham da inline-patch -> het de quy), tra fd / -1+errno.
+static int raw_openat(int dirfd, const char* path, int flags, mode_t mode) {
+    long r = syscall(__NR_openat, dirfd, path, flags, mode);
+    if (r < 0) { errno = (int) -r; return -1; }
+    return (int) r;
+}
+static char g_guestpkg[160] = {0};
+static int  g_gpk_done = 0;
+
+static int xj_is_maps(const char* p) {
+    if (!p || !strstr(p, "/proc/")) return 0;
+    size_t L = strlen(p);
+    if (L >= 5 && strcmp(p + L - 5, "/maps") == 0) return 1;
+    if (L >= 6 && strcmp(p + L - 6, "/smaps") == 0) return 1;
+    return 0;
+}
+static char* xj_read_all(int fd, size_t* outlen) {
+    size_t cap = 1 << 16, len = 0;
+    char* buf = (char*) malloc(cap);
+    if (!buf) return 0;
+    for (;;) {
+        if (len + 4096 + 1 > cap) { cap <<= 1; char* nb = (char*) realloc(buf, cap); if (!nb) { free(buf); return 0; } buf = nb; }
+        ssize_t r = read(fd, buf + len, 4096);
+        if (r <= 0) break;
+        len += (size_t) r;
+    }
+    buf[len] = 0;
+    if (outlen) *outlen = len;
+    return buf;
+}
+// bo dong co libxjhook/libvanta; thay com.rekoo.pubgm -> guest pkg.
+static char* xj_filter_maps(const char* in) {
+    size_t cap = strlen(in) + 256, o = 0;
+    char* out = (char*) malloc(cap);
+    if (!out) return 0;
+    const char* line = in;
+    while (*line) {
+        const char* nl = strchr(line, '\n');
+        size_t llen = nl ? (size_t)(nl - line + 1) : strlen(line);
+        int drop = 0;
+        for (size_t i = 0; i + 9 <= llen; i++) if (memcmp(line + i, "libxjhook", 9) == 0) { drop = 1; break; }
+        if (!drop) for (size_t i = 0; i + 8 <= llen; i++) if (memcmp(line + i, "libvanta", 8) == 0) { drop = 1; break; }
+        if (!drop) {
+            for (size_t i = 0; i < llen; ) {
+                int rep = (g_guestpkg[0] && i + 15 <= llen && memcmp(line + i, "com.rekoo.pubgm", 15) == 0);
+                size_t need = rep ? strlen(g_guestpkg) : 1;
+                if (o + need + 2 > cap) { cap = (o + need + llen + 256) * 2; char* nb = (char*) realloc(out, cap); if (!nb) { free(out); return 0; } out = nb; }
+                if (rep) { size_t gl = strlen(g_guestpkg); memcpy(out + o, g_guestpkg, gl); o += gl; i += 15; }
+                else out[o++] = line[i++];
+            }
+        }
+        line += llen;
+    }
+    out[o] = 0;
+    return out;
+}
+static int xj_maps_memfd(int dirfd, const char* path, int flags) {
+    if (!xj_is_maps(path) || (flags & (O_WRONLY | O_RDWR))) return -1;
+    // Doc ten goi GUEST (sau setArgV0 moi khac com.rekoo.pubgm) -> cache khi da doi.
+    if (g_guestpkg[0] == 0 || strncmp(g_guestpkg, "com.rekoo.pubgm", 15) == 0) {
+        char tmp[160] = {0};
+        read_cmdline(0, tmp, sizeof(tmp));
+        if (tmp[0] && strncmp(tmp, "com.rekoo.pubgm", 15) != 0) {
+            strncpy(g_guestpkg, tmp, sizeof(g_guestpkg) - 1);
+            g_guestpkg[sizeof(g_guestpkg) - 1] = 0;
+        }
+    }
+    int rfd = raw_openat(dirfd, path, O_RDONLY, 0);
+    if (rfd < 0) return -1;
+    size_t len = 0;
+    char* buf = xj_read_all(rfd, &len);
+    close(rfd);
+    if (!buf) return -1;
+    char* filt = xj_filter_maps(buf);
+    free(buf);
+    if (!filt) return -1;
+    int mfd = (int) syscall(__NR_memfd_create, "m", 0);
+    if (mfd >= 0) { size_t fl = strlen(filt); ssize_t w = write(mfd, filt, fl); (void) w; lseek(mfd, 0, SEEK_SET); }
+    free(filt);
+    return mfd;
+}
+static int my_openat(int dirfd, const char* path, int flags, ...) {
+    mode_t mode = 0;
+    if (flags & O_CREAT) { va_list ap; va_start(ap, flags); mode = (mode_t) va_arg(ap, int); va_end(ap); }
+    int mfd = xj_maps_memfd(dirfd, path, flags);
+    if (mfd >= 0) return mfd;
+    return raw_openat(dirfd, path, flags, mode);
+}
+static int my_open(const char* path, int flags, ...) {
+    mode_t mode = 0;
+    if (flags & O_CREAT) { va_list ap; va_start(ap, flags); mode = (mode_t) va_arg(ap, int); va_end(ap); }
+    int mfd = xj_maps_memfd(AT_FDCWD, path, flags);
+    if (mfd >= 0) return mfd;
+    return raw_openat(AT_FDCWD, path, flags, mode);
+}
+static void maps_selftest_delayed(void) {
+    int tfd = openat(AT_FDCWD, "/proc/self/maps", O_RDONLY);
+    if (tfd < 0) return;
+    char* buf = xj_read_all(tfd, 0);
+    close(tfd);
+    if (!buf) return;
+    int cx = 0, cv = 0, cr = 0; char* p;
+    for (p = buf; (p = strstr(p, "libxjhook")); p += 9) cx++;
+    for (p = buf; (p = strstr(p, "libvanta")); p += 8) cv++;
+    for (p = buf; (p = strstr(p, "com.rekoo.pubgm")); p += 15) cr++;
+    LOG("maps-scrub SELFTEST(tre): libxjhook=%d libvanta=%d rekoo=%d guestpkg=%s", cx, cv, cr, g_guestpkg);
+    free(buf);
+}
+static void* selftest_thread(void* a) { (void) a; sleep(4); maps_selftest_delayed(); return 0; }
+
+static void install_openat_hook() {
+    // inline-patch openat + open (libc public symbol) -> toan cuc, bat ca .so nap SAU
+    // (anti-cheat TikTok nap tre). real = raw syscall (khong goi ham da patch).
+    void* fo  = dlsym(RTLD_DEFAULT, "openat");
+    void* fop = dlsym(RTLD_DEFAULT, "open");
+    int a = fo  ? inline_patch(fo,  (void*) my_openat) : -1;
+    int b = fop ? inline_patch(fop, (void*) my_open)   : -1;
+    LOG("maps-scrub: patch openat=%d open=%d (fo=%p fop=%p)", a, b, fo, fop);
+    // SELF-TEST (go truoc ship): doc /proc/self/maps qua openat da patch -> phai 0 libxjhook/libvanta
+    int tfd = openat(AT_FDCWD, "/proc/self/maps", O_RDONLY);
+    if (tfd >= 0) {
+        char* buf = xj_read_all(tfd, 0);
+        close(tfd);
+        if (buf) {
+            int cx = 0, cv = 0, cr = 0; char* p;
+            for (p = buf; (p = strstr(p, "libxjhook")); p += 9) cx++;
+            for (p = buf; (p = strstr(p, "libvanta")); p += 8) cv++;
+            for (p = buf; (p = strstr(p, "com.rekoo.pubgm")); p += 15) cr++;
+            LOG("maps-scrub SELFTEST: libxjhook=%d libvanta=%d rekoo=%d (rekoo>0 o nativeInit la binh thuong-chua setArgV0)", cx, cv, cr);
+            free(buf);
+        }
+    }
+    pthread_t tst;
+    if (pthread_create(&tst, 0, selftest_thread, 0) == 0) pthread_detach(tst);
+}
+
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* r) { g_vm = vm; return JNI_VERSION_1_6; }
 
 JNIEXPORT void JNICALL Java_io_vanta_fake_XJProfile_nativeInit(
@@ -428,6 +575,9 @@ JNIEXPORT void JNICALL Java_io_vanta_fake_XJProfile_nativeInit(
 
     // --- XJ uid-match hook (getuid/geteuid == myUid faked) ---
     install_uid_hook();
+
+    // --- XJ maps-scrub: che /proc/self/maps khoi lo libxjhook/libvanta/com.rekoo.pubgm ---
+    install_openat_hook();
 
     // --- XJ native timezone JST (bionic localtime/tzset uu tien TZ env truoc prop;
     //     Java da setDefault Asia/Tokyo, nhung native localtime() can TZ env cho khop) ---
