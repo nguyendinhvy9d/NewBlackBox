@@ -545,9 +545,32 @@ static void install_openat_hook() {
 #endif
 }
 
-JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* r) { g_vm = vm; return JNI_VERSION_1_6; }
+// XJ: ham init KHONG export symbol "Java_io_vanta_..." (an dau vet trong .so).
+// Dang ky DONG qua RegisterNatives trong JNI_OnLoad -> llvm-nm chi thay JNI_OnLoad.
+static void xj_native_init(JNIEnv* env, jclass c, jint uid, jstring host,
+        jobjectArray keys, jobjectArray vals);
 
-JNIEXPORT void JNICALL Java_io_vanta_fake_XJProfile_nativeInit(
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* r) {
+    g_vm = vm;
+    JNIEnv* env = 0;
+    if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_1_6) == JNI_OK && env) {
+        jclass c = (*env)->FindClass(env, "io/vanta/fake/XJProfile");
+        if (c) {
+            JNINativeMethod m;
+            m.name = "nativeInit";
+            m.signature = "(ILjava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V";
+            m.fnPtr = (void*) xj_native_init;
+            (*env)->RegisterNatives(env, c, &m, 1);
+            if ((*env)->ExceptionCheck(env)) (*env)->ExceptionClear(env);
+            (*env)->DeleteLocalRef(env, c);
+        } else if ((*env)->ExceptionCheck(env)) {
+            (*env)->ExceptionClear(env);
+        }
+    }
+    return JNI_VERSION_1_6;
+}
+
+static void xj_native_init(
         JNIEnv* env, jclass c, jint uid, jstring host,
         jobjectArray keys, jobjectArray vals) {
     jsize n = (*env)->GetArrayLength(env, keys);
