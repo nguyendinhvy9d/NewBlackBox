@@ -15,7 +15,16 @@
 #include <stdarg.h>
 #include <errno.h>
 
+// XJ_LOG_ENABLED=0 cho bản SHIP khách (gỡ mọi chuỗi log khỏi .so -> hết lộ cơ chế +
+// chuỗi tiếng Việt/XJHOOK/maps-scrub trong strings). =1 khi cần debug.
+#ifndef XJ_LOG_ENABLED
+#define XJ_LOG_ENABLED 0
+#endif
+#if XJ_LOG_ENABLED
 #define LOG(...) __android_log_print(ANDROID_LOG_ERROR, "XJHOOK", __VA_ARGS__)
+#else
+#define LOG(...) ((void)0)
+#endif
 
 // ============================================================================
 // XJ getCallingUid GOT-hook (fix GMS bqxj.a "Caller is not trusted" trong ao hoa)
@@ -491,6 +500,7 @@ static int my_open(const char* path, int flags, ...) {
     if (mfd >= 0) return mfd;
     return raw_openat(AT_FDCWD, path, flags, mode);
 }
+#if XJ_LOG_ENABLED
 static void maps_selftest_delayed(void) {
     int tfd = openat(AT_FDCWD, "/proc/self/maps", O_RDONLY);
     if (tfd < 0) return;
@@ -505,6 +515,7 @@ static void maps_selftest_delayed(void) {
     free(buf);
 }
 static void* selftest_thread(void* a) { (void) a; sleep(4); maps_selftest_delayed(); return 0; }
+#endif
 
 static void install_openat_hook() {
     // inline-patch openat + open (libc public symbol) -> toan cuc, bat ca .so nap SAU
@@ -514,7 +525,8 @@ static void install_openat_hook() {
     int a = fo  ? inline_patch(fo,  (void*) my_openat) : -1;
     int b = fop ? inline_patch(fop, (void*) my_open)   : -1;
     LOG("maps-scrub: patch openat=%d open=%d (fo=%p fop=%p)", a, b, fo, fop);
-    // SELF-TEST (go truoc ship): doc /proc/self/maps qua openat da patch -> phai 0 libxjhook/libvanta
+#if XJ_LOG_ENABLED
+    // SELF-TEST (chi khi debug): doc /proc/self/maps qua openat da patch -> phai 0 libxjhook/libvanta
     int tfd = openat(AT_FDCWD, "/proc/self/maps", O_RDONLY);
     if (tfd >= 0) {
         char* buf = xj_read_all(tfd, 0);
@@ -530,6 +542,7 @@ static void install_openat_hook() {
     }
     pthread_t tst;
     if (pthread_create(&tst, 0, selftest_thread, 0) == 0) pthread_detach(tst);
+#endif
 }
 
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* r) { g_vm = vm; return JNI_VERSION_1_6; }
