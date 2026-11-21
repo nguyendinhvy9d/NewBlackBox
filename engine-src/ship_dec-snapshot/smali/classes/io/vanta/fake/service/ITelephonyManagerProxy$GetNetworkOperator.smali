@@ -46,7 +46,7 @@
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 186
-    invoke-virtual {p2, p1, p3}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-static {}, Lio/vanta/fake/XJProfile;->mccmnc()Ljava/lang/String;
 
     move-result-object p1
 

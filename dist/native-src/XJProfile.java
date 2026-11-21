@@ -388,13 +388,21 @@ public final class XJProfile {
             } catch (Throwable t) {}
             System.loadLibrary("xjhook");
             // Native prop JP (bat duong SystemProperties/__system_property_get: bionic tzset, ICU)
+            // + SIM JP (bat getSimCountryIso/getSimOperator/getSimOperatorName doc tu gsm.* prop)
+            // dung gia tri per-o cua XJProfile (sIso=jp, sMccmnc=440xx, sNetName=carrier JP).
             final String[] GEO_K = {
                 "persist.sys.timezone", "persist.sys.locale",
-                "ro.product.locale", "ro.product.locale.language", "ro.product.locale.region"
+                "ro.product.locale", "ro.product.locale.language", "ro.product.locale.region",
+                "gsm.sim.operator.iso-country", "gsm.operator.iso-country",
+                "gsm.sim.operator.numeric", "gsm.operator.numeric",
+                "gsm.sim.operator.alpha", "gsm.operator.alpha", "gsm.sim.state"
             };
             final String[] GEO_V = {
                 "Asia/Tokyo", "ja-JP",
-                "ja-JP", "ja", "JP"
+                "ja-JP", "ja", "JP",
+                sIso, sIso,
+                sMccmnc, sMccmnc,
+                sNetName, sNetName, "LOADED"
             };
             String[] keys, vals;
             if (sSpoofModel) {

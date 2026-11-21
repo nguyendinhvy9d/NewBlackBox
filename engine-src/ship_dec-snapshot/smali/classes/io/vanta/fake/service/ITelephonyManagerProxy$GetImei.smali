@@ -38,7 +38,9 @@
         }
     .end annotation
 
-    const/4 p1, 0x0
+    invoke-static {}, Lio/vanta/fake/XJProfile;->imei()Ljava/lang/String;
+
+    move-result-object p1
 
     return-object p1
 .end method
