@@ -41,11 +41,38 @@
 // com.zhiliaoapp.musically) => tra uid that => GIU attribution package<->uid.
 // Chi cai trong process GMS-family.
 // ============================================================================
-#define GMS_PREFIX "com.google.android.gms"
 #define SYM_GCU "_ZNK7android14IPCThreadState13getCallingUidEv"
 #define SYM_GCP "_ZNK7android14IPCThreadState13getCallingPidEv"
 
-#define HOST_PREFIX "com.rekoo.pubgm"   // ten process giai doan dau (truoc setArgV0)
+// ============================================================================
+// XJ string-cloak: cac chuoi dinh-danh engine (ten goi host/GMS, ten lib ao,
+// ten class Java, ten method) KHONG de dang .rodata ro rang. XOR key 0x3C, giai
+// ma MOT LAN vao buffer global trong xj_init_strs() (goi dau JNI_OnLoad, truoc
+// moi usage). strings/grep .so khong con thay "com.rekoo.pubgm"/"libvanta"/
+// "io/vanta/fake/XJProfile"... (defense-in-depth sau maps-scrub).
+// ============================================================================
+static char g_s_gms[23];   // "com.google.android.gms"
+static char g_s_host[16];  // "com.rekoo.pubgm"
+static char g_s_vso[12];   // "libvanta.so"
+static char g_s_vanta[9];  // "libvanta"
+static char g_s_xjh[10];   // "libxjhook"
+static char g_s_cls[24];   // "io/vanta/fake/XJProfile"
+static char g_s_mth[11];   // "nativeInit"
+// Key la volatile -> compiler KHONG duoc constant-fold phep XOR (neu fold, chuoi da
+// giai ma se nam ro trong .rodata, mat tac dung). Doc volatile = runtime, gia tri "an".
+static volatile unsigned char g_xk = 0x3C;
+static void xj_dec(const unsigned char* e, int n, char* o) { unsigned char k = g_xk; for (int i = 0; i < n; i++) o[i] = (char) (e[i] ^ k); o[n] = 0; }
+static void xj_init_strs(void) {
+    static int done = 0; if (done) return; done = 1;
+    static const unsigned char S_GMS[]={0x5f,0x53,0x51,0x12,0x5b,0x53,0x53,0x5b,0x50,0x59,0x12,0x5d,0x52,0x58,0x4e,0x53,0x55,0x58,0x12,0x5b,0x51,0x4f}; xj_dec(S_GMS,22,g_s_gms);
+    static const unsigned char S_HOST[]={0x5f,0x53,0x51,0x12,0x4e,0x59,0x57,0x53,0x53,0x12,0x4c,0x49,0x5e,0x5b,0x51}; xj_dec(S_HOST,15,g_s_host);
+    static const unsigned char S_VSO[]={0x50,0x55,0x5e,0x4a,0x5d,0x52,0x48,0x5d,0x12,0x4f,0x53}; xj_dec(S_VSO,11,g_s_vso);
+    static const unsigned char S_VANTA[]={0x50,0x55,0x5e,0x4a,0x5d,0x52,0x48,0x5d}; xj_dec(S_VANTA,8,g_s_vanta);
+    static const unsigned char S_XJH[]={0x50,0x55,0x5e,0x44,0x56,0x54,0x53,0x53,0x57}; xj_dec(S_XJH,9,g_s_xjh);
+    static const unsigned char S_CLS[]={0x55,0x53,0x13,0x4a,0x5d,0x52,0x48,0x5d,0x13,0x5a,0x5d,0x57,0x59,0x13,0x64,0x76,0x6c,0x4e,0x53,0x5a,0x55,0x50,0x59}; xj_dec(S_CLS,23,g_s_cls);
+    static const unsigned char S_MTH[]={0x52,0x5d,0x48,0x55,0x4a,0x59,0x75,0x52,0x55,0x48}; xj_dec(S_MTH,10,g_s_mth);
+}
+static int xj_starts(const char* b, const char* p, int n) { return strncmp(b, p, n) == 0; }
 
 static JavaVM* g_vm = 0;
 static int   g_buid = -1;          // faked uid (== Process.myUid()); lay LAZY luc chay
@@ -94,7 +121,7 @@ static int read_cmdline(pid_t pid, char* buf, int cap) {
 static int pid_is_gms(pid_t pid) {
     char buf[128];
     if (!read_cmdline(pid, buf, sizeof(buf))) return 0;
-    return STARTS(buf, GMS_PREFIX);
+    return xj_starts(buf, g_s_gms, 22);
 }
 
 // self co phai process GMS? Luu y: nativeInit chay TRUOC setArgV0, nen luc dau
@@ -103,8 +130,8 @@ static int self_is_gms() {
     if (g_self_gms >= 0) return g_self_gms;      // da chot
     char buf[128];
     if (!read_cmdline(0, buf, sizeof(buf))) return 0;
-    if (STARTS(buf, HOST_PREFIX)) return 0;      // con giai doan host -> chua chot
-    g_self_gms = STARTS(buf, GMS_PREFIX) ? 1 : 0; // ten ao da dat -> chot vinh vien
+    if (xj_starts(buf, g_s_host, 15)) return 0;  // con giai doan host -> chua chot
+    g_self_gms = xj_starts(buf, g_s_gms, 22) ? 1 : 0; // ten ao da dat -> chot vinh vien
     return g_self_gms;
 }
 
@@ -230,7 +257,7 @@ static uintptr_t g_vanta_lo = 0, g_vanta_hi = 0;   // [base,end) cua libvanta.so
 static int vanta_range_cb(struct dl_phdr_info* info, size_t size, void* data) {
     (void) size; (void) data;
     const char* nm = info->dlpi_name;
-    if (!nm || !strstr(nm, "libvanta.so")) return 0;
+    if (!nm || !strstr(nm, g_s_vso)) return 0;
     uintptr_t base = (uintptr_t) info->dlpi_addr;
     uintptr_t lo = (uintptr_t) -1, hi = 0;
     for (int i = 0; i < info->dlpi_phnum; i++) {
@@ -445,11 +472,11 @@ static char* xj_filter_maps(const char* in) {
         const char* nl = strchr(line, '\n');
         size_t llen = nl ? (size_t)(nl - line + 1) : strlen(line);
         int drop = 0;
-        for (size_t i = 0; i + 9 <= llen; i++) if (memcmp(line + i, "libxjhook", 9) == 0) { drop = 1; break; }
-        if (!drop) for (size_t i = 0; i + 8 <= llen; i++) if (memcmp(line + i, "libvanta", 8) == 0) { drop = 1; break; }
+        for (size_t i = 0; i + 9 <= llen; i++) if (memcmp(line + i, g_s_xjh, 9) == 0) { drop = 1; break; }
+        if (!drop) for (size_t i = 0; i + 8 <= llen; i++) if (memcmp(line + i, g_s_vanta, 8) == 0) { drop = 1; break; }
         if (!drop) {
             for (size_t i = 0; i < llen; ) {
-                int rep = (g_guestpkg[0] && i + 15 <= llen && memcmp(line + i, "com.rekoo.pubgm", 15) == 0);
+                int rep = (g_guestpkg[0] && i + 15 <= llen && memcmp(line + i, g_s_host, 15) == 0);
                 size_t need = rep ? strlen(g_guestpkg) : 1;
                 if (o + need + 2 > cap) { cap = (o + need + llen + 256) * 2; char* nb = (char*) realloc(out, cap); if (!nb) { free(out); return 0; } out = nb; }
                 if (rep) { size_t gl = strlen(g_guestpkg); memcpy(out + o, g_guestpkg, gl); o += gl; i += 15; }
@@ -464,10 +491,10 @@ static char* xj_filter_maps(const char* in) {
 static int xj_maps_memfd(int dirfd, const char* path, int flags) {
     if (!xj_is_maps(path) || (flags & (O_WRONLY | O_RDWR))) return -1;
     // Doc ten goi GUEST (sau setArgV0 moi khac com.rekoo.pubgm) -> cache khi da doi.
-    if (g_guestpkg[0] == 0 || strncmp(g_guestpkg, "com.rekoo.pubgm", 15) == 0) {
+    if (g_guestpkg[0] == 0 || strncmp(g_guestpkg, g_s_host, 15) == 0) {
         char tmp[160] = {0};
         read_cmdline(0, tmp, sizeof(tmp));
-        if (tmp[0] && strncmp(tmp, "com.rekoo.pubgm", 15) != 0) {
+        if (tmp[0] && strncmp(tmp, g_s_host, 15) != 0) {
             strncpy(g_guestpkg, tmp, sizeof(g_guestpkg) - 1);
             g_guestpkg[sizeof(g_guestpkg) - 1] = 0;
         }
@@ -552,12 +579,13 @@ static void xj_native_init(JNIEnv* env, jclass c, jint uid, jstring host,
 
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* r) {
     g_vm = vm;
+    xj_init_strs();
     JNIEnv* env = 0;
     if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_1_6) == JNI_OK && env) {
-        jclass c = (*env)->FindClass(env, "io/vanta/fake/XJProfile");
+        jclass c = (*env)->FindClass(env, g_s_cls);
         if (c) {
             JNINativeMethod m;
-            m.name = "nativeInit";
+            m.name = g_s_mth;
             m.signature = "(ILjava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V";
             m.fnPtr = (void*) xj_native_init;
             (*env)->RegisterNatives(env, c, &m, 1);
