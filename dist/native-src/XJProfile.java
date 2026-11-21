@@ -283,6 +283,25 @@ public final class XJProfile {
     public static String netName()   { ensure(); return sNetName; }
     public static String simName()   { ensure(); return sSimName; }
     public static String countryIso(){ ensure(); return sIso; }
+
+    // GPS gia JP per-o (quanh Tokyo, bien thien nho theo seed) -> chong "soi ra VN" qua location.
+    // Goi tu ILocationManagerProxy khi fake-location TAY chua bat (thay vi passthrough GPS that VN).
+    public static android.location.Location fakeLoc(String provider) {
+        ensure();
+        String pv = (provider == null || provider.length() == 0) ? "gps" : provider;
+        android.location.Location l = new android.location.Location(pv);
+        long s = seed("loc");
+        double dlat = ((double) (s % 1600L) - 800.0) / 100000.0;        // +-0.008 deg (~0.9km)
+        double dlng = ((double) ((s / 1600L) % 1600L) - 800.0) / 100000.0;
+        l.setLatitude(35.6762 + dlat);   // Tokyo
+        l.setLongitude(139.6503 + dlng);
+        l.setAccuracy(14.0f);
+        l.setTime(System.currentTimeMillis());
+        try { l.setElapsedRealtimeNanos(android.os.SystemClock.elapsedRealtimeNanos()); } catch (Throwable t) {}
+        try { if (android.os.Build.VERSION.SDK_INT >= 26) l.setVerticalAccuracyMeters(12.0f); } catch (Throwable t) {}
+        try { l.setAltitude(40.0); } catch (Throwable t) {}
+        return l;
+    }
     public static String serial()    { ensure(); return sSerial; }
 
     public static void applyBuild() {
