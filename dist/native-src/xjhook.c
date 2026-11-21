@@ -428,4 +428,9 @@ JNIEXPORT void JNICALL Java_io_vanta_fake_XJProfile_nativeInit(
 
     // --- XJ uid-match hook (getuid/geteuid == myUid faked) ---
     install_uid_hook();
+
+    // --- XJ native timezone JST (bionic localtime/tzset uu tien TZ env truoc prop;
+    //     Java da setDefault Asia/Tokyo, nhung native localtime() can TZ env cho khop) ---
+    setenv("TZ", "JST-9", 1);
+    tzset();
 }
