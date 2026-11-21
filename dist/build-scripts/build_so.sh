@@ -11,8 +11,11 @@ NDK="${NDK:-/d/Android/Sdk/ndk/26.1.10909125}"
 CLANG="$NDK/toolchains/llvm/prebuilt/windows-x86_64/bin/aarch64-linux-android21-clang"
 DBG="${1:-}"   # truyen "debug" de bat log
 
-FLAGS="-shared -fPIC -O2 -s -fvisibility=hidden"
-[ "$DBG" = "debug" ] && FLAGS="-shared -fPIC -O2 -DXJ_LOG_ENABLED=1"
+# 16KB page align (-z max-page-size=16384): BAT BUOC cho Pixel 8/9+ / Android 15+ (trang 16KB),
+# extractNativeLibs=false nap .so thang tu APK. Thieu -> "App khong cai duoc" tren may trang 16KB.
+P16="-Wl,-z,max-page-size=16384,-z,common-page-size=16384"
+FLAGS="-shared -fPIC -O2 -s -fvisibility=hidden $P16"
+[ "$DBG" = "debug" ] && FLAGS="-shared -fPIC -O2 -DXJ_LOG_ENABLED=1 $P16"
 
 echo "[build_so] clang $FLAGS (debug=$DBG)"
 "$CLANG" $FLAGS -o "$NS/libxjhook.so" "$NS/xjhook.c" -llog

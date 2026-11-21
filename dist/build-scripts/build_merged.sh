@@ -56,11 +56,14 @@ echo "  dex sizes: $(stat -c%s "$WORK/classes.dex") + $(stat -c%s "$WORK/classes
 echo "[5] swap 2 dex vao base_xjuid_signed"
 python -I "$(W "$NBB/dist/swapdex2.py")" "$(W "$BASE")" "$(W "$WORK/classes.dex")" "$(W "$WORK/classes2.dex")" "$(W "$WORK/swapped.apk")"
 
-echo "[6] zipalign -p 4"
-"$ZA" -f -p 4 "$(W "$WORK/swapped.apk")" "$(W "$WORK/aligned.apk")"
+echo "[6] zipalign -P 16 (can .so theo trang 16KB cho Pixel/Android15+) + 4"
+"$ZA" -f -P 16 4 "$(W "$WORK/swapped.apk")" "$(W "$WORK/aligned.apk")"
 
-echo "[7] sign"
-"$JAVA" -jar "$(W "$SIGNER")" --apks "$(W "$WORK/aligned.apk")" --allowResign --overwrite 2>&1 | tail -3
+echo "[7] sign (apksigner truc tiep - GIU 16KB zipalign; uber re-align 4KB lam vo 16KB)"
+APKSIGNER="/d/Android/Sdk/build-tools/34.0.0/apksigner.bat"
+DBGKS="/c/Users/giveup/.android/debug.keystore"
+cmd //c "$(W "$APKSIGNER")" sign --ks "$(W "$DBGKS")" --ks-key-alias androiddebugkey \
+  --ks-pass pass:android --key-pass pass:android "$(W "$WORK/aligned.apk")" 2>&1 | tail -2
 cp "$WORK/aligned.apk" "$OUT"
 cp "$OUT" "$SNAP/XJangJu-MERGED-arm64.apk"
 
