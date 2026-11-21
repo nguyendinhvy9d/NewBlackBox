@@ -117,7 +117,7 @@
 
     move-result-object v5
 
-    const-string v6, "XJACQ"
+    const-string v6, "cpacq"
 
     invoke-static {v6, v5}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 

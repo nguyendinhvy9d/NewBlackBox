@@ -36,7 +36,7 @@
 .method public run()V
     .locals 12
 
-    const-string v0, "XJDUMP"
+    const-string v0, "tdump"
 
     const/4 v1, 0x0
 

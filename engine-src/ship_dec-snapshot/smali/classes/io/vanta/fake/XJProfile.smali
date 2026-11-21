@@ -1292,7 +1292,7 @@
 .method private constructor <init>()V
     .registers 1
 
-    .line 555
+    .line 609
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -1301,13 +1301,13 @@
 .method public static applyBuild()V
     .registers 11
 
-    .line 290
+    .line 309
     const-string v0, "/"
 
     :try_start_2
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
-    .line 291
+    .line 310
     sget-boolean v1, Lio/vanta/fake/XJProfile;->sSpoofModel:Z
     :try_end_7
     .catchall {:try_start_2 .. :try_end_7} :catchall_95
@@ -1323,7 +1323,7 @@
 
     return-void
 
-    .line 292
+    .line 311
     :cond_11
     const-string v1, "BRAND"
 
@@ -1335,7 +1335,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 293
+    .line 312
     const-string v1, "MANUFACTURER"
 
     sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
@@ -1346,7 +1346,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 294
+    .line 313
     const-string v1, "MODEL"
 
     sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
@@ -1357,7 +1357,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 295
+    .line 314
     const-string v1, "DEVICE"
 
     sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
@@ -1368,7 +1368,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 296
+    .line 315
     const-string v1, "PRODUCT"
 
     sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
@@ -1379,7 +1379,7 @@
 
     invoke-static {v1, v3}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 298
+    .line 317
     const-string v1, "inc"
 
     invoke-static {v1}, Lio/vanta/fake/XJProfile;->seed(Ljava/lang/String;)J
@@ -1394,7 +1394,7 @@
 
     add-long/2addr v7, v9
 
-    .line 299
+    .line 318
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1451,12 +1451,12 @@
 
     move-result-object v0
 
-    .line 301
+    .line 320
     const-string v1, "FINGERPRINT"
 
     invoke-static {v1, v0}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 302
+    .line 321
     sget-object v0, Lio/vanta/fake/XJProfile;->sSerial:Ljava/lang/String;
 
     invoke-static {v2, v0}, Lio/vanta/fake/XJProfile;->set(Ljava/lang/String;Ljava/lang/String;)V
@@ -1465,24 +1465,24 @@
 
     goto :goto_96
 
-    .line 303
+    .line 322
     :catchall_95
     move-exception v0
 
     :goto_96
     nop
 
-    .line 304
+    .line 323
     return-void
 .end method
 
 .method public static btMac()Ljava/lang/String;
     .registers 6
 
-    .line 360
+    .line 379
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
-    .line 361
+    .line 380
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1523,12 +1523,12 @@
 
     move-result-object v0
 
-    .line 362
+    .line 381
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 363
+    .line 382
     const/4 v2, 0x0
 
     :goto_32
@@ -1536,20 +1536,20 @@
 
     if-ge v2, v3, :cond_57
 
-    .line 364
+    .line 383
     if-lez v2, :cond_3c
 
     const/16 v3, 0x3a
 
     invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 365
+    .line 384
     :cond_3c
     aget-byte v3, v0, v2
 
     and-int/lit16 v3, v3, 0xff
 
-    .line 366
+    .line 385
     shr-int/lit8 v4, v3, 0x4
 
     const/16 v5, 0x10
@@ -1560,7 +1560,7 @@
 
     invoke-virtual {v1, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 367
+    .line 386
     and-int/lit8 v3, v3, 0xf
 
     invoke-static {v3, v5}, Ljava/lang/Character;->forDigit(II)C
@@ -1569,12 +1569,12 @@
 
     invoke-virtual {v1, v3}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 363
+    .line 382
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_32
 
-    .line 369
+    .line 388
     :cond_57
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -1590,7 +1590,7 @@
 .method private static btMacFor(Ljava/lang/String;ILjava/lang/String;)Ljava/lang/String;
     .registers 6
 
-    .line 451
+    .line 505
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -1621,12 +1621,12 @@
 
     move-result-object p0
 
-    .line 452
+    .line 506
     new-instance p1, Ljava/lang/StringBuilder;
 
     invoke-direct {p1}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 453
+    .line 507
     const/4 p2, 0x0
 
     :goto_25
@@ -1634,20 +1634,20 @@
 
     if-ge p2, v0, :cond_4a
 
-    .line 454
+    .line 508
     if-lez p2, :cond_2f
 
     const/16 v0, 0x3a
 
     invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 455
+    .line 509
     :cond_2f
     aget-byte v0, p0, p2
 
     and-int/lit16 v0, v0, 0xff
 
-    .line 456
+    .line 510
     shr-int/lit8 v1, v0, 0x4
 
     const/16 v2, 0x10
@@ -1658,7 +1658,7 @@
 
     invoke-virtual {p1, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 457
+    .line 511
     and-int/lit8 v0, v0, 0xf
 
     invoke-static {v0, v2}, Ljava/lang/Character;->forDigit(II)C
@@ -1667,12 +1667,12 @@
 
     invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 453
+    .line 507
     add-int/lit8 p2, p2, 0x1
 
     goto :goto_25
 
-    .line 459
+    .line 513
     :cond_4a
     invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -1683,6 +1683,36 @@
     move-result-object p0
 
     return-object p0
+.end method
+
+.method private static cat([Ljava/lang/String;[Ljava/lang/String;)[Ljava/lang/String;
+    .registers 5
+
+    .line 465
+    array-length v0, p0
+
+    array-length v1, p1
+
+    add-int/2addr v0, v1
+
+    new-array v0, v0, [Ljava/lang/String;
+
+    .line 466
+    array-length v1, p0
+
+    const/4 v2, 0x0
+
+    invoke-static {p0, v2, v0, v2, v1}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+
+    .line 467
+    array-length p0, p0
+
+    array-length v1, p1
+
+    invoke-static {p1, v2, v0, p0, v1}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+
+    .line 468
+    return-object v0
 .end method
 
 .method public static countryIso()Ljava/lang/String;
@@ -1699,7 +1729,7 @@
 .method public static describe(I)Ljava/lang/String;
     .registers 52
 
-    .line 476
+    .line 530
     move/from16 v0, p0
 
     const-string v1, "/"
@@ -1713,27 +1743,27 @@
 
     move-result-object v4
 
-    .line 477
+    .line 531
     invoke-static/range {p0 .. p0}, Lio/vanta/fake/XJProfile;->readSalt(I)Ljava/lang/String;
 
     move-result-object v5
 
-    .line 478
+    .line 532
     invoke-static {v5}, Lio/vanta/fake/XJProfile;->sufOf(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v6
 
-    .line 479
+    .line 533
     invoke-static {v3}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v7
 
-    .line 480
+    .line 534
     invoke-static {v7}, Lio/vanta/fake/XJProfile;->poolFor(Ljava/lang/String;)[[Ljava/lang/String;
 
     move-result-object v7
 
-    .line 481
+    .line 535
     const/4 v9, 0x0
 
     if-eqz v7, :cond_21
@@ -1745,7 +1775,7 @@
     :cond_21
     const/4 v10, 0x0
 
-    .line 482
+    .line 536
     :goto_22
     if-eqz v7, :cond_25
 
@@ -1754,7 +1784,7 @@
     :cond_25
     sget-object v7, Lio/vanta/fake/XJProfile;->POOL_SM8150:[[Ljava/lang/String;
 
-    .line 483
+    .line 537
     :goto_27
     const-string v11, "dev"
 
@@ -1776,7 +1806,7 @@
 
     aget-object v7, v7, v12
 
-    .line 484
+    .line 538
     sget-object v11, Lio/vanta/fake/XJProfile;->CARRIERS:[[Ljava/lang/String;
 
     const-string v12, "car"
@@ -1797,10 +1827,10 @@
 
     aget-object v11, v11, v13
 
-    .line 485
+    .line 539
     aget-object v15, v11, v9
 
-    .line 487
+    .line 541
     const-string v12, "imei"
 
     const/4 v13, 0x6
@@ -1809,7 +1839,7 @@
 
     move-result-object v12
 
-    .line 488
+    .line 542
     new-instance v14, Ljava/lang/StringBuilder;
 
     const/4 v8, 0x7
@@ -1818,7 +1848,7 @@
 
     invoke-direct {v14, v9}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 489
+    .line 543
     const/4 v9, 0x0
 
     :goto_57
@@ -1834,7 +1864,7 @@
 
     goto :goto_57
 
-    .line 490
+    .line 544
     :cond_62
     invoke-virtual {v14}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -1846,12 +1876,12 @@
 
     invoke-virtual {v14, v9}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 491
+    .line 545
     invoke-virtual {v14}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v20
 
-    .line 493
+    .line 547
     const-string v9, "imsi"
 
     const/16 v12, 0xa
@@ -1860,12 +1890,12 @@
 
     move-result-object v9
 
-    .line 494
+    .line 548
     new-instance v13, Ljava/lang/StringBuilder;
 
     invoke-direct {v13, v15}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 495
+    .line 549
     const/4 v14, 0x0
 
     :goto_7f
@@ -1881,13 +1911,13 @@
 
     goto :goto_7f
 
-    .line 496
+    .line 550
     :cond_8b
     invoke-virtual {v13}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v21
 
-    .line 498
+    .line 552
     const-string v9, "iccid"
 
     const/16 v12, 0xd
@@ -1896,14 +1926,14 @@
 
     move-result-object v9
 
-    .line 499
+    .line 553
     new-instance v13, Ljava/lang/StringBuilder;
 
     const-string v14, "8981"
 
     invoke-direct {v13, v14}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 500
+    .line 554
     const/4 v14, 0x3
 
     invoke-virtual {v15, v14}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -1912,7 +1942,7 @@
 
     invoke-virtual {v13, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 501
+    .line 555
     const/4 v8, 0x0
 
     :goto_a7
@@ -1928,7 +1958,7 @@
 
     goto :goto_a7
 
-    .line 502
+    .line 556
     :cond_b3
     invoke-virtual {v13}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -1940,12 +1970,12 @@
 
     invoke-virtual {v13, v8}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 503
+    .line 557
     invoke-virtual {v13}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v22
 
-    .line 505
+    .line 559
     const-string v8, "line1"
 
     const/16 v9, 0x8
@@ -1954,7 +1984,7 @@
 
     move-result-object v8
 
-    .line 506
+    .line 560
     const/16 v12, 0x9
 
     const/4 v13, 0x7
@@ -1963,12 +1993,12 @@
 
     move-result-object v12
 
-    .line 507
+    .line 561
     new-instance v13, Ljava/lang/StringBuilder;
 
     invoke-direct {v13, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 508
+    .line 562
     const-string v14, "pre"
 
     invoke-static {v14, v4, v0, v6}, Lio/vanta/fake/XJProfile;->seedP(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)J
@@ -1991,7 +2021,7 @@
 
     invoke-virtual {v9, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 509
+    .line 563
     const/4 v2, 0x0
 
     :goto_ed
@@ -2007,13 +2037,13 @@
 
     goto :goto_ed
 
-    .line 510
+    .line 564
     :cond_f9
     invoke-virtual {v13}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v23
 
-    .line 512
+    .line 566
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -2060,7 +2090,7 @@
 
     move-result-object v24
 
-    .line 513
+    .line 567
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -2107,7 +2137,7 @@
 
     move-result-object v25
 
-    .line 514
+    .line 568
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -2150,12 +2180,12 @@
 
     move-result-object v26
 
-    .line 515
+    .line 569
     invoke-static {v4, v0, v6}, Lio/vanta/fake/XJProfile;->btMacFor(Ljava/lang/String;ILjava/lang/String;)Ljava/lang/String;
 
     move-result-object v27
 
-    .line 516
+    .line 570
     const-string v2, "inc"
 
     invoke-static {v2, v4, v0, v6}, Lio/vanta/fake/XJProfile;->seedP(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)J
@@ -2170,7 +2200,7 @@
 
     add-long/2addr v8, v12
 
-    .line 517
+    .line 571
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -2227,7 +2257,7 @@
 
     move-result-object v1
 
-    .line 520
+    .line 574
     const-string v32, "model"
 
     const-string v33, "brand"
@@ -2270,10 +2300,10 @@
 
     move-result-object v2
 
-    .line 527
+    .line 581
     nop
 
-    .line 528
+    .line 582
     if-eqz v31, :cond_1fc
 
     const/4 v6, 0x2
@@ -2292,7 +2322,7 @@
     :goto_202
     move-object v12, v6
 
-    .line 529
+    .line 583
     if-eqz v31, :cond_209
 
     const/4 v6, 0x0
@@ -2313,7 +2343,7 @@
     :goto_210
     move-object v13, v8
 
-    .line 530
+    .line 584
     if-eqz v31, :cond_218
 
     const/4 v8, 0x1
@@ -2333,7 +2363,7 @@
 
     move-object v14, v8
 
-    .line 531
+    .line 585
     :goto_21f
     if-eqz v31, :cond_226
 
@@ -2352,7 +2382,7 @@
 
     move-result-object v8
 
-    .line 532
+    .line 586
     :goto_22c
     if-eqz v31, :cond_231
 
@@ -2367,7 +2397,7 @@
 
     move-result-object v4
 
-    .line 533
+    .line 587
     :goto_237
     invoke-static {v3}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
@@ -2375,12 +2405,12 @@
 
     const-string v7, "ro.hardware.chipname"
 
-    .line 534
+    .line 588
     invoke-static {v7}, Lio/vanta/fake/XJProfile;->realProp(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v18
 
-    .line 535
+    .line 589
     if-eqz v31, :cond_246
 
     :goto_243
@@ -2420,14 +2450,14 @@
 
     move-result-object v1
 
-    .line 540
+    .line 594
     new-instance v3, Ljava/lang/StringBuilder;
 
     const-string v4, "{"
 
     invoke-direct {v3, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 541
+    .line 595
     const/4 v9, 0x0
 
     :goto_267
@@ -2437,14 +2467,14 @@
 
     if-ge v9, v6, :cond_294
 
-    .line 542
+    .line 596
     if-lez v9, :cond_274
 
     const/16 v6, 0x2c
 
     invoke-virtual {v3, v6}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 543
+    .line 597
     :cond_274
     invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
@@ -2474,12 +2504,12 @@
 
     invoke-virtual {v6, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 541
+    .line 595
     add-int/lit8 v9, v9, 0x1
 
     goto :goto_267
 
-    .line 545
+    .line 599
     :cond_294
     const-string v1, ",\"uid\":"
 
@@ -2489,7 +2519,7 @@
 
     invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 
-    .line 546
+    .line 600
     const-string v0, ",\"spoofModel\":"
 
     invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -2500,7 +2530,7 @@
 
     invoke-virtual {v0, v8}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
 
-    .line 547
+    .line 601
     const-string v0, ",\"salt\":\""
 
     invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -2517,12 +2547,12 @@
 
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 548
+    .line 602
     const/16 v0, 0x7d
 
     invoke-virtual {v3, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 549
+    .line 603
     invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v0
@@ -2531,11 +2561,11 @@
 
     return-object v0
 
-    .line 550
+    .line 604
     :catchall_2c3
     move-exception v0
 
-    .line 551
+    .line 605
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -2654,7 +2684,7 @@
 .method private static digitsP(Ljava/lang/String;Ljava/lang/String;IILjava/lang/String;)[I
     .registers 6
 
-    .line 445
+    .line 499
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -2693,10 +2723,10 @@
 
     move-result-object p0
 
-    .line 446
+    .line 500
     new-array p1, p3, [I
 
-    .line 447
+    .line 501
     const/4 p2, 0x0
 
     :goto_2a
@@ -2716,7 +2746,7 @@
 
     goto :goto_2a
 
-    .line 448
+    .line 502
     :cond_39
     return-object p1
 .end method
@@ -3256,20 +3286,20 @@
 .method private static esc(Ljava/lang/String;)Ljava/lang/String;
     .registers 6
 
-    .line 462
+    .line 516
     if-nez p0, :cond_5
 
     const-string p0, ""
 
     return-object p0
 
-    .line 463
+    .line 517
     :cond_5
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 464
+    .line 518
     const/4 v1, 0x0
 
     :goto_b
@@ -3279,12 +3309,12 @@
 
     if-ge v1, v2, :cond_36
 
-    .line 465
+    .line 519
     invoke-virtual {p0, v1}, Ljava/lang/String;->charAt(I)C
 
     move-result v2
 
-    .line 466
+    .line 520
     const/16 v3, 0x22
 
     const/16 v4, 0x5c
@@ -3295,7 +3325,7 @@
 
     goto :goto_2c
 
-    .line 467
+    .line 521
     :cond_1e
     const/16 v3, 0xa
 
@@ -3307,13 +3337,13 @@
 
     goto :goto_33
 
-    .line 468
+    .line 522
     :cond_28
     invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     goto :goto_33
 
-    .line 466
+    .line 520
     :cond_2c
     :goto_2c
     invoke-virtual {v0, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
@@ -3322,19 +3352,157 @@
 
     invoke-virtual {v3, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 464
+    .line 518
     :goto_33
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_b
 
-    .line 470
+    .line 524
     :cond_36
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object p0
 
     return-object p0
+.end method
+
+.method public static fakeLoc(Ljava/lang/String;)Landroid/location/Location;
+    .registers 12
+
+    .line 290
+    invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
+
+    .line 291
+    if-eqz p0, :cond_b
+
+    invoke-virtual {p0}, Ljava/lang/String;->length()I
+
+    move-result v0
+
+    if-nez v0, :cond_d
+
+    :cond_b
+    const-string p0, "gps"
+
+    .line 292
+    :cond_d
+    new-instance v0, Landroid/location/Location;
+
+    invoke-direct {v0, p0}, Landroid/location/Location;-><init>(Ljava/lang/String;)V
+
+    .line 293
+    const-string p0, "loc"
+
+    invoke-static {p0}, Lio/vanta/fake/XJProfile;->seed(Ljava/lang/String;)J
+
+    move-result-wide v1
+
+    .line 294
+    const-wide/16 v3, 0x640
+
+    rem-long v5, v1, v3
+
+    long-to-double v5, v5
+
+    const-wide/high16 v7, 0x4089000000000000L    # 800.0
+
+    sub-double/2addr v5, v7
+
+    const-wide v9, 0x40f86a0000000000L    # 100000.0
+
+    div-double/2addr v5, v9
+
+    .line 295
+    div-long/2addr v1, v3
+
+    rem-long/2addr v1, v3
+
+    long-to-double v1, v1
+
+    sub-double/2addr v1, v7
+
+    div-double/2addr v1, v9
+
+    .line 296
+    const-wide v3, 0x4041d68db8bac711L    # 35.6762
+
+    add-double/2addr v5, v3
+
+    invoke-virtual {v0, v5, v6}, Landroid/location/Location;->setLatitude(D)V
+
+    .line 297
+    const-wide v3, 0x406174cf41f212d7L    # 139.6503
+
+    add-double/2addr v1, v3
+
+    invoke-virtual {v0, v1, v2}, Landroid/location/Location;->setLongitude(D)V
+
+    .line 298
+    const/high16 p0, 0x41600000    # 14.0f
+
+    invoke-virtual {v0, p0}, Landroid/location/Location;->setAccuracy(F)V
+
+    .line 299
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    move-result-wide v1
+
+    invoke-virtual {v0, v1, v2}, Landroid/location/Location;->setTime(J)V
+
+    .line 300
+    :try_start_49
+    invoke-static {}, Landroid/os/SystemClock;->elapsedRealtimeNanos()J
+
+    move-result-wide v1
+
+    invoke-virtual {v0, v1, v2}, Landroid/location/Location;->setElapsedRealtimeNanos(J)V
+    :try_end_50
+    .catchall {:try_start_49 .. :try_end_50} :catchall_51
+
+    goto :goto_52
+
+    :catchall_51
+    move-exception p0
+
+    .line 301
+    :goto_52
+    :try_start_52
+    sget p0, Landroid/os/Build$VERSION;->SDK_INT:I
+
+    const/16 v1, 0x1a
+
+    if-lt p0, v1, :cond_5f
+
+    const/high16 p0, 0x41400000    # 12.0f
+
+    invoke-virtual {v0, p0}, Landroid/location/Location;->setVerticalAccuracyMeters(F)V
+    :try_end_5d
+    .catchall {:try_start_52 .. :try_end_5d} :catchall_5e
+
+    goto :goto_5f
+
+    :catchall_5e
+    move-exception p0
+
+    .line 302
+    :cond_5f
+    :goto_5f
+    const-wide/high16 v1, 0x4044000000000000L    # 40.0
+
+    :try_start_61
+    invoke-virtual {v0, v1, v2}, Landroid/location/Location;->setAltitude(D)V
+    :try_end_64
+    .catchall {:try_start_61 .. :try_end_64} :catchall_65
+
+    goto :goto_66
+
+    :catchall_65
+    move-exception p0
+
+    .line 303
+    :goto_66
+    return-object v0
 .end method
 
 .method private static hex([B)Ljava/lang/String;
@@ -3437,280 +3605,441 @@
 .end method
 
 .method public static loadNative()V
-    .registers 52
+    .registers 54
 
-    .line 377
-    const-string v0, "/"
+    .line 396
+    const-string v1, "/"
 
-    sget-boolean v1, Lio/vanta/fake/XJProfile;->sNativeDone:Z
+    const-string v2, "Asia/Tokyo"
 
-    if-eqz v1, :cond_7
+    sget-boolean v0, Lio/vanta/fake/XJProfile;->sNativeDone:Z
+
+    if-eqz v0, :cond_9
 
     return-void
 
-    .line 379
-    :cond_7
-    :try_start_7
+    .line 398
+    :cond_9
+    :try_start_9
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
+    :try_end_c
+    .catchall {:try_start_9 .. :try_end_c} :catchall_170
 
-    .line 380
-    const-string v1, "xjhook"
-
-    invoke-static {v1}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
-
-    .line 382
-    sget-boolean v1, Lio/vanta/fake/XJProfile;->sSpoofModel:Z
-
-    const/4 v2, 0x1
-
-    const/4 v3, 0x0
-
-    if-eqz v1, :cond_e0
-
-    .line 384
-    const-string v1, "inc"
-
-    invoke-static {v1}, Lio/vanta/fake/XJProfile;->seed(Ljava/lang/String;)J
-
-    move-result-wide v4
-
-    const-wide/32 v6, 0x7a1200
-
-    rem-long/2addr v4, v6
-
-    const-wide/32 v6, 0xf4240
-
-    add-long/2addr v4, v6
-
-    .line 385
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    sget-object v6, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v6, v6, v3
-
-    invoke-virtual {v1, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    sget-object v6, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    const/4 v7, 0x4
-
-    aget-object v6, v6, v7
-
-    invoke-virtual {v1, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    .line 401
+    :try_start_c
+    invoke-static {v2}, Ljava/util/TimeZone;->getTimeZone(Ljava/lang/String;)Ljava/util/TimeZone;
 
     move-result-object v0
 
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+    invoke-static {v0}, Ljava/util/TimeZone;->setDefault(Ljava/util/TimeZone;)V
+    :try_end_13
+    .catchall {:try_start_c .. :try_end_13} :catchall_14
 
-    const/4 v6, 0x3
+    goto :goto_15
 
-    aget-object v1, v1, v6
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    const-string v1, ":12/SP1A.210812.016/"
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0, v4, v5}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    const-string v1, ":user/release-keys"
-
-    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v29
-
-    .line 387
-    const-string v30, "ro.product.model"
-
-    const-string v31, "ro.product.brand"
-
-    const-string v32, "ro.product.manufacturer"
-
-    const-string v33, "ro.product.device"
-
-    const-string v34, "ro.product.name"
-
-    const-string v35, "ro.product.vendor.model"
-
-    const-string v36, "ro.product.vendor.brand"
-
-    const-string v37, "ro.product.vendor.manufacturer"
-
-    const-string v38, "ro.product.vendor.device"
-
-    const-string v39, "ro.product.vendor.name"
-
-    const-string v40, "ro.product.system.model"
-
-    const-string v41, "ro.product.system.brand"
-
-    const-string v42, "ro.product.system.manufacturer"
-
-    const-string v43, "ro.product.odm.model"
-
-    const-string v44, "ro.product.odm.brand"
-
-    const-string v45, "ro.product.odm.manufacturer"
-
-    const-string v46, "ro.build.product"
-
-    const-string v47, "ro.build.fingerprint"
-
-    const-string v48, "ro.bootimage.build.fingerprint"
-
-    const-string v49, "ro.vendor.build.fingerprint"
-
-    const-string v50, "ro.system.build.fingerprint"
-
-    const-string v51, "ro.odm.build.fingerprint"
-
-    filled-new-array/range {v30 .. v51}, [Ljava/lang/String;
-
-    move-result-object v0
-
-    .line 397
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    const/4 v4, 0x2
-
-    aget-object v8, v1, v4
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v9, v1, v3
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v10, v1, v2
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v11, v1, v6
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v12, v1, v7
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v13, v1, v4
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v14, v1, v3
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v15, v1, v2
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v16, v1, v6
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v17, v1, v7
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v18, v1, v4
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v19, v1, v3
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v20, v1, v2
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v21, v1, v4
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v22, v1, v3
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v23, v1, v2
-
-    sget-object v1, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
-
-    aget-object v24, v1, v7
-
-    move-object/from16 v25, v29
-
-    move-object/from16 v26, v29
-
-    move-object/from16 v27, v29
-
-    move-object/from16 v28, v29
-
-    filled-new-array/range {v8 .. v29}, [Ljava/lang/String;
-
-    move-result-object v1
-
-    .line 407
-    goto :goto_e4
-
-    .line 408
-    :cond_e0
-    new-array v0, v3, [Ljava/lang/String;
-
-    .line 409
-    new-array v1, v3, [Ljava/lang/String;
-
-    .line 411
-    :goto_e4
-    sget v3, Lio/vanta/fake/XJProfile;->sUid:I
-
-    sget-object v4, Lio/vanta/fake/XJProfile;->sHost:Ljava/lang/String;
-
-    invoke-static {v3, v4, v0, v1}, Lio/vanta/fake/XJProfile;->nativeInit(ILjava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V
-
-    .line 412
-    invoke-static {}, Lio/vanta/fake/XJProfile;->applyBuild()V
-
-    .line 413
-    sput-boolean v2, Lio/vanta/fake/XJProfile;->sNativeDone:Z
-    :try_end_f0
-    .catchall {:try_start_7 .. :try_end_f0} :catchall_f1
-
-    goto :goto_f2
-
-    .line 414
-    :catchall_f1
+    :catchall_14
     move-exception v0
 
-    :goto_f2
+    .line 402
+    :goto_15
+    :try_start_15
+    sget-object v0, Ljava/util/Locale;->JAPAN:Ljava/util/Locale;
+
+    invoke-static {v0}, Ljava/util/Locale;->setDefault(Ljava/util/Locale;)V
+    :try_end_1a
+    .catchall {:try_start_15 .. :try_end_1a} :catchall_1b
+
+    goto :goto_1c
+
+    :catchall_1b
+    move-exception v0
+
+    .line 404
+    :goto_1c
+    const/4 v3, 0x0
+
+    const/4 v4, 0x1
+
+    :try_start_1e
+    const-string v0, "android.icu.util.TimeZone"
+
+    invoke-static {v0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+
+    move-result-object v0
+
+    .line 405
+    const-string v5, "getTimeZone"
+
+    new-array v6, v4, [Ljava/lang/Class;
+
+    const-class v7, Ljava/lang/String;
+
+    aput-object v7, v6, v3
+
+    invoke-virtual {v0, v5, v6}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+
+    move-result-object v5
+
+    new-array v6, v4, [Ljava/lang/Object;
+
+    aput-object v2, v6, v3
+
+    const/4 v2, 0x0
+
+    invoke-virtual {v5, v2, v6}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v5
+
+    .line 406
+    const-string v6, "setDefault"
+
+    new-array v7, v4, [Ljava/lang/Class;
+
+    aput-object v0, v7, v3
+
+    invoke-virtual {v0, v6, v7}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+
+    move-result-object v0
+
+    new-array v6, v4, [Ljava/lang/Object;
+
+    aput-object v5, v6, v3
+
+    invoke-virtual {v0, v2, v6}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+    :try_end_4a
+    .catchall {:try_start_1e .. :try_end_4a} :catchall_4b
+
+    goto :goto_4c
+
+    .line 407
+    :catchall_4b
+    move-exception v0
+
+    :goto_4c
     nop
 
-    .line 415
+    .line 408
+    :try_start_4d
+    const-string v0, "xjhook"
+
+    invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+
+    .line 412
+    const-string v5, "persist.sys.timezone"
+
+    const-string v6, "persist.sys.locale"
+
+    const-string v7, "ro.product.locale"
+
+    const-string v8, "ro.product.locale.language"
+
+    const-string v9, "ro.product.locale.region"
+
+    const-string v10, "gsm.sim.operator.iso-country"
+
+    const-string v11, "gsm.operator.iso-country"
+
+    const-string v12, "gsm.sim.operator.numeric"
+
+    const-string v13, "gsm.operator.numeric"
+
+    const-string v14, "gsm.sim.operator.alpha"
+
+    const-string v15, "gsm.operator.alpha"
+
+    const-string v16, "gsm.sim.state"
+
+    filled-new-array/range {v5 .. v16}, [Ljava/lang/String;
+
+    move-result-object v0
+
+    .line 419
+    const-string v5, "Asia/Tokyo"
+
+    const-string v6, "ja-JP"
+
+    const-string v7, "ja-JP"
+
+    const-string v8, "ja"
+
+    const-string v9, "JP"
+
+    sget-object v10, Lio/vanta/fake/XJProfile;->sIso:Ljava/lang/String;
+
+    sget-object v11, Lio/vanta/fake/XJProfile;->sIso:Ljava/lang/String;
+
+    sget-object v12, Lio/vanta/fake/XJProfile;->sMccmnc:Ljava/lang/String;
+
+    sget-object v13, Lio/vanta/fake/XJProfile;->sMccmnc:Ljava/lang/String;
+
+    sget-object v14, Lio/vanta/fake/XJProfile;->sNetName:Ljava/lang/String;
+
+    sget-object v15, Lio/vanta/fake/XJProfile;->sNetName:Ljava/lang/String;
+
+    const-string v16, "LOADED"
+
+    filled-new-array/range {v5 .. v16}, [Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 427
+    sget-boolean v5, Lio/vanta/fake/XJProfile;->sSpoofModel:Z
+
+    if-eqz v5, :cond_161
+
+    .line 429
+    const-string v5, "inc"
+
+    invoke-static {v5}, Lio/vanta/fake/XJProfile;->seed(Ljava/lang/String;)J
+
+    move-result-wide v5
+
+    const-wide/32 v7, 0x7a1200
+
+    rem-long/2addr v5, v7
+
+    const-wide/32 v7, 0xf4240
+
+    add-long/2addr v5, v7
+
+    .line 430
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    sget-object v8, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v8, v8, v3
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    sget-object v8, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    const/4 v9, 0x4
+
+    aget-object v8, v8, v9
+
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v7
+
+    invoke-virtual {v7, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    sget-object v7, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    const/4 v8, 0x3
+
+    aget-object v7, v7, v8
+
+    invoke-virtual {v1, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v7, ":12/SP1A.210812.016/"
+
+    invoke-virtual {v1, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1, v5, v6}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    const-string v5, ":user/release-keys"
+
+    invoke-virtual {v1, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v31
+
+    .line 432
+    const-string v32, "ro.product.model"
+
+    const-string v33, "ro.product.brand"
+
+    const-string v34, "ro.product.manufacturer"
+
+    const-string v35, "ro.product.device"
+
+    const-string v36, "ro.product.name"
+
+    const-string v37, "ro.product.vendor.model"
+
+    const-string v38, "ro.product.vendor.brand"
+
+    const-string v39, "ro.product.vendor.manufacturer"
+
+    const-string v40, "ro.product.vendor.device"
+
+    const-string v41, "ro.product.vendor.name"
+
+    const-string v42, "ro.product.system.model"
+
+    const-string v43, "ro.product.system.brand"
+
+    const-string v44, "ro.product.system.manufacturer"
+
+    const-string v45, "ro.product.odm.model"
+
+    const-string v46, "ro.product.odm.brand"
+
+    const-string v47, "ro.product.odm.manufacturer"
+
+    const-string v48, "ro.build.product"
+
+    const-string v49, "ro.build.fingerprint"
+
+    const-string v50, "ro.bootimage.build.fingerprint"
+
+    const-string v51, "ro.vendor.build.fingerprint"
+
+    const-string v52, "ro.system.build.fingerprint"
+
+    const-string v53, "ro.odm.build.fingerprint"
+
+    filled-new-array/range {v32 .. v53}, [Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 442
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    const/4 v6, 0x2
+
+    aget-object v10, v5, v6
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v11, v5, v3
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v12, v5, v4
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v13, v5, v8
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v14, v5, v9
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v15, v5, v6
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v16, v5, v3
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v17, v5, v4
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v18, v5, v8
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v19, v5, v9
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v20, v5, v6
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v21, v5, v3
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v22, v5, v4
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v23, v5, v6
+
+    sget-object v5, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v24, v5, v3
+
+    sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v25, v3, v4
+
+    sget-object v3, Lio/vanta/fake/XJProfile;->sDev:[Ljava/lang/String;
+
+    aget-object v26, v3, v9
+
+    move-object/from16 v27, v31
+
+    move-object/from16 v28, v31
+
+    move-object/from16 v29, v31
+
+    move-object/from16 v30, v31
+
+    filled-new-array/range {v10 .. v31}, [Ljava/lang/String;
+
+    move-result-object v3
+
+    .line 452
+    invoke-static {v0, v1}, Lio/vanta/fake/XJProfile;->cat([Ljava/lang/String;[Ljava/lang/String;)[Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v2, v3}, Lio/vanta/fake/XJProfile;->cat([Ljava/lang/String;[Ljava/lang/String;)[Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 453
+    goto :goto_163
+
+    .line 454
+    :cond_161
+    nop
+
+    .line 455
+    nop
+
+    .line 457
+    :goto_163
+    sget v1, Lio/vanta/fake/XJProfile;->sUid:I
+
+    sget-object v3, Lio/vanta/fake/XJProfile;->sHost:Ljava/lang/String;
+
+    invoke-static {v1, v3, v0, v2}, Lio/vanta/fake/XJProfile;->nativeInit(ILjava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V
+
+    .line 458
+    invoke-static {}, Lio/vanta/fake/XJProfile;->applyBuild()V
+
+    .line 459
+    sput-boolean v4, Lio/vanta/fake/XJProfile;->sNativeDone:Z
+    :try_end_16f
+    .catchall {:try_start_4d .. :try_end_16f} :catchall_170
+
+    goto :goto_171
+
+    .line 460
+    :catchall_170
+    move-exception v0
+
+    :goto_171
+    nop
+
+    .line 461
     return-void
 .end method
 
@@ -4466,10 +4795,10 @@
 .method private static resolveHost()Ljava/lang/String;
     .registers 7
 
-    .line 423
+    .line 477
     const-string v0, "getHostPkg"
 
-    .line 425
+    .line 479
     const/4 v1, 0x0
 
     const/4 v2, 0x0
@@ -4481,7 +4810,7 @@
 
     move-result-object v3
 
-    .line 426
+    .line 480
     new-array v4, v1, [Ljava/lang/Class;
 
     invoke-virtual {v3, v0, v4}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
@@ -4500,7 +4829,7 @@
     :try_end_1a
     .catchall {:try_start_4 .. :try_end_1a} :catchall_1b
 
-    .line 427
+    .line 481
     goto :goto_1d
 
     :catchall_1b
@@ -4508,7 +4837,7 @@
 
     move-object v3, v2
 
-    .line 428
+    .line 482
     :goto_1d
     const-string v4, "null"
 
@@ -4534,7 +4863,7 @@
 
     if-eqz v5, :cond_4e
 
-    .line 430
+    .line 484
     :cond_35
     :try_start_35
     const-string v5, "top.niunaijun.blackbox.BlackBoxCore"
@@ -4543,7 +4872,7 @@
 
     move-result-object v5
 
-    .line 431
+    .line 485
     new-array v6, v1, [Ljava/lang/Class;
 
     invoke-virtual {v5, v0, v6}, Ljava/lang/Class;->getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
@@ -4562,7 +4891,7 @@
     :try_end_4b
     .catchall {:try_start_35 .. :try_end_4b} :catchall_4c
 
-    .line 432
+    .line 486
     :goto_4b
     goto :goto_4e
 
@@ -4571,7 +4900,7 @@
 
     goto :goto_4b
 
-    .line 434
+    .line 488
     :cond_4e
     :goto_4e
     if-eqz v3, :cond_5c
@@ -4591,7 +4920,7 @@
     :cond_5c
     const-string v3, "com.rekoo.pubgm"
 
-    .line 435
+    .line 489
     :cond_5e
     return-object v3
 .end method
@@ -4691,7 +5020,7 @@
 .method private static seedP(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)J
     .registers 8
 
-    .line 439
+    .line 493
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -4730,10 +5059,10 @@
 
     move-result-object p0
 
-    .line 440
+    .line 494
     nop
 
-    .line 441
+    .line 495
     const-wide/16 p1, 0x0
 
     const/4 p3, 0x0
@@ -4761,7 +5090,7 @@
 
     goto :goto_2b
 
-    .line 442
+    .line 496
     :cond_3b
     const-wide v0, 0x7fffffffffffffffL
 
@@ -4773,7 +5102,7 @@
 .method public static serial()Ljava/lang/String;
     .registers 1
 
-    .line 286
+    .line 305
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
     sget-object v0, Lio/vanta/fake/XJProfile;->sSerial:Ljava/lang/String;
@@ -4784,7 +5113,7 @@
 .method private static set(Ljava/lang/String;Ljava/lang/String;)V
     .registers 5
 
-    .line 308
+    .line 327
     :try_start_0
     const-class v0, Landroid/os/Build;
 
@@ -4792,14 +5121,14 @@
 
     move-result-object p0
 
-    .line 309
+    .line 328
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Ljava/lang/reflect/Field;->setAccessible(Z)V
     :try_end_a
     .catchall {:try_start_0 .. :try_end_a} :catchall_26
 
-    .line 311
+    .line 330
     :try_start_a
     const-class v1, Ljava/lang/reflect/Field;
 
@@ -4809,10 +5138,10 @@
 
     move-result-object v1
 
-    .line 312
+    .line 331
     invoke-virtual {v1, v0}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
-    .line 313
+    .line 332
     invoke-virtual {p0}, Ljava/lang/reflect/Field;->getModifiers()I
 
     move-result v0
@@ -4825,14 +5154,14 @@
 
     goto :goto_20
 
-    .line 314
+    .line 333
     :catchall_1f
     move-exception v0
 
     :goto_20
     nop
 
-    .line 315
+    .line 334
     const/4 v0, 0x0
 
     :try_start_22
@@ -4842,14 +5171,14 @@
 
     goto :goto_27
 
-    .line 316
+    .line 335
     :catchall_26
     move-exception p0
 
     :goto_27
     nop
 
-    .line 317
+    .line 336
     return-void
 .end method
 
@@ -4910,7 +5239,7 @@
 .method public static xjPatchSecure(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
     .registers 11
 
-    .line 338
+    .line 357
     const-string v0, "android_id"
 
     if-eqz p1, :cond_8b
@@ -4922,11 +5251,11 @@
 
     goto/16 :goto_8b
 
-    .line 339
+    .line 358
     :cond_a
     nop
 
-    .line 340
+    .line 359
     array-length v1, p1
     :try_end_c
     .catchall {:try_start_4 .. :try_end_c} :catchall_88
@@ -4947,15 +5276,15 @@
     :try_start_14
     aget-object v7, p1, v4
 
-    .line 341
+    .line 360
     instance-of v8, v7, Ljava/lang/String;
 
     if-eqz v8, :cond_35
 
-    .line 342
+    .line 361
     check-cast v7, Ljava/lang/String;
 
-    .line 343
+    .line 362
     const-string v8, "GET_secure"
 
     invoke-virtual {v8, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -4968,7 +5297,7 @@
 
     goto :goto_35
 
-    .line 344
+    .line 363
     :cond_26
     invoke-virtual {v0, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -4980,7 +5309,7 @@
 
     goto :goto_35
 
-    .line 345
+    .line 364
     :cond_2e
     invoke-virtual {v6, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -4990,14 +5319,14 @@
 
     move-object v3, v6
 
-    .line 340
+    .line 359
     :cond_35
     :goto_35
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_10
 
-    .line 348
+    .line 367
     :cond_38
     if-eqz v5, :cond_87
 
@@ -5005,11 +5334,11 @@
 
     goto :goto_87
 
-    .line 349
+    .line 368
     :cond_3d
     invoke-static {}, Lio/vanta/fake/XJProfile;->ensure()V
 
-    .line 351
+    .line 370
     invoke-virtual {v6, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result p1
@@ -5022,7 +5351,7 @@
 
     goto :goto_7e
 
-    .line 352
+    .line 371
     :cond_4b
     new-instance p1, Ljava/lang/StringBuilder;
 
@@ -5074,7 +5403,7 @@
 
     move-result-object p1
 
-    .line 353
+    .line 372
     :goto_7e
     move-object v0, p0
 
@@ -5088,22 +5417,22 @@
 
     goto :goto_89
 
-    .line 348
+    .line 367
     :cond_87
     :goto_87
     return-object p0
 
-    .line 354
+    .line 373
     :catchall_88
     move-exception p1
 
     :goto_89
     nop
 
-    .line 355
+    .line 374
     return-object p0
 
-    .line 338
+    .line 357
     :cond_8b
     :goto_8b
     return-object p0
@@ -5112,18 +5441,18 @@
 .method public static xjSecure([Ljava/lang/Object;)Z
     .registers 9
 
-    .line 323
+    .line 342
     const/4 v0, 0x0
 
     if-nez p0, :cond_4
 
     return v0
 
-    .line 324
+    .line 343
     :cond_4
     nop
 
-    .line 325
+    .line 344
     array-length v1, p0
 
     const/4 v2, 0x0
@@ -5139,15 +5468,15 @@
 
     aget-object v6, p0, v2
 
-    .line 326
+    .line 345
     instance-of v7, v6, Ljava/lang/String;
 
     if-eqz v7, :cond_2f
 
-    .line 327
+    .line 346
     check-cast v6, Ljava/lang/String;
 
-    .line 328
+    .line 347
     const-string v7, "GET_secure"
 
     invoke-virtual {v7, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -5160,7 +5489,7 @@
 
     goto :goto_2f
 
-    .line 329
+    .line 348
     :cond_1e
     const-string v7, "android_id"
 
@@ -5181,14 +5510,14 @@
     :cond_2e
     const/4 v4, 0x1
 
-    .line 325
+    .line 344
     :cond_2f
     :goto_2f
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_9
 
-    .line 332
+    .line 351
     :cond_32
     if-eqz v3, :cond_37
 

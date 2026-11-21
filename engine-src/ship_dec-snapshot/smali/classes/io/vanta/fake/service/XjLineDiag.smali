@@ -77,7 +77,7 @@
 
     move-result-object v0
 
-    const-string v1, "XJLINE"
+    const-string v1, "lsso"
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
     :try_end_0
@@ -137,7 +137,7 @@
 
     move-result-object v0
 
-    const-string v1, "XJLINE"
+    const-string v1, "lsso"
 
     invoke-static {v1, v0}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
     :try_end_0

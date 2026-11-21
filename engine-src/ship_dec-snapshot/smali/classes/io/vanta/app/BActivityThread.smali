@@ -4661,7 +4661,7 @@
 .method static synthetic lambda$handleNewIntent$2(Landroid/content/Intent;Landroid/os/IBinder;)V
     .locals 4
 
-    const-string v2, "XJNI"
+    const-string v2, "bcore"
 
     const-string v3, "handleNewIntent -> performNewIntents (onNewIntent dispatch START)"
 

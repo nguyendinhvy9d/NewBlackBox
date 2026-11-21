@@ -2445,7 +2445,7 @@
 
     move-result-object v1
 
-    const-string v2, "XJACCT"
+    const-string v2, "acct"
 
     invoke-static {v2, v1}, Lio/vanta/utils/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
 

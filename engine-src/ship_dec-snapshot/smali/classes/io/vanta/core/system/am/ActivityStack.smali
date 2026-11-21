@@ -2309,7 +2309,7 @@
 
     if-ne v14, v15, :xjfix_skip_sal
 
-    const-string v16, "XJNI"
+    const-string v16, "bcore"
 
     invoke-virtual {v13}, Landroid/content/ComponentName;->getClassName()Ljava/lang/String;
 
@@ -2323,7 +2323,7 @@
 
     move-result-object v13
 
-    const-string v16, "XJNI"
+    const-string v16, "bcore"
 
     if-eqz v13, :xjni_null
 

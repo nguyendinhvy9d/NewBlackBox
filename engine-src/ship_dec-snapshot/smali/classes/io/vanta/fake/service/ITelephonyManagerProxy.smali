@@ -19,6 +19,8 @@
         Lio/vanta/fake/service/ITelephonyManagerProxy$GetMeid;,
         Lio/vanta/fake/service/ITelephonyManagerProxy$getImeiForSlot;,
         Lio/vanta/fake/service/ITelephonyManagerProxy$GetImei;,
+        Lio/vanta/fake/service/ITelephonyManagerProxy$GetSimStateForSlotIndex;,
+        Lio/vanta/fake/service/ITelephonyManagerProxy$GetSimStateForSlotIndexAndPortIndex;,
         Lio/vanta/fake/service/ITelephonyManagerProxy$GetDeviceId;
     }
 .end annotation

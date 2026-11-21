@@ -41,8 +41,8 @@
 // com.zhiliaoapp.musically) => tra uid that => GIU attribution package<->uid.
 // Chi cai trong process GMS-family.
 // ============================================================================
-#define SYM_GCU "_ZNK7android14IPCThreadState13getCallingUidEv"
-#define SYM_GCP "_ZNK7android14IPCThreadState13getCallingPidEv"
+// SYM_GCU/SYM_GCP (ten mangled IPCThreadState::getCallingUid/Pid) XOR-cloak -> g_s_gcu/g_s_gcp
+// (giai ma trong xj_init_strs). Tranh lo "hook getCallingUid" neu .so bi tim thay.
 
 // ============================================================================
 // XJ string-cloak: cac chuoi dinh-danh engine (ten goi host/GMS, ten lib ao,
@@ -58,6 +58,8 @@ static char g_s_vanta[9];  // "libvanta"
 static char g_s_xjh[10];   // "libxjhook"
 static char g_s_cls[24];   // "io/vanta/fake/XJProfile"
 static char g_s_mth[11];   // "nativeInit"
+static char g_s_gcu[46];   // "_ZNK7android14IPCThreadState13getCallingUidEv"
+static char g_s_gcp[46];   // "_ZNK7android14IPCThreadState13getCallingPidEv"
 // Key la volatile -> compiler KHONG duoc constant-fold phep XOR (neu fold, chuoi da
 // giai ma se nam ro trong .rodata, mat tac dung). Doc volatile = runtime, gia tri "an".
 static volatile unsigned char g_xk = 0x3C;
@@ -71,6 +73,8 @@ static void xj_init_strs(void) {
     static const unsigned char S_XJH[]={0x50,0x55,0x5e,0x44,0x56,0x54,0x53,0x53,0x57}; xj_dec(S_XJH,9,g_s_xjh);
     static const unsigned char S_CLS[]={0x55,0x53,0x13,0x4a,0x5d,0x52,0x48,0x5d,0x13,0x5a,0x5d,0x57,0x59,0x13,0x64,0x76,0x6c,0x4e,0x53,0x5a,0x55,0x50,0x59}; xj_dec(S_CLS,23,g_s_cls);
     static const unsigned char S_MTH[]={0x52,0x5d,0x48,0x55,0x4a,0x59,0x75,0x52,0x55,0x48}; xj_dec(S_MTH,10,g_s_mth);
+    static const unsigned char S_GCU[]={0x63,0x66,0x72,0x77,0x0b,0x5d,0x52,0x58,0x4e,0x53,0x55,0x58,0x0d,0x08,0x75,0x6c,0x7f,0x68,0x54,0x4e,0x59,0x5d,0x58,0x6f,0x48,0x5d,0x48,0x59,0x0d,0x0f,0x5b,0x59,0x48,0x7f,0x5d,0x50,0x50,0x55,0x52,0x5b,0x69,0x55,0x58,0x79,0x4a}; xj_dec(S_GCU,45,g_s_gcu);
+    static const unsigned char S_GCP[]={0x63,0x66,0x72,0x77,0x0b,0x5d,0x52,0x58,0x4e,0x53,0x55,0x58,0x0d,0x08,0x75,0x6c,0x7f,0x68,0x54,0x4e,0x59,0x5d,0x58,0x6f,0x48,0x5d,0x48,0x59,0x0d,0x0f,0x5b,0x59,0x48,0x7f,0x5d,0x50,0x50,0x55,0x52,0x5b,0x6c,0x55,0x58,0x79,0x4a}; xj_dec(S_GCP,45,g_s_gcp);
 }
 static int xj_starts(const char* b, const char* p, int n) { return strncmp(b, p, n) == 0; }
 
@@ -218,8 +222,8 @@ static int phdr_cb(struct dl_phdr_info* info, size_t size, void* data) {
         uint32_t si = (uint32_t) ELF64_R_SYM(jmprel[i].r_info);
         const char* name = strtab + symtab[si].st_name;
         void** slot = (void**) (base + jmprel[i].r_offset);
-        if (strcmp(name, SYM_GCU) == 0) { gcu_slot = slot; real_gcu = (int (*)(void*)) *slot; }
-        else if (strcmp(name, SYM_GCP) == 0) { real_gcp = (int (*)(void*)) *slot; }
+        if (strcmp(name, g_s_gcu) == 0) { gcu_slot = slot; real_gcu = (int (*)(void*)) *slot; }
+        else if (strcmp(name, g_s_gcp) == 0) { real_gcp = (int (*)(void*)) *slot; }
     }
     if (!gcu_slot || !real_gcu || !real_gcp) {
         LOG("gcu: thieu slot gcu=%p real_gcu=%p real_gcp=%p", (void*) gcu_slot, (void*) real_gcu, (void*) real_gcp);
