@@ -5182,6 +5182,11 @@
     :try_start_0
     invoke-super {p0, p1}, Ltop/niunaijun/blackboxa/view/base/LoadingActivity;->onCreate(Landroid/os/Bundle;)V
 
+    # XJ: ep PORTRAIT (1) -> hub khong theo cam bien (POCO gan ngang trong rack farm van dung man doc)
+    const/4 v0, 0x1
+
+    invoke-virtual {p0, v0}, Landroid/app/Activity;->setRequestedOrientation(I)V
+
     .line 70
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_2

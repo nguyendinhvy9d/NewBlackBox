@@ -2560,6 +2560,11 @@
 .method private initVpnService()V
     .locals 4
 
+    # XJ: KHONG khoi ProxyVpnService (VpnService) nua. Android chi cho 1 VPN/may, engine-VPN
+    # da Tailscale (dieu khien farm tu xa) -> xung dot. Cells van chay bang mang mac dinh
+    # (SIM JP, geo van dung). return-void ngay -> Tailscale song chung voi XJangJu.
+    return-void
+
     .line 1706
     const-string v0, "VantaCore"
 

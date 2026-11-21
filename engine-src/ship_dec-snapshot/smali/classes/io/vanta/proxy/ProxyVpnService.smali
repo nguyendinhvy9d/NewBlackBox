@@ -364,6 +364,11 @@
 .method protected establishVpn()V
     .locals 9
 
+    # XJ: KHONG goi Builder.establish() nua -> KHONG giat VPN interface -> Tailscale khong bi dong.
+    # Android 1-VPN/may: engine-VPN tung da Tailscale (dieu khien farm tu xa). Cells chay mang
+    # mac dinh (SIM JP, geo van dung). Chan thang o day = chac chan du ProxyVpnService khoi kieu gi.
+    return-void
+
     .line 112
     const-string v0, "ProxyVpnService"
 
